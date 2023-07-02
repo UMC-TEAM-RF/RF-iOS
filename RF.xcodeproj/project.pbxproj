@@ -16,6 +16,9 @@
 		572DC2492A51C42A00C0D6E1 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 572DC2482A51C42A00C0D6E1 /* Alamofire */; };
 		572DC24C2A51C4FB00C0D6E1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 572DC24B2A51C4FB00C0D6E1 /* RxCocoa */; };
 		572DC24E2A51C4FB00C0D6E1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 572DC24D2A51C4FB00C0D6E1 /* RxSwift */; };
+		572DC2502A51C5F300C0D6E1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */; };
+		572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2522A51C64400C0D6E1 /* HomeViewController.swift */; };
+		572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		572DC2372A51BF2500C0D6E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		572DC23A2A51BF2500C0D6E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		572DC23C2A51BF2500C0D6E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		572DC2522A51C64400C0D6E1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNicknameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +80,10 @@
 		572DC2422A51C23C00C0D6E1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				572DC2322A51BF2400C0D6E1 /* SignInViewController.swift */,
+				572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */,
+				572DC2572A51CA3400C0D6E1 /* SignIn */,
+				572DC2542A51C97900C0D6E1 /* SignUp */,
+				572DC2512A51C62E00C0D6E1 /* Home */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -86,6 +95,30 @@
 				572DC2302A51BF2400C0D6E1 /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		572DC2512A51C62E00C0D6E1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				572DC2522A51C64400C0D6E1 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		572DC2542A51C97900C0D6E1 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		572DC2572A51CA3400C0D6E1 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				572DC2322A51BF2400C0D6E1 /* SignInViewController.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,7 +202,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
+				572DC2502A51C5F300C0D6E1 /* TabBarController.swift in Sources */,
+				572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */,
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
 			);
