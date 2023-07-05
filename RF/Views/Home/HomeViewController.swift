@@ -14,7 +14,6 @@ final class HomeViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .yellow
         scrollView.bounces = false
         return scrollView
     }()
@@ -68,10 +67,15 @@ final class HomeViewController: UIViewController {
         return label
     }()
     
-    private lazy var friendListCollectionView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .brown
-        return view
+    private lazy var friendListCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 5
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        cv.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        cv.tag = 1
+        return cv
     }()
     
     // 모임
@@ -104,6 +108,8 @@ final class HomeViewController: UIViewController {
         configureCollectionView()
     }
     
+    // MARK: - addSubviews
+    
     private func addSubviews() {
         view.addSubview(scrollView)
         
@@ -126,6 +132,8 @@ final class HomeViewController: UIViewController {
         // 모임
         meetingListView.addSubview(meetingListLabel)
     }
+    
+    // MARK: - configureConstraints
     
     private func configureConstraints() {
         scrollView.snp.makeConstraints { make in
@@ -207,24 +215,37 @@ final class HomeViewController: UIViewController {
         bannerCollectionView.dataSource = self
         
         bannerCollectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: "BannerCollectionViewCell")
+        
+        // 친구 목록
+        friendListCollectionView.delegate = self
+        friendListCollectionView.dataSource = self
+        
+        friendListCollectionView.register(FriendListCollectionViewCell.self, forCellWithReuseIdentifier: "FriendListCollectionViewCell")
     }
 }
 
+// MARK: - Extension
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: bannerCollectionView.frame.width, height: bannerCollectionView.frame.height)
+        switch collectionView.tag {
+        case 0:
+            return CGSize(width: bannerCollectionView.frame.width, height: bannerCollectionView.frame.height)
+        case 1:
+            return CGSize(width: friendListCollectionView.frame.height * 0.8, height: friendListCollectionView.frame.height)
+        default:
+            return CGSize()
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView.tag {
         case 0:
-            print("Banner")
             return 2
         case 1:
-            print("모임")
-            return 3
+            return 4
         default:
             return 0
         }
@@ -236,8 +257,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCollectionViewCell", for: indexPath) as! BannerCollectionViewCell
             return cell
         case 1:
-            print("모임")
-            return UICollectionViewCell()
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendListCollectionViewCell", for: indexPath) as! FriendListCollectionViewCell
+            return cell
         default:
             return UICollectionViewCell()
         }

@@ -20,6 +20,7 @@
 		572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2522A51C64400C0D6E1 /* HomeViewController.swift */; };
 		572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */; };
 		57673ED42A5579E000A13D07 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */; };
+		57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673ED52A55B7E600A13D07 /* FriendListCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		572DC2522A51C64400C0D6E1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNicknameViewController.swift; sourceTree = "<group>"; };
 		57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		57673ED52A55B7E600A13D07 /* FriendListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			children = (
 				572DC2522A51C64400C0D6E1 /* HomeViewController.swift */,
 				57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */,
+				57673ED52A55B7E600A13D07 /* FriendListCollectionViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
 				572DC2502A51C5F300C0D6E1 /* TabBarController.swift in Sources */,
