@@ -91,6 +91,25 @@ final class HomeViewController: UIViewController {
         return label
     }()
     
+    private lazy var meetingCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 15
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        cv.tag = 2
+        cv.isScrollEnabled = false
+        return cv
+    }()
+    
+    // 꿀팁 배너
+    private lazy var tipsView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6
+        return view
+    }()
+    
+    // 관심사
     
 
     // MARK: - Property
@@ -106,6 +125,8 @@ final class HomeViewController: UIViewController {
         addSubviews()
         configureConstraints()
         configureCollectionView()
+     
+        
     }
     
     // MARK: - addSubviews
@@ -120,6 +141,7 @@ final class HomeViewController: UIViewController {
         containerView.addSubview(bannerCollectionView)
         containerView.addSubview(friendListView)
         containerView.addSubview(meetingListView)
+        containerView.addSubview(tipsView)
         
         // 네비게이션 바
         navigationContainerView.addSubview(navigationLogo)
@@ -131,6 +153,7 @@ final class HomeViewController: UIViewController {
         
         // 모임
         meetingListView.addSubview(meetingListLabel)
+        meetingListView.addSubview(meetingCollectionView)
     }
     
     // MARK: - configureConstraints
@@ -195,18 +218,28 @@ final class HomeViewController: UIViewController {
         meetingListView.snp.makeConstraints { make in
             make.top.equalTo(friendListView.snp.bottom).offset(40)
             make.left.right.equalToSuperview()
-            
-            make.bottom.equalToSuperview() // test용
         }
         
         meetingListLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.equalToSuperview().inset(20)
-            
-            make.bottom.equalToSuperview()
         }
         
-
+        meetingCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(meetingListLabel.snp.bottom).offset(15)
+            make.left.right.equalToSuperview().inset(20)
+            
+            make.bottom.equalToSuperview()
+            
+            make.height.equalTo(275)    // 모임 2개 고정
+        }
+        
+        tipsView.snp.makeConstraints { make in
+            make.top.equalTo(meetingListView.snp.bottom).offset(40)
+            make.left.right.equalToSuperview().inset(20)
+            make.height.equalTo(75)
+            make.bottom.equalToSuperview().offset(-40) // test용
+        }
     }
 
     private func configureCollectionView() {
@@ -221,6 +254,12 @@ final class HomeViewController: UIViewController {
         friendListCollectionView.dataSource = self
         
         friendListCollectionView.register(FriendListCollectionViewCell.self, forCellWithReuseIdentifier: "FriendListCollectionViewCell")
+        
+        // 모임
+        meetingCollectionView.delegate = self
+        meetingCollectionView.dataSource = self
+        
+        meetingCollectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: "BannerCollectionViewCell")
     }
 }
 
@@ -234,6 +273,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return CGSize(width: bannerCollectionView.frame.width, height: bannerCollectionView.frame.height)
         case 1:
             return CGSize(width: friendListCollectionView.frame.height * 0.8, height: friendListCollectionView.frame.height)
+        case 2:
+            return CGSize(width: meetingCollectionView.frame.width, height: 130)
         default:
             return CGSize()
         }
@@ -246,6 +287,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return 2
         case 1:
             return 4
+        case 2:
+            return 3
         default:
             return 0
         }
@@ -259,10 +302,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendListCollectionViewCell", for: indexPath) as! FriendListCollectionViewCell
             return cell
+        case 2:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCollectionViewCell", for: indexPath) as! BannerCollectionViewCell
+            cell.backgroundColor = .yellow
+            return cell
         default:
             return UICollectionViewCell()
         }
     }
-    
+
     
 }
+
