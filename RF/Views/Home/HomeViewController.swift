@@ -31,7 +31,7 @@ final class HomeViewController: UIViewController {
     
     private lazy var navigationLogo: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "person")
+        view.image = UIImage(named: "rf_logo")
         view.contentMode = .scaleAspectFill
         return view
     }()
@@ -109,7 +109,61 @@ final class HomeViewController: UIViewController {
         return view
     }()
     
+    private lazy var tipsImage: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "tips_icon")
+        iv.contentMode = .scaleAspectFill
+        return iv
+    }()
+    
+    private lazy var tipsLabelStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.spacing = 5
+        sv.distribution = .fill
+        sv.alignment = .fill
+        return sv
+    }()
+    
+    private lazy var tipsTopLabel: UILabel = {
+        let label = UILabel()
+        label.text = "외국인 친구들과 편하게 얘기하고 싶어?"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        return label
+    }()
+    
+    private lazy var tipsBottomLabel: UILabel = {
+        let label = UILabel()
+        label.text = "꿀팁 얻으러 가기!"
+        label.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+        return label
+    }()
+    
     // 관심사
+    private lazy var interestView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private lazy var interestLabel: UILabel = {
+        let label = UILabel()
+        label.text = "관심사 더보기"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        return label
+    }()
+    
+    private lazy var interestCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 1
+        flowLayout.minimumInteritemSpacing = 1
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        cv.tag = 3
+        cv.isScrollEnabled = false
+        cv.layer.cornerRadius = 10
+        return cv
+    }()
     
 
     // MARK: - Property
@@ -125,8 +179,6 @@ final class HomeViewController: UIViewController {
         addSubviews()
         configureConstraints()
         configureCollectionView()
-     
-        
     }
     
     // MARK: - addSubviews
@@ -142,6 +194,8 @@ final class HomeViewController: UIViewController {
         containerView.addSubview(friendListView)
         containerView.addSubview(meetingListView)
         containerView.addSubview(tipsView)
+        containerView.addSubview(interestView)
+        
         
         // 네비게이션 바
         navigationContainerView.addSubview(navigationLogo)
@@ -154,6 +208,16 @@ final class HomeViewController: UIViewController {
         // 모임
         meetingListView.addSubview(meetingListLabel)
         meetingListView.addSubview(meetingCollectionView)
+        
+        // 꿀팁
+        tipsView.addSubview(tipsImage)
+        tipsView.addSubview(tipsLabelStackView)
+        tipsLabelStackView.addArrangedSubview(tipsTopLabel)
+        tipsLabelStackView.addArrangedSubview(tipsBottomLabel)
+        
+        // 관심사
+        interestView.addSubview(interestLabel)
+        interestView.addSubview(interestCollectionView)
     }
     
     // MARK: - configureConstraints
@@ -234,13 +298,43 @@ final class HomeViewController: UIViewController {
             make.height.equalTo(275)    // 모임 2개 고정
         }
         
+        // 꿀팁
         tipsView.snp.makeConstraints { make in
             make.top.equalTo(meetingListView.snp.bottom).offset(40)
             make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(75)
-            make.bottom.equalToSuperview().offset(-40) // test용
+        }
+        
+        tipsImage.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(16)
+            make.left.equalToSuperview().inset(16)
+            make.width.equalTo(tipsImage.snp.height).multipliedBy(1)
+        }
+        
+        tipsLabelStackView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(tipsImage.snp.right).offset(10)
+        }
+        
+        // 관심사
+        interestView.snp.makeConstraints { make in
+            make.top.equalTo(tipsView.snp.bottom).offset(40)
+            make.left.right.equalToSuperview().inset(20)
+            
+            make.height.equalTo(200)
+            make.bottom.equalToSuperview().offset(-40)
+        }
+        
+        interestLabel.snp.makeConstraints { make in
+            make.top.left.equalToSuperview()
+        }
+        
+        interestCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(interestLabel.snp.bottom).offset(15)
+            make.left.right.bottom.equalToSuperview()
         }
     }
+    
 
     private func configureCollectionView() {
         // banner collectionView
@@ -260,6 +354,12 @@ final class HomeViewController: UIViewController {
         meetingCollectionView.dataSource = self
         
         meetingCollectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: "BannerCollectionViewCell")
+        
+        // 관심사
+        interestCollectionView.delegate = self
+        interestCollectionView.dataSource = self
+        
+        interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: "InterestCollectionViewCell")
     }
 }
 
@@ -275,6 +375,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return CGSize(width: friendListCollectionView.frame.height * 0.8, height: friendListCollectionView.frame.height)
         case 2:
             return CGSize(width: meetingCollectionView.frame.width, height: 130)
+        case 3:
+            return CGSize(width: (interestCollectionView.frame.width - 2) / 3, height: (interestCollectionView.frame.height - 2) / 4)
         default:
             return CGSize()
         }
@@ -289,6 +391,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return 4
         case 2:
             return 3
+        case 3:
+            return InterestList.shared.count
         default:
             return 0
         }
@@ -298,6 +402,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         switch collectionView.tag {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCollectionViewCell", for: indexPath) as! BannerCollectionViewCell
+            cell.setBannerImage(UIImage(named: "banner"))
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendListCollectionViewCell", for: indexPath) as! FriendListCollectionViewCell
@@ -306,6 +411,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCollectionViewCell", for: indexPath) as! BannerCollectionViewCell
             cell.backgroundColor = .yellow
             return cell
+        case 3:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InterestCollectionViewCell", for: indexPath) as! InterestCollectionViewCell
+            cell.setTextLabel(InterestList.shared[indexPath.item])
+            return cell
         default:
             return UICollectionViewCell()
         }
@@ -313,4 +422,3 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     
 }
-

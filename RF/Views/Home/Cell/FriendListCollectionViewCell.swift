@@ -35,7 +35,7 @@ class FriendListCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.backgroundColor = .gray
+        contentView.backgroundColor = .systemGray6
         addSubviews()
         configureConstraints()
     }

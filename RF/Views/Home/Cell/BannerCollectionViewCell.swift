@@ -13,7 +13,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
     private lazy var bannerView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "person")
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleToFill
         return view
     }()
     
@@ -36,5 +36,9 @@ class BannerCollectionViewCell: UICollectionViewCell {
         bannerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    func setBannerImage(_ image: UIImage?) {
+        self.bannerView.image = image
     }
 }
