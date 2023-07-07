@@ -135,7 +135,7 @@ final class HomeViewController: UIViewController {
     private lazy var tipsBottomLabel: UILabel = {
         let label = UILabel()
         label.text = "꿀팁 얻으러 가기!"
-        label.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
         return label
     }()
     
@@ -351,6 +351,7 @@ final class HomeViewController: UIViewController {
         friendListCollectionView.dataSource = self
         
         friendListCollectionView.register(FriendListCollectionViewCell.self, forCellWithReuseIdentifier: "FriendListCollectionViewCell")
+        friendListCollectionView.register(MoreFriendCollectionViewCell.self, forCellWithReuseIdentifier: "MoreFriendCollectionViewCell")
         
         // 모임
         meetingCollectionView.delegate = self
@@ -408,8 +409,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.setBannerImage(UIImage(named: "banner"))
             return cell
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendListCollectionViewCell", for: indexPath) as! FriendListCollectionViewCell
-            return cell
+            if indexPath.item != 3 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendListCollectionViewCell", for: indexPath) as! FriendListCollectionViewCell
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoreFriendCollectionViewCell", for: indexPath) as! MoreFriendCollectionViewCell
+                return cell
+            }
+            
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCollectionViewCell", for: indexPath) as! BannerCollectionViewCell
             cell.backgroundColor = .yellow
