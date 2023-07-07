@@ -32,6 +32,7 @@ class MoreFriendCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.backgroundColor = .systemGray6
+        contentView.layer.cornerRadius = 10
         
         addSubviews()
         configureConstraints()

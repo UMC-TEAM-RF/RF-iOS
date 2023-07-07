@@ -91,6 +91,14 @@ final class HomeViewController: UIViewController {
         return label
     }()
     
+    private lazy var moreMeetingButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("더보기", for: .normal)
+        button.setTitleColor(.lightGray, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        return button
+    }()
+    
     private lazy var meetingCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
@@ -106,6 +114,7 @@ final class HomeViewController: UIViewController {
     private lazy var tipsView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray6
+        view.layer.cornerRadius = 10
         return view
     }()
     
@@ -210,6 +219,7 @@ final class HomeViewController: UIViewController {
         
         // 모임
         meetingListView.addSubview(meetingListLabel)
+        meetingListView.addSubview(moreMeetingButton)
         meetingListView.addSubview(meetingCollectionView)
         
         // 꿀팁
@@ -292,6 +302,11 @@ final class HomeViewController: UIViewController {
             make.left.equalToSuperview().inset(20)
         }
         
+        moreMeetingButton.snp.makeConstraints { make in
+            make.centerY.equalTo(meetingListLabel.snp.centerY)
+            make.right.equalToSuperview().inset(20)
+        }
+        
         meetingCollectionView.snp.makeConstraints { make in
             make.top.equalTo(meetingListLabel.snp.bottom).offset(15)
             make.left.right.equalToSuperview().inset(20)
@@ -357,7 +372,7 @@ final class HomeViewController: UIViewController {
         meetingCollectionView.delegate = self
         meetingCollectionView.dataSource = self
         
-        meetingCollectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: "BannerCollectionViewCell")
+        meetingCollectionView.register(MeetingCollectionViewCell.self, forCellWithReuseIdentifier: "MeetingCollectionViewCell")
         
         // 관심사
         interestCollectionView.delegate = self
@@ -418,8 +433,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             
         case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCollectionViewCell", for: indexPath) as! BannerCollectionViewCell
-            cell.backgroundColor = .yellow
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MeetingCollectionViewCell", for: indexPath) as! MeetingCollectionViewCell
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InterestCollectionViewCell", for: indexPath) as! InterestCollectionViewCell
