@@ -12,8 +12,10 @@ class FriendListCollectionViewCell: UICollectionViewCell {
     
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "person")
+        
+        view.backgroundColor = .white
         view.contentMode = .scaleAspectFill
+        view.layer.masksToBounds = true
         return view
     }()
     
@@ -27,7 +29,7 @@ class FriendListCollectionViewCell: UICollectionViewCell {
     private lazy var subjectLabel: UILabel = {
         let label = UILabel()
         label.text = "컴퓨터공학과"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         return label
     }()
     
@@ -36,8 +38,12 @@ class FriendListCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.backgroundColor = .systemGray6
+        
         addSubviews()
         configureConstraints()
+        
+        layoutIfNeeded()
+        imageView.layer.cornerRadius = imageView.bounds.width / 2
     }
     
     required init?(coder: NSCoder) {
@@ -53,7 +59,7 @@ class FriendListCollectionViewCell: UICollectionViewCell {
     private func configureConstraints() {
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(15)
-            make.left.right.equalToSuperview().inset(30)
+            make.left.right.equalToSuperview().inset(25)
             
             make.height.equalTo(imageView.snp.width).multipliedBy(1)
         }
@@ -65,7 +71,7 @@ class FriendListCollectionViewCell: UICollectionViewCell {
         
         subjectLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(schoolLabel.snp.bottom).offset(8)
+            make.top.equalTo(schoolLabel.snp.bottom).offset(5)
             //make.bottom.equalToSuperview().inset(15)
         }
     }

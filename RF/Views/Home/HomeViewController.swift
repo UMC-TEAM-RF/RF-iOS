@@ -73,7 +73,7 @@ final class HomeViewController: UIViewController {
         flowLayout.minimumLineSpacing = 5
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        cv.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        cv.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         cv.tag = 1
         return cv
     }()
@@ -162,6 +162,9 @@ final class HomeViewController: UIViewController {
         cv.tag = 3
         cv.isScrollEnabled = false
         cv.layer.cornerRadius = 10
+        cv.backgroundColor = .lightGray
+        cv.layer.borderColor = UIColor.lightGray.cgColor
+        cv.layer.borderWidth = 1
         return cv
     }()
     
@@ -264,7 +267,7 @@ final class HomeViewController: UIViewController {
             make.top.equalTo(bannerCollectionView.snp.bottom).offset(40)
             make.left.right.equalToSuperview()
             //make.width.equalToSuperview()
-            make.height.equalTo(185)
+            make.height.equalTo(200)
         }
         
         friendListLabel.snp.makeConstraints { make in
@@ -321,7 +324,7 @@ final class HomeViewController: UIViewController {
             make.top.equalTo(tipsView.snp.bottom).offset(40)
             make.left.right.equalToSuperview().inset(20)
             
-            make.height.equalTo(200)
+            make.height.equalTo(250)
             make.bottom.equalToSuperview().offset(-40)
         }
         
@@ -392,7 +395,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 2:
             return 3
         case 3:
-            return InterestList.shared.count
+            return Interest.list.count
         default:
             return 0
         }
@@ -413,7 +416,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InterestCollectionViewCell", for: indexPath) as! InterestCollectionViewCell
-            cell.setTextLabel(InterestList.shared[indexPath.item])
+            cell.setTextLabel(Interest.list[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()

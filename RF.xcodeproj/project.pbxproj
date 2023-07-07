@@ -24,8 +24,9 @@
 		572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */; };
 		57673ED42A5579E000A13D07 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */; };
 		57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673ED52A55B7E600A13D07 /* FriendListCollectionViewCell.swift */; };
-		57673EDC2A56E9D200A13D07 /* InterestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDB2A56E9D200A13D07 /* InterestList.swift */; };
+		57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDB2A56E9D200A13D07 /* Interest.swift */; };
 		57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */; };
+		57673EE02A57A87000A13D07 /* MoreFriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDF2A57A87000A13D07 /* MoreFriendCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,8 +45,9 @@
 		572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNicknameViewController.swift; sourceTree = "<group>"; };
 		57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673ED52A55B7E600A13D07 /* FriendListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCollectionViewCell.swift; sourceTree = "<group>"; };
-		57673EDB2A56E9D200A13D07 /* InterestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestList.swift; sourceTree = "<group>"; };
+		57673EDB2A56E9D200A13D07 /* Interest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
 		57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCollectionViewCell.swift; sourceTree = "<group>"; };
+		57673EDF2A57A87000A13D07 /* MoreFriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreFriendCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			children = (
 				57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */,
 				57673ED52A55B7E600A13D07 /* FriendListCollectionViewCell.swift */,
+				57673EDF2A57A87000A13D07 /* MoreFriendCollectionViewCell.swift */,
 				57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */,
 			);
 			path = Cell;
@@ -153,7 +156,7 @@
 		57673EDA2A56E9B000A13D07 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				57673EDB2A56E9D200A13D07 /* InterestList.swift */,
+				57673EDB2A56E9D200A13D07 /* Interest.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -242,13 +245,14 @@
 				57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */,
 				57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */,
 				3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */,
+				57673EE02A57A87000A13D07 /* MoreFriendCollectionViewCell.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
 				572DC2502A51C5F300C0D6E1 /* TabBarController.swift in Sources */,
 				57673ED42A5579E000A13D07 /* BannerCollectionViewCell.swift in Sources */,
 				572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */,
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
-				57673EDC2A56E9D200A13D07 /* InterestList.swift in Sources */,
+				57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */,
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
