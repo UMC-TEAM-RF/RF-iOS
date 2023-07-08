@@ -18,7 +18,7 @@ final class TabBarController: UITabBarController {
     
     private func configureTabBar() {
         let vc1 = UINavigationController(rootViewController: HomeViewController())
-        let vc2 = UINavigationController(rootViewController: HomeViewController())
+        let vc2 = UINavigationController(rootViewController: MeetingViewController())
         let vc3 = UINavigationController(rootViewController: HomeViewController())
         let vc4 = UINavigationController(rootViewController: HomeViewController())
         let vc5 = UINavigationController(rootViewController: HomeViewController())
@@ -32,6 +32,7 @@ final class TabBarController: UITabBarController {
         vc5.tabBarItem = UITabBarItem(title: "마이페이지", image: UIImage(systemName: "person.circle.fill"), selectedImage: UIImage(systemName: "person.circle.fill"))
         
         self.tabBar.tintColor = .systemBlue
+        self.tabBar.backgroundColor = .white
         
         self.setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: false)
     }
