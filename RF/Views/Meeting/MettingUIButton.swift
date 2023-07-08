@@ -13,7 +13,6 @@ final class MettingUIButton: UIButton{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        addSubviews()
     }
     
     required init?(coder: NSCoder) {
@@ -31,7 +30,7 @@ final class MettingUIButton: UIButton{
     // MARK: 제목
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: 12)
         return label
     }()
     

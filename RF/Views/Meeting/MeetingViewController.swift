@@ -32,16 +32,16 @@ final class MeetingViewController: UIViewController{
     }()
     
     // MARK: 모임 찾기 버튼
-    private lazy var searchMeetingBtn: MettingUIButton = {
-        let btn = MettingUIButton()
-        btn.inputData(icon: "magnifyingglass", name: "모임 찾기")
+    private lazy var searchMeetingBtn: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "magnifyingglass")?.resize(newWidth: 25), for: .normal)
         return btn
     }()
     
     // MARK: 모임 생성 버튼
-    private lazy var createMeetingBtn: MettingUIButton = {
-        let btn = MettingUIButton()
-        btn.inputData(icon: "plus", name: "모임 생성")
+    private lazy var createMeetingBtn: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "plus")?.resize(newWidth: 25), for: .normal)
         return btn
     }()
     
@@ -51,17 +51,26 @@ final class MeetingViewController: UIViewController{
         stack.axis = .horizontal
         stack.distribution = .fillEqually
         stack.backgroundColor = .systemBackground
-        stack.spacing = 30
+        stack.spacing = 10
         return stack
     }()
     
+    // MARK: 모임 찾기, 모임 생성하기 UIView
+    private lazy var makeFriendView: MakeFriendUIView = {
+        let view = MakeFriendUIView()
+        view.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0) /* #f9f9f9 */
+        view.layer.cornerRadius = 20
+        return view
+    }()
     
     // MARK: add UI
     private func addSubviews(){
         view.addSubview(titleLabel)
         view.addSubview(btnsStackView)
+        view.addSubview(makeFriendView)
         
         configureConstraints()
+        uiActions()
     }
     
     // MARK: setting AutoLayout
@@ -72,10 +81,22 @@ final class MeetingViewController: UIViewController{
         }
         
         btnsStackView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.top)
+            make.centerY.equalTo(titleLabel.snp.centerY)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
         }
         
+        makeFriendView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(25)
+            make.leading.equalTo(view.safeAreaLayoutGuide)
+            make.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*2/5)
+        }
+    }
+    
+    // MARK:
+    private func uiActions(){
+        makeFriendView.inputData(height: view.safeAreaLayoutGuide.layoutFrame.width)
+        makeFriendView.delegate = self
     }
     
     // MARK: 모임 찾기, 모임 생성 버튼 눌렀을 때
@@ -94,6 +115,20 @@ final class MeetingViewController: UIViewController{
     }
     
     
+    
+}
+
+extension MeetingViewController: ClickedBtns{
+    /// true -> 모임 찾기 버튼
+    /// false -> 모임 생성하기
+    func clickedBtns(check: Bool) {
+        if check{
+            print("clicked searchMeeting")
+        }
+        else{
+            print("clicked createMeeting")
+        }
+    }
     
 }
 
@@ -125,3 +160,4 @@ extension UIImage {
     }
     
 }
+
