@@ -21,6 +21,7 @@ final class MeetingViewController: UIViewController{
         
         addSubviews()
         clickedTopBtns()
+        configureCollectionView()
     }
     
     // MARK: 모임 제목 라벨
@@ -63,11 +64,38 @@ final class MeetingViewController: UIViewController{
         return view
     }()
     
+    // MARK: - 근처 모임 리스트 View
+    private lazy var meetingListView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private lazy var meetingListLabel: UILabel = {
+        let label = UILabel()
+        label.text = "지금 OO님 근처의 모임을 확인 해보세요!"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        return label
+    }()
+    
+    private lazy var meetingCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 15
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        cv.isScrollEnabled = false
+        return cv
+    }()
+    
     // MARK: add UI
     private func addSubviews(){
         view.addSubview(titleLabel)
         view.addSubview(btnsStackView)
         view.addSubview(makeFriendView)
+        view.addSubview(meetingListView)
+        
+        meetingListView.addSubview(meetingListLabel)
+        meetingListView.addSubview(meetingCollectionView)
         
         configureConstraints()
         uiActions()
@@ -91,6 +119,35 @@ final class MeetingViewController: UIViewController{
             make.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*2/5)
         }
+        
+        // 모임
+        meetingListView.snp.makeConstraints { make in
+            make.top.equalTo(makeFriendView.snp.bottom).offset(50)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        meetingListLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview().inset(20)
+        }
+        
+        meetingCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(meetingListLabel.snp.bottom).offset(15)
+            make.left.right.equalToSuperview().inset(20)
+            
+            //make.bottom.equalToSuperview()
+            
+            make.height.equalTo(130)    // 1개 130, 2개 275, 3개 420
+        }
+    }
+    
+    // MARK: - configureCollectionView
+    private func configureCollectionView() {
+        meetingCollectionView.delegate = self
+        meetingCollectionView.dataSource = self
+        
+        meetingCollectionView.register(MeetingCollectionViewCell.self, forCellWithReuseIdentifier: "MeetingCollectionViewCell")
     }
     
     // MARK:
@@ -118,7 +175,25 @@ final class MeetingViewController: UIViewController{
     
 }
 
-extension MeetingViewController: ClickedBtns{
+extension MeetingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: meetingCollectionView.frame.width, height: 130)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MeetingCollectionViewCell", for: indexPath) as! MeetingCollectionViewCell
+        return cell
+    }
+    
+    
+}
+
+extension MeetingViewController: ClickedButton {
     /// true -> 모임 찾기 버튼
     /// false -> 모임 생성하기
     func clickedBtns(check: Bool) {

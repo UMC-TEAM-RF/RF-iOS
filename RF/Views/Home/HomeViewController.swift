@@ -332,7 +332,7 @@ final class HomeViewController: UIViewController {
             
             make.bottom.equalToSuperview()
             
-            make.height.equalTo(275)    // 모임 2개 고정
+            make.height.equalTo(420)    // 모임 2개 고정 (2개 275, 3개 420)
         }
         
         // 꿀팁

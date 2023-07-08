@@ -11,7 +11,7 @@ import RxSwift
 
 final class MakeFriendUIView: UIView{
     private let disposeBag = DisposeBag()
-    var delegate: ClickedBtns?
+    var delegate: ClickedButton?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +26,8 @@ final class MakeFriendUIView: UIView{
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "새로운 친구 사귀기 좋은 날 아닌가요?"
-        label.font = .boldSystemFont(ofSize: 22)
+        //label.font = .boldSystemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         return label
     }()
     
@@ -84,7 +85,7 @@ final class MakeFriendUIView: UIView{
                       description1: "나의 진정한 외국인 친구들을 찾아보세요.",
                       description2: "취미 생활도 함께 할 수 있어요!")
         
-        createMeetingBtn.inputData(title: "모임 생성하기(이모지)",
+        createMeetingBtn.inputData(title: "모임 생성하기 (이모지)",
                       description1: "새로운 모임을 직접 만들어 보세요.",
                       description2: "1인당 최대 5개까지 만들 수 있어요.")
     }
@@ -106,8 +107,4 @@ final class MakeFriendUIView: UIView{
     
 }
 
-protocol ClickedBtns{
-    /// true -> 모임 찾기 버튼
-    /// false -> 모임 생성하기
-    func clickedBtns(check: Bool)
-}
+

@@ -32,6 +32,7 @@ final class TabBarController: UITabBarController {
         vc5.tabBarItem = UITabBarItem(title: "마이페이지", image: UIImage(systemName: "person.circle.fill"), selectedImage: UIImage(systemName: "person.circle.fill"))
         
         self.tabBar.tintColor = .systemBlue
+        self.tabBar.backgroundColor = .white
         
         self.setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: false)
     }
