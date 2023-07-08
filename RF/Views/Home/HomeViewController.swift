@@ -48,10 +48,20 @@ final class HomeViewController: UIViewController {
     private let bannerCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 0
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         cv.tag = 0
+        cv.isPagingEnabled = true
         return cv
+    }()
+    
+    private lazy var bannerPageControl: UIPageControl = {
+        let pc = UIPageControl()
+        pc.numberOfPages = 3
+        pc.currentPage = 0
+        pc.backgroundStyle = .minimal
+        return pc
     }()
     
     // 친구 목록
@@ -179,6 +189,7 @@ final class HomeViewController: UIViewController {
     
 
     // MARK: - Property
+    private var currentPageIndex = 0
     
     
     override func viewDidLoad() {
@@ -191,6 +202,8 @@ final class HomeViewController: UIViewController {
         addSubviews()
         configureConstraints()
         configureCollectionView()
+     
+        setAutomaticPaging()
     }
     
     // MARK: - addSubviews
@@ -203,6 +216,7 @@ final class HomeViewController: UIViewController {
         // 컨테이너 뷰
         containerView.addSubview(navigationContainerView)
         containerView.addSubview(bannerCollectionView)
+        containerView.addSubview(bannerPageControl)
         containerView.addSubview(friendListView)
         containerView.addSubview(meetingListView)
         containerView.addSubview(tipsView)
@@ -270,6 +284,11 @@ final class HomeViewController: UIViewController {
             make.left.right.equalToSuperview()
             //make.width.equalToSuperview()
             make.height.equalTo(200)
+        }
+        
+        bannerPageControl.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(bannerCollectionView.snp.bottom).offset(-10)
         }
         
         // 친구 목록
@@ -380,6 +399,19 @@ final class HomeViewController: UIViewController {
         
         interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: "InterestCollectionViewCell")
     }
+    
+    private func setAutomaticPaging() {
+        Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
+    }
+    
+    @objc func moveToNextIndex() {
+        currentPageIndex += 1
+        
+        if currentPageIndex == 3 { currentPageIndex = 0 }
+        bannerPageControl.currentPage = currentPageIndex
+        
+        bannerCollectionView.scrollToItem(at: IndexPath(item: currentPageIndex, section: 0), at: .centeredHorizontally, animated: true)
+    }
 }
 
 // MARK: - Extension
@@ -405,7 +437,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView.tag {
         case 0:
-            return 2
+            return 3
         case 1:
             return 4
         case 2:
@@ -443,6 +475,4 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return UICollectionViewCell()
         }
     }
-
-    
 }
