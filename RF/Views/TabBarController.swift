@@ -34,6 +34,9 @@ final class TabBarController: UITabBarController {
         self.tabBar.tintColor = .systemBlue
         self.tabBar.backgroundColor = .white
         
+        UITabBar.clearShadow()
+        tabBar.layer.applyShadow(color: .gray, alpha: 0.3, x: 0, y: 0, blur: 12)
+        
         self.setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: false)
     }
 

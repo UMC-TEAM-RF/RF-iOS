@@ -5,13 +5,10 @@
 //  Created by 이정동 on 2023/07/03.
 //
 
+import UIKit
 import SnapKit
-import SwiftUI
 
 class SetNicknameViewController: UIViewController {
-
-    
-    
     
     private lazy var topLabel: UILabel = {
         let label = UILabel()
