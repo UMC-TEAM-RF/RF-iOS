@@ -38,7 +38,7 @@ final class HomeViewController: UIViewController {
     
     private lazy var navigationSearchButton: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "magnifyingglass")
+        view.image = UIImage(systemName: "bell")
         view.contentMode = .scaleAspectFill
         view.tintColor = .black
         return view
