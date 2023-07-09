@@ -5,65 +5,139 @@
 //  Created by 이정동 on 2023/07/03.
 //
 
-import UIKit
+import SnapKit
+import SwiftUI
 
 class SetNicknameViewController: UIViewController {
+
+    
+    
+    
+    private lazy var topLabel: UILabel = {
+        let label = UILabel()
+        label.text = "알프님의\n기본 정보를 설정해주세요!"
+        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.numberOfLines = 2
+        return label
+    }()
+
+    private lazy var nicknameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "닉네임"
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.numberOfLines = 1
+        return label
+    }()
+
+    private lazy var nameCheckButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.setTitle("중복확인", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        button.titleLabel?.numberOfLines = 1
+        return button
+    }()
+
+    
+    private lazy var nextButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("다음", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
+        button.layer.cornerRadius = 5
+        return button
+    }()
+
+    
+    private var textField: UITextField = {
+        let field = UITextField()
+        field.borderStyle = .roundedRect
+        field.borderStyle = .none
+        field.placeholder = "   닉네임을 입력해주세요"
+        field.backgroundColor = UIColor(hexCode: "#F5F5F5")
+        field.textColor = UIColor(hexCode: "#818181")
+        field.layer.cornerRadius = 5
+        return field
+    }()
+    
+    private lazy var warningLbel: UILabel = {
+        let label = UILabel()
+        label.text = "이후 변경할 수 없으니 정확히 선택해 주세요"
+        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        label.textAlignment = .center
+        label.numberOfLines = 1
+        label.textColor = .gray
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        //닉네임 문구
-        let Nickname_label = UILabel(frame: CGRect(x: 30, y: 95, width: 240, height: 24))
-        Nickname_label.text = "닉네임을 설정해주세요."
-        let Sub_label = UILabel(frame: CGRect(x: 30, y: 140, width: 232, height: 15))
-        Sub_label.text = "닉네임은 알프 이용 시 나타나게 되요."
-        // 왼쪽 정렬 설정
-        Nickname_label.textAlignment = .left
-        Sub_label.textAlignment = .left
-        //Sub_label_글씨체 정보
-        let Sub_label_FontDescriptor = UIFont.systemFont(ofSize: 15, weight: .regular).fontDescriptor
-        let Sub_label_Font = UIFont(descriptor: Sub_label_FontDescriptor, size: 15)
-        Sub_label.font = Sub_label_Font
-        // Nickname_label_글씨체 정보
-        let Nickname_label_FontDescriptor = UIFont.systemFont(ofSize: 24, weight: .bold).fontDescriptor
-        let Nickname_label_Font = UIFont(descriptor: Nickname_label_FontDescriptor, size: 24)
-        Nickname_label.font = Nickname_label_Font
-        //sub_label color
-        Sub_label.textColor = UIColor(red: 162/255, green: 161/255, blue: 161/255, alpha: 1.0)
-        
-        //입력창
-        let textField = UITextField(frame: CGRect(x: 30, y: 194, width: 269, height: 55))
-        textField.borderStyle = .roundedRect
-        textField.borderStyle = .none
-        textField.placeholder = "   닉네임을 입력해주세요" // 입력창에 나타날 플레이스홀더 텍스트 설정
-        //sub_label color
-        textField.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
-        //sub_label color
-        textField.textColor = UIColor(red: 129/255, green: 129/255, blue: 129/255, alpha: 1.0)
-        textField.layer.cornerRadius = 5
-        
-        let NoEdit_label = UILabel(frame: CGRect(x: 53, y: 727, width: 274, height: 14))
-        NoEdit_label.text = "이후 변경할 수 없으니 정확히 선택해 주세요."
-        NoEdit_label.textAlignment = .center
-        let NoEdit_label_FontDescriptor = UIFont.systemFont(ofSize: 15, weight: .regular).fontDescriptor
-        let NoEdit_label_Font = UIFont(descriptor: NoEdit_label_FontDescriptor, size: 15)
-        NoEdit_label.font = NoEdit_label_Font
-        NoEdit_label.textColor = UIColor(red: 162/255, green: 161/255, blue: 161/255, alpha: 1.0)
-        
-        let check_button = UIButton(type: .system)
-        let check_button_text = UIColor(red: 60/255, green: 58/255, blue: 58/255, alpha: 1.0)
-        check_button.frame = CGRect(x: 30, y: 750, width: 330, height: 47)
-        check_button.setTitle("다음", for: .normal)
-        check_button.setTitleColor(check_button_text, for: .normal)
-        check_button.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
-        check_button.layer.cornerRadius = 5
-               
-        self.view.addSubview(Nickname_label)
-        self.view.addSubview(Sub_label)
-        self.view.addSubview(NoEdit_label)
-        self.view.addSubview(textField)
-        self.view.addSubview(check_button)
-        
+    
         view.backgroundColor = .systemBackground
+        
+        addSubviews()
+        configureConstraints()
     }
+    
+    
+    private func addSubviews() {
+        view.addSubview(nameCheckButton)
+        view.addSubview(topLabel)
+        view.addSubview(nicknameLabel)
+        view.addSubview(nextButton)
+        view.addSubview(textField)
+        view.addSubview(warningLbel)
+       
+    }
+    
+    private func configureConstraints() {
+        
+        //알프닝의 기본 정보를 설정해주세요.
+        topLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(25)
+            make.left.right.equalToSuperview().inset(20)
+        }
+        
+        //닉네임
+        nicknameLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(100)
+            make.right.equalToSuperview().inset(293)
+            make.left.equalToSuperview().inset(20)
+        }
+        
+        //닉네임을 입력해주세요.
+        textField.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(130)
+            make.left.equalToSuperview().inset(20)
+            make.right.equalToSuperview().inset(122)
+            make.bottom.equalToSuperview().inset(570)
+        }
+        
+        //이후 변경할 수 없으니 정확히 선택해 주세요.
+        warningLbel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(625)
+            make.left.right.equalToSuperview().inset(68)
+        }
+        
+        //중복 확인
+        nameCheckButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(110)
+            make.left.equalToSuperview().inset(286)
+            make.right.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(550)
+        }
+        
+        //다음
+        nextButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(655)
+            make.left.right.equalToSuperview().inset(30)
+            make.bottom.equalToSuperview().inset(50)
+        }
+
+    }
+    
+    
 }
