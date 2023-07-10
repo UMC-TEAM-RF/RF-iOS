@@ -20,6 +20,7 @@
 		572A9A292A5C09EA004D2809 /* CreateMeetingNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A282A5C09EA004D2809 /* CreateMeetingNameViewController.swift */; };
 		572A9A2B2A5C0AFA004D2809 /* CreateMeetingNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2A2A5C0AFA004D2809 /* CreateMeetingNavigationBar.swift */; };
 		572A9A2D2A5C12B1004D2809 /* NavigationBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2C2A5C12B1004D2809 /* NavigationBarDelegate.swift */; };
+		572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */; };
 		572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC22E2A51BF2400C0D6E1 /* AppDelegate.swift */; };
 		572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2302A51BF2400C0D6E1 /* SceneDelegate.swift */; };
 		572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2322A51BF2400C0D6E1 /* SignInViewController.swift */; };
@@ -56,6 +57,7 @@
 		572A9A282A5C09EA004D2809 /* CreateMeetingNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingNameViewController.swift; sourceTree = "<group>"; };
 		572A9A2A2A5C0AFA004D2809 /* CreateMeetingNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingNavigationBar.swift; sourceTree = "<group>"; };
 		572A9A2C2A5C12B1004D2809 /* NavigationBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarDelegate.swift; sourceTree = "<group>"; };
+		572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		572DC22B2A51BF2400C0D6E1 /* RF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		572DC22E2A51BF2400C0D6E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		572DC2302A51BF2400C0D6E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */,
 				572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */,
 				572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */,
+				572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -120,6 +123,14 @@
 				572A9A2A2A5C0AFA004D2809 /* CreateMeetingNavigationBar.swift */,
 			);
 			path = Creating;
+			sourceTree = "<group>";
+		};
+		572A9A2E2A5C25B9004D2809 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		572DC2222A51BF2400C0D6E1 = {
@@ -156,7 +167,7 @@
 		572DC2422A51C23C00C0D6E1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */,
+				572A9A2E2A5C25B9004D2809 /* Common */,
 				572DC2572A51CA3400C0D6E1 /* SignIn */,
 				572DC2542A51C97900C0D6E1 /* SignUp */,
 				572DC2512A51C62E00C0D6E1 /* Home */,
@@ -324,6 +335,7 @@
 				44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */,
 				57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */,
 				575032942A596DDE0060D629 /* ClickedButton.swift in Sources */,
+				572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */,
 				572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */,
 				57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */,
 				3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */,
