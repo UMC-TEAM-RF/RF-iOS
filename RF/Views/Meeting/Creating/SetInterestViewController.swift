@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SetInterestViewController: UIViewController {
     
@@ -146,7 +147,7 @@ class SetInterestViewController: UIViewController {
     // MARK: - @objc func
     
     @objc func nextButtonTapped() {
-        
+        navigationController?.pushViewController(SetDescriptViewController(), animated: true)
     }
     
 }
@@ -181,12 +182,24 @@ extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewD
         
         cell.isSelectedCell.toggle()
         
+        // 최대 3개 선택할 수 있도록 설정
         if cell.isSelectedCell { // 활성화
             self.selectedCount += 1
             cell.setColor(textColor: .white, backgroundColor: .tintColor)
         } else {  // 비활성화
             self.selectedCount -= 1
             cell.setColor(textColor: .label, backgroundColor: .systemGray6)
+        }
+    
+        // 다음 버튼 활성화 여부
+        if self.selectedCount == 0 {
+            nextButton.backgroundColor = .systemGray6
+            nextButton.setTitleColor(.black, for: .normal)
+            nextButton.isEnabled = false
+        } else {
+            nextButton.backgroundColor = .tintColor
+            nextButton.setTitleColor(.white, for: .normal)
+            nextButton.isEnabled = true
         }
     }
 }

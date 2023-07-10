@@ -22,6 +22,7 @@
 		572A9A2D2A5C12B1004D2809 /* NavigationBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2C2A5C12B1004D2809 /* NavigationBarDelegate.swift */; };
 		572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */; };
 		572A9A322A5CB445004D2809 /* SetInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A312A5CB445004D2809 /* SetInterestViewController.swift */; };
+		572A9A352A5CC21C004D2809 /* SetDescriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A342A5CC21C004D2809 /* SetDescriptViewController.swift */; };
 		572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC22E2A51BF2400C0D6E1 /* AppDelegate.swift */; };
 		572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2302A51BF2400C0D6E1 /* SceneDelegate.swift */; };
 		572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2322A51BF2400C0D6E1 /* SignInViewController.swift */; };
@@ -60,6 +61,7 @@
 		572A9A2C2A5C12B1004D2809 /* NavigationBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarDelegate.swift; sourceTree = "<group>"; };
 		572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		572A9A312A5CB445004D2809 /* SetInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInterestViewController.swift; sourceTree = "<group>"; };
+		572A9A342A5CC21C004D2809 /* SetDescriptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDescriptViewController.swift; sourceTree = "<group>"; };
 		572DC22B2A51BF2400C0D6E1 /* RF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		572DC22E2A51BF2400C0D6E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		572DC2302A51BF2400C0D6E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				572A9A2A2A5C0AFA004D2809 /* CreateMeetingNavigationBar.swift */,
 				572A9A282A5C09EA004D2809 /* SetMeetingNameViewController.swift */,
 				572A9A312A5CB445004D2809 /* SetInterestViewController.swift */,
+				572A9A342A5CC21C004D2809 /* SetDescriptViewController.swift */,
 			);
 			path = Creating;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */,
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
 				57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */,
+				572A9A352A5CC21C004D2809 /* SetDescriptViewController.swift in Sources */,
 				572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */,
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
