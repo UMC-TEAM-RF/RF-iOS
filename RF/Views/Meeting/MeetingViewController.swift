@@ -68,7 +68,7 @@ final class MeetingViewController: UIViewController{
         return view
     }()
     
-    // MARK: - 근처 모임 리스트 View
+    // MARK: 근처 모임 리스트 View
     private lazy var meetingListView: UIView = {
         let view = UIView()
         return view

@@ -17,6 +17,7 @@
 		3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */; };
 		3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */; };
 		3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE92A5C3CBA00D73163 /* DetailMeetingChatController.swift */; };
+		3BC35CED2A5C565800D73163 /* InterestingCollectioViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CEC2A5C565800D73163 /* InterestingCollectioViewCell.swift */; };
 		44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
@@ -53,6 +54,7 @@
 		3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingTabController.swift; sourceTree = "<group>"; };
 		3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingHomeController.swift; sourceTree = "<group>"; };
 		3BC35CE92A5C3CBA00D73163 /* DetailMeetingChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingChatController.swift; sourceTree = "<group>"; };
+		3BC35CEC2A5C565800D73163 /* InterestingCollectioViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingCollectioViewCell.swift; sourceTree = "<group>"; };
 		44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
@@ -110,8 +112,17 @@
 				3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */,
 				3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */,
 				3BC35CE92A5C3CBA00D73163 /* DetailMeetingChatController.swift */,
+				3BC35CEB2A5C563F00D73163 /* CollectionViewCell */,
 			);
 			path = DetailMeeting;
+			sourceTree = "<group>";
+		};
+		3BC35CEB2A5C563F00D73163 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3BC35CEC2A5C565800D73163 /* InterestingCollectioViewCell.swift */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 		44F82A0F2A56D55D006B17F8 /* Extensions */ = {
@@ -331,6 +342,7 @@
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
 				572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */,
 				57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */,
+				3BC35CED2A5C565800D73163 /* InterestingCollectioViewCell.swift in Sources */,
 				3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */,
 				57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */,
 				3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */,

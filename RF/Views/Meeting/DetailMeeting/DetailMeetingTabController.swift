@@ -26,7 +26,8 @@ final class DetailMeetingTabController: TabmanViewController{
         addSubviews()
     }
     
-    // MARK: add Controllers
+    
+    /// Add UI
     private func addSubviews(){
         let homeController = DetailMeetingHomeController()
         let chatController = DetailMeetingChatController()
@@ -38,10 +39,10 @@ final class DetailMeetingTabController: TabmanViewController{
         customTabBar()
     }
     
-    // MARK: TabBar Custom
+    /// MARK: TabBar Custom
     private func customTabBar(){
         let bar = TMBar.ButtonBar()
-                
+
         //탭바 레이아웃 설정
         bar.layout.transitionStyle = .snap
         bar.layout.alignment = .centerDistributed
