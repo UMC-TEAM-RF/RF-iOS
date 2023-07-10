@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CreateMeetingNameViewController: UIViewController {
+class SetMeetingNameViewController: UIViewController {
     
     // MARK: - UI Property
     
@@ -92,6 +92,7 @@ class CreateMeetingNameViewController: UIViewController {
         
         addSubviews()
         configureConstraints()
+        addTargets()
     }
     
     // MARK: - addSubviews()
@@ -153,14 +154,41 @@ class CreateMeetingNameViewController: UIViewController {
             make.height.equalTo(50)
         }
     }
+    
+    private func addTargets() {
+        meetingNameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+    }
+    
+    // MARK: - @objc func
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+
+        if text == "" || text.split(separator: " ").count == 0 {
+            nextButton.backgroundColor = .systemGray6
+            nextButton.setTitleColor(.black, for: .normal)
+            nextButton.isEnabled = false
+        } else {
+            nextButton.backgroundColor = .tintColor
+            nextButton.setTitleColor(.white, for: .normal)
+            nextButton.isEnabled = true
+        }
+    }
+    
+    @objc func nextButtonTapped() {
+        navigationController?.pushViewController(SetInterestViewController(), animated: true)
+    }
 
 }
 
 // MARK: - NavigationBarDelegate
 
-extension CreateMeetingNameViewController: NavigationBarDelegate {
+extension SetMeetingNameViewController: NavigationBarDelegate {
     func backButtonTapped() {
         tabBarController?.tabBar.isHidden = false
         navigationController?.popViewController(animated: true)
     }
 }
+
+
