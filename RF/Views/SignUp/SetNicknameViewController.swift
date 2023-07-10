@@ -38,6 +38,10 @@ class SetNicknameViewController: UIViewController {
 
     
     private lazy var nextButton: UIButton = {
+        
+        let userInfoViewController = UserInfoViewController()
+        navigationController?.pushViewController(userInfoViewController, animated: true)
+        
         let button = UIButton()
         button.setTitle("다음", for: .normal)
         button.setTitleColor(.gray, for: .normal)
