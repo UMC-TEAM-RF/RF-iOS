@@ -31,7 +31,7 @@ class SetMeetingNameViewController: UIViewController {
     // 메인 라벨
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "모임 명을 입력해주세요."
+        label.text = "모임 명을 입력해 주세요."
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         return label
     }()
@@ -39,7 +39,7 @@ class SetMeetingNameViewController: UIViewController {
     // 서브 라벨
     private lazy var subLabel: UILabel = {
         let label = UILabel()
-        label.text = "변경이 불가하니 신중하게 작성해주세요!"
+        label.text = "변경이 불가하니 신중하게 작성해 주세요!"
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = .lightGray
         return label
@@ -154,6 +154,8 @@ class SetMeetingNameViewController: UIViewController {
             make.height.equalTo(50)
         }
     }
+    
+    // MARK: - addTargets
     
     private func addTargets() {
         meetingNameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)

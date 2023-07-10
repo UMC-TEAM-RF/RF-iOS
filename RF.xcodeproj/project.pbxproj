@@ -98,6 +98,7 @@
 		3B181D182A56DCC100B62DEB /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				572A9A332A5CB8E2004D2809 /* Cell */,
 				572A9A272A5C0989004D2809 /* Creating */,
 				3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */,
 				3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */,
@@ -134,6 +135,13 @@
 				572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		572A9A332A5CB8E2004D2809 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		572DC2222A51BF2400C0D6E1 = {
