@@ -13,6 +13,7 @@ class MeetingCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "디천: 디자인 천재들 모임"
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.numberOfLines = 1
         return label
     }()
     
@@ -31,6 +32,7 @@ class MeetingCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .lightGray
         label.textAlignment = .right
+        label.numberOfLines = 1
         return label
     }()
     
@@ -80,6 +82,7 @@ class MeetingCollectionViewCell: UICollectionViewCell {
         personnelLabel.snp.makeConstraints { make in
             make.top.right.equalToSuperview().inset(15)
             make.left.equalTo(titleLabel.snp.right).offset(30)
+            make.width.equalTo(100)
         }
         
         descriptLabel.snp.makeConstraints { make in

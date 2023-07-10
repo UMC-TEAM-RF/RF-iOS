@@ -202,6 +202,7 @@ extension MeetingViewController: ClickedButton {
         }
         else{
             print("clicked createMeeting")
+            navigationController?.pushViewController(CreateMeetingNameViewController(), animated: true)
         }
     }
     
