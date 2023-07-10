@@ -17,11 +17,15 @@ final class MeetingViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.isHidden = true
         
         addSubviews()
         clickedTopBtns()
         configureCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+        navigationItem.backButtonTitle = ""
     }
     
     // MARK: 모임 제목 라벨
@@ -190,6 +194,10 @@ extension MeetingViewController: UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let meetingTabController = DetailMeetingTabController()
+        navigationController?.pushViewController(meetingTabController, animated: true)
+    }
     
 }
 

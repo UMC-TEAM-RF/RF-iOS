@@ -13,6 +13,10 @@
 		3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D532A56D45C00FECE3A /* PasswordTextField.swift */; };
 		3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D552A56D4AA00FECE3A /* UICheckBox.swift */; };
 		3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D572A56F00200FECE3A /* SignUpViewController.swift */; };
+		3BC35CE32A5C3C3200D73163 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 3BC35CE22A5C3C3200D73163 /* Tabman */; };
+		3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */; };
+		3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */; };
+		3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE92A5C3CBA00D73163 /* DetailMeetingChatController.swift */; };
 		44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
@@ -46,6 +50,9 @@
 		3B935D532A56D45C00FECE3A /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		3B935D552A56D4AA00FECE3A /* UICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox.swift; sourceTree = "<group>"; };
 		3B935D572A56F00200FECE3A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingTabController.swift; sourceTree = "<group>"; };
+		3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingHomeController.swift; sourceTree = "<group>"; };
+		3BC35CE92A5C3CBA00D73163 /* DetailMeetingChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingChatController.swift; sourceTree = "<group>"; };
 		44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
@@ -75,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BC35CE32A5C3C3200D73163 /* Tabman in Frameworks */,
 				572DC24C2A51C4FB00C0D6E1 /* RxCocoa in Frameworks */,
 				572DC2462A51C40F00C0D6E1 /* SnapKit in Frameworks */,
 				572DC24E2A51C4FB00C0D6E1 /* RxSwift in Frameworks */,
@@ -91,8 +99,19 @@
 				3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */,
 				3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */,
 				3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */,
+				3BC35CE42A5C3C4B00D73163 /* DetailMeeting */,
 			);
 			path = Meeting;
+			sourceTree = "<group>";
+		};
+		3BC35CE42A5C3C4B00D73163 /* DetailMeeting */ = {
+			isa = PBXGroup;
+			children = (
+				3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */,
+				3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */,
+				3BC35CE92A5C3CBA00D73163 /* DetailMeetingChatController.swift */,
+			);
+			path = DetailMeeting;
 			sourceTree = "<group>";
 		};
 		44F82A0F2A56D55D006B17F8 /* Extensions */ = {
@@ -244,6 +263,7 @@
 				572DC2482A51C42A00C0D6E1 /* Alamofire */,
 				572DC24B2A51C4FB00C0D6E1 /* RxCocoa */,
 				572DC24D2A51C4FB00C0D6E1 /* RxSwift */,
+				3BC35CE22A5C3C3200D73163 /* Tabman */,
 			);
 			productName = RF;
 			productReference = 572DC22B2A51BF2400C0D6E1 /* RF.app */;
@@ -277,6 +297,7 @@
 				572DC2442A51C40F00C0D6E1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				572DC2472A51C42A00C0D6E1 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				572DC24A2A51C4FB00C0D6E1 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				3BC35CE12A5C3C3200D73163 /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = 572DC22C2A51BF2400C0D6E1 /* Products */;
 			projectDirPath = "";
@@ -307,10 +328,12 @@
 				44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */,
 				57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */,
 				575032942A596DDE0060D629 /* ClickedButton.swift in Sources */,
+				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
 				572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */,
 				57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */,
 				3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */,
 				57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */,
+				3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */,
 				57673EE02A57A87000A13D07 /* MoreFriendCollectionViewCell.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
@@ -326,6 +349,7 @@
 				572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */,
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
+				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
 			);
@@ -537,6 +561,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3BC35CE12A5C3C3200D73163 /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		572DC2442A51C40F00C0D6E1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -564,6 +596,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3BC35CE22A5C3C3200D73163 /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3BC35CE12A5C3C3200D73163 /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
+		};
 		572DC2452A51C40F00C0D6E1 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 572DC2442A51C40F00C0D6E1 /* XCRemoteSwiftPackageReference "SnapKit" */;
