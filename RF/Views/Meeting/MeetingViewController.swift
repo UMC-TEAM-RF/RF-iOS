@@ -26,6 +26,7 @@ final class MeetingViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
         navigationItem.backButtonTitle = ""
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: 모임 제목 라벨

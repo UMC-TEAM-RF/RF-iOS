@@ -23,14 +23,15 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell{
     /// MARK: 프로필 사진
     private lazy var profileImg: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "LogoImage")?.resize(newWidth: 50)
+        img.layer.cornerRadius = 20
+        img.clipsToBounds = true
         return img
     }()
     
     /// MARK: 멤버 이름 라벨
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 8)
+        label.font = UIFont.systemFont(ofSize: 10)
         label.textAlignment = .center
         return label
     }()
@@ -38,7 +39,7 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell{
     /// MARK: 국적 라벨
     private lazy var nationalityLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 8)
+        label.font = UIFont.systemFont(ofSize: 10)
         label.textAlignment = .center
         return label
     }()
@@ -51,6 +52,7 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell{
         
         profileImg.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
+            
         }
         
         nameLabel.snp.makeConstraints { make in
@@ -61,7 +63,7 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell{
         nationalityLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(5)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-2)
+//            make.bottom.equalToSuperview().offset(-2)
         }
         
     }
@@ -70,7 +72,7 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell{
     func inputData(profileImg: String, name: String, nationality: String){
         addUI()
         
-        
+        self.profileImg.image = UIImage(named: "LogoImage")?.resize(newWidth: 50, newHeight: 50)
         nameLabel.text = name
         nationalityLabel.text = nationality
     }

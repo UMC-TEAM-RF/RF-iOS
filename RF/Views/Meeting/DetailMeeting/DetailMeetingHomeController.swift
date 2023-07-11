@@ -13,6 +13,7 @@ import RxSwift
 
 /// 모임 상세보기 '홈' 화면
 final class DetailMeetingHomeController: UIViewController{
+    private let disposeBag = DisposeBag()
     private var interestingList: [String] = []
     private var memberList: [MemberInfomationModel] = []
     private var ruleList: [String] = []
@@ -25,13 +26,21 @@ final class DetailMeetingHomeController: UIViewController{
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
+        
         addSubviews()
         dummyData()
+        clickedBtns()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
     }
     
     /*
      UI Code
      */
+
     
     /// MARK: Scrollview
     private lazy var scrollView: UIScrollView = {
@@ -201,12 +210,11 @@ final class DetailMeetingHomeController: UIViewController{
     
     /// MARK: 규칙 표시할 CollectionView
     private lazy var ruleCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 8.0
+        let layout = CollectionViewLeftAlignFlowLayout()
+        layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
-        cv.isScrollEnabled = true
+        cv.isScrollEnabled = false
         return cv
     }()
     
@@ -265,6 +273,7 @@ final class DetailMeetingHomeController: UIViewController{
     
     /// Add UI
     private func addSubviews(){
+        
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
@@ -412,7 +421,8 @@ final class DetailMeetingHomeController: UIViewController{
         
         ruleCollectionView.snp.makeConstraints { make in
             make.top.equalTo(ruleLabel.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             ruleCollectionViewHeight = view.safeAreaLayoutGuide.layoutFrame.height/20
             ruleCollectionViewConstraint = make.height.equalTo(ruleCollectionViewHeight).constraint
         }
@@ -432,7 +442,7 @@ final class DetailMeetingHomeController: UIViewController{
             make.top.equalTo(joinMemberLabel.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(30)
             make.trailing.equalToSuperview().offset(-30)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/5)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/10)
         }
         
         likeBtn.snp.makeConstraints { make in
@@ -453,6 +463,21 @@ final class DetailMeetingHomeController: UIViewController{
         
     }
     
+    /// MARK: 버튼 클릭 함수
+    private func clickedBtns(){
+        likeBtn.rx.tap
+            .subscribe(onNext:{
+                print("clicked like Button")
+            })
+            .disposed(by: disposeBag)
+        
+        joinBtn.rx.tap
+            .subscribe(onNext:{
+                print("clicked join Button")
+            })
+            .disposed(by: disposeBag)
+    }
+    
     /// MARK: 테스트용 더미 데이터
     private func dummyData(){
         interestingList.append("스포츠")
@@ -461,6 +486,7 @@ final class DetailMeetingHomeController: UIViewController{
         
         let longText = """
         1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!
+                👍👍👍👍👍👍👍👍
         같이 이야기도 나누고직접 축구도 같이 해봐요!
         다른 국가의 분들은 어느 구단을 좋아하시나요?
         2해외 축구 팬들 모여라!
@@ -479,10 +505,12 @@ final class DetailMeetingHomeController: UIViewController{
         meetingIntroductionConstraint?.update(offset: newHeight)
         
         ruleList.append("abcdefasdfabcdefasdfabcdefasdf")
+        ruleList.append("abcdefasdfabcdefasdfabcdefasdf")
         ruleList.append("abcdefasdf")
         ruleList.append("abcdefasdfabcdefasd")
         ruleList.append("abcdefasdf")
-        ruleList.append("abcdefasdfabcdefasdfabcdefasdf")
+        
+        
         
         memberList.append(MemberInfomationModel(imgPath: "", name: "aa1", nationality: "bb1"))
         memberList.append(MemberInfomationModel(imgPath: "", name: "aa2", nationality: "bb2"))
@@ -495,7 +523,6 @@ final class DetailMeetingHomeController: UIViewController{
 }
 
 extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == interestingCollectionView{
@@ -507,7 +534,7 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
         }
         else if collectionView == ruleCollectionView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RuleCollectionViewCell.identifier, for: indexPath) as? RuleCollectionViewCell else {return UICollectionViewCell() }
-
+            
             cell.inputData(text: ruleList[indexPath.row])
             cell.backgroundColor = UIColor(hexCode: "f5f5f5")
             cell.layer.cornerRadius = 15
@@ -525,8 +552,7 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             return cell
         }
         else{
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JoinMemberCollectionViewCell.identifier, for: indexPath) as? JoinMemberCollectionViewCell else {return UICollectionViewCell() }
-            return cell
+            return UICollectionViewCell()
         }
     }
 
@@ -540,14 +566,13 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
             let newSize = (rule as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
             ruleCellWidth += newSize.width
-            print("before \(ruleCollectionViewHeight), \(collectionView.frame.width)")
+            
             if ruleCellWidth >= collectionView.frame.width{
-                ruleCollectionViewHeight += view.safeAreaLayoutGuide.layoutFrame.height/15
+                ruleCollectionViewHeight += view.safeAreaLayoutGuide.layoutFrame.height/18
                 ruleCollectionViewConstraint?.update(offset: ruleCollectionViewHeight)
-                ruleCellWidth = 0
-                print(ruleCollectionViewHeight)
+                ruleCellWidth = newSize.width
             }
-            return CGSize(width: newSize.width + 30, height: 35)
+            return CGSize(width: newSize.width + 10, height: 35)
         }
         else if collectionView == joinMemberCollectionView{
             return CGSize(width: collectionView.bounds.width/6, height: collectionView.bounds.height)
@@ -559,8 +584,11 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if collectionView == interestingCollectionView || collectionView == ruleCollectionView{
+        if collectionView == interestingCollectionView{
             return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        }
+        else if collectionView == ruleCollectionView{
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
         else{
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -580,7 +608,11 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             return 0
         }
     }
+    
+    
+    
 }
+
 
 
 struct MemberInfomationModel: Codable{
@@ -588,3 +620,5 @@ struct MemberInfomationModel: Codable{
     let name: String?
     let nationality: String?
 }
+
+

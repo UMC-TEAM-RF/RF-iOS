@@ -26,9 +26,17 @@ final class DetailMeetingTabController: TabmanViewController{
         addSubviews()
     }
     
+    /// MARK: 카톡, 메시지, 인스타그램 공유 버튼
+    private lazy var linkIconBtn: UIBarButtonItem = {
+        let btn = UIBarButtonItem()
+        btn.image = UIImage(systemName: "popcorn.fill")
+        btn.tintColor = .black
+        return btn
+    }()
     
     /// Add UI
     private func addSubviews(){
+        navigationItem.rightBarButtonItem = linkIconBtn
         let homeController = DetailMeetingHomeController()
         let chatController = DetailMeetingChatController()
         
@@ -47,7 +55,7 @@ final class DetailMeetingTabController: TabmanViewController{
         bar.layout.transitionStyle = .snap
         bar.layout.alignment = .centerDistributed
         bar.layout.contentMode = .intrinsic
-        bar.layout.interButtonSpacing = view.bounds.width/3
+        bar.layout.interButtonSpacing = view.bounds.width/2
                 
         //배경색
         bar.backgroundView.style = .clear
