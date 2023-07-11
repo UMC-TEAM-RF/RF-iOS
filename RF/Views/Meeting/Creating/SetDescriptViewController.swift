@@ -50,8 +50,9 @@ class SetDescriptViewController: UIViewController {
     private lazy var imageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "no_image")
-        iv.contentMode = .scaleToFill
+        iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     
@@ -77,10 +78,10 @@ class SetDescriptViewController: UIViewController {
     // MARK: - Property
     
     let textViewPlaceholder = "모임에 대해 소개해 주세요!"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         
         addSubviews()
@@ -160,6 +161,7 @@ class SetDescriptViewController: UIViewController {
     
     private func addTargets() {
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageViewTapped)))
     }
     
     // MARK: - @objc func
@@ -167,10 +169,23 @@ class SetDescriptViewController: UIViewController {
     @objc func nextButtonTapped() {
         navigationController?.pushViewController(SetDetailInfoViewController(), animated: true)
     }
-
+    
+    @objc func imageViewTapped() {
+        // 이미지 피커 컨트롤러 생성
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary // 이미지 소스로 사진 라이브러리 선택
+        picker.allowsEditing = false// 이미지 편집 기능 On
+        
+        // 델리게이트 지정
+        picker.delegate = self
+        
+        // 이미지 피커 컨트롤러 실행
+        self.present(picker, animated: true)
+    }
+    
 }
 
-// MARK: - extension TextViewDelegate
+// MARK: - TextViewDelegate
 
 extension SetDescriptViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -181,7 +196,7 @@ extension SetDescriptViewController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-//        if textView.text.trimmingCharacters(in: .whitespaces).isEmpty {
+        //        if textView.text.trimmingCharacters(in: .whitespaces).isEmpty {
         if textView.text.isEmpty {
             textView.text = textViewPlaceholder
             textView.textColor = .lightGray
@@ -198,17 +213,40 @@ extension SetDescriptViewController: UITextViewDelegate {
     //        }
     //    }
     
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        if textView.text.count <= 10 || text.isEmpty {  // 10자를 초과하지 않거나, Backspace를 누를 때
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
+    //    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    //        if textView.text.count <= 10 || text.isEmpty {  // 10자를 초과하지 않거나, Backspace를 누를 때
+    //            return true
+    //        } else {
+    //            return false
+    //        }
+    //    }
     
 }
 
-// MARK: - extension NavigationBarDelegate
+// MARK: - UIImagePickerControllerDelegate
+
+extension SetDescriptViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    // 이미지 피커에서 이미지를 선택하지 않고 취소했을 때 호출되는 메소드
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // 이미지 피커 컨트롤러 창 닫기
+        self.dismiss(animated: true)
+    }
+    
+    // 이미지 피커에서 이미지를 선택했을 때 호출되는 메소드
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("이미지 선택")
+        // 이미지 피커 컨트롤러 창 닫기
+        picker.dismiss(animated: true) {
+            // 이미지를 이미지 뷰에 표시
+            let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+            self.imageView.image = img
+        }
+    }
+    
+    
+}
+
+// MARK: - NavigationBarDelegate
 
 extension SetDescriptViewController: NavigationBarDelegate {
     func backButtonTapped() {
