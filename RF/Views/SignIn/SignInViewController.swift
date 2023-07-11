@@ -390,7 +390,7 @@ extension SignInViewController : UITextFieldDelegate{
 
 
 
-extension SignInViewController {
+extension UIViewController {
     func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
             action: #selector(SignInViewController.dismissKeyboard))
