@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class InterestingCollectioViewCell: UICollectionViewCell{
+final class InterestingCollectionViewCell: UICollectionViewCell{
     static let identifier = "InterestingCollectioViewCell"
     
     override init(frame: CGRect) {

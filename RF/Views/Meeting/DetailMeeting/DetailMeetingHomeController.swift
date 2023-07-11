@@ -14,6 +14,7 @@ import RxSwift
 /// 모임 상세보기 '홈' 화면
 final class DetailMeetingHomeController: UIViewController{
     private var interestingList: [String] = []
+    private var memberList: [MemberInfomationModel] = []
     private var ruleList: [String] = []
     private var meetingIntroductionConstraint: Constraint?
     private var ruleCollectionViewConstraint: Constraint?
@@ -202,12 +203,61 @@ final class DetailMeetingHomeController: UIViewController{
     private lazy var ruleCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        
+        layout.minimumLineSpacing = 8.0
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.isScrollEnabled = true
+        return cv
+    }()
+    
+    /// MARK: 가입 멤버 제목
+    private lazy var joinMemberLabel: UILabel = {
+        let label = UILabel()
+        label.text = "가입 멤버"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        return label
+    }()
+    
+    /// MARK: 가입 멤버 제목
+    private lazy var joinMemberNumberLabel: UILabel = {
+        let label = UILabel()
+        label.text = "4/5"
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
+    }()
+    
+    /// MARK: 가입 멤버 CollectionView
+    private lazy var joinMemberCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
         cv.isScrollEnabled = false
         return cv
     }()
+    
+    /// MARK: 찜하기 버튼
+    private lazy var likeBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("찜하기", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        btn.backgroundColor = UIColor(hexCode: "FAFAFA")
+        btn.titleLabel?.textAlignment = .center
+        btn.setTitleColor(.black, for: .normal)
+        return btn
+    }()
+    
+    /// MARK: 가입하기 버튼
+    private lazy var joinBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("가입하기", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        btn.backgroundColor = UIColor(hexCode: "F1F1F1")
+        btn.titleLabel?.textAlignment = .center
+        btn.setTitleColor(.black, for: .normal)
+        return btn
+    }()
+    
     
     /*
      UI Actions
@@ -237,7 +287,7 @@ final class DetailMeetingHomeController: UIViewController{
         contentView.addSubview(infomationStackView)
         interestingCollectionView.dataSource = self
         interestingCollectionView.delegate = self
-        interestingCollectionView.register(InterestingCollectioViewCell.self, forCellWithReuseIdentifier: InterestingCollectioViewCell.identifier)
+        interestingCollectionView.register(InterestingCollectionViewCell.self, forCellWithReuseIdentifier: InterestingCollectionViewCell.identifier)
         
         contentView.addSubview(meetingLabel)
         contentView.addSubview(meetingIntroduction)
@@ -248,6 +298,16 @@ final class DetailMeetingHomeController: UIViewController{
         ruleCollectionView.dataSource = self
         ruleCollectionView.delegate = self
         ruleCollectionView.register(RuleCollectionViewCell.self, forCellWithReuseIdentifier: RuleCollectionViewCell.identifier)
+        
+        contentView.addSubview(joinMemberLabel)
+        contentView.addSubview(joinMemberNumberLabel)
+        contentView.addSubview(joinMemberCollectionView)
+        joinMemberCollectionView.dataSource = self
+        joinMemberCollectionView.delegate = self
+        joinMemberCollectionView.register(JoinMemberCollectionViewCell.self, forCellWithReuseIdentifier: JoinMemberCollectionViewCell.identifier)
+        
+        contentView.addSubview(likeBtn)
+        contentView.addSubview(joinBtn)
         
         configureCollectionView()
     }
@@ -353,9 +413,42 @@ final class DetailMeetingHomeController: UIViewController{
         ruleCollectionView.snp.makeConstraints { make in
             make.top.equalTo(ruleLabel.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(contentView.snp.bottom)
             ruleCollectionViewHeight = view.safeAreaLayoutGuide.layoutFrame.height/20
             ruleCollectionViewConstraint = make.height.equalTo(ruleCollectionViewHeight).constraint
+        }
+        
+        /// 가입 멤버
+        joinMemberLabel.snp.makeConstraints { make in
+            make.top.equalTo(ruleCollectionView.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(30)
+        }
+        
+        joinMemberNumberLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(joinMemberLabel.snp.centerY)
+            make.leading.equalTo(joinMemberLabel.snp.trailing).offset(10)
+        }
+        
+        joinMemberCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(joinMemberLabel.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().offset(-30)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/5)
+        }
+        
+        likeBtn.snp.makeConstraints { make in
+            make.top.equalTo(joinMemberCollectionView.snp.bottom).offset(20)
+            make.leading.equalToSuperview()
+            make.width.equalTo(view.safeAreaLayoutGuide.layoutFrame.width/2)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/20)
+            make.bottom.equalToSuperview()
+        }
+        
+        joinBtn.snp.makeConstraints { make in
+            make.top.equalTo(joinMemberCollectionView.snp.bottom).offset(20)
+            make.trailing.equalToSuperview()
+            make.width.equalTo(view.safeAreaLayoutGuide.layoutFrame.width/2)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/20)
+            make.bottom.equalToSuperview()
         }
         
     }
@@ -385,13 +478,17 @@ final class DetailMeetingHomeController: UIViewController{
         let newHeight = meetingIntroduction.sizeThatFits(meetingIntroduction.attributedText?.size() ?? CGSize(width: 0, height: 0)).height
         meetingIntroductionConstraint?.update(offset: newHeight)
         
-        
+        ruleList.append("abcdefasdfabcdefasdfabcdefasdf")
+        ruleList.append("abcdefasdf")
+        ruleList.append("abcdefasdfabcdefasd")
         ruleList.append("abcdefasdf")
         ruleList.append("abcdefasdfabcdefasdfabcdefasdf")
-        ruleList.append("abcdefasdfabcdefasd")
-//        ruleList.append("abcdefasdf")
-//        ruleList.append("abcdefasdfabcdefasdfabcdefasdf")
         
+        memberList.append(MemberInfomationModel(imgPath: "", name: "aa1", nationality: "bb1"))
+        memberList.append(MemberInfomationModel(imgPath: "", name: "aa2", nationality: "bb2"))
+        memberList.append(MemberInfomationModel(imgPath: "", name: "aa3", nationality: "bb3"))
+        memberList.append(MemberInfomationModel(imgPath: "", name: "aa4", nationality: "bb4"))
+        memberList.append(MemberInfomationModel(imgPath: "", name: "aa5", nationality: "bb5"))
         
     }
     
@@ -402,7 +499,7 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == interestingCollectionView{
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestingCollectioViewCell.identifier, for: indexPath) as? InterestingCollectioViewCell else {return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestingCollectionViewCell.identifier, for: indexPath) as? InterestingCollectionViewCell else {return UICollectionViewCell() }
             cell.inputData(text: interestingList[indexPath.row])
             cell.backgroundColor = UIColor(hexCode: "f5f5f5")
             cell.layer.cornerRadius = 15
@@ -417,10 +514,18 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             
             return cell
         }
-        
-        else{
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestingCollectioViewCell.identifier, for: indexPath) as? InterestingCollectioViewCell else {return UICollectionViewCell() }
+        else if collectionView == joinMemberCollectionView{
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JoinMemberCollectionViewCell.identifier, for: indexPath) as? JoinMemberCollectionViewCell else {return UICollectionViewCell() }
             
+            cell.inputData(profileImg: memberList[indexPath.row].imgPath ?? "",
+                           name: memberList[indexPath.row].name ?? "",
+                           nationality: memberList[indexPath.row].nationality ?? "")
+            cell.backgroundColor = .systemBackground
+            
+            return cell
+        }
+        else{
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JoinMemberCollectionViewCell.identifier, for: indexPath) as? JoinMemberCollectionViewCell else {return UICollectionViewCell() }
             return cell
         }
     }
@@ -435,20 +540,22 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
             let newSize = (rule as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
             ruleCellWidth += newSize.width
-            if ruleCellWidth > collectionView.frame.width{
-                print("before \(ruleCollectionViewHeight)")
-                ruleCollectionViewHeight += view.safeAreaLayoutGuide.layoutFrame.height/18
+            print("before \(ruleCollectionViewHeight), \(collectionView.frame.width)")
+            if ruleCellWidth >= collectionView.frame.width{
+                ruleCollectionViewHeight += view.safeAreaLayoutGuide.layoutFrame.height/15
                 ruleCollectionViewConstraint?.update(offset: ruleCollectionViewHeight)
                 ruleCellWidth = 0
                 print(ruleCollectionViewHeight)
             }
             return CGSize(width: newSize.width + 30, height: 35)
         }
+        else if collectionView == joinMemberCollectionView{
+            return CGSize(width: collectionView.bounds.width/6, height: collectionView.bounds.height)
+        }
         else{
             return CGSize(width: 1, height: 1)
         }
     }
-    
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -466,11 +573,18 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
         else if collectionView == ruleCollectionView{
             return ruleList.count
         }
+        else if collectionView == joinMemberCollectionView{
+            return memberList.count
+        }
         else{
             return 0
         }
-        
     }
 }
 
 
+struct MemberInfomationModel: Codable{
+    let imgPath: String?
+    let name: String?
+    let nationality: String?
+}
