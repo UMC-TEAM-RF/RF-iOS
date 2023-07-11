@@ -23,6 +23,7 @@
 		572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */; };
 		572A9A322A5CB445004D2809 /* SetInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A312A5CB445004D2809 /* SetInterestViewController.swift */; };
 		572A9A352A5CC21C004D2809 /* SetDescriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A342A5CC21C004D2809 /* SetDescriptViewController.swift */; };
+		572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A362A5CE7D4004D2809 /* SetDetailInfoViewController.swift */; };
 		572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC22E2A51BF2400C0D6E1 /* AppDelegate.swift */; };
 		572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2302A51BF2400C0D6E1 /* SceneDelegate.swift */; };
 		572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2322A51BF2400C0D6E1 /* SignInViewController.swift */; };
@@ -62,6 +63,7 @@
 		572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		572A9A312A5CB445004D2809 /* SetInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInterestViewController.swift; sourceTree = "<group>"; };
 		572A9A342A5CC21C004D2809 /* SetDescriptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDescriptViewController.swift; sourceTree = "<group>"; };
+		572A9A362A5CE7D4004D2809 /* SetDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailInfoViewController.swift; sourceTree = "<group>"; };
 		572DC22B2A51BF2400C0D6E1 /* RF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		572DC22E2A51BF2400C0D6E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		572DC2302A51BF2400C0D6E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				572A9A282A5C09EA004D2809 /* SetMeetingNameViewController.swift */,
 				572A9A312A5CB445004D2809 /* SetInterestViewController.swift */,
 				572A9A342A5CC21C004D2809 /* SetDescriptViewController.swift */,
+				572A9A362A5CE7D4004D2809 /* SetDetailInfoViewController.swift */,
 			);
 			path = Creating;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */,
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
+				572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */,
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,
