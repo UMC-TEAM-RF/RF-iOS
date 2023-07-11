@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class SetInterestViewController: UIViewController {
     
@@ -66,6 +68,8 @@ class SetInterestViewController: UIViewController {
     }()
     
     // MARK: - Property
+    
+    private let disposeBag = DisposeBag()
     
     private var selectedCount: Int = 0
     
@@ -141,15 +145,12 @@ class SetInterestViewController: UIViewController {
     // MARK: - addTargets
     
     private func addTargets() {
-        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        nextButton.rx.tap
+            .subscribe(onNext: {
+                self.navigationController?.pushViewController(SetDescriptViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
     }
-    
-    // MARK: - @objc func
-    
-    @objc func nextButtonTapped() {
-        navigationController?.pushViewController(SetDescriptViewController(), animated: true)
-    }
-    
 }
 
 // MARK: - extension CollectionView

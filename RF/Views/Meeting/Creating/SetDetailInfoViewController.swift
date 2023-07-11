@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class SetDetailInfoViewController: UIViewController {
     
@@ -45,6 +47,10 @@ class SetDetailInfoViewController: UIViewController {
         button.layer.cornerRadius = 5
         return button
     }()
+    
+    // MARK: - Property
+    
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,14 +103,12 @@ class SetDetailInfoViewController: UIViewController {
     // MARK: - addTargets
     
     private func addTargets() {
-        createButton.addTarget(self, action: #selector(createMeetingTapped), for: .touchUpInside)
-    }
-    
-    // MARK: - @objc func
-    
-    @objc private func createMeetingTapped() {
-        tabBarController?.tabBar.isHidden = false
-        navigationController?.popToRootViewController(animated: true)
+        createButton.rx.tap
+            .subscribe(onNext: {
+                self.tabBarController?.tabBar.isHidden = false
+                self.navigationController?.popToRootViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

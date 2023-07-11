@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import SnapKit
+import RxSwift
+import RxCocoa
 
 class SetDescriptViewController: UIViewController {
     
@@ -77,7 +80,8 @@ class SetDescriptViewController: UIViewController {
     
     // MARK: - Property
     
-    let textViewPlaceholder = "모임에 대해 소개해 주세요!"
+    private let textViewPlaceholder = "모임에 대해 소개해 주세요!"
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -160,14 +164,13 @@ class SetDescriptViewController: UIViewController {
     // MARK: - addTargets
     
     private func addTargets() {
-        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageViewTapped)))
-    }
-    
-    // MARK: - @objc func
-    
-    @objc func nextButtonTapped() {
-        navigationController?.pushViewController(SetDetailInfoViewController(), animated: true)
+        
+        nextButton.rx.tap
+            .subscribe(onNext: {
+                self.navigationController?.pushViewController(SetDetailInfoViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc func imageViewTapped() {

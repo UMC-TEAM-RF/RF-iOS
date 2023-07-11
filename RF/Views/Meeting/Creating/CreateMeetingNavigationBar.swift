@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class CreateMeetingNavigationBar: UIView {
 
@@ -32,8 +34,10 @@ class CreateMeetingNavigationBar: UIView {
     }()
     
     // MARK: - Property
+    
     weak var delegate: NavigationBarDelegate?
     
+    private let disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,11 +73,11 @@ class CreateMeetingNavigationBar: UIView {
     }
     
     private func addTargets() {
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc private func backButtonTapped() {
-        delegate?.backButtonTapped()
+        backButton.rx.tap
+            .subscribe(onNext: {
+                self.delegate?.backButtonTapped()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
