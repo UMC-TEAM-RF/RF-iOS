@@ -17,11 +17,16 @@ final class MeetingViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.isHidden = true
         
         addSubviews()
         clickedTopBtns()
         configureCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+        navigationItem.backButtonTitle = ""
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: 모임 제목 라벨
@@ -64,7 +69,7 @@ final class MeetingViewController: UIViewController{
         return view
     }()
     
-    // MARK: - 근처 모임 리스트 View
+    // MARK: 근처 모임 리스트 View
     private lazy var meetingListView: UIView = {
         let view = UIView()
         return view
@@ -190,6 +195,10 @@ extension MeetingViewController: UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let meetingTabController = DetailMeetingTabController()
+        navigationController?.pushViewController(meetingTabController, animated: true)
+    }
     
 }
 
