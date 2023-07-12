@@ -614,11 +614,3 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
 }
 
 
-
-struct MemberInfomationModel: Codable{
-    let imgPath: String?
-    let name: String?
-    let nationality: String?
-}
-
-
