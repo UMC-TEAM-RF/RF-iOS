@@ -202,6 +202,8 @@ extension MeetingViewController: ClickedButton {
         }
         else{
             print("clicked createMeeting")
+            tabBarController?.tabBar.isHidden = true
+            navigationController?.pushViewController(SetMeetingNameViewController(), animated: true)
         }
     }
     
