@@ -236,9 +236,12 @@ final class SignUpViewController: UIViewController {
     
     
     private func addTargets() {
-//        onboardingButton.addTarget(self, action: #selector(onboardingButtonTapped), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
 //        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
 //        SignUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+    }
+    @objc private func nextButtonTapped() {
+        navigationController?.pushViewController(TermsConditionsViewController(), animated: true)
     }
     
     /*

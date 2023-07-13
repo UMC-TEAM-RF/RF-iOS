@@ -31,3 +31,4 @@ class UICheckBox: UIButton {
         sender.isSelected = !sender.isSelected
     }
 }
+
