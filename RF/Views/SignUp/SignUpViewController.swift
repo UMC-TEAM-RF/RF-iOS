@@ -38,7 +38,7 @@ final class SignUpViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 15)
         return button
     }()
-    private lazy var idUnderlineView: UIView = {
+    private lazy var idUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
         return view
@@ -65,7 +65,7 @@ final class SignUpViewController: UIViewController {
         view.borderStyle = UITextField.BorderStyle.none
         return view
     }()
-    private lazy var pwUnderlineView: UIView = {
+    private lazy var pwUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
         return view
@@ -90,7 +90,7 @@ final class SignUpViewController: UIViewController {
         view.borderStyle = UITextField.BorderStyle.none
         return view
     }()
-    private lazy var pwConfirmUnderlineView: UIView = {
+    private lazy var pwConfirmUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
         return view
@@ -131,15 +131,15 @@ final class SignUpViewController: UIViewController {
         view.addSubview(idLabel)
         view.addSubview(idTextField)
         view.addSubview(idCheckButton)
-        view.addSubview(idUnderlineView)
+        view.addSubview(idUnderLine)
         
         view.addSubview(pwLabel)
         view.addSubview(pwTextField)
-        view.addSubview(pwUnderlineView)
+        view.addSubview(pwUnderLine)
         
         view.addSubview(pwConfirmLabel)
         view.addSubview(pwConfirmTextField)
-        view.addSubview(pwConfirmUnderlineView)
+        view.addSubview(pwConfirmUnderLine)
         
         view.addSubview(nextButton)
     }
@@ -149,15 +149,15 @@ final class SignUpViewController: UIViewController {
         view.addSubview(idLabel)
         view.addSubview(idTextField)
         view.addSubview(idCheckButton)
-        view.addSubview(idUnderlineView)
+        view.addSubview(idUnderLine)
         
         view.addSubview(pwLabel)
         view.addSubview(pwTextField)
-        view.addSubview(pwUnderlineView)
+        view.addSubview(pwUnderLine)
         
         view.addSubview(pwConfirmLabel)
         view.addSubview(pwConfirmTextField)
-        view.addSubview(pwConfirmUnderlineView)
+        view.addSubview(pwConfirmUnderLine)
         
         view.addSubview(nextButton)
     
@@ -180,7 +180,7 @@ final class SignUpViewController: UIViewController {
             make.width.equalTo(80)
             make.height.equalTo(47)
         }
-        idUnderlineView.snp.makeConstraints { make in
+        idUnderLine.snp.makeConstraints { make in
             make.top.equalTo(idTextField.snp.bottom).offset(0)
             make.left.equalToSuperview().offset(16)
             make.right.equalTo(idCheckButton.snp.left).offset(-16)
@@ -198,7 +198,7 @@ final class SignUpViewController: UIViewController {
             make.right.equalTo(idCheckButton.snp.left).offset(-16)
             make.height.equalTo(47)
         }
-        pwUnderlineView.snp.makeConstraints { make in
+        pwUnderLine.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(0)
             make.left.equalToSuperview().offset(16)
             make.right.equalTo(idCheckButton.snp.left).offset(-16)
@@ -216,7 +216,7 @@ final class SignUpViewController: UIViewController {
             make.right.equalTo(idCheckButton.snp.left).offset(-16)
             make.height.equalTo(47)
         }
-        pwConfirmUnderlineView.snp.makeConstraints { make in
+        pwConfirmUnderLine.snp.makeConstraints { make in
             make.top.equalTo(pwConfirmTextField.snp.bottom).offset(0)
             make.left.equalToSuperview().offset(16)
             make.right.equalTo(idCheckButton.snp.left).offset(-16)
