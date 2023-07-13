@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class InterestCollectionViewCell: UICollectionViewCell {
     
@@ -14,6 +15,8 @@ class InterestCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         return label
     }()
+    
+    var isSelectedCell: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,5 +43,15 @@ class InterestCollectionViewCell: UICollectionViewCell {
     
     func setTextLabel(_ text: String) {
         self.textLabel.text = text
+    }
+    
+    func setCornerRadius() {
+        layoutIfNeeded()
+        contentView.layer.cornerRadius = contentView.frame.width / 2
+    }
+    
+    func setColor(textColor: UIColor, backgroundColor: UIColor) {
+        self.textLabel.textColor = textColor
+        self.contentView.backgroundColor = backgroundColor
     }
 }
