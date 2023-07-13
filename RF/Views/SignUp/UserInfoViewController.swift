@@ -85,37 +85,37 @@ class UserInfoViewController: UIViewController {
         //알프닝의 기본 정보를 설정해주세요.
         topLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(25)
-            make.left.right.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
         
         //출생 국가
         userNationLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(110)
-            make.left.right.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
         
         //관심 나라
         favNationLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(198)
-            make.left.right.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
         
         //관심 언어
         favLanguageLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(286)
-            make.left.right.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
         
         // 본인 한 줄 소개
         userIntroLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(374)
-            make.left.right.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
         
         //다음
         nextButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(655)
-            make.left.right.equalToSuperview().inset(30)
+            make.leading.right.equalToSuperview().inset(30)
             make.bottom.equalToSuperview().inset(50)
         }
     }
