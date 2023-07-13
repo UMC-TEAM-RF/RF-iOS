@@ -12,7 +12,15 @@ import Pageboy
 import RxSwift
 
 
-final class DetailMeetingTabController: TabmanViewController{
+final class DetailMeetingTabController: TabmanViewController {
+    
+    /// MARK: 카톡, 메시지, 인스타그램 공유 버튼
+    private lazy var linkIconBtn: UIBarButtonItem = {
+        let btn = UIBarButtonItem()
+        btn.image = UIImage(systemName: "popcorn.fill")
+        btn.tintColor = .black
+        return btn
+    }()
    
     private var viewControllers: [UIViewController] = []
     
@@ -25,14 +33,6 @@ final class DetailMeetingTabController: TabmanViewController{
         
         addSubviews()
     }
-    
-    /// MARK: 카톡, 메시지, 인스타그램 공유 버튼
-    private lazy var linkIconBtn: UIBarButtonItem = {
-        let btn = UIBarButtonItem()
-        btn.image = UIImage(systemName: "popcorn.fill")
-        btn.tintColor = .black
-        return btn
-    }()
     
     /// Add UI
     private func addSubviews(){

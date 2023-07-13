@@ -9,7 +9,16 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class InterestingCollectionViewCell: UICollectionViewCell{
+final class InterestingCollectionViewCell: UICollectionViewCell {
+    
+    /// MARK: 관심사 라벨
+    private lazy var interestLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textAlignment = .center
+        return label
+    }()
+    
     static let identifier = "InterestingCollectioViewCell"
     
     override init(frame: CGRect) {
@@ -20,13 +29,7 @@ final class InterestingCollectionViewCell: UICollectionViewCell{
         super.init(coder: coder)
     }
     
-    /// MARK: 관심사 라벨
-    private lazy var interestLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 13)
-        label.textAlignment = .center
-        return label
-    }()
+    
     
     /// Add UI
     private func addUI(){

@@ -15,8 +15,8 @@ class SetInterestViewController: UIViewController {
     // MARK: - UI Property
     
     // 네비게이션 바
-    private lazy var navigationBar: CreateMeetingNavigationBar = {
-        let view = CreateMeetingNavigationBar()
+    private lazy var navigationBar: CustomNavigationBar = {
+        let view = CustomNavigationBar()
         view.delegate = self
         return view
     }()

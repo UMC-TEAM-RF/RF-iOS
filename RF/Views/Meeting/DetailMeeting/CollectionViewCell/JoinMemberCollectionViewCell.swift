@@ -9,16 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class JoinMemberCollectionViewCell: UICollectionViewCell{
-    static let identifier = "JoinMemberCollectionViewCell"
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
+final class JoinMemberCollectionViewCell: UICollectionViewCell {
     
     /// MARK: 프로필 사진
     private lazy var profileImg: UIImageView = {
@@ -43,6 +34,16 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell{
         label.textAlignment = .center
         return label
     }()
+    
+    static let identifier = "JoinMemberCollectionViewCell"
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     /// Add UI
     private func addUI(){
