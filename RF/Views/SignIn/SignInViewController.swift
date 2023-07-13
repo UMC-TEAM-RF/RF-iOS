@@ -261,7 +261,7 @@ final class SignInViewController: UIViewController {
         
         autoLoginCheckBox.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(16)
-            make.left.equalTo(pwTextField.snp.left)
+            make.leading.equalTo(pwTextField.snp.leading)
         }
         
         
@@ -279,12 +279,12 @@ final class SignInViewController: UIViewController {
         
         findIdButton.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(16)
-            make.right.equalTo(firstDivLine.snp.left).offset(-8)
+            make.trailing.equalTo(firstDivLine.snp.leading).offset(-8)
             make.height.equalTo(15)
         }
         firstDivLine.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(16)
-            make.right.equalTo(resetPasswordButton.snp.left).offset(-8)
+            make.trailing.equalTo(resetPasswordButton.snp.leading).offset(-8)
             make.height.equalTo(15)
             make.width.equalTo(1)
         }
@@ -295,13 +295,13 @@ final class SignInViewController: UIViewController {
         }
         secondDivLine.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(16)
-            make.left.equalTo(resetPasswordButton.snp.right).offset(8)
+            make.leading.equalTo(resetPasswordButton.snp.trailing).offset(8)
             make.height.equalTo(15)
             make.width.equalTo(1)
         }
         signUpButton.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(16)
-            make.left.equalTo(secondDivLine.snp.right).offset(8)
+            make.leading.equalTo(secondDivLine.snp.trailing).offset(8)
             make.height.equalTo(15)
         }
 
@@ -309,7 +309,7 @@ final class SignInViewController: UIViewController {
         
         korLangButton.snp.makeConstraints { make in
             make.top.equalTo(resetPasswordButton.snp.bottom).offset(16)
-            make.right.equalTo(thirdDivLine.snp.left).offset(-8)
+            make.trailing.equalTo(thirdDivLine.snp.leading).offset(-8)
             make.height.equalTo(15)
         }
         thirdDivLine.snp.makeConstraints { make in
@@ -320,7 +320,7 @@ final class SignInViewController: UIViewController {
         }
         engLangButton.snp.makeConstraints { make in
             make.top.equalTo(resetPasswordButton.snp.bottom).offset(16)
-            make.left.equalTo(thirdDivLine.snp.right).offset(8)
+            make.leading.equalTo(thirdDivLine.snp.trailing).offset(8)
             make.height.equalTo(15)
         }
         

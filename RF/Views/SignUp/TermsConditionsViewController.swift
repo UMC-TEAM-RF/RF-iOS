@@ -91,9 +91,9 @@ final class TermsConditionsViewController: UIViewController {
         }
         
         agreeAllCkeckBox.snp.makeConstraints { make in
-            make.left.top.equalToSuperview()
+            make.leading.top.equalToSuperview()
             make.top.equalToSuperview().offset(20)
-            make.left.right.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
         
         view1.snp.makeConstraints { (make) in
@@ -290,32 +290,32 @@ final class TermsConditionsViewController: UIViewController {
         
         // 네비게이션 바
         navigationContainerView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             //make.width.equalToSuperview()
             make.height.equalTo(60)
         }
         navigationLogo.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
             make.top.bottom.equalToSuperview().inset(12)
         }
         navigationSearchButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
             make.top.bottom.equalToSuperview().inset(18)
         }
         
         agreeAllCkeckBox.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.left.equalTo(navigationLogo.snp.right).offset(20)
-            make.right.equalTo(navigationSearchButton.snp.left).offset(-20)
+            make.leading.equalTo(navigationLogo.snp.trailing).offset(20)
+            make.trailing.equalTo(navigationSearchButton.snp.leading).offset(-20)
         }
         
         
         
         agreeAllUnderlineView.snp.makeConstraints { make in
             make.top.equalTo(navigationContainerView.snp.bottom).offset(40)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(1200)
             make.bottom.equalToSuperview() // 이것이 중요함
         }
@@ -323,7 +323,7 @@ final class TermsConditionsViewController: UIViewController {
 //
 //        agreeServiceCkeckBox.snp.makeConstraints { make in
 //            make.top.equalTo(agreeAllUnderlineView.snp.bottom).offset(20)
-//            make.left.equalToSuperview().inset(20)
+//            make.leading.equalToSuperview().inset(20)
 //        }
     }
     

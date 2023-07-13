@@ -164,62 +164,62 @@ final class SignUpViewController: UIViewController {
         
         idLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
-            make.left.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(16)
         }
         
         idTextField.snp.makeConstraints { make in
             make.top.equalTo(idLabel.snp.bottom).offset(16)
-            make.left.equalToSuperview().offset(16)
-            make.right.equalTo(idCheckButton.snp.left).offset(-16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
             make.height.equalTo(47)
         }
         idCheckButton.snp.makeConstraints { make in
             make.top.equalTo(idLabel.snp.bottom).offset(16)
-            make.left.equalTo(idTextField.snp.right).offset(16)
-            make.right.equalToSuperview().offset(-16)
+            make.leading.equalTo(idTextField.snp.trailing).offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.width.equalTo(80)
             make.height.equalTo(47)
         }
         idUnderLine.snp.makeConstraints { make in
             make.top.equalTo(idTextField.snp.bottom).offset(0)
-            make.left.equalToSuperview().offset(16)
-            make.right.equalTo(idCheckButton.snp.left).offset(-16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
             make.height.equalTo(1)
         }
         
         
         pwLabel.snp.makeConstraints { make in
             make.top.equalTo(idTextField.snp.bottom).offset(32)
-            make.left.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(16)
         }
         pwTextField.snp.makeConstraints { make in
             make.top.equalTo(pwLabel.snp.bottom).offset(16)
-            make.left.equalToSuperview().offset(16)
-            make.right.equalTo(idCheckButton.snp.left).offset(-16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
             make.height.equalTo(47)
         }
         pwUnderLine.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(0)
-            make.left.equalToSuperview().offset(16)
-            make.right.equalTo(idCheckButton.snp.left).offset(-16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
             make.height.equalTo(1)
         }
         
         
         pwConfirmLabel.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(32)
-            make.left.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(16)
         }
         pwConfirmTextField.snp.makeConstraints { make in
             make.top.equalTo(pwConfirmLabel.snp.bottom).offset(16)
-            make.left.equalToSuperview().offset(16)
-            make.right.equalTo(idCheckButton.snp.left).offset(-16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
             make.height.equalTo(47)
         }
         pwConfirmUnderLine.snp.makeConstraints { make in
             make.top.equalTo(pwConfirmTextField.snp.bottom).offset(0)
-            make.left.equalToSuperview().offset(16)
-            make.right.equalTo(idCheckButton.snp.left).offset(-16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
             make.height.equalTo(1)
         }
         
