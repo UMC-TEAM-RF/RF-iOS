@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class CreateMeetingNavigationBar: UIView {
+class CustomNavigationBar: UIView {
 
     // MARK: - UI Property
     
@@ -36,6 +36,12 @@ class CreateMeetingNavigationBar: UIView {
     // MARK: - Property
     
     weak var delegate: NavigationBarDelegate?
+    
+    var titleLabelText: String? {
+        didSet {
+            self.titleLabel.text = titleLabelText
+        }
+    }
     
     private let disposeBag = DisposeBag()
     

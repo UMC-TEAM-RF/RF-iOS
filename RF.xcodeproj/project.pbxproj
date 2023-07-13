@@ -29,7 +29,7 @@
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
 		572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A282A5C09EA004D2809 /* SetMeetingNameViewController.swift */; };
-		572A9A2B2A5C0AFA004D2809 /* CreateMeetingNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2A2A5C0AFA004D2809 /* CreateMeetingNavigationBar.swift */; };
+		572A9A2B2A5C0AFA004D2809 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2A2A5C0AFA004D2809 /* CustomNavigationBar.swift */; };
 		572A9A2D2A5C12B1004D2809 /* NavigationBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2C2A5C12B1004D2809 /* NavigationBarDelegate.swift */; };
 		572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */; };
 		572A9A322A5CB445004D2809 /* SetInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A312A5CB445004D2809 /* SetInterestViewController.swift */; };
@@ -80,7 +80,7 @@
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
 		572A9A282A5C09EA004D2809 /* SetMeetingNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMeetingNameViewController.swift; sourceTree = "<group>"; };
-		572A9A2A2A5C0AFA004D2809 /* CreateMeetingNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingNavigationBar.swift; sourceTree = "<group>"; };
+		572A9A2A2A5C0AFA004D2809 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		572A9A2C2A5C12B1004D2809 /* NavigationBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarDelegate.swift; sourceTree = "<group>"; };
 		572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		572A9A312A5CB445004D2809 /* SetInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInterestViewController.swift; sourceTree = "<group>"; };
@@ -174,7 +174,6 @@
 		572A9A272A5C0989004D2809 /* Creating */ = {
 			isa = PBXGroup;
 			children = (
-				572A9A2A2A5C0AFA004D2809 /* CreateMeetingNavigationBar.swift */,
 				572A9A282A5C09EA004D2809 /* SetMeetingNameViewController.swift */,
 				572A9A312A5CB445004D2809 /* SetInterestViewController.swift */,
 				572A9A342A5CC21C004D2809 /* SetDescriptViewController.swift */,
@@ -187,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */,
+				572A9A2A2A5C0AFA004D2809 /* CustomNavigationBar.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -419,7 +419,7 @@
 				57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */,
 				3BC35CED2A5C565800D73163 /* InterestingCollectionViewCell.swift in Sources */,
 				3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */,
-				572A9A2B2A5C0AFA004D2809 /* CreateMeetingNavigationBar.swift in Sources */,
+				572A9A2B2A5C0AFA004D2809 /* CustomNavigationBar.swift in Sources */,
 				57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */,
 				3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */,
 				572A9A2D2A5C12B1004D2809 /* NavigationBarDelegate.swift in Sources */,
