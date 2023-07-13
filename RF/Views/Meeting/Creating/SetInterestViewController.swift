@@ -100,7 +100,7 @@ class SetInterestViewController: UIViewController {
     private func configureConstraints() {
         // 네비게이션 바
         navigationBar.snp.makeConstraints { make in
-            make.top.left.right.equalTo(view.safeAreaLayoutGuide)
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(60)
         }
         

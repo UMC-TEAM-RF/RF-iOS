@@ -117,7 +117,7 @@ class SetDescriptViewController: UIViewController {
     private func configureConstraints() {
         // 네비게이션 바
         navigationBar.snp.makeConstraints { make in
-            make.top.left.right.equalTo(view.safeAreaLayoutGuide)
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(60)
         }
         
@@ -149,7 +149,7 @@ class SetDescriptViewController: UIViewController {
         
         cameraImageView.snp.makeConstraints { make in
             make.width.height.equalTo(imageView.snp.height).multipliedBy(0.2)
-            make.centerX.equalTo(imageView.snp.right).offset(-5)
+            make.centerX.equalTo(imageView.snp.trailing).offset(-5)
             make.centerY.equalTo(imageView.snp.bottom).offset(-5)
         }
         

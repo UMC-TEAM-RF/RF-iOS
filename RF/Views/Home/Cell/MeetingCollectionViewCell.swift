@@ -76,23 +76,23 @@ class MeetingCollectionViewCell: UICollectionViewCell {
     private func configureConstraints() {
         
         titleLabel.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().inset(15)
+            make.top.leading.equalToSuperview().inset(15)
         }
         
         personnelLabel.snp.makeConstraints { make in
-            make.top.right.equalToSuperview().inset(15)
-            make.left.equalTo(titleLabel.snp.right).offset(30)
+            make.top.trailing.equalToSuperview().inset(15)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(30)
             make.width.equalTo(100)
         }
         
         descriptLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.left.right.equalToSuperview().inset(15)
+            make.leading.trailing.equalToSuperview().inset(15)
         }
         
         tagCollectionView.snp.makeConstraints { make in
             make.top.equalTo(descriptLabel.snp.bottom).offset(12)
-            make.left.right.bottom.equalToSuperview().inset(15)
+            make.leading.trailing.bottom.equalToSuperview().inset(15)
         }
     }
     
