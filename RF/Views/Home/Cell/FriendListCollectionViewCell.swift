@@ -60,7 +60,7 @@ class FriendListCollectionViewCell: UICollectionViewCell {
     private func configureConstraints() {
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(15)
-            make.left.right.equalToSuperview().inset(25)
+            make.leading.trailing.equalToSuperview().inset(25)
             
             make.height.equalTo(imageView.snp.width).multipliedBy(1)
         }

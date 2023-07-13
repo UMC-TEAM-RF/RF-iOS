@@ -261,27 +261,27 @@ final class HomeViewController: UIViewController {
         
         // 네비게이션 바
         navigationContainerView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             //make.width.equalToSuperview()
             make.height.equalTo(60)
         }
         
         navigationLogo.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
             make.top.bottom.equalToSuperview().inset(12)
         }
         
         navigationSearchButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
             make.top.bottom.equalToSuperview().inset(18)
         }
         
         // 배너
         bannerCollectionView.snp.makeConstraints { make in
             make.top.equalTo(navigationContainerView.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             //make.width.equalToSuperview()
             make.height.equalTo(200)
         }
@@ -294,41 +294,41 @@ final class HomeViewController: UIViewController {
         // 친구 목록
         friendListView.snp.makeConstraints { make in
             make.top.equalTo(bannerCollectionView.snp.bottom).offset(40)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             //make.width.equalToSuperview()
             make.height.equalTo(200)
         }
         
         friendListLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.left.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
         }
         
         friendListCollectionView.snp.makeConstraints { make in
             make.top.equalTo(friendListLabel.snp.bottom).offset(15)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         
         // 모임
         meetingListView.snp.makeConstraints { make in
             make.top.equalTo(friendListView.snp.bottom).offset(40)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         
         meetingListLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.left.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
         }
         
         moreMeetingButton.snp.makeConstraints { make in
             make.centerY.equalTo(meetingListLabel.snp.centerY)
-            make.right.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
         
         meetingCollectionView.snp.makeConstraints { make in
             make.top.equalTo(meetingListLabel.snp.bottom).offset(15)
-            make.left.right.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
             
             make.bottom.equalToSuperview()
             
@@ -338,37 +338,37 @@ final class HomeViewController: UIViewController {
         // 꿀팁
         tipsView.snp.makeConstraints { make in
             make.top.equalTo(meetingListView.snp.bottom).offset(40)
-            make.left.right.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(75)
         }
         
         tipsImage.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(16)
-            make.left.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(16)
             make.width.equalTo(tipsImage.snp.height).multipliedBy(1)
         }
         
         tipsLabelStackView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(tipsImage.snp.right).offset(10)
+            make.leading.equalTo(tipsImage.snp.trailing).offset(10)
         }
         
         // 관심사
         interestView.snp.makeConstraints { make in
             make.top.equalTo(tipsView.snp.bottom).offset(40)
-            make.left.right.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
             
             make.height.equalTo(250)
             make.bottom.equalToSuperview().offset(-40)
         }
         
         interestLabel.snp.makeConstraints { make in
-            make.top.left.equalToSuperview()
+            make.top.leading.equalToSuperview()
         }
         
         interestCollectionView.snp.makeConstraints { make in
             make.top.equalTo(interestLabel.snp.bottom).offset(15)
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
     
