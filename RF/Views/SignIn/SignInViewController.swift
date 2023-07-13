@@ -23,7 +23,6 @@ final class SignInViewController: UIViewController {
         view.font = .systemFont(ofSize: 15)
         view.textColor = .gray
         view.numberOfLines = 0
-        //view.backgroundColor = .systemBlue.withAlphaComponent(0.2)
         view.text = "글로벌한 대학 생활을 위한 첫 단계"
         
         return view
@@ -34,7 +33,6 @@ final class SignInViewController: UIViewController {
         view.font = .boldSystemFont(ofSize: 39)
         view.textColor = .gray
         view.numberOfLines = 0
-        //view.backgroundColor = .systemBlue.withAlphaComponent(0.2)
         view.text = "알프"
         return view
     }()
@@ -102,14 +100,6 @@ final class SignInViewController: UIViewController {
     }()
     
     
-//    private lazy var triplebuttonStackView: UIStackView = {
-//        let sv = UIStackView(arrangedSubviews: [findIDButton, resetPasswordButton, SignUpButton])
-//        sv.axis = .horizontal
-//        sv.alignment = .fill
-//        sv.distribution = .equalSpacing
-//        sv.spacing = 20
-//        return sv
-//    }()
     private lazy var findIdButton: UIButton = {
         let button = UIButton()
         button.setTitle("아이디 찾기", for: .normal)
@@ -367,9 +357,6 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     @objc func dismissKeyboard() {
-//        if view is GIDSignInButton {
-//            return
-//        }
         view.endEditing(true)
     }
 }
