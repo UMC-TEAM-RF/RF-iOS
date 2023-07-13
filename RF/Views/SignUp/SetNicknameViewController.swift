@@ -99,40 +99,40 @@ class SetNicknameViewController: UIViewController {
         //알프닝의 기본 정보를 설정해주세요.
         topLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(25)
-            make.left.right.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
         
         //닉네임 
         nicknameLabel.snp.makeConstraints { make in
             make.top.equalTo(topLabel.snp.bottom).offset(25)
-            make.right.equalToSuperview().inset(295)
-            make.left.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(295)
+            make.leading.equalToSuperview().inset(20)
         }
         
         //닉네임을 입력해주세요.
         textField.snp.makeConstraints { make in
             make.top.equalTo(topLabel.snp.bottom).offset(55)
-            make.left.equalToSuperview().inset(20)
-            make.right.equalToSuperview().inset(125)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(125)
             make.height.equalTo(50)
         }
         
         //이후 변경할 수 없으니 정확히 선택해 주세요.
         warningLbel.snp.makeConstraints { make in
             make.top.equalTo(nextButton.snp.top).offset(-30)
-            make.left.right.equalToSuperview().inset(70)
+            make.leading.trailing.equalToSuperview().inset(70)
         }
         
         //중복 확인
         nameCheckButton.snp.makeConstraints { make in
             make.top.equalTo(topLabel.snp.bottom).offset(70)
-            make.left.equalTo(textField.snp.right).offset(30)
-            make.right.equalToSuperview().inset(25)
+            make.leading.equalTo(textField.snp.trailing).offset(30)
+            make.trailing.equalToSuperview().inset(25)
         }
         
         //다음
         nextButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(30)
+            make.leading.right.equalToSuperview().inset(30)
             make.bottom.equalToSuperview().inset(50)
             make.height.equalTo(48)
         }
