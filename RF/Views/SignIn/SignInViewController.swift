@@ -23,7 +23,6 @@ final class SignInViewController: UIViewController {
         view.font = .systemFont(ofSize: 15)
         view.textColor = .gray
         view.numberOfLines = 0
-        //view.backgroundColor = .systemBlue.withAlphaComponent(0.2)
         view.text = "글로벌한 대학 생활을 위한 첫 단계"
         
         return view
@@ -34,7 +33,6 @@ final class SignInViewController: UIViewController {
         view.font = .boldSystemFont(ofSize: 39)
         view.textColor = .gray
         view.numberOfLines = 0
-        //view.backgroundColor = .systemBlue.withAlphaComponent(0.2)
         view.text = "알프"
         return view
     }()
@@ -102,14 +100,6 @@ final class SignInViewController: UIViewController {
     }()
     
     
-//    private lazy var triplebuttonStackView: UIStackView = {
-//        let sv = UIStackView(arrangedSubviews: [findIDButton, resetPasswordButton, SignUpButton])
-//        sv.axis = .horizontal
-//        sv.alignment = .fill
-//        sv.distribution = .equalSpacing
-//        sv.spacing = 20
-//        return sv
-//    }()
     private lazy var findIdButton: UIButton = {
         let button = UIButton()
         button.setTitle("아이디 찾기", for: .normal)
@@ -261,7 +251,7 @@ final class SignInViewController: UIViewController {
         
         autoLoginCheckBox.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(16)
-            make.left.equalTo(pwTextField.snp.left)
+            make.leading.equalTo(pwTextField.snp.leading)
         }
         
         
@@ -279,12 +269,12 @@ final class SignInViewController: UIViewController {
         
         findIdButton.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(16)
-            make.right.equalTo(firstDivLine.snp.left).offset(-8)
+            make.trailing.equalTo(firstDivLine.snp.leading).offset(-8)
             make.height.equalTo(15)
         }
         firstDivLine.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(16)
-            make.right.equalTo(resetPasswordButton.snp.left).offset(-8)
+            make.trailing.equalTo(resetPasswordButton.snp.leading).offset(-8)
             make.height.equalTo(15)
             make.width.equalTo(1)
         }
@@ -295,13 +285,13 @@ final class SignInViewController: UIViewController {
         }
         secondDivLine.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(16)
-            make.left.equalTo(resetPasswordButton.snp.right).offset(8)
+            make.leading.equalTo(resetPasswordButton.snp.trailing).offset(8)
             make.height.equalTo(15)
             make.width.equalTo(1)
         }
         signUpButton.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(16)
-            make.left.equalTo(secondDivLine.snp.right).offset(8)
+            make.leading.equalTo(secondDivLine.snp.trailing).offset(8)
             make.height.equalTo(15)
         }
 
@@ -309,7 +299,7 @@ final class SignInViewController: UIViewController {
         
         korLangButton.snp.makeConstraints { make in
             make.top.equalTo(resetPasswordButton.snp.bottom).offset(16)
-            make.right.equalTo(thirdDivLine.snp.left).offset(-8)
+            make.trailing.equalTo(thirdDivLine.snp.leading).offset(-8)
             make.height.equalTo(15)
         }
         thirdDivLine.snp.makeConstraints { make in
@@ -320,7 +310,7 @@ final class SignInViewController: UIViewController {
         }
         engLangButton.snp.makeConstraints { make in
             make.top.equalTo(resetPasswordButton.snp.bottom).offset(16)
-            make.left.equalTo(thirdDivLine.snp.right).offset(8)
+            make.leading.equalTo(thirdDivLine.snp.trailing).offset(8)
             make.height.equalTo(15)
         }
         
@@ -367,9 +357,6 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     @objc func dismissKeyboard() {
-//        if view is GIDSignInButton {
-//            return
-//        }
         view.endEditing(true)
     }
 }
