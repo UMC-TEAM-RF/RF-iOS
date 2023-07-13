@@ -9,18 +9,7 @@ import Foundation
 import UIKit
 import RxSwift
 
-final class MakeFriendUIView: UIView{
-    private let disposeBag = DisposeBag()
-    var delegate: ClickedButton?
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-    }
+final class MakeFriendUIView: UIView {
     
     // MARK: 제목 라벨
     private lazy var titleLabel: UILabel = {
@@ -31,7 +20,7 @@ final class MakeFriendUIView: UIView{
         return label
     }()
     
-    // MARK: 
+    // MARK:
     private lazy var searchMeetingBtn: MakeFreindUIButton = {
         let btn = MakeFreindUIButton()
         btn.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) /* #f5f5f5 */
@@ -46,6 +35,18 @@ final class MakeFriendUIView: UIView{
         btn.layer.cornerRadius = 20
         return btn
     }()
+    
+    private let disposeBag = DisposeBag()
+    var delegate: ClickedButton?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+    }
     
     // MARK: add UI
     private func addSubviews(height: CGFloat){

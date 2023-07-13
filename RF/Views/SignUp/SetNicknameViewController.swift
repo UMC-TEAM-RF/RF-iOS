@@ -102,40 +102,39 @@ class SetNicknameViewController: UIViewController {
             make.left.right.equalToSuperview().inset(20)
         }
         
-        //닉네임
+        //닉네임 
         nicknameLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(100)
-            make.right.equalToSuperview().inset(293)
+            make.top.equalTo(topLabel.snp.bottom).offset(25)
+            make.right.equalToSuperview().inset(295)
             make.left.equalToSuperview().inset(20)
         }
         
         //닉네임을 입력해주세요.
         textField.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(130)
+            make.top.equalTo(topLabel.snp.bottom).offset(55)
             make.left.equalToSuperview().inset(20)
-            make.right.equalToSuperview().inset(122)
-            make.bottom.equalToSuperview().inset(570)
+            make.right.equalToSuperview().inset(125)
+            make.height.equalTo(50)
         }
         
         //이후 변경할 수 없으니 정확히 선택해 주세요.
         warningLbel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(625)
-            make.left.right.equalToSuperview().inset(68)
+            make.top.equalTo(nextButton.snp.top).offset(-30)
+            make.left.right.equalToSuperview().inset(70)
         }
         
         //중복 확인
         nameCheckButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(110)
-            make.left.equalToSuperview().inset(286)
-            make.right.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(550)
+            make.top.equalTo(topLabel.snp.bottom).offset(70)
+            make.left.equalTo(textField.snp.right).offset(30)
+            make.right.equalToSuperview().inset(25)
         }
         
         //다음
         nextButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(655)
             make.left.right.equalToSuperview().inset(30)
             make.bottom.equalToSuperview().inset(50)
+            make.height.equalTo(48)
         }
 
     }
