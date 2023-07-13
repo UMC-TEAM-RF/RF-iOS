@@ -10,14 +10,6 @@ import SnapKit
 
 final class MakeFreindUIButton: UIButton {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
     // MARK: 버튼 제목
     private lazy var buttonTitle: UILabel = {
         let label = UILabel()
@@ -45,6 +37,14 @@ final class MakeFreindUIButton: UIButton {
         img.image = UIImage(systemName: "arrow.right.circle")?.resize(newWidth: 30)
         return img
     }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 
     // MARK: add UI
     private func addSubviews(){

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MemberInfomationModel: Codable {
+struct Member: Codable {
     let imgPath: String?
     let name: String?
     let nationality: String?

@@ -12,35 +12,7 @@ import SnapKit
 import RxSwift
 
 /// 모임 상세보기 '홈' 화면
-final class DetailMeetingHomeController: UIViewController{
-    private let disposeBag = DisposeBag()
-    private var interestingList: [String] = []
-    private var memberList: [MemberInfomationModel] = []
-    private var ruleList: [String] = []
-    private var meetingIntroductionConstraint: Constraint?
-    private var ruleCollectionViewConstraint: Constraint?
-    private var ruleCollectionViewHeight: CGFloat = 0
-    private var ruleCellWidth: CGFloat = 0
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .systemBackground
-        
-        addSubviews()
-        dummyData()
-        clickedBtns()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = true
-    }
-    
-    /*
-     UI Code
-     */
-
+final class DetailMeetingHomeController: UIViewController {
     
     /// MARK: Scrollview
     private lazy var scrollView: UIScrollView = {
@@ -266,6 +238,30 @@ final class DetailMeetingHomeController: UIViewController{
         return btn
     }()
     
+    
+    private let disposeBag = DisposeBag()
+    private var interestingList: [String] = []
+    private var memberList: [Member] = []
+    private var ruleList: [String] = []
+    private var meetingIntroductionConstraint: Constraint?
+    private var ruleCollectionViewConstraint: Constraint?
+    private var ruleCollectionViewHeight: CGFloat = 0
+    private var ruleCellWidth: CGFloat = 0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .systemBackground
+        
+        addSubviews()
+        dummyData()
+        clickedBtns()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
     
     /*
      UI Actions
@@ -512,11 +508,11 @@ final class DetailMeetingHomeController: UIViewController{
         
         
         
-        memberList.append(MemberInfomationModel(imgPath: "", name: "aa1", nationality: "bb1"))
-        memberList.append(MemberInfomationModel(imgPath: "", name: "aa2", nationality: "bb2"))
-        memberList.append(MemberInfomationModel(imgPath: "", name: "aa3", nationality: "bb3"))
-        memberList.append(MemberInfomationModel(imgPath: "", name: "aa4", nationality: "bb4"))
-        memberList.append(MemberInfomationModel(imgPath: "", name: "aa5", nationality: "bb5"))
+        memberList.append(Member(imgPath: "", name: "aa1", nationality: "bb1"))
+        memberList.append(Member(imgPath: "", name: "aa2", nationality: "bb2"))
+        memberList.append(Member(imgPath: "", name: "aa3", nationality: "bb3"))
+        memberList.append(Member(imgPath: "", name: "aa4", nationality: "bb4"))
+        memberList.append(Member(imgPath: "", name: "aa5", nationality: "bb5"))
         
     }
     
