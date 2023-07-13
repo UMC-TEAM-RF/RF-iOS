@@ -311,8 +311,8 @@ final class DetailMeetingHomeController: UIViewController {
         joinMemberCollectionView.delegate = self
         joinMemberCollectionView.register(JoinMemberCollectionViewCell.self, forCellWithReuseIdentifier: JoinMemberCollectionViewCell.identifier)
         
-        contentView.addSubview(likeBtn)
-        contentView.addSubview(joinBtn)
+        view.addSubview(likeBtn)
+        view.addSubview(joinBtn)
         
         configureCollectionView()
     }
@@ -439,22 +439,23 @@ final class DetailMeetingHomeController: UIViewController {
             make.leading.equalToSuperview().offset(30)
             make.trailing.equalToSuperview().offset(-30)
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/10)
+            make.bottom.equalToSuperview()
         }
         
         likeBtn.snp.makeConstraints { make in
-            make.top.equalTo(joinMemberCollectionView.snp.bottom).offset(20)
+//            make.top.equalTo(joinMemberCollectionView.snp.bottom).offset(20)
             make.leading.equalToSuperview()
             make.width.equalTo(view.safeAreaLayoutGuide.layoutFrame.width/2)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/20)
-            make.bottom.equalToSuperview()
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/18)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         joinBtn.snp.makeConstraints { make in
-            make.top.equalTo(joinMemberCollectionView.snp.bottom).offset(20)
+//            make.top.equalTo(joinMemberCollectionView.snp.bottom).offset(20)
             make.trailing.equalToSuperview()
             make.width.equalTo(view.safeAreaLayoutGuide.layoutFrame.width/2)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/20)
-            make.bottom.equalToSuperview()
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/18)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
     }
