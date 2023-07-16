@@ -25,7 +25,7 @@
 		3BC35CF52A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CF42A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift */; };
 		44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */; };
 		44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F82A162A5C05A7006B17F8 /* UserInfoViewController.swift */; };
-		570063602A63D5120051F42A /* CustomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700635F2A63D5120051F42A /* CustomStepper.swift */; };
+		570063602A63D5120051F42A /* PersonnelStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700635F2A63D5120051F42A /* PersonnelStepper.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -77,7 +77,7 @@
 		3BC35CF42A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLeftAlignFlowLayout.swift; sourceTree = "<group>"; };
 		44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		44F82A162A5C05A7006B17F8 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
-		5700635F2A63D5120051F42A /* CustomStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepper.swift; sourceTree = "<group>"; };
+		5700635F2A63D5120051F42A /* PersonnelStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonnelStepper.swift; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 				572A9A312A5CB445004D2809 /* SetInterestViewController.swift */,
 				572A9A342A5CC21C004D2809 /* SetDescriptViewController.swift */,
 				572A9A362A5CE7D4004D2809 /* SetDetailInfoViewController.swift */,
-				5700635F2A63D5120051F42A /* CustomStepper.swift */,
+				5700635F2A63D5120051F42A /* PersonnelStepper.swift */,
 			);
 			path = Creating;
 			sourceTree = "<group>";
@@ -427,7 +427,7 @@
 				57673ED42A5579E000A13D07 /* BannerCollectionViewCell.swift in Sources */,
 				3BC35CEF2A5C6C1B00D73163 /* UILabel+Ext.swift in Sources */,
 				572A9A322A5CB445004D2809 /* SetInterestViewController.swift in Sources */,
-				570063602A63D5120051F42A /* CustomStepper.swift in Sources */,
+				570063602A63D5120051F42A /* PersonnelStepper.swift in Sources */,
 				572A9A3A2A5E80D1004D2809 /* Member.swift in Sources */,
 				57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */,
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,

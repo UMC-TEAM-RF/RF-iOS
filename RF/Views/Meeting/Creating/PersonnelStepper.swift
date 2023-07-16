@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class CustomStepper: UIControl {
+class PersonnelStepper: UIControl {
     
     private lazy var stackView: UIStackView = {
         let sv = UIStackView()
@@ -18,6 +18,7 @@ class CustomStepper: UIControl {
         sv.spacing = 1
         sv.distribution = .fillEqually
         sv.alignment = .fill
+        sv.backgroundColor = .lightGray
         return sv
     }()
     
@@ -27,15 +28,17 @@ class CustomStepper: UIControl {
         button.tag = -1
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .systemGray6
         return button
     }()
     
     private lazy var plusButton: UIButton = {
         let button = UIButton()
-        button.setTitle("-", for: .normal)
+        button.setTitle("+", for: .normal)
         button.tag = -1
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .systemGray6
         return button
     }()
     
@@ -45,11 +48,20 @@ class CustomStepper: UIControl {
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         label.textColor = .black
         label.textAlignment = .center
+        label.backgroundColor = .systemGray6
         return label
     }()
     
+    private var currentValue = 0
+    
     var minimumCount: Int = 0
     var maximumCount: Int = 5
+    
+    var value: Int {
+        get {
+            return currentValue
+        }
+    }
     
     private let disposeBag = DisposeBag()
 
@@ -98,6 +110,7 @@ class CustomStepper: UIControl {
         guard (minimumCount...maximumCount) ~= currentCount + value else { return }
         
         countLabel.text = "\(currentCount + value)"
+        currentValue = currentCount + value
         sendActions(for: .valueChanged)
     }
 }

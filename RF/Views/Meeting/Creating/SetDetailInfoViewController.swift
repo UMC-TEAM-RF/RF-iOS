@@ -38,6 +38,73 @@ class SetDetailInfoViewController: UIViewController {
         return label
     }()
     
+    // 모임 인원 수 설정
+    private lazy var personnelStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.spacing = 3
+        sv.alignment = .fill
+        sv.distribution = .fill
+        return sv
+    }()
+    
+    private lazy var personnelTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "모임 인원 수"
+        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var personnelSubLabel: UILabel = {
+        let label = UILabel()
+        label.text = "최대 6명까지 가능합니다."
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var personnelStepper: PersonnelStepper = {
+        let sp = PersonnelStepper()
+        sp.minimumCount = 0
+        sp.maximumCount = 5
+        return sp
+    }()
+    
+    // 한국인 멤버 수
+    // 모임 인원 수 설정
+    private lazy var koreanStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.spacing = 3
+        sv.alignment = .fill
+        sv.distribution = .fill
+        return sv
+    }()
+    
+    private lazy var koreanTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "한국인 멤버 수"
+        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var koreanSubLabel: UILabel = {
+        let label = UILabel()
+        label.text = "최대 6명까지 가능합니다."
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var koreanStepper: PersonnelStepper = {
+        let sp = PersonnelStepper()
+        sp.minimumCount = 0
+        sp.maximumCount = 5
+        return sp
+    }()
+    
     // 다음 버튼
     private lazy var createButton: UIButton = {
         let button = UIButton()
@@ -69,6 +136,18 @@ class SetDetailInfoViewController: UIViewController {
         view.addSubview(progressBar)
         view.addSubview(mainLabel)
         view.addSubview(createButton)
+        
+        // 모임 인원 수 설정
+        view.addSubview(personnelStackView)
+        view.addSubview(personnelStepper)
+        personnelStackView.addArrangedSubview(personnelTitleLabel)
+        personnelStackView.addArrangedSubview(personnelSubLabel)
+        
+        // 한국인 인원 수 설정
+        view.addSubview(koreanStackView)
+        view.addSubview(koreanStepper)
+        koreanStackView.addArrangedSubview(koreanTitleLabel)
+        koreanStackView.addArrangedSubview(koreanSubLabel)
     }
     
     // MARK: - configureConstraints
@@ -91,6 +170,33 @@ class SetDetailInfoViewController: UIViewController {
             make.top.equalTo(progressBar.snp.bottom).offset(25)
             make.centerX.equalToSuperview()
         }
+        
+        // 모임 인원 수 설정
+        personnelStackView.snp.makeConstraints { make in
+            make.top.equalTo(mainLabel.snp.bottom).offset(45)
+            make.leading.equalToSuperview().offset(30)
+        }
+        
+        personnelStepper.snp.makeConstraints { make in
+            make.centerY.equalTo(personnelStackView)
+            make.trailing.equalToSuperview().offset(-30)
+            make.height.equalTo(personnelStackView.snp.height).multipliedBy(1.3)
+            make.width.equalTo(150)
+        }
+        
+        // 한국인 인원 수 설정
+        koreanStackView.snp.makeConstraints { make in
+            make.top.equalTo(personnelStackView.snp.bottom).offset(55)
+            make.leading.equalToSuperview().offset(30)
+        }
+        
+        koreanStepper.snp.makeConstraints { make in
+            make.centerY.equalTo(koreanStackView)
+            make.trailing.equalToSuperview().offset(-30)
+            make.height.equalTo(koreanStackView.snp.height).multipliedBy(1.3)
+            make.width.equalTo(150)
+        }
+        
         
         // 다음
         createButton.snp.makeConstraints { make in
