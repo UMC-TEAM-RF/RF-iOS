@@ -56,11 +56,85 @@ final class FilteringViewController: UIViewController{
         return cv
     }()
     
+    /// MARK: 모집 인원 제목
+    private lazy var joinNumberTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = MeetingFiltering.joinNumber
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        return label
+    }()
+    
+    /// MARK: 1:1  소모임
+    private lazy var firstJoinSelection: UIButton = {
+        let btn = UIButton()
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        btn.layer.cornerRadius = 20
+        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
+        btn.setTitleColor(.black, for: .normal)
+        btn.setTitle(MeetingFiltering.joinNumberList[0], for: .normal)
+        return btn
+    }()
+    
+    /// MARK: 2인 이상 모임
+    private lazy var secondJoinSelection: UIButton = {
+        let btn = UIButton()
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        btn.layer.cornerRadius = 20
+        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
+        btn.setTitleColor(.black, for: .normal)
+        btn.setTitle(MeetingFiltering.joinNumberList[1], for: .normal)
+        return btn
+    }()
+    
+    /// MARK: 인원 설정하기
+    private lazy var thirdJoinSelection: UIButton = {
+        let btn = UIButton()
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        btn.setTitle(MeetingFiltering.joinNumberList[2], for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
+        return btn
+    }()
+    
+    /// MARK: 관심 주제 설정 제목
+    private lazy var interestingTopicTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = MeetingFiltering.interestingTitle
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        return label
+    }()
+    
+    /// MARK: 관심 주제 설정 CollectionView
+    private lazy var interestingTopicCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.isScrollEnabled = false
+        cv.isMultipleTouchEnabled = true
+        return cv
+    }()
+    
+    /// MARK: 필터 초기화 버튼
+    private lazy var filterClearBtn: UIButton = {
+        let btn = UIButton()
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        btn.setTitle(MeetingFiltering.filterClear, for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+        btn.backgroundColor = .clear
+        return btn
+    }()
+    
+    private var selectedItems: Set<IndexPath> = []
+    private let maxSelectionCount = 3
+    private let disposeBag = DisposeBag()
+    
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         addSubviews()
+        clickedBtns()
     }
     
     /// MARK: add UI
@@ -69,10 +143,21 @@ final class FilteringViewController: UIViewController{
         view.addSubview(lookOnce)
         view.addSubview(ageTitleLabel)
         view.addSubview(ageCollectionView)
+        view.addSubview(joinNumberTitleLabel)
+        view.addSubview(firstJoinSelection)
+        view.addSubview(secondJoinSelection)
+        view.addSubview(thirdJoinSelection)
+        view.addSubview(interestingTopicTitleLabel)
+        view.addSubview(interestingTopicCollectionView)
+        view.addSubview(filterClearBtn)
         
         ageCollectionView.delegate = self
         ageCollectionView.dataSource = self
         ageCollectionView.register(AgeCollectionViewCell.self, forCellWithReuseIdentifier: AgeCollectionViewCell.identifier)
+        
+        interestingTopicCollectionView.delegate = self
+        interestingTopicCollectionView.dataSource = self
+        interestingTopicCollectionView.register(InterestingTopicCollectionViewCell.self, forCellWithReuseIdentifier: InterestingTopicCollectionViewCell.identifier)
         
         configureConstraints()
     }
@@ -104,7 +189,95 @@ final class FilteringViewController: UIViewController{
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/28)
         }
         
+        joinNumberTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(ageCollectionView.snp.bottom).offset(30)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+        }
         
+        firstJoinSelection.snp.makeConstraints { make in
+            make.top.equalTo(joinNumberTitleLabel.snp.bottom).offset(10)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.trailing.equalTo(view.snp.centerX).offset(-10)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/23)
+        }
+        
+        secondJoinSelection.snp.makeConstraints { make in
+            make.top.equalTo(joinNumberTitleLabel.snp.bottom).offset(10)
+            make.leading.equalTo(view.snp.centerX).offset(10)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/23)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
+        }
+        
+        thirdJoinSelection.snp.makeConstraints { make in
+            make.top.equalTo(firstJoinSelection.snp.bottom).offset(10)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/23)
+        }
+        
+        interestingTopicTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(thirdJoinSelection.snp.bottom).offset(30)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+        }
+        
+        interestingTopicCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(interestingTopicTitleLabel.snp.bottom).offset(10)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/6)
+        }
+        
+        filterClearBtn.snp.makeConstraints { make in
+            make.top.equalTo(interestingTopicCollectionView.snp.bottom).offset(30)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            
+        }
+    }
+    
+    /// MARK: 버튼들 클릭 했을 때 실행
+    private func clickedBtns(){
+        
+        topBtn.rx.tap
+            .bind(onNext: {
+                // 맨 위에 버튼 클릭 시
+            })
+            .disposed(by: disposeBag)
+        
+        lookOnce.rx.tap
+            .bind(onNext: {
+                // 모집 중인 모임만 보기 버튼 클릭 시
+            })
+            .disposed(by: disposeBag)
+        
+        firstJoinSelection.rx.tap
+            .bind(onNext: {
+                self.secondJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+                self.thirdJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+                self.firstJoinSelection.backgroundColor = .blue
+            })
+            .disposed(by: disposeBag)
+        
+        secondJoinSelection.rx.tap
+            .bind(onNext: {
+                self.firstJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+                self.thirdJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+                self.firstJoinSelection.backgroundColor = .blue
+            })
+            .disposed(by: disposeBag)
+        
+        thirdJoinSelection.rx.tap
+            .bind(onNext: {
+                self.firstJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+                self.secondJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+                self.firstJoinSelection.backgroundColor = .blue
+            })
+            .disposed(by: disposeBag)
+        
+        filterClearBtn.rx.tap
+            .bind(onNext: {
+                // 필터 초기화 했을 때 실행 코드 작성
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -118,6 +291,16 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
             cell.inputData(text: MeetingFiltering.ageList[indexPath.row])
             return cell
         }
+        else if collectionView == interestingTopicCollectionView{
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestingTopicCollectionViewCell.identifier, for: indexPath) as? InterestingTopicCollectionViewCell else {return UICollectionViewCell() }
+            
+            cell.backgroundColor = UIColor(hexCode: "F5F5F5")
+            cell.layer.cornerRadius = 20
+            cell.layer.borderColor = UIColor(hexCode: "DADADA").cgColor
+            
+            cell.inputData(text: MeetingFiltering.interestingTopicList[indexPath.row])
+            return cell
+        }
         
         return UICollectionViewCell()
     }
@@ -126,25 +309,43 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
         if collectionView == ageCollectionView{
             return MeetingFiltering.ageList.count
         }
-        
+        else if collectionView == interestingTopicCollectionView{
+            return MeetingFiltering.interestingTopicList.count
+        }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        
         if collectionView == ageCollectionView{
+            collectionView.deselectItem(at: indexPath, animated: true)
             print("clicked ageCollection \(MeetingFiltering.ageList[indexPath.row])")
         }
-        
+        else if collectionView == interestingTopicCollectionView{
+            guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+            
+            if selectedItems.contains(indexPath) {
+                selectedItems.remove(indexPath)
+                cell.backgroundColor = UIColor(hexCode: "F5F5F5")
+                collectionView.deselectItem(at: indexPath, animated: true)
+                print("deselect interestingTopic \(MeetingFiltering.interestingTopicList[indexPath.row])")
+            } else if selectedItems.count < maxSelectionCount {
+                selectedItems.insert(indexPath)
+                cell.backgroundColor = UIColor.blue // 선택된 셀의 배경색 변경
+                print("select interestingTopic \(MeetingFiltering.interestingTopicList[indexPath.row])")
+            }
+            
+        }
         
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == ageCollectionView{
             return CGSize(width: collectionView.bounds.width/4-10, height: collectionView.bounds.height)
         }
-        
+        else if collectionView == interestingTopicCollectionView{
+            return CGSize(width: collectionView.bounds.width/3-10, height: collectionView.bounds.height/3-10)
+        }
         return CGSize()
     }
 }
