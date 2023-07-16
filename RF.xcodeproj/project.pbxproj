@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD572A63E9590096871F /* SearchingViewController.swift */; };
 		3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD592A63ECB80096871F /* FilteringViewController.swift */; };
+		3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */; };
+		3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD5E2A643AD80096871F /* MeetingFiltering.swift */; };
 		3B181D1A2A56DCDF00B62DEB /* MeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */; };
 		3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */; };
 		3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */; };
@@ -63,6 +65,8 @@
 /* Begin PBXFileReference section */
 		3B15CD572A63E9590096871F /* SearchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewController.swift; sourceTree = "<group>"; };
 		3B15CD592A63ECB80096871F /* FilteringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringViewController.swift; sourceTree = "<group>"; };
+		3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B15CD5E2A643AD80096871F /* MeetingFiltering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingFiltering.swift; sourceTree = "<group>"; };
 		3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewController.swift; sourceTree = "<group>"; };
 		3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFriendUIView.swift; sourceTree = "<group>"; };
 		3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFreindUIButton.swift; sourceTree = "<group>"; };
@@ -132,8 +136,17 @@
 			children = (
 				3B15CD572A63E9590096871F /* SearchingViewController.swift */,
 				3B15CD592A63ECB80096871F /* FilteringViewController.swift */,
+				3B15CD5B2A6439C50096871F /* CollectionViewCell */,
 			);
 			path = Searching;
+			sourceTree = "<group>";
+		};
+		3B15CD5B2A6439C50096871F /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 		3B181D182A56DCC100B62DEB /* Meeting */ = {
@@ -329,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				57673EDB2A56E9D200A13D07 /* Interest.swift */,
+				3B15CD5E2A643AD80096871F /* MeetingFiltering.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -448,6 +462,7 @@
 				3BC35CF12A5C6CBD00D73163 /* RuleCollectionViewCell.swift in Sources */,
 				3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */,
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
+				3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */,
 				57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */,
 				3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */,
 				572A9A352A5CC21C004D2809 /* SetDescriptViewController.swift in Sources */,
@@ -459,6 +474,7 @@
 				572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */,
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
+				3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
