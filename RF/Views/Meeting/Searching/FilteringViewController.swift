@@ -134,6 +134,7 @@ final class FilteringViewController: UIViewController{
         view.backgroundColor = .systemBackground
         addSubviews()
         clickedBtns()
+        getDataFromViewModel()
     }
     
     /// MARK: add UI
@@ -238,13 +239,13 @@ final class FilteringViewController: UIViewController{
         
         topBtn.rx.tap
             .bind(onNext: {
-                // 맨 위에 버튼 클릭 시
+                self.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
         
         lookOnce.rx.tap
             .bind(onNext: {
-                // 모집 중인 모임만 보기 버튼 클릭 시
+                self.viewModel.checkOnceLook()
             })
             .disposed(by: disposeBag)
         
@@ -253,6 +254,7 @@ final class FilteringViewController: UIViewController{
                 self.secondJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
                 self.thirdJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
                 self.firstJoinSelection.backgroundColor = .blue
+                print("click first")
             })
             .disposed(by: disposeBag)
         
@@ -260,7 +262,8 @@ final class FilteringViewController: UIViewController{
             .bind(onNext: {
                 self.firstJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
                 self.thirdJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
-                self.firstJoinSelection.backgroundColor = .blue
+                self.secondJoinSelection.backgroundColor = .blue
+                print("click second")
             })
             .disposed(by: disposeBag)
         
@@ -268,7 +271,8 @@ final class FilteringViewController: UIViewController{
             .bind(onNext: {
                 self.firstJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
                 self.secondJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
-                self.firstJoinSelection.backgroundColor = .blue
+                self.thirdJoinSelection.backgroundColor = .blue
+                print("click third")
             })
             .disposed(by: disposeBag)
         
@@ -277,7 +281,11 @@ final class FilteringViewController: UIViewController{
                 // 필터 초기화 했을 때 실행 코드 작성
             })
             .disposed(by: disposeBag)
-        
+      
+    }
+    
+    /// MARK: ViewModel에서 데이터를 받아오는 함수
+    private func getDataFromViewModel(){
         viewModel.ageRelay
             .subscribe(onNext: { [weak self] item in
                 self?.updateAgeItem(item)
@@ -290,9 +298,25 @@ final class FilteringViewController: UIViewController{
                 self?.updateInterestingTopicItems(Items)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.checkOnceLookRelay
+            .bind(onNext: { [weak self] check in
+                self?.updateCheckOnceLook(check)
+            })
+            .disposed(by: disposeBag)
     }
     
-    /// MARK:
+    /// MARK: 
+    private func updateCheckOnceLook(_ check: Bool){
+        if check{
+            lookOnce.backgroundColor = .blue
+        }
+        else{
+            lookOnce.backgroundColor = UIColor(hexCode: "F5F5F5")
+        }
+    }
+    
+    /// MARK:  나이 선택시 업데이트 하는 함수
     private func updateAgeItem(_ item: IndexPath){
         for indexPath in ageCollectionView.indexPathsForVisibleItems {
             let cell = ageCollectionView.cellForItem(at: indexPath) as? AgeCollectionViewCell

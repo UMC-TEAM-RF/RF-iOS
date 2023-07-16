@@ -17,6 +17,13 @@ final class FilteringViewModel {
     /// 선택한 연령 대
     var ageRelay = BehaviorRelay<IndexPath>(value: IndexPath())
     
+    /// 모집 중인 모임만 보기
+    var checkOnceLookRelay = BehaviorRelay<Bool>(value: false)
+    
+    
+    
+    
+    
     /// MARK: interesting CollectionView에서 셀 선택했을 때 실행
     func selectedInterestingTopicItems(at indexPath: IndexPath) {
         var selectedItems = interestingTopicRelay.value
@@ -36,6 +43,7 @@ final class FilteringViewModel {
         interestingTopicRelay.accept(selectedItems)
     }
     
+    /// MARK: 나이 선택했을 때 실행
     func selectedAgeItem(at: IndexPath){
         var selectItem = ageRelay.value
         
@@ -50,4 +58,18 @@ final class FilteringViewModel {
         ageRelay.accept(selectItem)
     }
     
+    /// MARK: 모집 중인 모임만 보기 버튼 눌렀을 때
+    func checkOnceLook(){
+        var checkValue = checkOnceLookRelay.value
+        
+        if checkValue{
+            checkValue = false
+        }
+        else{
+            checkValue = true
+        }
+        
+        print("모집 중인 모임만 보기: \(checkValue)")
+        checkOnceLookRelay.accept(checkValue)
+    }
 }
