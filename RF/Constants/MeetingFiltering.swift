@@ -17,4 +17,5 @@ struct MeetingFiltering{
     static let interestingTitle: String = "관심 주제 설정"
     static let interestingTopicList: [String] = ["스포츠1", "스포츠2", "스포츠3", "스포츠4", "스포츠5", "스포츠6", "스포츠7", "스포츠8", "스포츠9"]
     static let filterClear: String = "필터 초기화"
+    static let maxSelectionCount = 3
 }

@@ -125,9 +125,8 @@ final class FilteringViewController: UIViewController{
         return btn
     }()
     
-    private var selectedItems: Set<IndexPath> = []
-    private let maxSelectionCount = 3
     private let disposeBag = DisposeBag()
+    private let viewModel = FilteringViewModel()
     
     // MARK: View Did Load
     override func viewDidLoad() {
@@ -278,6 +277,45 @@ final class FilteringViewController: UIViewController{
                 // 필터 초기화 했을 때 실행 코드 작성
             })
             .disposed(by: disposeBag)
+        
+        viewModel.ageRelay
+            .subscribe(onNext: { [weak self] item in
+                self?.updateAgeItem(item)
+            })
+            .disposed(by: disposeBag)
+        
+        // 선택된 관심 주제 가져옴
+        viewModel.interestingTopicRelay
+            .subscribe(onNext: { [weak self] Items in
+                self?.updateInterestingTopicItems(Items)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    /// MARK:
+    private func updateAgeItem(_ item: IndexPath){
+        for indexPath in ageCollectionView.indexPathsForVisibleItems {
+            let cell = ageCollectionView.cellForItem(at: indexPath) as? AgeCollectionViewCell
+            if item == indexPath {
+                cell?.backgroundColor = UIColor.blue
+            }
+            else{
+                cell?.backgroundColor = UIColor(hexCode: "F5F5F5")
+            }
+        }
+    }
+    
+    /// MARK: 선택된 셀 업데이트 하는 함수
+    private func updateInterestingTopicItems(_ items: Set<IndexPath>) {
+        for indexPath in interestingTopicCollectionView.indexPathsForVisibleItems {
+            let cell = interestingTopicCollectionView.cellForItem(at: indexPath) as? InterestingTopicCollectionViewCell
+            if items.contains(indexPath) {
+                cell?.backgroundColor = UIColor.blue
+            }
+            else{
+                cell?.backgroundColor = UIColor(hexCode: "F5F5F5")
+            }
+        }
     }
 }
 
@@ -317,23 +355,10 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == ageCollectionView{
-            collectionView.deselectItem(at: indexPath, animated: true)
-            print("clicked ageCollection \(MeetingFiltering.ageList[indexPath.row])")
+            viewModel.selectedAgeItem(at: indexPath)
         }
         else if collectionView == interestingTopicCollectionView{
-            guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-            
-            if selectedItems.contains(indexPath) {
-                selectedItems.remove(indexPath)
-                cell.backgroundColor = UIColor(hexCode: "F5F5F5")
-                collectionView.deselectItem(at: indexPath, animated: true)
-                print("deselect interestingTopic \(MeetingFiltering.interestingTopicList[indexPath.row])")
-            } else if selectedItems.count < maxSelectionCount {
-                selectedItems.insert(indexPath)
-                cell.backgroundColor = UIColor.blue // 선택된 셀의 배경색 변경
-                print("select interestingTopic \(MeetingFiltering.interestingTopicList[indexPath.row])")
-            }
-            
+            viewModel.selectedInterestingTopicItems(at: indexPath)
         }
         
     }
