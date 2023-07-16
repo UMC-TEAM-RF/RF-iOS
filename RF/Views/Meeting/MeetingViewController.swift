@@ -93,7 +93,7 @@ final class MeetingViewController: UIViewController{
         tabBarController?.tabBar.isHidden = false
     }
     
-    // MARK: add UI
+    /// MARK: add UI
     private func addSubviews(){
         view.addSubview(titleLabel)
         view.addSubview(btnsStackView)
@@ -107,7 +107,7 @@ final class MeetingViewController: UIViewController{
         uiActions()
     }
     
-    // MARK: setting AutoLayout
+    /// MARK: setting AutoLayout
     private func configureConstraints(){
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
@@ -162,7 +162,7 @@ final class MeetingViewController: UIViewController{
         makeFriendView.delegate = self
     }
     
-    // MARK: 모임 찾기, 모임 생성 버튼 눌렀을 때
+    // MARK: 모임 찾기, 모임 생성 아이콘 버튼 눌렀을 때
     private func clickedTopBtns(){
         searchMeetingBtn.rx.tap
             .subscribe(onNext:{
@@ -209,6 +209,9 @@ extension MeetingViewController: ClickedButton {
     func clickedBtns(check: Bool) {
         if check{
             print("clicked searchMeeting")
+            let searchingViewController = SearchingViewController()
+            tabBarController?.tabBar.isHidden = true
+            self.navigationController?.pushViewController(searchingViewController, animated: true)
         }
         else{
             print("clicked createMeeting")
