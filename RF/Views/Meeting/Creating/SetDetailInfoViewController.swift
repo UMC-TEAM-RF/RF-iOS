@@ -72,7 +72,6 @@ class SetDetailInfoViewController: UIViewController {
     }()
     
     // 한국인 멤버 수
-    // 모임 인원 수 설정
     private lazy var koreanStackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
@@ -114,11 +113,15 @@ class SetDetailInfoViewController: UIViewController {
         return label
     }()
     
-    private lazy var ageDropDownButton: DropDownButton = {
-        let button = DropDownButton()
-        button.title = "무관"
-        button.dataSources = [5, 3 ,1]
-        button.delegate = self
+    private lazy var ageGroupButton: UIButton = {
+        
+        let button = UIButton()
+        button.setTitle("무관  ", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        button.tintColor = .lightGray
+        button.semanticContentAttribute = .forceRightToLeft
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         return button
     }()
     
@@ -131,11 +134,14 @@ class SetDetailInfoViewController: UIViewController {
         return label
     }()
     
-    private lazy var languageDropDownButton: DropDownButton = {
-        let button = DropDownButton()
-        button.title = "무관"
-        button.dataSources = [5, 3 ,1]
-        button.delegate = self
+    private lazy var languageButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("영어  ", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        button.tintColor = .lightGray
+        button.semanticContentAttribute = .forceRightToLeft
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         return button
     }()
     
@@ -185,11 +191,11 @@ class SetDetailInfoViewController: UIViewController {
         
         // 선호 연령대
         view.addSubview(ageGroupLabel)
-        view.addSubview(ageDropDownButton)
+        view.addSubview(ageGroupButton)
         
         // 사용 언어
         view.addSubview(languageLabel)
-        view.addSubview(languageDropDownButton)
+        view.addSubview(languageButton)
     }
     
     // MARK: - configureConstraints
@@ -246,10 +252,10 @@ class SetDetailInfoViewController: UIViewController {
             make.leading.equalToSuperview().inset(30)
         }
         
-        ageDropDownButton.snp.makeConstraints { make in
-            make.top.equalTo(ageGroupLabel.snp.top)
+        ageGroupButton.snp.makeConstraints { make in
+            make.centerY.equalTo(ageGroupLabel)
             make.trailing.equalToSuperview().inset(30)
-            make.width.equalTo(120)
+            make.height.equalTo(ageGroupLabel.snp.height)
         }
         
         // 사용 언어
@@ -259,10 +265,10 @@ class SetDetailInfoViewController: UIViewController {
             make.leading.equalToSuperview().inset(30)
         }
         
-        languageDropDownButton.snp.makeConstraints { make in
-            make.top.equalTo(languageLabel.snp.top)
+        languageButton.snp.makeConstraints { make in
+            make.centerY.equalTo(languageLabel)
             make.trailing.equalToSuperview().inset(30)
-            make.width.equalTo(120)
+            make.height.equalTo(languageLabel.snp.height)
         }
         
         // 다음
@@ -288,15 +294,5 @@ class SetDetailInfoViewController: UIViewController {
 extension SetDetailInfoViewController: NavigationBarDelegate {
     func backButtonTapped() {
         navigationController?.popViewController(animated: true)
-    }
-}
-
-extension SetDetailInfoViewController: DropDownButtonDelegate {
-    func itemSelected(_ item: String) {
-        print(item)
-    }
-    
-    func buttonTapped(_ view: UIView) {
-        self.view.bringSubviewToFront(view)
     }
 }
