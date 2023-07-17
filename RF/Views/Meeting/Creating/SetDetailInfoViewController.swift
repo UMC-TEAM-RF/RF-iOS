@@ -115,6 +115,21 @@ class SetDetailInfoViewController: UIViewController {
         return button
     }()
     
+    private lazy var ageGroupLabel: UILabel = {
+        let label = UILabel()
+        label.text = "선호 연령대"
+        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var ageDropDownButton: DropDownButton = {
+        let button = DropDownButton()
+        button.title = "무관"
+        button.dataSources = [5, 3 ,1]
+        return button
+    }()
+    
     // MARK: - Property
     
     private let disposeBag = DisposeBag()
@@ -148,6 +163,10 @@ class SetDetailInfoViewController: UIViewController {
         view.addSubview(koreanStepper)
         koreanStackView.addArrangedSubview(koreanTitleLabel)
         koreanStackView.addArrangedSubview(koreanSubLabel)
+        
+        // 선호 연령대
+        view.addSubview(ageGroupLabel)
+        view.addSubview(ageDropDownButton)
     }
     
     // MARK: - configureConstraints
@@ -197,6 +216,18 @@ class SetDetailInfoViewController: UIViewController {
             make.width.equalTo(150)
         }
         
+        // 선호 연령대
+        ageGroupLabel.snp.makeConstraints { make in
+            make.top.equalTo(koreanStepper.snp.bottom).offset(70)
+            make.height.equalTo(30)
+            make.leading.equalToSuperview().inset(30)
+        }
+        
+        ageDropDownButton.snp.makeConstraints { make in
+            make.top.equalTo(ageGroupLabel.snp.top)
+            make.trailing.equalToSuperview().inset(30)
+            make.width.equalTo(120)
+        }
         
         // 다음
         createButton.snp.makeConstraints { make in
