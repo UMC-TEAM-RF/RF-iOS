@@ -105,16 +105,7 @@ class SetDetailInfoViewController: UIViewController {
         return sp
     }()
     
-    // 다음 버튼
-    private lazy var createButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("모임 생성하기", for: .normal)
-        button.backgroundColor = .tintColor
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 5
-        return button
-    }()
-    
+    // 선호 연령대
     private lazy var ageGroupLabel: UILabel = {
         let label = UILabel()
         label.text = "선호 연령대"
@@ -127,16 +118,44 @@ class SetDetailInfoViewController: UIViewController {
         let button = DropDownButton()
         button.title = "무관"
         button.dataSources = [5, 3 ,1]
+        button.delegate = self
+        return button
+    }()
+    
+    // 사용 언어
+    private lazy var languageLabel: UILabel = {
+        let label = UILabel()
+        label.text = "선호 연령대"
+        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var languageDropDownButton: DropDownButton = {
+        let button = DropDownButton()
+        button.title = "무관"
+        button.dataSources = [5, 3 ,1]
+        button.delegate = self
+        return button
+    }()
+    
+    // 다음 버튼
+    private lazy var createButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("모임 생성하기", for: .normal)
+        button.backgroundColor = .tintColor
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5
         return button
     }()
     
     // MARK: - Property
     
     private let disposeBag = DisposeBag()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         
         addSubviews()
@@ -167,6 +186,10 @@ class SetDetailInfoViewController: UIViewController {
         // 선호 연령대
         view.addSubview(ageGroupLabel)
         view.addSubview(ageDropDownButton)
+        
+        // 사용 언어
+        view.addSubview(languageLabel)
+        view.addSubview(languageDropDownButton)
     }
     
     // MARK: - configureConstraints
@@ -229,6 +252,19 @@ class SetDetailInfoViewController: UIViewController {
             make.width.equalTo(120)
         }
         
+        // 사용 언어
+        languageLabel.snp.makeConstraints { make in
+            make.top.equalTo(ageGroupLabel.snp.bottom).offset(30)
+            make.height.equalTo(30)
+            make.leading.equalToSuperview().inset(30)
+        }
+        
+        languageDropDownButton.snp.makeConstraints { make in
+            make.top.equalTo(languageLabel.snp.top)
+            make.trailing.equalToSuperview().inset(30)
+            make.width.equalTo(120)
+        }
+        
         // 다음
         createButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(30)
@@ -252,5 +288,15 @@ class SetDetailInfoViewController: UIViewController {
 extension SetDetailInfoViewController: NavigationBarDelegate {
     func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension SetDetailInfoViewController: DropDownButtonDelegate {
+    func itemSelected(_ item: String) {
+        print(item)
+    }
+    
+    func buttonTapped(_ view: UIView) {
+        self.view.bringSubviewToFront(view)
     }
 }

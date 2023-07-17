@@ -49,6 +49,8 @@ class DropDownButton: UIView {
     
     private let disposeBag = DisposeBag()
     
+    weak var delegate: DropDownButtonDelegate?
+    
     var title: String? {
         didSet {
             self.dropDownButton.setTitle(title, for: .normal)
@@ -58,7 +60,6 @@ class DropDownButton: UIView {
     var dataSources: [Int] = [1, 2, 3, 4, 5, 6, 7, 8] {
         didSet {
             self.updateTableDataSource()
-            self.dropDownTableView.reloadData()
         }
     }
     
@@ -98,26 +99,30 @@ class DropDownButton: UIView {
             tableViewHeightConstraint = make.height.equalTo(0).constraint
         }
     }
-
+    
     private func addTargets() {
         dropDownButton.rx.tap
             .subscribe(onNext: {
-                //UIView.animate(withDuration: 0.3) {
-                self.dropDownTableView.isHidden.toggle()
-                //}
+                self.delegate?.buttonTapped(self)
+                UIView.transition(with: self.dropDownTableView, duration: 0.3, options: .transitionCrossDissolve) {
+                    self.dropDownTableView.isHidden.toggle()
+                }
             })
             .disposed(by: disposeBag)
     }
     
-    
     // DataSource 개수에 따른 테이블 뷰 높이 수정
-    func updateTableDataSource() {
+    private func updateTableDataSource() {
         if dataSources.count >= 4 {
             tableViewHeightConstraint?.update(offset: 40 * 4)
         } else {
             tableViewHeightConstraint?.update(offset: dataSources.count * 40)
         }
         dropDownTableView.reloadData()
+    }
+    
+    func hideTableView() {
+        self.dropDownTableView.isHidden = true
     }
 }
 
@@ -130,5 +135,11 @@ extension DropDownButton: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: DropDownTableViewCell.identifier, for: indexPath) as! DropDownTableViewCell
         cell.label.text = "\(dataSources[indexPath.row])"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("tap")
+        self.delegate?.itemSelected("\(dataSources[indexPath.row])")
+        self.hideTableView()
     }
 }
