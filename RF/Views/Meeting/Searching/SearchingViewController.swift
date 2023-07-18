@@ -38,9 +38,8 @@ final class SearchingViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        
-        navigationItem.titleView = searchBtn
         navigationController?.navigationBar.isHidden = false
+        
         moveFilteringScreen()
         addSubviews()
         clickedBtns()
@@ -55,6 +54,8 @@ final class SearchingViewController: UIViewController{
     
     /// MARK: add UI
     private func addSubviews(){
+        navigationItem.titleView = searchBtn
+        searchBtn.delegate = self
         view.addSubview(filteringBtn)
         
         configureConstraints()
@@ -80,5 +81,9 @@ final class SearchingViewController: UIViewController{
             })
             .disposed(by: disposeBag)
     }
+    
+}
+
+extension SearchingViewController: UISearchBarDelegate{
     
 }
