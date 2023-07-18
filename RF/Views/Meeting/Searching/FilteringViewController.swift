@@ -236,10 +236,9 @@ final class FilteringViewController: UIViewController{
     
     /// MARK: 버튼들 클릭 했을 때 실행
     private func clickedBtns(){
-        
         topBtn.rx.tap
             .bind(onNext: {
-                self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
         
@@ -251,34 +250,25 @@ final class FilteringViewController: UIViewController{
         
         firstJoinSelection.rx.tap
             .bind(onNext: {
-                self.secondJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
-                self.thirdJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
-                self.firstJoinSelection.backgroundColor = .blue
-                print("click first")
+                self.viewModel.clickJoinFirstButton()
             })
             .disposed(by: disposeBag)
         
         secondJoinSelection.rx.tap
             .bind(onNext: {
-                self.firstJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
-                self.thirdJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
-                self.secondJoinSelection.backgroundColor = .blue
-                print("click second")
+                self.viewModel.clickJoinSecondButton()
             })
             .disposed(by: disposeBag)
         
         thirdJoinSelection.rx.tap
             .bind(onNext: {
-                self.firstJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
-                self.secondJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
-                self.thirdJoinSelection.backgroundColor = .blue
-                print("click third")
+                self.viewModel.clickJoinThirdButton()
             })
             .disposed(by: disposeBag)
         
         filterClearBtn.rx.tap
             .bind(onNext: {
-                // 필터 초기화 했을 때 실행 코드 작성
+                self.viewModel.clickResetBtn()
             })
             .disposed(by: disposeBag)
       
@@ -304,9 +294,67 @@ final class FilteringViewController: UIViewController{
                 self?.updateCheckOnceLook(check)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.joinFirstButtonRelay
+            .bind(onNext: { [weak self] check in
+                print("first: \(check)")
+                self?.updateJoinFirstBtn(check)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.joinSecondButtonRelay
+            .bind(onNext: { [weak self] check in
+                print("second: \(check)")
+                self?.updateJoinSecondBtn(check)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.joinThirdButtonRelay
+            .bind(onNext: { [weak self] check in
+                print("third: \(check)")
+                self?.updateJoinThirdBtn(check)
+            })
+            .disposed(by: disposeBag)
+        
     }
     
-    /// MARK: 
+    /// MARK: 1:1 소모임 버튼 눌렀을 때 업데이트
+    private func updateJoinFirstBtn(_ check: Bool){
+        if check{
+            self.secondJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+            self.thirdJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+            self.firstJoinSelection.backgroundColor = .blue
+        }
+        else{
+            self.firstJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+        }
+    }
+    
+    /// MARK: 2인 이상 모임 버튼 눌렀을 때 업데이트
+    private func updateJoinSecondBtn(_ check: Bool){
+        if check{
+            self.firstJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+            self.thirdJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+            self.secondJoinSelection.backgroundColor = .blue
+        }
+        else{
+            self.secondJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+        }
+    }
+    
+    /// MARK: 인원 설정하기 버튼 눌렀을 때 업데이트
+    private func updateJoinThirdBtn(_ check: Bool){
+        if check{
+            self.secondJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+            self.firstJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+            self.thirdJoinSelection.backgroundColor = .blue
+        }
+        else{
+            self.thirdJoinSelection.backgroundColor = UIColor(hexCode: "F5F5F5")
+        }
+    }
+    
+    /// MARK:  모집 중인 모임만 보기 업데이트
     private func updateCheckOnceLook(_ check: Bool){
         if check{
             lookOnce.backgroundColor = .blue
