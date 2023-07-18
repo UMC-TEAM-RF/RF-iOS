@@ -17,7 +17,7 @@ final class FilteringViewController: UIViewController{
     
     /// MARK: 화면 내리는 버튼, 가장 맨위에 았는 버튼
     private lazy var topBtn: UIButton = {
-        let btn = UIButton()
+        let btn = UIButton() 
         btn.backgroundColor = UIColor(hexCode: "F5F5F5")
         btn.setTitle(MeetingFiltering.topButton, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
@@ -137,7 +137,7 @@ final class FilteringViewController: UIViewController{
         getDataFromViewModel()
     }
     
-    /// MARK: add UI
+    /// MARK: Add UI
     private func addSubviews(){
         view.addSubview(topBtn)
         view.addSubview(lookOnce)
@@ -162,7 +162,7 @@ final class FilteringViewController: UIViewController{
         configureConstraints()
     }
     
-    /// MARK: setting AutoLayout
+    /// MARK: Setting AutoLayout
     private func configureConstraints(){
         topBtn.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -432,7 +432,6 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
         else if collectionView == interestingTopicCollectionView{
             viewModel.selectedInterestingTopicItems(at: indexPath)
         }
-        
     }
     
     

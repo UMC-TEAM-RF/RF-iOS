@@ -11,6 +11,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
+/// MARK: 모임 검색하는 화면
 final class SearchingViewController: UIViewController{
     
     /// MARK: 필터링 버튼
