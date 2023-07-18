@@ -8,10 +8,11 @@
 import UIKit
 import SnapKit
 
+/// MARK: 관심 주제 설정 CollectionView Cell
 final class InterestingTopicCollectionViewCell: UICollectionViewCell {
     static let identifier = "InterestingTopicCollectionViewCell"
     
-    /// MARK:
+    /// MARK: 관심 주제 라벨
     private lazy var topicLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .light)

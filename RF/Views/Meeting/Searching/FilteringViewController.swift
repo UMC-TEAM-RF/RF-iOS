@@ -284,8 +284,8 @@ final class FilteringViewController: UIViewController{
         
         // 선택된 관심 주제 가져옴
         viewModel.interestingTopicRelay
-            .subscribe(onNext: { [weak self] Items in
-                self?.updateInterestingTopicItems(Items)
+            .subscribe(onNext: { [weak self] items in
+                self?.updateInterestingTopicItems(items)
             })
             .disposed(by: disposeBag)
         

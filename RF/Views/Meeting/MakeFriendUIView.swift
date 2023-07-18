@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 import RxSwift
 
+/// MARK: '새로운 친구 사귀기 좋은날 아닌가요?' 있는 View
 final class MakeFriendUIView: UIView {
     
-    // MARK: 제목 라벨
+    /// MARK: 제목 라벨
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "새로운 친구 사귀기 좋은 날 아닌가요?"
@@ -20,7 +21,7 @@ final class MakeFriendUIView: UIView {
         return label
     }()
     
-    // MARK:
+    /// MARK: 모임 찾기 버튼
     private lazy var searchMeetingBtn: MakeFreindUIButton = {
         let btn = MakeFreindUIButton()
         btn.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) /* #f5f5f5 */
@@ -28,7 +29,7 @@ final class MakeFriendUIView: UIView {
         return btn
     }()
     
-    // MARK:
+    /// MARK: 모임 생성하기 버튼
     private lazy var createMeetingBtn: MakeFreindUIButton = {
         let btn = MakeFreindUIButton()
         btn.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) /* #f5f5f5 */
@@ -48,7 +49,7 @@ final class MakeFriendUIView: UIView {
         
     }
     
-    // MARK: add UI
+    /// MARK: add UI
     private func addSubviews(height: CGFloat){
         addSubview(titleLabel)
         addSubview(searchMeetingBtn)
@@ -56,7 +57,7 @@ final class MakeFriendUIView: UIView {
         configureConstraints(height: height)
     }
     
-    // MARK: setting AutoLayout
+    /// MARK: setting AutoLayout
     private func configureConstraints(height: CGFloat){
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(30)
@@ -78,7 +79,7 @@ final class MakeFriendUIView: UIView {
         }
     }
     
-    // MARK: 각 버튼들 데이터 입력 
+    /// MARK: 각 버튼들 데이터 입력
     func inputData(height: CGFloat){
         addSubviews(height: height)
         clickedBtns()
@@ -91,6 +92,7 @@ final class MakeFriendUIView: UIView {
                       description2: "1인당 최대 5개까지 만들 수 있어요.")
     }
     
+    /// MARK: Clicked Buttons
     private func clickedBtns(){
         searchMeetingBtn.rx.tap
             .subscribe(onNext:{
