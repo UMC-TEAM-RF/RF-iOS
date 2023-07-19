@@ -26,6 +26,10 @@ class UserInfoViewController: UIViewController {
         return label
     }()
     
+    //
+
+    
+    
     private lazy var favNationLabel: UILabel = {
         let label = UILabel()
         label.text = "관심 나라"
@@ -42,15 +46,11 @@ class UserInfoViewController: UIViewController {
         return label
     }()
     
-    private lazy var userIntroLabel: UILabel = {
-        let label = UILabel()
-        label.text = "본인 한 줄 소개"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        label.numberOfLines = 1
-        return label
-    }()
-    
     private lazy var nextButton: UIButton = {
+        
+        let Userinfoselfnext = UserinfoSelf()
+        navigationController?.pushViewController(UserinfoSelf(), animated: true)
+        
         let button = UIButton()
         button.setTitle("다음", for: .normal)
         button.setTitleColor(.gray, for: .normal)
@@ -76,7 +76,6 @@ class UserInfoViewController: UIViewController {
         view.addSubview(userNationLabel)
         view.addSubview(favNationLabel)
         view.addSubview(favLanguageLabel)
-        view.addSubview(userIntroLabel)
         view.addSubview(nextButton)
     }
     
@@ -103,12 +102,6 @@ class UserInfoViewController: UIViewController {
         //관심 언어
         favLanguageLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(286)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-        
-        // 본인 한 줄 소개
-        userIntroLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(374)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         
