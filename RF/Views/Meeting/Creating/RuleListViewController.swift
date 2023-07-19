@@ -53,6 +53,11 @@ class RuleListViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Property
+    
+    private var selectedCount = 0
+    
+    // MARK: - viewDidLoad()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,12 +68,16 @@ class RuleListViewController: UIViewController {
         configureConstraints()
     }
     
+    // MARK: - addSubviews()
+    
     private func addSubviews() {
         view.addSubview(navigationBar)
         view.addSubview(topLabel)
         view.addSubview(ruleCollectionView)
         view.addSubview(confirmButton)
     }
+    
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         // 네비게이션 바
@@ -99,11 +108,15 @@ class RuleListViewController: UIViewController {
     }
 }
 
+// MARK: - NavigationBarDelegate
+
 extension RuleListViewController: NavigationBarDelegate {
     func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
 }
+
+// MARK: - CollectionView
 
 extension RuleListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -113,12 +126,33 @@ extension RuleListViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as! TagCollectionViewCell
         cell.setupTagLabel(Rule.list[indexPath.item])
+        cell.setCellBackgroundColor(.systemGray6)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let text = Rule.list[indexPath.item]
         return CGSize(width: text.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)]).width + 30, height: 40)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell else { return }
+        
+        if !cell.isSelectedCell && self.selectedCount == 5 {
+            print("초과")
+            return
+        }
+        
+        cell.isSelectedCell.toggle()
+        
+        // 최대 3개 선택할 수 있도록 설정
+        if cell.isSelectedCell { // 활성화
+            self.selectedCount += 1
+            cell.setColor(textColor: .white, backgroundColor: .tintColor)
+        } else {  // 비활성화
+            self.selectedCount -= 1
+            cell.setColor(textColor: .label, backgroundColor: .systemGray6)
+        }
     }
 }
 

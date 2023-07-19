@@ -20,6 +20,8 @@ class TagCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    var isSelectedCell: Bool = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -46,6 +48,15 @@ class TagCollectionViewCell: UICollectionViewCell {
     }
     
     func setupTagLabel(_ text: String) {
-        tagLabel.text = "#\(text)"
+        tagLabel.text = text
+    }
+    
+    func setCellBackgroundColor(_ color: UIColor) {
+        contentView.backgroundColor = color
+    }
+    
+    func setColor(textColor: UIColor, backgroundColor: UIColor) {
+        self.tagLabel.textColor = textColor
+        self.contentView.backgroundColor = backgroundColor
     }
 }
