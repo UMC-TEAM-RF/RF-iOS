@@ -10,6 +10,8 @@ import SnapKit
 
 class TagCollectionViewCell: UICollectionViewCell {
     
+    static let identifier = "TagCollectionViewCell"
+    
     private lazy var tagLabel: UILabel = {
         let label = UILabel()
         //label.text = "#미대"
@@ -17,6 +19,8 @@ class TagCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         return label
     }()
+    
+    var isSelectedCell: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,6 +48,15 @@ class TagCollectionViewCell: UICollectionViewCell {
     }
     
     func setupTagLabel(_ text: String) {
-        tagLabel.text = "#\(text)"
+        tagLabel.text = text
+    }
+    
+    func setCellBackgroundColor(_ color: UIColor) {
+        contentView.backgroundColor = color
+    }
+    
+    func setColor(textColor: UIColor, backgroundColor: UIColor) {
+        self.tagLabel.textColor = textColor
+        self.contentView.backgroundColor = backgroundColor
     }
 }

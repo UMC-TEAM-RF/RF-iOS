@@ -116,7 +116,7 @@ extension MeetingCollectionViewCell: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionViewCell", for: indexPath) as! TagCollectionViewCell
-        cell.setupTagLabel(testTagList[indexPath.item])
+        cell.setupTagLabel("#\(testTagList[indexPath.item])")
         return cell
     }
     
