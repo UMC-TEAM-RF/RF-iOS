@@ -339,6 +339,12 @@ class SetDetailInfoViewController: UIViewController {
     // MARK: - addTargets
     
     private func addTargets() {
+        ruleButton.rx.tap
+            .subscribe(onNext: {
+                self.navigationController?.pushViewController(RuleListViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+        
         createButton.rx.tap
             .subscribe(onNext: {
                 self.tabBarController?.tabBar.isHidden = false

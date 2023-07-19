@@ -10,6 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
+// 높이 60 고정
 class CustomNavigationBar: UIView {
 
     // MARK: - UI Property

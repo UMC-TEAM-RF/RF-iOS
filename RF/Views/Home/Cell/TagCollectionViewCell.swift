@@ -10,6 +10,8 @@ import SnapKit
 
 class TagCollectionViewCell: UICollectionViewCell {
     
+    static let identifier = "TagCollectionViewCell"
+    
     private lazy var tagLabel: UILabel = {
         let label = UILabel()
         //label.text = "#미대"
