@@ -27,7 +27,7 @@ final class SignUpViewController: UIViewController {
         view.borderStyle = UITextField.BorderStyle.none
         view.keyboardType = UIKeyboardType.emailAddress
         view.returnKeyType = UIReturnKeyType.done
-        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        view.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
 
         return view
     }()
@@ -97,7 +97,7 @@ final class SignUpViewController: UIViewController {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
         button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = .lightGray
+        button.backgroundColor = .systemGray6
         button.layer.cornerRadius = 10
         return button
     }()
@@ -140,22 +140,6 @@ final class SignUpViewController: UIViewController {
     
     private func configureConstraints() {
         
-        view.addSubview(idLabel)
-        view.addSubview(idTextField)
-        view.addSubview(idCheckButton)
-        view.addSubview(idUnderLine)
-        
-        view.addSubview(pwLabel)
-        view.addSubview(pwTextField)
-        view.addSubview(pwUnderLine)
-        
-        view.addSubview(pwConfirmLabel)
-        view.addSubview(pwConfirmTextField)
-        view.addSubview(pwConfirmUnderLine)
-        
-        view.addSubview(nextButton)
-    
-        
         idLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             make.leading.equalToSuperview().offset(16)
@@ -170,14 +154,13 @@ final class SignUpViewController: UIViewController {
         idCheckButton.snp.makeConstraints { make in
             make.top.equalTo(idLabel.snp.bottom).offset(16)
             make.leading.equalTo(idTextField.snp.trailing).offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-            make.width.equalTo(80)
+            make.trailing.equalToSuperview().inset(16)
             make.height.equalTo(47)
         }
         idUnderLine.snp.makeConstraints { make in
             make.top.equalTo(idTextField.snp.bottom).offset(0)
             make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
+            make.trailing.equalTo(idTextField.snp.trailing)
             make.height.equalTo(1)
         }
         
@@ -189,13 +172,13 @@ final class SignUpViewController: UIViewController {
         pwTextField.snp.makeConstraints { make in
             make.top.equalTo(pwLabel.snp.bottom).offset(16)
             make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
+            make.trailing.equalTo(idTextField.snp.trailing)
             make.height.equalTo(47)
         }
         pwUnderLine.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(0)
             make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
+            make.trailing.equalTo(idTextField.snp.trailing)
             make.height.equalTo(1)
         }
         
@@ -207,22 +190,22 @@ final class SignUpViewController: UIViewController {
         pwConfirmTextField.snp.makeConstraints { make in
             make.top.equalTo(pwConfirmLabel.snp.bottom).offset(16)
             make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
+            make.trailing.equalTo(idTextField.snp.trailing)
             make.height.equalTo(47)
         }
         pwConfirmUnderLine.snp.makeConstraints { make in
             make.top.equalTo(pwConfirmTextField.snp.bottom).offset(0)
             make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
+            make.trailing.equalTo(idTextField.snp.trailing)
             make.height.equalTo(1)
         }
         
         
         
         nextButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-50)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(50)
             make.centerX.equalToSuperview()
-            make.width.equalTo(300)
+            make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(47)
         }
         
