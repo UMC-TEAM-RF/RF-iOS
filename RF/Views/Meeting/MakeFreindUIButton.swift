@@ -8,30 +8,31 @@
 import UIKit
 import SnapKit
 
+/// MARK: 모임 찾기 및 모임 생성하기 버튼
 final class MakeFreindUIButton: UIButton {
     
-    // MARK: 버튼 제목
+    /// MARK: 버튼 제목
     private lazy var buttonTitle: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
         return label
     }()
     
-    // MARK: 첫 번째 설명
+    /// MARK: 첫 번째 설명
     private lazy var firstDescription: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         return label
     }()
     
-    // MARK: 두 번째 설명
+    /// MARK: 두 번째 설명
     private lazy var secondDescription: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         return label
     }()
     
-    // MARK:
+    /// MARK: 화살표 이미지
     private lazy var img: UIImageView = {
         let img = UIImageView()
         img.image = UIImage(systemName: "arrow.right.circle")?.resize(newWidth: 30)
@@ -46,7 +47,7 @@ final class MakeFreindUIButton: UIButton {
         super.init(coder: coder)
     }
 
-    // MARK: add UI
+    /// MARK: add UI
     private func addSubviews(){
         addSubview(buttonTitle)
         addSubview(firstDescription)
@@ -56,7 +57,7 @@ final class MakeFreindUIButton: UIButton {
         configureConstraints()
     }
     
-    // MARK: setting AutoLayout
+    /// MARK: setting AutoLayout
     private func configureConstraints(){
         buttonTitle.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
@@ -79,7 +80,7 @@ final class MakeFreindUIButton: UIButton {
         }
     }
     
-    
+    /// MARK: 데이터 넣는 함수
     func inputData(title: String, description1: String, description2: String){
         addSubviews()
         

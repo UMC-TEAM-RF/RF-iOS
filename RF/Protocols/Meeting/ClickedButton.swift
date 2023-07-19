@@ -10,5 +10,5 @@ import Foundation
 protocol ClickedButton {
     /// true -> 모임 찾기 버튼
     /// false -> 모임 생성하기
-    func clickedBtns(check: Bool)
+    func clickedButtons(check: Bool)
 }

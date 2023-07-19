@@ -11,9 +11,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+/// MARK: 모임 홈 화면
 final class MeetingViewController: UIViewController{
     
-    // MARK: 모임 제목 라벨
+    /// MARK: 모임 제목 라벨
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "모임"
@@ -21,21 +22,21 @@ final class MeetingViewController: UIViewController{
         return label
     }()
     
-    // MARK: 모임 찾기 버튼
+    /// MARK: 모임 찾기 버튼
     private lazy var searchMeetingBtn: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "magnifyingglass")?.resize(newWidth: 25), for: .normal)
         return btn
     }()
     
-    // MARK: 모임 생성 버튼
+    /// MARK: 모임 생성 버튼
     private lazy var createMeetingBtn: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "plus")?.resize(newWidth: 25), for: .normal)
         return btn
     }()
     
-    // MARK: 모임 찾기 버튼, 모임 생성 버튼 담는 StackView
+    /// MARK: 모임 찾기 버튼, 모임 생성 버튼 담는 StackView
     private lazy var btnsStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [searchMeetingBtn, createMeetingBtn])
         stack.axis = .horizontal
@@ -45,7 +46,7 @@ final class MeetingViewController: UIViewController{
         return stack
     }()
     
-    // MARK: 모임 찾기, 모임 생성하기 UIView
+    /// MARK: 모임 찾기, 모임 생성하기 UIView
     private lazy var makeFriendView: MakeFriendUIView = {
         let view = MakeFriendUIView()
         view.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0) /* #f9f9f9 */
@@ -53,12 +54,13 @@ final class MeetingViewController: UIViewController{
         return view
     }()
     
-    // MARK: 근처 모임 리스트 View
+    /// MARK: 근처 모임 리스트 View
     private lazy var meetingListView: UIView = {
         let view = UIView()
         return view
     }()
     
+    /// MARK: 모임 제목
     private lazy var meetingListLabel: UILabel = {
         let label = UILabel()
         label.text = "지금 OO님 근처의 모임을 확인 해보세요!"
@@ -66,6 +68,7 @@ final class MeetingViewController: UIViewController{
         return label
     }()
     
+    /// MARK: 모임 CollectionView
     private lazy var meetingCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
@@ -78,6 +81,7 @@ final class MeetingViewController: UIViewController{
     
     private let disposeBag = DisposeBag()
     
+    // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -93,7 +97,7 @@ final class MeetingViewController: UIViewController{
         tabBarController?.tabBar.isHidden = false
     }
     
-    // MARK: add UI
+    /// MARK: add UI
     private func addSubviews(){
         view.addSubview(titleLabel)
         view.addSubview(btnsStackView)
@@ -107,7 +111,7 @@ final class MeetingViewController: UIViewController{
         uiActions()
     }
     
-    // MARK: setting AutoLayout
+    /// MARK: setting AutoLayout
     private func configureConstraints(){
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
@@ -143,12 +147,11 @@ final class MeetingViewController: UIViewController{
             make.left.right.equalToSuperview().inset(20)
             
             //make.bottom.equalToSuperview()
-            
             make.height.equalTo(130)    // 1개 130, 2개 275, 3개 420
         }
     }
     
-    // MARK: - configureCollectionView
+    /// MARK: - configureCollectionView
     private func configureCollectionView() {
         meetingCollectionView.delegate = self
         meetingCollectionView.dataSource = self
@@ -156,13 +159,13 @@ final class MeetingViewController: UIViewController{
         meetingCollectionView.register(MeetingCollectionViewCell.self, forCellWithReuseIdentifier: "MeetingCollectionViewCell")
     }
     
-    // MARK:
+    /// MARK: UI Action 함수
     private func uiActions(){
         makeFriendView.inputData(height: view.safeAreaLayoutGuide.layoutFrame.width)
         makeFriendView.delegate = self
     }
     
-    // MARK: 모임 찾기, 모임 생성 버튼 눌렀을 때
+    /// MARK: 모임 찾기, 모임 생성 아이콘 버튼 눌렀을 때
     private func clickedTopBtns(){
         searchMeetingBtn.rx.tap
             .subscribe(onNext:{
@@ -206,9 +209,12 @@ extension MeetingViewController: UICollectionViewDelegate, UICollectionViewDataS
 extension MeetingViewController: ClickedButton {
     /// true -> 모임 찾기 버튼
     /// false -> 모임 생성하기
-    func clickedBtns(check: Bool) {
+    func clickedButtons(check: Bool) {
         if check{
             print("clicked searchMeeting")
+            let searchingViewController = SearchingViewController()
+            tabBarController?.tabBar.isHidden = true
+            self.navigationController?.pushViewController(searchingViewController, animated: true)
         }
         else{
             print("clicked createMeeting")
@@ -218,7 +224,3 @@ extension MeetingViewController: ClickedButton {
     }
     
 }
-
-
-// 파일 옮기기
-
