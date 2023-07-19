@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD572A63E9590096871F /* SearchingViewController.swift */; };
+		3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD592A63ECB80096871F /* FilteringViewController.swift */; };
+		3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */; };
+		3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD5E2A643AD80096871F /* MeetingFiltering.swift */; };
+		3B15CD612A64437D0096871F /* InterestingTopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD602A64437D0096871F /* InterestingTopicCollectionViewCell.swift */; };
+		3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD652A644FF90096871F /* FilteringViewModel.swift */; };
 		3B181D1A2A56DCDF00B62DEB /* MeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */; };
 		3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */; };
 		3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */; };
@@ -59,6 +65,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B15CD572A63E9590096871F /* SearchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewController.swift; sourceTree = "<group>"; };
+		3B15CD592A63ECB80096871F /* FilteringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringViewController.swift; sourceTree = "<group>"; };
+		3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B15CD5E2A643AD80096871F /* MeetingFiltering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingFiltering.swift; sourceTree = "<group>"; };
+		3B15CD602A64437D0096871F /* InterestingTopicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingTopicCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B15CD652A644FF90096871F /* FilteringViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringViewModel.swift; sourceTree = "<group>"; };
 		3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewController.swift; sourceTree = "<group>"; };
 		3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFriendUIView.swift; sourceTree = "<group>"; };
 		3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFreindUIButton.swift; sourceTree = "<group>"; };
@@ -123,13 +135,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B15CD562A63E9450096871F /* Searching */ = {
+			isa = PBXGroup;
+			children = (
+				3B15CD572A63E9590096871F /* SearchingViewController.swift */,
+				3B15CD592A63ECB80096871F /* FilteringViewController.swift */,
+				3B15CD5B2A6439C50096871F /* CollectionViewCell */,
+			);
+			path = Searching;
+			sourceTree = "<group>";
+		};
+		3B15CD5B2A6439C50096871F /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */,
+				3B15CD602A64437D0096871F /* InterestingTopicCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		3B15CD622A644FB90096871F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3B15CD632A644FDE0096871F /* Meeting */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3B15CD632A644FDE0096871F /* Meeting */ = {
+			isa = PBXGroup;
+			children = (
+				3B15CD642A644FE40096871F /* Searching */,
+			);
+			path = Meeting;
+			sourceTree = "<group>";
+		};
+		3B15CD642A644FE40096871F /* Searching */ = {
+			isa = PBXGroup;
+			children = (
+				3B15CD652A644FF90096871F /* FilteringViewModel.swift */,
+			);
+			path = Searching;
+			sourceTree = "<group>";
+		};
 		3B181D182A56DCC100B62DEB /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
-				572A9A272A5C0989004D2809 /* Creating */,
 				3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */,
 				3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */,
 				3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */,
+				3B15CD562A63E9450096871F /* Searching */,
+				572A9A272A5C0989004D2809 /* Creating */,
 				3BC35CE42A5C3C4B00D73163 /* DetailMeeting */,
 			);
 			path = Meeting;
@@ -222,6 +278,7 @@
 				44F82A0F2A56D55D006B17F8 /* Extensions */,
 				575032912A596DB30060D629 /* Protocols */,
 				572A9A382A5E80B0004D2809 /* Models */,
+				3B15CD622A644FB90096871F /* ViewModel */,
 				572DC2422A51C23C00C0D6E1 /* Views */,
 				572DC2372A51BF2500C0D6E1 /* Assets.xcassets */,
 				572DC2392A51BF2500C0D6E1 /* LaunchScreen.storyboard */,
@@ -315,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				57673EDB2A56E9D200A13D07 /* Interest.swift */,
+				3B15CD5E2A643AD80096871F /* MeetingFiltering.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -404,6 +462,7 @@
 			files = (
 				44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */,
 				57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */,
+				3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */,
 				575032942A596DDE0060D629 /* ClickedButton.swift in Sources */,
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
 				572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */,
@@ -433,16 +492,21 @@
 				3BC35CF12A5C6CBD00D73163 /* RuleCollectionViewCell.swift in Sources */,
 				3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */,
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
+				3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */,
 				57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */,
 				3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */,
 				572A9A352A5CC21C004D2809 /* SetDescriptViewController.swift in Sources */,
+				3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */,
 				572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */,
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
 				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
+				3B15CD612A64437D0096871F /* InterestingTopicCollectionViewCell.swift in Sources */,
 				572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */,
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
+				3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */,
+				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
