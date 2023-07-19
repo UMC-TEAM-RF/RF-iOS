@@ -145,6 +145,36 @@ class SetDetailInfoViewController: UIViewController {
         return button
     }()
     
+    // 활동 장소
+    private lazy var placeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "활동 장소"
+        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var placeTextField: UITextField = {
+        let tf = UITextField()
+        tf.backgroundColor = .systemGray6
+        tf.layer.cornerRadius = 5
+        tf.placeholder = "장소를 입력해 주세요."
+        tf.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        tf.addLeftPadding()
+        return tf
+    }()
+    
+    private lazy var ruleButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("모임의 규칙  ", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        button.tintColor = .lightGray
+        button.semanticContentAttribute = .forceRightToLeft
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        return button
+    }()
+    
     // 다음 버튼
     private lazy var createButton: UIButton = {
         let button = UIButton()
@@ -196,6 +226,13 @@ class SetDetailInfoViewController: UIViewController {
         // 사용 언어
         view.addSubview(languageLabel)
         view.addSubview(languageButton)
+        
+        // 활동 장소
+        view.addSubview(placeLabel)
+        view.addSubview(placeTextField)
+        
+        // 모임 규칙
+        view.addSubview(ruleButton)
     }
     
     // MARK: - configureConstraints
@@ -271,10 +308,30 @@ class SetDetailInfoViewController: UIViewController {
             make.height.equalTo(languageLabel.snp.height)
         }
         
+        // 활동 장소
+        placeLabel.snp.makeConstraints { make in
+            make.top.equalTo(languageLabel.snp.bottom).offset(30)
+            make.height.equalTo(30)
+            make.leading.equalToSuperview().inset(30)
+        }
+        
+        placeTextField.snp.makeConstraints { make in
+            make.centerY.equalTo(placeLabel)
+            make.trailing.equalToSuperview().inset(30)
+            make.width.equalTo(200)
+            make.height.equalTo(placeLabel.snp.height).multipliedBy(1.2)
+        }
+        
+        // 모임 규칙
+        ruleButton.snp.makeConstraints { make in
+            make.top.equalTo(placeLabel.snp.bottom).offset(55)
+            make.leading.equalToSuperview().inset(30)
+        }
+        
         // 다음
         createButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(30)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
             make.height.equalTo(50)
         }
     }
