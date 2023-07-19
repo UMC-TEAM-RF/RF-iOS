@@ -94,7 +94,7 @@ final class SignInViewController: UIViewController {
         let button = UIButton()
         button.setTitle("로그인", for: .normal)
         button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = .lightGray
+        button.backgroundColor = .systemGray6
         button.layer.cornerRadius = 10
         return button
     }()
@@ -226,25 +226,25 @@ final class SignInViewController: UIViewController {
         idTextField.snp.makeConstraints { make in
             make.bottom.equalTo(pwTextField.snp.top).offset(-16)
             make.centerX.equalToSuperview()
-            make.width.equalTo(300)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.height.equalTo(47)
         }
         idUnderLineView.snp.makeConstraints { make in
             make.bottom.equalTo(pwTextField.snp.top).offset(-16)
             make.centerX.equalToSuperview()
-            make.width.equalTo(300)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.height.equalTo(1)
         }
         pwTextField.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(50)
             make.centerX.equalToSuperview()
-            make.width.equalTo(300)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.height.equalTo(47)
         }
         pwUnderLineView.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(0)
             make.centerX.equalToSuperview()
-            make.width.equalTo(300)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.height.equalTo(1)
         }
         
@@ -261,7 +261,7 @@ final class SignInViewController: UIViewController {
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(autoLoginCheckBox.snp.bottom).offset(32)
             make.centerX.equalToSuperview()
-            make.width.equalTo(300)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.height.equalTo(47)
         }
         
