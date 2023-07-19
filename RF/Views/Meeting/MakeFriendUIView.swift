@@ -96,13 +96,13 @@ final class MakeFriendUIView: UIView {
     private func clickedBtns(){
         searchMeetingBtn.rx.tap
             .subscribe(onNext:{
-                self.delegate?.clickedBtns(check: true)
+                self.delegate?.clickedButtons(check: true)
             })
             .disposed(by: disposeBag)
         
         createMeetingBtn.rx.tap
             .subscribe(onNext:{
-                self.delegate?.clickedBtns(check: false)
+                self.delegate?.clickedButtons(check: false)
             })
             .disposed(by: disposeBag)
     }
