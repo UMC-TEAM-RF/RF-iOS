@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class SetInterestViewController: UIViewController {
+final class SetInterestViewController: UIViewController {
     
     // MARK: - UI Property
     

@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class SetDescriptViewController: UIViewController {
+final class SetDescriptViewController: UIViewController {
     
     // MARK: - UI Property
     

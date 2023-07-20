@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class SetMeetingNameViewController: UIViewController {
+final class SetMeetingNameViewController: UIViewController {
     
     // MARK: - UI Property
     
