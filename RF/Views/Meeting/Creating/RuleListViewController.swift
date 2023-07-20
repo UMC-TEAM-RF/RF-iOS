@@ -108,7 +108,7 @@ final class RuleListViewController: UIViewController {
     }
 }
 
-// MARK: - NavigationBarDelegate
+// MARK: - Ext: NavigationBarDelegate
 
 extension RuleListViewController: NavigationBarDelegate {
     func backButtonTapped() {
@@ -116,7 +116,7 @@ extension RuleListViewController: NavigationBarDelegate {
     }
 }
 
-// MARK: - CollectionView
+// MARK: - Ext: CollectionView
 
 extension RuleListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

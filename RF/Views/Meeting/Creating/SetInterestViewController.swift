@@ -71,7 +71,10 @@ final class SetInterestViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    // 셀 클릭 개수
     private var selectedCount: Int = 0
+    
+    // MARK: - viewDidLoad()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +87,7 @@ final class SetInterestViewController: UIViewController {
         configureCollectionView()
     }
     
-    // MARK: - addSubviews
+    // MARK: - addSubviews()
     
     private func addSubviews() {
         view.addSubview(navigationBar)
@@ -95,7 +98,7 @@ final class SetInterestViewController: UIViewController {
         view.addSubview(interestCollectionView)
     }
     
-    // MARK: - configureConstraints
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         // 네비게이션 바
@@ -136,13 +139,15 @@ final class SetInterestViewController: UIViewController {
         }
     }
     
+    // MARK: - configureCollectionView()
+    
     private func configureCollectionView() {
         interestCollectionView.delegate = self
         interestCollectionView.dataSource = self
         interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: "InterestCollectionViewCell")
     }
     
-    // MARK: - addTargets
+    // MARK: - addTargets()
     
     private func addTargets() {
         nextButton.rx.tap
@@ -153,7 +158,7 @@ final class SetInterestViewController: UIViewController {
     }
 }
 
-// MARK: - extension CollectionView
+// MARK: - Ext: CollectionView
 
 extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -206,7 +211,7 @@ extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewD
 }
 
 
-// MARK: - NavigationBarDelegate
+// MARK: - Ext: NavigationBarDelegate
 
 extension SetInterestViewController: NavigationBarDelegate {
     func backButtonTapped() {

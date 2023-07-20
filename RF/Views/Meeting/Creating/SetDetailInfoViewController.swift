@@ -214,9 +214,16 @@ final class SetDetailInfoViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    // 컬렉션 뷰 높이 참조 제약 사항
     private var ruleCollectionViewHeightConstraint: Constraint?
+    
+    // 컬렉션 뷰 높이 변수
     private var ruleCollectionViewHeight: CGFloat = 0
+    
+    // 셀 너비
     private var ruleCellWidth: CGFloat = 0
+    
+    // MARK: - viewDidLoad()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -228,7 +235,7 @@ final class SetDetailInfoViewController: UIViewController {
         addTargets()
     }
     
-    // MARK: - addSubviews
+    // MARK: - addSubviews()
     
     private func addSubviews() {
         view.addSubview(navigationBar)
@@ -275,7 +282,7 @@ final class SetDetailInfoViewController: UIViewController {
         contentView.addSubview(createButton)
     }
     
-    // MARK: - configureConstraints
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         // 네비게이션 바
@@ -397,7 +404,7 @@ final class SetDetailInfoViewController: UIViewController {
         }
     }
     
-    // MARK: - addTargets
+    // MARK: - addTargets()
     
     private func addTargets() {
         ruleButton.rx.tap
@@ -415,7 +422,7 @@ final class SetDetailInfoViewController: UIViewController {
     }
 }
 
-// MARK: - NavigationBarDelgate
+// MARK: - Ext: NavigationBarDelgate
 
 extension SetDetailInfoViewController: NavigationBarDelegate {
     func backButtonTapped() {
@@ -423,7 +430,8 @@ extension SetDetailInfoViewController: NavigationBarDelegate {
     }
 }
 
-// MARK: - CollectionView
+// MARK: - Ext: CollectionView
+
 extension SetDetailInfoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Rule.list.count

@@ -9,6 +9,8 @@ import UIKit
 
 class MeetingCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - UI Property
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "디천: 디자인 천재들 모임"
@@ -43,12 +45,21 @@ class MeetingCollectionViewCell: UICollectionViewCell {
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         cv.backgroundColor = .clear
+        cv.delegate = self
+        cv.dataSource = self
+        cv.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "TagCollectionViewCell")
         return cv
     }()
+    
+    // MARK: - Property
+    
+    static let identifier = "MeetingCollectionViewCell"
     
     let testTagList = [
         "미대", "친목", "소규모"
     ]
+    
+    // MARK: - init()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,13 +69,13 @@ class MeetingCollectionViewCell: UICollectionViewCell {
         
         addSubviews()
         configureConstraints()
-        configureCollectionView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
+    // MARK: - addSubviews()
     
     private func addSubviews() {
         contentView.addSubview(titleLabel)
@@ -72,6 +83,8 @@ class MeetingCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(personnelLabel)
         contentView.addSubview(tagCollectionView)
     }
+    
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         
@@ -95,14 +108,9 @@ class MeetingCollectionViewCell: UICollectionViewCell {
             make.leading.trailing.bottom.equalToSuperview().inset(15)
         }
     }
-    
-    private func configureCollectionView() {
-        tagCollectionView.delegate = self
-        tagCollectionView.dataSource = self
-        
-        tagCollectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: "TagCollectionViewCell")
-    }
 }
+
+// MARK: - Ext: CollectionView
 
 extension MeetingCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     

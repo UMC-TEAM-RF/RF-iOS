@@ -10,6 +10,8 @@ import SnapKit
 
 class MoreFriendCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - UI Property
+    
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "plus")
@@ -28,6 +30,12 @@ class MoreFriendCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    // MARK: - Property
+    
+    static let identifier = "MoreFriendCollectionViewCell"
+    
+    // MARK: - init()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -45,10 +53,14 @@ class MoreFriendCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
+    // MARK: - addSubviews()
+    
     private func addSubviews() {
         contentView.addSubview(imageView)
         contentView.addSubview(textLabel)
     }
+    
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         imageView.snp.makeConstraints { make in

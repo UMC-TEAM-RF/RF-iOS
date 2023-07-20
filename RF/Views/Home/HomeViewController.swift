@@ -189,8 +189,10 @@ final class HomeViewController: UIViewController {
     
 
     // MARK: - Property
+    
     private var currentPageIndex = 0
     
+    // MARK: - viewDidLoad()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -206,7 +208,7 @@ final class HomeViewController: UIViewController {
         setAutomaticPaging()
     }
     
-    // MARK: - addSubviews
+    // MARK: - addSubviews()
     
     private func addSubviews() {
         view.addSubview(scrollView)
@@ -247,7 +249,7 @@ final class HomeViewController: UIViewController {
         interestView.addSubview(interestCollectionView)
     }
     
-    // MARK: - configureConstraints
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         scrollView.snp.makeConstraints { make in
@@ -372,37 +374,42 @@ final class HomeViewController: UIViewController {
         }
     }
     
+    // MARK: - configureCollectionView()
 
     private func configureCollectionView() {
         // banner collectionView
         bannerCollectionView.delegate = self
         bannerCollectionView.dataSource = self
         
-        bannerCollectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: "BannerCollectionViewCell")
+        bannerCollectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.identifier)
         
         // 친구 목록
         friendListCollectionView.delegate = self
         friendListCollectionView.dataSource = self
         
-        friendListCollectionView.register(FriendListCollectionViewCell.self, forCellWithReuseIdentifier: "FriendListCollectionViewCell")
-        friendListCollectionView.register(MoreFriendCollectionViewCell.self, forCellWithReuseIdentifier: "MoreFriendCollectionViewCell")
+        friendListCollectionView.register(FriendListCollectionViewCell.self, forCellWithReuseIdentifier: FriendListCollectionViewCell.identifier)
+        friendListCollectionView.register(MoreFriendCollectionViewCell.self, forCellWithReuseIdentifier: MoreFriendCollectionViewCell.identifier)
         
         // 모임
         meetingCollectionView.delegate = self
         meetingCollectionView.dataSource = self
         
-        meetingCollectionView.register(MeetingCollectionViewCell.self, forCellWithReuseIdentifier: "MeetingCollectionViewCell")
+        meetingCollectionView.register(MeetingCollectionViewCell.self, forCellWithReuseIdentifier: MeetingCollectionViewCell.identifier)
         
         // 관심사
         interestCollectionView.delegate = self
         interestCollectionView.dataSource = self
         
-        interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: "InterestCollectionViewCell")
+        interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: InterestCollectionViewCell.identifier)
     }
     
+    // MARK: - setAutomaticPaging()
+    // 상단 배너 자동 스크롤
     private func setAutomaticPaging() {
         Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
     }
+    
+    // MARK: - @objc func
     
     @objc func moveToNextIndex() {
         currentPageIndex += 1
@@ -414,7 +421,7 @@ final class HomeViewController: UIViewController {
     }
 }
 
-// MARK: - Extension
+// MARK: - Ext: CollectionView
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     

@@ -10,13 +10,19 @@ import SnapKit
 
 class DropDownTableViewCell: UITableViewCell {
     
-    static let identifier = "DropDownTableViewCell"
+    // MARK: - UI Property
     
     let label: UILabel = {
         let label = UILabel()
         label.textColor = .black
         return label
     }()
+    
+    // MARK: - Property
+    
+    static let identifier = "DropDownTableViewCell"
+    
+    // MARK: - init()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,9 +35,13 @@ class DropDownTableViewCell: UITableViewCell {
         super.init(coder: coder)
     }
     
+    // MARK: - addSubviews()
+    
     private func addSubviews() {
         contentView.addSubview(label)
     }
+    
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         label.snp.makeConstraints { make in
