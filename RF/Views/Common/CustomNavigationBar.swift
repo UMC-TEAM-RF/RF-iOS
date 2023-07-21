@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 // 높이 60 고정
-class CenterTitleNavigationBar: UIView {
+class CustomNavigationBar: UIView {
 
     // MARK: - UI Property
     
@@ -24,12 +24,12 @@ class CenterTitleNavigationBar: UIView {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         button.tintColor = .black
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "모임 생성"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         return label
     }()
@@ -44,7 +44,16 @@ class CenterTitleNavigationBar: UIView {
         }
     }
     
+    var buttonText: String? {
+        didSet {
+            guard let text = buttonText else { return }
+            self.backButton.setTitle("  \(text)", for: .normal)
+        }
+    }
+    
     private let disposeBag = DisposeBag()
+    
+    // MARK: - init()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,11 +67,15 @@ class CenterTitleNavigationBar: UIView {
         super.init(coder: coder)
     }
     
+    // MARK: - addSubviews()
+    
     private func addSubviews() {
         addSubview(contentView)
         contentView.addSubview(backButton)
         contentView.addSubview(titleLabel)
     }
+    
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         contentView.snp.makeConstraints { make in
@@ -71,7 +84,7 @@ class CenterTitleNavigationBar: UIView {
         
         backButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
         }
         
         titleLabel.snp.makeConstraints { make in

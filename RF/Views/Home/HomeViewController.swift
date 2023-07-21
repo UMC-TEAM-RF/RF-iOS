@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class HomeViewController: UIViewController {
     
@@ -190,6 +192,8 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Property
     
+    private let disposeBag = DisposeBag()
+    
     private var currentPageIndex = 0
     
     // MARK: - viewDidLoad()
@@ -205,6 +209,7 @@ final class HomeViewController: UIViewController {
         configureConstraints()
         configureCollectionView()
      
+        bind()
         setAutomaticPaging()
     }
     
@@ -404,7 +409,16 @@ final class HomeViewController: UIViewController {
         interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: InterestCollectionViewCell.identifier)
     }
     
+    private func bind() {
+        navigationNotiButton.rx.tap
+            .subscribe(onNext: {
+                self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     // MARK: - setAutomaticPaging()
+    
     // 상단 배너 자동 스크롤
     private func setAutomaticPaging() {
         Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
