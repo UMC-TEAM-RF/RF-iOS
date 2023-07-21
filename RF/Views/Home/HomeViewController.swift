@@ -36,9 +36,9 @@ final class HomeViewController: UIViewController {
         return view
     }()
     
-    private lazy var navigationSearchButton: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(systemName: "bell")
+    private lazy var navigationNotiButton: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage(systemName: "bell")?.resize(newWidth: 25, newHeight: 25), for: .normal)
         view.contentMode = .scaleAspectFill
         view.tintColor = .black
         return view
@@ -227,7 +227,7 @@ final class HomeViewController: UIViewController {
         
         // 네비게이션 바
         navigationContainerView.addSubview(navigationLogo)
-        navigationContainerView.addSubview(navigationSearchButton)
+        navigationContainerView.addSubview(navigationNotiButton)
         
         // 친구 목록
         friendListView.addSubview(friendListLabel)
@@ -274,10 +274,11 @@ final class HomeViewController: UIViewController {
             make.top.bottom.equalToSuperview().inset(12)
         }
         
-        navigationSearchButton.snp.makeConstraints { make in
+        navigationNotiButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(20)
-            make.top.bottom.equalToSuperview().inset(18)
+            make.top.bottom.equalToSuperview().inset(15)
+            make.width.equalTo(navigationNotiButton.snp.height).multipliedBy(1)
         }
         
         // 배너
