@@ -14,7 +14,7 @@ import FSCalendar
 
 final class ScheduleViewController: UIViewController{
     
-    // MARK: 달력 View
+    /// MARK: 달력 View
     private lazy var calendarView: FSCalendar = {
         let cal = FSCalendar()
         cal.backgroundColor = .clear
@@ -26,7 +26,7 @@ final class ScheduleViewController: UIViewController{
         /// 제목 부분
         cal.appearance.headerDateFormat = "YYYY년 MM월"
         cal.appearance.headerMinimumDissolvedAlpha = 0.0   /// 0으로 설정 시 옆 부분 날짜 안보임
-        cal.appearance.headerTitleFont = .boldSystemFont(ofSize: 25)
+        cal.appearance.headerTitleFont = .systemFont(ofSize: 20, weight: .bold)
         cal.appearance.headerTitleAlignment = .left
         
         cal.appearance.separators = .interRows
@@ -35,18 +35,8 @@ final class ScheduleViewController: UIViewController{
         return cal
     }()
     
-    /// MARK: 선택된 셀 Custom View
-    private lazy var customCircleView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(hexCode: "FE4700")
-        view.layer.cornerRadius = 5
-        view.isHidden = true
-        
-        return view
-    }()
-    
-    
-    private var eventList: [ScheduleEvent] = []
+    private let viewModel = ScheduleViewModel()
+    private let disposeBag = DisposeBag()
     
     // MARK: View Did Load
     override func viewDidLoad() {
@@ -60,7 +50,6 @@ final class ScheduleViewController: UIViewController{
     /// MARK: Add UI
     private func addSubviews(){
         view.addSubview(calendarView)
-        view.addSubview(customCircleView)
         
         calendarView.delegate = self
         calendarView.dataSource = self
@@ -79,31 +68,19 @@ final class ScheduleViewController: UIViewController{
         }
     }
     
-    // MARK: Change Date -> String
-    private func formattingDate(date: Date) -> String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd E"
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        
-        return dateFormatter.string(from: date)
+    /// MARK: ViewModel에서 데이터 얻는 함수
+    private func getData(){
+        viewModel.getData()
+            .subscribe(onNext: { check in
+                if check{
+                    self.calendarView.reloadData()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
-    /// MARK:
-    private func getData(){
-        eventList.append(ScheduleEvent(date: "2023-07-09", description: "축구 경기",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-11", description: "스터디",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-01", description: "야구 경기",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-25", description: "마라탕 먹방",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-25", description: "마라탕 먹방",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-25", description: "마라탕 먹방",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-25", description: "마라탕 먹방",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-25", description: "마라탕 먹방",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-31", description: "집에 가기",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-31", description: "놀러 가기",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-31", description: "놀러 가기",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-31", description: "놀러 가기",color: "FE4700"))
-        eventList.append(ScheduleEvent(date: "2023-07-31", description: "놀러 가기",color: "FE4700"))
-    }
+    private var currentDisplayedMonth: Date?
+
 }
 
 extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance{
@@ -114,9 +91,7 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     }
     
     /// 선택했을 때 색상
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
-        return .clear
-    }
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? { return .clear }
     
     /// cell의 default color 변경
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
@@ -126,27 +101,40 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let cell = calendar.cell(for: date, at: monthPosition) else { return }
-        print(formattingDate(date: date))
+        
         cell.titleLabel.textColor = .black
     }
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         guard let cell = calendar.dequeueReusableCell(withIdentifier: ScheduleFSCalendarCell.identifier, for: date, at: position) as? ScheduleFSCalendarCell else { return FSCalendarCell()}
-        let date = formattingDate(date: date).split(separator: " ")[0]
-        let event = self.eventList.filter({date == $0.date ?? ""})
-        if !event.isEmpty{
-            cell.inputData(events: event)
-        }
+//        print("\(count) date: \(date) , position: \(position)")
+
+        viewModel.dateFiltering(date: date)
+            .subscribe(onNext:{ list in
+                cell.inputData(events: list)
+            })
+            .disposed(by: disposeBag)
+        
         return cell
     }
     
-    
-    
-}
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        if currentDisplayedMonth != calendar.currentPage {
+            currentDisplayedMonth = calendar.currentPage
+            reloadDataForCalendar()
+        }
+    }
 
-struct ScheduleEvent{
-    let date: String?
-    let description: String?
-    let color: String?
+    // 전체 셀을 다시 로딩하는 메서드
+    private func reloadDataForCalendar() {
+        viewModel.getData()
+            .subscribe(onNext:{ check in
+                if check{
+                    self.calendarView.reloadData()
+                }
+            })
+            .disposed(by: disposeBag)
+
+    }
 }
 

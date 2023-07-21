@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import FSCalendar
+import RxSwift
 
 final class ScheduleFSCalendarCell: FSCalendarCell {
     static let identifier = "ScheduleFSCalendarCell"
@@ -22,18 +23,18 @@ final class ScheduleFSCalendarCell: FSCalendarCell {
         return table
     }()
     
-    private var dayEventList: [ScheduleEvent] = []
+    private let disposeBag = DisposeBag()
+    private let viewModel = ScheduleFSCalendarCellViewModel()
     
     override init!(frame: CGRect) {
         super.init(frame: frame)
-        addSubviews()
+//        addSubviews()
     }
     
     required init!(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
-        addSubviews()
+//        addSubviews()
     }
-    
     
     /// MARK: Add UI
     private func addSubviews(){
@@ -55,29 +56,36 @@ final class ScheduleFSCalendarCell: FSCalendarCell {
     }
 
     /// MARK: 일정을 넣는 함수
-    func inputData(events: [ScheduleEvent]){
-        
-        dayEventList = events
+    func inputData(events: [ScheduleEvent]?){
+        addSubviews()
+        guard let events = events else { return }
+        viewModel.inputData(events: events)
     }
     
 }
 
-extension ScheduleFSCalendarCell: UITableViewDelegate, UITableViewDataSource{
+extension ScheduleFSCalendarCell: UITableViewDelegate, UITableViewDataSource{ 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleTableViewCell.identifier, for: indexPath) as? ScheduleTableViewCell else { return UITableViewCell() }
         
-        cell.inputData(text: dayEventList[indexPath.row].description ?? "",
-                       backgroundColor: .red)
-        cell.selectionStyle = .none
+        viewModel.specificEventList
+            .bind { events in
+
+                if !events.isEmpty && indexPath.row < events.count{
+                    cell.inputData(text: events[indexPath.row].description ?? "",
+                                   backgroundColor: .red)
+                }
+                else{
+                    cell.inputData(text: "",
+                                   backgroundColor: .clear)
+                }
+                cell.selectionStyle = .none
+            }
+            .disposed(by: disposeBag)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        print(indexPath.row)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return dayEventList.count }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return viewModel.returnListSize() }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return tableView.frame.height/4 }
 }

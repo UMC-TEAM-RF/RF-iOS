@@ -20,7 +20,7 @@ final class ScheduleTableViewCell: UITableViewCell {
         return label
     }()
     
-    /// MARK:
+    /// MARK: 라벨 둘러싸는 View
     private lazy var aroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
@@ -48,7 +48,8 @@ final class ScheduleTableViewCell: UITableViewCell {
     /// MARK: Setting AutoLayout
     private func configureConstraints(){
         aroundView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(2)
+            make.trailing.equalToSuperview().offset(-2)
             make.top.equalToSuperview().offset(2)
             make.bottom.equalToSuperview().offset(-2)
         }
@@ -62,8 +63,8 @@ final class ScheduleTableViewCell: UITableViewCell {
     }
 
     /// MARK: 일정을 넣는 함수
-    func inputData(text: String, backgroundColor: UIColor){
-        
+    func inputData(text: String?, backgroundColor: UIColor?){
+        guard let text = text, let backgroundColor = backgroundColor else { return }
         eventLabel.text = text
         aroundView.backgroundColor = backgroundColor
     }

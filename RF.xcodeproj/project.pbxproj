@@ -24,6 +24,9 @@
 		3BB408A72A6AA5D900FBA617 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 3BB408A62A6AA5D900FBA617 /* FSCalendar */; };
 		3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */; };
 		3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408AB2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift */; };
+		3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */; };
+		3BB408B12A6AC4CA00FBA617 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408B02A6AC4CA00FBA617 /* ScheduleViewModel.swift */; };
+		3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408B22A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift */; };
 		3BC35CE32A5C3C3200D73163 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 3BC35CE22A5C3C3200D73163 /* Tabman */; };
 		3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */; };
 		3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */; };
@@ -93,6 +96,9 @@
 		3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		3BB408AB2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFSCalendarCell.swift; sourceTree = "<group>"; };
+		3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEvent.swift; sourceTree = "<group>"; };
+		3BB408B02A6AC4CA00FBA617 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
+		3BB408B22A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFSCalendarCellViewModel.swift; sourceTree = "<group>"; };
 		3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingTabController.swift; sourceTree = "<group>"; };
 		3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingHomeController.swift; sourceTree = "<group>"; };
 		3BC35CE92A5C3CBA00D73163 /* DetailMeetingChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingChatController.swift; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 		3B15CD632A644FDE0096871F /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				3BB408AF2A6AC4BD00FBA617 /* Schedule */,
 				3B15CD642A644FE40096871F /* Searching */,
 			);
 			path = Meeting;
@@ -222,6 +229,15 @@
 				3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */,
 				3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */,
 				3BB408AB2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		3BB408AF2A6AC4BD00FBA617 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				3BB408B02A6AC4CA00FBA617 /* ScheduleViewModel.swift */,
+				3BB408B22A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -306,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				572A9A392A5E80D1004D2809 /* Member.swift */,
+				3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -544,6 +561,7 @@
 				572A9A2D2A5C12B1004D2809 /* NavigationBarDelegate.swift in Sources */,
 				44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */,
 				57673EE02A57A87000A13D07 /* MoreFriendCollectionViewCell.swift in Sources */,
+				3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
 				3B181D1A2A56DCDF00B62DEB /* MeetingViewController.swift in Sources */,
@@ -555,6 +573,7 @@
 				572A9A3A2A5E80D1004D2809 /* Member.swift in Sources */,
 				57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */,
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,
+				3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */,
 				572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */,
 				3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */,
 				3BC35CF52A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
@@ -581,6 +600,7 @@
 				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,
 				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
+				3BB408B12A6AC4CA00FBA617 /* ScheduleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
