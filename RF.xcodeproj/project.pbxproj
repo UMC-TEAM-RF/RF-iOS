@@ -20,6 +20,10 @@
 		3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D532A56D45C00FECE3A /* PasswordTextField.swift */; };
 		3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D552A56D4AA00FECE3A /* UICheckBox.swift */; };
 		3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D572A56F00200FECE3A /* SignUpViewController.swift */; };
+		3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */; };
+		3BB408A72A6AA5D900FBA617 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 3BB408A62A6AA5D900FBA617 /* FSCalendar */; };
+		3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */; };
+		3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408AB2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift */; };
 		3BC35CE32A5C3C3200D73163 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 3BC35CE22A5C3C3200D73163 /* Tabman */; };
 		3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */; };
 		3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */; };
@@ -86,6 +90,9 @@
 		3B935D532A56D45C00FECE3A /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		3B935D552A56D4AA00FECE3A /* UICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox.swift; sourceTree = "<group>"; };
 		3B935D572A56F00200FECE3A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		3BB408AB2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFSCalendarCell.swift; sourceTree = "<group>"; };
 		3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingTabController.swift; sourceTree = "<group>"; };
 		3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingHomeController.swift; sourceTree = "<group>"; };
 		3BC35CE92A5C3CBA00D73163 /* DetailMeetingChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingChatController.swift; sourceTree = "<group>"; };
@@ -141,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BC35CE32A5C3C3200D73163 /* Tabman in Frameworks */,
+				3BB408A72A6AA5D900FBA617 /* FSCalendar in Frameworks */,
 				572DC24C2A51C4FB00C0D6E1 /* RxCocoa in Frameworks */,
 				572DC2462A51C40F00C0D6E1 /* SnapKit in Frameworks */,
 				572DC24E2A51C4FB00C0D6E1 /* RxSwift in Frameworks */,
@@ -197,6 +205,7 @@
 		3B181D182A56DCC100B62DEB /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				3BB408A22A6AA57600FBA617 /* Schedule */,
 				3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */,
 				3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */,
 				3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */,
@@ -205,6 +214,16 @@
 				3BC35CE42A5C3C4B00D73163 /* DetailMeeting */,
 			);
 			path = Meeting;
+			sourceTree = "<group>";
+		};
+		3BB408A22A6AA57600FBA617 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */,
+				3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */,
+				3BB408AB2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift */,
+			);
+			path = Schedule;
 			sourceTree = "<group>";
 		};
 		3BC35CE42A5C3C4B00D73163 /* DetailMeeting */ = {
@@ -439,6 +458,7 @@
 				572DC24B2A51C4FB00C0D6E1 /* RxCocoa */,
 				572DC24D2A51C4FB00C0D6E1 /* RxSwift */,
 				3BC35CE22A5C3C3200D73163 /* Tabman */,
+				3BB408A62A6AA5D900FBA617 /* FSCalendar */,
 			);
 			productName = RF;
 			productReference = 572DC22B2A51BF2400C0D6E1 /* RF.app */;
@@ -473,6 +493,7 @@
 				572DC2472A51C42A00C0D6E1 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				572DC24A2A51C4FB00C0D6E1 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				3BC35CE12A5C3C3200D73163 /* XCRemoteSwiftPackageReference "Tabman" */,
+				3BB408A52A6AA5D900FBA617 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 572DC22C2A51BF2400C0D6E1 /* Products */;
 			projectDirPath = "";
@@ -505,6 +526,7 @@
 				57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */,
 				570063972A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				575032942A596DDE0060D629 /* ClickedButton.swift in Sources */,
+				3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */,
 				5700636E2A650A0F0051F42A /* DropDownButtonDelegate.swift in Sources */,
 				3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */,
 				575032942A596DDE0060D629 /* ClickedButton.swift in Sources */,
@@ -516,6 +538,7 @@
 				3BC35CED2A5C565800D73163 /* InterestingCollectionViewCell.swift in Sources */,
 				3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */,
 				572A9A2B2A5C0AFA004D2809 /* CustomNavigationBar.swift in Sources */,
+				3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */,
 				57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */,
 				3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */,
 				572A9A2D2A5C12B1004D2809 /* NavigationBarDelegate.swift in Sources */,
@@ -557,6 +580,7 @@
 				3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */,
 				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,
+				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,9 +719,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7WSFP8ZQ32;
+				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -707,7 +732,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF.gyfolders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF.gyfolders1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -722,9 +747,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7WSFP8ZQ32;
+				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -734,7 +760,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF.gyfolders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF.gyfolders1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -766,6 +792,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3BB408A52A6AA5D900FBA617 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		3BC35CE12A5C3C3200D73163 /* XCRemoteSwiftPackageReference "Tabman" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/uias/Tabman.git";
@@ -801,6 +835,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3BB408A62A6AA5D900FBA617 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3BB408A52A6AA5D900FBA617 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
 		3BC35CE22A5C3C3200D73163 /* Tabman */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3BC35CE12A5C3C3200D73163 /* XCRemoteSwiftPackageReference "Tabman" */;
