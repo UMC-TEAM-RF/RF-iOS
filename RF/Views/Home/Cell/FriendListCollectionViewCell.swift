@@ -10,6 +10,8 @@ import SnapKit
 
 class FriendListCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - UI Property
+    
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
         
@@ -33,6 +35,11 @@ class FriendListCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    // MARK: - Property
+    
+    static let identifier = "FriendListCollectionViewCell"
+    
+    // MARK: - init()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,11 +58,15 @@ class FriendListCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
+    // MARK: - addSubviews()
+    
     private func addSubviews() {
         contentView.addSubview(imageView)
         contentView.addSubview(schoolLabel)
         contentView.addSubview(subjectLabel)
     }
+    
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         imageView.snp.makeConstraints { make in

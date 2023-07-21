@@ -10,13 +10,21 @@ import SnapKit
 
 class InterestCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - UI Property
+    
     private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         return label
     }()
     
+    // MARK: - Property
+    
+    static let identifier = "InterestCollectionViewCell"
+    
     var isSelectedCell: Bool = false
+    
+    // MARK: - init()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,9 +39,13 @@ class InterestCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
+    // MARK: - addSubviews()
+    
     private func addSubviews() {
         contentView.addSubview(textLabel)
     }
+    
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         textLabel.snp.makeConstraints { make in

@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class SetMeetingNameViewController: UIViewController {
+final class SetMeetingNameViewController: UIViewController {
     
     // MARK: - UI Property
     
@@ -91,6 +91,8 @@ class SetMeetingNameViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let placeholder = "2글자 이상"
     
+    // MARK: - viewDidLoad()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -167,7 +169,7 @@ class SetMeetingNameViewController: UIViewController {
         }
     }
     
-    // MARK: - addTargets
+    // MARK: - addTargets()
     
     private func addTargets() {
         nextButton.rx.tap
@@ -194,7 +196,7 @@ class SetMeetingNameViewController: UIViewController {
     }
 }
 
-// MARK: - NavigationBarDelegate
+// MARK: - Ext: NavigationDelegate
 
 extension SetMeetingNameViewController: NavigationBarDelegate {
     func backButtonTapped() {
@@ -203,7 +205,7 @@ extension SetMeetingNameViewController: NavigationBarDelegate {
     }
 }
 
-// MARK: - TextFieldDelegate
+// MARK: - Ext: TextFieldDelegate
 
 extension SetMeetingNameViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {

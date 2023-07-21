@@ -10,7 +10,7 @@ import SnapKit
 
 class TagCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "TagCollectionViewCell"
+    // MARK: - UI Property
     
     private lazy var tagLabel: UILabel = {
         let label = UILabel()
@@ -20,7 +20,13 @@ class TagCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    // MARK: - Property
+    
+    static let identifier = "TagCollectionViewCell"
+    
     var isSelectedCell: Bool = false
+    
+    // MARK: - init()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,9 +43,13 @@ class TagCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
+    // MARK: - addSubviews()
+    
     private func addSubviews() {
         contentView.addSubview(tagLabel)
     }
+    
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         tagLabel.snp.makeConstraints { make in
