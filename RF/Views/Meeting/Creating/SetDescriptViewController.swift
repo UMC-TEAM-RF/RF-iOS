@@ -15,8 +15,8 @@ final class SetDescriptViewController: UIViewController {
     // MARK: - UI Property
     
     // 네비게이션 바
-    private lazy var navigationBar: CustomNavigationBar = {
-        let view = CustomNavigationBar()
+    private lazy var navigationBar: CenterTitleNavigationBar = {
+        let view = CenterTitleNavigationBar()
         view.delegate = self
         return view
     }()

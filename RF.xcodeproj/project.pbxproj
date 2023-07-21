@@ -39,11 +39,12 @@
 		570063932A67B23A0051F42A /* RuleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063922A67B23A0051F42A /* RuleListViewController.swift */; };
 		570063952A67BA000051F42A /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063942A67BA000051F42A /* Rule.swift */; };
 		570063972A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063962A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		570063992A6AB8520051F42A /* NotiMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063982A6AB8520051F42A /* NotiMessageViewController.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
 		572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A282A5C09EA004D2809 /* SetMeetingNameViewController.swift */; };
-		572A9A2B2A5C0AFA004D2809 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2A2A5C0AFA004D2809 /* CustomNavigationBar.swift */; };
+		572A9A2B2A5C0AFA004D2809 /* CenterTitleNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2A2A5C0AFA004D2809 /* CenterTitleNavigationBar.swift */; };
 		572A9A2D2A5C12B1004D2809 /* NavigationBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2C2A5C12B1004D2809 /* NavigationBarDelegate.swift */; };
 		572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */; };
 		572A9A322A5CB445004D2809 /* SetInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A312A5CB445004D2809 /* SetInterestViewController.swift */; };
@@ -104,11 +105,12 @@
 		570063922A67B23A0051F42A /* RuleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleListViewController.swift; sourceTree = "<group>"; };
 		570063942A67BA000051F42A /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		570063962A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		570063982A6AB8520051F42A /* NotiMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiMessageViewController.swift; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
 		572A9A282A5C09EA004D2809 /* SetMeetingNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMeetingNameViewController.swift; sourceTree = "<group>"; };
-		572A9A2A2A5C0AFA004D2809 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		572A9A2A2A5C0AFA004D2809 /* CenterTitleNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterTitleNavigationBar.swift; sourceTree = "<group>"; };
 		572A9A2C2A5C12B1004D2809 /* NavigationBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarDelegate.swift; sourceTree = "<group>"; };
 		572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		572A9A312A5CB445004D2809 /* SetInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInterestViewController.swift; sourceTree = "<group>"; };
@@ -277,7 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */,
-				572A9A2A2A5C0AFA004D2809 /* CustomNavigationBar.swift */,
+				572A9A2A2A5C0AFA004D2809 /* CenterTitleNavigationBar.swift */,
 				570063962A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift */,
 			);
 			path = Common;
@@ -350,6 +352,7 @@
 			children = (
 				57673ED72A56DF6500A13D07 /* Cell */,
 				572DC2522A51C64400C0D6E1 /* HomeViewController.swift */,
+				570063982A6AB8520051F42A /* NotiMessageViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -512,10 +515,11 @@
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
 				572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */,
 				572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */,
+				570063992A6AB8520051F42A /* NotiMessageViewController.swift in Sources */,
 				57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */,
 				3BC35CED2A5C565800D73163 /* InterestingCollectionViewCell.swift in Sources */,
 				3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */,
-				572A9A2B2A5C0AFA004D2809 /* CustomNavigationBar.swift in Sources */,
+				572A9A2B2A5C0AFA004D2809 /* CenterTitleNavigationBar.swift in Sources */,
 				57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */,
 				3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */,
 				572A9A2D2A5C12B1004D2809 /* NavigationBarDelegate.swift in Sources */,

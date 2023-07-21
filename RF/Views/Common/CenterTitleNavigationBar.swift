@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 // 높이 60 고정
-class CustomNavigationBar: UIView {
+class CenterTitleNavigationBar: UIView {
 
     // MARK: - UI Property
     
