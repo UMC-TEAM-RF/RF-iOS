@@ -212,10 +212,10 @@
 		3B181D182A56DCC100B62DEB /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
-				3BB408A22A6AA57600FBA617 /* Schedule */,
 				3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */,
 				3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */,
 				3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */,
+				3BB408A22A6AA57600FBA617 /* Schedule */,
 				3B15CD562A63E9450096871F /* Searching */,
 				572A9A272A5C0989004D2809 /* Creating */,
 				3BC35CE42A5C3C4B00D73163 /* DetailMeeting */,

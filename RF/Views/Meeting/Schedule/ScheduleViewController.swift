@@ -28,11 +28,26 @@ final class ScheduleViewController: UIViewController{
         cal.appearance.headerMinimumDissolvedAlpha = 0.0   /// 0으로 설정 시 옆 부분 날짜 안보임
         cal.appearance.headerTitleFont = .systemFont(ofSize: 20, weight: .bold)
         cal.appearance.headerTitleAlignment = .left
+        cal.appearance.headerTitleColor = .black
         
         cal.appearance.separators = .interRows
         cal.appearance.titleFont = .systemFont(ofSize: 20)
         
         return cal
+    }()
+    
+    /// MARK: 모임 검색 버튼
+    private lazy var searchButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "magnifyingglass")?.resize(newWidth: 25), for: .normal)
+        return btn
+    }()
+    
+    /// MARK: 일정 생성 버튼
+    private lazy var createButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "plus")?.resize(newWidth: 25), for: .normal)
+        return btn
     }()
     
     private let viewModel = ScheduleViewModel()
@@ -45,11 +60,20 @@ final class ScheduleViewController: UIViewController{
         
         getData()
         addSubviews()
+        clickedButtons()
+    }
+    
+    // MARK: View Will Appear
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.toolbar.isHidden = true
     }
     
     /// MARK: Add UI
     private func addSubviews(){
         view.addSubview(calendarView)
+        view.addSubview(searchButton)
+        view.addSubview(createButton)
+        
         
         calendarView.delegate = self
         calendarView.dataSource = self
@@ -66,6 +90,32 @@ final class ScheduleViewController: UIViewController{
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(1)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
         }
+        
+        searchButton.snp.makeConstraints { make in
+            make.centerY.equalTo(calendarView.calendarHeaderView.snp.centerY)
+            make.trailing.equalTo(createButton.snp.leading).offset(-20)
+        }
+        
+        createButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-20)
+            make.centerY.equalTo(calendarView.calendarHeaderView.snp.centerY)
+            
+        }
+    }
+    
+    /// MARK: 버튼 클릭 시 실행
+    private func clickedButtons(){
+        createButton.rx.tap
+            .bind {
+                print("clicked createButton")
+            }
+            .disposed(by: disposeBag)
+        
+        searchButton.rx.tap
+            .bind {
+                print("clicked searchButton")
+            }
+            .disposed(by: disposeBag)
     }
     
     /// MARK: ViewModel에서 데이터 얻는 함수
@@ -95,6 +145,8 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let cell = calendar.cell(for: date, at: monthPosition) else { return }
         cell.titleLabel.textColor = .black
+        
+        print(viewModel.formattingDate(date: date))
     }
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {

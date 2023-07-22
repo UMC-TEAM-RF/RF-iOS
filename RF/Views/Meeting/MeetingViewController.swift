@@ -170,6 +170,8 @@ final class MeetingViewController: UIViewController{
         searchMeetingBtn.rx.tap
             .subscribe(onNext:{
                 print("clicked searchMeetingBtn")
+                let scheduleViewController = ScheduleViewController()
+                self.navigationController?.pushViewController(scheduleViewController, animated: true)
             })
             .disposed(by: disposeBag)
         
