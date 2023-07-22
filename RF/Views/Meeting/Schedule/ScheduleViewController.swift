@@ -64,22 +64,15 @@ final class ScheduleViewController: UIViewController{
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-1)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(1)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
         }
     }
     
     /// MARK: ViewModel에서 데이터 얻는 함수
     private func getData(){
         viewModel.getData()
-            .subscribe(onNext: { check in
-                if check{
-                    self.calendarView.reloadData()
-                }
-            })
-            .disposed(by: disposeBag)
     }
-    
-    private var currentDisplayedMonth: Date?
+
 
 }
 
@@ -101,13 +94,11 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let cell = calendar.cell(for: date, at: monthPosition) else { return }
-        
         cell.titleLabel.textColor = .black
     }
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         guard let cell = calendar.dequeueReusableCell(withIdentifier: ScheduleFSCalendarCell.identifier, for: date, at: position) as? ScheduleFSCalendarCell else { return FSCalendarCell()}
-//        print("\(count) date: \(date) , position: \(position)")
 
         viewModel.dateFiltering(date: date)
             .subscribe(onNext:{ list in
@@ -119,22 +110,8 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        if currentDisplayedMonth != calendar.currentPage {
-            currentDisplayedMonth = calendar.currentPage
-            reloadDataForCalendar()
-        }
-    }
-
-    // 전체 셀을 다시 로딩하는 메서드
-    private func reloadDataForCalendar() {
         viewModel.getData()
-            .subscribe(onNext:{ check in
-                if check{
-                    self.calendarView.reloadData()
-                }
-            })
-            .disposed(by: disposeBag)
-
     }
+
 }
 

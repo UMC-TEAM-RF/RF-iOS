@@ -28,12 +28,10 @@ final class ScheduleFSCalendarCell: FSCalendarCell {
     
     override init!(frame: CGRect) {
         super.init(frame: frame)
-//        addSubviews()
     }
     
     required init!(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
-//        addSubviews()
     }
     
     /// MARK: Add UI
@@ -57,9 +55,19 @@ final class ScheduleFSCalendarCell: FSCalendarCell {
 
     /// MARK: 일정을 넣는 함수
     func inputData(events: [ScheduleEvent]?){
-        addSubviews()
+        viewModel.isTableView
+            .observe(on: MainScheduler.asyncInstance)
+            .bind { [weak self] check in
+                if !check{
+                    self?.addSubviews()
+                    self?.viewModel.isTableViewToTrue()
+                }
+            }
+            .disposed(by: disposeBag)
+        
         guard let events = events else { return }
         viewModel.inputData(events: events)
+        subtitleTableView.reloadData()
     }
     
 }
@@ -71,7 +79,6 @@ extension ScheduleFSCalendarCell: UITableViewDelegate, UITableViewDataSource{
         
         viewModel.specificEventList
             .bind { events in
-
                 if !events.isEmpty && indexPath.row < events.count{
                     cell.inputData(text: events[indexPath.row].description ?? "",
                                    backgroundColor: .red)

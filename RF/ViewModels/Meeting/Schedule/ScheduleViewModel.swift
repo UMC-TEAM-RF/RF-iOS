@@ -25,7 +25,7 @@ final class ScheduleViewModel {
     }
     
     /// 테스트 데이터 넣어 놓은 함수
-    func getData() ->  Observable<Bool>{
+    func getData() {
         var list: [ScheduleEvent] = []
         
         list.append(ScheduleEvent(date: "2023-07-09", description: "축구 경기",color: "FE4700"))
@@ -42,12 +42,7 @@ final class ScheduleViewModel {
         list.append(ScheduleEvent(date: "2023-07-31", description: "놀러 가기",color: "FE4700"))
         list.append(ScheduleEvent(date: "2023-07-31", description: "놀러 가기",color: "FE4700"))
         
-        return Observable.create { observer in
-            self.eventList.accept(list)
-            observer.onNext(true)
-            return Disposables.create()
-        }
-        
+        self.eventList.accept(list)
     }
     
     /// MARK: 날짜 변환 후 일정 리스트에 해당 날짜가 있는지 필터링
