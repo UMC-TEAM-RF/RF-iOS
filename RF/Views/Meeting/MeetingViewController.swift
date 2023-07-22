@@ -23,22 +23,22 @@ final class MeetingViewController: UIViewController{
     }()
     
     /// MARK: 모임 찾기 버튼
-    private lazy var searchMeetingBtn: UIButton = {
+    private lazy var alertButton: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(systemName: "magnifyingglass")?.resize(newWidth: 25), for: .normal)
+        btn.setImage(UIImage(systemName: "bell")?.resize(newWidth: 25), for: .normal)
         return btn
     }()
     
     /// MARK: 모임 생성 버튼
-    private lazy var createMeetingBtn: UIButton = {
+    private lazy var etcButton: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(systemName: "plus")?.resize(newWidth: 25), for: .normal)
+        btn.setImage(UIImage(systemName: "ellipsis")?.resize(newWidth: 25).rotate(degrees: 90), for: .normal)
         return btn
     }()
     
     /// MARK: 모임 찾기 버튼, 모임 생성 버튼 담는 StackView
     private lazy var btnsStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [searchMeetingBtn, createMeetingBtn])
+        let stack = UIStackView(arrangedSubviews: [alertButton, etcButton])
         stack.axis = .horizontal
         stack.distribution = .fillEqually
         stack.backgroundColor = .systemBackground
@@ -167,15 +167,17 @@ final class MeetingViewController: UIViewController{
     
     /// MARK: 모임 찾기, 모임 생성 아이콘 버튼 눌렀을 때
     private func clickedTopBtns(){
-        searchMeetingBtn.rx.tap
+        alertButton.rx.tap
             .subscribe(onNext:{
-                print("clicked searchMeetingBtn")
+                print("clicked alertButton")
             })
             .disposed(by: disposeBag)
         
-        createMeetingBtn.rx.tap
+        etcButton.rx.tap
             .subscribe(onNext:{
-                print("clicked createMeetingBtn")
+                print("clicked etcButton")
+                let scheduleViewController = ScheduleViewController()
+                self.navigationController?.pushViewController(scheduleViewController, animated: true)
             })
             .disposed(by: disposeBag)
     }
