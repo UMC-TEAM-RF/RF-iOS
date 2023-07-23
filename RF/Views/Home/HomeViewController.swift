@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class HomeViewController: UIViewController {
     
@@ -36,9 +38,9 @@ final class HomeViewController: UIViewController {
         return view
     }()
     
-    private lazy var navigationSearchButton: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(systemName: "bell")
+    private lazy var navigationNotiButton: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage(systemName: "bell")?.resize(newWidth: 25, newHeight: 25), for: .normal)
         view.contentMode = .scaleAspectFill
         view.tintColor = .black
         return view
@@ -190,6 +192,8 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Property
     
+    private let disposeBag = DisposeBag()
+    
     private var currentPageIndex = 0
     
     // MARK: - viewDidLoad()
@@ -205,6 +209,7 @@ final class HomeViewController: UIViewController {
         configureConstraints()
         configureCollectionView()
      
+        bind()
         setAutomaticPaging()
     }
     
@@ -227,7 +232,7 @@ final class HomeViewController: UIViewController {
         
         // 네비게이션 바
         navigationContainerView.addSubview(navigationLogo)
-        navigationContainerView.addSubview(navigationSearchButton)
+        navigationContainerView.addSubview(navigationNotiButton)
         
         // 친구 목록
         friendListView.addSubview(friendListLabel)
@@ -274,10 +279,11 @@ final class HomeViewController: UIViewController {
             make.top.bottom.equalToSuperview().inset(12)
         }
         
-        navigationSearchButton.snp.makeConstraints { make in
+        navigationNotiButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(20)
-            make.top.bottom.equalToSuperview().inset(18)
+            make.top.bottom.equalToSuperview().inset(15)
+            make.width.equalTo(navigationNotiButton.snp.height).multipliedBy(1)
         }
         
         // 배너
@@ -403,7 +409,16 @@ final class HomeViewController: UIViewController {
         interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: InterestCollectionViewCell.identifier)
     }
     
+    private func bind() {
+        navigationNotiButton.rx.tap
+            .subscribe(onNext: {
+                self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     // MARK: - setAutomaticPaging()
+    
     // 상단 배너 자동 스크롤
     private func setAutomaticPaging() {
         Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)

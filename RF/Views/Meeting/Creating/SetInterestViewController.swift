@@ -17,6 +17,7 @@ final class SetInterestViewController: UIViewController {
     // 네비게이션 바
     private lazy var navigationBar: CustomNavigationBar = {
         let view = CustomNavigationBar()
+        view.titleLabelText = "모임 생성"
         view.delegate = self
         return view
     }()
