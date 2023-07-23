@@ -3,7 +3,7 @@
 //  RF
 //
 //  Created by 나예은 on 2023/07/19.
-//
+//07-2
 
 import UIKit
 import SnapKit
@@ -18,20 +18,25 @@ class UserinfoSelf: UIViewController {
         return label
     }()
 
+
+    
     private lazy var keywordLabel: UILabel = {
         let label = UILabel()
         label.text = "나를 나타낼 수 있는 대표적 키워드를 적어주세요."
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 1
         return label
     }()
 
     
     private lazy var nextButton: UIButton = {
+        
+        
+        
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
         button.layer.cornerRadius = 5
         return button
@@ -42,10 +47,16 @@ class UserinfoSelf: UIViewController {
         let field = UITextField()
         field.borderStyle = .roundedRect
         field.borderStyle = .none
-        field.placeholder = "   한 줄 소개를 작성해주세요!"
+        field.placeholder = " 한 줄 소개를 작성해주세요!"
         field.backgroundColor = UIColor(hexCode: "#F5F5F5")
         field.textColor = UIColor(hexCode: "#818181")
         field.layer.cornerRadius = 5
+        field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        
+        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 0))
+        field.leftView = leftView
+        field.leftViewMode = .always
+        
         return field
     }()
 
