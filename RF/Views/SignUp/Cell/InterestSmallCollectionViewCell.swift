@@ -46,7 +46,7 @@ class InterestSmallCollectionViewCell: UICollectionViewCell {
     
     func setCornerRadius() {
         layoutIfNeeded()
-        contentView.layer.cornerRadius = (contentView.frame.width + contentView.frame.height) / 8
+        contentView.layer.cornerRadius = contentView.frame.height / 6
     }
     
     func setColor(textColor: UIColor, backgroundColor: UIColor) {

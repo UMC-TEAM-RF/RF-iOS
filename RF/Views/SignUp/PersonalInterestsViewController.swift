@@ -120,7 +120,8 @@ class PersonalInterestsViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    private var selectedCount: Int = 0
+    private var selectedCount: [Int] = [0, 0, 0]
+    private var selectedCountMax: [Int] = [3, -1, 1]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -309,27 +310,40 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? InterestSmallCollectionViewCell else { return }
         
-//        if !cell.isSelectedCell && self.selectedCount == 3 {
-//            print("초과")
-//            return
-//        }
+        var cellindex = -1
+        
+        if collectionView == interestCollectionView{
+            cellindex = 0
+        }else if collectionView == lifeStyleCollectionView{
+            cellindex = 1
+        }else if collectionView == mbtiCollectionView{
+            cellindex = 2
+        }
+        
+        
+        if !cell.isSelectedCell && self.selectedCount[cellindex] == selectedCountMax[cellindex] {
+            print("초과")
+            return
+        }
         
         cell.isSelectedCell.toggle()
         
 //        // 최대 3개 선택할 수 있도록 설정
         if cell.isSelectedCell { // 활성화
-            self.selectedCount += 1
+            self.selectedCount[cellindex] += 1
             cell.setColor(textColor: .white, backgroundColor: .tintColor)
         } else {  // 비활성화
-            self.selectedCount -= 1
+            self.selectedCount[cellindex] -= 1
             cell.setColor(textColor: .label, backgroundColor: .systemGray6)
         }
     
         // 다음 버튼 활성화 여부
-        if self.selectedCount == 0 {
+        if self.selectedCount[0]*self.selectedCount[1]*self.selectedCount[2] == 0{
             nextButton.backgroundColor = .systemGray6
             nextButton.setTitleColor(.black, for: .normal)
             nextButton.isEnabled = false
