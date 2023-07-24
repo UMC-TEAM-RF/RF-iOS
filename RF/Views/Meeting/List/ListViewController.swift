@@ -21,6 +21,13 @@ final class ListViewController: UIViewController{
         return btn
     }()
     
+    /// MARK: 목록 나타낼 테이블 뷰
+    private lazy var listTableView: UITableView = {
+        let table = UITableView()
+        table.backgroundColor = .clear
+        table.separatorStyle = .singleLine
+        return table
+    }()
     
     
     // MARK: View Did Load
@@ -39,6 +46,33 @@ final class ListViewController: UIViewController{
         navigationController?.navigationBar.tintColor = .black
     }
     
+    /// MARK: add UI
+    private func addSubviews(){
+        view.addSubview(listTableView)
+        listTableView.dataSource = self
+        listTableView.delegate = self
+        listTableView.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.identifier)
+        
+        configureConstraints()
+    }
     
+    /// MARK: setting AutoLayout
+    private func configureConstraints(){
+        listTableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
     
+}
+
+extension ListViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as? ListTableViewCell else { return UITableViewCell() }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 1 }
 }
