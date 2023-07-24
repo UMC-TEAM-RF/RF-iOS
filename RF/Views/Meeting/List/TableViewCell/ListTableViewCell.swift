@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import RxSwift
 
 final class ListTableViewCell: UITableViewCell{
     static let identifier = "ListTableViewCell"
@@ -15,37 +16,64 @@ final class ListTableViewCell: UITableViewCell{
     /// MARK: 프로필 들어갈 View
     private lazy var profileUIView: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = .yellow
         return view
     }()
     
     /// MARK: 모임 이름
     private lazy var meetingTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = UIColor(hexCode: "3C3A3A")
+        label.font = .systemFont(ofSize: 14, weight: .medium)
         return label
     }()
     
     /// MARK: 소속된 학교 이름
     private lazy var universityLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = UIColor(hexCode: "818181")
+        label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
+    }()
+    
+    /// MARK: 대학, 국가 아이콘을 넣을 view
+    private lazy var organizationView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
     }()
     
     /// MARK: 소속된 국가 아이콘
     private lazy var countryLabel: UILabel = {
         let label = UILabel()
-
+        label.textColor = UIColor(hexCode: "818181")
+        label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
+    }()
+    
+    /// MARK:
+    private lazy var separateView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(hexCode: "818181")
+        return view
     }()
     
     /// MARK: 찜하기 버튼
     private lazy var likeButton: UIButton = {
         let btn = UIButton()
-        
+        btn.setImage(UIImage(systemName: "heart")?.resize(newWidth: 25), for: .normal)
         return btn
     }()
+    
+    /// MARK:
+    private lazy var stackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [meetingTitleLabel,organizationView])
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        return stack
+    }()
+    
+    private let disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -58,9 +86,11 @@ final class ListTableViewCell: UITableViewCell{
     /// MARK: add UI
     private func addSubviews(){
         addSubview(profileUIView)
-        addSubview(meetingTitleLabel)
-        addSubview(universityLabel)
-        addSubview(countryLabel)
+        addSubview(stackView)
+        
+        organizationView.addSubview(universityLabel)
+        organizationView.addSubview(separateView)
+        organizationView.addSubview(countryLabel)
         contentView.addSubview(likeButton)
         
         configureConstraints()
@@ -72,9 +102,62 @@ final class ListTableViewCell: UITableViewCell{
             make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(10)
             make.bottom.equalToSuperview().offset(-10)
+            make.width.equalToSuperview().dividedBy(7)
             make.centerY.equalToSuperview()
         }
         
+        stackView.snp.makeConstraints { make in
+            make.centerY.equalTo(profileUIView.snp.centerY)
+            make.leading.equalTo(profileUIView.snp.trailing).offset(10)
+        }
+        
+        universityLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+        }
+        
+        separateView.snp.makeConstraints { make in
+            make.top.equalTo(universityLabel.snp.top)
+            make.bottom.equalTo(universityLabel.snp.bottom)
+            make.leading.equalTo(universityLabel.snp.trailing).offset(3)
+            make.width.equalTo(1)
+        }
+        
+        countryLabel.snp.makeConstraints { make in
+            make.top.equalTo(universityLabel.snp.top)
+            make.bottom.equalTo(universityLabel.snp.bottom)
+            make.leading.equalTo(separateView.snp.trailing).offset(3)
+        }
+        
+        likeButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
+        likeButton.rx.tap
+            .bind {
+                self.likeButton.setImage(UIImage(systemName: "heart.fill")?.resize(newWidth: 25), for: .normal)
+                print("aaaa")
+            }.disposed(by: disposeBag)
+    }
+    
+    /// 모임 목록 데이터 넣는 함수
+    /// - Parameters:
+    ///   - meetingName: 모임 이름
+    ///   - university: 학교 이름
+    ///   - country: 도시 이름
+    func inputData(imageList: [String?]?, meetingName: String?, university: String?, country: String?, like: Bool?){
+        addSubviews()
+        
+        guard let imageList = imageList,
+              let meetingName = meetingName,
+              let university = university,
+              let country = country,
+              let like = like else { return }
+        
+        meetingTitleLabel.text = meetingName
+        universityLabel.text = university
+        countryLabel.text = country
         
     }
     

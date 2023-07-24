@@ -29,12 +29,15 @@ final class ListViewController: UIViewController{
         return table
     }()
     
+    private let viewModel = ListViewModel()
+    private let disposeBag = DisposeBag()
     
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        addSubviews()
+        getData()
     }
     
     // MARK: View will Appear
@@ -64,6 +67,11 @@ final class ListViewController: UIViewController{
         }
     }
     
+    /// MARK: 모임 목록 리스트 가져오는 함수
+    private func getData(){
+        viewModel.getData()
+    }
+    
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource{
@@ -71,8 +79,21 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as? ListTableViewCell else { return UITableViewCell() }
         
+        viewModel.meetingListRelay
+            .bind { list in
+                cell.inputData(imageList: list[indexPath.row].imageList,
+                               meetingName: list[indexPath.row].meetingTitle,
+                               university: list[indexPath.row].university,
+                               country: list[indexPath.row].country,
+                               like: list[indexPath.row].like)
+            }
+            .disposed(by: disposeBag)
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 1 }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.frame.height/7
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return viewModel.returnMeetingListCount() }
 }
