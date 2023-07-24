@@ -352,12 +352,3 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         }
     }
 }
-
-
-//// MARK: - NavigationBarDelegate
-//
-//extension PersonalInterestsViewController: NavigationBarDelegate {
-//    func backButtonTapped() {
-//        navigationController?.popViewController(animated: true)
-//    }
-//}
