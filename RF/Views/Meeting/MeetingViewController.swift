@@ -170,6 +170,12 @@ final class MeetingViewController: UIViewController{
         alertButton.rx.tap
             .subscribe(onNext:{
                 print("clicked alertButton")
+                let listViewController = ListViewController()
+                self.tabBarController?.tabBar.isHidden = true
+                self.navigationItem.hidesBackButton = false
+                self.navigationItem.leftItemsSupplementBackButton = true
+//                self.navigationItem.backButtonTitle = NSAttributedString(string: "모임 목록",attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .bold)]).string
+                self.navigationController?.pushViewController(listViewController, animated: true)
             })
             .disposed(by: disposeBag)
         
@@ -177,6 +183,7 @@ final class MeetingViewController: UIViewController{
             .subscribe(onNext:{
                 print("clicked etcButton")
                 let scheduleViewController = ScheduleViewController()
+                self.tabBarController?.tabBar.isHidden = true
                 self.navigationController?.pushViewController(scheduleViewController, animated: true)
             })
             .disposed(by: disposeBag)

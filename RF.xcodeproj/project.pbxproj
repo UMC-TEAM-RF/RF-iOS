@@ -17,6 +17,7 @@
 		3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */; };
 		3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */; };
 		3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2670E52A5ECCF600EA4F45 /* TermsConditionsViewController.swift */; };
+		3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */; };
 		3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D532A56D45C00FECE3A /* PasswordTextField.swift */; };
 		3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D552A56D4AA00FECE3A /* UICheckBox.swift */; };
 		3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D572A56F00200FECE3A /* SignUpViewController.swift */; };
@@ -92,6 +93,7 @@
 		3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFriendUIView.swift; sourceTree = "<group>"; };
 		3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFreindUIButton.swift; sourceTree = "<group>"; };
 		3B2670E52A5ECCF600EA4F45 /* TermsConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsViewController.swift; sourceTree = "<group>"; };
+		3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3B935D532A56D45C00FECE3A /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		3B935D552A56D4AA00FECE3A /* UICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox.swift; sourceTree = "<group>"; };
 		3B935D572A56F00200FECE3A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		3B181D182A56DCC100B62DEB /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				3B5402BB2A6E76AD00D0AD21 /* List */,
 				3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */,
 				3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */,
 				3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */,
@@ -225,6 +228,14 @@
 				3BC35CE42A5C3C4B00D73163 /* DetailMeeting */,
 			);
 			path = Meeting;
+			sourceTree = "<group>";
+		};
+		3B5402BB2A6E76AD00D0AD21 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		3BB408A22A6AA57600FBA617 /* Schedule */ = {
@@ -582,6 +593,7 @@
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,
 				3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */,
 				572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */,
+				3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */,
 				3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */,
 				3BC35CF52A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
 				3BC35CF12A5C6CBD00D73163 /* RuleCollectionViewCell.swift in Sources */,
