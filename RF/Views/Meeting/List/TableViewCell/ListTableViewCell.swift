@@ -61,11 +61,11 @@ final class ListTableViewCell: UITableViewCell{
     /// MARK: 찜하기 버튼
     private lazy var likeButton: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(systemName: "heart")?.resize(newWidth: 25), for: .normal)
+        btn.isEnabled = false
         return btn
     }()
     
-    /// MARK:
+    /// MARK: Label 담는 StackView
     private lazy var stackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [meetingTitleLabel,organizationView])
         stack.axis = .vertical
@@ -73,7 +73,10 @@ final class ListTableViewCell: UITableViewCell{
         return stack
     }()
     
+    private let viewModel = ListCellViewModel()
     private let disposeBag = DisposeBag()
+    
+    // MARK: - init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -82,6 +85,8 @@ final class ListTableViewCell: UITableViewCell{
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    // MARK: - functions
     
     /// MARK: add UI
     private func addSubviews(){
@@ -133,12 +138,26 @@ final class ListTableViewCell: UITableViewCell{
             make.top.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
         }
-        
+    }
+    
+    /// MARK: binding function
+    private func bind(){
         likeButton.rx.tap
-            .bind {
-                self.likeButton.setImage(UIImage(systemName: "heart.fill")?.resize(newWidth: 25), for: .normal)
-                print("aaaa")
+            .bind { [weak self] _ in
+                self?.viewModel.checkLike.accept(false)
+                self?.likeButton.isHidden = true
             }.disposed(by: disposeBag)
+        
+        
+        viewModel.checkLike
+            .bind(onNext: { [weak self] check in
+                if check{
+                    self?.likeButton.isEnabled = true
+                    self?.likeButton.setImage(UIImage(systemName: "heart.fill")?.resize(newWidth: 25), for: .normal)
+                }
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     /// 모임 목록 데이터 넣는 함수
@@ -158,8 +177,8 @@ final class ListTableViewCell: UITableViewCell{
         meetingTitleLabel.text = meetingName
         universityLabel.text = university
         countryLabel.text = country
-        
+        viewModel.checkLike.accept(like)
+        bind()
     }
-    
     
 }

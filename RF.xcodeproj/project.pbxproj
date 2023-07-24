@@ -21,6 +21,7 @@
 		3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */; };
 		3B5402C32A6EA61700D0AD21 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */; };
 		3B5402C52A6EA6A700D0AD21 /* MeetingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */; };
+		3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */; };
 		3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D532A56D45C00FECE3A /* PasswordTextField.swift */; };
 		3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D552A56D4AA00FECE3A /* UICheckBox.swift */; };
 		3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D572A56F00200FECE3A /* SignUpViewController.swift */; };
@@ -100,6 +101,7 @@
 		3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingList.swift; sourceTree = "<group>"; };
+		3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellViewModel.swift; sourceTree = "<group>"; };
 		3B935D532A56D45C00FECE3A /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		3B935D552A56D4AA00FECE3A /* UICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox.swift; sourceTree = "<group>"; };
 		3B935D572A56F00200FECE3A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */,
+				3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				5700639D2A6AC60C0051F42A /* NotiListTableViewCell.swift in Sources */,
 				572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */,
 				570063682A6435DD0051F42A /* DropDownButton.swift in Sources */,
+				3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */,
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
 				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
