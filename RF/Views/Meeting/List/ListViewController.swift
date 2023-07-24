@@ -11,6 +11,7 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
+// MARK: 모임 목록 리스트
 final class ListViewController: UIViewController{
     
     /// MARK: 네비게이션 바 왼쪽 아이템

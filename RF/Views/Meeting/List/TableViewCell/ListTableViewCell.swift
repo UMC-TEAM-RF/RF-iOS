@@ -14,9 +14,9 @@ final class ListTableViewCell: UITableViewCell{
     static let identifier = "ListTableViewCell"
     
     /// MARK: 프로필 들어갈 View
-    private lazy var profileUIView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .yellow
+    private lazy var profileUIView: ProfileUIView = {
+        let view = ProfileUIView()
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -107,7 +107,7 @@ final class ListTableViewCell: UITableViewCell{
             make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(10)
             make.bottom.equalToSuperview().offset(-10)
-            make.width.equalToSuperview().dividedBy(7)
+            make.width.equalToSuperview().dividedBy(5)
             make.centerY.equalToSuperview()
         }
         
@@ -178,6 +178,7 @@ final class ListTableViewCell: UITableViewCell{
         universityLabel.text = university
         countryLabel.text = country
         viewModel.checkLike.accept(like)
+        profileUIView.inputData(imgList: imageList)
         bind()
     }
     

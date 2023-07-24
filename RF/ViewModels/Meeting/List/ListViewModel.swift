@@ -19,12 +19,12 @@ final class ListViewModel {
     func getData(){
         var meetingList: [MeetingList] = []
         
-        meetingList.append(MeetingList(imageList: [], meetingTitle: "언어 교환", university: "알프1", country: "🇰🇷", like: true))
-        meetingList.append(MeetingList(imageList: [], meetingTitle: "언어 교환", university: "알프2", country: "🇰🇷", like: true))
-        meetingList.append(MeetingList(imageList: [], meetingTitle: "언어 교환", university: "알프3", country: "🇰🇷", like: true))
-        meetingList.append(MeetingList(imageList: [], meetingTitle: "언어 교환", university: "알프4", country: "🇰🇷", like: false))
-        meetingList.append(MeetingList(imageList: [], meetingTitle: "언어 교환", university: "알프5", country: "🇰🇷", like: false))
-        meetingList.append(MeetingList(imageList: [], meetingTitle: "언어 교환", university: "알프6", country: "🇰🇷", like: false))
+        meetingList.append(MeetingList(imageList: ["a","a"], meetingTitle: "언어 교환", university: "알프1", country: "🇰🇷", like: true))
+        meetingList.append(MeetingList(imageList: ["a"], meetingTitle: "언어 교환", university: "알프2", country: "🇰🇷", like: true))
+        meetingList.append(MeetingList(imageList: ["a","a","a","a"], meetingTitle: "언어 교환", university: "알프3", country: "🇰🇷", like: true))
+        meetingList.append(MeetingList(imageList: ["a","a","a"], meetingTitle: "언어 교환", university: "알프4", country: "🇰🇷", like: false))
+        meetingList.append(MeetingList(imageList: ["a","a","a"], meetingTitle: "언어 교환", university: "알프5", country: "🇰🇷", like: false))
+        meetingList.append(MeetingList(imageList: ["a","a"], meetingTitle: "언어 교환", university: "알프6", country: "🇰🇷", like: false))
         
         meetingListRelay.accept(meetingList)
     }
