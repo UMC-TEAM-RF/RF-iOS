@@ -16,9 +16,6 @@ class PersonalInterestsViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-//        scrollView.bounces = true
-//        scrollView.isScrollEnabled = true
-//        scrollView.isUserInteractionEnabled = true
         return scrollView
     }()
     
@@ -137,11 +134,11 @@ class PersonalInterestsViewController: UIViewController {
     // MARK: - addSubviews
     
     private func addSubviews() {
+        view.addSubview(progressBar)
         view.addSubview(scrollView)
         
         scrollView.addSubview(containerView)
         
-        containerView.addSubview(progressBar)
         containerView.addSubview(nextButton)
         containerView.addSubview(mainLabel)
         containerView.addSubview(interestLabel)
@@ -156,10 +153,16 @@ class PersonalInterestsViewController: UIViewController {
     
     private func configureConstraints() {
         
+        // 프로그레스 바
+        progressBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(5)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(5)
+        }
+        
         // 스크롤 뷰
         scrollView.snp.makeConstraints { make in
-            //make.top.equalTo(progressBar.snp.bottom).offset(20)
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(progressBar.snp.bottom).offset(5)
+            make.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         
         // 컨테이너 뷰
@@ -168,11 +171,6 @@ class PersonalInterestsViewController: UIViewController {
             make.width.equalTo(scrollView.frameLayoutGuide)
         }
         
-        // 프로그레스 바
-        progressBar.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.horizontalEdges.equalToSuperview().inset(25)
-        }
         
         // 메인 라벨
         mainLabel.snp.makeConstraints { make in
