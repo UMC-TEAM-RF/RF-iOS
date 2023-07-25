@@ -29,6 +29,11 @@ final class ListViewModel {
         meetingListRelay.accept(meetingList)
     }
     
+    func removeElement(index: Int){
+        var list = meetingListRelay.value
+        list.remove(at: index)
+        meetingListRelay.accept(list)
+    }
     
     /// 모임 목록 개수 반환 함수
     func returnMeetingListCount() -> Int{ return meetingListRelay.value.count}

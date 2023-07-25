@@ -160,6 +160,11 @@ final class ListTableViewCell: UITableViewCell{
         
     }
     
+    /// MARK: remove layout
+    func removeCellLayout(){
+        profileUIView.removeFromSuperview()
+    }
+    
     /// 모임 목록 데이터 넣는 함수
     /// - Parameters:
     ///   - meetingName: 모임 이름
@@ -178,6 +183,7 @@ final class ListTableViewCell: UITableViewCell{
         universityLabel.text = university
         countryLabel.text = country
         viewModel.checkLike.accept(like)
+        
         profileUIView.inputData(imgList: imageList)
         bind()
     }

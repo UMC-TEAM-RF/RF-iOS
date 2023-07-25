@@ -80,21 +80,24 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as? ListTableViewCell else { return UITableViewCell() }
         
-        viewModel.meetingListRelay
-            .bind { list in
-                cell.inputData(imageList: list[indexPath.row].imageList,
-                               meetingName: list[indexPath.row].meetingTitle,
-                               university: list[indexPath.row].university,
-                               country: list[indexPath.row].country,
-                               like: list[indexPath.row].like)
-            }
-            .disposed(by: disposeBag)
+        let data = viewModel.meetingListRelay.value[indexPath.row]
+        cell.inputData(imageList: data.imageList,
+                       meetingName: data.meetingTitle,
+                       university: data.university,
+                       country: data.country,
+                       like: data.like)
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.height/7
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? ListTableViewCell else { return }
+        viewModel.removeElement(index: indexPath.row)
+        cell.removeCellLayout()
+        tableView.deleteRows(at: [indexPath], with: .fade)
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return viewModel.returnMeetingListCount() }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return tableView.frame.height/7 }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return viewModel.meetingListRelay.value.count }
 }

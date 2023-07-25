@@ -149,6 +149,7 @@ final class ProfileUIView: UIView{
         
     }
     
+    /// MARK: 프로필 이미지 넣는 함수
     func inputData(imgList: [String?]){
         addSubviews(imgList: imgList)
         
