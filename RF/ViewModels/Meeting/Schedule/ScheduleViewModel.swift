@@ -24,6 +24,15 @@ final class ScheduleViewModel {
         return dateFormatter.string(from: date)
     }
     
+    /// MARK: Change Date -> String
+    func formattingDate_HeaderView(date: Date) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        
+        return dateFormatter.string(from: date)
+    }
+    
     /// 테스트 데이터 넣어 놓은 함수
     func getData() {
         var list: [ScheduleEvent] = []
