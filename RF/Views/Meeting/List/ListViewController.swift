@@ -90,12 +90,28 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        guard let cell = tableView.cellForRow(at: indexPath) as? ListTableViewCell else { return }
-        viewModel.removeElement(index: indexPath.row)
-        cell.removeCellLayout()
-        tableView.deleteRows(at: [indexPath], with: .fade)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        /// 삭제 버튼
+        let delete = UIContextualAction(style: .destructive, title: "삭제"){ [weak self] action, view, handler in
+            guard let cell = tableView.cellForRow(at: indexPath) as? ListTableViewCell else { return }
+            self?.viewModel.removeElement(index: indexPath.row)
+            cell.removeCellLayout()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        delete.backgroundColor = UIColor(hexCode: "F0EEEE")
+        
+        if let like = viewModel.meetingListRelay.value[indexPath.row].like, like{
+            delete.title = "탈퇴"
+        }
+        
+        /// 신고 버튼
+        let report = UIContextualAction(style: .normal, title: "신고"){ action, view, handler in
+            print("report Actions")
+        }
+        report.backgroundColor = UIColor(hexCode: "D9D9D9")
+        
+        return UISwipeActionsConfiguration(actions: [delete, report])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return tableView.frame.height/7 }
