@@ -53,6 +53,7 @@
 		570063992A6AB8520051F42A /* NotiMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063982A6AB8520051F42A /* NotiMessageViewController.swift */; };
 		5700639D2A6AC60C0051F42A /* NotiListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700639C2A6AC60C0051F42A /* NotiListTableViewCell.swift */; };
 		570063AB2A724CB40051F42A /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063AA2A724CB40051F42A /* UIViewController+Ext.swift */; };
+		570063AD2A7258530051F42A /* DesignColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063AC2A7258530051F42A /* DesignColor.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -131,6 +132,7 @@
 		570063982A6AB8520051F42A /* NotiMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiMessageViewController.swift; sourceTree = "<group>"; };
 		5700639C2A6AC60C0051F42A /* NotiListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListTableViewCell.swift; sourceTree = "<group>"; };
 		570063AA2A724CB40051F42A /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		570063AC2A7258530051F42A /* DesignColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignColor.swift; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 				3B15CD5E2A643AD80096871F /* MeetingFiltering.swift */,
 				3B8477362A6AEC25007A6144 /* LifeStyle.swift */,
 				3B8477382A6AEC32007A6144 /* Mbti.swift */,
+				570063AC2A7258530051F42A /* DesignColor.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
 				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
+				570063AD2A7258530051F42A /* DesignColor.swift in Sources */,
 				3B15CD612A64437D0096871F /* InterestingTopicCollectionViewCell.swift in Sources */,
 				572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */,
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,

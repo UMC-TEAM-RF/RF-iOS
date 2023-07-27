@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIViewController {
-    
     /// NavigationBar Title 변경
     /// - Parameter title: 타이틀
     func updateTitleView(title: String) {
