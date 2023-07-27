@@ -51,7 +51,7 @@ final class ListTableViewCell: UITableViewCell{
         return label
     }()
     
-    /// MARK:
+    /// MARK: 대학이름과 국기 구별하는 View
     private lazy var separateView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(hexCode: "818181")

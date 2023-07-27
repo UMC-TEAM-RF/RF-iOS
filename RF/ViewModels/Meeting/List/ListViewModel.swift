@@ -29,6 +29,7 @@ final class ListViewModel {
         meetingListRelay.accept(meetingList)
     }
     
+    /// MARK: tableview Cell 제거 하는 함수
     func removeElement(index: Int){
         var list = meetingListRelay.value
         list.remove(at: index)

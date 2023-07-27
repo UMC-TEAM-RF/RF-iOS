@@ -85,7 +85,7 @@ final class ProfileUIView: UIView{
             }
             
         case 2:
-            firstProfile.snp.makeConstraints { make in
+            firstProfile.ㄴnp.makeConstraints { make in
                 make.top.equalToSuperview()
                 make.leading.equalToSuperview()
                 make.height.equalToSuperview().multipliedBy(0.7)
