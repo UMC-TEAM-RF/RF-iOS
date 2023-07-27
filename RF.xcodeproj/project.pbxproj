@@ -52,6 +52,7 @@
 		570063972A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063962A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		570063992A6AB8520051F42A /* NotiMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063982A6AB8520051F42A /* NotiMessageViewController.swift */; };
 		5700639D2A6AC60C0051F42A /* NotiListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700639C2A6AC60C0051F42A /* NotiListTableViewCell.swift */; };
+		570063AB2A724CB40051F42A /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063AA2A724CB40051F42A /* UIViewController+Ext.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -129,6 +130,7 @@
 		570063962A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		570063982A6AB8520051F42A /* NotiMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiMessageViewController.swift; sourceTree = "<group>"; };
 		5700639C2A6AC60C0051F42A /* NotiListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListTableViewCell.swift; sourceTree = "<group>"; };
+		570063AA2A724CB40051F42A /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */,
 				3BC35CEE2A5C6C1B00D73163 /* UILabel+Ext.swift */,
 				572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */,
+				570063AA2A724CB40051F42A /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 			files = (
 				570063932A67B23A0051F42A /* RuleListViewController.swift in Sources */,
 				44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */,
+				570063AB2A724CB40051F42A /* UIViewController+Ext.swift in Sources */,
 				57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */,
 				570063972A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				575032942A596DDE0060D629 /* ClickedButton.swift in Sources */,

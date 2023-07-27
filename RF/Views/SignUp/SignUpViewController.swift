@@ -90,9 +90,6 @@ final class SignUpViewController: UIViewController {
         return view
     }()
     
-    
-    
-    
     private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
@@ -108,8 +105,6 @@ final class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.hideKeyboard()
 
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "회원가입"
@@ -119,6 +114,10 @@ final class SignUpViewController: UIViewController {
         addSubViews()
         configureConstraints()
         addTargets()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     private func addSubViews() {
