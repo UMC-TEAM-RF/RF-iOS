@@ -241,6 +241,8 @@
 				3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
 		3BB408A22A6AA57600FBA617 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
