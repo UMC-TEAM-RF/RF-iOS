@@ -10,13 +10,14 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class SetDetailInfoViewController: UIViewController {
+final class SetDetailInfoViewController: UIViewController {
     
     // MARK: - UI Property
     
     // 네비게이션 바
     private lazy var navigationBar: CustomNavigationBar = {
         let view = CustomNavigationBar()
+        view.titleLabelText = "모임 생성"
         view.delegate = self
         return view
     }()
@@ -28,6 +29,17 @@ class SetDetailInfoViewController: UIViewController {
         pv.backgroundColor = UIColor(hexCode: "D1D1D1")
         pv.progress = 1
         return pv
+    }()
+    
+    private lazy var scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        sv.backgroundColor = .white
+        return sv
+    }()
+    
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        return view
     }()
     
     // 메인 라벨
@@ -164,6 +176,7 @@ class SetDetailInfoViewController: UIViewController {
         return tf
     }()
     
+    // 규칙
     private lazy var ruleButton: UIButton = {
         let button = UIButton()
         button.setTitle("모임의 규칙  ", for: .normal)
@@ -173,6 +186,19 @@ class SetDetailInfoViewController: UIViewController {
         button.semanticContentAttribute = .forceRightToLeft
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         return button
+    }()
+    
+    private lazy var ruleCollectionView: UICollectionView = {
+        let flowLayout = LeftAlignedCollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 15
+        flowLayout.minimumInteritemSpacing = 15
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        cv.isScrollEnabled = false
+        cv.delegate = self
+        cv.dataSource = self
+        cv.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: TagCollectionViewCell.identifier)
+        return cv
     }()
     
     // 다음 버튼
@@ -189,6 +215,17 @@ class SetDetailInfoViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    // 컬렉션 뷰 높이 참조 제약 사항
+    private var ruleCollectionViewHeightConstraint: Constraint?
+    
+    // 컬렉션 뷰 높이 변수
+    private var ruleCollectionViewHeight: CGFloat = 0
+    
+    // 셀 너비
+    private var ruleCellWidth: CGFloat = 0
+    
+    // MARK: - viewDidLoad()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -199,43 +236,54 @@ class SetDetailInfoViewController: UIViewController {
         addTargets()
     }
     
-    // MARK: - addSubviews
+    // MARK: - addSubviews()
     
     private func addSubviews() {
         view.addSubview(navigationBar)
         view.addSubview(progressBar)
-        view.addSubview(mainLabel)
-        view.addSubview(createButton)
+        
+        // 스크롤 뷰
+        view.addSubview(scrollView)
+        
+        // 컨텐트 뷰
+        scrollView.addSubview(contentView)
+        
+        // 메인 라벨
+        contentView.addSubview(mainLabel)
         
         // 모임 인원 수 설정
-        view.addSubview(personnelStackView)
-        view.addSubview(personnelStepper)
+        contentView.addSubview(personnelStackView)
+        contentView.addSubview(personnelStepper)
         personnelStackView.addArrangedSubview(personnelTitleLabel)
         personnelStackView.addArrangedSubview(personnelSubLabel)
         
         // 한국인 인원 수 설정
-        view.addSubview(koreanStackView)
-        view.addSubview(koreanStepper)
+        contentView.addSubview(koreanStackView)
+        contentView.addSubview(koreanStepper)
         koreanStackView.addArrangedSubview(koreanTitleLabel)
         koreanStackView.addArrangedSubview(koreanSubLabel)
         
         // 선호 연령대
-        view.addSubview(ageGroupLabel)
-        view.addSubview(ageGroupButton)
+        contentView.addSubview(ageGroupLabel)
+        contentView.addSubview(ageGroupButton)
         
         // 사용 언어
-        view.addSubview(languageLabel)
-        view.addSubview(languageButton)
+        contentView.addSubview(languageLabel)
+        contentView.addSubview(languageButton)
         
         // 활동 장소
-        view.addSubview(placeLabel)
-        view.addSubview(placeTextField)
+        contentView.addSubview(placeLabel)
+        contentView.addSubview(placeTextField)
         
         // 모임 규칙
-        view.addSubview(ruleButton)
+        contentView.addSubview(ruleButton)
+        contentView.addSubview(ruleCollectionView)
+        
+        // 생성 버튼
+        contentView.addSubview(createButton)
     }
     
-    // MARK: - configureConstraints
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         // 네비게이션 바
@@ -250,9 +298,21 @@ class SetDetailInfoViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(25)
         }
         
+        // 스크롤 뷰
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(progressBar.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        // 컨텐트 뷰
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView.frameLayoutGuide)
+        }
+        
         // 메인 라벨
         mainLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(25)
+            make.top.equalToSuperview().offset(25)
             make.centerX.equalToSuperview()
         }
         
@@ -328,15 +388,24 @@ class SetDetailInfoViewController: UIViewController {
             make.leading.equalToSuperview().inset(30)
         }
         
+        ruleCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(ruleButton.snp.bottom).offset(23)
+            make.horizontalEdges.equalToSuperview().inset(25)
+            
+            //
+            ruleCollectionViewHeightConstraint = make.height.equalTo(0).constraint
+        }
+        
         // 다음
         createButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(30)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
+            make.bottom.equalToSuperview().offset(-10)
             make.height.equalTo(50)
+            make.top.equalTo(ruleCollectionView.snp.bottom).offset(50)
         }
     }
     
-    // MARK: - addTargets
+    // MARK: - addTargets()
     
     private func addTargets() {
         ruleButton.rx.tap
@@ -354,8 +423,47 @@ class SetDetailInfoViewController: UIViewController {
     }
 }
 
+// MARK: - Ext: NavigationBarDelgate
+
 extension SetDetailInfoViewController: NavigationBarDelegate {
     func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: - Ext: CollectionView
+
+extension SetDetailInfoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return Rule.list.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
+        cell.setupTagLabel(Rule.list[indexPath.item])
+        cell.setCellBackgroundColor(.systemGray6)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let text = Rule.list[indexPath.item]
+        let cellSize = CGSize(width: text.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 30, height: 40)
+        
+        ruleCellWidth += cellSize.width
+        
+        // 초기 컬렉션 뷰 높이 설정
+        if ruleCollectionViewHeight == 0 {
+            ruleCollectionViewHeight += cellSize.height
+            ruleCollectionViewHeightConstraint?.update(offset: ruleCollectionViewHeight)
+        }
+        
+        // 셀이 다음 행으로 넘어가면 컬렉션 뷰 높이 증가
+        if ruleCellWidth >= collectionView.frame.width {
+            ruleCollectionViewHeight += (cellSize.height + 15)
+            ruleCollectionViewHeightConstraint?.update(offset: ruleCollectionViewHeight)
+            ruleCellWidth = cellSize.width
+        }
+        
+        return cellSize
     }
 }

@@ -10,13 +10,14 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class SetDescriptViewController: UIViewController {
+final class SetDescriptViewController: UIViewController {
     
     // MARK: - UI Property
     
     // 네비게이션 바
     private lazy var navigationBar: CustomNavigationBar = {
         let view = CustomNavigationBar()
+        view.titleLabelText = "모임 생성"
         view.delegate = self
         return view
     }()
@@ -83,6 +84,8 @@ class SetDescriptViewController: UIViewController {
     private let textViewPlaceholder = "모임에 대해 소개해 주세요!"
     private let disposeBag = DisposeBag()
     
+    // MARK: - viewDidLoad()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -100,7 +103,7 @@ class SetDescriptViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    // MARK: - addSubviews
+    // MARK: - addSubviews()
     
     private func addSubviews() {
         view.addSubview(navigationBar)
@@ -112,7 +115,7 @@ class SetDescriptViewController: UIViewController {
         view.addSubview(nextButton)
     }
     
-    // MARK: - configureConstraints
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         // 네비게이션 바
@@ -161,7 +164,7 @@ class SetDescriptViewController: UIViewController {
         }
     }
     
-    // MARK: - addTargets
+    // MARK: - addTargets()
     
     private func addTargets() {
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageViewTapped)))
@@ -188,7 +191,7 @@ class SetDescriptViewController: UIViewController {
     
 }
 
-// MARK: - TextViewDelegate
+// MARK: - Ext: TextViewDelegate
 
 extension SetDescriptViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -226,7 +229,7 @@ extension SetDescriptViewController: UITextViewDelegate {
     
 }
 
-// MARK: - UIImagePickerControllerDelegate
+// MARK: - Ext: ImagePickerDelegate
 
 extension SetDescriptViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     // 이미지 피커에서 이미지를 선택하지 않고 취소했을 때 호출되는 메소드
@@ -249,7 +252,7 @@ extension SetDescriptViewController: UINavigationControllerDelegate, UIImagePick
     
 }
 
-// MARK: - NavigationBarDelegate
+// MARK: - Ext: NavigationBarDelegate
 
 extension SetDescriptViewController: NavigationBarDelegate {
     func backButtonTapped() {

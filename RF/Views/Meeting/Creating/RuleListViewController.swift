@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class RuleListViewController: UIViewController {
+final class RuleListViewController: UIViewController {
     
     // MARK: - UI Property
     
@@ -108,7 +108,7 @@ class RuleListViewController: UIViewController {
     }
 }
 
-// MARK: - NavigationBarDelegate
+// MARK: - Ext: NavigationBarDelegate
 
 extension RuleListViewController: NavigationBarDelegate {
     func backButtonTapped() {
@@ -116,7 +116,7 @@ extension RuleListViewController: NavigationBarDelegate {
     }
 }
 
-// MARK: - CollectionView
+// MARK: - Ext: CollectionView
 
 extension RuleListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -124,7 +124,7 @@ extension RuleListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as! TagCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
         cell.setupTagLabel(Rule.list[indexPath.item])
         cell.setCellBackgroundColor(.systemGray6)
         return cell
@@ -132,7 +132,7 @@ extension RuleListViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let text = Rule.list[indexPath.item]
-        return CGSize(width: text.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)]).width + 30, height: 40)
+        return CGSize(width: text.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 30, height: 40)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

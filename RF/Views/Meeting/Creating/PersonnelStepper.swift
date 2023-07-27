@@ -12,6 +12,8 @@ import RxCocoa
 
 class PersonnelStepper: UIControl {
     
+    // MARK: - UI Property
+    
     private lazy var stackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .horizontal
@@ -52,6 +54,8 @@ class PersonnelStepper: UIControl {
         return label
     }()
     
+    // MARK: - Property
+    
     private var currentValue = 0
     
     var minimumCount: Int = 0
@@ -64,6 +68,8 @@ class PersonnelStepper: UIControl {
     }
     
     private let disposeBag = DisposeBag()
+    
+    // MARK: - init()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -77,6 +83,8 @@ class PersonnelStepper: UIControl {
         super.init(coder: coder)
     }
     
+    // MARK: - addSubviews()
+    
     private func addSubviews() {
         addSubview(stackView)
         stackView.addArrangedSubview(minusButton)
@@ -84,11 +92,15 @@ class PersonnelStepper: UIControl {
         stackView.addArrangedSubview(plusButton)
     }
     
+    // MARK: - configureConstraints()
+    
     private func configureConstraints() {
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
+    
+    // MARK: - addTargets()
 
     private func addTargets() {
         
