@@ -33,6 +33,7 @@ final class MeetingViewController: UIViewController{
     private lazy var etcButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "ellipsis")?.resize(newWidth: 25).rotate(degrees: 90), for: .normal)
+        btn.showsMenuAsPrimaryAction = true
         return btn
     }()
     
@@ -173,13 +174,26 @@ final class MeetingViewController: UIViewController{
             })
             .disposed(by: disposeBag)
         
-        etcButton.rx.tap
-            .subscribe(onNext:{
-                print("clicked etcButton")
-                let scheduleViewController = ScheduleViewController()
-                self.navigationController?.pushViewController(scheduleViewController, animated: true)
-            })
-            .disposed(by: disposeBag)
+        let schedule = UIAction(title: "모임 일정", image: nil, handler: { [weak self] _ in
+            let scheduleViewController = ScheduleViewController()
+            self?.tabBarController?.tabBar.isHidden = true
+            self?.navigationController?.pushViewController(scheduleViewController, animated: true)
+        })
+        
+        let list = UIAction(title: "모임 목록", image: nil, handler: { [weak self] _ in
+            let listViewController = ListViewController()
+            self?.tabBarController?.tabBar.isHidden = true
+            self?.navigationItem.hidesBackButton = false
+            self?.navigationItem.leftItemsSupplementBackButton = true
+            self?.navigationController?.pushViewController(listViewController, animated: true)
+        })
+        
+        etcButton.menu = UIMenu(title: "ETC",
+                                  image: nil,
+                                  identifier: nil,
+                                  options: .displayInline,
+                                  children: [schedule,list])
+        
     }
     
     

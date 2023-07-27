@@ -17,6 +17,12 @@
 		3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */; };
 		3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */; };
 		3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2670E52A5ECCF600EA4F45 /* TermsConditionsViewController.swift */; };
+		3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */; };
+		3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */; };
+		3B5402C32A6EA61700D0AD21 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */; };
+		3B5402C52A6EA6A700D0AD21 /* MeetingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */; };
+		3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */; };
+		3B5402C92A6EAE1E00D0AD21 /* ProfileUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C82A6EAE1E00D0AD21 /* ProfileUIView.swift */; };
 		3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */; };
 		3B8477372A6AEC25007A6144 /* LifeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477362A6AEC25007A6144 /* LifeStyle.swift */; };
 		3B8477392A6AEC32007A6144 /* Mbti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477382A6AEC32007A6144 /* Mbti.swift */; };
@@ -96,6 +102,12 @@
 		3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFriendUIView.swift; sourceTree = "<group>"; };
 		3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFreindUIButton.swift; sourceTree = "<group>"; };
 		3B2670E52A5ECCF600EA4F45 /* TermsConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsViewController.swift; sourceTree = "<group>"; };
+		3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingList.swift; sourceTree = "<group>"; };
+		3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellViewModel.swift; sourceTree = "<group>"; };
+		3B5402C82A6EAE1E00D0AD21 /* ProfileUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUIView.swift; sourceTree = "<group>"; };
 		3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestSmallCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8477362A6AEC25007A6144 /* LifeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeStyle.swift; sourceTree = "<group>"; };
 		3B8477382A6AEC32007A6144 /* Mbti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mbti.swift; sourceTree = "<group>"; };
@@ -207,6 +219,7 @@
 		3B15CD632A644FDE0096871F /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				3B5402C12A6EA60F00D0AD21 /* List */,
 				3BB408AF2A6AC4BD00FBA617 /* Schedule */,
 				3B15CD642A644FE40096871F /* Searching */,
 			);
@@ -224,6 +237,7 @@
 		3B181D182A56DCC100B62DEB /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				3B5402BB2A6E76AD00D0AD21 /* List */,
 				3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */,
 				3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */,
 				3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */,
@@ -235,6 +249,33 @@
 			path = Meeting;
 			sourceTree = "<group>";
 		};
+		3B5402BB2A6E76AD00D0AD21 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */,
+				3B5402C82A6EAE1E00D0AD21 /* ProfileUIView.swift */,
+				3B5402BE2A6E7DFF00D0AD21 /* TableViewCell */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		3B5402BE2A6E7DFF00D0AD21 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		3B5402C12A6EA60F00D0AD21 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */,
+				3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */,
+			);
+			path = List;
+            sourceTree = "<group>";
+        };
 		3B8477312A6AB1D5007A6144 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +384,7 @@
 			children = (
 				572A9A392A5E80D1004D2809 /* Member.swift */,
 				3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */,
+				3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -580,6 +622,7 @@
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
 				572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */,
 				572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */,
+				3B5402C52A6EA6A700D0AD21 /* MeetingList.swift in Sources */,
 				570063992A6AB8520051F42A /* NotiMessageViewController.swift in Sources */,
 				57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */,
 				3BC35CED2A5C565800D73163 /* InterestingCollectionViewCell.swift in Sources */,
@@ -605,6 +648,7 @@
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,
 				3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */,
 				572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */,
+				3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */,
 				3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */,
 				3BC35CF52A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
 				3BC35CF12A5C6CBD00D73163 /* RuleCollectionViewCell.swift in Sources */,
@@ -613,12 +657,15 @@
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
 				3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */,
 				57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */,
+				3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */,
 				3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */,
 				572A9A352A5CC21C004D2809 /* SetDescriptViewController.swift in Sources */,
+				3B5402C32A6EA61700D0AD21 /* ListViewModel.swift in Sources */,
 				3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */,
 				5700639D2A6AC60C0051F42A /* NotiListTableViewCell.swift in Sources */,
 				572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */,
 				570063682A6435DD0051F42A /* DropDownButton.swift in Sources */,
+				3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */,
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
 				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
@@ -631,6 +678,7 @@
 				3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */,
 				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,
+				3B5402C92A6EAE1E00D0AD21 /* ProfileUIView.swift in Sources */,
 				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
 				3BB408B12A6AC4CA00FBA617 /* ScheduleViewModel.swift in Sources */,
 			);
