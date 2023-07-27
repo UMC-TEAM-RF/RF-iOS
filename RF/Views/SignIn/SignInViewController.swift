@@ -193,13 +193,15 @@ final class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.hideKeyboard()
-        
         view.backgroundColor = .systemBackground
         
         addSubViews()
         configureConstraints()
         addTargets()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
     private func addSubViews() {
@@ -365,15 +367,3 @@ extension SignInViewController : UITextFieldDelegate{
     
 }
 
-
-
-extension UIViewController {
-    func hideKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-            action: #selector(SignInViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
