@@ -274,6 +274,8 @@
 				3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */,
 			);
 			path = List;
+            sourceTree = "<group>";
+        };
 		3B8477312A6AB1D5007A6144 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
