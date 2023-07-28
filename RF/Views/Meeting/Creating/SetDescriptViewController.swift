@@ -253,6 +253,8 @@ extension SetDescriptViewController: UINavigationControllerDelegate, UIImagePick
     
 }
 
+// MARK: - Ext: CropViewControllerDelegate
+
 extension SetDescriptViewController: CropViewControllerDelegate{
     func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation, cropInfo: CropInfo) {
         
