@@ -26,6 +26,7 @@
 		3B57FFC72A73CB9E007DB482 /* Mantis in Frameworks */ = {isa = PBXBuildFile; productRef = 3B57FFC62A73CB9E007DB482 /* Mantis */; };
 		3B57FFCD2A7408AE007DB482 /* DimmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFCC2A7408AE007DB482 /* DimmedViewController.swift */; };
 		3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFCE2A7408D4007DB482 /* SchedulePopUpViewController.swift */; };
+		3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */; };
 		3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */; };
 		3B8477372A6AEC25007A6144 /* LifeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477362A6AEC25007A6144 /* LifeStyle.swift */; };
 		3B8477392A6AEC32007A6144 /* Mbti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477382A6AEC32007A6144 /* Mbti.swift */; };
@@ -115,6 +116,7 @@
 		3B5402C82A6EAE1E00D0AD21 /* ProfileUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUIView.swift; sourceTree = "<group>"; };
 		3B57FFCC2A7408AE007DB482 /* DimmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmedViewController.swift; sourceTree = "<group>"; };
 		3B57FFCE2A7408D4007DB482 /* SchedulePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUpViewController.swift; sourceTree = "<group>"; };
+		3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUp.swift; sourceTree = "<group>"; };
 		3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestSmallCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8477362A6AEC25007A6144 /* LifeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeStyle.swift; sourceTree = "<group>"; };
 		3B8477382A6AEC32007A6144 /* Mbti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mbti.swift; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 				57673EDB2A56E9D200A13D07 /* Interest.swift */,
 				570063942A67BA000051F42A /* Rule.swift */,
 				3B15CD5E2A643AD80096871F /* MeetingFiltering.swift */,
+				3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */,
 				3B8477362A6AEC25007A6144 /* LifeStyle.swift */,
 				3B8477382A6AEC32007A6144 /* Mbti.swift */,
 				570063AC2A7258530051F42A /* DesignColor.swift */,
@@ -653,6 +656,7 @@
 				57673EE02A57A87000A13D07 /* MoreFriendCollectionViewCell.swift in Sources */,
 				3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
+				3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
 				3B57FFCD2A7408AE007DB482 /* DimmedViewController.swift in Sources */,
 				3B181D1A2A56DCDF00B62DEB /* MeetingViewController.swift in Sources */,
