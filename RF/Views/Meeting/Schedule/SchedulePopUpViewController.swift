@@ -25,7 +25,6 @@ final class SchedulePopUpViewController: DimmedViewController {
     private lazy var meetingNickname: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
-        label.text = "aaad"
         return label
     }()
     
@@ -33,7 +32,6 @@ final class SchedulePopUpViewController: DimmedViewController {
     private lazy var meetingName: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15)
-        label.text = "aaa"
         return label
     }()
     
@@ -104,7 +102,6 @@ final class SchedulePopUpViewController: DimmedViewController {
         return view
     }()
     
-    
     /// MARK: 인원 제목
     private lazy var peopleTitleLabel: UILabel = {
         let label = UILabel()
@@ -136,11 +133,14 @@ final class SchedulePopUpViewController: DimmedViewController {
     }()
     
     private let disposeBag = DisposeBag()
+    private let viewModel = SchedulePopUpViewModel()
+    var selectedDate: BehaviorSubject<String> = BehaviorSubject(value: "")
     
     // MARK: - init
     
     init() {
         super.init(durationTime: 0.3, alpha: 0.25)
+        bind()
         addSubviews()
         getData()
     }
@@ -153,6 +153,8 @@ final class SchedulePopUpViewController: DimmedViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         dismiss(animated: true)
     }
+    
+    // MARK: - Functions
     
     /// MARK: Add UI
     private func addSubviews(){
@@ -238,11 +240,28 @@ final class SchedulePopUpViewController: DimmedViewController {
         
     }
     
+    /// MARK: rxswift binding functions
+    private func bind(){
+        selectedDate.bind { [weak self] date in
+            self?.viewModel.selectedDate.accept(date)
+        }
+        .disposed(by: disposeBag)
+        
+        
+        viewModel.eventInformation.bind { [weak self] event in
+            self?.meetingNickname.text = event.meetingNickname ?? ""
+            self?.meetingName.text = event.meetingName ?? ""
+            self?.dateLabel.text = event.date ?? ""
+            self?.timeLabel.text = event.time ?? ""
+            self?.placeLabel.text = event.place ?? ""
+            self?.peopleLabel.text = event.peopleNum ?? ""
+        }
+        .disposed(by: disposeBag)
+    }
+    
+    
     /// MARK: test Data
     private func getData(){
-        dateLabel.text = "ㅁㄴㅇㄹㄹㄴ"
-        timeLabel.text = "ㅁㄴㅇㄹㄹㄴ"
-        placeLabel.text = "ㅁㄴㅇㄹㄹㄴ"
-        peopleLabel.text = "ㅁㄴㅇㄹㄹㄴ"
+        viewModel.getData()
     }
 }

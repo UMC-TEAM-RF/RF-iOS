@@ -183,9 +183,10 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         guard let cell = calendar.cell(for: date, at: monthPosition) else { return }
         cell.titleLabel.textColor = .black
         
-        print(viewModel.formattingDate(date: date))
+        print(viewModel.formattingDate(date: date).split(separator: " ").first)
         
         let schedulePopUpViewController = SchedulePopUpViewController()
+        schedulePopUpViewController.selectedDate.onNext(String(describing: viewModel.formattingDate(date: date).split(separator: " ").first))
         present(schedulePopUpViewController,animated: true)
     }
     
