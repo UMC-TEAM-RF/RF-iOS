@@ -23,6 +23,7 @@
 		3B5402C52A6EA6A700D0AD21 /* MeetingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */; };
 		3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */; };
 		3B5402C92A6EAE1E00D0AD21 /* ProfileUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C82A6EAE1E00D0AD21 /* ProfileUIView.swift */; };
+		3B57FFC72A73CB9E007DB482 /* Mantis in Frameworks */ = {isa = PBXBuildFile; productRef = 3B57FFC62A73CB9E007DB482 /* Mantis */; };
 		3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */; };
 		3B8477372A6AEC25007A6144 /* LifeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477362A6AEC25007A6144 /* LifeStyle.swift */; };
 		3B8477392A6AEC32007A6144 /* Mbti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477382A6AEC32007A6144 /* Mbti.swift */; };
@@ -186,6 +187,7 @@
 				572DC24C2A51C4FB00C0D6E1 /* RxCocoa in Frameworks */,
 				572DC2462A51C40F00C0D6E1 /* SnapKit in Frameworks */,
 				572DC24E2A51C4FB00C0D6E1 /* RxSwift in Frameworks */,
+				3B57FFC72A73CB9E007DB482 /* Mantis in Frameworks */,
 				572DC2492A51C42A00C0D6E1 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,8 +280,8 @@
 				3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */,
 			);
 			path = List;
-            sourceTree = "<group>";
-        };
+			sourceTree = "<group>";
+		};
 		3B8477312A6AB1D5007A6144 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +552,7 @@
 				572DC24D2A51C4FB00C0D6E1 /* RxSwift */,
 				3BC35CE22A5C3C3200D73163 /* Tabman */,
 				3BB408A62A6AA5D900FBA617 /* FSCalendar */,
+				3B57FFC62A73CB9E007DB482 /* Mantis */,
 			);
 			productName = RF;
 			productReference = 572DC22B2A51BF2400C0D6E1 /* RF.app */;
@@ -585,6 +588,7 @@
 				572DC24A2A51C4FB00C0D6E1 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				3BC35CE12A5C3C3200D73163 /* XCRemoteSwiftPackageReference "Tabman" */,
 				3BB408A52A6AA5D900FBA617 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				3B57FFC52A73CB9E007DB482 /* XCRemoteSwiftPackageReference "Mantis" */,
 			);
 			productRefGroup = 572DC22C2A51BF2400C0D6E1 /* Products */;
 			projectDirPath = "";
@@ -900,6 +904,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3B57FFC52A73CB9E007DB482 /* XCRemoteSwiftPackageReference "Mantis" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/guoyingtao/Mantis.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		3BB408A52A6AA5D900FBA617 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -943,6 +955,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3B57FFC62A73CB9E007DB482 /* Mantis */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B57FFC52A73CB9E007DB482 /* XCRemoteSwiftPackageReference "Mantis" */;
+			productName = Mantis;
+		};
 		3BB408A62A6AA5D900FBA617 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3BB408A52A6AA5D900FBA617 /* XCRemoteSwiftPackageReference "FSCalendar" */;

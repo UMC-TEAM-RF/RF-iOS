@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Mantis
 
 final class SetDescriptViewController: UIViewController {
     
@@ -56,6 +57,8 @@ final class SetDescriptViewController: UIViewController {
         iv.image = UIImage(named: "no_image")
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
+        iv.layer.borderWidth = 1.5
+        iv.layer.borderColor = UIColor.lightGray.cgColor
         iv.isUserInteractionEnabled = true
         return iv
     }()
@@ -147,7 +150,7 @@ final class SetDescriptViewController: UIViewController {
         imageView.snp.makeConstraints { make in
             make.top.equalTo(descriptTextView.snp.bottom).offset(25)
             make.horizontalEdges.equalToSuperview().inset(25)
-            make.height.equalTo(imageView.snp.width).multipliedBy(0.5)
+            make.height.equalTo(imageView.snp.width).multipliedBy(0.9/1.6)
         }
         
         cameraImageView.snp.makeConstraints { make in
@@ -234,22 +237,42 @@ extension SetDescriptViewController: UITextViewDelegate {
 extension SetDescriptViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     // 이미지 피커에서 이미지를 선택하지 않고 취소했을 때 호출되는 메소드
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // 이미지 피커 컨트롤러 창 닫기
         self.dismiss(animated: true)
     }
     
     // 이미지 피커에서 이미지를 선택했을 때 호출되는 메소드
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("이미지 선택")
-        // 이미지 피커 컨트롤러 창 닫기
-        picker.dismiss(animated: true) {
-            // 이미지를 이미지 뷰에 표시
-            let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-            self.imageView.image = img
+        
+        if let image = info[.originalImage] as? UIImage {
+            dismiss(animated: true) {
+                self.openCropVC(image: image)
+            }
         }
+        picker.dismiss(animated: false)
     }
     
+}
+
+extension SetDescriptViewController: CropViewControllerDelegate{
+    func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation, cropInfo: CropInfo) {
+        
+        imageView.image = cropped
+        cropViewController.dismiss(animated: true)
+    }
     
+    func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage) {
+        cropViewController.dismiss(animated: true)
+    }
+    
+    private func openCropVC(image: UIImage) {
+        
+        let cropViewController = Mantis.cropViewController(image: image)
+        cropViewController.delegate = self
+        cropViewController.modalPresentationStyle = .fullScreen
+        cropViewController.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 16/9)
+
+        self.present(cropViewController, animated: true)
+    }
 }
 
 // MARK: - Ext: NavigationBarDelegate
@@ -259,3 +282,5 @@ extension SetDescriptViewController: NavigationBarDelegate {
         navigationController?.popViewController(animated: true)
     }
 }
+
+
