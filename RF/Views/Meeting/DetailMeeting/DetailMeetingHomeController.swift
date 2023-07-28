@@ -331,7 +331,7 @@ final class DetailMeetingHomeController: UIViewController {
         titleImg.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/5)
+            make.height.equalTo(titleImg.snp.width).multipliedBy(0.9/1.6)
         }
         
         /// 관심 분야
