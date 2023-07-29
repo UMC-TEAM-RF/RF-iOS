@@ -24,6 +24,11 @@
 		3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */; };
 		3B5402C92A6EAE1E00D0AD21 /* ProfileUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C82A6EAE1E00D0AD21 /* ProfileUIView.swift */; };
 		3B57FFC72A73CB9E007DB482 /* Mantis in Frameworks */ = {isa = PBXBuildFile; productRef = 3B57FFC62A73CB9E007DB482 /* Mantis */; };
+		3B57FFCD2A7408AE007DB482 /* DimmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFCC2A7408AE007DB482 /* DimmedViewController.swift */; };
+		3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFCE2A7408D4007DB482 /* SchedulePopUpViewController.swift */; };
+		3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */; };
+		3B57FFD32A741972007DB482 /* SchedulePopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD22A741972007DB482 /* SchedulePopUpViewModel.swift */; };
+		3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */; };
 		3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */; };
 		3B8477372A6AEC25007A6144 /* LifeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477362A6AEC25007A6144 /* LifeStyle.swift */; };
 		3B8477392A6AEC32007A6144 /* Mbti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477382A6AEC32007A6144 /* Mbti.swift */; };
@@ -111,6 +116,11 @@
 		3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingList.swift; sourceTree = "<group>"; };
 		3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellViewModel.swift; sourceTree = "<group>"; };
 		3B5402C82A6EAE1E00D0AD21 /* ProfileUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUIView.swift; sourceTree = "<group>"; };
+		3B57FFCC2A7408AE007DB482 /* DimmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmedViewController.swift; sourceTree = "<group>"; };
+		3B57FFCE2A7408D4007DB482 /* SchedulePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUpViewController.swift; sourceTree = "<group>"; };
+		3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUp.swift; sourceTree = "<group>"; };
+		3B57FFD22A741972007DB482 /* SchedulePopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUpViewModel.swift; sourceTree = "<group>"; };
+		3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventPopUp.swift; sourceTree = "<group>"; };
 		3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestSmallCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8477362A6AEC25007A6144 /* LifeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeStyle.swift; sourceTree = "<group>"; };
 		3B8477382A6AEC32007A6144 /* Mbti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mbti.swift; sourceTree = "<group>"; };
@@ -243,10 +253,10 @@
 		3B181D182A56DCC100B62DEB /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
-				3B5402BB2A6E76AD00D0AD21 /* List */,
 				3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */,
 				3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */,
 				3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */,
+				3B5402BB2A6E76AD00D0AD21 /* List */,
 				3BB408A22A6AA57600FBA617 /* Schedule */,
 				3B15CD562A63E9450096871F /* Searching */,
 				572A9A272A5C0989004D2809 /* Creating */,
@@ -296,6 +306,7 @@
 				3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */,
 				3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */,
 				3BB408AB2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift */,
+				3B57FFCE2A7408D4007DB482 /* SchedulePopUpViewController.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -304,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				3BB408B02A6AC4CA00FBA617 /* ScheduleViewModel.swift */,
+				3B57FFD22A741972007DB482 /* SchedulePopUpViewModel.swift */,
 				3BB408B22A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift */,
 			);
 			path = Schedule;
@@ -382,6 +394,7 @@
 				572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */,
 				572A9A2A2A5C0AFA004D2809 /* CustomNavigationBar.swift */,
 				570063962A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift */,
+				3B57FFCC2A7408AE007DB482 /* DimmedViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -392,6 +405,7 @@
 				572A9A392A5E80D1004D2809 /* Member.swift */,
 				3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */,
 				3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */,
+				3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -522,6 +536,7 @@
 				57673EDB2A56E9D200A13D07 /* Interest.swift */,
 				570063942A67BA000051F42A /* Rule.swift */,
 				3B15CD5E2A643AD80096871F /* MeetingFiltering.swift */,
+				3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */,
 				3B8477362A6AEC25007A6144 /* LifeStyle.swift */,
 				3B8477382A6AEC32007A6144 /* Mbti.swift */,
 				570063AC2A7258530051F42A /* DesignColor.swift */,
@@ -647,7 +662,9 @@
 				57673EE02A57A87000A13D07 /* MoreFriendCollectionViewCell.swift in Sources */,
 				3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
+				3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
+				3B57FFCD2A7408AE007DB482 /* DimmedViewController.swift in Sources */,
 				3B181D1A2A56DCDF00B62DEB /* MeetingViewController.swift in Sources */,
 				572DC2502A51C5F300C0D6E1 /* TabBarController.swift in Sources */,
 				57673ED42A5579E000A13D07 /* BannerCollectionViewCell.swift in Sources */,
@@ -659,6 +676,7 @@
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,
 				3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */,
 				572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */,
+				3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */,
 				3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */,
 				3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */,
 				3BC35CF52A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
@@ -686,12 +704,14 @@
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
 				3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */,
 				570063952A67BA000051F42A /* Rule.swift in Sources */,
+				3B57FFD32A741972007DB482 /* SchedulePopUpViewModel.swift in Sources */,
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
 				3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */,
 				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,
 				3B5402C92A6EAE1E00D0AD21 /* ProfileUIView.swift in Sources */,
 				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
+				3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */,
 				3BB408B12A6AC4CA00FBA617 /* ScheduleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
