@@ -29,6 +29,8 @@
 		3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */; };
 		3B57FFD32A741972007DB482 /* SchedulePopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD22A741972007DB482 /* SchedulePopUpViewModel.swift */; };
 		3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */; };
+		3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */; };
+		3B59B2832A75653400027809 /* DetailMeetingJoinPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */; };
 		3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */; };
 		3B8477372A6AEC25007A6144 /* LifeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477362A6AEC25007A6144 /* LifeStyle.swift */; };
 		3B8477392A6AEC32007A6144 /* Mbti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477382A6AEC32007A6144 /* Mbti.swift */; };
@@ -121,6 +123,8 @@
 		3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUp.swift; sourceTree = "<group>"; };
 		3B57FFD22A741972007DB482 /* SchedulePopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUpViewModel.swift; sourceTree = "<group>"; };
 		3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventPopUp.swift; sourceTree = "<group>"; };
+		3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUpViewController.swift; sourceTree = "<group>"; };
+		3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUp.swift; sourceTree = "<group>"; };
 		3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestSmallCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8477362A6AEC25007A6144 /* LifeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeStyle.swift; sourceTree = "<group>"; };
 		3B8477382A6AEC32007A6144 /* Mbti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mbti.swift; sourceTree = "<group>"; };
@@ -326,6 +330,7 @@
 			children = (
 				3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */,
 				3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */,
+				3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */,
 				3BC35CF42A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift */,
 				3BC35CE92A5C3CBA00D73163 /* DetailMeetingChatController.swift */,
 				3BC35CEB2A5C563F00D73163 /* CollectionViewCell */,
@@ -534,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				57673EDB2A56E9D200A13D07 /* Interest.swift */,
+				3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */,
 				570063942A67BA000051F42A /* Rule.swift */,
 				3B15CD5E2A643AD80096871F /* MeetingFiltering.swift */,
 				3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */,
@@ -668,6 +674,7 @@
 				3B181D1A2A56DCDF00B62DEB /* MeetingViewController.swift in Sources */,
 				572DC2502A51C5F300C0D6E1 /* TabBarController.swift in Sources */,
 				57673ED42A5579E000A13D07 /* BannerCollectionViewCell.swift in Sources */,
+				3B59B2832A75653400027809 /* DetailMeetingJoinPopUp.swift in Sources */,
 				3BC35CEF2A5C6C1B00D73163 /* UILabel+Ext.swift in Sources */,
 				572A9A322A5CB445004D2809 /* SetInterestViewController.swift in Sources */,
 				570063602A63D5120051F42A /* PersonnelStepper.swift in Sources */,
@@ -684,6 +691,7 @@
 				3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */,
 				5700636B2A643CDA0051F42A /* DropDownTableViewCell.swift in Sources */,
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
+				3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */,
 				3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */,
 				57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */,
 				3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */,
