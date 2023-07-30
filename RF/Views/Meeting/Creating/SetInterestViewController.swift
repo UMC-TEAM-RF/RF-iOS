@@ -35,14 +35,14 @@ final class SetInterestViewController: UIViewController {
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.text = "대표 관심사를 설정해 주세요."
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return label
     }()
     
     // 서브 라벨
     private lazy var subLabel: UILabel = {
         let label = UILabel()
-        label.text = "최대 3개까지 설정 가능합니다."
+        label.text = "(최대 3개 설정 가능)"
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = .lightGray
         return label
@@ -117,18 +117,18 @@ final class SetInterestViewController: UIViewController {
         
         // 메인 라벨
         mainLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(25)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(progressBar.snp.bottom).offset(40)
+            make.leading.equalToSuperview().inset(30)
         }
         
         // 서브 라벨
         subLabel.snp.makeConstraints { make in
-            make.top.equalTo(mainLabel.snp.bottom).offset(13)
-            make.centerX.equalToSuperview()
+            make.leading.equalTo(mainLabel.snp.trailing).offset(10)
+            make.bottom.equalTo(mainLabel.snp.bottom)
         }
         
         interestCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(subLabel.snp.bottom).offset(35)
+            make.top.equalTo(mainLabel.snp.bottom).offset(30)
             make.horizontalEdges.equalToSuperview().inset(30)
             make.bottom.equalTo(nextButton.snp.top).offset(-30)
         }

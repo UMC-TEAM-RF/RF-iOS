@@ -127,7 +127,7 @@ final class SetMeetingNameViewController: UIViewController {
         
         // 메인 라벨
         mainLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(35)
+            make.top.equalTo(progressBar.snp.bottom).offset(40)
             make.leading.equalToSuperview().inset(30)
         }
         

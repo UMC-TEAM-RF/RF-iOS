@@ -300,7 +300,7 @@ final class SetDetailInfoViewController: UIViewController {
         
         // 스크롤 뷰
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom)
+            make.top.equalTo(progressBar.snp.bottom).offset(2)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
