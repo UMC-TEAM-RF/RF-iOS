@@ -465,7 +465,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 2:
             return 3
         case 3:
-            return Interest.list.count
+            return Interest.listWithIcon.count
         default:
             return 0
         }
@@ -491,7 +491,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InterestCollectionViewCell", for: indexPath) as! InterestCollectionViewCell
-            cell.setTextLabel(Interest.list[indexPath.item])
+            cell.setTextLabel(Interest.listWithIcon[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()

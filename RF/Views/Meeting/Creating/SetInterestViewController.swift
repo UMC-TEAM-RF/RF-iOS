@@ -50,8 +50,8 @@ final class SetInterestViewController: UIViewController {
     
     private lazy var interestCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 20
-        flowLayout.minimumInteritemSpacing = 20
+        flowLayout.minimumLineSpacing = 15
+        flowLayout.minimumInteritemSpacing = 15
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         cv.isScrollEnabled = false
@@ -65,6 +65,7 @@ final class SetInterestViewController: UIViewController {
         button.backgroundColor = .systemGray6
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 5
+        button.isEnabled = false
         return button
     }()
     
@@ -128,7 +129,7 @@ final class SetInterestViewController: UIViewController {
         
         interestCollectionView.snp.makeConstraints { make in
             make.top.equalTo(subLabel.snp.bottom).offset(35)
-            make.horizontalEdges.equalToSuperview().inset(45)
+            make.horizontalEdges.equalToSuperview().inset(30)
             make.bottom.equalTo(nextButton.snp.top).offset(-30)
         }
         
@@ -164,7 +165,7 @@ final class SetInterestViewController: UIViewController {
 extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (interestCollectionView.frame.width - (20 * 3)) / 3, height: (interestCollectionView.frame.width - (20 * 3)) / 3)
+        return CGSize(width: (interestCollectionView.frame.width - (15 * 3)) / 4.0, height: (interestCollectionView.frame.width - (15 * 3)) / 4.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -175,7 +176,7 @@ extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InterestCollectionViewCell", for: indexPath) as! InterestCollectionViewCell
         cell.setTextLabel(Interest.list[indexPath.item])
         cell.contentView.backgroundColor = .systemGray6
-        cell.setCornerRadius()
+        cell.contentView.layer.cornerRadius = 8
         return cell
     }
     
