@@ -136,7 +136,7 @@ final class SetInterestViewController: UIViewController {
         // 다음
         nextButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(30)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
             make.height.equalTo(50)
         }
     }

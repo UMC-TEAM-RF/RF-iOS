@@ -172,7 +172,7 @@ final class SetDetailInfoViewController: UIViewController {
         tf.layer.cornerRadius = 5
         tf.placeholder = "장소를 입력해 주세요."
         tf.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        tf.addLeftPadding()
+        tf.addHorizontalPadding(10)
         return tf
     }()
     

@@ -154,7 +154,7 @@ final class SetDescriptViewController: UIViewController {
         
         // 배너 설정 라벨
         bannerLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(25)
+            make.top.equalTo(progressBar.snp.bottom).offset(35)
             make.leading.equalToSuperview().inset(30)
         }
         
@@ -189,7 +189,7 @@ final class SetDescriptViewController: UIViewController {
         // 다음
         nextButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(30)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
             make.height.equalTo(50)
         }
     }
