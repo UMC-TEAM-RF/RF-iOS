@@ -196,6 +196,12 @@ final class MeetingViewController: UIViewController{
         
     }
     
+    /// MARK: 생성하기 팝업 뷰가 뜬 후 실행되는 함수
+    private func clickedCreateButtons(){
+        tabBarController?.tabBar.isHidden = true
+        let setMeetingNameViewController = SetMeetingNameViewController()
+        navigationController?.pushViewController(setMeetingNameViewController, animated: true)
+    }
     
     
 }
@@ -235,7 +241,15 @@ extension MeetingViewController: ClickedButton {
         else{
             print("clicked createMeeting")
             tabBarController?.tabBar.isHidden = true
-            navigationController?.pushViewController(SetMeetingNameViewController(), animated: true)
+            let meetingCreatePopUpViewController = MeetingCreatePopUpViewController()
+            meetingCreatePopUpViewController.checkingConformButton
+                .bind { [weak self] check in
+                    if check{
+                        self?.clickedCreateButtons()
+                    }
+                }
+                .disposed(by: disposeBag)
+            present(meetingCreatePopUpViewController, animated: true)
         }
     }
     
