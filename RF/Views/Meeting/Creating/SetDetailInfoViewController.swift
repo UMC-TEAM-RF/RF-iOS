@@ -122,15 +122,9 @@ final class SetDetailInfoViewController: UIViewController {
         return label
     }()
     
-    private lazy var ageGroupButton: UIButton = {
-        
-        let button = UIButton()
-        button.setTitle("무관  ", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        button.tintColor = .lightGray
-        button.semanticContentAttribute = .forceRightToLeft
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+    private lazy var ageGroupButton: MenuButton = {
+        let button = MenuButton()
+        button.title = "무관"
         return button
     }()
     
@@ -143,14 +137,9 @@ final class SetDetailInfoViewController: UIViewController {
         return label
     }()
     
-    private lazy var languageButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("영어  ", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        button.tintColor = .lightGray
-        button.semanticContentAttribute = .forceRightToLeft
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+    private lazy var languageButton: MenuButton = {
+        let button = MenuButton()
+        button.title = "프랑스어"
         return button
     }()
     
@@ -224,6 +213,7 @@ final class SetDetailInfoViewController: UIViewController {
     // MARK: - Property
     
     private let disposeBag = DisposeBag()
+    
     
     // MARK: - viewDidLoad()
     
@@ -350,7 +340,8 @@ final class SetDetailInfoViewController: UIViewController {
         ageGroupButton.snp.makeConstraints { make in
             make.centerY.equalTo(ageGroupLabel)
             make.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(ageGroupLabel.snp.height)
+            make.height.equalTo(ageGroupLabel.snp.height).multipliedBy(1.2)
+            make.width.equalTo(130)
         }
         
         // 사용 언어
@@ -363,7 +354,8 @@ final class SetDetailInfoViewController: UIViewController {
         languageButton.snp.makeConstraints { make in
             make.centerY.equalTo(languageLabel)
             make.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(languageLabel.snp.height)
+            make.height.equalTo(languageLabel.snp.height).multipliedBy(1.2)
+            make.width.equalTo(130)
         }
         
         // 활동 장소

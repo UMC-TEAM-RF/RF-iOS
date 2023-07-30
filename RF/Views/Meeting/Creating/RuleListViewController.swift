@@ -57,6 +57,7 @@ final class RuleListViewController: UIViewController {
     
     private var selectedCount = 0
     
+    
     // MARK: - viewDidLoad()
     
     override func viewDidLoad() {
