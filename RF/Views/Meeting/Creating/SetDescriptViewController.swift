@@ -32,11 +32,43 @@ final class SetDescriptViewController: UIViewController {
         return pv
     }()
     
+    // 배너 라벨
+    private lazy var bannerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "배너를 설정해 주세요."
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        return label
+    }()
+    
+    private lazy var bannerBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    private lazy var imageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.backgroundColor = .clear
+        iv.isUserInteractionEnabled = true
+        return iv
+    }()
+    
+    private lazy var cameraImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(systemName: "camera.fill")
+        iv.tintColor = .gray
+        iv.contentMode = .scaleAspectFit
+        iv.backgroundColor = .clear
+        return iv
+    }()
+    
     // 메인 라벨
-    private lazy var mainLabel: UILabel = {
+    private lazy var descriptLabel: UILabel = {
         let label = UILabel()
         label.text = "모임을 간단하게 소개해 주세요."
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return label
     }()
     
@@ -46,30 +78,10 @@ final class SetDescriptViewController: UIViewController {
         tv.backgroundColor = .systemGray6
         tv.text = textViewPlaceholder
         tv.textColor = .lightGray
-        tv.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        tv.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        tv.layer.cornerRadius = 10
         tv.delegate = self
         return tv
-    }()
-    
-    // MARK: - 모임 이미지
-    private lazy var imageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "no_image")
-        iv.contentMode = .scaleAspectFit
-        iv.clipsToBounds = true
-        iv.layer.borderWidth = 1.5
-        iv.layer.borderColor = UIColor.lightGray.cgColor
-        iv.isUserInteractionEnabled = true
-        return iv
-    }()
-    
-    private lazy var cameraImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(systemName: "camera.fill")
-        iv.tintColor = .black
-        iv.contentMode = .scaleAspectFit
-        iv.backgroundColor = .systemGray6
-        return iv
     }()
     
     // 다음 버튼
@@ -98,8 +110,6 @@ final class SetDescriptViewController: UIViewController {
         configureConstraints()
         addTargets()
         
-        view.layoutIfNeeded()
-        cameraImageView.layer.cornerRadius = cameraImageView.frame.width / 2
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -111,10 +121,19 @@ final class SetDescriptViewController: UIViewController {
     private func addSubviews() {
         view.addSubview(navigationBar)
         view.addSubview(progressBar)
-        view.addSubview(mainLabel)
+        view.addSubview(bannerLabel)
+        view.addSubview(bannerBackgroundView)
+        
+        bannerBackgroundView.addSubview(cameraImageView)
+        bannerBackgroundView.addSubview(imageView)
+        
+        view.addSubview(descriptLabel)
         view.addSubview(descriptTextView)
-        view.addSubview(imageView)
-        view.addSubview(cameraImageView)
+        
+//        view.addSubview(mainLabel)
+//        view.addSubview(descriptTextView)
+//        view.addSubview(imageView)
+//        view.addSubview(cameraImageView)
         view.addSubview(nextButton)
     }
     
@@ -133,30 +152,38 @@ final class SetDescriptViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(25)
         }
         
-        // 메인 라벨
-        mainLabel.snp.makeConstraints { make in
+        // 배너 설정 라벨
+        bannerLabel.snp.makeConstraints { make in
             make.top.equalTo(progressBar.snp.bottom).offset(25)
-            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().inset(30)
         }
         
-        // 텍스트 뷰
-        descriptTextView.snp.makeConstraints { make in
-            make.top.equalTo(mainLabel.snp.bottom).offset(35)
-            make.horizontalEdges.equalToSuperview().inset(25)
-            make.height.equalTo(150)
-        }
-        
-        // 사진
-        imageView.snp.makeConstraints { make in
-            make.top.equalTo(descriptTextView.snp.bottom).offset(25)
-            make.horizontalEdges.equalToSuperview().inset(25)
-            make.height.equalTo(imageView.snp.width).multipliedBy(0.9/1.6)
+        // 배너 설정 이미지 뷰
+        bannerBackgroundView.snp.makeConstraints { make in
+            make.top.equalTo(bannerLabel.snp.bottom).offset(10)
+            make.horizontalEdges.equalToSuperview().inset(30)
+            make.height.equalTo(bannerBackgroundView.snp.width).multipliedBy(0.9/1.6)
         }
         
         cameraImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(imageView.snp.height).multipliedBy(0.2)
-            make.centerX.equalTo(imageView.snp.trailing).offset(-5)
-            make.centerY.equalTo(imageView.snp.bottom).offset(-5)
+            make.center.equalToSuperview()
+            make.width.height.equalTo(30)
+        }
+        
+        imageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        // 모임 소개 라벨
+        descriptLabel.snp.makeConstraints { make in
+            make.top.equalTo(bannerBackgroundView.snp.bottom).offset(30)
+            make.leading.equalToSuperview().inset(30)
+        }
+        
+        descriptTextView.snp.makeConstraints { make in
+            make.top.equalTo(descriptLabel.snp.bottom).offset(10)
+            make.horizontalEdges.equalToSuperview().inset(30)
+            make.height.equalTo(150)
         }
         
         // 다음
