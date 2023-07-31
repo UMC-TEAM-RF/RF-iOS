@@ -56,6 +56,7 @@
 		3BD68EF52A7795D5003A57A7 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EF42A7795D5003A57A7 /* SignInViewModel.swift */; };
 		3BD68EF72A779741003A57A7 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EF62A779741003A57A7 /* SignIn.swift */; };
 		3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EFA2A779885003A57A7 /* SignInService.swift */; };
+		3BD68EFD2A77C787003A57A7 /* APIURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EFC2A77C787003A57A7 /* APIURL.swift */; };
 		3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */; };
 		3BEEE7D12A7658C0007092DF /* MeetingCreatePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */; };
 		3BEEE7D32A7659C4007092DF /* MeetingCreatePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE7D22A7659C4007092DF /* MeetingCreatePopUp.swift */; };
@@ -153,6 +154,7 @@
 		3BD68EF42A7795D5003A57A7 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		3BD68EF62A779741003A57A7 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		3BD68EFA2A779885003A57A7 /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
+		3BD68EFC2A77C787003A57A7 /* APIURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURL.swift; sourceTree = "<group>"; };
 		3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInterestsViewController.swift; sourceTree = "<group>"; };
 		3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreatePopUpViewController.swift; sourceTree = "<group>"; };
 		3BEEE7D22A7659C4007092DF /* MeetingCreatePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreatePopUp.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 		572DC22D2A51BF2400C0D6E1 /* RF */ = {
 			isa = PBXGroup;
 			children = (
+				3BD68EFC2A77C787003A57A7 /* APIURL.swift */,
 				572DC2432A51C36C00C0D6E1 /* App */,
 				57673EDA2A56E9B000A13D07 /* Constants */,
 				44F82A0F2A56D55D006B17F8 /* Extensions */,
@@ -704,6 +707,7 @@
 				3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */,
 				57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */,
 				3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */,
+				3BD68EFD2A77C787003A57A7 /* APIURL.swift in Sources */,
 				572A9A2D2A5C12B1004D2809 /* NavigationBarDelegate.swift in Sources */,
 				44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */,
 				57673EE02A57A87000A13D07 /* MoreFriendCollectionViewCell.swift in Sources */,

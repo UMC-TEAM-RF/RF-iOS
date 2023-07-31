@@ -374,7 +374,16 @@ final class SignInViewController: UIViewController {
             .accept(inputId)
         
         viewModel.idRelay
-            .accept(inputPW)   
+            .accept(inputPW)
+        
+        viewModel.checkingLogin()
+            .bind { check in
+                if check{
+                    // 로그인 성공 후 넘어가는 코드 작성
+                    print("success login")
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
 
