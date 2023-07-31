@@ -13,6 +13,7 @@ import RxSwift
 final class SignInViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
+    private let viewModel = SignInViewModel()
     // MARK: - UI Property
     
     
@@ -337,6 +338,11 @@ final class SignInViewController: UIViewController {
     
     private func addTargets() {
         
+        loginButton.rx.tap
+            .bind { [weak self] in
+                self?.clickedLoginButton()
+            }
+            .disposed(by: disposeBag)
         
         onboardingButton.rx.tap.subscribe(onNext: {
             self.navigationController?.pushViewController(SetNicknameViewController(), animated: true)
@@ -357,6 +363,18 @@ final class SignInViewController: UIViewController {
             self.navigationController?.pushViewController(PersonalInterestsViewController(), animated: true)
         })
         .disposed(by: disposeBag)
+    }
+    
+    /// MARK: 로그인 버튼 눌렀을 때 실행
+    private func clickedLoginButton(){
+        guard let inputId = idTextField.text else { return }
+        guard let inputPW = pwTextField.text else { return }
+        
+        viewModel.idRelay
+            .accept(inputId)
+        
+        viewModel.idRelay
+            .accept(inputPW)   
     }
 }
 

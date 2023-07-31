@@ -53,6 +53,9 @@
 		3BC35CF12A5C6CBD00D73163 /* RuleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CF02A5C6CBD00D73163 /* RuleCollectionViewCell.swift */; };
 		3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CF22A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift */; };
 		3BC35CF52A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CF42A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift */; };
+		3BD68EF52A7795D5003A57A7 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EF42A7795D5003A57A7 /* SignInViewModel.swift */; };
+		3BD68EF72A779741003A57A7 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EF62A779741003A57A7 /* SignIn.swift */; };
+		3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EFA2A779885003A57A7 /* SignInService.swift */; };
 		3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */; };
 		3BEEE7D12A7658C0007092DF /* MeetingCreatePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */; };
 		3BEEE7D32A7659C4007092DF /* MeetingCreatePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE7D22A7659C4007092DF /* MeetingCreatePopUp.swift */; };
@@ -147,6 +150,9 @@
 		3BC35CF02A5C6CBD00D73163 /* RuleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BC35CF22A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinMemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BC35CF42A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLeftAlignFlowLayout.swift; sourceTree = "<group>"; };
+		3BD68EF42A7795D5003A57A7 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		3BD68EF62A779741003A57A7 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		3BD68EFA2A779885003A57A7 /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
 		3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInterestsViewController.swift; sourceTree = "<group>"; };
 		3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreatePopUpViewController.swift; sourceTree = "<group>"; };
 		3BEEE7D22A7659C4007092DF /* MeetingCreatePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreatePopUp.swift; sourceTree = "<group>"; };
@@ -235,6 +241,7 @@
 		3B15CD622A644FB90096871F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				3BD68EF32A7795C8003A57A7 /* SignIn */,
 				3B15CD632A644FDE0096871F /* Meeting */,
 			);
 			path = ViewModels;
@@ -353,6 +360,30 @@
 			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
+		3BD68EF32A7795C8003A57A7 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				3BD68EF42A7795D5003A57A7 /* SignInViewModel.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		3BD68EF82A779870003A57A7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3BD68EF92A77987B003A57A7 /* SignIn */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3BD68EF92A77987B003A57A7 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				3BD68EFA2A779885003A57A7 /* SignInService.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
 		44F82A0F2A56D55D006B17F8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +447,7 @@
 				3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */,
 				3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */,
 				3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */,
+				3BD68EF62A779741003A57A7 /* SignIn.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -446,6 +478,7 @@
 				572A9A382A5E80B0004D2809 /* Models */,
 				572DC2422A51C23C00C0D6E1 /* Views */,
 				3B15CD622A644FB90096871F /* ViewModels */,
+				3BD68EF82A779870003A57A7 /* Services */,
 				572DC2372A51BF2500C0D6E1 /* Assets.xcassets */,
 				572DC2392A51BF2500C0D6E1 /* LaunchScreen.storyboard */,
 				572DC23C2A51BF2500C0D6E1 /* Info.plist */,
@@ -690,12 +723,14 @@
 				57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */,
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,
 				3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */,
+				3BD68EF72A779741003A57A7 /* SignIn.swift in Sources */,
 				572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */,
 				3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */,
 				3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */,
 				3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */,
 				3BC35CF52A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
 				3BC35CF12A5C6CBD00D73163 /* RuleCollectionViewCell.swift in Sources */,
+				3BD68EF52A7795D5003A57A7 /* SignInViewModel.swift in Sources */,
 				3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */,
 				5700636B2A643CDA0051F42A /* DropDownTableViewCell.swift in Sources */,
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
@@ -714,6 +749,7 @@
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
 				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
+				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
 				570063AD2A7258530051F42A /* DesignColor.swift in Sources */,
 				3B15CD612A64437D0096871F /* InterestingTopicCollectionViewCell.swift in Sources */,
 				572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */,
