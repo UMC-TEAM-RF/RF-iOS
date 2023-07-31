@@ -82,7 +82,7 @@ final class MeetingViewController: UIViewController{
     
     private let disposeBag = DisposeBag()
     
-    // MARK: View Did Load
+    // MARK:  - init
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -97,6 +97,8 @@ final class MeetingViewController: UIViewController{
         navigationItem.backButtonTitle = ""
         tabBarController?.tabBar.isHidden = false
     }
+    
+    // MARK: - Functions
     
     /// MARK: add UI
     private func addSubviews(){
@@ -233,23 +235,11 @@ extension MeetingViewController: ClickedButton {
     /// false -> 모임 생성하기
     func clickedButtons(check: Bool) {
         if check{
-            print("clicked searchMeeting")
             let searchingViewController = SearchingViewController()
             tabBarController?.tabBar.isHidden = true
             self.navigationController?.pushViewController(searchingViewController, animated: true)
         }
         else{
-            print("clicked createMeeting")
-            tabBarController?.tabBar.isHidden = true
-            
-//            let alert = UIAlertController(title: nil , message: MeetingCreatePopUp.description, preferredStyle: UIAlertController.Style.alert)
-//
-//            let okAction =  UIAlertAction(title: MeetingCreatePopUp.check, style: UIAlertAction.Style.default){ [weak self] _ in
-//                self?.clickedCreateButtons()
-//            }
-//            alert.addAction(okAction)
-//            present(alert, animated: false)
-            
             let meetingCreatePopUpViewController = MeetingCreatePopUpViewController()
             meetingCreatePopUpViewController.checkingConformButton
                 .bind { [weak self] check in

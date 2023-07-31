@@ -48,6 +48,8 @@ final class MeetingCreatePopUpViewController: DimmedViewController{
     }()
 
     private let disposeBag = DisposeBag()
+    
+    ///   팝업 뷰에서 확인 버튼을 눌렀는지 확인
     var checkingConformButton: BehaviorSubject<Bool> = BehaviorSubject(value: false)
 
     // MARK: - init
