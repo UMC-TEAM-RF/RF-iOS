@@ -27,6 +27,8 @@ class MenuButton: UIView {
         return label
     }()
     
+    weak var delegate: MenuButtonDelegate?
+    
     var title: String? {
         didSet {
             titleLabel.text = title
@@ -80,6 +82,6 @@ class MenuButton: UIView {
     }
     
     @objc func buttonTapped() {
-        print("Menu tapp")
+        delegate?.didTapMenuButton(self.tag)
     }
 }

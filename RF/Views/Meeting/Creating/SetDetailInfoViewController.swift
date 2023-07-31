@@ -125,6 +125,8 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var ageGroupButton: MenuButton = {
         let button = MenuButton()
         button.title = "무관"
+        button.tag = 0
+        button.delegate = self
         return button
     }()
     
@@ -140,6 +142,8 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var languageButton: MenuButton = {
         let button = MenuButton()
         button.title = "프랑스어"
+        button.tag = 1
+        button.delegate = self
         return button
     }()
     
@@ -450,5 +454,21 @@ extension SetDetailInfoViewController: UICollectionViewDelegate, UICollectionVie
         let cellSize = CGSize(width: text.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 30, height: collectionView.frame.height)
         
         return cellSize
+    }
+}
+
+extension SetDetailInfoViewController: MenuButtonDelegate {
+    func didTapMenuButton(_ tag: Int) {
+        let pickerVC = PickerViewController(tag: tag)
+        pickerVC.delegate = self
+        pickerVC.modalPresentationStyle = .overCurrentContext
+        present(pickerVC, animated: true, completion: nil)
+    }
+}
+
+extension SetDetailInfoViewController: ToolbarDelegate {
+    func didTapDoneButton(tag: Int, value: String) {
+        let menuButton = tag == 0 ? ageGroupButton : languageButton
+        menuButton.title = value
     }
 }

@@ -46,7 +46,7 @@ final class RuleListViewController: UIViewController {
     // 다음 버튼
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
-        button.setTitle("모임 생성하기", for: .normal)
+        button.setTitle("완료", for: .normal)
         button.backgroundColor = .tintColor
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
