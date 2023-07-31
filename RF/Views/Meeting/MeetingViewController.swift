@@ -241,6 +241,15 @@ extension MeetingViewController: ClickedButton {
         else{
             print("clicked createMeeting")
             tabBarController?.tabBar.isHidden = true
+            
+//            let alert = UIAlertController(title: nil , message: MeetingCreatePopUp.description, preferredStyle: UIAlertController.Style.alert)
+//
+//            let okAction =  UIAlertAction(title: MeetingCreatePopUp.check, style: UIAlertAction.Style.default){ [weak self] _ in
+//                self?.clickedCreateButtons()
+//            }
+//            alert.addAction(okAction)
+//            present(alert, animated: false)
+            
             let meetingCreatePopUpViewController = MeetingCreatePopUpViewController()
             meetingCreatePopUpViewController.checkingConformButton
                 .bind { [weak self] check in
