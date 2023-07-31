@@ -16,8 +16,8 @@ final class SignInService {
     func loginService(id: String, pw: String) -> Observable<SignIn>{
         let url = APIURL.api.loginURL()
         let body: Parameters = [
-            "loginId": id,
-            "userId": pw
+            SignInBody.first.body: id,
+            SignInBody.second.body: pw
         ]
         
         return Observable.create { observer in

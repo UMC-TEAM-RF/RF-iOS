@@ -31,3 +31,17 @@ struct SignInResult: Codable{
         case token
     }
 }
+
+/// MARK: 로그인 할때 사용하는 Body parameters
+enum SignInBody{
+    case first, second
+    
+    var body: String{
+        switch self{
+        case .first:
+            return "loginId"
+        case .second:
+            return "password"
+        }
+    }
+}

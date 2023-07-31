@@ -23,6 +23,9 @@ final class SignInViewModel {
     /// 입력한 password 저장할 Relay
     var passwordRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
     
+    
+    // MARK: - Functions
+    
     /// MARK: 로그인이 성공 했는지 반환하는 함수
     /// - Returns: true: 로그인 성공, false: 로그인 실패
     func checkingLogin() -> Observable<Bool>{
