@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class RuleListViewController: UIViewController {
     
@@ -55,7 +57,22 @@ final class RuleListViewController: UIViewController {
     
     // MARK: - Property
     
+    var selectedRules: [String]
+    
     private var selectedCount = 0
+    
+    private let disposeBag = DisposeBag()
+    
+    weak var delegate: SendDataDelegate?
+    
+    init(rules: [String]) {
+        self.selectedRules = rules
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     // MARK: - viewDidLoad()
@@ -67,6 +84,7 @@ final class RuleListViewController: UIViewController {
 
         addSubviews()
         configureConstraints()
+        addTargets()
     }
     
     // MARK: - addSubviews()
@@ -106,6 +124,15 @@ final class RuleListViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
             make.height.equalTo(50)
         }
+    }
+    
+    private func addTargets() {
+        confirmButton.rx.tap
+            .subscribe(onNext: {
+                self.delegate?.sendStringArrayData?(["test", "test"])
+                self.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

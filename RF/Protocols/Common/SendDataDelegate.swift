@@ -15,6 +15,9 @@ import Foundation
     // 이전 화면으로 Bool 데이터 전달
     @objc optional func sendBooleanData(_ data: Bool)
     
+    // 이전 화면으로 [String] 데이터 전달
+    @objc optional func sendStringArrayData(_ data: [String])
+    
     // PickerViewController -> SetDetailInfoViewController
     @objc optional func sendData(tag: Int, data: String)
 }

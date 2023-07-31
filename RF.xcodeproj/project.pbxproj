@@ -403,10 +403,10 @@
 				572A9A342A5CC21C004D2809 /* SetDescriptViewController.swift */,
 				572A9A362A5CE7D4004D2809 /* SetDetailInfoViewController.swift */,
 				570063922A67B23A0051F42A /* RuleListViewController.swift */,
+				570063BC2A7797B50051F42A /* PickerViewController.swift */,
 				5700635F2A63D5120051F42A /* PersonnelStepper.swift */,
 				570063672A6435DD0051F42A /* DropDownButton.swift */,
 				570063BA2A7630E60051F42A /* MenuButton.swift */,
-				570063BC2A7797B50051F42A /* PickerViewController.swift */,
 			);
 			path = Creating;
 			sourceTree = "<group>";

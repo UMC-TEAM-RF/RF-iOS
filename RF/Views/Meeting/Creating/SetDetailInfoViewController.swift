@@ -218,6 +218,8 @@ final class SetDetailInfoViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    var selectedRules: [String] = []
+    
     
     // MARK: - viewDidLoad()
     
@@ -230,7 +232,7 @@ final class SetDetailInfoViewController: UIViewController {
         configureConstraints()
         addTargets()
         
-        ruleCountLabel.text = "(\(Rule.list.count))"
+        ruleCountLabel.text = "(\(selectedRules.count))"
     }
     
     // MARK: - addSubviews()
@@ -413,7 +415,9 @@ final class SetDetailInfoViewController: UIViewController {
     private func addTargets() {
         ruleButton.rx.tap
             .subscribe(onNext: {
-                self.navigationController?.pushViewController(RuleListViewController(), animated: true)
+                let vc = RuleListViewController(rules: self.selectedRules)
+                vc.delegate = self
+                self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: disposeBag)
         
@@ -438,19 +442,19 @@ extension SetDetailInfoViewController: NavigationBarDelegate {
 
 extension SetDetailInfoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Rule.list.count
+        return selectedRules.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
-        cell.setupTagLabel(Rule.list[indexPath.item])
+        cell.setupTagLabel(selectedRules[indexPath.item])
         cell.setCellBackgroundColor(.systemGray6)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let text = Rule.list[indexPath.item]
+        let text = selectedRules[indexPath.item]
         let cellSize = CGSize(width: text.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 30, height: collectionView.frame.height)
         
         return cellSize
@@ -470,5 +474,11 @@ extension SetDetailInfoViewController: SendDataDelegate {
     func sendData(tag: Int, data: String) {
         let menuButton = tag == 0 ? ageGroupButton : languageButton
         menuButton.title = data
+    }
+    
+    func sendStringArrayData(_ data: [String]) {
+        self.selectedRules = data
+        self.ruleCountLabel.text = "(\(selectedRules.count))"
+        self.ruleCollectionView.reloadData()
     }
 }
