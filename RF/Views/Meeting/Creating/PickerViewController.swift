@@ -31,7 +31,7 @@ class PickerViewController: UIViewController {
     
     // MARK: - Property
     
-    var delegate: ToolbarDelegate?
+    weak var delegate: SendDataDelegate?
     
     private let tag: Int // 선호 연령대, 사용 언어를 구분하기 위함
     
@@ -85,7 +85,7 @@ class PickerViewController: UIViewController {
     }
 
     @objc func doneButtonTapped() {
-        delegate?.didTapDoneButton(tag: self.tag, value: self.selectedValue)
+        delegate?.sendData?(tag: self.tag, data: self.selectedValue)
         dismiss(animated: true, completion: nil)
     }
 }

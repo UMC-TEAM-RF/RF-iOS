@@ -466,9 +466,9 @@ extension SetDetailInfoViewController: MenuButtonDelegate {
     }
 }
 
-extension SetDetailInfoViewController: ToolbarDelegate {
-    func didTapDoneButton(tag: Int, value: String) {
+extension SetDetailInfoViewController: SendDataDelegate {
+    func sendData(tag: Int, data: String) {
         let menuButton = tag == 0 ? ageGroupButton : languageButton
-        menuButton.title = value
+        menuButton.title = data
     }
 }
