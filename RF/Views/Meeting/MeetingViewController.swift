@@ -82,7 +82,7 @@ final class MeetingViewController: UIViewController{
     
     private let disposeBag = DisposeBag()
     
-    // MARK: View Did Load
+    // MARK:  - init
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -97,6 +97,8 @@ final class MeetingViewController: UIViewController{
         navigationItem.backButtonTitle = ""
         tabBarController?.tabBar.isHidden = false
     }
+    
+    // MARK: - Functions
     
     /// MARK: add UI
     private func addSubviews(){
@@ -196,6 +198,12 @@ final class MeetingViewController: UIViewController{
         
     }
     
+    /// MARK: 생성하기 팝업 뷰가 뜬 후 실행되는 함수
+    private func clickedCreateButtons(){
+        tabBarController?.tabBar.isHidden = true
+        let setMeetingNameViewController = SetMeetingNameViewController()
+        navigationController?.pushViewController(setMeetingNameViewController, animated: true)
+    }
     
     
 }
@@ -227,15 +235,20 @@ extension MeetingViewController: ClickedButton {
     /// false -> 모임 생성하기
     func clickedButtons(check: Bool) {
         if check{
-            print("clicked searchMeeting")
             let searchingViewController = SearchingViewController()
             tabBarController?.tabBar.isHidden = true
             self.navigationController?.pushViewController(searchingViewController, animated: true)
         }
         else{
-            print("clicked createMeeting")
-            tabBarController?.tabBar.isHidden = true
-            navigationController?.pushViewController(SetMeetingNameViewController(), animated: true)
+            let meetingCreatePopUpViewController = MeetingCreatePopUpViewController()
+            meetingCreatePopUpViewController.checkingConformButton
+                .bind { [weak self] check in
+                    if check{
+                        self?.clickedCreateButtons()
+                    }
+                }
+                .disposed(by: disposeBag)
+            present(meetingCreatePopUpViewController, animated: true)
         }
     }
     
