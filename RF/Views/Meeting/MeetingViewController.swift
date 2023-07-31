@@ -222,21 +222,35 @@ extension MeetingViewController: UICollectionViewDelegate, UICollectionViewDataS
     
 }
 
-extension MeetingViewController: ClickedButton {
+extension MeetingViewController: SendDataDelegate {
     /// true -> 모임 찾기 버튼
     /// false -> 모임 생성하기
-    func clickedButtons(check: Bool) {
-        if check{
+    
+    func sendBooleanData(_ data: Bool) {
+        if data {
             print("clicked searchMeeting")
             let searchingViewController = SearchingViewController()
             tabBarController?.tabBar.isHidden = true
             self.navigationController?.pushViewController(searchingViewController, animated: true)
-        }
-        else{
+        } else {
             print("clicked createMeeting")
             tabBarController?.tabBar.isHidden = true
             navigationController?.pushViewController(SetMeetingNameViewController(), animated: true)
         }
     }
+    
+//    func clickedButtons(check: Bool) {
+//        if check{
+//            print("clicked searchMeeting")
+//            let searchingViewController = SearchingViewController()
+//            tabBarController?.tabBar.isHidden = true
+//            self.navigationController?.pushViewController(searchingViewController, animated: true)
+//        }
+//        else{
+//            print("clicked createMeeting")
+//            tabBarController?.tabBar.isHidden = true
+//            navigationController?.pushViewController(SetMeetingNameViewController(), animated: true)
+//        }
+//    }
     
 }

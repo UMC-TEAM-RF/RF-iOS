@@ -10,7 +10,10 @@ import Foundation
 @objc protocol SendDataDelegate: AnyObject {
     
     // 이전 화면으로 String 데이터 전달
-    @objc optional func sendData(_ data: String)
+    @objc optional func sendStringData(_ data: String)
+    
+    // 이전 화면으로 Bool 데이터 전달
+    @objc optional func sendBooleanData(_ data: Bool)
     
     // PickerViewController -> SetDetailInfoViewController
     @objc optional func sendData(tag: Int, data: String)

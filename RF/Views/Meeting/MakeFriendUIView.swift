@@ -38,7 +38,7 @@ final class MakeFriendUIView: UIView {
     }()
     
     private let disposeBag = DisposeBag()
-    var delegate: ClickedButton?
+    weak var delegate: SendDataDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -96,13 +96,13 @@ final class MakeFriendUIView: UIView {
     private func clickedBtns(){
         searchMeetingBtn.rx.tap
             .subscribe(onNext:{
-                self.delegate?.clickedButtons(check: true)
+                self.delegate?.sendBooleanData?(true)
             })
             .disposed(by: disposeBag)
         
         createMeetingBtn.rx.tap
             .subscribe(onNext:{
-                self.delegate?.clickedButtons(check: false)
+                self.delegate?.sendBooleanData?(false)
             })
             .disposed(by: disposeBag)
     }
