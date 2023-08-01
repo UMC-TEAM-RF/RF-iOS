@@ -3,7 +3,7 @@
 //  RF
 //
 //  Created by 이정동 on 2023/07/03.
-//
+//07
 
 import UIKit
 import SnapKit
@@ -38,19 +38,20 @@ class SetNicknameViewController: UIViewController {
 
     
     private lazy var nextButton: UIButton = {
-        
-        let userInfoViewController = UserInfoViewController()
-        navigationController?.pushViewController(userInfoViewController, animated: true)
-        
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         return button
     }()
-
+    // 다음 버튼 액션
+    @objc private func nextButtonTapped() {
+        let userInfoViewController = UserInfoViewController()
+        navigationController?.pushViewController(userInfoViewController, animated: true)
+    }
     
     private var textField: UITextField = {
         let field = UITextField()
@@ -60,6 +61,7 @@ class SetNicknameViewController: UIViewController {
         field.backgroundColor = UIColor(hexCode: "#F5F5F5")
         field.textColor = UIColor(hexCode: "#818181")
         field.layer.cornerRadius = 5
+        field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return field
     }()
     
@@ -98,7 +100,7 @@ class SetNicknameViewController: UIViewController {
         
         //알프닝의 기본 정보를 설정해주세요.
         topLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(25)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(24)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         
@@ -125,7 +127,7 @@ class SetNicknameViewController: UIViewController {
         
         //중복 확인
         nameCheckButton.snp.makeConstraints { make in
-            make.top.equalTo(topLabel.snp.bottom).offset(70)
+            make.top.equalTo(topLabel.snp.bottom).offset(65)
             make.leading.equalTo(textField.snp.trailing).offset(30)
             make.trailing.equalToSuperview().inset(25)
         }
