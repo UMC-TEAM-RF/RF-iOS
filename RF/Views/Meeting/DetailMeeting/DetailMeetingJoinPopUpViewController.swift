@@ -16,6 +16,7 @@ final class DetailMeetingJoinPopUpViewController: DimmedViewController{
     private lazy var baseUIView: UIView = {
         let view = UIView()
         view.backgroundColor = BackgroundColor.white.color
+        view.layer.cornerRadius = 20
         return view
     }()
      
@@ -26,18 +27,24 @@ final class DetailMeetingJoinPopUpViewController: DimmedViewController{
         label.numberOfLines = 2
         label.backgroundColor = .clear
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 18)
+        label.font = .systemFont(ofSize: 15)
         return label
+    }()
+    
+    /// MARK: 추가 정보 보이는 뷰
+    private lazy var lineUIView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(hexCode: "C2C2C3")
+        return view
     }()
     
     /// MARK: 확인 버튼
     private lazy var checkButton: UIButton = {
         let btn = UIButton()
         btn.setTitle(DetailMeetingJoinPopUp.check, for: .normal)
-        btn.backgroundColor = UIColor(hexCode: "D9D9D9")
         btn.titleLabel?.font = .systemFont(ofSize: 18)
         btn.layer.cornerRadius = 15
-        btn.setTitleColor(.black, for: .normal)
+        btn.setTitleColor(.systemBlue, for: .normal)
         return btn
     }()
     
@@ -63,6 +70,7 @@ final class DetailMeetingJoinPopUpViewController: DimmedViewController{
         view.addSubview(baseUIView)
         baseUIView.addSubview(descriptionLabel)
         baseUIView.addSubview(checkButton)
+        baseUIView.addSubview(lineUIView)
         
         configureCollectionView()
     }
@@ -73,18 +81,23 @@ final class DetailMeetingJoinPopUpViewController: DimmedViewController{
             make.centerY.equalTo(view.snp.centerY)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/4)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/7)
         }
         
         descriptionLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-20)
+            make.centerY.equalToSuperview().offset(-25)
             make.centerX.equalToSuperview()
         }
         
+        lineUIView.snp.makeConstraints { make in
+            make.bottom.equalTo(checkButton.snp.top).offset(-10)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        
         checkButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-20)
-            make.width.equalTo(view.safeAreaLayoutGuide.layoutFrame.width/3)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-10)
         }
     }
     
