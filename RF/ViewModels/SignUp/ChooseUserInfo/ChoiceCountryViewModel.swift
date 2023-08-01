@@ -15,8 +15,14 @@ final class ChoiceBornCountryViewModel{
     /// MARK: 국가 리스트
     var countryRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
+    /// MARK: 필터링된 국가
+    var filteringCountryRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+    
     /// MARK: 선택된 나라
-    var selectedCountry:BehaviorRelay<String> = BehaviorRelay(value: "")
+    var selectedCountry: BehaviorRelay<String> = BehaviorRelay(value: "")
+    
+    /// MARK: Check Filtering
+    var isFiltering: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     
     /// dummy data
     func inputCountry(){
@@ -28,5 +34,16 @@ final class ChoiceBornCountryViewModel{
         list.append("일본")
         
         countryRelay.accept(list)
+    }
+    
+    /// MARK: 필터링 후 반환
+    func filteringCountry(text: String) {
+        if text == ""{
+            filteringCountryRelay.accept(countryRelay.value)
+        }
+        else{
+            let list = countryRelay.value.filter { $0.localizedCaseInsensitiveContains(text) }
+            filteringCountryRelay.accept(list)
+        }
     }
 }
