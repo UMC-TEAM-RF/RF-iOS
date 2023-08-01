@@ -40,13 +40,13 @@ class UserInfoViewController: UIViewController {
     
     private let tableView = UITableView()
     private let data = ["항목 1", "항목 2", "항목 3", "항목 4", "항목 5"]
-
+    
     private lazy var tableViewHeightConstraint: NSLayoutConstraint = {
-            let constraint = tableView.heightAnchor.constraint(equalToConstant: 0)
-            constraint.priority = .defaultLow
-            return constraint
-        }()
-
+        let constraint = tableView.heightAnchor.constraint(equalToConstant: 0)
+        constraint.priority = .defaultLow
+        return constraint
+    }()
+            
     
     
     private lazy var favNationLabel: UILabel = {
@@ -115,28 +115,28 @@ class UserInfoViewController: UIViewController {
     }
     
     private func setupTableView() {
-            view.addSubview(tableView)
-            tableView.translatesAutoresizingMaskIntoConstraints = false
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         tableView.isHidden = true
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        }
-
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
     private func setupNationButton() {
-            nationButton.addTarget(self, action: #selector(showNationMenu), for: .touchUpInside)
-        }
-
+        nationButton.addTarget(self, action: #selector(showNationMenu), for: .touchUpInside)
+    }
+    
     @objc private func showNationMenu() {
         tableView.reloadData()
         
         tableViewHeightConstraint.constant = view.frame.height / 3
         tableView.isHidden = false // 테이블 뷰를 숨기지 않고 보여줌
-
+        
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
@@ -202,33 +202,33 @@ class UserInfoViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide).inset(655)
             make.leading.right.equalToSuperview().inset(30)
             make.bottom.equalToSuperview().inset(50)
-            }
         }
-
     }
+    
+}
 
 extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = data[indexPath.row]
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = data[indexPath.row]
         print("선택된 항목: \(selectedItem)")
         nationButton.setTitle("  " + selectedItem, for: .normal)
-                hideNationMenu()
+        hideNationMenu()
     }
     private func hideNationMenu() {
-            UIView.animate(withDuration: 0.3) {
-                self.tableViewHeightConstraint.constant = 0
-                self.tableView.isHidden = true
-                self.view.layoutIfNeeded()
-            }
+        UIView.animate(withDuration: 0.3) {
+            self.tableViewHeightConstraint.constant = 0
+            self.tableView.isHidden = true
+            self.view.layoutIfNeeded()
         }
+    }
 }
