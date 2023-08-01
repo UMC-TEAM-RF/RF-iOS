@@ -74,6 +74,7 @@
 		570063C12A779FED0051F42A /* AgeGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C02A779FED0051F42A /* AgeGroup.swift */; };
 		570063C32A77A01D0051F42A /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C22A77A01D0051F42A /* Language.swift */; };
 		570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C72A77B2B50051F42A /* SendDataDelegate.swift */; };
+		570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C92A792BB80051F42A /* ProfileSettingViewController.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -167,6 +168,7 @@
 		570063C02A779FED0051F42A /* AgeGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeGroup.swift; sourceTree = "<group>"; };
 		570063C22A77A01D0051F42A /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		570063C72A77B2B50051F42A /* SendDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataDelegate.swift; sourceTree = "<group>"; };
+		570063C92A792BB80051F42A /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -389,6 +391,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		570063CB2A792C530051F42A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				570063C92A792BB80051F42A /* ProfileSettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		572A9A272A5C0989004D2809 /* Creating */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +477,7 @@
 				572DC2542A51C97900C0D6E1 /* SignUp */,
 				572DC2512A51C62E00C0D6E1 /* Home */,
 				3B181D182A56DCC100B62DEB /* Meeting */,
+				570063CB2A792C530051F42A /* Setting */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -652,8 +663,7 @@
 				3B8477392A6AEC32007A6144 /* Mbti.swift in Sources */,
 				3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */,
 				3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */,
-				443044BD2A67B434008A4087 /* UserinfoSelf.swift in Sources */,
-				575032942A596DDE0060D629 /* ClickedButton.swift in Sources */,
+				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
 				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
 				572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */,
@@ -698,6 +708,7 @@
 				3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */,
 				3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */,
 				57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */,
+				570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */,
 				3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */,
 				3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */,
 				572A9A352A5CC21C004D2809 /* SetDescriptViewController.swift in Sources */,

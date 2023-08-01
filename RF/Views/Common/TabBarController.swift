@@ -19,7 +19,7 @@ final class TabBarController: UITabBarController {
     private func configureTabBar() {
         let vc1 = UINavigationController(rootViewController: HomeViewController())
         let vc2 = UINavigationController(rootViewController: MeetingViewController())
-        let vc3 = UINavigationController(rootViewController: HomeViewController())
+        let vc3 = UINavigationController(rootViewController: ProfileSettingViewController())
         let vc4 = UINavigationController(rootViewController: HomeViewController())
         let vc5 = UINavigationController(rootViewController: HomeViewController())
         
