@@ -95,7 +95,6 @@
 		572DC2502A51C5F300C0D6E1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */; };
 		572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2522A51C64400C0D6E1 /* HomeViewController.swift */; };
 		572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */; };
-		575032942A596DDE0060D629 /* ClickedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575032932A596DDE0060D629 /* ClickedButton.swift */; };
 		57673ED42A5579E000A13D07 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */; };
 		57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDB2A56E9D200A13D07 /* Interest.swift */; };
 		57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */; };
@@ -187,7 +186,6 @@
 		572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		572DC2522A51C64400C0D6E1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNicknameViewController.swift; sourceTree = "<group>"; };
-		575032932A596DDE0060D629 /* ClickedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickedButton.swift; sourceTree = "<group>"; };
 		57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EDB2A56E9D200A13D07 /* Interest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
 		57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -521,17 +519,8 @@
 			children = (
 				570063C42A77A0E20051F42A /* Common */,
 				5700636C2A6509F90051F42A /* Creating */,
-				575032922A596DC70060D629 /* Meeting */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		575032922A596DC70060D629 /* Meeting */ = {
-			isa = PBXGroup;
-			children = (
-				575032932A596DDE0060D629 /* ClickedButton.swift */,
-			);
-			path = Meeting;
 			sourceTree = "<group>";
 		};
 		57673ED72A56DF6500A13D07 /* Cell */ = {
@@ -657,14 +646,12 @@
 				570063C32A77A01D0051F42A /* Language.swift in Sources */,
 				57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */,
 				570063972A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
-				575032942A596DDE0060D629 /* ClickedButton.swift in Sources */,
 				3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */,
 				3BEEE7D12A7658C0007092DF /* MeetingCreatePopUpViewController.swift in Sources */,
 				3B8477372A6AEC25007A6144 /* LifeStyle.swift in Sources */,
 				3B8477392A6AEC32007A6144 /* Mbti.swift in Sources */,
 				3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */,
 				3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */,
-				575032942A596DDE0060D629 /* ClickedButton.swift in Sources */,
 				443044BD2A67B434008A4087 /* UserinfoSelf.swift in Sources */,
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
 				572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */,

@@ -243,24 +243,7 @@ extension MeetingViewController: SendDataDelegate {
             print("clicked createMeeting")
             tabBarController?.tabBar.isHidden = true
             navigationController?.navigationBar.isHidden = false
-            //updateNavigationBarBackButton()
-            
             navigationController?.pushViewController(SetMeetingNameViewController(), animated: true)
         }
     }
-    
-//    func clickedButtons(check: Bool) {
-//        if check{
-//            print("clicked searchMeeting")
-//            let searchingViewController = SearchingViewController()
-//            tabBarController?.tabBar.isHidden = true
-//            self.navigationController?.pushViewController(searchingViewController, animated: true)
-//        }
-//        else{
-//            print("clicked createMeeting")
-//            tabBarController?.tabBar.isHidden = true
-//            navigationController?.pushViewController(SetMeetingNameViewController(), animated: true)
-//        }
-//    }
-    
 }
