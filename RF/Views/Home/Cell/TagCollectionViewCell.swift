@@ -24,14 +24,19 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "TagCollectionViewCell"
     
-    var isSelectedCell: Bool = false
+    var isSelectedCell: Bool = false {
+        didSet {
+            isSelectedCell ?
+            setColor(textColor: .white, backgroundColor: .tintColor) : setColor(textColor: .black, backgroundColor: .systemGray6)
+        }
+    }
     
     // MARK: - init()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.backgroundColor = .lightGray
+        contentView.backgroundColor = .systemGray5
         contentView.layer.cornerRadius = contentView.frame.height / 2
         
         addSubviews()

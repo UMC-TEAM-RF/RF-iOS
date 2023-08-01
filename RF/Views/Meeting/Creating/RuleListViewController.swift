@@ -7,18 +7,12 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class RuleListViewController: UIViewController {
     
     // MARK: - UI Property
-    
-    // 네비게이션 바
-    private lazy var navigationBar: CustomNavigationBar = {
-        let view = CustomNavigationBar()
-        view.delegate = self
-        view.titleLabelText = "모임 규칙"
-        return view
-    }()
     
     // 메인 라벨
     private lazy var topLabel: UILabel = {
@@ -46,7 +40,7 @@ final class RuleListViewController: UIViewController {
     // 다음 버튼
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
-        button.setTitle("모임 생성하기", for: .normal)
+        button.setTitle("완료", for: .normal)
         button.backgroundColor = .tintColor
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
@@ -55,7 +49,25 @@ final class RuleListViewController: UIViewController {
     
     // MARK: - Property
     
+    var selectedRules: [String]
+    
     private var selectedCount = 0
+    
+    private var isSelectedRule = Array(repeating: false, count: Rule.list.count)
+    
+    private let disposeBag = DisposeBag()
+    
+    weak var delegate: SendDataDelegate?
+    
+    init(rules: [String]) {
+        self.selectedRules = rules
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     // MARK: - viewDidLoad()
     
@@ -63,15 +75,18 @@ final class RuleListViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
+        updateTitleView(title: "규칙 목록")
+        setupCustomBackButton()
 
         addSubviews()
         configureConstraints()
+        addTargets()
     }
     
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        view.addSubview(navigationBar)
         view.addSubview(topLabel)
         view.addSubview(ruleCollectionView)
         view.addSubview(confirmButton)
@@ -80,15 +95,10 @@ final class RuleListViewController: UIViewController {
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        // 네비게이션 바
-        navigationBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(60)
-        }
         
         // 메인 라벨
         topLabel.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom).offset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.leading.equalToSuperview().inset(30)
         }
         
@@ -106,13 +116,15 @@ final class RuleListViewController: UIViewController {
             make.height.equalTo(50)
         }
     }
-}
-
-// MARK: - Ext: NavigationBarDelegate
-
-extension RuleListViewController: NavigationBarDelegate {
-    func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
+    
+    private func addTargets() {
+        confirmButton.rx.tap
+            .subscribe(onNext: {
+                let rules = self.isSelectedRule.enumerated().filter({ $0.element }).map({ Rule.list[$0.offset] })
+                self.delegate?.sendStringArrayData?(rules)
+                self.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -125,8 +137,14 @@ extension RuleListViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
+        
         cell.setupTagLabel(Rule.list[indexPath.item])
-        cell.setCellBackgroundColor(.systemGray6)
+        
+        if selectedRules.contains(Rule.list[indexPath.item]) {
+            cell.isSelectedCell = true
+            isSelectedRule[indexPath.item] = true
+        }
+        
         return cell
     }
     
@@ -138,21 +156,18 @@ extension RuleListViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell else { return }
         
+        // 최대 5개 선택할 수 있도록 설정
         if !cell.isSelectedCell && self.selectedCount == 5 {
             print("초과")
             return
         }
         
         cell.isSelectedCell.toggle()
+        isSelectedRule[indexPath.item].toggle()
         
-        // 최대 3개 선택할 수 있도록 설정
-        if cell.isSelectedCell { // 활성화
-            self.selectedCount += 1
-            cell.setColor(textColor: .white, backgroundColor: .tintColor)
-        } else {  // 비활성화
-            self.selectedCount -= 1
-            cell.setColor(textColor: .label, backgroundColor: .systemGray6)
-        }
+        
+        if cell.isSelectedCell { self.selectedCount += 1 } // 활성화
+        else { self.selectedCount -= 1 } // 비활성화
     }
 }
 

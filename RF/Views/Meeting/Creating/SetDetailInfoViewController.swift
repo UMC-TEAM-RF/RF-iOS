@@ -14,14 +14,6 @@ final class SetDetailInfoViewController: UIViewController {
     
     // MARK: - UI Property
     
-    // 네비게이션 바
-    private lazy var navigationBar: CustomNavigationBar = {
-        let view = CustomNavigationBar()
-        view.titleLabelText = "모임 생성"
-        view.delegate = self
-        return view
-    }()
-    
     // 프로그레스 바
     private lazy var progressBar: UIProgressView = {
         let pv = UIProgressView()
@@ -31,22 +23,11 @@ final class SetDetailInfoViewController: UIViewController {
         return pv
     }()
     
-    private lazy var scrollView: UIScrollView = {
-        let sv = UIScrollView()
-        sv.backgroundColor = .white
-        return sv
-    }()
-    
-    private lazy var contentView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    
     // 메인 라벨
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.text = "모임의 세부 정보를 입력해 주세요."
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return label
     }()
     
@@ -54,7 +35,7 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var personnelStackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
-        sv.spacing = 3
+        sv.spacing = 5
         sv.alignment = .fill
         sv.distribution = .fill
         return sv
@@ -72,7 +53,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "최대 6명까지 가능합니다."
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .black
+        label.textColor = .lightGray
         return label
     }()
     
@@ -87,7 +68,7 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var koreanStackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
-        sv.spacing = 3
+        sv.spacing = 5
         sv.alignment = .fill
         sv.distribution = .fill
         return sv
@@ -95,7 +76,7 @@ final class SetDetailInfoViewController: UIViewController {
     
     private lazy var koreanTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "한국인 멤버 수"
+        label.text = "한국인 인원 수"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.textColor = .black
         return label
@@ -103,9 +84,10 @@ final class SetDetailInfoViewController: UIViewController {
     
     private lazy var koreanSubLabel: UILabel = {
         let label = UILabel()
-        label.text = "최대 6명까지 가능합니다."
+        label.text = "글로벌한 모임을 위해\n설정해 주세요."
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .black
+        label.textColor = .lightGray
+        label.numberOfLines = 2
         return label
     }()
     
@@ -114,6 +96,13 @@ final class SetDetailInfoViewController: UIViewController {
         sp.minimumCount = 0
         sp.maximumCount = 5
         return sp
+    }()
+    
+    // 첫 번째 경계선
+    private lazy var firstDivLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
     }()
     
     // 선호 연령대
@@ -125,15 +114,11 @@ final class SetDetailInfoViewController: UIViewController {
         return label
     }()
     
-    private lazy var ageGroupButton: UIButton = {
-        
-        let button = UIButton()
-        button.setTitle("무관  ", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        button.tintColor = .lightGray
-        button.semanticContentAttribute = .forceRightToLeft
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+    private lazy var ageGroupButton: MenuButton = {
+        let button = MenuButton()
+        button.title = "무관"
+        button.tag = 0
+        button.delegate = self
         return button
     }()
     
@@ -146,14 +131,11 @@ final class SetDetailInfoViewController: UIViewController {
         return label
     }()
     
-    private lazy var languageButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("영어  ", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        button.tintColor = .lightGray
-        button.semanticContentAttribute = .forceRightToLeft
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+    private lazy var languageButton: MenuButton = {
+        let button = MenuButton()
+        button.title = "프랑스어"
+        button.tag = 1
+        button.delegate = self
         return button
     }()
     
@@ -172,14 +154,21 @@ final class SetDetailInfoViewController: UIViewController {
         tf.layer.cornerRadius = 5
         tf.placeholder = "장소를 입력해 주세요."
         tf.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        tf.addLeftPadding()
+        tf.addHorizontalPadding(10)
         return tf
+    }()
+    
+    // 두 번째 경계선
+    private lazy var secondDivLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
     }()
     
     // 규칙
     private lazy var ruleButton: UIButton = {
         let button = UIButton()
-        button.setTitle("모임의 규칙  ", for: .normal)
+        button.setTitle("모임의 규칙 ", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         button.tintColor = .lightGray
@@ -188,13 +177,19 @@ final class SetDetailInfoViewController: UIViewController {
         return button
     }()
     
+    private lazy var ruleCountLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.textColor = .lightGray
+        return label
+    }()
+    
     private lazy var ruleCollectionView: UICollectionView = {
-        let flowLayout = LeftAlignedCollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 15
-        flowLayout.minimumInteritemSpacing = 15
-        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 12
+
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        cv.isScrollEnabled = false
         cv.delegate = self
         cv.dataSource = self
         cv.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: TagCollectionViewCell.identifier)
@@ -215,14 +210,8 @@ final class SetDetailInfoViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    // 컬렉션 뷰 높이 참조 제약 사항
-    private var ruleCollectionViewHeightConstraint: Constraint?
+    var selectedRules: [String] = []
     
-    // 컬렉션 뷰 높이 변수
-    private var ruleCollectionViewHeight: CGFloat = 0
-    
-    // 셀 너비
-    private var ruleCellWidth: CGFloat = 0
     
     // MARK: - viewDidLoad()
     
@@ -231,120 +220,114 @@ final class SetDetailInfoViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
+        updateTitleView(title: "모임 생성")
+        setupCustomBackButton()
+        
         addSubviews()
         configureConstraints()
         addTargets()
+        
+        ruleCountLabel.text = "(\(selectedRules.count))"
     }
     
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        view.addSubview(navigationBar)
         view.addSubview(progressBar)
         
-        // 스크롤 뷰
-        view.addSubview(scrollView)
-        
-        // 컨텐트 뷰
-        scrollView.addSubview(contentView)
-        
         // 메인 라벨
-        contentView.addSubview(mainLabel)
+        view.addSubview(mainLabel)
         
         // 모임 인원 수 설정
-        contentView.addSubview(personnelStackView)
-        contentView.addSubview(personnelStepper)
+        view.addSubview(personnelStackView)
+        view.addSubview(personnelStepper)
         personnelStackView.addArrangedSubview(personnelTitleLabel)
         personnelStackView.addArrangedSubview(personnelSubLabel)
         
         // 한국인 인원 수 설정
-        contentView.addSubview(koreanStackView)
-        contentView.addSubview(koreanStepper)
+        view.addSubview(koreanStackView)
+        view.addSubview(koreanStepper)
         koreanStackView.addArrangedSubview(koreanTitleLabel)
         koreanStackView.addArrangedSubview(koreanSubLabel)
         
+        // 첫 번째 경계선
+        view.addSubview(firstDivLine)
+        
         // 선호 연령대
-        contentView.addSubview(ageGroupLabel)
-        contentView.addSubview(ageGroupButton)
+        view.addSubview(ageGroupLabel)
+        view.addSubview(ageGroupButton)
         
         // 사용 언어
-        contentView.addSubview(languageLabel)
-        contentView.addSubview(languageButton)
+        view.addSubview(languageLabel)
+        view.addSubview(languageButton)
         
         // 활동 장소
-        contentView.addSubview(placeLabel)
-        contentView.addSubview(placeTextField)
+        view.addSubview(placeLabel)
+        view.addSubview(placeTextField)
+        
+        // 두 번째 경계선
+        view.addSubview(secondDivLine)
         
         // 모임 규칙
-        contentView.addSubview(ruleButton)
-        contentView.addSubview(ruleCollectionView)
+        view.addSubview(ruleButton)
+        view.addSubview(ruleCountLabel)
+        view.addSubview(ruleCollectionView)
         
         // 생성 버튼
-        contentView.addSubview(createButton)
+        view.addSubview(createButton)
     }
     
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        // 네비게이션 바
-        navigationBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(60)
-        }
         
         // 프로그레스 바
         progressBar.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(25)
-        }
-        
-        // 스크롤 뷰
-        scrollView.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom)
-            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        // 컨텐트 뷰
-        contentView.snp.makeConstraints { make in
-            make.edges.equalTo(scrollView.contentLayoutGuide)
-            make.width.equalTo(scrollView.frameLayoutGuide)
         }
         
         // 메인 라벨
         mainLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(25)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(progressBar.snp.bottom).offset(40)
+            make.leading.equalToSuperview().inset(30)
         }
         
         // 모임 인원 수 설정
         personnelStackView.snp.makeConstraints { make in
-            make.top.equalTo(mainLabel.snp.bottom).offset(45)
+            make.top.equalTo(mainLabel.snp.bottom).offset(40)
             make.leading.equalToSuperview().offset(30)
         }
         
         personnelStepper.snp.makeConstraints { make in
             make.centerY.equalTo(personnelStackView)
             make.trailing.equalToSuperview().offset(-30)
-            make.height.equalTo(personnelStackView.snp.height).multipliedBy(1.3)
+            make.height.equalTo(personnelStackView.snp.height).multipliedBy(1.15)
             make.width.equalTo(150)
         }
         
         // 한국인 인원 수 설정
         koreanStackView.snp.makeConstraints { make in
-            make.top.equalTo(personnelStackView.snp.bottom).offset(55)
+            make.top.equalTo(personnelStackView.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(30)
         }
         
         koreanStepper.snp.makeConstraints { make in
             make.centerY.equalTo(koreanStackView)
             make.trailing.equalToSuperview().offset(-30)
-            make.height.equalTo(koreanStackView.snp.height).multipliedBy(1.3)
+            make.height.equalTo(personnelStepper.snp.height)
             make.width.equalTo(150)
+        }
+        
+        firstDivLine.snp.makeConstraints { make in
+            make.top.equalTo(koreanStackView.snp.bottom).offset(30)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(1)
         }
         
         // 선호 연령대
         ageGroupLabel.snp.makeConstraints { make in
-            make.top.equalTo(koreanStepper.snp.bottom).offset(70)
+            make.top.equalTo(firstDivLine.snp.bottom).offset(30)
             make.height.equalTo(30)
             make.leading.equalToSuperview().inset(30)
         }
@@ -352,7 +335,8 @@ final class SetDetailInfoViewController: UIViewController {
         ageGroupButton.snp.makeConstraints { make in
             make.centerY.equalTo(ageGroupLabel)
             make.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(ageGroupLabel.snp.height)
+            make.height.equalTo(ageGroupLabel.snp.height).multipliedBy(1.2)
+            make.width.equalTo(130)
         }
         
         // 사용 언어
@@ -365,7 +349,8 @@ final class SetDetailInfoViewController: UIViewController {
         languageButton.snp.makeConstraints { make in
             make.centerY.equalTo(languageLabel)
             make.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(languageLabel.snp.height)
+            make.height.equalTo(languageLabel.snp.height).multipliedBy(1.2)
+            make.width.equalTo(130)
         }
         
         // 활동 장소
@@ -382,26 +367,35 @@ final class SetDetailInfoViewController: UIViewController {
             make.height.equalTo(placeLabel.snp.height).multipliedBy(1.2)
         }
         
+        // 두 번째 경계선
+        secondDivLine.snp.makeConstraints { make in
+            make.top.equalTo(placeLabel.snp.bottom).offset(30)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        
         // 모임 규칙
         ruleButton.snp.makeConstraints { make in
-            make.top.equalTo(placeLabel.snp.bottom).offset(55)
+            make.top.equalTo(secondDivLine.snp.bottom).offset(30)
             make.leading.equalToSuperview().inset(30)
+        }
+        
+        ruleCountLabel.snp.makeConstraints { make in
+            make.leading.equalTo(ruleButton.snp.trailing).offset(10)
+            make.centerY.equalTo(ruleButton.snp.centerY)
         }
         
         ruleCollectionView.snp.makeConstraints { make in
             make.top.equalTo(ruleButton.snp.bottom).offset(23)
             make.horizontalEdges.equalToSuperview().inset(25)
-            
-            //
-            ruleCollectionViewHeightConstraint = make.height.equalTo(0).constraint
+            make.height.equalTo(35)
         }
         
         // 다음
         createButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(30)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
             make.height.equalTo(50)
-            make.top.equalTo(ruleCollectionView.snp.bottom).offset(50)
         }
     }
     
@@ -410,7 +404,9 @@ final class SetDetailInfoViewController: UIViewController {
     private func addTargets() {
         ruleButton.rx.tap
             .subscribe(onNext: {
-                self.navigationController?.pushViewController(RuleListViewController(), animated: true)
+                let vc = RuleListViewController(rules: self.selectedRules)
+                vc.delegate = self
+                self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: disposeBag)
         
@@ -423,47 +419,52 @@ final class SetDetailInfoViewController: UIViewController {
     }
 }
 
-// MARK: - Ext: NavigationBarDelgate
-
-extension SetDetailInfoViewController: NavigationBarDelegate {
-    func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
-    }
-}
 
 // MARK: - Ext: CollectionView
 
 extension SetDetailInfoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Rule.list.count
+        return selectedRules.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
-        cell.setupTagLabel(Rule.list[indexPath.item])
+        cell.setupTagLabel(selectedRules[indexPath.item])
         cell.setCellBackgroundColor(.systemGray6)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let text = Rule.list[indexPath.item]
-        let cellSize = CGSize(width: text.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 30, height: 40)
         
-        ruleCellWidth += cellSize.width
-        
-        // 초기 컬렉션 뷰 높이 설정
-        if ruleCollectionViewHeight == 0 {
-            ruleCollectionViewHeight += cellSize.height
-            ruleCollectionViewHeightConstraint?.update(offset: ruleCollectionViewHeight)
-        }
-        
-        // 셀이 다음 행으로 넘어가면 컬렉션 뷰 높이 증가
-        if ruleCellWidth >= collectionView.frame.width {
-            ruleCollectionViewHeight += (cellSize.height + 15)
-            ruleCollectionViewHeightConstraint?.update(offset: ruleCollectionViewHeight)
-            ruleCellWidth = cellSize.width
-        }
+        let text = selectedRules[indexPath.item]
+        let cellSize = CGSize(width: text.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 30, height: collectionView.frame.height)
         
         return cellSize
+    }
+}
+
+// MARK: - Ext: MenuButtonDelegate
+
+extension SetDetailInfoViewController: MenuButtonDelegate {
+    func didTapMenuButton(_ tag: Int) {
+        let pickerVC = PickerViewController(tag: tag)
+        pickerVC.delegate = self
+        pickerVC.modalPresentationStyle = .overCurrentContext
+        present(pickerVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Ext: SendDataDelegate
+
+extension SetDetailInfoViewController: SendDataDelegate {
+    func sendData(tag: Int, data: String) {
+        let menuButton = tag == 0 ? ageGroupButton : languageButton
+        menuButton.title = data
+    }
+    
+    func sendStringArrayData(_ data: [String]) {
+        self.selectedRules = data
+        self.ruleCountLabel.text = "(\(selectedRules.count))"
+        self.ruleCollectionView.reloadData()
     }
 }
