@@ -54,8 +54,8 @@ final class DetailMeetingTabController: TabmanViewController {
         //탭바 레이아웃 설정
         bar.layout.transitionStyle = .snap
         bar.layout.alignment = .centerDistributed
-        bar.layout.contentMode = .intrinsic
-        bar.layout.interButtonSpacing = view.bounds.width/2
+        bar.layout.contentMode = .fit
+        
                 
         //배경색
         bar.backgroundView.style = .clear
@@ -63,10 +63,11 @@ final class DetailMeetingTabController: TabmanViewController {
                 
         //버튼 글시 커스텀
         bar.buttons.customize{ button in
-            button.tintColor = UIColor(red: 101/255, green: 101/255, blue: 101/255, alpha: 1.0) /* #656565 */
+            button.tintColor = UIColor(hexCode: "656565")
             button.selectedTintColor = .black
             button.font = .systemFont(ofSize: 14)
         }
+        
         //indicator
         bar.indicator.weight = .custom(value: 1)
         bar.indicator.overscrollBehavior = .bounce

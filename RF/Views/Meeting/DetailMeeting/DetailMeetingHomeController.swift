@@ -48,7 +48,7 @@ final class DetailMeetingHomeController: UIViewController {
     /// MARK: 모임 이름
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "내일 같이 땀 흘려 볼까요?"
+        label.text = "👋 내일 같이 땀 흘려 볼까요?"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
@@ -145,21 +145,29 @@ final class DetailMeetingHomeController: UIViewController {
         return view
     }()
     
-    /// MARK: 멤버 정원, 선호 연령대, 사용 언어, 활동 장소 묶는 StackView
-    private lazy var infomationStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [memberUIView, ageUIView, languageUIView, placeUIView])
-        stack.axis = .vertical
-        stack.distribution = .fillEqually
-        return stack
+    /// MARK: 멤버 정원, 선호 연령대, 사용 언어, 활동 장소 묶는 UIView
+    private lazy var infomationUIView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(hexCode: "F5F5F5")
+        view.layer.cornerRadius = 10
+        return view
     }()
     
     
     /// MARK: 모임 소개 제목
     private lazy var meetingLabel: UILabel = {
         let label = UILabel()
-        label.text = "모임 소개"
+        label.text = "📣 모임 소개"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
+    }()
+    
+    /// MARK: 모임 설명 감싸고 있는 View
+    private lazy var meetingIntroductionRoundUIView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(hexCode: "F5F5F5")
+        view.layer.cornerRadius = 10
+        return view
     }()
     
     /// MARK: 모임 설명
@@ -175,7 +183,7 @@ final class DetailMeetingHomeController: UIViewController {
     /// MARK: 다친의 규칙 제목
     private lazy var ruleLabel: UILabel = {
         let label = UILabel()
-        label.text = "다친의 규칙"
+        label.text = "💬 다친의 규칙"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
@@ -193,7 +201,7 @@ final class DetailMeetingHomeController: UIViewController {
     /// MARK: 가입 멤버 제목
     private lazy var joinMemberLabel: UILabel = {
         let label = UILabel()
-        label.text = "가입 멤버"
+        label.text = "👥 가입 멤버"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
@@ -234,7 +242,7 @@ final class DetailMeetingHomeController: UIViewController {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         btn.backgroundColor = UIColor(hexCode: "F1F1F1")
         btn.titleLabel?.textAlignment = .center
-        btn.setTitleColor(.black, for: .normal)
+        btn.setTitleColor(.blue, for: .normal)
         return btn
     }()
     
@@ -243,7 +251,7 @@ final class DetailMeetingHomeController: UIViewController {
     private var interestingList: [String] = []
     private var memberList: [Member] = []
     private var ruleList: [String] = []
-    private var meetingIntroductionConstraint: Constraint?
+    private var meetingIntroductionUIViewConstraint: Constraint?
     private var ruleCollectionViewConstraint: Constraint?
     private var ruleCollectionViewHeight: CGFloat = 0
     private var ruleCellWidth: CGFloat = 0
@@ -275,6 +283,10 @@ final class DetailMeetingHomeController: UIViewController {
         
         contentView.addSubview(titleImg)
         contentView.addSubview(interestingCollectionView)
+        interestingCollectionView.dataSource = self
+        interestingCollectionView.delegate = self
+        interestingCollectionView.register(InterestingCollectionViewCell.self, forCellWithReuseIdentifier: InterestingCollectionViewCell.identifier)
+        
         contentView.addSubview(titleLabel)
         
         memberUIView.addSubview(memberTitleLabel)
@@ -289,13 +301,15 @@ final class DetailMeetingHomeController: UIViewController {
         placeUIView.addSubview(placeTitleLabel)
         placeUIView.addSubview(placeContentLabel)
         
-        contentView.addSubview(infomationStackView)
-        interestingCollectionView.dataSource = self
-        interestingCollectionView.delegate = self
-        interestingCollectionView.register(InterestingCollectionViewCell.self, forCellWithReuseIdentifier: InterestingCollectionViewCell.identifier)
+        contentView.addSubview(infomationUIView)
+        infomationUIView.addSubview(memberUIView)
+        infomationUIView.addSubview(ageUIView)
+        infomationUIView.addSubview(languageUIView)
+        infomationUIView.addSubview(placeUIView)
         
         contentView.addSubview(meetingLabel)
-        contentView.addSubview(meetingIntroduction)
+        contentView.addSubview(meetingIntroductionRoundUIView)
+        meetingIntroductionRoundUIView.addSubview(meetingIntroduction)
         
         contentView.addSubview(ruleLabel)
         
@@ -330,14 +344,16 @@ final class DetailMeetingHomeController: UIViewController {
         
         titleImg.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top)
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(titleImg.snp.width).multipliedBy(0.9/1.6)
         }
         
         /// 관심 분야
         interestingCollectionView.snp.makeConstraints { make in
             make.top.equalTo(titleImg.snp.bottom)
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/25)
         }
 
@@ -349,21 +365,33 @@ final class DetailMeetingHomeController: UIViewController {
         }
         
         /// 모임 특징
-        infomationStackView.snp.makeConstraints { make in
+        infomationUIView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
-            make.leading.equalToSuperview().offset(30)
-            make.trailing.equalToSuperview().offset(-30)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*1/10)
+            make.leading.equalToSuperview().offset(25)
+            make.trailing.equalToSuperview().offset(-25)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/7)
         }
         
-        /// Information StackView 내부
+        // MARK: 멤버 정원 UI
+        memberUIView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(15)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
         memberTitleLabel.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()
         }
         
         memberContentLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.equalTo(memberTitleLabel.snp.trailing).offset(20)
+            make.top.bottom.trailing.equalToSuperview()
+        }
+        
+        // MARK: 선호 연령대 UI
+        ageUIView.snp.makeConstraints { make in
+            make.top.equalTo(memberUIView.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
         }
         
         ageTitleLabel.snp.makeConstraints { make in
@@ -371,8 +399,14 @@ final class DetailMeetingHomeController: UIViewController {
         }
         
         ageContentLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.equalTo(ageTitleLabel.snp.trailing).offset(20)
+            make.top.bottom.trailing.equalToSuperview()
+        }
+        
+        // MARK: 선호 연령대
+        languageUIView.snp.makeConstraints { make in
+            make.top.equalTo(ageUIView.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
         }
         
         languageTitleLabel.snp.makeConstraints { make in
@@ -380,8 +414,14 @@ final class DetailMeetingHomeController: UIViewController {
         }
         
         languageContentLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.equalTo(languageTitleLabel.snp.trailing).offset(20)
+            make.top.bottom.trailing.equalToSuperview()
+        }
+        
+        // MARK: 장소
+        placeUIView.snp.makeConstraints { make in
+            make.top.equalTo(languageUIView.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
         }
         
         placeTitleLabel.snp.makeConstraints { make in
@@ -389,28 +429,34 @@ final class DetailMeetingHomeController: UIViewController {
         }
         
         placeContentLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.equalTo(placeTitleLabel.snp.trailing).offset(20)
+            make.top.bottom.trailing.equalToSuperview()
         }
         
         
         /// 모임 소개
         meetingLabel.snp.makeConstraints { make in
-            make.top.equalTo(infomationStackView.snp.bottom).offset(30)
+            make.top.equalTo(infomationUIView.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(30)
             make.trailing.equalToSuperview().offset(-30)
         }
         
         meetingIntroduction.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(15)
+            make.bottom.equalToSuperview().offset(-15)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
+        meetingIntroductionRoundUIView.snp.makeConstraints { make in
             make.top.equalTo(meetingLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(30)
             make.trailing.equalToSuperview().offset(-30)
-            meetingIntroductionConstraint = make.height.equalTo(40).priority(250).constraint
+            meetingIntroductionUIViewConstraint = make.height.equalTo(40).priority(250).constraint
         }
         
         /// 규칙
         ruleLabel.snp.makeConstraints { make in
-            make.top.equalTo(meetingIntroduction.snp.bottom).offset(30)
+            make.top.equalTo(meetingIntroductionRoundUIView.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(30)
             
         }
@@ -439,7 +485,7 @@ final class DetailMeetingHomeController: UIViewController {
             make.leading.equalToSuperview().offset(30)
             make.trailing.equalToSuperview().offset(-30)
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/10)
-            make.bottom.equalToSuperview().offset(-view.safeAreaLayoutGuide.layoutFrame.height/18)
+            make.bottom.equalToSuperview().offset(-view.safeAreaLayoutGuide.layoutFrame.height/10)
         }
         
         likeBtn.snp.makeConstraints { make in
@@ -499,7 +545,7 @@ final class DetailMeetingHomeController: UIViewController {
         
         meetingIntroduction.setTextWithLineHeight(text: longText, lineHeight: 25)
         let newHeight = meetingIntroduction.sizeThatFits(meetingIntroduction.attributedText?.size() ?? CGSize(width: 0, height: 0)).height
-        meetingIntroductionConstraint?.update(offset: newHeight)
+        meetingIntroductionUIViewConstraint?.update(offset: newHeight)
         
         ruleList.append("abcdefasdfabcdefasdfabcdefasdf")
         ruleList.append("abcdefasdfabcdefasdfabcdefasdf")
@@ -559,7 +605,7 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
             let newSize = (interesting as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
             
-            return CGSize(width: newSize.width + 10, height: collectionView.bounds.height*4/5)
+            return CGSize(width: newSize.width + 10, height: collectionView.bounds.height - 5)
         }
         else if collectionView == ruleCollectionView{
             let rule = ruleList[indexPath.row]
