@@ -99,7 +99,7 @@ class UserInfoViewController: UIViewController {
     
     // 다음 버튼 액션
     @objc private func nextButtonTapped() {
-        let userinfoSelfViewController = UserinfoSelf()
+        let userinfoSelfViewController = UserInfoSelfViewController()
         navigationController?.pushViewController(userinfoSelfViewController, animated: true)
     }
     

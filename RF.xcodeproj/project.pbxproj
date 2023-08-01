@@ -53,11 +53,10 @@
 		3BC35CF12A5C6CBD00D73163 /* RuleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CF02A5C6CBD00D73163 /* RuleCollectionViewCell.swift */; };
 		3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CF22A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift */; };
 		3BC35CF52A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CF42A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift */; };
-		443044BD2A67B434008A4087 /* UserinfoSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443044BC2A67B434008A4087 /* UserinfoSelfViewController.swift */; };
 		3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */; };
 		3BEEE7D12A7658C0007092DF /* MeetingCreatePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */; };
 		3BEEE7D32A7659C4007092DF /* MeetingCreatePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE7D22A7659C4007092DF /* MeetingCreatePopUp.swift */; };
-		443044BD2A67B434008A4087 /* UserinfoSelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443044BC2A67B434008A4087 /* UserinfoSelf.swift */; };
+		443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */; };
 		44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */; };
 		44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F82A162A5C05A7006B17F8 /* UserInfoViewController.swift */; };
 		570063602A63D5120051F42A /* PersonnelStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700635F2A63D5120051F42A /* PersonnelStepper.swift */; };
@@ -148,11 +147,10 @@
 		3BC35CF02A5C6CBD00D73163 /* RuleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BC35CF22A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinMemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BC35CF42A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLeftAlignFlowLayout.swift; sourceTree = "<group>"; };
-		443044BC2A67B434008A4087 /* UserinfoSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserinfoSelfViewController.swift; sourceTree = "<group>"; };
 		3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInterestsViewController.swift; sourceTree = "<group>"; };
 		3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreatePopUpViewController.swift; sourceTree = "<group>"; };
 		3BEEE7D22A7659C4007092DF /* MeetingCreatePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreatePopUp.swift; sourceTree = "<group>"; };
-		443044BC2A67B434008A4087 /* UserinfoSelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserinfoSelf.swift; sourceTree = "<group>"; };
+		443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSelfViewController.swift; sourceTree = "<group>"; };
 		44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		44F82A162A5C05A7006B17F8 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		5700635F2A63D5120051F42A /* PersonnelStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonnelStepper.swift; sourceTree = "<group>"; };
@@ -493,7 +491,7 @@
 				572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */,
 				3B935D572A56F00200FECE3A /* SignUpViewController.swift */,
 				44F82A162A5C05A7006B17F8 /* UserInfoViewController.swift */,
-				443044BC2A67B434008A4087 /* UserinfoSelfViewController.swift */,
+				443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */,
 				3B2670E52A5ECCF600EA4F45 /* TermsConditionsViewController.swift */,
 				3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */,
 			);
@@ -659,7 +657,7 @@
 				3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */,
 				3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */,
 				575032942A596DDE0060D629 /* ClickedButton.swift in Sources */,
-				443044BD2A67B434008A4087 /* UserinfoSelfViewController.swift in Sources */,
+				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
 				572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */,
 				3BEEE7D32A7659C4007092DF /* MeetingCreatePopUp.swift in Sources */,

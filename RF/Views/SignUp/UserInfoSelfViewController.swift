@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class UserinfoSelf: UIViewController {
+class UserInfoSelfViewController: UIViewController {
     
     private lazy var topLabel: UILabel = {
         let label = UILabel()
