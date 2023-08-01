@@ -525,8 +525,8 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
         if collectionView == interestingCollectionView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestingCollectionViewCell.identifier, for: indexPath) as? InterestingCollectionViewCell else {return UICollectionViewCell() }
             cell.inputData(text: interestingList[indexPath.row])
-            cell.backgroundColor = UIColor(hexCode: "f5f5f5")
-            cell.layer.cornerRadius = 15
+            cell.backgroundColor = UIColor(hexCode: "006FF2")
+            cell.layer.cornerRadius = 10
             return cell
         }
         else if collectionView == ruleCollectionView{
@@ -555,7 +555,11 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == interestingCollectionView{
-            return CGSize(width: collectionView.bounds.width/4, height: collectionView.bounds.height*4/5)
+            let interesting = interestingList[indexPath.row]
+            let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+            let newSize = (interesting as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
+            
+            return CGSize(width: newSize.width + 10, height: collectionView.bounds.height*4/5)
         }
         else if collectionView == ruleCollectionView{
             let rule = ruleList[indexPath.row]
