@@ -467,8 +467,10 @@ final class DetailMeetingHomeController: UIViewController {
             .disposed(by: disposeBag)
         
         joinBtn.rx.tap
-            .subscribe(onNext:{
+            .subscribe(onNext:{ [weak self] in
                 print("clicked join Button")
+                let detailMeetingJoinPopUpViewController = DetailMeetingJoinPopUpViewController()
+                self?.present(detailMeetingJoinPopUpViewController, animated: true)
             })
             .disposed(by: disposeBag)
     }
