@@ -190,11 +190,11 @@ final class DetailMeetingHomeController: UIViewController {
     
     /// MARK: 규칙 표시할 CollectionView
     private lazy var ruleCollectionView: UICollectionView = {
-        let layout = CollectionViewLeftAlignFlowLayout()
-        layout.scrollDirection = .vertical
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
-        cv.isScrollEnabled = false
+        cv.isScrollEnabled = true
         return cv
     }()
     
@@ -210,6 +210,7 @@ final class DetailMeetingHomeController: UIViewController {
     private lazy var joinMemberNumberLabel: UILabel = {
         let label = UILabel()
         label.text = "4/5"
+        label.textColor = .systemBlue
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
@@ -242,7 +243,7 @@ final class DetailMeetingHomeController: UIViewController {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         btn.backgroundColor = UIColor(hexCode: "F1F1F1")
         btn.titleLabel?.textAlignment = .center
-        btn.setTitleColor(.blue, for: .normal)
+        btn.setTitleColor(.systemBlue, for: .normal)
         return btn
     }()
     
@@ -255,6 +256,8 @@ final class DetailMeetingHomeController: UIViewController {
     private var ruleCollectionViewConstraint: Constraint?
     private var ruleCollectionViewHeight: CGFloat = 0
     private var ruleCellWidth: CGFloat = 0
+    
+    // MARK: - init
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -465,8 +468,7 @@ final class DetailMeetingHomeController: UIViewController {
             make.top.equalTo(ruleLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            ruleCollectionViewHeight = view.safeAreaLayoutGuide.layoutFrame.height/20
-            ruleCollectionViewConstraint = make.height.equalTo(ruleCollectionViewHeight).constraint
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/14)
         }
         
         /// 가입 멤버
@@ -605,21 +607,15 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
             let newSize = (interesting as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
             
-            return CGSize(width: newSize.width + 10, height: collectionView.bounds.height - 5)
+            return CGSize(width: newSize.width + 10, height: collectionView.bounds.height)
         }
         else if collectionView == ruleCollectionView{
             let rule = ruleList[indexPath.row]
             
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
             let newSize = (rule as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
-            ruleCellWidth += newSize.width
-            
-            if ruleCellWidth >= collectionView.frame.width{
-                ruleCollectionViewHeight += view.safeAreaLayoutGuide.layoutFrame.height/15
-                ruleCollectionViewConstraint?.update(offset: ruleCollectionViewHeight)
-                ruleCellWidth = newSize.width
-            }
-            return CGSize(width: newSize.width + 10, height: 35)
+
+            return CGSize(width: newSize.width, height: 35)
         }
         else if collectionView == joinMemberCollectionView{
             return CGSize(width: collectionView.bounds.width/6, height: collectionView.bounds.height)
