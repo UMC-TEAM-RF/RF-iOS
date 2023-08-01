@@ -14,14 +14,6 @@ final class RuleListViewController: UIViewController {
     
     // MARK: - UI Property
     
-    // 네비게이션 바
-    private lazy var navigationBar: CustomNavigationBar = {
-        let view = CustomNavigationBar()
-        view.delegate = self
-        view.titleLabelText = "모임 규칙"
-        return view
-    }()
-    
     // 메인 라벨
     private lazy var topLabel: UILabel = {
         let label = UILabel()
@@ -83,6 +75,9 @@ final class RuleListViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
+        updateTitleView(title: "규칙 목록")
+        setupCustomBackButton()
 
         addSubviews()
         configureConstraints()
@@ -92,7 +87,6 @@ final class RuleListViewController: UIViewController {
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        view.addSubview(navigationBar)
         view.addSubview(topLabel)
         view.addSubview(ruleCollectionView)
         view.addSubview(confirmButton)
@@ -101,15 +95,10 @@ final class RuleListViewController: UIViewController {
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        // 네비게이션 바
-        navigationBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(60)
-        }
         
         // 메인 라벨
         topLabel.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom).offset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.leading.equalToSuperview().inset(30)
         }
         
@@ -136,14 +125,6 @@ final class RuleListViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
-    }
-}
-
-// MARK: - Ext: NavigationBarDelegate
-
-extension RuleListViewController: NavigationBarDelegate {
-    func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
     }
 }
 

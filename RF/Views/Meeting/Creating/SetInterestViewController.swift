@@ -14,14 +14,6 @@ final class SetInterestViewController: UIViewController {
     
     // MARK: - UI Property
     
-    // 네비게이션 바
-    private lazy var navigationBar: CustomNavigationBar = {
-        let view = CustomNavigationBar()
-        view.titleLabelText = "모임 생성"
-        view.delegate = self
-        return view
-    }()
-    
     // 프로그레스 바
     private lazy var progressBar: UIProgressView = {
         let pv = UIProgressView()
@@ -83,6 +75,9 @@ final class SetInterestViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         
+        updateTitleView(title: "모임 생성")
+        setupCustomBackButton()
+        
         addSubviews()
         configureConstraints()
         addTargets()
@@ -92,7 +87,6 @@ final class SetInterestViewController: UIViewController {
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        view.addSubview(navigationBar)
         view.addSubview(progressBar)
         view.addSubview(nextButton)
         view.addSubview(mainLabel)
@@ -103,15 +97,10 @@ final class SetInterestViewController: UIViewController {
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        // 네비게이션 바
-        navigationBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(60)
-        }
         
         // 프로그레스 바
         progressBar.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(25)
         }
         
@@ -209,14 +198,5 @@ extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewD
             nextButton.setTitleColor(.white, for: .normal)
             nextButton.isEnabled = true
         }
-    }
-}
-
-
-// MARK: - Ext: NavigationBarDelegate
-
-extension SetInterestViewController: NavigationBarDelegate {
-    func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
     }
 }

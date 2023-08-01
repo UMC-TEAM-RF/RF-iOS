@@ -14,14 +14,6 @@ final class SetMeetingNameViewController: UIViewController {
     
     // MARK: - UI Property
     
-    // 네비게이션 바
-    private lazy var navigationBar: CustomNavigationBar = {
-        let view = CustomNavigationBar()
-        view.titleLabelText = "모임 생성"
-        view.delegate = self
-        return view
-    }()
-    
     // 프로그레스 바
     private lazy var progressBar: UIProgressView = {
         let pv = UIProgressView()
@@ -84,10 +76,11 @@ final class SetMeetingNameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         view.backgroundColor = .systemBackground
+        
+        updateTitleView(title: "모임 생성")
+        setupCustomBackButton()
         
         addSubviews()
         configureConstraints()
@@ -101,7 +94,6 @@ final class SetMeetingNameViewController: UIViewController {
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        view.addSubview(navigationBar)
         view.addSubview(progressBar)
         view.addSubview(mainLabel)
         view.addSubview(subLabel)
@@ -113,15 +105,10 @@ final class SetMeetingNameViewController: UIViewController {
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        // 네비게이션 바
-        navigationBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(60)
-        }
         
         // 프로그레스 바
         progressBar.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(25)
         }
         
@@ -180,15 +167,6 @@ final class SetMeetingNameViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
-    }
-}
-
-// MARK: - Ext: NavigationDelegate
-
-extension SetMeetingNameViewController: NavigationBarDelegate {
-    func backButtonTapped() {
-        tabBarController?.tabBar.isHidden = false
-        navigationController?.popViewController(animated: true)
     }
 }
 

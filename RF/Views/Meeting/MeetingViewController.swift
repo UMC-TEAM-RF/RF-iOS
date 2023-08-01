@@ -235,6 +235,9 @@ extension MeetingViewController: SendDataDelegate {
         } else {
             print("clicked createMeeting")
             tabBarController?.tabBar.isHidden = true
+            navigationController?.navigationBar.isHidden = false
+            //updateNavigationBarBackButton()
+            
             navigationController?.pushViewController(SetMeetingNameViewController(), animated: true)
         }
     }

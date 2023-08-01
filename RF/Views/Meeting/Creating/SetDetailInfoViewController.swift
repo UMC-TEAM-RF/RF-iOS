@@ -14,14 +14,6 @@ final class SetDetailInfoViewController: UIViewController {
     
     // MARK: - UI Property
     
-    // 네비게이션 바
-    private lazy var navigationBar: CustomNavigationBar = {
-        let view = CustomNavigationBar()
-        view.titleLabelText = "모임 생성"
-        view.delegate = self
-        return view
-    }()
-    
     // 프로그레스 바
     private lazy var progressBar: UIProgressView = {
         let pv = UIProgressView()
@@ -228,6 +220,9 @@ final class SetDetailInfoViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
+        updateTitleView(title: "모임 생성")
+        setupCustomBackButton()
+        
         addSubviews()
         configureConstraints()
         addTargets()
@@ -238,7 +233,6 @@ final class SetDetailInfoViewController: UIViewController {
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        view.addSubview(navigationBar)
         view.addSubview(progressBar)
         
         // 메인 라벨
@@ -286,15 +280,10 @@ final class SetDetailInfoViewController: UIViewController {
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        // 네비게이션 바
-        navigationBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(60)
-        }
         
         // 프로그레스 바
         progressBar.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(25)
         }
         
@@ -430,13 +419,6 @@ final class SetDetailInfoViewController: UIViewController {
     }
 }
 
-// MARK: - Ext: NavigationBarDelgate
-
-extension SetDetailInfoViewController: NavigationBarDelegate {
-    func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
-    }
-}
 
 // MARK: - Ext: CollectionView
 
