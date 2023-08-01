@@ -32,6 +32,7 @@ final class ChoiceInterestingCountryViewModel{
         list.append("미국")
         list.append("중국")
         list.append("일본")
+        list.append("스페인")
         
         countryRelay.accept(list)
     }

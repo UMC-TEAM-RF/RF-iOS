@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-final class ChoiceInterestingCountryView: UIViewController{
+final class ChoiceInterestingLanguageView: UIViewController{
     
     /// MARK: 제목
     private lazy var titleLabel: UILabel = {
@@ -46,7 +46,7 @@ final class ChoiceInterestingCountryView: UIViewController{
         return table
     }()
     
-    private let viewModel = ChoiceInterestingCountryViewModel()
+    private let viewModel = ChoiceInterestingLanguageViewModel()
     private let disposeBag = DisposeBag()
     var selctedCountry: PublishSubject<String> = PublishSubject()
     
@@ -109,14 +109,14 @@ final class ChoiceInterestingCountryView: UIViewController{
     
 }
 
-extension ChoiceInterestingCountryView: UISearchBarDelegate{
+extension ChoiceInterestingLanguageView: UISearchBarDelegate{
     
     /// 서치바 변화가 감지 되었을 때
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text?.lowercased() else { return }
         
         viewModel.isFiltering.accept(true)
-        viewModel.filteringCountry(text: text)
+        viewModel.filteringLanguage(text: text)
         
         tableView.reloadData()
     }
@@ -126,7 +126,7 @@ extension ChoiceInterestingCountryView: UISearchBarDelegate{
         searchBar.resignFirstResponder()
         guard let text = searchBar.text?.lowercased() else { return }
         
-        viewModel.filteringCountry(text: text)
+        viewModel.filteringLanguage(text: text)
         viewModel.isFiltering.accept(false)
         
         tableView.reloadData()
@@ -156,23 +156,23 @@ extension ChoiceInterestingCountryView: UISearchBarDelegate{
     }
 }
 
-extension ChoiceInterestingCountryView: UITableViewDelegate, UITableViewDataSource{
+extension ChoiceInterestingLanguageView: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChooseUserTableViewCell.identifer, for: indexPath) as? ChooseUserTableViewCell else { return UITableViewCell()}
         
         if viewModel.isFiltering.value{
-            cell.inputValue(text: viewModel.filteringCountryRelay.value[indexPath.row])
+            cell.inputValue(text: viewModel.filteringLanguageRelay.value[indexPath.row])
         }
         else{
-            cell.inputValue(text: viewModel.countryRelay.value[indexPath.row])
+            cell.inputValue(text: viewModel.languageRelay.value[indexPath.row])
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.isFiltering.value ? viewModel.filteringCountryRelay.value.count : viewModel.countryRelay.value.count
+        return viewModel.isFiltering.value ? viewModel.filteringLanguageRelay.value.count : viewModel.languageRelay.value.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -182,9 +182,9 @@ extension ChoiceInterestingCountryView: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        viewModel.isFiltering.value ? viewModel.selectedCountry.accept(viewModel.filteringCountryRelay.value[indexPath.row]) : viewModel.selectedCountry.accept(viewModel.countryRelay.value[indexPath.row])
+        viewModel.isFiltering.value ? viewModel.selectedLanguage.accept(viewModel.filteringLanguageRelay.value[indexPath.row]) : viewModel.selectedLanguage.accept(viewModel.languageRelay.value[indexPath.row])
         
-        selctedCountry.onNext(viewModel.selectedCountry.value)
+        selctedCountry.onNext(viewModel.selectedLanguage.value)
         dismiss(animated: true)
     }
     

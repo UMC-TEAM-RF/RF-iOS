@@ -198,7 +198,7 @@ final class UserInfoViewController: UIViewController {
                 choiceInterestingCountryView.modalPresentationStyle = .formSheet
                 choiceInterestingCountryView.selctedCountry
                     .bind { country in
-                        self?.viewModel.bornCountry.accept(country)
+                        self?.viewModel.interestingCountry.accept(country)
                         self?.favNationButton.setTitle("  \(country)", for: .normal)
                     }
                     .disposed(by: self?.disposeBag ?? DisposeBag())
@@ -207,8 +207,16 @@ final class UserInfoViewController: UIViewController {
             .disposed(by: disposeBag)
         
         favLanguageButton.rx.tap
-            .bind {
-                
+            .bind {[weak self] in
+                let choiceInterestingLanguageView = ChoiceInterestingLanguageView()
+                choiceInterestingLanguageView.modalPresentationStyle = .formSheet
+                choiceInterestingLanguageView.selctedCountry
+                    .bind { language in
+                        self?.viewModel.interestingLanguage.accept(language)
+                        self?.favLanguageButton.setTitle("  \(language)", for: .normal)
+                    }
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
+                self?.present(choiceInterestingLanguageView, animated: true)
             }
             .disposed(by: disposeBag)
         
