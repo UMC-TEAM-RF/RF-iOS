@@ -9,8 +9,8 @@ import Foundation
 import RxSwift
 import RxRelay
 
-/// 출생 국가
-final class ChoiceBornCountryViewModel{
+/// 관심 국가
+final class ChoiceInterestingCountryViewModel{
     
     /// MARK: 국가 리스트
     var countryRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])

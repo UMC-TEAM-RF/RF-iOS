@@ -96,6 +96,7 @@ final class UserInfoViewController: UIViewController {
     }()
     
     private let disposeBag = DisposeBag()
+    private let viewModel = UserInfoViewModel()
     
     // MARK: View Did Load
     override func viewDidLoad() {
@@ -181,13 +182,27 @@ final class UserInfoViewController: UIViewController {
             .bind { [weak self] in
                 let choiceBornCountryView = ChoiceBornCountryView()
                 choiceBornCountryView.modalPresentationStyle = .formSheet
+                choiceBornCountryView.selctedCountry
+                    .bind { country in
+                        self?.viewModel.bornCountry.accept(country)
+                        self?.nationButton.setTitle("  \(country)", for: .normal)
+                    }
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
                 self?.present(choiceBornCountryView, animated: true)
             }
             .disposed(by: disposeBag )
         
         favNationButton.rx.tap
-            .bind {
-                
+            .bind { [weak self] in
+                let choiceInterestingCountryView = ChoiceInterestingCountryView()
+                choiceInterestingCountryView.modalPresentationStyle = .formSheet
+                choiceInterestingCountryView.selctedCountry
+                    .bind { country in
+                        self?.viewModel.bornCountry.accept(country)
+                        self?.favNationButton.setTitle("  \(country)", for: .normal)
+                    }
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
+                self?.present(choiceInterestingCountryView, animated: true)
             }
             .disposed(by: disposeBag)
         

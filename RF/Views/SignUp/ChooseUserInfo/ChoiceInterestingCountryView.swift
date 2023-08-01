@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-final class ChoiceBornCountryView: UIViewController{
+final class ChoiceInterestingCountryView: UIViewController{
     
     /// MARK: 제목
     private lazy var titleLabel: UILabel = {
@@ -109,7 +109,7 @@ final class ChoiceBornCountryView: UIViewController{
     
 }
 
-extension ChoiceBornCountryView: UISearchBarDelegate{
+extension ChoiceInterestingCountryView: UISearchBarDelegate{
     
     /// 서치바 변화가 감지 되었을 때
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -156,7 +156,7 @@ extension ChoiceBornCountryView: UISearchBarDelegate{
     }
 }
 
-extension ChoiceBornCountryView: UITableViewDelegate, UITableViewDataSource{
+extension ChoiceInterestingCountryView: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChooseUserTableViewCell.identifer, for: indexPath) as? ChooseUserTableViewCell else { return UITableViewCell()}

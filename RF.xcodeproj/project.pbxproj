@@ -57,6 +57,9 @@
 		3BD700C52A793565005C7D7E /* ChoiceBornCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD700C42A793565005C7D7E /* ChoiceBornCountryView.swift */; };
 		3BD700C82A79364B005C7D7E /* ChoiceCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD700C72A79364B005C7D7E /* ChoiceCountryViewModel.swift */; };
 		3BD700CB2A793AA0005C7D7E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD700CA2A793AA0005C7D7E /* UserInfo.swift */; };
+		3BD700CD2A796149005C7D7E /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD700CC2A796149005C7D7E /* UserInfoViewModel.swift */; };
+		3BD700CF2A7962F0005C7D7E /* ChoiceInterestingCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD700CE2A7962F0005C7D7E /* ChoiceInterestingCountryView.swift */; };
+		3BD700D12A796312005C7D7E /* ChoiceInterestingCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD700D02A796312005C7D7E /* ChoiceInterestingCountryViewModel.swift */; };
 		3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */; };
 		3BEEE7D12A7658C0007092DF /* MeetingCreatePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */; };
 		3BEEE7D32A7659C4007092DF /* MeetingCreatePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE7D22A7659C4007092DF /* MeetingCreatePopUp.swift */; };
@@ -155,6 +158,9 @@
 		3BD700C42A793565005C7D7E /* ChoiceBornCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceBornCountryView.swift; sourceTree = "<group>"; };
 		3BD700C72A79364B005C7D7E /* ChoiceCountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCountryViewModel.swift; sourceTree = "<group>"; };
 		3BD700CA2A793AA0005C7D7E /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		3BD700CC2A796149005C7D7E /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
+		3BD700CE2A7962F0005C7D7E /* ChoiceInterestingCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceInterestingCountryView.swift; sourceTree = "<group>"; };
+		3BD700D02A796312005C7D7E /* ChoiceInterestingCountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceInterestingCountryViewModel.swift; sourceTree = "<group>"; };
 		3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInterestsViewController.swift; sourceTree = "<group>"; };
 		3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreatePopUpViewController.swift; sourceTree = "<group>"; };
 		3BEEE7D22A7659C4007092DF /* MeetingCreatePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreatePopUp.swift; sourceTree = "<group>"; };
@@ -367,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				3BD700C42A793565005C7D7E /* ChoiceBornCountryView.swift */,
+				3BD700CE2A7962F0005C7D7E /* ChoiceInterestingCountryView.swift */,
 			);
 			path = ChooseUserInfo;
 			sourceTree = "<group>";
@@ -374,6 +381,7 @@
 		3BD700C62A793635005C7D7E /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				3BD700CC2A796149005C7D7E /* UserInfoViewModel.swift */,
 				3BD700C92A7936BD005C7D7E /* ChooseUserInfo */,
 			);
 			path = SignUp;
@@ -383,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				3BD700C72A79364B005C7D7E /* ChoiceCountryViewModel.swift */,
+				3BD700D02A796312005C7D7E /* ChoiceInterestingCountryViewModel.swift */,
 			);
 			path = ChooseUserInfo;
 			sourceTree = "<group>";
@@ -695,6 +704,7 @@
 				570063972A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */,
 				3BEEE7D12A7658C0007092DF /* MeetingCreatePopUpViewController.swift in Sources */,
+				3BD700D12A796312005C7D7E /* ChoiceInterestingCountryViewModel.swift in Sources */,
 				3B8477372A6AEC25007A6144 /* LifeStyle.swift in Sources */,
 				3B8477392A6AEC32007A6144 /* Mbti.swift in Sources */,
 				3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */,
@@ -702,6 +712,7 @@
 				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
 				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
+				3BD700CF2A7962F0005C7D7E /* ChoiceInterestingCountryView.swift in Sources */,
 				572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */,
 				3BEEE7D32A7659C4007092DF /* MeetingCreatePopUp.swift in Sources */,
 				572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */,
@@ -745,6 +756,7 @@
 				3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */,
 				3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */,
 				57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */,
+				3BD700CD2A796149005C7D7E /* UserInfoViewModel.swift in Sources */,
 				570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */,
 				3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */,
 				3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */,
