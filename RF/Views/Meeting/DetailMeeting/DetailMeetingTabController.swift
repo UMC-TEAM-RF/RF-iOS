@@ -14,14 +14,32 @@ import RxSwift
 
 final class DetailMeetingTabController: TabmanViewController {
     
+    /// MARK: 네비게이션 바 왼쪽 아이템
+    private lazy var leftButton: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "다국적 사람들과 소통해요!", style: .done, target: self, action: nil)
+        
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20,weight: .bold)], for: .disabled)
+        return btn
+    }()
+    
     /// MARK: 카톡, 메시지, 인스타그램 공유 버튼
-    private lazy var linkIconBtn: UIBarButtonItem = {
-        let btn = UIBarButtonItem()
-        btn.image = UIImage(systemName: "popcorn.fill")
+    private lazy var firstButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "exclamationmark.circle"), for: .normal)
+        btn.tintColor = .black
+        return btn
+    }()
+    
+    /// MARK: 카톡, 메시지, 인스타그램 공유 버튼
+    private lazy var secondButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
         btn.tintColor = .black
         return btn
     }()
    
+    private let disposeBag = DisposeBag()
     private var viewControllers: [UIViewController] = []
     
     override func viewDidLoad() {
@@ -29,14 +47,19 @@ final class DetailMeetingTabController: TabmanViewController {
             
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.isHidden = false
-        navigationItem.title = "다국적 사람들과 소통해요!"
+        clickedButtons()
         
         addSubviews()
     }
     
     /// Add UI
     private func addSubviews(){
-        navigationItem.rightBarButtonItem = linkIconBtn
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = leftButton
+        navigationController?.navigationBar.tintColor = .black
+        
+        setRightBarButtons()
+        
         let homeController = DetailMeetingHomeController()
         let chatController = DetailMeetingChatController()
         
@@ -45,6 +68,20 @@ final class DetailMeetingTabController: TabmanViewController {
         
         self.dataSource = self
         customTabBar()
+    }
+    
+    /// MARK: 네비게이션 바 오른쪽 버튼들
+    private func setRightBarButtons(){
+        let firstBarButton = UIBarButtonItem(customView: firstButton)
+        let secondBarButton = UIBarButtonItem(customView: secondButton)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0)
+        
+        firstButton.configuration = configuration
+        secondButton.configuration = configuration
+        
+        navigationItem.rightBarButtonItems = [secondBarButton, firstBarButton]
     }
     
     /// MARK: TabBar Custom
@@ -76,6 +113,22 @@ final class DetailMeetingTabController: TabmanViewController {
         addBar(bar, dataSource: self, at:.top)
     }
     
+    
+    /// MARK: 버튼 클릭 시
+    private func clickedButtons(){
+        
+        firstButton.rx.tap
+            .bind {
+                print("clicked information button")
+            }
+            .disposed(by: disposeBag)
+        
+        secondButton.rx.tap
+            .bind {
+                print("clicked share button")
+            }
+            .disposed(by: disposeBag)
+    }
     
 }
 
