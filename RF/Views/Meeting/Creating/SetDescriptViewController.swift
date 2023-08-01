@@ -9,14 +9,16 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Mantis
 
-class SetDescriptViewController: UIViewController {
+final class SetDescriptViewController: UIViewController {
     
     // MARK: - UI Property
     
     // 네비게이션 바
     private lazy var navigationBar: CustomNavigationBar = {
         let view = CustomNavigationBar()
+        view.titleLabelText = "모임 생성"
         view.delegate = self
         return view
     }()
@@ -55,6 +57,8 @@ class SetDescriptViewController: UIViewController {
         iv.image = UIImage(named: "no_image")
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
+        iv.layer.borderWidth = 1.5
+        iv.layer.borderColor = UIColor.lightGray.cgColor
         iv.isUserInteractionEnabled = true
         return iv
     }()
@@ -83,6 +87,8 @@ class SetDescriptViewController: UIViewController {
     private let textViewPlaceholder = "모임에 대해 소개해 주세요!"
     private let disposeBag = DisposeBag()
     
+    // MARK: - viewDidLoad()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -100,7 +106,7 @@ class SetDescriptViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    // MARK: - addSubviews
+    // MARK: - addSubviews()
     
     private func addSubviews() {
         view.addSubview(navigationBar)
@@ -112,7 +118,7 @@ class SetDescriptViewController: UIViewController {
         view.addSubview(nextButton)
     }
     
-    // MARK: - configureConstraints
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         // 네비게이션 바
@@ -144,7 +150,7 @@ class SetDescriptViewController: UIViewController {
         imageView.snp.makeConstraints { make in
             make.top.equalTo(descriptTextView.snp.bottom).offset(25)
             make.horizontalEdges.equalToSuperview().inset(25)
-            make.height.equalTo(imageView.snp.width).multipliedBy(0.5)
+            make.height.equalTo(imageView.snp.width).multipliedBy(0.9/1.6)
         }
         
         cameraImageView.snp.makeConstraints { make in
@@ -161,7 +167,7 @@ class SetDescriptViewController: UIViewController {
         }
     }
     
-    // MARK: - addTargets
+    // MARK: - addTargets()
     
     private func addTargets() {
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageViewTapped)))
@@ -188,7 +194,7 @@ class SetDescriptViewController: UIViewController {
     
 }
 
-// MARK: - TextViewDelegate
+// MARK: - Ext: TextViewDelegate
 
 extension SetDescriptViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -226,33 +232,57 @@ extension SetDescriptViewController: UITextViewDelegate {
     
 }
 
-// MARK: - UIImagePickerControllerDelegate
+// MARK: - Ext: ImagePickerDelegate
 
 extension SetDescriptViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     // 이미지 피커에서 이미지를 선택하지 않고 취소했을 때 호출되는 메소드
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // 이미지 피커 컨트롤러 창 닫기
         self.dismiss(animated: true)
     }
     
     // 이미지 피커에서 이미지를 선택했을 때 호출되는 메소드
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("이미지 선택")
-        // 이미지 피커 컨트롤러 창 닫기
-        picker.dismiss(animated: true) {
-            // 이미지를 이미지 뷰에 표시
-            let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-            self.imageView.image = img
+        
+        if let image = info[.originalImage] as? UIImage {
+            dismiss(animated: true) {
+                self.openCropVC(image: image)
+            }
         }
+        picker.dismiss(animated: false)
     }
-    
     
 }
 
-// MARK: - NavigationBarDelegate
+// MARK: - Ext: CropViewControllerDelegate
+
+extension SetDescriptViewController: CropViewControllerDelegate{
+    func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation, cropInfo: CropInfo) {
+        
+        imageView.image = cropped
+        cropViewController.dismiss(animated: true)
+    }
+    
+    func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage) {
+        cropViewController.dismiss(animated: true)
+    }
+    
+    private func openCropVC(image: UIImage) {
+        
+        let cropViewController = Mantis.cropViewController(image: image)
+        cropViewController.delegate = self
+        cropViewController.modalPresentationStyle = .fullScreen
+        cropViewController.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 16/9)
+
+        self.present(cropViewController, animated: true)
+    }
+}
+
+// MARK: - Ext: NavigationBarDelegate
 
 extension SetDescriptViewController: NavigationBarDelegate {
     func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
 }
+
+

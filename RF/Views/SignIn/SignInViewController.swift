@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import SnapKit
+import RxCocoa
+import RxSwift
 
 final class SignInViewController: UIViewController {
     
+    private let disposeBag = DisposeBag()
     // MARK: - UI Property
     
     
@@ -94,7 +98,7 @@ final class SignInViewController: UIViewController {
         let button = UIButton()
         button.setTitle("로그인", for: .normal)
         button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = .lightGray
+        button.backgroundColor = .systemGray6
         button.layer.cornerRadius = 10
         return button
     }()
@@ -157,11 +161,19 @@ final class SignInViewController: UIViewController {
     
     
     private lazy var bottomStackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [homeButton, onboardingButton])
+        let sv = UIStackView(arrangedSubviews: [homeButton, onboardingButton, interestsButton])
         sv.axis = .horizontal
         sv.alignment = .fill
         sv.distribution = .fillEqually
         return sv
+    }()
+    
+    
+    private lazy var homeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Home", for: .normal)
+        button.setTitleColor(.label, for: .normal)
+        return button
     }()
     
     private lazy var onboardingButton: UIButton = {
@@ -171,23 +183,25 @@ final class SignInViewController: UIViewController {
         return button
     }()
     
-    private lazy var homeButton: UIButton = {
+    private lazy var interestsButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Home", for: .normal)
+        button.setTitle("Interests", for: .normal)
         button.setTitleColor(.label, for: .normal)
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.hideKeyboard()
         
         view.backgroundColor = .systemBackground
         
         addSubViews()
         configureConstraints()
         addTargets()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
     private func addSubViews() {
@@ -226,25 +240,25 @@ final class SignInViewController: UIViewController {
         idTextField.snp.makeConstraints { make in
             make.bottom.equalTo(pwTextField.snp.top).offset(-16)
             make.centerX.equalToSuperview()
-            make.width.equalTo(300)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.height.equalTo(47)
         }
         idUnderLineView.snp.makeConstraints { make in
             make.bottom.equalTo(pwTextField.snp.top).offset(-16)
             make.centerX.equalToSuperview()
-            make.width.equalTo(300)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.height.equalTo(1)
         }
         pwTextField.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(50)
             make.centerX.equalToSuperview()
-            make.width.equalTo(300)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.height.equalTo(47)
         }
         pwUnderLineView.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(0)
             make.centerX.equalToSuperview()
-            make.width.equalTo(300)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.height.equalTo(1)
         }
         
@@ -261,7 +275,7 @@ final class SignInViewController: UIViewController {
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(autoLoginCheckBox.snp.bottom).offset(32)
             make.centerX.equalToSuperview()
-            make.width.equalTo(300)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.height.equalTo(47)
         }
         
@@ -318,26 +332,31 @@ final class SignInViewController: UIViewController {
         bottomStackView.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
             make.centerX.equalToSuperview()
-            make.width.equalTo(200)
         }
     }
     
     private func addTargets() {
-        onboardingButton.addTarget(self, action: #selector(onboardingButtonTapped), for: .touchUpInside)
-        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
-        signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc private func onboardingButtonTapped() {
-        navigationController?.pushViewController(SetNicknameViewController(), animated: true)
-    }
-
-    @objc private func homeButtonTapped() {
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
-    }
-    
-    @objc private func signUpButtonTapped() {
-        navigationController?.pushViewController(SignUpViewController(), animated: true)
+        
+        
+        onboardingButton.rx.tap.subscribe(onNext: {
+            self.navigationController?.pushViewController(SetNicknameViewController(), animated: true)
+        })
+        .disposed(by: disposeBag)
+        
+        homeButton.rx.tap.subscribe(onNext: {
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+        })
+        .disposed(by: disposeBag)
+        
+        signUpButton.rx.tap.subscribe(onNext: {
+            self.navigationController?.pushViewController(SignUpViewController(), animated: true)
+        })
+        .disposed(by: disposeBag)
+        
+        interestsButton.rx.tap.subscribe(onNext: {
+            self.navigationController?.pushViewController(PersonalInterestsViewController(), animated: true)
+        })
+        .disposed(by: disposeBag)
     }
 }
 
@@ -348,15 +367,3 @@ extension SignInViewController : UITextFieldDelegate{
     
 }
 
-
-
-extension UIViewController {
-    func hideKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-            action: #selector(SignInViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}

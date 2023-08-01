@@ -10,13 +10,14 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class SetInterestViewController: UIViewController {
+final class SetInterestViewController: UIViewController {
     
     // MARK: - UI Property
     
     // 네비게이션 바
     private lazy var navigationBar: CustomNavigationBar = {
         let view = CustomNavigationBar()
+        view.titleLabelText = "모임 생성"
         view.delegate = self
         return view
     }()
@@ -71,7 +72,10 @@ class SetInterestViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    // 셀 클릭 개수
     private var selectedCount: Int = 0
+    
+    // MARK: - viewDidLoad()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +88,7 @@ class SetInterestViewController: UIViewController {
         configureCollectionView()
     }
     
-    // MARK: - addSubviews
+    // MARK: - addSubviews()
     
     private func addSubviews() {
         view.addSubview(navigationBar)
@@ -95,7 +99,7 @@ class SetInterestViewController: UIViewController {
         view.addSubview(interestCollectionView)
     }
     
-    // MARK: - configureConstraints
+    // MARK: - configureConstraints()
     
     private func configureConstraints() {
         // 네비게이션 바
@@ -136,13 +140,15 @@ class SetInterestViewController: UIViewController {
         }
     }
     
+    // MARK: - configureCollectionView()
+    
     private func configureCollectionView() {
         interestCollectionView.delegate = self
         interestCollectionView.dataSource = self
         interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: "InterestCollectionViewCell")
     }
     
-    // MARK: - addTargets
+    // MARK: - addTargets()
     
     private func addTargets() {
         nextButton.rx.tap
@@ -153,7 +159,7 @@ class SetInterestViewController: UIViewController {
     }
 }
 
-// MARK: - extension CollectionView
+// MARK: - Ext: CollectionView
 
 extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -206,7 +212,7 @@ extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewD
 }
 
 
-// MARK: - NavigationBarDelegate
+// MARK: - Ext: NavigationBarDelegate
 
 extension SetInterestViewController: NavigationBarDelegate {
     func backButtonTapped() {

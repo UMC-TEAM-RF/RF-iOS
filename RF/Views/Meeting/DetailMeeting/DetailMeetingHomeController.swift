@@ -331,7 +331,7 @@ final class DetailMeetingHomeController: UIViewController {
         titleImg.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/5)
+            make.height.equalTo(titleImg.snp.width).multipliedBy(0.9/1.6)
         }
         
         /// 관심 분야
@@ -439,11 +439,10 @@ final class DetailMeetingHomeController: UIViewController {
             make.leading.equalToSuperview().offset(30)
             make.trailing.equalToSuperview().offset(-30)
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/10)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-view.safeAreaLayoutGuide.layoutFrame.height/18)
         }
         
         likeBtn.snp.makeConstraints { make in
-//            make.top.equalTo(joinMemberCollectionView.snp.bottom).offset(20)
             make.leading.equalToSuperview()
             make.width.equalTo(view.safeAreaLayoutGuide.layoutFrame.width/2)
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/18)
@@ -451,7 +450,6 @@ final class DetailMeetingHomeController: UIViewController {
         }
         
         joinBtn.snp.makeConstraints { make in
-//            make.top.equalTo(joinMemberCollectionView.snp.bottom).offset(20)
             make.trailing.equalToSuperview()
             make.width.equalTo(view.safeAreaLayoutGuide.layoutFrame.width/2)
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/18)
@@ -469,8 +467,10 @@ final class DetailMeetingHomeController: UIViewController {
             .disposed(by: disposeBag)
         
         joinBtn.rx.tap
-            .subscribe(onNext:{
+            .subscribe(onNext:{ [weak self] in
                 print("clicked join Button")
+                let detailMeetingJoinPopUpViewController = DetailMeetingJoinPopUpViewController()
+                self?.present(detailMeetingJoinPopUpViewController, animated: true)
             })
             .disposed(by: disposeBag)
     }
@@ -565,7 +565,7 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             ruleCellWidth += newSize.width
             
             if ruleCellWidth >= collectionView.frame.width{
-                ruleCollectionViewHeight += view.safeAreaLayoutGuide.layoutFrame.height/18
+                ruleCollectionViewHeight += view.safeAreaLayoutGuide.layoutFrame.height/15
                 ruleCollectionViewConstraint?.update(offset: ruleCollectionViewHeight)
                 ruleCellWidth = newSize.width
             }
