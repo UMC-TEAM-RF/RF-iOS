@@ -31,7 +31,9 @@ final class DetailMeetingHomeController: UIViewController {
     /// MARK: 대표이미지
     private lazy var titleImg: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "LogoImage")?.resize(newWidth: 100)
+        img.image = UIImage(named: "sam")?.resize(newWidth: 100)
+        img.layer.cornerRadius = 20
+        img.clipsToBounds = true
         return img
     }()
     
@@ -346,7 +348,7 @@ final class DetailMeetingHomeController: UIViewController {
         }
         
         titleImg.snp.makeConstraints { make in
-            make.top.equalTo(contentView.snp.top)
+            make.top.equalTo(contentView.snp.top).offset(10)
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(titleImg.snp.width).multipliedBy(0.9/1.6)
@@ -354,7 +356,7 @@ final class DetailMeetingHomeController: UIViewController {
         
         /// 관심 분야
         interestingCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(titleImg.snp.bottom)
+            make.top.equalTo(titleImg.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/25)
