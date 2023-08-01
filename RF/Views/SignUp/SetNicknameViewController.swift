@@ -38,19 +38,20 @@ class SetNicknameViewController: UIViewController {
 
     
     private lazy var nextButton: UIButton = {
-        
-        let UserInfoViewController = UserInfoViewController()
-        navigationController?.pushViewController(UserInfoViewController, animated: true)//07-1
-        
         let button = UIButton()
         button.setTitle("다음", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         return button
     }()
-
+    // 다음 버튼 액션
+    @objc private func nextButtonTapped() {
+        let userInfoViewController = UserInfoViewController()
+        navigationController?.pushViewController(userInfoViewController, animated: true)
+    }
     
     private var textField: UITextField = {
         let field = UITextField()

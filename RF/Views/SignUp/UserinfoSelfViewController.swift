@@ -1,5 +1,5 @@
-//
-//  UserinfoSelf.swift
+//UserinfoSelfViewController.swift
+// UserinfoSelfViewController.swift
 //  RF
 //
 //  Created by 나예은 on 2023/07/19.
@@ -29,6 +29,13 @@ class UserinfoSelf: UIViewController {
         return label
     }()
     
+    // bottomLine 뷰를 위한 프로퍼티 추가
+    private let bottomLine: UIView = {
+        let lineView = UIView()
+        lineView.backgroundColor = .gray
+        return lineView
+    }()
+    // textField와 bottomLine을 뷰 컨트롤러의 뷰에 추가합니다.
     private lazy var textField: UITextField = {
         let field = UITextField()
         field.borderStyle = .roundedRect
@@ -38,16 +45,25 @@ class UserinfoSelf: UIViewController {
         field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         field.backgroundColor = .clear
         field.textColor = UIColor(hexCode: "#A0A0A0")
-        let bottomLine = UIView()
-        bottomLine.backgroundColor = .gray
         field.addSubview(bottomLine)
+        
+        // configureConstraints() 메서드를 사용하여 bottomLine의 제약 조건을 설정합니다.
         bottomLine.translatesAutoresizingMaskIntoConstraints = false
-        bottomLine.leadingAnchor.constraint(equalTo: field.leadingAnchor).isActive = true
-        bottomLine.trailingAnchor.constraint(equalTo: field.trailingAnchor).isActive = true
-        bottomLine.bottomAnchor.constraint(equalTo: field.bottomAnchor).isActive = true
-        bottomLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        configureConstraints(for: field, and: bottomLine)
+        
         return field
-        }()
+    }()
+    
+    // bottomLine의 제약 조건을 설정하는 헬퍼 함수
+    private func configureConstraints(for textField: UITextField, and bottomLine: UIView) {
+        bottomLine.leadingAnchor.constraint(equalTo: textField.leadingAnchor).isActive = true
+        bottomLine.trailingAnchor.constraint(equalTo: textField.trailingAnchor).isActive = true
+        bottomLine.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
+        bottomLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
+    }
+    
+    
+    
 
     private lazy var warningLabel: UILabel = {
         let label = UILabel()
@@ -62,9 +78,7 @@ class UserinfoSelf: UIViewController {
     private lazy var imageView: UIImageView = {
             let imageView = UIImageView(frame: CGRect(x: 50, y: 100, width: 200, height: 200))
             imageView.contentMode = .scaleAspectFit
-            if let image = UIImage(named: "leftArrow") {
-                imageView.image = image
-            }
+            imageView.image = UIImage(named: "leftArrow")
             return imageView
         }()
     
