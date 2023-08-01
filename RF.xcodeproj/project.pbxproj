@@ -97,10 +97,8 @@
 		572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */; };
 		575032942A596DDE0060D629 /* ClickedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575032932A596DDE0060D629 /* ClickedButton.swift */; };
 		57673ED42A5579E000A13D07 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */; };
-		57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673ED52A55B7E600A13D07 /* FriendListCollectionViewCell.swift */; };
 		57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDB2A56E9D200A13D07 /* Interest.swift */; };
 		57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */; };
-		57673EE02A57A87000A13D07 /* MoreFriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDF2A57A87000A13D07 /* MoreFriendCollectionViewCell.swift */; };
 		57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EE12A58314100A13D07 /* MeetingCollectionViewCell.swift */; };
 		57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -191,10 +189,8 @@
 		572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNicknameViewController.swift; sourceTree = "<group>"; };
 		575032932A596DDE0060D629 /* ClickedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickedButton.swift; sourceTree = "<group>"; };
 		57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
-		57673ED52A55B7E600A13D07 /* FriendListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EDB2A56E9D200A13D07 /* Interest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
 		57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCollectionViewCell.swift; sourceTree = "<group>"; };
-		57673EDF2A57A87000A13D07 /* MoreFriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreFriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EE12A58314100A13D07 /* MeetingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -542,8 +538,6 @@
 			isa = PBXGroup;
 			children = (
 				57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */,
-				57673ED52A55B7E600A13D07 /* FriendListCollectionViewCell.swift */,
-				57673EDF2A57A87000A13D07 /* MoreFriendCollectionViewCell.swift */,
 				57673EE12A58314100A13D07 /* MeetingCollectionViewCell.swift */,
 				57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */,
 				57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */,
@@ -665,7 +659,6 @@
 				570063972A67BA580051F42A /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				575032942A596DDE0060D629 /* ClickedButton.swift in Sources */,
 				3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */,
-				5700636E2A650A0F0051F42A /* DropDownButtonDelegate.swift in Sources */,
 				3BEEE7D12A7658C0007092DF /* MeetingCreatePopUpViewController.swift in Sources */,
 				3B8477372A6AEC25007A6144 /* LifeStyle.swift in Sources */,
 				3B8477392A6AEC32007A6144 /* Mbti.swift in Sources */,
@@ -680,14 +673,12 @@
 				570063BB2A7630E60051F42A /* MenuButton.swift in Sources */,
 				3B5402C52A6EA6A700D0AD21 /* MeetingList.swift in Sources */,
 				570063992A6AB8520051F42A /* NotiMessageViewController.swift in Sources */,
-				57673ED62A55B7E600A13D07 /* FriendListCollectionViewCell.swift in Sources */,
 				3BC35CED2A5C565800D73163 /* InterestingCollectionViewCell.swift in Sources */,
 				3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */,
 				3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */,
 				57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */,
 				3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */,
 				44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */,
-				57673EE02A57A87000A13D07 /* MoreFriendCollectionViewCell.swift in Sources */,
 				3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
 				3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */,

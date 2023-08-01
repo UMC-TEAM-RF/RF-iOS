@@ -36,7 +36,7 @@ class TagCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.backgroundColor = .systemGray6
+        contentView.backgroundColor = .systemGray5
         contentView.layer.cornerRadius = contentView.frame.height / 2
         
         addSubviews()
