@@ -461,6 +461,8 @@ extension SetDetailInfoViewController: UICollectionViewDelegate, UICollectionVie
     }
 }
 
+// MARK: - Ext: MenuButtonDelegate
+
 extension SetDetailInfoViewController: MenuButtonDelegate {
     func didTapMenuButton(_ tag: Int) {
         let pickerVC = PickerViewController(tag: tag)
@@ -469,6 +471,8 @@ extension SetDetailInfoViewController: MenuButtonDelegate {
         present(pickerVC, animated: true, completion: nil)
     }
 }
+
+// MARK: - Ext: SendDataDelegate
 
 extension SetDetailInfoViewController: SendDataDelegate {
     func sendData(tag: Int, data: String) {

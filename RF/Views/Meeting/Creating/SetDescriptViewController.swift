@@ -129,11 +129,6 @@ final class SetDescriptViewController: UIViewController {
         
         view.addSubview(descriptLabel)
         view.addSubview(descriptTextView)
-        
-//        view.addSubview(mainLabel)
-//        view.addSubview(descriptTextView)
-//        view.addSubview(imageView)
-//        view.addSubview(cameraImageView)
         view.addSubview(nextButton)
     }
     
