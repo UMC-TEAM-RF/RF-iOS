@@ -85,6 +85,8 @@
 		570063C32A77A01D0051F42A /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C22A77A01D0051F42A /* Language.swift */; };
 		570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C72A77B2B50051F42A /* SendDataDelegate.swift */; };
 		570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C92A792BB80051F42A /* ProfileSettingViewController.swift */; };
+		570063CF2A7A44BC0051F42A /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */; };
+		570063D12A7A45220051F42A /* SecretKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 570063D02A7A45220051F42A /* SecretKey.plist */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -189,6 +191,8 @@
 		570063C22A77A01D0051F42A /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		570063C72A77B2B50051F42A /* SendDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataDelegate.swift; sourceTree = "<group>"; };
 		570063C92A792BB80051F42A /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
+		570063D02A7A45220051F42A /* SecretKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecretKey.plist; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -414,6 +418,7 @@
 				3BC35CEE2A5C6C1B00D73163 /* UILabel+Ext.swift */,
 				572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */,
 				570063AA2A724CB40051F42A /* UIViewController+Ext.swift */,
+				570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -516,6 +521,7 @@
 				572DC2372A51BF2500C0D6E1 /* Assets.xcassets */,
 				572DC2392A51BF2500C0D6E1 /* LaunchScreen.storyboard */,
 				572DC23C2A51BF2500C0D6E1 /* Info.plist */,
+				570063D02A7A45220051F42A /* SecretKey.plist */,
 			);
 			path = RF;
 			sourceTree = "<group>";
@@ -694,6 +700,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				572DC23B2A51BF2500C0D6E1 /* LaunchScreen.storyboard in Resources */,
+				570063D12A7A45220051F42A /* SecretKey.plist in Resources */,
 				572DC2382A51BF2500C0D6E1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -762,6 +769,7 @@
 				5700636B2A643CDA0051F42A /* DropDownTableViewCell.swift in Sources */,
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
 				570063BD2A7797B50051F42A /* PickerViewController.swift in Sources */,
+				570063CF2A7A44BC0051F42A /* Bundle+Ext.swift in Sources */,
 				3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */,
 				3BD700D32A7963DD005C7D7E /* ChoiceInterestingLanguageView.swift in Sources */,
 				3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */,
