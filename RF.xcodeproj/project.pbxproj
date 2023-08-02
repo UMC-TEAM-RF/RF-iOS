@@ -17,6 +17,7 @@
 		3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */; };
 		3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */; };
 		3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2670E52A5ECCF600EA4F45 /* TermsConditionsViewController.swift */; };
+		3B4CAC982A7A4F3B00896DEB /* HomeMeetingDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CAC972A7A4F3B00896DEB /* HomeMeetingDummy.swift */; };
 		3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */; };
 		3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */; };
 		3B5402C32A6EA61700D0AD21 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */; };
@@ -123,6 +124,7 @@
 		3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFriendUIView.swift; sourceTree = "<group>"; };
 		3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFreindUIButton.swift; sourceTree = "<group>"; };
 		3B2670E52A5ECCF600EA4F45 /* TermsConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsViewController.swift; sourceTree = "<group>"; };
+		3B4CAC972A7A4F3B00896DEB /* HomeMeetingDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMeetingDummy.swift; sourceTree = "<group>"; };
 		3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
@@ -600,6 +602,7 @@
 			isa = PBXGroup;
 			children = (
 				57673EDB2A56E9D200A13D07 /* Interest.swift */,
+				3B4CAC972A7A4F3B00896DEB /* HomeMeetingDummy.swift */,
 				3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */,
 				3BD700CA2A793AA0005C7D7E /* UserInfo.swift */,
 				570063942A67BA000051F42A /* Rule.swift */,
@@ -781,6 +784,7 @@
 				3B15CD612A64437D0096871F /* InterestingTopicCollectionViewCell.swift in Sources */,
 				3BD700C82A79364B005C7D7E /* ChoiceCountryViewModel.swift in Sources */,
 				572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */,
+				3B4CAC982A7A4F3B00896DEB /* HomeMeetingDummy.swift in Sources */,
 				570063C12A779FED0051F42A /* AgeGroup.swift in Sources */,
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
 				3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */,
