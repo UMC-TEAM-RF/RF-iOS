@@ -337,6 +337,11 @@ final class SignInViewController: UIViewController {
     
     private func addTargets() {
         
+        loginButton.rx.tap
+            .bind {
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+            }
+            .disposed(by: disposeBag)
         
         onboardingButton.rx.tap.subscribe(onNext: {
             self.navigationController?.pushViewController(SetNicknameViewController(), animated: true)
@@ -357,6 +362,15 @@ final class SignInViewController: UIViewController {
             self.navigationController?.pushViewController(PersonalInterestsViewController(), animated: true)
         })
         .disposed(by: disposeBag)
+        
+        isHidden()
+    }
+    
+    /// MARK: 동영상 시연용 임시 함수
+    private func isHidden(){
+        homeButton.isHidden = true
+        onboardingButton.isHidden = true
+        interestsButton.isHidden = true
     }
 }
 
