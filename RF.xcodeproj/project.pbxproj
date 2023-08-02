@@ -77,6 +77,7 @@
 		570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C92A792BB80051F42A /* ProfileSettingViewController.swift */; };
 		570063CF2A7A44BC0051F42A /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */; };
 		570063D12A7A45220051F42A /* SecretKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 570063D02A7A45220051F42A /* SecretKey.plist */; };
+		570063D42A7A57110051F42A /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063D32A7A57110051F42A /* Meeting.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -173,6 +174,7 @@
 		570063C92A792BB80051F42A /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
 		570063D02A7A45220051F42A /* SecretKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecretKey.plist; sourceTree = "<group>"; };
+		570063D32A7A57110051F42A /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -404,6 +406,14 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		570063D22A7A55A20051F42A /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				570063D32A7A57110051F42A /* Meeting.swift */,
+			);
+			path = Codable;
+			sourceTree = "<group>";
+		};
 		572A9A272A5C0989004D2809 /* Creating */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +443,7 @@
 		572A9A382A5E80B0004D2809 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				570063D22A7A55A20051F42A /* Codable */,
 				572A9A392A5E80D1004D2809 /* Member.swift */,
 				3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */,
 				3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */,
@@ -699,6 +710,7 @@
 				570063602A63D5120051F42A /* PersonnelStepper.swift in Sources */,
 				572A9A3A2A5E80D1004D2809 /* Member.swift in Sources */,
 				57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */,
+				570063D42A7A57110051F42A /* Meeting.swift in Sources */,
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,
 				3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */,
 				572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */,
