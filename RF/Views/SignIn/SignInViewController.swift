@@ -65,7 +65,7 @@ final class SignInViewController: UIViewController {
         view.keyboardType = UIKeyboardType.default
         view.returnKeyType = UIReturnKeyType.done
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-
+        
         return view
     }()
     private lazy var idUnderLineView: UIView = {
@@ -204,7 +204,7 @@ final class SignInViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
     private func addSubViews() {
         view.addSubview(logoStackView)
         
@@ -309,7 +309,7 @@ final class SignInViewController: UIViewController {
             make.leading.equalTo(secondDivLine.snp.trailing).offset(8)
             make.height.equalTo(15)
         }
-
+        
         
         
         korLangButton.snp.makeConstraints { make in
@@ -338,10 +338,17 @@ final class SignInViewController: UIViewController {
     
     private func addTargets() {
         
+//        loginButton.rx.tap
+//            .bind { [weak self] in
+//                self?.clickedLoginButton()
+//            }
+//            .disposed(by: disposeBag)
         loginButton.rx.tap
-            .bind { [weak self] in
-                self?.clickedLoginButton()
-            }
+            .subscribe(onNext: {
+                self.loginUser { signIn in
+                    print(signIn)
+                }
+            })
             .disposed(by: disposeBag)
         
         onboardingButton.rx.tap.subscribe(onNext: {
@@ -394,3 +401,53 @@ extension SignInViewController : UITextFieldDelegate{
     
 }
 
+extension SignInViewController {
+    func loginUser(completion: @escaping (SignIn)->()) {
+        guard let url = URL(string: "") else {
+            print("URL Error")
+            return
+        }
+        
+        let user = [
+            "loginId" : "umc1234",
+            "password" : "1234"
+        ]
+        
+        guard let jsonData = try? JSONEncoder().encode(user) else {
+            print("Error: Trying to convert model to JSON data")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.httpBody = jsonData
+        
+        URLSession.shared.dataTask(with: request) { data, res, err in
+            
+            guard err == nil else {
+                print("Error: error calling POST")
+                print(err)
+                return
+            }
+            
+            // HTTP 200번대 정상코드인 경우만 다음 코드로 넘어감
+            guard let response = res as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                print("Error: HTTP request failed")
+                return
+            }
+            
+            if let safeData = data {
+                do {
+                    let decodedData = try JSONDecoder().decode(SignIn.self, from: safeData)
+                    dump(decodedData)
+                    completion(decodedData)
+                } catch {
+                    print("Decode Error")
+                }
+            }
+            
+        }.resume()
+    }
+}
