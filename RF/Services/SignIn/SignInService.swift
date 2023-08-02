@@ -15,15 +15,21 @@ final class SignInService {
     /// - Returns: SignIn Decoding Values
     func loginService(id: String, pw: String) -> Observable<SignIn>{
         let url = APIURL.api.loginURL()
-        let body: Parameters = [
-            SignInBody.first.body: id,
-            SignInBody.second.body: pw
+//        let body: [String: Any] = [
+//            SignInBody.first.body: id,
+//            SignInBody.second.body: pw
+//        ]
+        
+        let body: [String: Any] = [
+            "loginId" : id,
+            "password" : pw
         ]
         
         return Observable.create { observer in
             AF.request(url,
                        method: .post,
-                       parameters: body)
+                       parameters: body,
+                       encoding: JSONEncoding.default)
             .validate(statusCode: 200..<201)
             .responseDecodable(of: SignIn.self) { response in
                 switch response.result{
