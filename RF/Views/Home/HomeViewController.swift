@@ -420,6 +420,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MeetingCollectionViewCell", for: indexPath) as! MeetingCollectionViewCell
+            cell.inputTextData(title: HomeMeetingDummy.title[indexPath.row],
+                               description: HomeMeetingDummy.description[indexPath.row],
+                               personnel: HomeMeetingDummy.personnel[indexPath.row],
+                               tag: HomeMeetingDummy.tagList[indexPath.row])
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InterestCollectionViewCell", for: indexPath) as! InterestCollectionViewCell

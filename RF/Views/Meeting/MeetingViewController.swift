@@ -220,6 +220,10 @@ extension MeetingViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MeetingCollectionViewCell", for: indexPath) as! MeetingCollectionViewCell
+        cell.inputTextData(title: HomeMeetingDummy.title[indexPath.row],
+                           description: HomeMeetingDummy.description[indexPath.row],
+                           personnel: HomeMeetingDummy.personnel[indexPath.row],
+                           tag: HomeMeetingDummy.tagList[indexPath.row])
         return cell
     }
     
