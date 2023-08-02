@@ -55,9 +55,7 @@ class MeetingCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "MeetingCollectionViewCell"
     
-    let testTagList = [
-        "미대", "친목", "소규모"
-    ]
+    var testTagList: [String] = []
     
     // MARK: - init()
     
@@ -107,6 +105,15 @@ class MeetingCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(descriptLabel.snp.bottom).offset(12)
             make.leading.trailing.bottom.equalToSuperview().inset(15)
         }
+    }
+    
+    /// 데이터 넣는 함수
+    func inputTextData(title: String, description: String, personnel: String, tag: [String]){
+        titleLabel.text = title
+        descriptLabel.text = description
+        personnelLabel.text = personnel
+        testTagList = tag
+        tagCollectionView.reloadData()
     }
 }
 

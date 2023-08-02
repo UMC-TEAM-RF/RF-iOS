@@ -31,7 +31,7 @@ final class DetailMeetingHomeController: UIViewController {
     /// MARK: 대표이미지
     private lazy var titleImg: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "sam")?.resize(newWidth: 100)
+        img.image = UIImage(named: "soccer")?.resize(newWidth: 100)
         img.layer.cornerRadius = 20
         img.clipsToBounds = true
         return img
@@ -529,21 +529,11 @@ final class DetailMeetingHomeController: UIViewController {
     private func dummyData(){
         interestingList.append("스포츠")
         interestingList.append("경기")
-        interestingList.append("국가")
+        interestingList.append("축구")
         
         let longText = """
-        1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!1해외 축구 팬들 모여라!해외 축구 팬들 모여라!
-                👍👍👍👍👍👍👍👍
-        같이 이야기도 나누고직접 축구도 같이 해봐요!
-        다른 국가의 분들은 어느 구단을 좋아하시나요?
-        2해외 축구 팬들 모여라!
-        같이 이야기도 나누고직접 축구도 같이 해봐요!
-        다른 국가의 분들은 어느 구단을 좋아하시나요?
-        3해외 축구 팬들 모여라!
-        같이 이야기도 나누고직접 축구도 같이 해봐요!
-        다른 국가의 분들은 어느 구단을 좋아하시나요?
-        4해외 축구 팬들 모여라!
-        같이 이야기도 나누고직접 축구도 같이 해봐요!
+        해외 축구 팬들 모여라! 같이 이야기도 나누고
+        직접 축구도 같이 해봐요!
         다른 국가의 분들은 어느 구단을 좋아하시나요?
         """
         
@@ -551,20 +541,19 @@ final class DetailMeetingHomeController: UIViewController {
         let newHeight = meetingIntroduction.sizeThatFits(meetingIntroduction.attributedText?.size() ?? CGSize(width: 0, height: 0)).height
         meetingIntroductionUIViewConstraint?.update(offset: newHeight)
         
-        ruleList.append("abcdefasdfabcdefasdfabcdefasdf")
-        ruleList.append("abcdefasdfabcdefasdfabcdefasdf")
-        ruleList.append("abcdefasdf")
-        ruleList.append("abcdefasdfabcdefasd")
-        ruleList.append("abcdefasdf")
+        ruleList.append("상호 존중하는 태도를 가져요")
+        ruleList.append("활동적으로 해요")
         
+        memberList.append(Member(imgPath: "", name: "Kiwi", nationality: "한국"))
+        memberList.append(Member(imgPath: "", name: "Kiwi", nationality: "한국"))
+        memberList.append(Member(imgPath: "", name: "Kiwi", nationality: "한국"))
+        memberList.append(Member(imgPath: "", name: "Kiwi", nationality: "한국"))
+        memberList.append(Member(imgPath: "", name: "Kiwi", nationality: "한국"))
         
-        
-        memberList.append(Member(imgPath: "", name: "aa1", nationality: "bb1"))
-        memberList.append(Member(imgPath: "", name: "aa2", nationality: "bb2"))
-        memberList.append(Member(imgPath: "", name: "aa3", nationality: "bb3"))
-        memberList.append(Member(imgPath: "", name: "aa4", nationality: "bb4"))
-        memberList.append(Member(imgPath: "", name: "aa5", nationality: "bb5"))
-        
+        memberContentLabel.text = "NN 명"
+        ageContentLabel.text = "20대 초반"
+        languageContentLabel.text = "영어, 한국어"
+        placeContentLabel.text = "대운동장"
     }
     
 }
