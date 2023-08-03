@@ -149,8 +149,6 @@ extension RuleListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //let text = Rule.list[indexPath.item]
-        //return CGSize(width: text.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 30, height: 40)
         return CGSize(width: ruleCollectionView.frame.width * 0.8, height: 40)
     }
     
