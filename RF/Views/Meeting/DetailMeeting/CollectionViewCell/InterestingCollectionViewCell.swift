@@ -15,6 +15,7 @@ final class InterestingCollectionViewCell: UICollectionViewCell {
     private lazy var interestLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
+        label.textColor = .white
         label.textAlignment = .center
         return label
     }()

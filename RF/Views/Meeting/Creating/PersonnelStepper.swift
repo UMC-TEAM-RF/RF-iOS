@@ -17,10 +17,12 @@ class PersonnelStepper: UIControl {
     private lazy var stackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .horizontal
-        sv.spacing = 1
+        sv.spacing = 0.5
         sv.distribution = .fillEqually
         sv.alignment = .fill
-        sv.backgroundColor = .lightGray
+        sv.backgroundColor = .systemGray4
+        sv.layer.cornerRadius = 10
+        sv.clipsToBounds = true
         return sv
     }()
     

@@ -66,30 +66,6 @@ final class HomeViewController: UIViewController {
         return pc
     }()
     
-    // 친구 목록
-    private lazy var friendListView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    
-    private lazy var friendListLabel: UILabel = {
-        let label = UILabel()
-        label.text = "알프님과 같은 취향을 가진 친구 목록이에요!"
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        return label
-    }()
-    
-    private lazy var friendListCollectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumLineSpacing = 5
-        
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        cv.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        cv.tag = 1
-        return cv
-    }()
-    
     // 모임
     private lazy var meetingListView: UIView = {
         let view = UIView()
@@ -117,7 +93,7 @@ final class HomeViewController: UIViewController {
         flowLayout.minimumLineSpacing = 15
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        cv.tag = 2
+        cv.tag = 1
         cv.isScrollEnabled = false
         return cv
     }()
@@ -180,7 +156,7 @@ final class HomeViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = 1
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        cv.tag = 3
+        cv.tag = 2
         cv.isScrollEnabled = false
         cv.layer.cornerRadius = 10
         cv.backgroundColor = .lightGray
@@ -224,7 +200,6 @@ final class HomeViewController: UIViewController {
         containerView.addSubview(navigationContainerView)
         containerView.addSubview(bannerCollectionView)
         containerView.addSubview(bannerPageControl)
-        containerView.addSubview(friendListView)
         containerView.addSubview(meetingListView)
         containerView.addSubview(tipsView)
         containerView.addSubview(interestView)
@@ -233,10 +208,6 @@ final class HomeViewController: UIViewController {
         // 네비게이션 바
         navigationContainerView.addSubview(navigationLogo)
         navigationContainerView.addSubview(navigationNotiButton)
-        
-        // 친구 목록
-        friendListView.addSubview(friendListLabel)
-        friendListView.addSubview(friendListCollectionView)
         
         // 모임
         meetingListView.addSubview(meetingListLabel)
@@ -299,28 +270,9 @@ final class HomeViewController: UIViewController {
             make.bottom.equalTo(bannerCollectionView.snp.bottom).offset(-10)
         }
         
-        // 친구 목록
-        friendListView.snp.makeConstraints { make in
-            make.top.equalTo(bannerCollectionView.snp.bottom).offset(40)
-            make.leading.trailing.equalToSuperview()
-            //make.width.equalToSuperview()
-            make.height.equalTo(200)
-        }
-        
-        friendListLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview().inset(20)
-        }
-        
-        friendListCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(friendListLabel.snp.bottom).offset(15)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-        
         // 모임
         meetingListView.snp.makeConstraints { make in
-            make.top.equalTo(friendListView.snp.bottom).offset(40)
+            make.top.equalTo(bannerCollectionView.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview()
         }
         
@@ -389,13 +341,6 @@ final class HomeViewController: UIViewController {
         
         bannerCollectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.identifier)
         
-        // 친구 목록
-        friendListCollectionView.delegate = self
-        friendListCollectionView.dataSource = self
-        
-        friendListCollectionView.register(FriendListCollectionViewCell.self, forCellWithReuseIdentifier: FriendListCollectionViewCell.identifier)
-        friendListCollectionView.register(MoreFriendCollectionViewCell.self, forCellWithReuseIdentifier: MoreFriendCollectionViewCell.identifier)
-        
         // 모임
         meetingCollectionView.delegate = self
         meetingCollectionView.dataSource = self
@@ -445,10 +390,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 0:
             return CGSize(width: bannerCollectionView.frame.width, height: bannerCollectionView.frame.height)
         case 1:
-            return CGSize(width: friendListCollectionView.frame.height * 0.8, height: friendListCollectionView.frame.height)
-        case 2:
             return CGSize(width: meetingCollectionView.frame.width, height: 130)
-        case 3:
+        case 2:
             return CGSize(width: (interestCollectionView.frame.width - 2) / 3, height: (interestCollectionView.frame.height - 2) / 4)
         default:
             return CGSize()
@@ -461,11 +404,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 0:
             return 3
         case 1:
-            return 4
-        case 2:
             return 3
-        case 3:
-            return Interest.list.count
+        case 2:
+            return Interest.listWithIcon.count
         default:
             return 0
         }
@@ -478,20 +419,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.setBannerImage(UIImage(named: "banner"))
             return cell
         case 1:
-            if indexPath.item != 3 {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendListCollectionViewCell", for: indexPath) as! FriendListCollectionViewCell
-                return cell
-            } else {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoreFriendCollectionViewCell", for: indexPath) as! MoreFriendCollectionViewCell
-                return cell
-            }
-            
-        case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MeetingCollectionViewCell", for: indexPath) as! MeetingCollectionViewCell
+            cell.inputTextData(title: HomeMeetingDummy.title[indexPath.row],
+                               description: HomeMeetingDummy.description[indexPath.row],
+                               personnel: HomeMeetingDummy.personnel[indexPath.row],
+                               tag: HomeMeetingDummy.tagList[indexPath.row])
             return cell
-        case 3:
+        case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InterestCollectionViewCell", for: indexPath) as! InterestCollectionViewCell
-            cell.setTextLabel(Interest.list[indexPath.item])
+            cell.setTextLabel(Interest.listWithIcon[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()

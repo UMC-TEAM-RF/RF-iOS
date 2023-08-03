@@ -38,7 +38,7 @@ final class MakeFriendUIView: UIView {
     }()
     
     private let disposeBag = DisposeBag()
-    var delegate: ClickedButton?
+    weak var delegate: SendDataDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -83,11 +83,11 @@ final class MakeFriendUIView: UIView {
     func inputData(height: CGFloat){
         addSubviews(height: height)
         clickedBtns()
-        searchMeetingBtn.inputData(title: "모임 찾기 (이모지)",
+        searchMeetingBtn.inputData(title: "모임 찾기 🔍",
                       description1: "나의 진정한 외국인 친구들을 찾아보세요.",
                       description2: "취미 생활도 함께 할 수 있어요!")
         
-        createMeetingBtn.inputData(title: "모임 생성하기 (이모지)",
+        createMeetingBtn.inputData(title: "모임 생성하기 🙌",
                       description1: "새로운 모임을 직접 만들어 보세요.",
                       description2: "1인당 최대 5개까지 만들 수 있어요.")
     }
@@ -96,13 +96,13 @@ final class MakeFriendUIView: UIView {
     private func clickedBtns(){
         searchMeetingBtn.rx.tap
             .subscribe(onNext:{
-                self.delegate?.clickedButtons(check: true)
+                self.delegate?.sendBooleanData?(true)
             })
             .disposed(by: disposeBag)
         
         createMeetingBtn.rx.tap
             .subscribe(onNext:{
-                self.delegate?.clickedButtons(check: false)
+                self.delegate?.sendBooleanData?(false)
             })
             .disposed(by: disposeBag)
     }

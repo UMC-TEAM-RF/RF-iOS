@@ -260,7 +260,7 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == interestCollectionView{
-            return Interest.list.count
+            return Interest.listWithIcon.count
         }else if collectionView == lifeStyleCollectionView{
             return LifeStyle.list.count
         }else if collectionView == mbtiCollectionView{
@@ -272,7 +272,7 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         
         if collectionView == interestCollectionView{
             
-            var str : String = Interest.list[indexPath.item]
+            var str : String = Interest.listWithIcon[indexPath.item]
             str.removeFirst()
             str.removeFirst()
             

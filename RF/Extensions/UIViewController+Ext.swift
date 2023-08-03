@@ -13,7 +13,7 @@ extension UIViewController {
     func updateTitleView(title: String) {
         self.title = title
         navigationController?.navigationBar.titleTextAttributes = [
-            .font: UIFont.systemFont(ofSize: 20, weight: .medium)
+            .font: UIFont.systemFont(ofSize: 18, weight: .medium)
         ]
     }
     
@@ -24,6 +24,22 @@ extension UIViewController {
         let backBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: nil) // title 부분 수정
         backBarButtonItem.tintColor = .black
         self.navigationItem.backBarButtonItem = backBarButtonItem
+    }
+    
+    func setupCustomBackButton() {
+        // 버튼에 기본 설정을 적용하고 여백 변경
+        let buttonConfig = UIButton.Configuration.plain()
+        
+        let backButtonImage = UIImage(systemName: "chevron.left") // navigation bar의 back 버튼 이미지
+        let backButton = UIButton(configuration: buttonConfig, primaryAction: UIAction(handler: { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }))
+        backButton.setImage(backButtonImage, for: .normal)
+        backButton.imageView?.preferredSymbolConfiguration = .init(weight: .bold)
+        backButton.tintColor = .black
+        
+        let backBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = backBarButtonItem
     }
     
     /// NavigationBar Title + SubTitle 변경
@@ -50,11 +66,11 @@ extension UIViewController {
         let titleView =
         UIView(frame: CGRect(x: 0, y: 0, width: max(titleLabel.frame.size.width, subtitleLabel.frame.size.width), height: 30))
         titleView.addSubview(titleLabel)
-//        if subtitle != nil {
-//            titleView.addSubview(subtitleLabel)
-//        } else {
-//            titleLabel.frame = titleView.frame
-//        }
+        //        if subtitle != nil {
+        //            titleView.addSubview(subtitleLabel)
+        //        } else {
+        //            titleLabel.frame = titleView.frame
+        //        }
         
         titleLabel.frame = titleView.frame
         
@@ -74,6 +90,11 @@ extension UIViewController {
     
     @objc func titleViewTapped() {
         print("Title View Tap")
+    }
+    
+    // custom back 버튼을 탭했을 때의 행동 정의
+    @objc func customBackButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
 }

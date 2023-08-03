@@ -220,6 +220,10 @@ extension MeetingViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MeetingCollectionViewCell", for: indexPath) as! MeetingCollectionViewCell
+        cell.inputTextData(title: HomeMeetingDummy.title[indexPath.row],
+                           description: HomeMeetingDummy.description[indexPath.row],
+                           personnel: HomeMeetingDummy.personnel[indexPath.row],
+                           tag: HomeMeetingDummy.tagList[indexPath.row])
         return cell
     }
     
@@ -230,26 +234,20 @@ extension MeetingViewController: UICollectionViewDelegate, UICollectionViewDataS
     
 }
 
-extension MeetingViewController: ClickedButton {
+extension MeetingViewController: SendDataDelegate {
     /// true -> 모임 찾기 버튼
     /// false -> 모임 생성하기
-    func clickedButtons(check: Bool) {
-        if check{
+    func sendBooleanData(_ data: Bool) {
+        if data {
+            print("clicked searchMeeting")
             let searchingViewController = SearchingViewController()
             tabBarController?.tabBar.isHidden = true
             self.navigationController?.pushViewController(searchingViewController, animated: true)
-        }
-        else{
-            let meetingCreatePopUpViewController = MeetingCreatePopUpViewController()
-            meetingCreatePopUpViewController.checkingConformButton
-                .bind { [weak self] check in
-                    if check{
-                        self?.clickedCreateButtons()
-                    }
-                }
-                .disposed(by: disposeBag)
-            present(meetingCreatePopUpViewController, animated: true)
+        } else {
+            print("clicked createMeeting")
+            tabBarController?.tabBar.isHidden = true
+            navigationController?.navigationBar.isHidden = false
+            navigationController?.pushViewController(SetMeetingNameViewController(), animated: true)
         }
     }
-    
 }
