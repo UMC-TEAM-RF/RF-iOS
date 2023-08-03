@@ -242,7 +242,7 @@ final class PersonalInterestsViewController: UIViewController {
     private func addTargets() {
         nextButton.rx.tap
             .subscribe(onNext: {
-                self.navigationController?.pushViewController(SetDescriptViewController(), animated: true)
+
             })
             .disposed(by: disposeBag)
     }
