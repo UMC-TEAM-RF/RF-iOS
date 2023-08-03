@@ -125,7 +125,7 @@ final class SetDetailInfoViewController: UIViewController {
     // 사용 언어
     private lazy var languageLabel: UILabel = {
         let label = UILabel()
-        label.text = "선호 연령대"
+        label.text = "사용 언어"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.textColor = .black
         return label
@@ -133,7 +133,7 @@ final class SetDetailInfoViewController: UIViewController {
     
     private lazy var languageButton: MenuButton = {
         let button = MenuButton()
-        button.title = "프랑스어"
+        button.title = "한국어"
         button.tag = 1
         button.delegate = self
         return button
@@ -154,6 +154,7 @@ final class SetDetailInfoViewController: UIViewController {
         tf.layer.cornerRadius = 5
         tf.placeholder = "장소를 입력해 주세요."
         tf.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        tf.textAlignment = .right
         tf.addHorizontalPadding(10)
         return tf
     }()
@@ -412,8 +413,19 @@ final class SetDetailInfoViewController: UIViewController {
         
         createButton.rx.tap
             .subscribe(onNext: {
-                self.tabBarController?.tabBar.isHidden = false
-                self.navigationController?.popToRootViewController(animated: true)
+                
+                let alertController = UIAlertController(title: "모임을 생성하기", message: "모임을 생성하시겠습니까?", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "생성", style: .default) { _ in
+                    self.tabBarController?.tabBar.isHidden = false
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+                let cancel = UIAlertAction(title: "취소", style: .cancel)
+                
+                alertController.addAction(ok)
+                alertController.addAction(cancel)
+                
+                self.present(alertController, animated: true)
+                
             })
             .disposed(by: disposeBag)
     }
