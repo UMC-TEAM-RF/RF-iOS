@@ -13,6 +13,7 @@ import RxSwift
 final class SignInViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
+    private let viewModel = SignInViewModel()
     // MARK: - UI Property
     
     
@@ -64,7 +65,7 @@ final class SignInViewController: UIViewController {
         view.keyboardType = UIKeyboardType.default
         view.returnKeyType = UIReturnKeyType.done
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-
+        
         return view
     }()
     private lazy var idUnderLineView: UIView = {
@@ -203,7 +204,7 @@ final class SignInViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
     private func addSubViews() {
         view.addSubview(logoStackView)
         
@@ -308,7 +309,7 @@ final class SignInViewController: UIViewController {
             make.leading.equalTo(secondDivLine.snp.trailing).offset(8)
             make.height.equalTo(15)
         }
-
+        
         
         
         korLangButton.snp.makeConstraints { make in
@@ -338,10 +339,12 @@ final class SignInViewController: UIViewController {
     private func addTargets() {
         
         loginButton.rx.tap
-            .bind {
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+            .bind { [weak self] in
+                self?.clickedLoginButton()
             }
             .disposed(by: disposeBag)
+ 
+                
         
         onboardingButton.rx.tap.subscribe(onNext: {
             self.navigationController?.pushViewController(SetNicknameViewController(), animated: true)
@@ -372,12 +375,32 @@ final class SignInViewController: UIViewController {
         onboardingButton.isHidden = true
         interestsButton.isHidden = true
     }
+
+
+    
+    /// MARK: 로그인 버튼 눌렀을 때 실행
+    private func clickedLoginButton(){
+        guard let inputId = idTextField.text else { return }
+        guard let inputPW = pwTextField.text else { return }
+        
+        viewModel.idRelay
+            .accept(inputId)
+        
+        viewModel.idRelay
+            .accept(inputPW)
+        
+        viewModel.checkingLogin()
+            .bind { check in
+                if check{
+                    // 로그인 성공 후 넘어가는 코드 작성
+                    print("success login")
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+                }
+            }
+            .disposed(by: disposeBag)
+    }
 }
 
-
-
-
-extension SignInViewController : UITextFieldDelegate{
+extension SignInViewController: UITextFieldDelegate{
     
 }
-
