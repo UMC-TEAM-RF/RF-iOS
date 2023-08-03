@@ -32,8 +32,9 @@ final class SignInViewModel {
         return Observable.create { [weak self] observer in
             self?.service.loginService(id: self?.idRelay.value ?? "", pw: self?.passwordRelay.value ?? "")
                 .subscribe(onNext:{ data in
-                    if let check = data.isSuccess{
-                        UserDefaults.standard.set(data.result.token ?? "", forKey: "AccessToken")
+                    if let accessToken = data.accessToken, let refreshToken = data.refreshToken{
+                        UserDefaults.standard.set(accessToken, forKey: "AccessToken")
+                        UserDefaults.standard.set(refreshToken, forKey: "RefreshToken")
                     }
                 })
                 .disposed(by: self?.disposeBag ?? DisposeBag())
