@@ -12,6 +12,14 @@ import RxSwift
 /// 출생국가, 관심 나라, 관심 언어 선택하는 화면
 final class UserInfoViewController: UIViewController {
     
+    /// MARK: 네비게이션 바 왼쪽 아이템
+    private lazy var leftButton: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "기본 설정", style: .done, target: self, action: nil)
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        return btn
+    }()
+    
     /// MARK:  기본정보
     private lazy var topLabel: UILabel = {
         let label = UILabel()
@@ -101,6 +109,10 @@ final class UserInfoViewController: UIViewController {
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = leftButton
+        navigationController?.navigationBar.tintColor = .black
         view.backgroundColor = .white
         
         addSubviews()
@@ -207,7 +219,7 @@ final class UserInfoViewController: UIViewController {
             .disposed(by: disposeBag)
         
         favLanguageButton.rx.tap
-            .bind {[weak self] in
+            .bind { [weak self] in
                 let choiceInterestingLanguageView = ChoiceInterestingLanguageView()
                 choiceInterestingLanguageView.modalPresentationStyle = .formSheet
                 choiceInterestingLanguageView.selctedCountry
@@ -221,8 +233,10 @@ final class UserInfoViewController: UIViewController {
             .disposed(by: disposeBag)
         
         nextButton.rx.tap
-            .bind {
-                
+            .bind { [weak self] in
+                let personalInterestsViewController = PersonalInterestsViewController()
+                self?.navigationItem.backButtonTitle = " "
+                self?.navigationController?.pushViewController(personalInterestsViewController, animated: true)
             }
             .disposed(by: disposeBag)
         

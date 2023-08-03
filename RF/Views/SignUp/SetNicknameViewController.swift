@@ -8,7 +8,16 @@
 import UIKit
 import SnapKit
 
-class SetNicknameViewController: UIViewController {
+/// 닉네임 설정하는 화면
+final class SetNicknameViewController: UIViewController {
+    
+    /// MARK: 네비게이션 바 왼쪽 아이템
+    private lazy var leftButton: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "닉네임 설정", style: .done, target: self, action: nil)
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        return btn
+    }()
     
     private lazy var topLabel: UILabel = {
         let label = UILabel()
@@ -47,11 +56,6 @@ class SetNicknameViewController: UIViewController {
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         return button
     }()
-    // 다음 버튼 액션
-    @objc private func nextButtonTapped() {
-        let userInfoViewController = UserInfoViewController()
-        navigationController?.pushViewController(userInfoViewController, animated: true)
-    }
     
     private var textField: UITextField = {
         let field = UITextField()
@@ -78,7 +82,9 @@ class SetNicknameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = leftButton
+        navigationController?.navigationBar.tintColor = .black
         view.backgroundColor = .systemBackground
         
         addSubviews()
@@ -141,5 +147,10 @@ class SetNicknameViewController: UIViewController {
 
     }
     
-    
+    // 다음 버튼 액션
+    @objc private func nextButtonTapped() {
+        let userInfoSelfViewController = UserInfoSelfViewController()
+        navigationItem.backButtonTitle = " "
+        navigationController?.pushViewController(userInfoSelfViewController, animated: true)
+    }
 }

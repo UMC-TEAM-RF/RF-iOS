@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B0B35292A7A5A31003B2D8C /* SecretKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B0B35282A7A5A31003B2D8C /* SecretKey.plist */; };
+		3B0F1EE42A7C0317009F3F2B /* UICheckBox1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */; };
 		3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD572A63E9590096871F /* SearchingViewController.swift */; };
 		3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD592A63ECB80096871F /* FilteringViewController.swift */; };
 		3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */; };
@@ -120,6 +121,7 @@
 
 /* Begin PBXFileReference section */
 		3B0B35282A7A5A31003B2D8C /* SecretKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecretKey.plist; sourceTree = "<group>"; };
+		3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox1.swift; sourceTree = "<group>"; };
 		3B15CD572A63E9590096871F /* SearchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewController.swift; sourceTree = "<group>"; };
 		3B15CD592A63ECB80096871F /* FilteringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringViewController.swift; sourceTree = "<group>"; };
 		3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -243,6 +245,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B0F1EE22A7C02F3009F3F2B /* TermsConditions */ = {
+			isa = PBXGroup;
+			children = (
+				3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */,
+			);
+			path = TermsConditions;
+			sourceTree = "<group>";
+		};
 		3B15CD562A63E9450096871F /* Searching */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +611,7 @@
 				3BD700C32A793548005C7D7E /* ChooseUserInfo */,
 				443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */,
 				3B2670E52A5ECCF600EA4F45 /* TermsConditionsViewController.swift */,
+				3B0F1EE22A7C02F3009F3F2B /* TermsConditions */,
 				3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */,
 			);
 			path = SignUp;
@@ -844,6 +855,7 @@
 				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
 				3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */,
 				3BD700CB2A793AA0005C7D7E /* UserInfo.swift in Sources */,
+				3B0F1EE42A7C0317009F3F2B /* UICheckBox1.swift in Sources */,
 				3BB408B12A6AC4CA00FBA617 /* ScheduleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

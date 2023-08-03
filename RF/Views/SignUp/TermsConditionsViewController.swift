@@ -10,16 +10,21 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
-
+/// 약관 동의 화면
 final class TermsConditionsViewController: UIViewController {
     
     // MARK: - UI Property
     
+    /// MARK: 네비게이션 바 왼쪽 아이템
+    private lazy var leftButton: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "회원 가입", style: .done, target: self, action: nil)
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        return btn
+    }()
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-//        scrollView.bounces = true
-//        scrollView.isScrollEnabled = true
-//        scrollView.isUserInteractionEnabled = true
         return scrollView
     }()
     
@@ -31,73 +36,21 @@ final class TermsConditionsViewController: UIViewController {
     private lazy var agreeAllCkeckBox: UIButton = {
         let button = UIButton()
         let offimage = UIImage(systemName: "square")
-            //?.resize(newWidth: 25, newHeight: 25)
         let onimage = UIImage(systemName: "checkmark.square.fill")
-            //?.resize(newWidth: 25, newHeight: 25)
-        
         button.setTitle("  " + "아래 약관에 모두 동의합니다", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        //button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        
         button.setImage(offimage, for: .normal)
         button.setImage(onimage, for: .selected)
         button.imageView?.tintColor = .black
-        
         button.addTarget(self, action: #selector(changeStateAll(_:)), for: .touchUpInside)
         return button
     }()
-    @objc private func changeStateAll(_ sender: UIButton) {
-        agreeAllCkeckBox.isSelected = !agreeAllCkeckBox.isSelected
-        if(agreeAllCkeckBox.isSelected){
-            agreeServiceCkeckBox.isSelected = true
-            privacyServiceCkeckBox.isSelected = true
-            locationServiceCkeckBox.isSelected = true
-            nortificationServiceCkeckBox.isSelected = true
-            realNameServiceCkeckBox.isSelected = true
-            ageServiceCkeckBox.isSelected = true
-            
-            
-            phoneButtonActivate()
-            iPinButtonActivate()
-        }else{
-            agreeServiceCkeckBox.isSelected = false
-            privacyServiceCkeckBox.isSelected = false
-            locationServiceCkeckBox.isSelected = false
-            nortificationServiceCkeckBox.isSelected = false
-            realNameServiceCkeckBox.isSelected = false
-            ageServiceCkeckBox.isSelected = false
-            
-            buttonInactivate(phoneNextButton)
-            buttonInactivate(iPinNextButton)
-        }
-    }
+ 
     private lazy var agreeAllUnderLineView: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
         return view
     }()
-    
-    
-    private func updateStateofAll(){
-        if(agreeServiceCkeckBox.isSelected
-           && privacyServiceCkeckBox.isSelected
-           && locationServiceCkeckBox.isSelected
-           && nortificationServiceCkeckBox.isSelected
-           && realNameServiceCkeckBox.isSelected
-           && ageServiceCkeckBox.isSelected){
-            agreeAllCkeckBox.isSelected = true
-            
-            phoneButtonActivate()
-            iPinButtonActivate()
-        }else{
-            agreeAllCkeckBox.isSelected = false
-            
-            buttonInactivate(phoneNextButton)
-            buttonInactivate(iPinNextButton)
-        }
-    }
-    
-    
     
     private lazy var agreeServiceCkeckBox: UICheckBox1 = {
         let button = UICheckBox1()
@@ -144,23 +97,22 @@ final class TermsConditionsViewController: UIViewController {
         })
         return button
     }()
+    
     private lazy var realNameLabelBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
         view.backgroundColor = .systemGray6
         return view
     }()
+    
     private lazy var realNameLabel: UILabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 15)
         view.textColor = .black
         view.numberOfLines = 0
         view.text = "본인 명의를 이용하여 가입을 진행하겠습니다. 본인 명의를 이용하여 가입을 진행하겠습니다. 본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다."
-        
         return view
     }()
-    
-    
     
     private lazy var ageServiceCkeckBox: UICheckBox1 = {
         let button = UICheckBox1()
@@ -171,12 +123,14 @@ final class TermsConditionsViewController: UIViewController {
         })
         return button
     }()
+    
     private lazy var ageLabelBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
         view.backgroundColor = .systemGray6
         return view
     }()
+    
     private lazy var ageLabel: UILabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 15)
@@ -186,20 +140,6 @@ final class TermsConditionsViewController: UIViewController {
         
         return view
     }()
-    
-    
-    func phoneButtonActivate(){
-        phoneNextButton.backgroundColor = .blue
-        phoneNextButton.setTitleColor(.white, for: .normal)
-    }
-    func iPinButtonActivate(){
-        iPinNextButton.backgroundColor = .systemGray6
-        iPinNextButton.setTitleColor(.systemGray, for: .normal)
-    }
-    func buttonInactivate(_ button : UIButton){
-        button.backgroundColor = .systemGray
-        button.setTitleColor(.black, for: .normal)
-    }
     
     private lazy var phoneNextButton: UIButton = {
         let button = UIButton()
@@ -218,21 +158,22 @@ final class TermsConditionsViewController: UIViewController {
         return button
     }()
     
+    private let disposeBag = DisposeBag()
+    
     // MARK: - Property
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "약관동의"
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = leftButton
+        navigationController?.navigationBar.tintColor = .black
         view.backgroundColor = .systemBackground
-        
         
         addSubviews()
         configureConstraints()
-        addTargets()
+        clickedButtons()
     }
     
     // MARK: - addSubviews
@@ -278,23 +219,28 @@ final class TermsConditionsViewController: UIViewController {
         agreeAllCkeckBox.snp.makeConstraints { make in
             make.leading.top.equalToSuperview().inset(20)
         }
+        
         agreeAllUnderLineView.snp.makeConstraints { make in
             make.top.equalTo(agreeAllCkeckBox.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(1)
         }
+        
         agreeServiceCkeckBox.snp.makeConstraints { make in
             make.top.equalTo(agreeAllUnderLineView.snp.bottom).offset(40)
             make.leading.equalToSuperview().inset(20)
         }
+        
         privacyServiceCkeckBox.snp.makeConstraints { make in
             make.top.equalTo(agreeServiceCkeckBox.snp.bottom).offset(40)
             make.leading.equalToSuperview().inset(20)
         }
+        
         locationServiceCkeckBox.snp.makeConstraints { make in
             make.top.equalTo(privacyServiceCkeckBox.snp.bottom).offset(40)
             make.leading.equalToSuperview().inset(20)
         }
+        
         nortificationServiceCkeckBox.snp.makeConstraints { make in
             make.top.equalTo(locationServiceCkeckBox.snp.bottom).offset(40)
             make.leading.equalToSuperview().inset(20)
@@ -304,10 +250,12 @@ final class TermsConditionsViewController: UIViewController {
             make.top.equalTo(nortificationServiceCkeckBox.snp.bottom).offset(40)
             make.leading.equalToSuperview().inset(20)
         }
+        
         realNameLabelBackgroundView.snp.makeConstraints { make in
             make.top.equalTo(realNameServiceCkeckBox.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
         }
+        
         realNameLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(10)
         }
@@ -316,18 +264,22 @@ final class TermsConditionsViewController: UIViewController {
             make.top.equalTo(realNameLabelBackgroundView.snp.bottom).offset(40)
             make.leading.equalToSuperview().inset(20)
         }
+        
         ageLabelBackgroundView.snp.makeConstraints { make in
             make.top.equalTo(ageServiceCkeckBox.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
         }
+        
         ageLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(10)
         }
+        
         phoneNextButton.snp.makeConstraints { make in
             make.top.equalTo(ageLabelBackgroundView.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(47)
         }
+        
         iPinNextButton.snp.makeConstraints { make in
             make.top.equalTo(phoneNextButton.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(20)
@@ -336,79 +288,79 @@ final class TermsConditionsViewController: UIViewController {
         }
     }
     
-    private func addTargets() {
-        
+    @objc
+    private func changeStateAll(_ sender: UIButton) {
+        agreeAllCkeckBox.isSelected = !agreeAllCkeckBox.isSelected
+        if(agreeAllCkeckBox.isSelected){
+            agreeServiceCkeckBox.isSelected = true
+            privacyServiceCkeckBox.isSelected = true
+            locationServiceCkeckBox.isSelected = true
+            nortificationServiceCkeckBox.isSelected = true
+            realNameServiceCkeckBox.isSelected = true
+            ageServiceCkeckBox.isSelected = true
+            
+            
+            phoneButtonActivate()
+            iPinButtonActivate()
+        }else{
+            agreeServiceCkeckBox.isSelected = false
+            privacyServiceCkeckBox.isSelected = false
+            locationServiceCkeckBox.isSelected = false
+            nortificationServiceCkeckBox.isSelected = false
+            realNameServiceCkeckBox.isSelected = false
+            ageServiceCkeckBox.isSelected = false
+            
+            buttonInactivate(phoneNextButton)
+            buttonInactivate(iPinNextButton)
+        }
     }
-
+    
+    private func updateStateofAll(){
+        if(agreeServiceCkeckBox.isSelected
+           && privacyServiceCkeckBox.isSelected
+           && locationServiceCkeckBox.isSelected
+           && nortificationServiceCkeckBox.isSelected
+           && realNameServiceCkeckBox.isSelected
+           && ageServiceCkeckBox.isSelected){
+            agreeAllCkeckBox.isSelected = true
+            
+            phoneButtonActivate()
+            iPinButtonActivate()
+        }else{
+            agreeAllCkeckBox.isSelected = false
+            
+            buttonInactivate(phoneNextButton)
+            buttonInactivate(iPinNextButton)
+        }
+    }
+    
+    private func phoneButtonActivate(){
+        phoneNextButton.backgroundColor = .blue
+        phoneNextButton.setTitleColor(.white, for: .normal)
+    }
+    
+    private func iPinButtonActivate(){
+        iPinNextButton.backgroundColor = .systemGray6
+        iPinNextButton.setTitleColor(.systemGray, for: .normal)
+    }
+    
+    private func buttonInactivate(_ button : UIButton){
+        button.backgroundColor = .systemGray
+        button.setTitleColor(.black, for: .normal)
+    }
+    
+    /// MARK: 휴대폰 인증, 아이핀 인증 버튼 눌렀을 때 실행
+    private func clickedButtons(){
+        phoneNextButton.rx.tap
+            .bind { [weak self] in
+                let setNicknameViewController = SetNicknameViewController()
+                self?.navigationItem.backButtonTitle = " "
+                self?.navigationController?.pushViewController(setNicknameViewController, animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
+    
 }
 
 
-
-class UICheckBox1: UIButton {
-    private let disposeBag = DisposeBag()
-    private var offimage: UIImage?
-    private var onimage: UIImage?
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    func setTitle(title : String) {
-        self.setTitle("  " + title, for: .normal)
-    }
-    func setFont(size : CGFloat, weight : UIFont.Weight = .regular) {
-        self.titleLabel?.font = UIFont.systemFont(ofSize: size, weight: weight)
-        self.offimage = offimage?.resize(newWidth: size*0.8, newHeight: size*0.8)
-        self.onimage = onimage?.resize(newWidth: size*0.8, newHeight: size*0.8)
-        self.setImage(offimage, for: .normal)
-        self.setImage(onimage, for: .selected)
-    }
-    func setWeight(weight : UIFont.Weight) {
-        self.titleLabel?.font = UIFont.systemFont(ofSize: self.titleLabel?.font.pointSize ?? 15, weight: weight)
-    }
-    func setSelectedColor(color : UIColor) {
-        self.onimage = self.onimage?.withTintColor(color)
-        self.setImage(onimage, for: .selected)
-        self.setTitleColor(color, for: .selected)
-    }
-    func setNormalColor(color : UIColor) {
-        self.offimage = self.offimage?.withTintColor(color)
-        self.setImage(offimage, for: .normal)
-        self.setTitleColor(color, for: .normal)
-    }
-    private func setup() {
-        self.offimage = UIImage(systemName: "checkmark")?
-            .resize(newWidth: 12, newHeight: 12)
-            .withTintColor(.lightGray)
-        self.onimage = UIImage(systemName: "checkmark")?
-            .resize(newWidth: 12, newHeight: 12)
-            .withTintColor(.black)
-        
-        self.setTitle("  ", for: .normal)
-        self.setTitleColor(.lightGray, for: .normal)
-        self.setTitleColor(.black, for: .selected)
-        self.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        
-        self.setImage(offimage, for: .normal)
-        self.setImage(onimage, for: .selected)
-        
-        self.rx.tap.subscribe(onNext: {
-            self.isSelected = !self.isSelected
-            guard let _ = self.buttonClicked else { return }
-            self.buttonClicked!()
-        })
-        .disposed(by: disposeBag)
-//        self.addTarget(self, action: #selector(changeStateofCheckBox(_:)), for: .touchUpInside)
-    }
-    private var buttonClicked : (() -> Void)?
-    func setEventFunction(function : (() -> Void)?){
-        buttonClicked = function
-    }
-}
 

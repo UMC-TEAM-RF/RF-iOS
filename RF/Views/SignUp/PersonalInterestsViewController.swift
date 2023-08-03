@@ -10,9 +10,18 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
-class PersonalInterestsViewController: UIViewController {
+/// 관심사 설정하는 화면
+final class PersonalInterestsViewController: UIViewController {
     
     // MARK: - UI Property
+    
+    /// MARK: 네비게이션 바 왼쪽 아이템
+    private lazy var leftButton: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "관심사 설정", style: .done, target: self, action: nil)
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        return btn
+    }()
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -23,13 +32,6 @@ class PersonalInterestsViewController: UIViewController {
         let view = UIView()
         return view
     }()
-    
-    
-    private func setNavigationTitle()
-    {
-        navigationItem.title = ""
-        view.backgroundColor = .systemBackground
-    }
     
     // 프로그레스 바
     private lazy var progressBar: UIProgressView = {
@@ -123,7 +125,10 @@ class PersonalInterestsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationTitle()
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = leftButton
+        navigationController?.navigationBar.tintColor = .black
+        view.backgroundColor = .white
         
         addSubviews()
         configureConstraints()
@@ -241,6 +246,7 @@ class PersonalInterestsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
+    
 }
 
 // MARK: - extension CollectionView
@@ -331,7 +337,7 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         
         cell.isSelectedCell.toggle()
         
-//        // 최대 3개 선택할 수 있도록 설정
+        // 최대 3개 선택할 수 있도록 설정
         if cell.isSelectedCell { // 활성화
             self.selectedCount[cellindex] += 1
             cell.setColor(textColor: .white, backgroundColor: .tintColor)

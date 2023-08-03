@@ -10,6 +10,7 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
+/// 로그인 화면
 final class SignInViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
@@ -356,8 +357,11 @@ final class SignInViewController: UIViewController {
         })
         .disposed(by: disposeBag)
         
-        signUpButton.rx.tap.subscribe(onNext: {
-            self.navigationController?.pushViewController(SignUpViewController(), animated: true)
+        signUpButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+            let signUpViewController = SignUpViewController()
+            self?.navigationItem.backButtonTitle = " "
+            self?.navigationController?.pushViewController(signUpViewController, animated: true)
         })
         .disposed(by: disposeBag)
         
@@ -366,7 +370,7 @@ final class SignInViewController: UIViewController {
         })
         .disposed(by: disposeBag)
         
-        isHidden()
+//        isHidden()
     }
     
     /// MARK: 동영상 시연용 임시 함수
@@ -382,7 +386,7 @@ final class SignInViewController: UIViewController {
     private func clickedLoginButton(){
         guard let inputId = idTextField.text else { return }
         guard let inputPW = pwTextField.text else { return }
-        
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
         viewModel.idRelay
             .accept(inputId)
         

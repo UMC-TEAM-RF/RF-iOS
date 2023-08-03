@@ -9,8 +9,18 @@ import UIKit
 import RxCocoa
 import RxSwift
 
+///  회원가입 첫번째 화면
+///  아이디, 비밀번호 입력하는 화면
 final class SignUpViewController: UIViewController {
     private let disposeBag = DisposeBag()
+    
+    /// MARK: 네비게이션 바 왼쪽 아이템
+    private lazy var leftButton: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "회원 가입", style: .done, target: self, action: nil)
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        return btn
+    }()
     
     private lazy var idLabel: UILabel = {
         let view = UILabel()
@@ -28,7 +38,7 @@ final class SignUpViewController: UIViewController {
         view.keyboardType = UIKeyboardType.emailAddress
         view.returnKeyType = UIReturnKeyType.done
         view.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
-
+        
         return view
     }()
     private lazy var idCheckButton: UIButton = {
@@ -44,9 +54,6 @@ final class SignUpViewController: UIViewController {
         return view
     }()
     
-    
-    
-    
     private lazy var pwLabel: UILabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 15)
@@ -56,18 +63,19 @@ final class SignUpViewController: UIViewController {
         
         return view
     }()
+    
     private lazy var pwTextField: PasswordTextField = {
         var view = PasswordTextField()
         view.delegate = self
         view.borderStyle = UITextField.BorderStyle.none
         return view
     }()
+    
     private lazy var pwUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
         return view
     }()
-    
     
     private lazy var pwConfirmLabel: UILabel = {
         let view = UILabel()
@@ -78,12 +86,14 @@ final class SignUpViewController: UIViewController {
         
         return view
     }()
+    
     private lazy var pwConfirmTextField: PasswordTextField = {
         var view = PasswordTextField()
         view.delegate = self
         view.borderStyle = UITextField.BorderStyle.none
         return view
     }()
+    
     private lazy var pwConfirmUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
@@ -105,11 +115,11 @@ final class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "회원가입"
         
-        view.backgroundColor = .systemBackground
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = leftButton
+        navigationController?.navigationBar.tintColor = .black
+        view.backgroundColor = .white
         
         addSubViews()
         configureConstraints()
@@ -212,18 +222,21 @@ final class SignUpViewController: UIViewController {
     
     
     private func addTargets() {
-    
-        nextButton.rx.tap.subscribe(onNext: {
-            self.navigationController?.pushViewController(TermsConditionsViewController(), animated: true)
-        })
-        .disposed(by: disposeBag)
+        
+        nextButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let termsConditionsViewController = TermsConditionsViewController()
+                self?.navigationItem.backButtonTitle = " "
+                self?.navigationController?.pushViewController(termsConditionsViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
         
     }
-
+    
     
     // MARK: - Navigation
-
-
+    
+    
 }
 
 extension SignUpViewController : UITextFieldDelegate{

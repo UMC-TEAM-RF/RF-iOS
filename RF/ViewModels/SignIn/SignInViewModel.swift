@@ -35,6 +35,7 @@ final class SignInViewModel {
                     if let accessToken = data.accessToken, let refreshToken = data.refreshToken{
                         UserDefaults.standard.set(accessToken, forKey: "AccessToken")
                         UserDefaults.standard.set(refreshToken, forKey: "RefreshToken")
+                        observer.onNext(true)
                     }
                 })
                 .disposed(by: self?.disposeBag ?? DisposeBag())
