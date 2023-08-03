@@ -14,7 +14,8 @@ final class SignInService {
     /// MARK: 로그인 성공 후 SignIn 모델 반환
     /// - Returns: SignIn Decoding Values
     func loginService(id: String, pw: String) -> Observable<SignIn>{
-        let url = APIURL.api.loginURL()
+        
+        let url = "\(Bundle.main.REST_API_URL)/signin"
 //        let body: [String: Any] = [
 //            SignInBody.first.body: id,
 //            SignInBody.second.body: pw

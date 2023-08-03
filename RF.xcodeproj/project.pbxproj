@@ -58,7 +58,6 @@
 		3BD68EF52A7795D5003A57A7 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EF42A7795D5003A57A7 /* SignInViewModel.swift */; };
 		3BD68EF72A779741003A57A7 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EF62A779741003A57A7 /* SignIn.swift */; };
 		3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EFA2A779885003A57A7 /* SignInService.swift */; };
-		3BD68EFD2A77C787003A57A7 /* APIURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EFC2A77C787003A57A7 /* APIURL.swift */; };
 		3BD700C22A793371005C7D7E /* ChooseUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD700C12A793371005C7D7E /* ChooseUserTableViewCell.swift */; };
 		3BD700C52A793565005C7D7E /* ChoiceBornCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD700C42A793565005C7D7E /* ChoiceBornCountryView.swift */; };
 		3BD700C82A79364B005C7D7E /* ChoiceCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD700C72A79364B005C7D7E /* ChoiceCountryViewModel.swift */; };
@@ -168,7 +167,6 @@
 		3BD68EF42A7795D5003A57A7 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		3BD68EF62A779741003A57A7 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		3BD68EFA2A779885003A57A7 /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
-		3BD68EFC2A77C787003A57A7 /* APIURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURL.swift; sourceTree = "<group>"; };
 		3BD700C12A793371005C7D7E /* ChooseUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseUserTableViewCell.swift; sourceTree = "<group>"; };
 		3BD700C42A793565005C7D7E /* ChoiceBornCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceBornCountryView.swift; sourceTree = "<group>"; };
 		3BD700C72A79364B005C7D7E /* ChoiceCountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCountryViewModel.swift; sourceTree = "<group>"; };
@@ -410,8 +408,8 @@
 				3BD68EFA2A779885003A57A7 /* SignInService.swift */,
 			);
 			path = SignIn;
-            sourceTree = "<group>";
-        };
+			sourceTree = "<group>";
+		};
 		3BD700C32A793548005C7D7E /* ChooseUserInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,7 +543,6 @@
 		572DC22D2A51BF2400C0D6E1 /* RF */ = {
 			isa = PBXGroup;
 			children = (
-				3BD68EFC2A77C787003A57A7 /* APIURL.swift */,
 				572DC2432A51C36C00C0D6E1 /* App */,
 				57673EDA2A56E9B000A13D07 /* Constants */,
 				44F82A0F2A56D55D006B17F8 /* Extensions */,
@@ -776,8 +773,6 @@
 				3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */,
 				57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */,
 				3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */,
-				3BD68EFD2A77C787003A57A7 /* APIURL.swift in Sources */,
-				572A9A2D2A5C12B1004D2809 /* NavigationBarDelegate.swift in Sources */,
 				44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */,
 				3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,

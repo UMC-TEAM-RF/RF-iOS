@@ -344,7 +344,7 @@ final class SignInViewController: UIViewController {
             }
             .disposed(by: disposeBag)
  
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+                
         
         onboardingButton.rx.tap.subscribe(onNext: {
             self.navigationController?.pushViewController(SetNicknameViewController(), animated: true)
@@ -375,7 +375,7 @@ final class SignInViewController: UIViewController {
         onboardingButton.isHidden = true
         interestsButton.isHidden = true
     }
-}
+
 
     
     /// MARK: 로그인 버튼 눌렀을 때 실행
@@ -394,8 +394,13 @@ final class SignInViewController: UIViewController {
                 if check{
                     // 로그인 성공 후 넘어가는 코드 작성
                     print("success login")
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
                 }
             }
             .disposed(by: disposeBag)
     }
+}
+
+extension SignInViewController: UITextFieldDelegate{
+    
 }
