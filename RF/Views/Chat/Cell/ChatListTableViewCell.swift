@@ -56,6 +56,10 @@ class ChatListTableViewCell: UITableViewCell {
         
         addSubviews()
         configureConstraints()
+        
+        let view = UIView()
+        view.backgroundColor = BackgroundColor.dark.color
+        self.selectedBackgroundView = view
     }
     
     required init?(coder: NSCoder) {

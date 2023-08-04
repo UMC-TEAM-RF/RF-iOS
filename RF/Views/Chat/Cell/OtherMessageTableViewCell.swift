@@ -22,7 +22,8 @@ class OtherMessageTableViewCell: UITableViewCell {
     
     private lazy var avatarView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "RF-icon")
+        iv.image = UIImage(named: "LogoImage")
+        iv.contentMode = .scaleAspectFit
         iv.layer.cornerRadius = contentView.frame.width * 0.1 / 2.0
         iv.clipsToBounds = true
         return iv
