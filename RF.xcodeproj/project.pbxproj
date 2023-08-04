@@ -60,6 +60,9 @@
 		3BC7D35A2A7D244F00D92356 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D3592A7D244F00D92356 /* SignUpViewModel.swift */; };
 		3BC7D35D2A7D263C00D92356 /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D35C2A7D263C00D92356 /* SignUpService.swift */; };
 		3BC7D35F2A7D27E000D92356 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D35E2A7D27E000D92356 /* SignUp.swift */; };
+		3BC7D3612A7D4D6300D92356 /* SetNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D3602A7D4D6300D92356 /* SetNicknameViewModel.swift */; };
+		3BC7D3632A7D4ED300D92356 /* NickNameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D3622A7D4ED300D92356 /* NickNameService.swift */; };
+		3BC7D3652A7D4F7500D92356 /* NickName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7D3642A7D4F7400D92356 /* NickName.swift */; };
 		3BD68EF52A7795D5003A57A7 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EF42A7795D5003A57A7 /* SignInViewModel.swift */; };
 		3BD68EF72A779741003A57A7 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EF62A779741003A57A7 /* SignIn.swift */; };
 		3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD68EFA2A779885003A57A7 /* SignInService.swift */; };
@@ -174,6 +177,9 @@
 		3BC7D3592A7D244F00D92356 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		3BC7D35C2A7D263C00D92356 /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
 		3BC7D35E2A7D27E000D92356 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		3BC7D3602A7D4D6300D92356 /* SetNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNicknameViewModel.swift; sourceTree = "<group>"; };
+		3BC7D3622A7D4ED300D92356 /* NickNameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameService.swift; sourceTree = "<group>"; };
+		3BC7D3642A7D4F7400D92356 /* NickName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickName.swift; sourceTree = "<group>"; };
 		3BD68EF42A7795D5003A57A7 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		3BD68EF62A779741003A57A7 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		3BD68EFA2A779885003A57A7 /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
@@ -409,6 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				3BC7D35C2A7D263C00D92356 /* SignUpService.swift */,
+				3BC7D3622A7D4ED300D92356 /* NickNameService.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -454,6 +461,7 @@
 				3BD700CC2A796149005C7D7E /* UserInfoViewModel.swift */,
 				3BD700C92A7936BD005C7D7E /* ChooseUserInfo */,
 				3BC7D3592A7D244F00D92356 /* SignUpViewModel.swift */,
+				3BC7D3602A7D4D6300D92356 /* SetNicknameViewModel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -550,6 +558,7 @@
 				3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */,
 				3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */,
 				3BD68EF62A779741003A57A7 /* SignIn.swift */,
+				3BC7D3642A7D4F7400D92356 /* NickName.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -811,6 +820,7 @@
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
 				3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
+				3BC7D3652A7D4F7500D92356 /* NickName.swift in Sources */,
 				3B57FFCD2A7408AE007DB482 /* DimmedViewController.swift in Sources */,
 				3B181D1A2A56DCDF00B62DEB /* MeetingViewController.swift in Sources */,
 				3BD700C52A793565005C7D7E /* ChoiceBornCountryView.swift in Sources */,
@@ -839,6 +849,7 @@
 				5700636B2A643CDA0051F42A /* DropDownTableViewCell.swift in Sources */,
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
 				570063BD2A7797B50051F42A /* PickerViewController.swift in Sources */,
+				3BC7D3632A7D4ED300D92356 /* NickNameService.swift in Sources */,
 				570063CF2A7A44BC0051F42A /* Bundle+Ext.swift in Sources */,
 				3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */,
 				3BD700D32A7963DD005C7D7E /* ChoiceInterestingLanguageView.swift in Sources */,
@@ -879,6 +890,7 @@
 				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
 				3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */,
 				3BD700CB2A793AA0005C7D7E /* UserInfo.swift in Sources */,
+				3BC7D3612A7D4D6300D92356 /* SetNicknameViewModel.swift in Sources */,
 				3B0F1EE42A7C0317009F3F2B /* UICheckBox1.swift in Sources */,
 				3BB408B12A6AC4CA00FBA617 /* ScheduleViewModel.swift in Sources */,
 			);

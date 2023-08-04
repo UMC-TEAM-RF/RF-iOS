@@ -259,6 +259,7 @@ final class SignUpViewController: UIViewController {
         idTextField.rx.text
             .bind { [weak self] id in
                 if let text = id{
+                    self?.viewModel.overlapCheckRelay.accept(false)
                     self?.viewModel.idRelay.accept(text)
                 }
             }
@@ -303,6 +304,7 @@ final class SignUpViewController: UIViewController {
                 }
                 else{
                     // false: 아이디 중복이 아닌 경우 코드 작성
+                    
                 }
             })
             .disposed(by: disposeBag)

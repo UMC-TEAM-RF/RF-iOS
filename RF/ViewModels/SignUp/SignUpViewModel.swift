@@ -28,8 +28,9 @@ final class SignUpViewModel {
     /// 비밀번호 확인이 통과 했는지 확인하는 Relay
     var confirmPasswordRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     
-    // MARK: - Logic
     
+    
+    // MARK: - Logic
     
     /// '비밀번호 확인' 하는 함수
     func confirmPassword( _ password: String){

@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 /// 닉네임 설정하는 화면
 final class SetNicknameViewController: UIViewController {
@@ -62,7 +64,6 @@ final class SetNicknameViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
         button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -88,6 +89,9 @@ final class SetNicknameViewController: UIViewController {
         return label
     }()
     
+    private let disposeBag = DisposeBag()
+    private let viewModel = SetNicknameViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -97,7 +101,7 @@ final class SetNicknameViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         addSubviews()
-        configureConstraints()
+        addTargets()
     }
     
     
@@ -111,6 +115,7 @@ final class SetNicknameViewController: UIViewController {
         view.addSubview(textField)
         view.addSubview(warningLbel)
        
+        configureConstraints()
     }
     
     private func configureConstraints() {
@@ -165,10 +170,62 @@ final class SetNicknameViewController: UIViewController {
 
     }
     
-    // 다음 버튼 액션
-    @objc private func nextButtonTapped() {
-        let userInfoSelfViewController = UserInfoSelfViewController()
-        navigationItem.backButtonTitle = " "
-        navigationController?.pushViewController(userInfoSelfViewController, animated: true)
+    /// MARK:  Add Target (button, textFields, ...)
+    private func addTargets(){
+        nextButton.rx.tap
+            .bind { [weak self] in
+//                let userInfoSelfViewController = UserInfoSelfViewController()
+//                self?.navigationItem.backButtonTitle = " "
+//                self?.navigationController?.pushViewController(userInfoSelfViewController, animated: true)
+                self?.moveToNextPage()
+            }
+            .disposed(by: disposeBag)
+        
+        nameCheckButton.rx.tap
+            .bind{ [weak self] in
+                self?.viewModel.checkNickName()
+                    .subscribe(onNext: { check in // 닉네임 중복인 경우
+                        self?.showOverlapAlert(text: "닉네임 중복입니다!")
+                    })
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
+            }
+            .disposed(by: disposeBag)
+        
+        textField.rx.text
+            .bind { [weak self] nickName in
+                if let nickName = nickName {
+                    self?.viewModel.checknickNameRelay.accept(false)
+                    self?.viewModel.nickNameRelay.accept(nickName)
+                }
+            }
+            .disposed(by: disposeBag)
+        
     }
+    
+    /// MARK: 다음 화면으로 넘어가는 함수
+    private func moveToNextPage(){
+        viewModel.checkFinalNickName()
+            .subscribe(onNext: { [weak self] check in
+                if check {
+                    let userInfoSelfViewController = UserInfoSelfViewController()
+                    self?.navigationItem.backButtonTitle = " "
+                    self?.navigationController?.pushViewController(userInfoSelfViewController, animated: true)
+                }
+                else{
+                    self?.showOverlapAlert(text: "중복 확인을 해주세요!")
+                }
+            })
+            .disposed(by: disposeBag)
+        
+    }
+ 
+    /// MARK: 중복된 아이디인 경우 팝행창 알림 실행
+    private func showOverlapAlert(text: String){
+        let sheet = UIAlertController(title: text, message: nil, preferredStyle: .alert)
+        let success = UIAlertAction(title: "확인", style: .default)
+        
+        sheet.addAction(success)
+        self.present(sheet,animated: true)
+    }
+    
 }
