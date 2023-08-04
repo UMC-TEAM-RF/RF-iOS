@@ -13,6 +13,7 @@ import RxSwift
 ///  아이디, 비밀번호 입력하는 화면
 final class SignUpViewController: UIViewController {
     private let disposeBag = DisposeBag()
+    private let viewModel = SignUpViewModel()
     
     /// MARK: 네비게이션 바 왼쪽 아이템
     private lazy var leftButton: UIBarButtonItem = {
@@ -243,13 +244,54 @@ final class SignUpViewController: UIViewController {
     private func addTargets() {
         
         nextButton.rx.tap
-            .subscribe(onNext: { [weak self] in
+            .bind(onNext: { [weak self] in
                 let termsConditionsViewController = TermsConditionsViewController()
                 self?.navigationItem.backButtonTitle = " "
                 self?.navigationController?.pushViewController(termsConditionsViewController, animated: true)
             })
             .disposed(by: disposeBag)
         
+        idCheckButton.rx.tap
+            .bind { [weak self] in
+                self?.viewModel.checkOverlapId()
+                    .bind(onNext: { check in
+                        if check{
+                            self?.showOverlapAlert()
+                            self?.viewModel.overlayCheck.accept(true)
+                        }
+                        else{
+                            
+                        }
+                    })
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
+            }
+            .disposed(by: disposeBag)
+        
+        idTextField.rx.text
+            .bind { [weak self] id in
+                if let text = id{
+                    self?.viewModel.idRelay.accept(text)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        pwTextField.rx.text
+            .bind { [weak self] pw in
+                if let text = pw{
+                    self?.viewModel.pwRelay.accept(text)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    /// MARK: 중복된 아이디인 경우 팝행창 알림 실행
+    private func showOverlapAlert(){
+        let sheet = UIAlertController(title: "중복된 아이디 입니다.", message: nil, preferredStyle: .alert)
+        let success = UIAlertAction(title: "확인", style: .default)
+        
+        sheet.addAction(success)
+        self.present(sheet,animated: true)
     }
     
 }
