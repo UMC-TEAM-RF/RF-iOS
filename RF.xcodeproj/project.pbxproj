@@ -24,6 +24,7 @@
 		3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D552A56D4AA00FECE3A /* UICheckBox.swift */; };
 		3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D572A56F00200FECE3A /* SignUpViewController.swift */; };
 		3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */; };
+		3BA9FB8B2A7D11220039B138 /* lifestyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FB8A2A7D11220039B138 /* lifestyleCollectionViewCell.swift */; };
 		3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */; };
 		3BB408A72A6AA5D900FBA617 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 3BB408A62A6AA5D900FBA617 /* FSCalendar */; };
 		3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */; };
@@ -104,6 +105,7 @@
 		3B935D552A56D4AA00FECE3A /* UICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox.swift; sourceTree = "<group>"; };
 		3B935D572A56F00200FECE3A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		3BA9FB8A2A7D11220039B138 /* lifestyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lifestyleCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		3BB408AB2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFSCalendarCell.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */,
+				3BA9FB8A2A7D11220039B138 /* lifestyleCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */,
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
 				3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */,
+				3BA9FB8B2A7D11220039B138 /* lifestyleCollectionViewCell.swift in Sources */,
 				570063952A67BA000051F42A /* Rule.swift in Sources */,
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
 				3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */,
