@@ -19,6 +19,15 @@ final class SetNicknameViewController: UIViewController {
         return btn
     }()
     
+    /// 프로그레스 바
+    private lazy var progressBar: UIProgressView = {
+        let pv = UIProgressView()
+        pv.progressViewStyle = .bar
+        pv.backgroundColor = UIColor(hexCode: "D1D1D1")
+        pv.progress = 0.5
+        return pv
+    }()
+    
     private lazy var topLabel: UILabel = {
         let label = UILabel()
         label.text = "알프님의\n기본 정보를 설정해주세요!"
@@ -93,6 +102,8 @@ final class SetNicknameViewController: UIViewController {
     
     
     private func addSubviews() {
+        view.addSubview(progressBar)
+        
         view.addSubview(nameCheckButton)
         view.addSubview(topLabel)
         view.addSubview(nicknameLabel)
@@ -104,9 +115,16 @@ final class SetNicknameViewController: UIViewController {
     
     private func configureConstraints() {
         
+        progressBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
+        
         //알프닝의 기본 정보를 설정해주세요.
         topLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(24)
+            make.top.equalTo(progressBar.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         

@@ -20,6 +20,15 @@ final class UserInfoSelfViewController: UIViewController {
         return btn
     }()
     
+    /// 프로그레스 바
+    private lazy var progressBar: UIProgressView = {
+        let pv = UIProgressView()
+        pv.progressViewStyle = .bar
+        pv.backgroundColor = UIColor(hexCode: "D1D1D1")
+        pv.progress = 0.5
+        return pv
+    }()
+    
     private lazy var subLabel: UILabel = {
         let label = UILabel()
         label.text = "  " + "나를 나타낼 수 있는 대표적 키워드를 적어주세요."
@@ -98,6 +107,8 @@ final class UserInfoSelfViewController: UIViewController {
     
     
     private func addSubviews() {
+        view.addSubview(progressBar)
+        
         view.addSubview(subLabel) // 나를 나타낼 수 있는 대표적 키워드를 적어주세요
         view.addSubview(textField) // 한 줄 소개를 작성해주세요!
         view.addSubview(warningLabel) // 이후에 변경할 수 없으니 신중히 결정해주세요!
@@ -108,9 +119,15 @@ final class UserInfoSelfViewController: UIViewController {
     
     private func configureConstraints() {
         
+        progressBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
         // 나를 나타낼 수 있는 대표적 키워드를 적어주세요
         subLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.top.equalTo(progressBar.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         

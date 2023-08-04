@@ -22,15 +22,25 @@ final class SignUpViewController: UIViewController {
         return btn
     }()
     
+    /// 프로그레스 바
+    private lazy var progressBar: UIProgressView = {
+        let pv = UIProgressView()
+        pv.progressViewStyle = .bar
+        pv.backgroundColor = UIColor(hexCode: "D1D1D1")
+        pv.progress = 0.5
+        return pv
+    }()
+    
     private lazy var idLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 15)
+        view.font = .systemFont(ofSize: 20, weight: .semibold)
         view.textColor = .black
         view.numberOfLines = 0
         view.text = "아이디"
         
         return view
     }()
+    
     private lazy var idTextField: UITextField = {
         var view = UITextField()
         view.delegate = self
@@ -38,16 +48,20 @@ final class SignUpViewController: UIViewController {
         view.keyboardType = UIKeyboardType.emailAddress
         view.returnKeyType = UIReturnKeyType.done
         view.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
-        
+        view.placeholder = " 아이디를 입력해주세요."
         return view
     }()
+    
     private lazy var idCheckButton: UIButton = {
         let button = UIButton()
         button.setTitle("중복확인", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15)
+        button.backgroundColor = UIColor(hexCode: "F5F5F5")
+        button.layer.cornerRadius = 15
         return button
     }()
+    
     private lazy var idUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
@@ -56,11 +70,10 @@ final class SignUpViewController: UIViewController {
     
     private lazy var pwLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 15)
         view.textColor = .black
         view.numberOfLines = 0
         view.text = "비밀번호"
-        
+        view.font = .systemFont(ofSize: 20, weight: .semibold)
         return view
     }()
     
@@ -68,6 +81,7 @@ final class SignUpViewController: UIViewController {
         var view = PasswordTextField()
         view.delegate = self
         view.borderStyle = UITextField.BorderStyle.none
+        view.placeholder = " 비밀번호"
         return view
     }()
     
@@ -79,7 +93,7 @@ final class SignUpViewController: UIViewController {
     
     private lazy var pwConfirmLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 15)
+        view.font = .systemFont(ofSize: 20, weight: .semibold)
         view.textColor = .black
         view.numberOfLines = 0
         view.text = "비밀번호 확인"
@@ -91,6 +105,7 @@ final class SignUpViewController: UIViewController {
         var view = PasswordTextField()
         view.delegate = self
         view.borderStyle = UITextField.BorderStyle.none
+        view.placeholder = " 비밀번호"
         return view
     }()
     
@@ -109,9 +124,7 @@ final class SignUpViewController: UIViewController {
         return button
     }()
     
-    
-    
-    
+    // MARK: - view did load
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +144,8 @@ final class SignUpViewController: UIViewController {
     }
     
     private func addSubViews() {
+        view.addSubview(progressBar)
+        
         view.addSubview(idLabel)
         view.addSubview(idTextField)
         view.addSubview(idCheckButton)
@@ -149,67 +164,71 @@ final class SignUpViewController: UIViewController {
     
     private func configureConstraints() {
         
+        progressBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
         idLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
-            make.leading.equalToSuperview().offset(16)
+            make.top.equalTo(progressBar.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(20)
         }
         
         idTextField.snp.makeConstraints { make in
-            make.top.equalTo(idLabel.snp.bottom).offset(16)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(idCheckButton.snp.leading).offset(-16)
+            make.top.equalTo(idLabel.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalTo(idCheckButton.snp.leading).offset(-20)
             make.height.equalTo(47)
         }
         idCheckButton.snp.makeConstraints { make in
-            make.top.equalTo(idLabel.snp.bottom).offset(16)
-            make.leading.equalTo(idTextField.snp.trailing).offset(16)
-            make.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(47)
+            make.top.equalTo(idLabel.snp.bottom).offset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(idTextField.snp.height).multipliedBy(0.8)
+            make.width.equalTo(idTextField.snp.width).multipliedBy(0.25)
         }
         idUnderLine.snp.makeConstraints { make in
             make.top.equalTo(idTextField.snp.bottom).offset(0)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(idTextField.snp.trailing)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
             make.height.equalTo(1)
         }
         
         
         pwLabel.snp.makeConstraints { make in
             make.top.equalTo(idTextField.snp.bottom).offset(32)
-            make.leading.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(20)
         }
         pwTextField.snp.makeConstraints { make in
-            make.top.equalTo(pwLabel.snp.bottom).offset(16)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(idTextField.snp.trailing)
+            make.top.equalTo(pwLabel.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
             make.height.equalTo(47)
         }
         pwUnderLine.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(0)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(idTextField.snp.trailing)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
             make.height.equalTo(1)
         }
         
         
         pwConfirmLabel.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(32)
-            make.leading.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(20)
         }
         pwConfirmTextField.snp.makeConstraints { make in
-            make.top.equalTo(pwConfirmLabel.snp.bottom).offset(16)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(idTextField.snp.trailing)
+            make.top.equalTo(pwConfirmLabel.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
             make.height.equalTo(47)
         }
         pwConfirmUnderLine.snp.makeConstraints { make in
             make.top.equalTo(pwConfirmTextField.snp.bottom).offset(0)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(idTextField.snp.trailing)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
             make.height.equalTo(1)
         }
-        
-        
         
         nextButton.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(50)
@@ -232,10 +251,6 @@ final class SignUpViewController: UIViewController {
             .disposed(by: disposeBag)
         
     }
-    
-    
-    // MARK: - Navigation
-    
     
 }
 

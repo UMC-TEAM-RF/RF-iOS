@@ -45,9 +45,9 @@ final class PersonalInterestsViewController: UIViewController {
     // 메인 라벨
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "\("알프")님의\n관심사를 설정해 주세요!"
+        label.text = "관심사를 설정해 주세요!"
         label.numberOfLines = 2
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         return label
     }()
     
@@ -179,7 +179,7 @@ final class PersonalInterestsViewController: UIViewController {
         
         // 메인 라벨
         mainLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(45)
+            make.top.equalToSuperview().offset(20)
             make.leading.equalToSuperview().offset(20)
         }
         
@@ -284,7 +284,7 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
             
             let cell = interestCollectionView.dequeueReusableCell(withReuseIdentifier: "InterestSmallCollectionViewCell", for: indexPath) as! InterestSmallCollectionViewCell
             
-            cell.setTextLabel( str )
+            cell.setTextLabel(str)
             cell.contentView.backgroundColor = .systemGray6
             cell.setCornerRadius()
             return cell
