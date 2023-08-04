@@ -22,23 +22,59 @@ final class SignUpViewModel {
     /// 입력한 비밀번호 저장하는 Relay
     var pwRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
     
+    /// 중복 확인을 통과 했는지 확인하는 Relay
+    var overlapCheckRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     
-    var overlayCheck: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    /// 비밀번호 확인이 통과 했는지 확인하는 Relay
+    var confirmPasswordRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    // MARK: - Logic
+    
+    
+    /// '비밀번호 확인' 하는 함수
+    func confirmPassword( _ password: String){
+        let pw = pwRelay.value
+        
+        if !password.isEmpty && !pw.isEmpty && password == pw{
+            confirmPasswordRelay.accept(true)
+        }
+        else{
+            confirmPasswordRelay.accept(false)
+        }
+    }
+    
+    /// 아이디 중복확인, 비밀번호 확인이 통과 했는지 확인하는 함수
+    func checkTotalInformation() -> Observable<Bool>{
+        let overlapId = overlapCheckRelay.value
+        let confirmPw = confirmPasswordRelay.value
+        
+        return Observable.create { [weak self] observer in
+            
+            Observable.combineLatest(self?.overlapCheckRelay ?? BehaviorRelay(value: false),
+                                     self?.confirmPasswordRelay ?? BehaviorRelay(value: false))
+            .subscribe(onNext: { first, second in
+                if first && second{
+                    observer.onNext(true)
+                }
+                else{
+                    observer.onNext(false)
+                }
+            })
+            .disposed(by: self?.disposeBag ?? DisposeBag())
+            
+            return Disposables.create()
+        }
+    }
+    
     
     // MARK: - API Connect Functions
     
     /// 아이디 중복 체크
-    /// - Returns: Observable<Bool>
-    func checkOverlapId() -> Observable<Bool>{
-        
-        return Observable.create { [weak self] observer in
-            self?.service.checkOverlapId(userId: "")
-                .bind { check in
-                    observer.onNext(check)
-                }
-                .disposed(by: self?.disposeBag ?? DisposeBag())
-            
-            return Disposables.create()
-        }
+    func checkOverlapId() {
+        service.checkOverlapId(userId: "")
+            .bind { [weak self] check in
+                self?.overlapCheckRelay.accept(true)
+            }
+            .disposed(by: disposeBag)
     }
 }

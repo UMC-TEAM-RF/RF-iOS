@@ -138,6 +138,7 @@ final class SignUpViewController: UIViewController {
         addSubViews()
         configureConstraints()
         addTargets()
+        bind()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -245,25 +246,13 @@ final class SignUpViewController: UIViewController {
         
         nextButton.rx.tap
             .bind(onNext: { [weak self] in
-                let termsConditionsViewController = TermsConditionsViewController()
-                self?.navigationItem.backButtonTitle = " "
-                self?.navigationController?.pushViewController(termsConditionsViewController, animated: true)
+                self?.checkTotalInformation()
             })
             .disposed(by: disposeBag)
         
         idCheckButton.rx.tap
             .bind { [weak self] in
                 self?.viewModel.checkOverlapId()
-                    .bind(onNext: { check in
-                        if check{
-                            self?.showOverlapAlert()
-                            self?.viewModel.overlayCheck.accept(true)
-                        }
-                        else{
-                            
-                        }
-                    })
-                    .disposed(by: self?.disposeBag ?? DisposeBag())
             }
             .disposed(by: disposeBag)
         
@@ -283,6 +272,53 @@ final class SignUpViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        pwConfirmTextField.rx.text
+            .bind {[weak self] pw in
+                if let password = pw {
+                    self?.viewModel.confirmPassword(password)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    /// MARK: viewModel binding 하는 함수
+    private func bind(){
+        viewModel.confirmPasswordRelay
+            .bind(onNext: { check in
+                if check{ // true: 비밀번호 일치
+                    
+                }
+                else{ // false: 비밀번호가 일치하지 않는 경우 코드 작성
+                    
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.overlapCheckRelay
+            .bind(onNext: { [weak self] check in
+                if check{
+                    // true: 아이디 중복인 경우
+                    self?.showOverlapAlert()
+                }
+                else{
+                    // false: 아이디 중복이 아닌 경우 코드 작성
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    /// MARK: 다음 버튼 눌렀을 때 모든 정보 입력했는 지 확인하는 함수
+    private func checkTotalInformation(){
+        viewModel.checkTotalInformation()
+            .subscribe(onNext: { [weak self] check in
+                if check{
+                    let termsConditionsViewController = TermsConditionsViewController()
+                    self?.navigationItem.backButtonTitle = " "
+                    self?.navigationController?.pushViewController(termsConditionsViewController, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     /// MARK: 중복된 아이디인 경우 팝행창 알림 실행
