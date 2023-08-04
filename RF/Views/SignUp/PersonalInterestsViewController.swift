@@ -120,7 +120,7 @@ final class PersonalInterestsViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     private var selectedCount: [Int] = [0, 0, 0]
-    private var selectedCountMax: [Int] = [3, -1, 1]
+    private var selectedCountMax: [Int] = [3, 1, 2]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -194,7 +194,7 @@ final class PersonalInterestsViewController: UIViewController {
             make.height.equalTo(200)
         }
         
-        // 취미 관심사 라벨 & 컬렉션뷰
+        // 라이프스타일 라벨 & 컬렉션뷰
         lifeStyleLabel.snp.makeConstraints { make in
             make.top.equalTo(interestCollectionView.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(20)
@@ -202,10 +202,10 @@ final class PersonalInterestsViewController: UIViewController {
         lifeStyleCollectionView.snp.makeConstraints { make in
             make.top.equalTo(lifeStyleLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
-            make.height.equalTo(400)
+            make.height.equalTo(140)
         }
         
-        // 취미 관심사 라벨 & 컬렉션뷰
+        // MBTI 라벨 & 컬렉션뷰
         mbtiLabel.snp.makeConstraints { make in
             make.top.equalTo(lifeStyleCollectionView.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(20)
@@ -231,7 +231,7 @@ final class PersonalInterestsViewController: UIViewController {
         interestCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: "InterestSmallCollectionViewCell")
         lifeStyleCollectionView.delegate = self
         lifeStyleCollectionView.dataSource = self
-        lifeStyleCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: "LifeStyleCollectionViewCell")
+        lifeStyleCollectionView.register(lifestyleCollectionViewCell.self, forCellWithReuseIdentifier: "LifeStyleCollectionViewCell")
         mbtiCollectionView.delegate = self
         mbtiCollectionView.dataSource = self
         mbtiCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: "MbtiCollectionViewCell")
@@ -257,7 +257,7 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         if collectionView == interestCollectionView{
             return CGSize(width: (interestCollectionView.frame.width - (20 * 2)) / 3, height: (interestCollectionView.frame.height - (20 * 3)) / 4)
         }else if collectionView == lifeStyleCollectionView{
-            return CGSize(width: lifeStyleCollectionView.frame.width, height: (lifeStyleCollectionView.frame.height - (20 * 5)) / 6)
+            return CGSize(width: lifeStyleCollectionView.frame.width / 2 - 30, height: lifeStyleCollectionView.frame.height)
         }else if collectionView == mbtiCollectionView{
             return CGSize(width: (mbtiCollectionView.frame.width - (20 * 3)) / 4, height: (mbtiCollectionView.frame.height - (20 * 3)) / 4)
         }
@@ -266,7 +266,7 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == interestCollectionView{
-            return Interest.listWithIcon.count
+            return Interest.list.count
         }else if collectionView == lifeStyleCollectionView{
             return LifeStyle.list.count
         }else if collectionView == mbtiCollectionView{
@@ -278,24 +278,25 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         
         if collectionView == interestCollectionView{
             
-            var str : String = Interest.listWithIcon[indexPath.item]
+            var str : String = Interest.list[indexPath.item]
             str.removeFirst()
             str.removeFirst()
             
             let cell = interestCollectionView.dequeueReusableCell(withReuseIdentifier: "InterestSmallCollectionViewCell", for: indexPath) as! InterestSmallCollectionViewCell
             
-            cell.setTextLabel(str)
+            cell.setTextLabel( str )
             cell.contentView.backgroundColor = .systemGray6
             cell.setCornerRadius()
             return cell
             
         }else if collectionView == lifeStyleCollectionView{
             
-            let str : String = LifeStyle.list[indexPath.item]
+            let str : [String] = LifeStyle.list[indexPath.item]
             
-            let cell = lifeStyleCollectionView.dequeueReusableCell(withReuseIdentifier: "LifeStyleCollectionViewCell", for: indexPath) as! InterestSmallCollectionViewCell
+            let cell = lifeStyleCollectionView.dequeueReusableCell(withReuseIdentifier: "LifeStyleCollectionViewCell", for: indexPath) as! lifestyleCollectionViewCell
             
-            cell.setTextLabel( str )
+            cell.setImage( str[0] )
+            cell.setTextLabel( str[1] )
             cell.contentView.backgroundColor = .systemGray6
             cell.setCornerRadius()
             return cell
@@ -317,35 +318,63 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? InterestSmallCollectionViewCell else { return }
-        
-        var cellindex = -1
-        
-        if collectionView == interestCollectionView{
-            cellindex = 0
-        }else if collectionView == lifeStyleCollectionView{
-            cellindex = 1
-        }else if collectionView == mbtiCollectionView{
-            cellindex = 2
+        if collectionView == lifeStyleCollectionView{
+            guard let cell = collectionView.cellForItem(at: indexPath) as? lifestyleCollectionViewCell else { return }
+            var cellindex = -1
+            
+            if collectionView == lifeStyleCollectionView{
+                cellindex = 1
+            }else {return}
+            
+            
+            if !cell.isSelectedCell && self.selectedCount[cellindex] == selectedCountMax[cellindex] {
+                print("초과")
+                return
+            }
+            
+            cell.isSelectedCell.toggle()
+            
+            //        // 최대 n개 선택할 수 있도록 설정
+            if cell.isSelectedCell { // 활성화
+                self.selectedCount[cellindex] += 1
+                cell.setColor(textColor: .white, backgroundColor: .tintColor)
+            } else {  // 비활성화
+                self.selectedCount[cellindex] -= 1
+                cell.setColor(textColor: .label, backgroundColor: .systemGray6)
+            }
+        }else{
+            guard let cell = collectionView.cellForItem(at: indexPath) as? InterestSmallCollectionViewCell else { return }
+            
+            var cellindex = -1
+            
+            if collectionView == interestCollectionView{
+                cellindex = 0
+            }else if collectionView == lifeStyleCollectionView{
+                cellindex = 1
+            }else if collectionView == mbtiCollectionView{
+                cellindex = 2
+            }
+            
+            
+            if !cell.isSelectedCell && self.selectedCount[cellindex] == selectedCountMax[cellindex] {
+                print("초과")
+                return
+            }
+            
+            cell.isSelectedCell.toggle()
+            
+            //        // 최대 3개 선택할 수 있도록 설정
+            if cell.isSelectedCell { // 활성화
+                self.selectedCount[cellindex] += 1
+                cell.setColor(textColor: .white, backgroundColor: .tintColor)
+            } else {  // 비활성화
+                self.selectedCount[cellindex] -= 1
+                cell.setColor(textColor: .label, backgroundColor: .systemGray6)
+            }
         }
         
         
-        if !cell.isSelectedCell && self.selectedCount[cellindex] == selectedCountMax[cellindex] {
-            print("초과")
-            return
-        }
         
-        cell.isSelectedCell.toggle()
-        
-        // 최대 3개 선택할 수 있도록 설정
-        if cell.isSelectedCell { // 활성화
-            self.selectedCount[cellindex] += 1
-            cell.setColor(textColor: .white, backgroundColor: .tintColor)
-        } else {  // 비활성화
-            self.selectedCount[cellindex] -= 1
-            cell.setColor(textColor: .label, backgroundColor: .systemGray6)
-        }
-    
         // 다음 버튼 활성화 여부
         if self.selectedCount[0]*self.selectedCount[1]*self.selectedCount[2] == 0{
             nextButton.backgroundColor = .systemGray6
