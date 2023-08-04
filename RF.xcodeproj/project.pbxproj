@@ -90,6 +90,8 @@
 		570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C72A77B2B50051F42A /* SendDataDelegate.swift */; };
 		570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C92A792BB80051F42A /* ProfileSettingViewController.swift */; };
 		570063CF2A7A44BC0051F42A /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */; };
+		570063DD2A7CFB280051F42A /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063DC2A7CFB280051F42A /* ChatListViewController.swift */; };
+		570063E02A7CFD780051F42A /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063DF2A7CFD780051F42A /* ChatListTableViewCell.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -199,6 +201,8 @@
 		570063C72A77B2B50051F42A /* SendDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataDelegate.swift; sourceTree = "<group>"; };
 		570063C92A792BB80051F42A /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
+		570063DC2A7CFB280051F42A /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		570063DF2A7CFD780051F42A /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -486,6 +490,23 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		570063DB2A7CFB110051F42A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				570063DE2A7CFD670051F42A /* Cell */,
+				570063DC2A7CFB280051F42A /* ChatListViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		570063DE2A7CFD670051F42A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				570063DF2A7CFD780051F42A /* ChatListTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		572A9A272A5C0989004D2809 /* Creating */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,6 +588,7 @@
 				572DC2542A51C97900C0D6E1 /* SignUp */,
 				572DC2512A51C62E00C0D6E1 /* Home */,
 				3B181D182A56DCC100B62DEB /* Meeting */,
+				570063DB2A7CFB110051F42A /* Chat */,
 				570063CB2A792C530051F42A /* Setting */,
 			);
 			path = Views;
@@ -838,8 +860,10 @@
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
 				3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */,
 				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
+				570063E02A7CFD780051F42A /* ChatListTableViewCell.swift in Sources */,
 				3BD700D52A796403005C7D7E /* ChoiceInterestingLanguageViewModel.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,
+				570063DD2A7CFB280051F42A /* ChatListViewController.swift in Sources */,
 				3B5402C92A6EAE1E00D0AD21 /* ProfileUIView.swift in Sources */,
 				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
 				3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */,

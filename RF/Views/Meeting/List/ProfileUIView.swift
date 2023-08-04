@@ -15,25 +15,28 @@ final class ProfileUIView: UIView{
     /// MARK: first Profile Image
     private lazy var firstProfile: UIImageView = {
         let img = UIImageView()
+        img.contentMode = .scaleAspectFit
         return img
     }()
     
     /// MARK: second Profile Image
     private lazy var secondProfile: UIImageView = {
         let img = UIImageView()
+        img.contentMode = .scaleAspectFit
         return img
     }()
     
     /// MARK: third Profile Image
     private lazy var thirdProfile: UIImageView = {
         let img = UIImageView()
+        img.contentMode = .scaleAspectFit
         return img
     }()
     
     /// MARK: fourth Profile Image
     private lazy var fourthProfile: UIImageView = {
         let img = UIImageView()
-        
+        img.contentMode = .scaleAspectFit
         return img
     }()
     
