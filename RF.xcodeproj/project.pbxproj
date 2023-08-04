@@ -92,6 +92,8 @@
 		570063CF2A7A44BC0051F42A /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */; };
 		570063DD2A7CFB280051F42A /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063DC2A7CFB280051F42A /* ChatListViewController.swift */; };
 		570063E02A7CFD780051F42A /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063DF2A7CFD780051F42A /* ChatListTableViewCell.swift */; };
+		570063E22A7D0FDA0051F42A /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E12A7D0FDA0051F42A /* ChatRoomViewController.swift */; };
+		570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E32A7D10150051F42A /* KeyboardInputBar.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -203,6 +205,8 @@
 		570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
 		570063DC2A7CFB280051F42A /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		570063DF2A7CFD780051F42A /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
+		570063E12A7D0FDA0051F42A /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		570063E32A7D10150051F42A /* KeyboardInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputBar.swift; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -495,6 +499,8 @@
 			children = (
 				570063DE2A7CFD670051F42A /* Cell */,
 				570063DC2A7CFB280051F42A /* ChatListViewController.swift */,
+				570063E12A7D0FDA0051F42A /* ChatRoomViewController.swift */,
+				570063E32A7D10150051F42A /* KeyboardInputBar.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -830,6 +836,7 @@
 				3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */,
 				3BD700D32A7963DD005C7D7E /* ChoiceInterestingLanguageView.swift in Sources */,
 				3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */,
+				570063E22A7D0FDA0051F42A /* ChatRoomViewController.swift in Sources */,
 				57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */,
 				3BD700CD2A796149005C7D7E /* UserInfoViewModel.swift in Sources */,
 				570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */,
@@ -845,6 +852,7 @@
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
 				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
 				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
+				570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */,
 				570063AD2A7258530051F42A /* DesignColor.swift in Sources */,
 				570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */,
 				3B15CD612A64437D0096871F /* InterestingTopicCollectionViewCell.swift in Sources */,
