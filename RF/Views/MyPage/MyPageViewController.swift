@@ -529,14 +529,8 @@ class MyPageViewController: UIViewController {
 
 extension MyPageViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance{
       
-    /// 선택했을 때 색상
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
-        return .systemBlue
-        }
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleSelectionColorFor date: Date) -> UIColor? {
-        return .white
-    }
     
+    // 화면 로딩됐을 때 현재 날짜에는 빨간색 원에 하얀색 글씨로 칠해두는 코드
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let dateMonth = Calendar.current.dateComponents([.month], from: date)
         let todayMonth = Calendar.current.dateComponents([.month], from: today)
@@ -548,8 +542,6 @@ extension MyPageViewController: FSCalendarDelegate, FSCalendarDataSource, FSCale
             return .black
         }
     }
-    
-    /// cell의 default color 변경
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
         let dateMonth = Calendar.current.dateComponents([.month], from: date)
         let todayMonth = Calendar.current.dateComponents([.month], from: today)
@@ -564,7 +556,7 @@ extension MyPageViewController: FSCalendarDelegate, FSCalendarDataSource, FSCale
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let cell = calendar.cell(for: date, at: monthPosition) else { return }
-        cell.titleLabel.textColor = .black
+        cell.titleLabel.textColor = .white
         
         print(viewModel.formattingDate(date: date))
     }
