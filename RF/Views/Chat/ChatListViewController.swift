@@ -29,6 +29,8 @@ class ChatListViewController: UIViewController {
         MeetingList(imageList: ["a"], meetingTitle: "모임 1", university: "한국공학대학교", country: "한국", like: true),
         MeetingList(imageList: ["a","a","a","a"], meetingTitle: "모임 1", university: "한국공학대학교", country: "한국", like: true)
     ]
+    
+    // MARK: - viewDidLoad()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,14 @@ class ChatListViewController: UIViewController {
         
         addSubviews()
         configureConstraints()
+    }
+    
+    // MARK: - viewWillAppear()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - addSubviews()
@@ -75,5 +85,11 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ChatRoomViewController()
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
