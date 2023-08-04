@@ -21,7 +21,7 @@ final class TabBarController: UITabBarController {
         let vc2 = UINavigationController(rootViewController: MeetingViewController())
         let vc3 = UINavigationController(rootViewController: HomeViewController())
         let vc4 = UINavigationController(rootViewController: HomeViewController())
-        let vc5 = UINavigationController(rootViewController: HomeViewController())
+        let vc5 = UINavigationController(rootViewController: MyPageViewController())
         
         vc1.navigationItem.largeTitleDisplayMode = .never
         
