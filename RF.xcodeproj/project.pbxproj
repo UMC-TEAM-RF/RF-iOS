@@ -39,8 +39,9 @@
 		3B6BA9802A7E68FA00A11FE4 /* SearchUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97F2A7E68FA00A11FE4 /* SearchUniversityViewController.swift */; };
 		3B6BA9822A7E6AB700A11FE4 /* ChooseUniversityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA9812A7E6AB700A11FE4 /* ChooseUniversityViewModel.swift */; };
 		3B6BA9852A7E6AE100A11FE4 /* SearchUniversityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA9842A7E6AE100A11FE4 /* SearchUniversityViewModel.swift */; };
+		3B6BA9872A7E771800A11FE4 /* SignUpDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA9862A7E771800A11FE4 /* SignUpDataViewModel.swift */; };
 		3B6C31252A7E17DC008FADA1 /* UserInfoSelfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31242A7E17DC008FADA1 /* UserInfoSelfViewModel.swift */; };
-		3B6C31272A7E2106008FADA1 /* PersonalInterestsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31262A7E2106008FADA1 /* PersonalInterestsService.swift */; };
+		3B6C31272A7E2106008FADA1 /* SignUpDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31262A7E2106008FADA1 /* SignUpDataService.swift */; };
 		3B6C31292A7E2166008FADA1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31282A7E2166008FADA1 /* User.swift */; };
 		3B6C312B2A7E2616008FADA1 /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C312A2A7E2616008FADA1 /* EmailService.swift */; };
 		3B6C312D2A7E26E1008FADA1 /* SendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C312C2A7E26E1008FADA1 /* SendEmail.swift */; };
@@ -171,8 +172,9 @@
 		3B6BA97F2A7E68FA00A11FE4 /* SearchUniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUniversityViewController.swift; sourceTree = "<group>"; };
 		3B6BA9812A7E6AB700A11FE4 /* ChooseUniversityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseUniversityViewModel.swift; sourceTree = "<group>"; };
 		3B6BA9842A7E6AE100A11FE4 /* SearchUniversityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUniversityViewModel.swift; sourceTree = "<group>"; };
+		3B6BA9862A7E771800A11FE4 /* SignUpDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataViewModel.swift; sourceTree = "<group>"; };
 		3B6C31242A7E17DC008FADA1 /* UserInfoSelfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSelfViewModel.swift; sourceTree = "<group>"; };
-		3B6C31262A7E2106008FADA1 /* PersonalInterestsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInterestsService.swift; sourceTree = "<group>"; };
+		3B6C31262A7E2106008FADA1 /* SignUpDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataService.swift; sourceTree = "<group>"; };
 		3B6C31282A7E2166008FADA1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B6C312A2A7E2616008FADA1 /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
 		3B6C312C2A7E26E1008FADA1 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
@@ -467,7 +469,7 @@
 			children = (
 				3BC7D35C2A7D263C00D92356 /* SignUpService.swift */,
 				3B6C312A2A7E2616008FADA1 /* EmailService.swift */,
-				3B6C31262A7E2106008FADA1 /* PersonalInterestsService.swift */,
+				3B6C31262A7E2106008FADA1 /* SignUpDataService.swift */,
 				3BC7D3622A7D4ED300D92356 /* NickNameService.swift */,
 			);
 			path = SignUp;
@@ -519,6 +521,7 @@
 				3BC7D3592A7D244F00D92356 /* SignUpViewModel.swift */,
 				3B6C31242A7E17DC008FADA1 /* UserInfoSelfViewModel.swift */,
 				3BC7D3602A7D4D6300D92356 /* SetNicknameViewModel.swift */,
+				3B6BA9862A7E771800A11FE4 /* SignUpDataViewModel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */,
 				3BEEE7D12A7658C0007092DF /* MeetingCreatePopUpViewController.swift in Sources */,
 				3BD700D12A796312005C7D7E /* ChoiceInterestingCountryViewModel.swift in Sources */,
+				3B6BA9872A7E771800A11FE4 /* SignUpDataViewModel.swift in Sources */,
 				3B8477372A6AEC25007A6144 /* LifeStyle.swift in Sources */,
 				3B8477392A6AEC32007A6144 /* Mbti.swift in Sources */,
 				3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */,
@@ -936,7 +940,7 @@
 				3B5402C32A6EA61700D0AD21 /* ListViewModel.swift in Sources */,
 				3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */,
 				5700639D2A6AC60C0051F42A /* NotiListTableViewCell.swift in Sources */,
-				3B6C31272A7E2106008FADA1 /* PersonalInterestsService.swift in Sources */,
+				3B6C31272A7E2106008FADA1 /* SignUpDataService.swift in Sources */,
 				572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */,
 				3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */,
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,

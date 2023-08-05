@@ -164,7 +164,6 @@ final class ChooseUniversityViewController: UIViewController {
     
     /// MARK: 버튼 클릭 했을 때
     private func clickedButtons(){
-        
         yearButton.rx.tap
             .bind{ [weak self] in
                 let pickerViewController = PickerViewController(pickerValues: SelectUniversity.years)
@@ -197,6 +196,9 @@ final class ChooseUniversityViewController: UIViewController {
                             let setNicknameViewController = SetNicknameViewController()
                             self?.navigationItem.backButtonTitle = " "
                             self?.navigationController?.pushViewController(setNicknameViewController, animated: true)
+                            
+                            SignUpDataViewModel.viewModel.yearRelay.accept(self?.viewModel.yearRelay.value ?? "")
+                            SignUpDataViewModel.viewModel.universityRelay.accept(self?.viewModel.universityRelay.value ?? "")
                         }
                         else{
                             self?.showAlert(text: "모두 선택해주세요!")

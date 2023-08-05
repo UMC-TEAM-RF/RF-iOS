@@ -340,7 +340,23 @@ final class PersonalInterestsViewController: UIViewController {
     
     /// MARK: 다음 화면으로 이동
     private func moveNextPage(){
-        navigationController?.popToRootViewController(animated: false)
+        SignUpDataViewModel.viewModel.lifeStyleRelay.accept(Interest.list[viewModel.lifeStyleRelay.value.row])
+        SignUpDataViewModel.viewModel.mbtiRelay.accept(Interest.list[viewModel.mbtiRelay.value.row])
+        viewModel.convertInterestingValue()
+            .bind { list in
+                SignUpDataViewModel.viewModel.interestingRelay.accept(list)
+            }
+            .disposed(by: disposeBag)
+        
+        SignUpDataViewModel.viewModel.totalSignUp()
+            .subscribe(onNext:{ [weak self] check in
+                if check{
+                    self?.navigationController?.popToRootViewController(animated: false)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        
     }
     
     /// MARK:  다 선택이 안된 경우 실행

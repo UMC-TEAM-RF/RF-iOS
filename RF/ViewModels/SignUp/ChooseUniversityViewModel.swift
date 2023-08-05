@@ -14,7 +14,7 @@ final class ChooseUniversityViewModel {
     /// 선택한 학번
     var yearRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
     
-    /// 선택한 노래
+    /// 선택한 학교
     var universityRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
     
     private let disposeBag = DisposeBag()

@@ -180,6 +180,8 @@ final class UserInfoSelfViewController: UIViewController {
                     let userInfoViewController = UserInfoViewController()
                     self?.navigationItem.backButtonTitle = " "
                     self?.navigationController?.pushViewController(userInfoViewController, animated: true)
+                    
+                    SignUpDataViewModel.viewModel.introduceSelfRelay.accept(self?.viewModel.introduceSelfRelay.value ?? "")
                 }
                 else{
                     self?.showAlert(text: "한 줄 소개를 입력해 주세요!")

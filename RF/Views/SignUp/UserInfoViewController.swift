@@ -247,10 +247,12 @@ final class UserInfoViewController: UIViewController {
             .bind { [weak self] check in
                 if check{
                     let personalInterestsViewController = PersonalInterestsViewController()
-                    
                     self?.navigationItem.backButtonTitle = " "
                     self?.navigationController?.pushViewController(personalInterestsViewController, animated: true)
                     
+                    SignUpDataViewModel.viewModel.bornCountry.accept(self?.viewModel.bornCountry.value ?? "")
+                    SignUpDataViewModel.viewModel.interestingCountry.accept(self?.viewModel.interestingCountry.value ?? "")
+                    SignUpDataViewModel.viewModel.interestingLanguage.accept(self?.viewModel.interestingLanguage.value ?? "")
                 }
             }
             .disposed(by: disposeBag)

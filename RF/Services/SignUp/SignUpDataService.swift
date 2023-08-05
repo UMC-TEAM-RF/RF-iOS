@@ -9,8 +9,8 @@ import Foundation
 import RxSwift
 import Alamofire
 
-/// 관심사 API 통신 Service
-final class PersonalInterestsService {
+/// 회원가입 API 통신 Service
+final class SignUpDataService {
     
     /// 유저 등록하는 함수
     func addUserInfo() -> Observable<Bool>{
@@ -27,6 +27,7 @@ final class PersonalInterestsService {
                        encoder: JSONParameterEncoder.default)
             .validate(statusCode: 200..<201)
             .responseDecodable(of: Welcome.self) { response in
+                print("addUserInfo response\n\(response)")
                 switch response.result{
                 case .success(let data):
                     observer.onNext(data.isSuccess)

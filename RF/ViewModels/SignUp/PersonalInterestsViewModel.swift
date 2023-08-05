@@ -55,7 +55,6 @@ final class PersonalInterestsViewModel{
         else {
             return
         }
-        
         interestingRelay.accept(selectedItems)
     }
     
@@ -116,5 +115,19 @@ final class PersonalInterestsViewModel{
         }
     }
     
-    
+    /// 취미 관심사 IndexPath -> String value
+    func convertInterestingValue() -> Observable<[String]>{
+        let list = interestingRelay.value
+        var convertList: [String] = []
+        
+        let _ = list.map { indexPath in
+            convertList.append(Interest.list[indexPath.row])
+        }
+        return Observable.create { observer in
+            
+            observer.onNext(convertList)
+            
+            return Disposables.create()
+        }
+    }
 }

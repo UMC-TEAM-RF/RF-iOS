@@ -174,9 +174,6 @@ final class SetNicknameViewController: UIViewController {
     private func addTargets(){
         nextButton.rx.tap
             .bind { [weak self] in
-                let userInfoSelfViewController = UserInfoSelfViewController()
-                self?.navigationItem.backButtonTitle = " "
-                self?.navigationController?.pushViewController(userInfoSelfViewController, animated: true)
                 self?.moveToNextPage()
             }
             .disposed(by: disposeBag)
@@ -210,6 +207,7 @@ final class SetNicknameViewController: UIViewController {
                     let userInfoSelfViewController = UserInfoSelfViewController()
                     self?.navigationItem.backButtonTitle = " "
                     self?.navigationController?.pushViewController(userInfoSelfViewController, animated: true)
+                    SignUpDataViewModel.viewModel.nickNameRelay.accept(self?.viewModel.nickNameRelay.value ?? "")
                 }
                 else{
                     self?.showOverlapAlert(text: "중복 확인을 해주세요!")

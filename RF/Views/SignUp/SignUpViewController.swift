@@ -246,9 +246,6 @@ final class SignUpViewController: UIViewController {
         
         nextButton.rx.tap
             .bind(onNext: { [weak self] in
-                let termsConditionsViewController = TermsConditionsViewController()
-                self?.navigationItem.backButtonTitle = " "
-                self?.navigationController?.pushViewController(termsConditionsViewController, animated: true)
                 self?.checkTotalInformation()
             })
             .disposed(by: disposeBag)
@@ -321,6 +318,8 @@ final class SignUpViewController: UIViewController {
                     let termsConditionsViewController = TermsConditionsViewController()
                     self?.navigationItem.backButtonTitle = " "
                     self?.navigationController?.pushViewController(termsConditionsViewController, animated: true)
+                    SignUpDataViewModel.viewModel.idRelay.accept(self?.viewModel.idRelay.value ?? "")
+                    SignUpDataViewModel.viewModel.pwRelay.accept(self?.viewModel.pwRelay.value ?? "")
                 }
             })
             .disposed(by: disposeBag)
