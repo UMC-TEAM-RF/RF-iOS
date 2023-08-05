@@ -64,6 +64,17 @@ final class ChooseUniversityViewController: UIViewController {
         return btn
     }()
     
+    /// MARK: 다음 화면 넘어가는 버튼
+    private lazy var nextButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("다음", for: .normal)
+        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
+        btn.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        btn.setTitleColor(.black, for: .normal)
+        btn.layer.cornerRadius = 20
+        return btn
+    }()
+    
     private let disposeBag = DisposeBag()
     
     // MARK: - View Did Load
@@ -90,6 +101,7 @@ final class ChooseUniversityViewController: UIViewController {
         view.addSubview(universityLabel)
         view.addSubview(universityButton)
         
+        view.addSubview(nextButton)
         configureConstraints()
     }
     
@@ -122,6 +134,13 @@ final class ChooseUniversityViewController: UIViewController {
             make.top.equalTo(universityLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
+        }
+        
+        nextButton.snp.makeConstraints { make in
+            make.top.equalTo(universityButton.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/20)
         }
     }
     

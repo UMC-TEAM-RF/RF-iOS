@@ -141,19 +141,10 @@ final class TermsConditionsViewController: UIViewController {
         return view
     }()
     
-    private lazy var phoneNextButton: UIButton = {
+    private lazy var nextButton: UIButton = {
         let button = UIButton()
-        button.setTitle("휴대폰 인증하고 시작하기", for: .normal)
+        button.setTitle("다음", for: .normal)
         buttonInactivate(button)
-        button.layer.cornerRadius = 10
-        return button
-    }()
-    
-    private lazy var iPinNextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("아이핀 인증하고 시작하기", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = .lightGray
         button.layer.cornerRadius = 10
         return button
     }()
@@ -200,8 +191,7 @@ final class TermsConditionsViewController: UIViewController {
         containerView.addSubview(ageLabelBackgroundView)
         ageLabelBackgroundView.addSubview(ageLabel)
         
-        containerView.addSubview(phoneNextButton)
-        containerView.addSubview(iPinNextButton)
+        containerView.addSubview(nextButton)
     }
     
     // MARK: - configureConstraints
@@ -274,18 +264,13 @@ final class TermsConditionsViewController: UIViewController {
             make.edges.equalToSuperview().inset(10)
         }
         
-        phoneNextButton.snp.makeConstraints { make in
+        nextButton.snp.makeConstraints { make in
             make.top.equalTo(ageLabelBackgroundView.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview()
             make.height.equalTo(47)
         }
         
-        iPinNextButton.snp.makeConstraints { make in
-            make.top.equalTo(phoneNextButton.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(47)
-            make.bottom.equalToSuperview() // 이것이 중요함
-        }
     }
     
     @objc
@@ -301,7 +286,6 @@ final class TermsConditionsViewController: UIViewController {
             
             
             phoneButtonActivate()
-            iPinButtonActivate()
         }else{
             agreeServiceCkeckBox.isSelected = false
             privacyServiceCkeckBox.isSelected = false
@@ -310,8 +294,7 @@ final class TermsConditionsViewController: UIViewController {
             realNameServiceCkeckBox.isSelected = false
             ageServiceCkeckBox.isSelected = false
             
-            buttonInactivate(phoneNextButton)
-            buttonInactivate(iPinNextButton)
+            buttonInactivate(nextButton)
         }
     }
     
@@ -325,24 +308,19 @@ final class TermsConditionsViewController: UIViewController {
             agreeAllCkeckBox.isSelected = true
             
             phoneButtonActivate()
-            iPinButtonActivate()
-        }else{
+        }
+        else{
             agreeAllCkeckBox.isSelected = false
             
-            buttonInactivate(phoneNextButton)
-            buttonInactivate(iPinNextButton)
+            buttonInactivate(nextButton)
         }
     }
     
     private func phoneButtonActivate(){
-        phoneNextButton.backgroundColor = .blue
-        phoneNextButton.setTitleColor(.white, for: .normal)
+        nextButton.backgroundColor = .blue
+        nextButton.setTitleColor(.white, for: .normal)
     }
     
-    private func iPinButtonActivate(){
-        iPinNextButton.backgroundColor = .systemGray6
-        iPinNextButton.setTitleColor(.systemGray, for: .normal)
-    }
     
     private func buttonInactivate(_ button : UIButton){
         button.backgroundColor = .systemGray
@@ -351,7 +329,7 @@ final class TermsConditionsViewController: UIViewController {
     
     /// MARK: 휴대폰 인증, 아이핀 인증 버튼 눌렀을 때 실행
     private func clickedButtons(){
-        phoneNextButton.rx.tap
+        nextButton.rx.tap
             .bind { [weak self] in
                 let chooseUniversityViewController = ChooseUniversityViewController()
                 self?.navigationItem.backButtonTitle = " "
