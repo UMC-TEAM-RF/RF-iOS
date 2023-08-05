@@ -363,7 +363,7 @@ final class SignInViewController: UIViewController {
         })
         .disposed(by: disposeBag)
         
-        isHidden()
+        //isHidden()
     }
     
     /// MARK: 동영상 시연용 임시 함수
