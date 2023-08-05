@@ -16,7 +16,7 @@ final class SelectedButton: UIButton{
     private lazy var title: UILabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 15)
-        view.textColor = .black
+        view.textColor = .lightGray
         return view
     }()
     
@@ -79,8 +79,14 @@ final class SelectedButton: UIButton{
         }
     }
     
+    func initText(text: String){
+        title.text = text
+        title.textColor = .lightGray
+    }
+    
     /// 데이터 삽입
     func inputData(text: String){
         title.text = text
+        title.textColor = .black
     }
 }

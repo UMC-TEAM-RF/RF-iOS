@@ -43,7 +43,7 @@ final class ChooseUniversityViewController: UIViewController {
     /// MARK: 연도 버튼
     private lazy var yearButton: SelectedButton = {
         let btn = SelectedButton()
-        btn.inputData(text: "연도 선택(학번)")
+        btn.initText(text: "연도 선택(학번)")
         btn.backgroundColor = .clear
         return btn
     }()
@@ -59,7 +59,7 @@ final class ChooseUniversityViewController: UIViewController {
     /// MARK: 학교 선택 버튼
     private lazy var universityButton: SelectedButton = {
         let btn = SelectedButton()
-        btn.inputData(text: "학교 이름 검색")
+        btn.initText(text: "학교 이름 검색")
         btn.backgroundColor = .clear
         return btn
     }()
@@ -76,6 +76,7 @@ final class ChooseUniversityViewController: UIViewController {
     }()
     
     private let disposeBag = DisposeBag()
+    private let viewModel = ChooseUniversityViewModel()
     
     // MARK: - View Did Load
     
@@ -89,6 +90,7 @@ final class ChooseUniversityViewController: UIViewController {
         
         addSubviews()
         clickedButtons()
+        bind()
     }
     
     
@@ -144,6 +146,22 @@ final class ChooseUniversityViewController: UIViewController {
         }
     }
     
+    /// MARK: binding viewModel
+    private func bind(){
+        viewModel.observeSelectedForChangeColor()
+            .bind { [weak self] check in
+                if check{
+                    self?.nextButton.backgroundColor = .systemBlue
+                    self?.nextButton.setTitleColor(.white, for: .normal)
+                }
+                else{
+                    self?.nextButton.backgroundColor = UIColor(hexCode: "F5F5F5")
+                    self?.nextButton.setTitleColor(.black, for: .normal)
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
     /// MARK: 버튼 클릭 했을 때
     private func clickedButtons(){
         
@@ -157,16 +175,51 @@ final class ChooseUniversityViewController: UIViewController {
             .disposed(by: disposeBag)
         
         universityButton.rx.tap
-            .bind {
+            .bind { [weak self] in
                 /// 대학 선택 버튼
+                let searchUniversityViewController = SearchUniversityViewController()
+                searchUniversityViewController.modalPresentationStyle = .formSheet
+                searchUniversityViewController.selctedUniversity
+                    .bind { university in
+                        self?.universityButton.inputData(text: university)
+                        self?.viewModel.universityRelay.accept(university)
+                    }
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
+                self?.present(searchUniversityViewController,animated: true)
             }
             .disposed(by: disposeBag)
+     
+        nextButton.rx.tap
+            .bind { [weak self] in
+                self?.viewModel.checkSelected()
+                    .subscribe(onNext: { check in
+                        if check{
+                            let setNicknameViewController = SetNicknameViewController()
+                            self?.navigationItem.backButtonTitle = " "
+                            self?.navigationController?.pushViewController(setNicknameViewController, animated: true)
+                        }
+                        else{
+                            self?.showAlert(text: "모두 선택해주세요!")
+                        }
+                    })
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    /// MARK:  다 선택이 안된 경우 실행
+    private func showAlert(text: String){
+        let sheet = UIAlertController(title: text, message: nil, preferredStyle: .alert)
+        let success = UIAlertAction(title: "확인", style: .default)
         
+        sheet.addAction(success)
+        self.present(sheet,animated: true)
     }
 }
 
 extension ChooseUniversityViewController: SendDataDelegate{
     func sendData(tag: Int, data: String) {
         yearButton.inputData(text: data)
+        viewModel.yearRelay.accept(data)
     }
 }
