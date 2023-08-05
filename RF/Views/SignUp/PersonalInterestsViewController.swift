@@ -243,7 +243,17 @@ final class PersonalInterestsViewController: UIViewController {
     
     private func addTargets() {
         nextButton.rx.tap
-            .subscribe(onNext: {
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.checkSelected()
+                    .bind(onNext: { check in
+                        if check{
+                            self?.moveNextPage()
+                        }
+                        else{
+                            self?.showAlert(text: "모두 선택해주세요!")
+                        }
+                    })
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
                 
             })
             .disposed(by: disposeBag)
@@ -267,6 +277,19 @@ final class PersonalInterestsViewController: UIViewController {
             .bind {[weak self] items in
                 self?.updateMBTIItems(items)
             }
+            .disposed(by: disposeBag)
+        
+        viewModel.checkSelectedForButtonColor()
+            .subscribe(onNext:{ [weak self] check in
+                if check{
+                    self?.nextButton.setTitleColor(.white, for: .normal)
+                    self?.nextButton.backgroundColor = .systemBlue
+                }
+                else{
+                    self?.nextButton.setTitleColor(.black, for: .normal)
+                    self?.nextButton.backgroundColor = .systemGray6
+                }
+            })
             .disposed(by: disposeBag)
     }
     
@@ -311,6 +334,22 @@ final class PersonalInterestsViewController: UIViewController {
                 cell?.setColor(textColor: .black, backgroundColor: .systemGray6)
             }
         }
+    }
+    
+    // MARK: - Functions
+    
+    /// MARK: 다음 화면으로 이동
+    private func moveNextPage(){
+        navigationController?.popToRootViewController(animated: false)
+    }
+    
+    /// MARK:  다 선택이 안된 경우 실행
+    private func showAlert(text: String){
+        let sheet = UIAlertController(title: text, message: nil, preferredStyle: .alert)
+        let success = UIAlertAction(title: "확인", style: .default)
+        
+        sheet.addAction(success)
+        self.present(sheet,animated: true)
     }
     
 }
