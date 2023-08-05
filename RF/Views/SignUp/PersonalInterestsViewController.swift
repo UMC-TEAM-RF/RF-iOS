@@ -28,11 +28,8 @@ class PersonalInterestsViewController: UIViewController {
     private func setNavigationTitle()
     {
         navigationItem.title = ""
-        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .systemBackground
     }
-    
-    
     
     // 프로그레스 바
     private lazy var progressBar: UIProgressView = {
@@ -43,38 +40,22 @@ class PersonalInterestsViewController: UIViewController {
         return pv
     }()
     
-    
-    /// MARK: tipView Title Button
-    private lazy var backButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(systemName: "chevron.left")?.resize(newWidth: 15), for: .normal)
-        btn.imageView?.tintColor = .systemBlue
-        return btn
-    }()
     // 메인 라벨
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "관심사 설정"
+        label.text = "\("알프")님의\n관심사를 설정해 주세요!"
+        label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         return label
     }()
     
     // 서브 라벨
-    private lazy var subLabel: UILabel = {
-        let label = UILabel()
-        label.text = "관심사를 설정해 주세요!"
-        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        return label
-    }()
-    
-    // 취미 라벨
     private lazy var interestLabel: UILabel = {
         let label = UILabel()
         label.text = "취미 & 관심사"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         return label
     }()
-    
     
     private lazy var interestCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -137,7 +118,7 @@ class PersonalInterestsViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     private var selectedCount: [Int] = [0, 0, 0]
-    private var selectedCountMax: [Int] = [3, 1, 1]
+    private var selectedCountMax: [Int] = [3, -1, 1]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,9 +140,7 @@ class PersonalInterestsViewController: UIViewController {
         scrollView.addSubview(containerView)
         
         containerView.addSubview(nextButton)
-        containerView.addSubview(backButton)
         containerView.addSubview(mainLabel)
-        containerView.addSubview(subLabel)
         containerView.addSubview(interestLabel)
         containerView.addSubview(interestCollectionView)
         containerView.addSubview(lifeStyleLabel)
@@ -176,7 +155,7 @@ class PersonalInterestsViewController: UIViewController {
         
         // 프로그레스 바
         progressBar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(5)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(5)
         }
         
@@ -193,28 +172,15 @@ class PersonalInterestsViewController: UIViewController {
         }
         
         
-        // 뒤로가기 버튼
-        backButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.leading.equalToSuperview().offset(20)
-        }
-        
         // 메인 라벨
         mainLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(backButton.snp.centerY)
-            make.leading.equalTo(backButton.snp.trailing).offset(10)
-        }
-        
-        // 서브 라벨
-        subLabel.snp.makeConstraints { make in
-            make.top.equalTo(mainLabel.snp.bottom).offset(30)
+            make.top.equalToSuperview().offset(45)
             make.leading.equalToSuperview().offset(20)
         }
-        
         
         // 취미 관심사 라벨 & 컬렉션뷰
         interestLabel.snp.makeConstraints { make in
-            make.top.equalTo(subLabel.snp.bottom).offset(30)
+            make.top.equalTo(mainLabel.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(20)
         }
         interestCollectionView.snp.makeConstraints { make in
@@ -223,7 +189,7 @@ class PersonalInterestsViewController: UIViewController {
             make.height.equalTo(200)
         }
         
-        // 라이프스타일 라벨 & 컬렉션뷰
+        // 취미 관심사 라벨 & 컬렉션뷰
         lifeStyleLabel.snp.makeConstraints { make in
             make.top.equalTo(interestCollectionView.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(20)
@@ -231,10 +197,10 @@ class PersonalInterestsViewController: UIViewController {
         lifeStyleCollectionView.snp.makeConstraints { make in
             make.top.equalTo(lifeStyleLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
-            make.height.equalTo(140)
+            make.height.equalTo(400)
         }
         
-        // MBTI 라벨 & 컬렉션뷰
+        // 취미 관심사 라벨 & 컬렉션뷰
         mbtiLabel.snp.makeConstraints { make in
             make.top.equalTo(lifeStyleCollectionView.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(20)
@@ -260,7 +226,7 @@ class PersonalInterestsViewController: UIViewController {
         interestCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: "InterestSmallCollectionViewCell")
         lifeStyleCollectionView.delegate = self
         lifeStyleCollectionView.dataSource = self
-        lifeStyleCollectionView.register(lifestyleCollectionViewCell.self, forCellWithReuseIdentifier: "LifeStyleCollectionViewCell")
+        lifeStyleCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: "LifeStyleCollectionViewCell")
         mbtiCollectionView.delegate = self
         mbtiCollectionView.dataSource = self
         mbtiCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: "MbtiCollectionViewCell")
@@ -269,12 +235,6 @@ class PersonalInterestsViewController: UIViewController {
     // MARK: - addTargets
     
     private func addTargets() {
-        backButton.rx.tap
-            .subscribe(onNext: {
-                _ = self.navigationController?.popToRootViewController(animated: true)
-            })
-            .disposed(by: disposeBag)
-        
         nextButton.rx.tap
             .subscribe(onNext: {
                 self.navigationController?.pushViewController(SetDescriptViewController(), animated: true)
@@ -291,7 +251,7 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         if collectionView == interestCollectionView{
             return CGSize(width: (interestCollectionView.frame.width - (20 * 2)) / 3, height: (interestCollectionView.frame.height - (20 * 3)) / 4)
         }else if collectionView == lifeStyleCollectionView{
-            return CGSize(width: lifeStyleCollectionView.frame.width / 2 - 30, height: lifeStyleCollectionView.frame.height)
+            return CGSize(width: lifeStyleCollectionView.frame.width, height: (lifeStyleCollectionView.frame.height - (20 * 5)) / 6)
         }else if collectionView == mbtiCollectionView{
             return CGSize(width: (mbtiCollectionView.frame.width - (20 * 3)) / 4, height: (mbtiCollectionView.frame.height - (20 * 3)) / 4)
         }
@@ -325,12 +285,11 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
             
         }else if collectionView == lifeStyleCollectionView{
             
-            let str : [String] = LifeStyle.list[indexPath.item]
+            let str : String = LifeStyle.list[indexPath.item]
             
-            let cell = lifeStyleCollectionView.dequeueReusableCell(withReuseIdentifier: "LifeStyleCollectionViewCell", for: indexPath) as! lifestyleCollectionViewCell
+            let cell = lifeStyleCollectionView.dequeueReusableCell(withReuseIdentifier: "LifeStyleCollectionViewCell", for: indexPath) as! InterestSmallCollectionViewCell
             
-            cell.setImage( str[0] )
-            cell.setTextLabel( str[1] )
+            cell.setTextLabel( str )
             cell.contentView.backgroundColor = .systemGray6
             cell.setCornerRadius()
             return cell
@@ -352,63 +311,35 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == lifeStyleCollectionView{
-            guard let cell = collectionView.cellForItem(at: indexPath) as? lifestyleCollectionViewCell else { return }
-            var cellindex = -1
-            
-            if collectionView == lifeStyleCollectionView{
-                cellindex = 1
-            }else {return}
-            
-            
-            if !cell.isSelectedCell && self.selectedCount[cellindex] == selectedCountMax[cellindex] {
-                print("초과")
-                return
-            }
-            
-            cell.isSelectedCell.toggle()
-            
-            //        // 최대 n개 선택할 수 있도록 설정
-            if cell.isSelectedCell { // 활성화
-                self.selectedCount[cellindex] += 1
-                cell.setColor(textColor: .white, backgroundColor: .tintColor)
-            } else {  // 비활성화
-                self.selectedCount[cellindex] -= 1
-                cell.setColor(textColor: .label, backgroundColor: .systemGray6)
-            }
-        }else{
-            guard let cell = collectionView.cellForItem(at: indexPath) as? InterestSmallCollectionViewCell else { return }
-            
-            var cellindex = -1
-            
-            if collectionView == interestCollectionView{
-                cellindex = 0
-            }else if collectionView == lifeStyleCollectionView{
-                cellindex = 1
-            }else if collectionView == mbtiCollectionView{
-                cellindex = 2
-            }
-            
-            
-            if !cell.isSelectedCell && self.selectedCount[cellindex] == selectedCountMax[cellindex] {
-                print("초과")
-                return
-            }
-            
-            cell.isSelectedCell.toggle()
-            
-            //        // 최대 3개 선택할 수 있도록 설정
-            if cell.isSelectedCell { // 활성화
-                self.selectedCount[cellindex] += 1
-                cell.setColor(textColor: .white, backgroundColor: .tintColor)
-            } else {  // 비활성화
-                self.selectedCount[cellindex] -= 1
-                cell.setColor(textColor: .label, backgroundColor: .systemGray6)
-            }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? InterestSmallCollectionViewCell else { return }
+        
+        var cellindex = -1
+        
+        if collectionView == interestCollectionView{
+            cellindex = 0
+        }else if collectionView == lifeStyleCollectionView{
+            cellindex = 1
+        }else if collectionView == mbtiCollectionView{
+            cellindex = 2
         }
         
         
+        if !cell.isSelectedCell && self.selectedCount[cellindex] == selectedCountMax[cellindex] {
+            print("초과")
+            return
+        }
         
+        cell.isSelectedCell.toggle()
+        
+//        // 최대 3개 선택할 수 있도록 설정
+        if cell.isSelectedCell { // 활성화
+            self.selectedCount[cellindex] += 1
+            cell.setColor(textColor: .white, backgroundColor: .tintColor)
+        } else {  // 비활성화
+            self.selectedCount[cellindex] -= 1
+            cell.setColor(textColor: .label, backgroundColor: .systemGray6)
+        }
+    
         // 다음 버튼 활성화 여부
         if self.selectedCount[0]*self.selectedCount[1]*self.selectedCount[2] == 0{
             nextButton.backgroundColor = .systemGray6
