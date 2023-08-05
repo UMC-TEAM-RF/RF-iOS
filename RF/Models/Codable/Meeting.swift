@@ -11,6 +11,10 @@ struct MeetingData: Codable {
     var result: Meeting
 }
 
+struct MeetingListData: Codable {
+    var result: [Meeting]
+}
+
 struct Meeting: Codable {
     var name: String?   // 모임 명
     var memberCount: Int?   // 모임 인원
@@ -84,6 +88,22 @@ class MeetingService {
         AF.request(url, method: .get)
             .validate(statusCode: 200..<201)
             .responseDecodable(of: MeetingData.self) { response in
+                switch response.result {
+                case .success(let data):
+                    print(data)
+                    completion(data.result)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    func requestMeetingList(completion: @escaping ([Meeting])->()) {
+        let url = "\(Bundle.main.REST_API_URL)/party/non-blocked/61"
+        
+        AF.request(url, method: .get)
+            .validate(statusCode: 200..<201)
+            .responseDecodable(of: MeetingListData.self) { response in
                 switch response.result {
                 case .success(let data):
                     print(data)
