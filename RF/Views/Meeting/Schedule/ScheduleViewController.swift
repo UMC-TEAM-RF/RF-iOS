@@ -23,17 +23,30 @@ final class ScheduleViewController: UIViewController{
         cal.scrollDirection = .vertical
         
         cal.appearance.weekdayTextColor = .black
-        /// 제목 부분
-        cal.appearance.headerDateFormat = "YYYY년 MM월"
-        cal.appearance.headerMinimumDissolvedAlpha = 0.0   /// 0으로 설정 시 옆 부분 날짜 안보임
-        cal.appearance.headerTitleFont = .systemFont(ofSize: 20, weight: .bold)
-        cal.appearance.headerTitleAlignment = .left
-        cal.appearance.headerTitleColor = .black
+        cal.appearance.headerTitleColor = .white
+        
         
         cal.appearance.separators = .interRows
         cal.appearance.titleFont = .systemFont(ofSize: 20)
         
         return cal
+    }()
+    
+    /// MARK: 뒤로가기 버튼
+    private lazy var backButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "chevron.left")?.resize(newWidth: 15), for: .normal)
+        return btn
+    }()
+    
+    /// MARK: Calendar Header View 달 표시 하는 버튼
+    private lazy var headerButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitleColor(.black, for: .normal)
+        btn.setImage(UIImage(systemName: "chevron.down")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.semanticContentAttribute = .forceRightToLeft
+        btn.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        return btn
     }()
     
     /// MARK: 모임 검색 버튼
@@ -73,6 +86,8 @@ final class ScheduleViewController: UIViewController{
         view.addSubview(calendarView)
         view.addSubview(searchButton)
         view.addSubview(createButton)
+        view.addSubview(backButton)
+        view.addSubview(headerButton)
         
         
         calendarView.delegate = self
@@ -89,6 +104,16 @@ final class ScheduleViewController: UIViewController{
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-1)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(1)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
+        }
+        
+        backButton.snp.makeConstraints { make in
+            make.centerY.equalTo(calendarView.calendarHeaderView.snp.centerY)
+            make.leading.equalToSuperview().offset(20)
+        }
+        
+        headerButton.snp.makeConstraints { make in
+            make.centerY.equalTo(calendarView.calendarHeaderView.snp.centerY)
+            make.leading.equalTo(backButton.snp.trailing).offset(20)
         }
         
         searchButton.snp.makeConstraints { make in
@@ -114,6 +139,18 @@ final class ScheduleViewController: UIViewController{
         searchButton.rx.tap
             .bind {
                 print("clicked searchButton")
+            }
+            .disposed(by: disposeBag)
+        
+        headerButton.rx.tap
+            .bind {
+                print("clicked header Button")
+            }
+            .disposed(by: disposeBag)
+        
+        backButton.rx.tap
+            .bind { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
     }
@@ -146,12 +183,18 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         guard let cell = calendar.cell(for: date, at: monthPosition) else { return }
         cell.titleLabel.textColor = .black
         
-        print(viewModel.formattingDate(date: date))
+        print(viewModel.formattingDate(date: date).split(separator: " ").first)
+        
+        let schedulePopUpViewController = SchedulePopUpViewController()
+        schedulePopUpViewController.selectedDate.onNext(String(describing: viewModel.formattingDate(date: date).split(separator: " ").first))
+        present(schedulePopUpViewController,animated: true)
     }
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         guard let cell = calendar.dequeueReusableCell(withIdentifier: ScheduleFSCalendarCell.identifier, for: date, at: position) as? ScheduleFSCalendarCell else { return FSCalendarCell()}
-
+        
+        headerButton.setTitle("\(viewModel.formattingDate_HeaderView(date: calendarView.currentPage)) ", for: .normal)
+        
         viewModel.dateFiltering(date: date)
             .subscribe(onNext:{ list in
                 cell.inputData(events: list)
@@ -160,6 +203,7 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         
         return cell
     }
+    
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         viewModel.getData()

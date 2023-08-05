@@ -19,16 +19,16 @@ final class TabBarController: UITabBarController {
     private func configureTabBar() {
         let vc1 = UINavigationController(rootViewController: HomeViewController())
         let vc2 = UINavigationController(rootViewController: MeetingViewController())
-        let vc3 = UINavigationController(rootViewController: HomeViewController())
+        let vc3 = UINavigationController(rootViewController: ProfileSettingViewController())
         let vc4 = UINavigationController(rootViewController: HomeViewController())
         let vc5 = UINavigationController(rootViewController: MyPageViewController())
         
         vc1.navigationItem.largeTitleDisplayMode = .never
         
-        vc1.tabBarItem = UITabBarItem(title: "홈", image: UIImage(systemName: "house.fill"), selectedImage: UIImage(systemName: "house.fill"))
-        vc2.tabBarItem = UITabBarItem(title: "모임", image: UIImage(systemName: "person.3.fill"), selectedImage: UIImage(systemName: "person.3.fill"))
-        vc3.tabBarItem = UITabBarItem(title: "커뮤니티", image: UIImage(systemName: "note.text"), selectedImage: UIImage(systemName: "note.text"))
-        vc4.tabBarItem = UITabBarItem(title: "채팅", image: UIImage(systemName: "message.fill"), selectedImage: UIImage(systemName: "message.fill"))
+        vc1.tabBarItem = UITabBarItem(title: "홈", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"))
+        vc2.tabBarItem = UITabBarItem(title: "모임", image: UIImage(named: "meeting"), selectedImage: UIImage(named: "meeting"))
+        vc3.tabBarItem = UITabBarItem(title: "커뮤니티", image: UIImage(named: "post"), selectedImage: UIImage(named: "post"))
+        vc4.tabBarItem = UITabBarItem(title: "채팅", image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat"))
         vc5.tabBarItem = UITabBarItem(title: "마이페이지", image: UIImage(systemName: "person.circle.fill"), selectedImage: UIImage(systemName: "person.circle.fill"))
         
         self.tabBar.tintColor = .systemBlue

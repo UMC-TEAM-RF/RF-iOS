@@ -12,13 +12,6 @@ class NotiMessageViewController: UIViewController {
 
     // MARK: - UI Property
     
-    private lazy var navigationBar: CustomNavigationBar = {
-        let bar = CustomNavigationBar()
-        bar.delegate = self
-        bar.buttonText = "알림"
-        return bar
-    }()
-    
     private lazy var notiListTableView: UITableView = {
         let tb = UITableView()
         tb.dataSource = self
@@ -42,41 +35,44 @@ class NotiMessageViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
+        updateTitleView(title: "알림")
+        setupCustomBackButton()
 
         addSubviews()
         configureConstraints()
     }
     
+    // MARK: - viewWillAppear()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        view.addSubview(navigationBar)
         view.addSubview(notiListTableView)
     }
     
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        navigationBar.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(60)
-        }
         
         notiListTableView.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 
-}
-
-// MARK: - Ext: NavigationBarDelegate
-
-extension NotiMessageViewController: NavigationBarDelegate {
-    func backButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
-    }
 }
 
 // MARK: - Ext: TableView

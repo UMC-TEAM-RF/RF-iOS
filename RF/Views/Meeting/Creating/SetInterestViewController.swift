@@ -14,14 +14,6 @@ final class SetInterestViewController: UIViewController {
     
     // MARK: - UI Property
     
-    // 네비게이션 바
-    private lazy var navigationBar: CustomNavigationBar = {
-        let view = CustomNavigationBar()
-        view.titleLabelText = "모임 생성"
-        view.delegate = self
-        return view
-    }()
-    
     // 프로그레스 바
     private lazy var progressBar: UIProgressView = {
         let pv = UIProgressView()
@@ -35,14 +27,14 @@ final class SetInterestViewController: UIViewController {
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.text = "대표 관심사를 설정해 주세요."
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return label
     }()
     
     // 서브 라벨
     private lazy var subLabel: UILabel = {
         let label = UILabel()
-        label.text = "최대 3개까지 설정 가능합니다."
+        label.text = "(최대 3개 설정 가능)"
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = .lightGray
         return label
@@ -50,8 +42,8 @@ final class SetInterestViewController: UIViewController {
     
     private lazy var interestCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 20
-        flowLayout.minimumInteritemSpacing = 20
+        flowLayout.minimumLineSpacing = 15
+        flowLayout.minimumInteritemSpacing = 15
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         cv.isScrollEnabled = false
@@ -65,6 +57,7 @@ final class SetInterestViewController: UIViewController {
         button.backgroundColor = .systemGray6
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 5
+        button.isEnabled = false
         return button
     }()
     
@@ -82,6 +75,9 @@ final class SetInterestViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         
+        updateTitleView(title: "모임 생성")
+        setupCustomBackButton()
+        
         addSubviews()
         configureConstraints()
         addTargets()
@@ -91,7 +87,6 @@ final class SetInterestViewController: UIViewController {
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        view.addSubview(navigationBar)
         view.addSubview(progressBar)
         view.addSubview(nextButton)
         view.addSubview(mainLabel)
@@ -102,40 +97,35 @@ final class SetInterestViewController: UIViewController {
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        // 네비게이션 바
-        navigationBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(60)
-        }
         
         // 프로그레스 바
         progressBar.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(25)
         }
         
         // 메인 라벨
         mainLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(25)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(progressBar.snp.bottom).offset(40)
+            make.leading.equalToSuperview().inset(30)
         }
         
         // 서브 라벨
         subLabel.snp.makeConstraints { make in
-            make.top.equalTo(mainLabel.snp.bottom).offset(13)
-            make.centerX.equalToSuperview()
+            make.leading.equalTo(mainLabel.snp.trailing).offset(10)
+            make.bottom.equalTo(mainLabel.snp.bottom)
         }
         
         interestCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(subLabel.snp.bottom).offset(35)
-            make.horizontalEdges.equalToSuperview().inset(45)
+            make.top.equalTo(mainLabel.snp.bottom).offset(30)
+            make.horizontalEdges.equalToSuperview().inset(30)
             make.bottom.equalTo(nextButton.snp.top).offset(-30)
         }
         
         // 다음
         nextButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(30)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
             make.height.equalTo(50)
         }
     }
@@ -164,7 +154,7 @@ final class SetInterestViewController: UIViewController {
 extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (interestCollectionView.frame.width - (20 * 3)) / 3, height: (interestCollectionView.frame.width - (20 * 3)) / 3)
+        return CGSize(width: (interestCollectionView.frame.width - (15 * 3)) / 4.0, height: (interestCollectionView.frame.width - (15 * 3)) / 4.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -175,7 +165,7 @@ extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InterestCollectionViewCell", for: indexPath) as! InterestCollectionViewCell
         cell.setTextLabel(Interest.list[indexPath.item])
         cell.contentView.backgroundColor = .systemGray6
-        cell.setCornerRadius()
+        cell.contentView.layer.cornerRadius = 8
         return cell
     }
     
@@ -208,14 +198,5 @@ extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewD
             nextButton.setTitleColor(.white, for: .normal)
             nextButton.isEnabled = true
         }
-    }
-}
-
-
-// MARK: - Ext: NavigationBarDelegate
-
-extension SetInterestViewController: NavigationBarDelegate {
-    func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
     }
 }
