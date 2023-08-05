@@ -11,11 +11,6 @@ class MyMessageTableViewCell: UITableViewCell {
     
     static let identifier = "MyMessageTableViewCell"
     
-    private lazy var containerView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    
     private lazy var messageView: UIView = {
         let view = UIView()
         view.backgroundColor = .tintColor
@@ -71,11 +66,8 @@ class MyMessageTableViewCell: UITableViewCell {
     
     private func addSubviews() {
         
-        contentView.addSubview(containerView)
-        
-        
-        containerView.addSubview(messageView)
-        containerView.addSubview(timeLabel)
+        contentView.addSubview(messageView)
+        contentView.addSubview(timeLabel)
         
         messageView.addSubview(messageLabel)
     }
@@ -83,11 +75,6 @@ class MyMessageTableViewCell: UITableViewCell {
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        
-        containerView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview()
-            make.horizontalEdges.equalToSuperview()
-        }
         
         messageView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(3)

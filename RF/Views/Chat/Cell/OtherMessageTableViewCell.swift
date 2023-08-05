@@ -15,11 +15,6 @@ class OtherMessageTableViewCell: UITableViewCell {
 
     static let identifier = "OtherMessageTableViewCell"
     
-    private lazy var containerView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    
     private lazy var avatarView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "LogoImage")
@@ -117,14 +112,11 @@ class OtherMessageTableViewCell: UITableViewCell {
     
     private func addSubviews() {
         
-        contentView.addSubview(containerView)
+        contentView.addSubview(messageView)
+        contentView.addSubview(timeLabel)
         
-        
-        containerView.addSubview(messageView)
-        containerView.addSubview(timeLabel)
-        
-        containerView.addSubview(avatarView)
-        containerView.addSubview(displayNameLabel)
+        contentView.addSubview(avatarView)
+        contentView.addSubview(displayNameLabel)
         
         messageView.addSubview(messageLabel)
     }
@@ -132,11 +124,6 @@ class OtherMessageTableViewCell: UITableViewCell {
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        
-        containerView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview()
-            make.horizontalEdges.equalToSuperview()
-        }
         
         avatarView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(3)
