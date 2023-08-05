@@ -7,7 +7,8 @@
 
 import UIKit
 
-class lifestyleCollectionViewCell: UICollectionViewCell {
+final class lifestyleCollectionViewCell: UICollectionViewCell {
+    static let identifier = "lifestyleCollectionViewCell"
     
     // 로고 이미지
     private lazy var imageView: UIImageView = {
@@ -21,7 +22,6 @@ class lifestyleCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    var isSelectedCell: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -7,15 +7,14 @@
 
 import UIKit
 
-class InterestSmallCollectionViewCell: UICollectionViewCell {
+final class InterestSmallCollectionViewCell: UICollectionViewCell {
+    static let identifier = "InterestSmallCollectionViewCell"
     
     private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         return label
     }()
-    
-    var isSelectedCell: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)

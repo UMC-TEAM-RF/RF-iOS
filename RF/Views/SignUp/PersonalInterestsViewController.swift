@@ -230,13 +230,13 @@ final class PersonalInterestsViewController: UIViewController {
     private func configureCollectionView() {
         interestCollectionView.delegate = self
         interestCollectionView.dataSource = self
-        interestCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: "InterestSmallCollectionViewCell")
+        interestCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: InterestSmallCollectionViewCell.identifier)
         lifeStyleCollectionView.delegate = self
         lifeStyleCollectionView.dataSource = self
-        lifeStyleCollectionView.register(lifestyleCollectionViewCell.self, forCellWithReuseIdentifier: "LifeStyleCollectionViewCell")
+        lifeStyleCollectionView.register(lifestyleCollectionViewCell.self, forCellWithReuseIdentifier: lifestyleCollectionViewCell.identifier)
         mbtiCollectionView.delegate = self
         mbtiCollectionView.dataSource = self
-        mbtiCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: "MbtiCollectionViewCell")
+        mbtiCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: InterestSmallCollectionViewCell.identifier)
     }
     
     // MARK: - addTargets
@@ -248,7 +248,7 @@ final class PersonalInterestsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-     
+    
     /// MARK: binding ViewModel
     private func bind(){
         viewModel.lifeStyleRelay
@@ -320,12 +320,13 @@ final class PersonalInterestsViewController: UIViewController {
 extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == interestCollectionView{
+        if collectionView == interestCollectionView {
             return CGSize(width: (interestCollectionView.frame.width / 5),
                           height: (interestCollectionView.frame.height / 5))
-        }else if collectionView == lifeStyleCollectionView{
-            return CGSize(width: lifeStyleCollectionView.frame.width / 2 - 30, height: lifeStyleCollectionView.frame.height)
-        }else if collectionView == mbtiCollectionView{
+        } else if collectionView == lifeStyleCollectionView {
+            return CGSize(width: lifeStyleCollectionView.frame.width / 2 - 30,
+                          height: lifeStyleCollectionView.frame.height)
+        } else if collectionView == mbtiCollectionView {
             return CGSize(width: (mbtiCollectionView.frame.width / 5),
                           height: (mbtiCollectionView.frame.height / 5))
         }
@@ -347,7 +348,8 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         
         if collectionView == interestCollectionView{
             let str: String = Interest.list[indexPath.item]
-            let cell = interestCollectionView.dequeueReusableCell(withReuseIdentifier: "InterestSmallCollectionViewCell", for: indexPath) as! InterestSmallCollectionViewCell
+            guard let cell = interestCollectionView.dequeueReusableCell(withReuseIdentifier: InterestSmallCollectionViewCell.identifier,
+                                                                        for: indexPath) as? InterestSmallCollectionViewCell else { return UICollectionViewCell() }
             
             cell.setTextLabel( str )
             cell.contentView.backgroundColor = .systemGray6
@@ -356,7 +358,7 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
             
         } else if collectionView == lifeStyleCollectionView {
             let str : [String] = LifeStyle.list[indexPath.item]
-            let cell = lifeStyleCollectionView.dequeueReusableCell(withReuseIdentifier: "LifeStyleCollectionViewCell", for: indexPath) as! lifestyleCollectionViewCell
+            guard let cell = lifeStyleCollectionView.dequeueReusableCell(withReuseIdentifier: lifestyleCollectionViewCell.identifier, for: indexPath) as? lifestyleCollectionViewCell else {return UICollectionViewCell()}
             
             cell.setImage( str[0] )
             cell.setTextLabel( str[1] )
@@ -366,7 +368,8 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
             
         } else if collectionView == mbtiCollectionView {
             let str : String = Mbti.list[indexPath.item]
-            let cell = mbtiCollectionView.dequeueReusableCell(withReuseIdentifier: "MbtiCollectionViewCell", for: indexPath) as! InterestSmallCollectionViewCell
+            guard let cell = mbtiCollectionView.dequeueReusableCell(withReuseIdentifier: InterestSmallCollectionViewCell.identifier,
+                                                                    for: indexPath) as? InterestSmallCollectionViewCell else { return UICollectionViewCell() }
             
             cell.setTextLabel( str )
             cell.contentView.backgroundColor = .systemGray6
