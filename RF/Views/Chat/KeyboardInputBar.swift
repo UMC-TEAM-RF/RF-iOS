@@ -11,6 +11,7 @@ import SnapKit
 protocol KeyboardInputBarDelegate: AnyObject {
     func didTapSend(_ text: String)
     func didTapTranslate(_ isTranslated: Bool)
+    func didTapPlus()
 }
 
 class KeyboardInputBar: UIView {
@@ -68,12 +69,23 @@ class KeyboardInputBar: UIView {
         }
     }
     
+    var keyboardInputView: UIView? {
+        didSet {
+            inputField.inputView = keyboardInputView
+            inputField.reloadInputViews()
+            
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         addSubviews()
         configureConstraints()
         addTargets()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textViewTapped))
+        inputField.addGestureRecognizer(tapGestureRecognizer)
     }
     
     required init?(coder: NSCoder) {
@@ -126,8 +138,10 @@ class KeyboardInputBar: UIView {
     }
     
     private func addTargets() {
+        plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         translateButton.addTarget(self, action: #selector(translateButtonTapped), for: .touchUpInside)
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
+        
     }
     
     private func isSendButtonActivate(_ bool: Bool) {
@@ -142,8 +156,12 @@ class KeyboardInputBar: UIView {
         }
     }
     
+    @objc func plusButtonTapped() {
+        inputField.tintColor = .clear
+        delegate?.didTapPlus()
+    }
+    
     @objc func translateButtonTapped() {
-        print("Translate")
         isTranslated.toggle()
         delegate?.didTapTranslate(isTranslated)
     }
@@ -152,11 +170,17 @@ class KeyboardInputBar: UIView {
         if isTranslated {
             inputField.text = "Translate!!"
         } else {
-            print("Send")
             delegate?.didTapSend(inputField.text)
             inputField.text.removeAll()
             isSendButtonActivate(false)
         }
+    }
+    
+    @objc func textViewTapped() {
+        inputField.tintColor = .tintColor
+        inputField.inputView = nil
+        inputField.reloadInputViews()
+        inputField.becomeFirstResponder()
     }
 }
 
@@ -173,4 +197,5 @@ extension KeyboardInputBar: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         print(#function)
     }
+
 }

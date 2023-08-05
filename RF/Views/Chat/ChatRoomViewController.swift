@@ -117,6 +117,8 @@ class ChatRoomViewController: UIViewController {
     
     private var isKeyboardShow: Bool = false
     
+    private var keyboardRect: CGRect = CGRect()
+    
     // MARK: - viewDidLoad()
     
     override func viewDidLoad() {
@@ -269,6 +271,7 @@ class ChatRoomViewController: UIViewController {
         // 키보드의 높이만큼 화면을 올려준다.
         if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
+            keyboardRect = keyboardRectangle
             
             let safeAreaBottom = self.view.safeAreaInsets.bottom
             
@@ -423,6 +426,12 @@ extension ChatRoomViewController: UIEditMenuInteractionDelegate {
 // MARK: - Ext: KeyboardInputBarDelegate
 
 extension ChatRoomViewController: KeyboardInputBarDelegate {
+    
+    func didTapPlus() {
+        let keyboardInputView = KeyboardInputView(frame: keyboardRect)
+        keyboardInputBar.keyboardInputView = keyboardInputView
+    }
+    
     func didTapSend(_ text: String) {
         
         inputBarTopStackView.isHidden = true
@@ -436,8 +445,6 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
     }
     
     func didTapTranslate(_ isTranslated: Bool) {
-        print("Tapppp")
-        
         let height = isTranslated ? 40 : 0
         inputBarTopStackView.snp.updateConstraints { make in
             make.height.equalTo(height)
