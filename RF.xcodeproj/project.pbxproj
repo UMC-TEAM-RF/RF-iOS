@@ -34,6 +34,7 @@
 		3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */; };
 		3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */; };
 		3B59B2832A75653400027809 /* DetailMeetingJoinPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */; };
+		3B6C31252A7E17DC008FADA1 /* UserInfoSelfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31242A7E17DC008FADA1 /* UserInfoSelfViewModel.swift */; };
 		3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */; };
 		3B8477372A6AEC25007A6144 /* LifeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477362A6AEC25007A6144 /* LifeStyle.swift */; };
 		3B8477392A6AEC32007A6144 /* Mbti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477382A6AEC32007A6144 /* Mbti.swift */; };
@@ -153,6 +154,7 @@
 		3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventPopUp.swift; sourceTree = "<group>"; };
 		3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUpViewController.swift; sourceTree = "<group>"; };
 		3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUp.swift; sourceTree = "<group>"; };
+		3B6C31242A7E17DC008FADA1 /* UserInfoSelfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSelfViewModel.swift; sourceTree = "<group>"; };
 		3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestSmallCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8477362A6AEC25007A6144 /* LifeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeStyle.swift; sourceTree = "<group>"; };
 		3B8477382A6AEC32007A6144 /* Mbti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mbti.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				3BD700CC2A796149005C7D7E /* UserInfoViewModel.swift */,
 				3BD700C92A7936BD005C7D7E /* ChooseUserInfo */,
 				3BC7D3592A7D244F00D92356 /* SignUpViewModel.swift */,
+				3B6C31242A7E17DC008FADA1 /* UserInfoSelfViewModel.swift */,
 				3BC7D3602A7D4D6300D92356 /* SetNicknameViewModel.swift */,
 			);
 			path = SignUp;
@@ -785,6 +788,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6C31252A7E17DC008FADA1 /* UserInfoSelfViewModel.swift in Sources */,
 				570063932A67B23A0051F42A /* RuleListViewController.swift in Sources */,
 				44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */,
 				570063AB2A724CB40051F42A /* UIViewController+Ext.swift in Sources */,

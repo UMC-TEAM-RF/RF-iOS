@@ -246,6 +246,9 @@ final class SignUpViewController: UIViewController {
         
         nextButton.rx.tap
             .bind(onNext: { [weak self] in
+                let termsConditionsViewController = TermsConditionsViewController()
+                self?.navigationItem.backButtonTitle = " "
+                self?.navigationController?.pushViewController(termsConditionsViewController, animated: true)
                 self?.checkTotalInformation()
             })
             .disposed(by: disposeBag)

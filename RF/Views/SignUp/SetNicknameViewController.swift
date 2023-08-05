@@ -174,9 +174,9 @@ final class SetNicknameViewController: UIViewController {
     private func addTargets(){
         nextButton.rx.tap
             .bind { [weak self] in
-//                let userInfoSelfViewController = UserInfoSelfViewController()
-//                self?.navigationItem.backButtonTitle = " "
-//                self?.navigationController?.pushViewController(userInfoSelfViewController, animated: true)
+                let userInfoSelfViewController = UserInfoSelfViewController()
+                self?.navigationItem.backButtonTitle = " "
+                self?.navigationController?.pushViewController(userInfoSelfViewController, animated: true)
                 self?.moveToNextPage()
             }
             .disposed(by: disposeBag)

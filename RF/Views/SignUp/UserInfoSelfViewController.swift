@@ -90,6 +90,7 @@ final class UserInfoSelfViewController: UIViewController {
     }()
     
     private let disposeBag = DisposeBag()
+    private let viewModel = UserInfoSelfViewModel()
 
     // MARK: - init
     
@@ -157,11 +158,43 @@ final class UserInfoSelfViewController: UIViewController {
     private func clickedButtons(){
         nextButton.rx.tap
             .bind { [weak self] in
-                let userInfoViewController = UserInfoViewController()
-                self?.navigationItem.backButtonTitle = " "
-                self?.navigationController?.pushViewController(userInfoViewController, animated: true)      
+                self?.checkIntroduce()
             }
             .disposed(by: disposeBag)
+        
+        textField.rx.text
+            .bind { [weak self] introduce in
+                if let introduce = introduce{
+                    self?.viewModel.introduceSelfRelay.accept(introduce)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    /// MARK: 한줄 소개 작성했는 지 확인
+    private func checkIntroduce(){
+        viewModel.checkIntroduce()
+            .subscribe(onNext: { [weak self] check in
+                if check{
+                    let userInfoViewController = UserInfoViewController()
+                    self?.navigationItem.backButtonTitle = " "
+                    self?.navigationController?.pushViewController(userInfoViewController, animated: true)
+                }
+                else{
+                    self?.showAlert(text: "한 줄 소개를 입력해 주세요!")
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    /// MARK: 한줄 소개 안쓴 경우
+    private func showAlert(text: String){
+        let sheet = UIAlertController(title: text, message: nil, preferredStyle: .alert)
+        let success = UIAlertAction(title: "확인", style: .default)
+        
+        sheet.addAction(success)
+        self.present(sheet,animated: true)
     }
 }
 
