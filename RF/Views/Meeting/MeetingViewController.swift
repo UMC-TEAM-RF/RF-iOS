@@ -229,14 +229,7 @@ extension MeetingViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let meetingTabController = DetailMeetingTabController()
-        
-        let meetingService = MeetingService()
-        meetingService.requestMeetingInfo { meeting in
-            print(meeting)
-            self.navigationController?.pushViewController(meetingTabController, animated: true)
-        }
-        
-        
+        navigationController?.pushViewController(meetingTabController, animated: true)
     }
     
 }
