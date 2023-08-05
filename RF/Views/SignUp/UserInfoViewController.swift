@@ -117,7 +117,7 @@ final class UserInfoViewController: UIViewController {
         
         addSubviews()
         clickedButtons()
-        
+        observeSelected()
     }
     
     /// MARK: Add UI
@@ -247,8 +247,26 @@ final class UserInfoViewController: UIViewController {
             .bind { [weak self] check in
                 if check{
                     let personalInterestsViewController = PersonalInterestsViewController()
+                    
                     self?.navigationItem.backButtonTitle = " "
                     self?.navigationController?.pushViewController(personalInterestsViewController, animated: true)
+                    
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    /// MARK: 모두 선택했을 때 버튼 색깔 바뀌게 하는 함수
+    private func observeSelected(){
+        viewModel.checkSelectedAll()
+            .bind { [weak self] check in
+                if check{
+                    self?.nextButton.backgroundColor = .systemBlue
+                    self?.nextButton.setTitleColor(.white, for: .normal)
+                }
+                else{
+                    self?.nextButton.backgroundColor =  UIColor(hexCode: "#F5F5F5")
+                    self?.nextButton.setTitleColor(.black, for: .normal)
                 }
             }
             .disposed(by: disposeBag)

@@ -191,7 +191,7 @@ final class PersonalInterestsViewController: UIViewController {
         interestCollectionView.snp.makeConstraints { make in
             make.top.equalTo(interestLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
-            make.height.equalTo(200)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*0.4)
         }
         
         // 라이프스타일 라벨 & 컬렉션뷰
@@ -213,7 +213,7 @@ final class PersonalInterestsViewController: UIViewController {
         mbtiCollectionView.snp.makeConstraints { make in
             make.top.equalTo(mbtiLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
-            make.height.equalTo(200)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*0.4)
         }
         
         // 다음
@@ -255,11 +255,13 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == interestCollectionView{
-            return CGSize(width: (interestCollectionView.frame.width - (20 * 2)) / 3, height: (interestCollectionView.frame.height - (20 * 3)) / 4)
+            return CGSize(width: (interestCollectionView.frame.width / 5),
+                          height: (interestCollectionView.frame.height / 5))
         }else if collectionView == lifeStyleCollectionView{
             return CGSize(width: lifeStyleCollectionView.frame.width / 2 - 30, height: lifeStyleCollectionView.frame.height)
         }else if collectionView == mbtiCollectionView{
-            return CGSize(width: (mbtiCollectionView.frame.width - (20 * 3)) / 4, height: (mbtiCollectionView.frame.height - (20 * 3)) / 4)
+            return CGSize(width: (mbtiCollectionView.frame.width / 5),
+                          height: (mbtiCollectionView.frame.height / 5))
         }
         return CGSize()
     }
@@ -278,9 +280,7 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         
         if collectionView == interestCollectionView{
             
-            var str : String = Interest.list[indexPath.item]
-            str.removeFirst()
-            str.removeFirst()
+            let str : String = Interest.list[indexPath.item]
             
             let cell = interestCollectionView.dequeueReusableCell(withReuseIdentifier: "InterestSmallCollectionViewCell", for: indexPath) as! InterestSmallCollectionViewCell
             
@@ -387,3 +387,39 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         }
     }
 }
+
+import SwiftUI
+struct VCPreViewPersonalInterestsViewController:PreviewProvider {
+    static var previews: some View {
+        PersonalInterestsViewController().toPreview().previewDevice("iPhone 14 Pro")
+        // 실행할 ViewController이름 구분해서 잘 지정하기
+    }
+}
+struct VCPreViewPersonalInterestsViewController2:PreviewProvider {
+    static var previews: some View {
+        PersonalInterestsViewController().toPreview().previewDevice("iPhone 11")
+        // 실행할 ViewController이름 구분해서 잘 지정하기
+    }
+}
+
+import SwiftUI
+
+#if DEBUG
+extension UIViewController {
+    private struct Preview: UIViewControllerRepresentable {
+        let viewController: UIViewController
+        
+        func makeUIViewController(context: Context) -> UIViewController {
+            return viewController
+        }
+        
+        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        }
+    }
+    
+    func toPreview() -> some View {
+        Preview(viewController: self)
+    }
+}
+#endif
+
