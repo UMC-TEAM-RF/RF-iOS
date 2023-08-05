@@ -353,9 +353,13 @@ final class TermsConditionsViewController: UIViewController {
     private func clickedButtons(){
         phoneNextButton.rx.tap
             .bind { [weak self] in
-                let setNicknameViewController = SetNicknameViewController()
+                let chooseUniversityViewController = ChooseUniversityViewController()
                 self?.navigationItem.backButtonTitle = " "
-                self?.navigationController?.pushViewController(setNicknameViewController, animated: true)
+                self?.navigationController?.pushViewController(chooseUniversityViewController, animated: true)
+                
+//                let setNicknameViewController = SetNicknameViewController()
+//                self?.navigationItem.backButtonTitle = " "
+//                self?.navigationController?.pushViewController(setNicknameViewController, animated: true)
             }
             .disposed(by: disposeBag)
     }

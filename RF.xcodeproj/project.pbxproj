@@ -34,6 +34,8 @@
 		3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */; };
 		3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */; };
 		3B59B2832A75653400027809 /* DetailMeetingJoinPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */; };
+		3B6BA97C2A7E5ACD00A11FE4 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */; };
+		3B6BA97E2A7E655600A11FE4 /* SelectUniversity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97D2A7E655600A11FE4 /* SelectUniversity.swift */; };
 		3B6C31252A7E17DC008FADA1 /* UserInfoSelfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31242A7E17DC008FADA1 /* UserInfoSelfViewModel.swift */; };
 		3B6C31272A7E2106008FADA1 /* PersonalInterestsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31262A7E2106008FADA1 /* PersonalInterestsService.swift */; };
 		3B6C31292A7E2166008FADA1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31282A7E2166008FADA1 /* User.swift */; };
@@ -47,8 +49,8 @@
 		3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D532A56D45C00FECE3A /* PasswordTextField.swift */; };
 		3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D552A56D4AA00FECE3A /* UICheckBox.swift */; };
 		3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D572A56F00200FECE3A /* SignUpViewController.swift */; };
-		3BA9FB8D2A7D307F0039B138 /* lifestyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */; };
 		3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */; };
+		3BA9FB8D2A7D307F0039B138 /* lifestyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */; };
 		3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */; };
 		3BB408A72A6AA5D900FBA617 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 3BB408A62A6AA5D900FBA617 /* FSCalendar */; };
 		3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */; };
@@ -161,6 +163,8 @@
 		3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventPopUp.swift; sourceTree = "<group>"; };
 		3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUpViewController.swift; sourceTree = "<group>"; };
 		3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUp.swift; sourceTree = "<group>"; };
+		3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedButton.swift; sourceTree = "<group>"; };
+		3B6BA97D2A7E655600A11FE4 /* SelectUniversity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUniversity.swift; sourceTree = "<group>"; };
 		3B6C31242A7E17DC008FADA1 /* UserInfoSelfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSelfViewModel.swift; sourceTree = "<group>"; };
 		3B6C31262A7E2106008FADA1 /* PersonalInterestsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInterestsService.swift; sourceTree = "<group>"; };
 		3B6C31282A7E2166008FADA1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -174,8 +178,8 @@
 		3B935D532A56D45C00FECE3A /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		3B935D552A56D4AA00FECE3A /* UICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox.swift; sourceTree = "<group>"; };
 		3B935D572A56F00200FECE3A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lifestyleCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lifestyleCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		3BB408AB2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFSCalendarCell.swift; sourceTree = "<group>"; };
@@ -371,6 +375,14 @@
 				3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		3B6BA97A2A7E5ABB00A11FE4 /* ChooseUniversity */ = {
+			isa = PBXGroup;
+			children = (
+				3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */,
+			);
+			path = ChooseUniversity;
 			sourceTree = "<group>";
 		};
 		3B8477312A6AB1D5007A6144 /* Cell */ = {
@@ -667,6 +679,7 @@
 				3B8477312A6AB1D5007A6144 /* Cell */,
 				572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */,
 				3B6C31302A7E5224008FADA1 /* ChooseUniversityViewController.swift */,
+				3B6BA97A2A7E5ABB00A11FE4 /* ChooseUniversity */,
 				3B935D572A56F00200FECE3A /* SignUpViewController.swift */,
 				44F82A162A5C05A7006B17F8 /* UserInfoViewController.swift */,
 				3BD700C32A793548005C7D7E /* ChooseUserInfo */,
@@ -713,6 +726,7 @@
 			isa = PBXGroup;
 			children = (
 				57673EDB2A56E9D200A13D07 /* Interest.swift */,
+				3B6BA97D2A7E655600A11FE4 /* SelectUniversity.swift */,
 				3B4CAC972A7A4F3B00896DEB /* HomeMeetingDummy.swift */,
 				3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */,
 				3BD700CA2A793AA0005C7D7E /* UserInfo.swift */,
@@ -850,6 +864,7 @@
 				57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */,
 				3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */,
 				44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */,
+				3B6BA97E2A7E655600A11FE4 /* SelectUniversity.swift in Sources */,
 				3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
 				3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */,
@@ -893,6 +908,7 @@
 				3B6C31312A7E5224008FADA1 /* ChooseUniversityViewController.swift in Sources */,
 				3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */,
 				57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */,
+				3B6BA97C2A7E5ACD00A11FE4 /* SelectedButton.swift in Sources */,
 				3BD700CD2A796149005C7D7E /* UserInfoViewModel.swift in Sources */,
 				570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */,
 				3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */,

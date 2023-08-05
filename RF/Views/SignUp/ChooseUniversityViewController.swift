@@ -14,14 +14,140 @@ import RxCocoa
 /// 학교 선택하는 화면
 final class ChooseUniversityViewController: UIViewController {
     
+    /// MARK: 네비게이션 바 왼쪽 아이템
+    private lazy var leftButton: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "학교 선택", style: .done, target: self, action: nil)
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        return btn
+    }()
     
     
+    /// MARK: 프로그레스 바
+    private lazy var progressBar: UIProgressView = {
+        let pv = UIProgressView()
+        pv.progressViewStyle = .bar
+        pv.backgroundColor = UIColor(hexCode: "D1D1D1")
+        pv.progress = 0.3
+        return pv
+    }()
+    
+    /// MARK: 입학년도 제목
+    private lazy var yearLabel: UILabel = {
+        let label = UILabel()
+        label.text = "입학년도"
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        return label
+    }()
+    
+    /// MARK: 연도 버튼
+    private lazy var yearButton: SelectedButton = {
+        let btn = SelectedButton()
+        btn.inputData(text: "연도 선택(학번)")
+        btn.backgroundColor = .clear
+        return btn
+    }()
+    
+    /// MARK: 학교 선택 제목
+    private lazy var universityLabel: UILabel = {
+        let label = UILabel()
+        label.text = "학교"
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        return label
+    }()
+    
+    /// MARK: 학교 선택 버튼
+    private lazy var universityButton: SelectedButton = {
+        let btn = SelectedButton()
+        btn.inputData(text: "학교 이름 검색")
+        btn.backgroundColor = .clear
+        return btn
+    }()
+    
+    private let disposeBag = DisposeBag()
     
     // MARK: - View Did Load
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = leftButton
+        navigationController?.navigationBar.tintColor = .black
+        view.backgroundColor = .white
+        
+        addSubviews()
+        clickedButtons()
     }
     
     
+    
+    /// MARK: Add UI
+    private func addSubviews() {
+        view.addSubview(progressBar)
+        view.addSubview(yearLabel)
+        view.addSubview(yearButton)
+        view.addSubview(universityLabel)
+        view.addSubview(universityButton)
+        
+        configureConstraints()
+    }
+    
+    /// MARK: set AutoLayout
+    private func configureConstraints() {
+        
+        progressBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
+        yearLabel.snp.makeConstraints { make in
+            make.top.equalTo(progressBar.snp.bottom).offset(50)
+            make.leading.equalToSuperview().offset(20)
+        }
+        
+        yearButton.snp.makeConstraints { make in
+            make.top.equalTo(yearLabel.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+        
+        universityLabel.snp.makeConstraints { make in
+            make.top.equalTo(yearButton.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(20)
+        }
+        
+        universityButton.snp.makeConstraints { make in
+            make.top.equalTo(universityLabel.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+    }
+    
+    /// MARK: 버튼 클릭 했을 때
+    private func clickedButtons(){
+        
+        yearButton.rx.tap
+            .bind{ [weak self] in
+                let pickerViewController = PickerViewController(pickerValues: SelectUniversity.years)
+                pickerViewController.modalPresentationStyle = .overCurrentContext
+                pickerViewController.delegate = self
+                self?.present(pickerViewController, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        universityButton.rx.tap
+            .bind {
+                /// 대학 선택 버튼
+            }
+            .disposed(by: disposeBag)
+        
+    }
+}
+
+extension ChooseUniversityViewController: SendDataDelegate{
+    func sendData(tag: Int, data: String) {
+        yearButton.inputData(text: data)
+    }
 }
