@@ -48,6 +48,7 @@
 		3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D552A56D4AA00FECE3A /* UICheckBox.swift */; };
 		3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D572A56F00200FECE3A /* SignUpViewController.swift */; };
 		3BA9FB8D2A7D307F0039B138 /* lifestyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */; };
+		3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */; };
 		3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */; };
 		3BB408A72A6AA5D900FBA617 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 3BB408A62A6AA5D900FBA617 /* FSCalendar */; };
 		3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */; };
@@ -174,6 +175,7 @@
 		3B935D552A56D4AA00FECE3A /* UICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox.swift; sourceTree = "<group>"; };
 		3B935D572A56F00200FECE3A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lifestyleCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		3BB408AB2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFSCalendarCell.swift; sourceTree = "<group>"; };
@@ -379,6 +381,14 @@
 				3BD700C12A793371005C7D7E /* ChooseUserTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		3B9BA8EF2A724C8F0043DDE6 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		3BB408A22A6AA57600FBA617 /* Schedule */ = {
@@ -626,6 +636,7 @@
 				572DC2542A51C97900C0D6E1 /* SignUp */,
 				572DC2512A51C62E00C0D6E1 /* Home */,
 				3B181D182A56DCC100B62DEB /* Meeting */,
+				3B9BA8EF2A724C8F0043DDE6 /* MyPage */,
 				570063CB2A792C530051F42A /* Setting */,
 			);
 			path = Views;
@@ -896,6 +907,7 @@
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
 				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
+				3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */,
 				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
 				570063AD2A7258530051F42A /* DesignColor.swift in Sources */,
 				570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */,

@@ -25,12 +25,12 @@ final class RuleListViewController: UIViewController {
     
     // 규칙 리스트
     private lazy var ruleCollectionView: UICollectionView = {
-        let flowLayout = LeftAlignedCollectionViewFlowLayout()
+        let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 15
         flowLayout.minimumInteritemSpacing = 15
+        flowLayout.scrollDirection = .vertical
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        cv.isScrollEnabled = false
         cv.delegate = self
         cv.dataSource = self
         cv.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: TagCollectionViewCell.identifier)
@@ -149,8 +149,7 @@ extension RuleListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let text = Rule.list[indexPath.item]
-        return CGSize(width: text.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 30, height: 40)
+        return CGSize(width: ruleCollectionView.frame.width * 0.8, height: 40)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
