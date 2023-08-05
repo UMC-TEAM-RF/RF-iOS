@@ -14,7 +14,7 @@ final class SignUpService {
     /// 아이디 중복 체크
     /// - Returns: Observable<Bool>
     func checkOverlapId(userId: String) -> Observable<Bool>{
-        let url = "\(Bundle.main.REST_API_URL)//user/idCheck/\(userId)"
+        let url = "\(Bundle.main.REST_API_URL)/user/idCheck/\(userId)"
         
         return Observable.create { observer in
             

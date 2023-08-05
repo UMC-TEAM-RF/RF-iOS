@@ -117,6 +117,7 @@ final class UserInfoViewController: UIViewController {
         
         addSubviews()
         clickedButtons()
+        
     }
     
     /// MARK: Add UI
@@ -234,11 +235,22 @@ final class UserInfoViewController: UIViewController {
         
         nextButton.rx.tap
             .bind { [weak self] in
-                let personalInterestsViewController = PersonalInterestsViewController()
-                self?.navigationItem.backButtonTitle = " "
-                self?.navigationController?.pushViewController(personalInterestsViewController, animated: true)
+                self?.selectedAll()
             }
             .disposed(by: disposeBag)
         
+    }
+    
+    /// MARK: check Selected All
+    private func selectedAll(){
+        viewModel.checkSelectedAll()
+            .bind { [weak self] check in
+                if check{
+                    let personalInterestsViewController = PersonalInterestsViewController()
+                    self?.navigationItem.backButtonTitle = " "
+                    self?.navigationController?.pushViewController(personalInterestsViewController, animated: true)
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
