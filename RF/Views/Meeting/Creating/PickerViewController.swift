@@ -33,15 +33,14 @@ class PickerViewController: UIViewController {
     
     weak var delegate: SendDataDelegate?
     
-    private let tag: Int // 선호 연령대, 사용 언어를 구분하기 위함=
-    
+    private let tag: Int
     
     private var pickerValues: [String]
     var selectedValue: String
     
-    init(tag: Int) {
+    init(tag: Int = 0, pickerValues: [String]) {
         self.tag = tag
-        self.pickerValues = tag == 0 ? AgeGroup.list : Language.list
+        self.pickerValues = pickerValues
         self.selectedValue = pickerValues[0]
         super.init(nibName: nil, bundle: nil)
     }

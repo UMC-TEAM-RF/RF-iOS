@@ -459,7 +459,8 @@ extension SetDetailInfoViewController: UICollectionViewDelegate, UICollectionVie
 
 extension SetDetailInfoViewController: MenuButtonDelegate {
     func didTapMenuButton(_ tag: Int) {
-        let pickerVC = PickerViewController(tag: tag)
+        let pickerValues = tag == 0 ? AgeGroup.list : Language.list
+        let pickerVC = PickerViewController(tag: tag, pickerValues: pickerValues)
         pickerVC.delegate = self
         pickerVC.modalPresentationStyle = .overCurrentContext
         present(pickerVC, animated: true, completion: nil)
