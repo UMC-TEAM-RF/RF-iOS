@@ -14,9 +14,8 @@ class OptionCollectionViewCell: UICollectionViewCell {
     
     private lazy var imageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "LogoImage")
-        iv.contentMode = .scaleAspectFit
-        iv.backgroundColor = .lightGray
+        iv.image = UIImage(named: "LogoImage")?.resize(newWidth: 20, newHeight: 20)
+        iv.contentMode = .center
         iv.clipsToBounds = true
         return iv
     }()
@@ -67,5 +66,27 @@ class OptionCollectionViewCell: UICollectionViewCell {
             make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
         }
+    }
+    
+    func configureOptionUI(_ option: ChatMenuOption?) {
+        guard let option else { print("return"); return }
+        switch option {
+        case .album:
+            configureUIView(image: UIImage(named: "album"), title: "사진", color: .tintColor)
+        case .camera:
+            configureUIView(image: UIImage(named: "camera"), title: "카메라", color: .green)
+        case .schedule:
+            configureUIView(image: UIImage(named: "schedule"), title: "일정", color: .cyan)
+        case .keyword:
+            configureUIView(image: UIImage(named: "keyword"), title: "키워드", color: .systemBlue)
+        case .subject:
+            configureUIView(image: UIImage(named: "subject"), title: "주제", color: .systemIndigo)
+        }
+    }
+    
+    private func configureUIView(image: UIImage?, title: String, color: UIColor) {
+        self.imageView.image = image
+        self.titleLabel.text = title
+        self.imageView.backgroundColor = color
     }
 }

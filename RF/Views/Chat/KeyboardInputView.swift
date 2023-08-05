@@ -63,6 +63,7 @@ extension KeyboardInputView: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionCollectionViewCell.identifier, for: indexPath) as? OptionCollectionViewCell else { return UICollectionViewCell() }
+        cell.configureOptionUI(ChatMenuOption(rawValue: indexPath.item))
         return cell
     }
     
@@ -71,4 +72,12 @@ extension KeyboardInputView: UICollectionViewDelegate, UICollectionViewDataSourc
         let height = (optionCollectionView.frame.height - (15 * 2) - 15) / 2.0
         return CGSize(width: width, height: height)
     }
+}
+
+enum ChatMenuOption: Int {
+    case album = 0
+    case camera
+    case schedule
+    case keyword
+    case subject
 }
