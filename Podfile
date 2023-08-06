@@ -12,6 +12,7 @@ target 'RF' do
   pod 'RxSwift', '6.5.0'
   pod 'RxCocoa', '6.5.0'
   pod 'Mantis', '~> 2.14.1'
+  pod 'StompClientLib'
 
   post_install do |installer|
     installer.generated_projects.each do |project|
