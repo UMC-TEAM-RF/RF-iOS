@@ -193,9 +193,9 @@ final class ChooseUniversityViewController: UIViewController {
                 self?.viewModel.checkSelected()
                     .subscribe(onNext: { check in
                         if check{
-                            let setNicknameViewController = SetNicknameViewController()
+                            let certificatedEmailViewController = CertificatedEmailViewController()
                             self?.navigationItem.backButtonTitle = " "
-                            self?.navigationController?.pushViewController(setNicknameViewController, animated: true)
+                            self?.navigationController?.pushViewController(certificatedEmailViewController, animated: true)
                             
                             SignUpDataViewModel.viewModel.yearRelay.accept(self?.viewModel.yearRelay.value ?? "")
                             SignUpDataViewModel.viewModel.universityRelay.accept(self?.viewModel.universityRelay.value ?? "")

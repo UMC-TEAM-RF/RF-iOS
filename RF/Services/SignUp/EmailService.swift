@@ -16,7 +16,7 @@ final class EmailService {
     func sendingEmail(email: String, university: String) -> Observable<Mail>{
         let url = "\(Bundle.main.REST_API_URL)/mail/send"
         let body = MailBody(mail: email, university: university, code: nil)
-        
+        print(body)
         return Observable.create { observer in
             AF.request(url,
                        method: .post,
@@ -24,11 +24,13 @@ final class EmailService {
                        encoder: JSONParameterEncoder.default)
             .validate(statusCode: 200..<201)
             .responseDecodable(of: MailData.self) { response in
+                print(response)
                 switch response.result{
                 case .success(let data):
                     observer.onNext(data.result.mail)
                 case.failure(let error):
                     print("sendingEmail error!\n \(error)")
+                    observer.onError(error)
                 }
             }
             
@@ -53,6 +55,7 @@ final class EmailService {
                     observer.onNext(data.isSuccess ?? false)
                 case.failure(let error):
                     print("checkEmailCode error!\n \(error)")
+                    observer.onError(error)
                 }
             }
             

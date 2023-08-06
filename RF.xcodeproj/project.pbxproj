@@ -39,6 +39,9 @@
 		3B6BA9822A7E6AB700A11FE4 /* ChooseUniversityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA9812A7E6AB700A11FE4 /* ChooseUniversityViewModel.swift */; };
 		3B6BA9852A7E6AE100A11FE4 /* SearchUniversityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA9842A7E6AE100A11FE4 /* SearchUniversityViewModel.swift */; };
 		3B6BA9872A7E771800A11FE4 /* SignUpDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA9862A7E771800A11FE4 /* SignUpDataViewModel.swift */; };
+		3B6BA9952A7FEB8C00A11FE4 /* CertificatedEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA9942A7FEB8C00A11FE4 /* CertificatedEmailViewController.swift */; };
+		3B6BA9982A7FEC7F00A11FE4 /* EmailCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA9972A7FEC7F00A11FE4 /* EmailCustomTextField.swift */; };
+		3B6BA99A2A7FF6E000A11FE4 /* CertificatedEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA9992A7FF6E000A11FE4 /* CertificatedEmailViewModel.swift */; };
 		3B6C31252A7E17DC008FADA1 /* UserInfoSelfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31242A7E17DC008FADA1 /* UserInfoSelfViewModel.swift */; };
 		3B6C31272A7E2106008FADA1 /* SignUpDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31262A7E2106008FADA1 /* SignUpDataService.swift */; };
 		3B6C31292A7E2166008FADA1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31282A7E2166008FADA1 /* User.swift */; };
@@ -179,6 +182,10 @@
 		3B6BA9812A7E6AB700A11FE4 /* ChooseUniversityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseUniversityViewModel.swift; sourceTree = "<group>"; };
 		3B6BA9842A7E6AE100A11FE4 /* SearchUniversityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUniversityViewModel.swift; sourceTree = "<group>"; };
 		3B6BA9862A7E771800A11FE4 /* SignUpDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataViewModel.swift; sourceTree = "<group>"; };
+		3B6BA9932A7FEA4E00A11FE4 /* RF.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = RF.entitlements; path = ../../../RF.entitlements; sourceTree = "<group>"; };
+		3B6BA9942A7FEB8C00A11FE4 /* CertificatedEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatedEmailViewController.swift; sourceTree = "<group>"; };
+		3B6BA9972A7FEC7F00A11FE4 /* EmailCustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCustomTextField.swift; sourceTree = "<group>"; };
+		3B6BA9992A7FF6E000A11FE4 /* CertificatedEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatedEmailViewModel.swift; sourceTree = "<group>"; };
 		3B6C31242A7E17DC008FADA1 /* UserInfoSelfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSelfViewModel.swift; sourceTree = "<group>"; };
 		3B6C31262A7E2106008FADA1 /* SignUpDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataService.swift; sourceTree = "<group>"; };
 		3B6C31282A7E2166008FADA1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -428,6 +435,14 @@
 			path = ChooseUniversity;
 			sourceTree = "<group>";
 		};
+		3B6BA9962A7FEC6000A11FE4 /* CertificatedEmail */ = {
+			isa = PBXGroup;
+			children = (
+				3B6BA9972A7FEC7F00A11FE4 /* EmailCustomTextField.swift */,
+			);
+			path = CertificatedEmail;
+			sourceTree = "<group>";
+		};
 		3B8477312A6AB1D5007A6144 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +555,7 @@
 			isa = PBXGroup;
 			children = (
 				3BD700CC2A796149005C7D7E /* UserInfoViewModel.swift */,
+				3B6BA9992A7FF6E000A11FE4 /* CertificatedEmailViewModel.swift */,
 				3B6BA9812A7E6AB700A11FE4 /* ChooseUniversityViewModel.swift */,
 				3B6BA9832A7E6AD500A11FE4 /* ChooseUniversity */,
 				3B6C312E2A7E36C4008FADA1 /* PersonalInterestsViewModel.swift */,
@@ -704,6 +720,7 @@
 		572DC22D2A51BF2400C0D6E1 /* RF */ = {
 			isa = PBXGroup;
 			children = (
+				3B6BA9932A7FEA4E00A11FE4 /* RF.entitlements */,
 				572DC2432A51C36C00C0D6E1 /* App */,
 				57673EDA2A56E9B000A13D07 /* Constants */,
 				44F82A0F2A56D55D006B17F8 /* Extensions */,
@@ -762,6 +779,8 @@
 				3B6C31302A7E5224008FADA1 /* ChooseUniversityViewController.swift */,
 				3B6BA97A2A7E5ABB00A11FE4 /* ChooseUniversity */,
 				3B935D572A56F00200FECE3A /* SignUpViewController.swift */,
+				3B6BA9942A7FEB8C00A11FE4 /* CertificatedEmailViewController.swift */,
+				3B6BA9962A7FEC6000A11FE4 /* CertificatedEmail */,
 				44F82A162A5C05A7006B17F8 /* UserInfoViewController.swift */,
 				3BD700C32A793548005C7D7E /* ChooseUserInfo */,
 				443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */,
@@ -942,6 +961,7 @@
 				570063E82A7D13480051F42A /* OtherMessageTableViewCell.swift in Sources */,
 				3B6C31252A7E17DC008FADA1 /* UserInfoSelfViewModel.swift in Sources */,
 				570063932A67B23A0051F42A /* RuleListViewController.swift in Sources */,
+				3B6BA9982A7FEC7F00A11FE4 /* EmailCustomTextField.swift in Sources */,
 				44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */,
 				570063AB2A724CB40051F42A /* UIViewController+Ext.swift in Sources */,
 				570063C32A77A01D0051F42A /* Language.swift in Sources */,
@@ -1064,11 +1084,13 @@
 				57DD3E572A7E4C7E009F7139 /* OptionCollectionViewCell.swift in Sources */,
 				570063DD2A7CFB280051F42A /* ChatListViewController.swift in Sources */,
 				3B5402C92A6EAE1E00D0AD21 /* ProfileUIView.swift in Sources */,
+				3B6BA99A2A7FF6E000A11FE4 /* CertificatedEmailViewModel.swift in Sources */,
 				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
 				3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */,
 				3BD700CB2A793AA0005C7D7E /* UserInfo.swift in Sources */,
 				3BC7D3612A7D4D6300D92356 /* SetNicknameViewModel.swift in Sources */,
 				3B0F1EE42A7C0317009F3F2B /* UICheckBox1.swift in Sources */,
+				3B6BA9952A7FEB8C00A11FE4 /* CertificatedEmailViewController.swift in Sources */,
 				3BB408B12A6AC4CA00FBA617 /* ScheduleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1210,7 +1232,7 @@
 				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5DFZR8RCQR;
+				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
@@ -1243,7 +1265,7 @@
 				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5DFZR8RCQR;
+				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
