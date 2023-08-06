@@ -112,8 +112,13 @@
 		570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C72A77B2B50051F42A /* SendDataDelegate.swift */; };
 		570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C92A792BB80051F42A /* ProfileSettingViewController.swift */; };
 		570063CF2A7A44BC0051F42A /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */; };
-		570063D12A7A45220051F42A /* SecretKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 570063D02A7A45220051F42A /* SecretKey.plist */; };
 		570063D42A7A57110051F42A /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063D32A7A57110051F42A /* Meeting.swift */; };
+		570063DD2A7CFB280051F42A /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063DC2A7CFB280051F42A /* ChatListViewController.swift */; };
+		570063E02A7CFD780051F42A /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063DF2A7CFD780051F42A /* ChatListTableViewCell.swift */; };
+		570063E22A7D0FDA0051F42A /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E12A7D0FDA0051F42A /* ChatRoomViewController.swift */; };
+		570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E32A7D10150051F42A /* KeyboardInputBar.swift */; };
+		570063E62A7D13320051F42A /* MyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E52A7D13320051F42A /* MyMessageTableViewCell.swift */; };
+		570063E82A7D13480051F42A /* OtherMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E72A7D13480051F42A /* OtherMessageTableViewCell.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -140,6 +145,8 @@
 		57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */; };
 		57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EE12A58314100A13D07 /* MeetingCollectionViewCell.swift */; };
 		57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */; };
+		57DD3E532A7E3033009F7139 /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */; };
+		57DD3E572A7E4C7E009F7139 /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -245,8 +252,13 @@
 		570063C72A77B2B50051F42A /* SendDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataDelegate.swift; sourceTree = "<group>"; };
 		570063C92A792BB80051F42A /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
-		570063D02A7A45220051F42A /* SecretKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecretKey.plist; sourceTree = "<group>"; };
 		570063D32A7A57110051F42A /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
+		570063DC2A7CFB280051F42A /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		570063DF2A7CFD780051F42A /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
+		570063E12A7D0FDA0051F42A /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		570063E32A7D10150051F42A /* KeyboardInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputBar.swift; sourceTree = "<group>"; };
+		570063E52A7D13320051F42A /* MyMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageTableViewCell.swift; sourceTree = "<group>"; };
+		570063E72A7D13480051F42A /* OtherMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMessageTableViewCell.swift; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -271,6 +283,8 @@
 		57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EE12A58314100A13D07 /* MeetingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
+		57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -595,6 +609,29 @@
 			path = Codable;
 			sourceTree = "<group>";
 		};
+		570063DB2A7CFB110051F42A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				570063DE2A7CFD670051F42A /* Cell */,
+				570063DC2A7CFB280051F42A /* ChatListViewController.swift */,
+				570063E12A7D0FDA0051F42A /* ChatRoomViewController.swift */,
+				570063E32A7D10150051F42A /* KeyboardInputBar.swift */,
+				57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		570063DE2A7CFD670051F42A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				570063DF2A7CFD780051F42A /* ChatListTableViewCell.swift */,
+				570063E52A7D13320051F42A /* MyMessageTableViewCell.swift */,
+				570063E72A7D13480051F42A /* OtherMessageTableViewCell.swift */,
+				57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		572A9A272A5C0989004D2809 /* Creating */ = {
 			isa = PBXGroup;
 			children = (
@@ -681,6 +718,7 @@
 				572DC2542A51C97900C0D6E1 /* SignUp */,
 				572DC2512A51C62E00C0D6E1 /* Home */,
 				3B181D182A56DCC100B62DEB /* Meeting */,
+				570063DB2A7CFB110051F42A /* Chat */,
 				3B9BA8EF2A724C8F0043DDE6 /* MyPage */,
 				570063CB2A792C530051F42A /* Setting */,
 			);
@@ -864,6 +902,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				570063E82A7D13480051F42A /* OtherMessageTableViewCell.swift in Sources */,
 				3B6C31252A7E17DC008FADA1 /* UserInfoSelfViewModel.swift in Sources */,
 				570063932A67B23A0051F42A /* RuleListViewController.swift in Sources */,
 				44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */,
@@ -900,6 +939,7 @@
 				44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */,
 				3B6BA97E2A7E655600A11FE4 /* SelectUniversity.swift in Sources */,
 				3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */,
+				570063E62A7D13320051F42A /* MyMessageTableViewCell.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
 				3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
@@ -944,6 +984,7 @@
 				3BD700D32A7963DD005C7D7E /* ChoiceInterestingLanguageView.swift in Sources */,
 				3B6C31312A7E5224008FADA1 /* ChooseUniversityViewController.swift in Sources */,
 				3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */,
+				570063E22A7D0FDA0051F42A /* ChatRoomViewController.swift in Sources */,
 				57673EDC2A56E9D200A13D07 /* Interest.swift in Sources */,
 				3B6BA97C2A7E5ACD00A11FE4 /* SelectedButton.swift in Sources */,
 				3BD700CD2A796149005C7D7E /* UserInfoViewModel.swift in Sources */,
@@ -962,6 +1003,7 @@
 				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
 				3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */,
 				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
+				570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */,
 				570063AD2A7258530051F42A /* DesignColor.swift in Sources */,
 				570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */,
 				3B15CD612A64437D0096871F /* InterestingTopicCollectionViewCell.swift in Sources */,
@@ -969,6 +1011,7 @@
 				572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */,
 				3B6BA9852A7E6AE100A11FE4 /* SearchUniversityViewModel.swift in Sources */,
 				3B4CAC982A7A4F3B00896DEB /* HomeMeetingDummy.swift in Sources */,
+				57DD3E532A7E3033009F7139 /* KeyboardInputView.swift in Sources */,
 				570063C12A779FED0051F42A /* AgeGroup.swift in Sources */,
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
 				3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */,
@@ -978,8 +1021,11 @@
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
 				3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */,
 				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
+				570063E02A7CFD780051F42A /* ChatListTableViewCell.swift in Sources */,
 				3BD700D52A796403005C7D7E /* ChoiceInterestingLanguageViewModel.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,
+				57DD3E572A7E4C7E009F7139 /* OptionCollectionViewCell.swift in Sources */,
+				570063DD2A7CFB280051F42A /* ChatListViewController.swift in Sources */,
 				3B5402C92A6EAE1E00D0AD21 /* ProfileUIView.swift in Sources */,
 				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
 				3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */,
@@ -1125,7 +1171,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7WSFP8ZQ32;
+				DEVELOPMENT_TEAM = 5DFZR8RCQR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
@@ -1138,7 +1184,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF.gyfolders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1153,7 +1199,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7WSFP8ZQ32;
+				DEVELOPMENT_TEAM = 5DFZR8RCQR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
@@ -1166,7 +1212,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF.gyfolders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
