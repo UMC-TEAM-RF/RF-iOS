@@ -91,14 +91,13 @@
 		570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C72A77B2B50051F42A /* SendDataDelegate.swift */; };
 		570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063C92A792BB80051F42A /* ProfileSettingViewController.swift */; };
 		570063CF2A7A44BC0051F42A /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */; };
+		570063D42A7A57110051F42A /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063D32A7A57110051F42A /* Meeting.swift */; };
 		570063DD2A7CFB280051F42A /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063DC2A7CFB280051F42A /* ChatListViewController.swift */; };
 		570063E02A7CFD780051F42A /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063DF2A7CFD780051F42A /* ChatListTableViewCell.swift */; };
 		570063E22A7D0FDA0051F42A /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E12A7D0FDA0051F42A /* ChatRoomViewController.swift */; };
 		570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E32A7D10150051F42A /* KeyboardInputBar.swift */; };
 		570063E62A7D13320051F42A /* MyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E52A7D13320051F42A /* MyMessageTableViewCell.swift */; };
 		570063E82A7D13480051F42A /* OtherMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E72A7D13480051F42A /* OtherMessageTableViewCell.swift */; };
-		570063D12A7A45220051F42A /* SecretKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 570063D02A7A45220051F42A /* SecretKey.plist */; };
-		570063D42A7A57110051F42A /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063D32A7A57110051F42A /* Meeting.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -211,14 +210,13 @@
 		570063C72A77B2B50051F42A /* SendDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataDelegate.swift; sourceTree = "<group>"; };
 		570063C92A792BB80051F42A /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
+		570063D32A7A57110051F42A /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		570063DC2A7CFB280051F42A /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		570063DF2A7CFD780051F42A /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 		570063E12A7D0FDA0051F42A /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		570063E32A7D10150051F42A /* KeyboardInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputBar.swift; sourceTree = "<group>"; };
 		570063E52A7D13320051F42A /* MyMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageTableViewCell.swift; sourceTree = "<group>"; };
 		570063E72A7D13480051F42A /* OtherMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMessageTableViewCell.swift; sourceTree = "<group>"; };
-		570063D02A7A45220051F42A /* SecretKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecretKey.plist; sourceTree = "<group>"; };
-		570063D32A7A57110051F42A /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -516,6 +514,14 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		570063D22A7A55A20051F42A /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				570063D32A7A57110051F42A /* Meeting.swift */,
+			);
+			path = Codable;
+			sourceTree = "<group>";
+		};
 		570063DB2A7CFB110051F42A /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,14 +543,6 @@
 				57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		570063D22A7A55A20051F42A /* Codable */ = {
-			isa = PBXGroup;
-			children = (
-				570063D32A7A57110051F42A /* Meeting.swift */,
-			);
-			path = Codable;
 			sourceTree = "<group>";
 		};
 		572A9A272A5C0989004D2809 /* Creating */ = {
@@ -1057,7 +1055,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7WSFP8ZQ32;
+				DEVELOPMENT_TEAM = 5DFZR8RCQR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
@@ -1070,7 +1068,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF.gyfolders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1085,7 +1083,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7WSFP8ZQ32;
+				DEVELOPMENT_TEAM = 5DFZR8RCQR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
@@ -1098,7 +1096,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF.gyfolders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
