@@ -20,9 +20,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        let viewController = UINavigationController(rootViewController: SignInViewController())
+        if let _ = UserDefaults.standard.string(forKey: "user") {
+            // 자동 로그인으로 설정된 경우, 홈 화면으로 이동
+            let mainTabBarController = TabBarController()
+            window?.rootViewController = mainTabBarController
+        } else {
+            // 자동 로그인으로 설정되지 않은 경우, 로그인 화면으로 이동
+            let loginNavController = UINavigationController(rootViewController: SignInViewController())
+            window?.rootViewController = loginNavController
+        }
         
-        window?.rootViewController = viewController
+        //window?.rootViewController = viewController
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
     }
