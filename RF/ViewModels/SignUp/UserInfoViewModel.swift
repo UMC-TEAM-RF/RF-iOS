@@ -19,4 +19,35 @@ final class UserInfoViewModel {
     
     /// MARK: 선택한 관심 언어
     var interestingLanguage: BehaviorRelay<String> = BehaviorRelay(value: "")
+    
+    private let disposeBag = DisposeBag()
+    
+    // MARK: - Logic
+    
+    /// 선택지 모두를 선택했는지 확인하는 함수
+    func checkSelectedAll() -> Observable<Bool>{
+        
+        let checkBorn = bornCountry.map { $0 != "" ? true : false }
+        let checkCountry = interestingCountry.map { $0 != "" ? true : false }
+        let checkLanguage = interestingLanguage.map { $0 != "" ? true : false }
+        
+        return Observable.create { [weak self] observer in
+            
+            
+            Observable.combineLatest(checkBorn,
+                                     checkCountry,
+                                     checkLanguage,
+                                     resultSelector: { born, country, language in
+                born && country && language
+            })
+            .subscribe(onNext: { check in
+                observer.onNext(check)
+            })
+            .disposed(by: self?.disposeBag ?? DisposeBag())
+            
+            return Disposables.create()
+        }
+    }
+    
+    
 }

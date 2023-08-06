@@ -10,9 +10,18 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
-class PersonalInterestsViewController: UIViewController {
+/// 관심사 설정하는 화면
+final class PersonalInterestsViewController: UIViewController {
     
     // MARK: - UI Property
+    
+    /// MARK: 네비게이션 바 왼쪽 아이템
+    private lazy var leftButton: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "관심사 설정", style: .done, target: self, action: nil)
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        return btn
+    }()
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -23,13 +32,6 @@ class PersonalInterestsViewController: UIViewController {
         let view = UIView()
         return view
     }()
-    
-    
-    private func setNavigationTitle()
-    {
-        navigationItem.title = ""
-        view.backgroundColor = .systemBackground
-    }
     
     // 프로그레스 바
     private lazy var progressBar: UIProgressView = {
@@ -43,9 +45,9 @@ class PersonalInterestsViewController: UIViewController {
     // 메인 라벨
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "\("알프")님의\n관심사를 설정해 주세요!"
+        label.text = "관심사를 설정해 주세요!"
         label.numberOfLines = 2
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         return label
     }()
     
@@ -116,19 +118,24 @@ class PersonalInterestsViewController: UIViewController {
     // MARK: - Property
     
     private let disposeBag = DisposeBag()
+    private let viewModel = PersonalInterestsViewModel()
     
-    private var selectedCount: [Int] = [0, 0, 0]
-    private var selectedCountMax: [Int] = [3, -1, 1]
+    
+    // MARK: - View did load
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationTitle()
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = leftButton
+        navigationController?.navigationBar.tintColor = .black
+        view.backgroundColor = .white
         
         addSubviews()
         configureConstraints()
         addTargets()
         configureCollectionView()
+        bind()
     }
     
     // MARK: - addSubviews
@@ -174,7 +181,7 @@ class PersonalInterestsViewController: UIViewController {
         
         // 메인 라벨
         mainLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(45)
+            make.top.equalToSuperview().offset(20)
             make.leading.equalToSuperview().offset(20)
         }
         
@@ -186,10 +193,10 @@ class PersonalInterestsViewController: UIViewController {
         interestCollectionView.snp.makeConstraints { make in
             make.top.equalTo(interestLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
-            make.height.equalTo(200)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*0.4)
         }
         
-        // 취미 관심사 라벨 & 컬렉션뷰
+        // 라이프스타일 라벨 & 컬렉션뷰
         lifeStyleLabel.snp.makeConstraints { make in
             make.top.equalTo(interestCollectionView.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(20)
@@ -197,10 +204,10 @@ class PersonalInterestsViewController: UIViewController {
         lifeStyleCollectionView.snp.makeConstraints { make in
             make.top.equalTo(lifeStyleLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
-            make.height.equalTo(400)
+            make.height.equalTo(140)
         }
         
-        // 취미 관심사 라벨 & 컬렉션뷰
+        // MBTI 라벨 & 컬렉션뷰
         mbtiLabel.snp.makeConstraints { make in
             make.top.equalTo(lifeStyleCollectionView.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(20)
@@ -208,7 +215,7 @@ class PersonalInterestsViewController: UIViewController {
         mbtiCollectionView.snp.makeConstraints { make in
             make.top.equalTo(mbtiLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
-            make.height.equalTo(200)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*0.4)
         }
         
         // 다음
@@ -223,24 +230,144 @@ class PersonalInterestsViewController: UIViewController {
     private func configureCollectionView() {
         interestCollectionView.delegate = self
         interestCollectionView.dataSource = self
-        interestCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: "InterestSmallCollectionViewCell")
+        interestCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: InterestSmallCollectionViewCell.identifier)
         lifeStyleCollectionView.delegate = self
         lifeStyleCollectionView.dataSource = self
-        lifeStyleCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: "LifeStyleCollectionViewCell")
+        lifeStyleCollectionView.register(lifestyleCollectionViewCell.self, forCellWithReuseIdentifier: lifestyleCollectionViewCell.identifier)
         mbtiCollectionView.delegate = self
         mbtiCollectionView.dataSource = self
-        mbtiCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: "MbtiCollectionViewCell")
+        mbtiCollectionView.register(InterestSmallCollectionViewCell.self, forCellWithReuseIdentifier: InterestSmallCollectionViewCell.identifier)
     }
     
     // MARK: - addTargets
     
     private func addTargets() {
         nextButton.rx.tap
-            .subscribe(onNext: {
-                self.navigationController?.pushViewController(SetDescriptViewController(), animated: true)
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.checkSelected()
+                    .bind(onNext: { check in
+                        if check{
+                            self?.moveNextPage()
+                        }
+                        else{
+                            self?.showAlert(text: "모두 선택해주세요!")
+                        }
+                    })
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
+                
             })
             .disposed(by: disposeBag)
     }
+    
+    /// MARK: binding ViewModel
+    private func bind(){
+        viewModel.lifeStyleRelay
+            .bind { [weak self] item in
+                self?.updateLifeStyleItem(item)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.interestingRelay
+            .bind { [weak self] items in
+                self?.updateInterestingItems(items)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.mbtiRelay
+            .bind {[weak self] items in
+                self?.updateMBTIItems(items)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.checkSelectedForButtonColor()
+            .subscribe(onNext:{ [weak self] check in
+                if check{
+                    self?.nextButton.setTitleColor(.white, for: .normal)
+                    self?.nextButton.backgroundColor = .systemBlue
+                }
+                else{
+                    self?.nextButton.setTitleColor(.black, for: .normal)
+                    self?.nextButton.backgroundColor = .systemGray6
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    
+    // MARK: - Update View
+    
+    
+    /// MARK:  라이프 스타일 선택 시 업데이트 하는 함수
+    private func updateLifeStyleItem(_ item: IndexPath){
+        for indexPath in lifeStyleCollectionView.indexPathsForVisibleItems {
+            let cell = lifeStyleCollectionView.cellForItem(at: indexPath) as? lifestyleCollectionViewCell
+            if item == indexPath {
+                cell?.setColor(textColor: .white, backgroundColor: .tintColor)
+            }
+            else{
+                cell?.setColor(textColor: .black, backgroundColor: .systemGray6)
+            }
+        }
+    }
+    
+    /// MARK: 선택된 셀 업데이트 하는 함수
+    private func updateInterestingItems(_ items: Set<IndexPath>) {
+        for indexPath in interestCollectionView.indexPathsForVisibleItems {
+            let cell = interestCollectionView.cellForItem(at: indexPath) as? InterestSmallCollectionViewCell
+            if items.contains(indexPath) {
+                cell?.setColor(textColor: .white, backgroundColor: .tintColor)
+            }
+            else{
+                cell?.setColor(textColor: .label, backgroundColor: .systemGray6)
+            }
+        }
+    }
+    
+    /// MARK: 선택된 셀 업데이트 하는 함수
+    private func updateMBTIItems(_ item: IndexPath) {
+        for indexPath in mbtiCollectionView.indexPathsForVisibleItems {
+            let cell = mbtiCollectionView.cellForItem(at: indexPath) as? InterestSmallCollectionViewCell
+            if item == indexPath {
+                cell?.setColor(textColor: .white, backgroundColor: .tintColor)
+            }
+            else{
+                cell?.setColor(textColor: .black, backgroundColor: .systemGray6)
+            }
+        }
+    }
+    
+    // MARK: - Functions
+    
+    /// MARK: 다음 화면으로 이동
+    private func moveNextPage(){
+        SignUpDataViewModel.viewModel.lifeStyleRelay.accept(Interest.list[viewModel.lifeStyleRelay.value.row])
+        SignUpDataViewModel.viewModel.mbtiRelay.accept(Interest.list[viewModel.mbtiRelay.value.row])
+        viewModel.convertInterestingValue()
+            .bind { list in
+                SignUpDataViewModel.viewModel.interestingRelay.accept(list)
+            }
+            .disposed(by: disposeBag)
+        
+        SignUpDataViewModel.viewModel.totalSignUp()
+            .subscribe(onNext:{ [weak self] check in
+                if check{
+                    self?.navigationController?.popToRootViewController(animated: false)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        
+    }
+    
+    /// MARK:  다 선택이 안된 경우 실행
+    private func showAlert(text: String){
+        let sheet = UIAlertController(title: text, message: nil, preferredStyle: .alert)
+        let success = UIAlertAction(title: "확인", style: .default)
+        
+        sheet.addAction(success)
+        self.present(sheet,animated: true)
+    }
+    
 }
 
 // MARK: - extension CollectionView
@@ -248,19 +375,22 @@ class PersonalInterestsViewController: UIViewController {
 extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == interestCollectionView{
-            return CGSize(width: (interestCollectionView.frame.width - (20 * 2)) / 3, height: (interestCollectionView.frame.height - (20 * 3)) / 4)
-        }else if collectionView == lifeStyleCollectionView{
-            return CGSize(width: lifeStyleCollectionView.frame.width, height: (lifeStyleCollectionView.frame.height - (20 * 5)) / 6)
-        }else if collectionView == mbtiCollectionView{
-            return CGSize(width: (mbtiCollectionView.frame.width - (20 * 3)) / 4, height: (mbtiCollectionView.frame.height - (20 * 3)) / 4)
+        if collectionView == interestCollectionView {
+            return CGSize(width: (interestCollectionView.frame.width / 5),
+                          height: (interestCollectionView.frame.height / 5))
+        } else if collectionView == lifeStyleCollectionView {
+            return CGSize(width: lifeStyleCollectionView.frame.width / 2 - 30,
+                          height: lifeStyleCollectionView.frame.height)
+        } else if collectionView == mbtiCollectionView {
+            return CGSize(width: (mbtiCollectionView.frame.width / 5),
+                          height: (mbtiCollectionView.frame.height / 5))
         }
         return CGSize()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == interestCollectionView{
-            return Interest.listWithIcon.count
+            return Interest.list.count
         }else if collectionView == lifeStyleCollectionView{
             return LifeStyle.list.count
         }else if collectionView == mbtiCollectionView{
@@ -268,35 +398,33 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         }
         return 0
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == interestCollectionView{
-            
-            var str : String = Interest.listWithIcon[indexPath.item]
-            str.removeFirst()
-            str.removeFirst()
-            
-            let cell = interestCollectionView.dequeueReusableCell(withReuseIdentifier: "InterestSmallCollectionViewCell", for: indexPath) as! InterestSmallCollectionViewCell
+            let str: String = Interest.list[indexPath.item]
+            guard let cell = interestCollectionView.dequeueReusableCell(withReuseIdentifier: InterestSmallCollectionViewCell.identifier,
+                                                                        for: indexPath) as? InterestSmallCollectionViewCell else { return UICollectionViewCell() }
             
             cell.setTextLabel( str )
             cell.contentView.backgroundColor = .systemGray6
             cell.setCornerRadius()
             return cell
             
-        }else if collectionView == lifeStyleCollectionView{
+        } else if collectionView == lifeStyleCollectionView {
+            let str : [String] = LifeStyle.list[indexPath.item]
+            guard let cell = lifeStyleCollectionView.dequeueReusableCell(withReuseIdentifier: lifestyleCollectionViewCell.identifier, for: indexPath) as? lifestyleCollectionViewCell else {return UICollectionViewCell()}
             
-            let str : String = LifeStyle.list[indexPath.item]
-            
-            let cell = lifeStyleCollectionView.dequeueReusableCell(withReuseIdentifier: "LifeStyleCollectionViewCell", for: indexPath) as! InterestSmallCollectionViewCell
-            
-            cell.setTextLabel( str )
+            cell.setImage( str[0] )
+            cell.setTextLabel( str[1] )
             cell.contentView.backgroundColor = .systemGray6
             cell.setCornerRadius()
             return cell
             
-        }else if collectionView == mbtiCollectionView{
+        } else if collectionView == mbtiCollectionView {
             let str : String = Mbti.list[indexPath.item]
-            let cell = mbtiCollectionView.dequeueReusableCell(withReuseIdentifier: "MbtiCollectionViewCell", for: indexPath) as! InterestSmallCollectionViewCell
+            guard let cell = mbtiCollectionView.dequeueReusableCell(withReuseIdentifier: InterestSmallCollectionViewCell.identifier,
+                                                                    for: indexPath) as? InterestSmallCollectionViewCell else { return UICollectionViewCell() }
             
             cell.setTextLabel( str )
             cell.contentView.backgroundColor = .systemGray6
@@ -311,44 +439,14 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? InterestSmallCollectionViewCell else { return }
-        
-        var cellindex = -1
-        
-        if collectionView == interestCollectionView{
-            cellindex = 0
-        }else if collectionView == lifeStyleCollectionView{
-            cellindex = 1
-        }else if collectionView == mbtiCollectionView{
-            cellindex = 2
+        if collectionView == lifeStyleCollectionView{
+            viewModel.selectedLifeStyleItem(at: indexPath)
         }
-        
-        
-        if !cell.isSelectedCell && self.selectedCount[cellindex] == selectedCountMax[cellindex] {
-            print("초과")
-            return
+        else if collectionView == interestCollectionView{
+            viewModel.selectedInterestingItems(at: indexPath)
         }
-        
-        cell.isSelectedCell.toggle()
-        
-//        // 최대 3개 선택할 수 있도록 설정
-        if cell.isSelectedCell { // 활성화
-            self.selectedCount[cellindex] += 1
-            cell.setColor(textColor: .white, backgroundColor: .tintColor)
-        } else {  // 비활성화
-            self.selectedCount[cellindex] -= 1
-            cell.setColor(textColor: .label, backgroundColor: .systemGray6)
-        }
-    
-        // 다음 버튼 활성화 여부
-        if self.selectedCount[0]*self.selectedCount[1]*self.selectedCount[2] == 0{
-            nextButton.backgroundColor = .systemGray6
-            nextButton.setTitleColor(.black, for: .normal)
-            nextButton.isEnabled = false
-        } else {
-            nextButton.backgroundColor = .tintColor
-            nextButton.setTitleColor(.white, for: .normal)
-            nextButton.isEnabled = true
+        else if collectionView == mbtiCollectionView{
+            viewModel.selectedMBTIItems(at: indexPath)
         }
     }
 }
