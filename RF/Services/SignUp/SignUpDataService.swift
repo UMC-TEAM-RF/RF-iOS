@@ -16,8 +16,18 @@ final class SignUpDataService {
     func addUserInfo() -> Observable<Bool>{
         let url = "\(Bundle.main.REST_API_URL)/user"
         
-        /// Dummy body
-        let body: User = User(userID: "yxin", password: "12345678", university: "인하대학교", nickname: "인하대학교", phoneNumber: "010-1111-1111", interestLanguage: "영어", entrance: "2020", country: "대한민국", interestCountry: "캐나다", introduce: "코딩을하자", interest: ["게임", "음악"], mbti: "ISTP")
+        let body: User = User(userID: SignUpDataViewModel.viewModel.idRelay.value,
+                              password: SignUpDataViewModel.viewModel.pwRelay.value,
+                              university: SignUpDataViewModel.viewModel.universityRelay.value,
+                              nickname: SignUpDataViewModel.viewModel.nickNameRelay.value,
+                              phoneNumber: "010-1111-1111", // ??
+                              interestLanguage: SignUpDataViewModel.viewModel.interestingLanguage.value,
+                              entrance: SignUpDataViewModel.viewModel.yearRelay.value,
+                              country: SignUpDataViewModel.viewModel.bornCountry.value,
+                              interestCountry: SignUpDataViewModel.viewModel.interestingCountry.value,
+                              introduce: SignUpDataViewModel.viewModel.introduceSelfRelay.value,
+                              interest: SignUpDataViewModel.viewModel.interestingRelay.value,
+                              mbti: SignUpDataViewModel.viewModel.mbtiRelay.value)
         
         return Observable.create { observer in
             
