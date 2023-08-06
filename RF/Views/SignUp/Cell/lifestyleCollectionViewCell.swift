@@ -1,20 +1,27 @@
 //
-//  InterestSmallCollectionViewCell.swift
+//  lifestyleCollectionViewCell.swift
 //  RF
 //
-//  Created by 용용이 on 2023/07/21.
+//  Created by 용용이 on 2023/08/04.
 //
 
 import UIKit
 
-final class InterestSmallCollectionViewCell: UICollectionViewCell {
-    static let identifier = "InterestSmallCollectionViewCell"
+final class lifestyleCollectionViewCell: UICollectionViewCell {
+    static let identifier = "lifestyleCollectionViewCell"
     
+    // 로고 이미지
+    private lazy var imageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
     private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         return label
     }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,13 +37,23 @@ final class InterestSmallCollectionViewCell: UICollectionViewCell {
     }
     
     private func addSubviews() {
+        contentView.addSubview(imageView)
         contentView.addSubview(textLabel)
     }
     
     private func configureConstraints() {
-        textLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+        imageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(8)
         }
+        textLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom).offset(8)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().inset(8)
+        }
+    }
+    func setImage(_ named: String) {
+        self.imageView.image = UIImage(named: named)?.resize(newWidth: 117.38)
     }
     
     func setTextLabel(_ text: String) {

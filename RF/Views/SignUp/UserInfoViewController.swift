@@ -12,6 +12,14 @@ import RxSwift
 /// 출생국가, 관심 나라, 관심 언어 선택하는 화면
 final class UserInfoViewController: UIViewController {
     
+    /// MARK: 네비게이션 바 왼쪽 아이템
+    private lazy var leftButton: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "기본 설정", style: .done, target: self, action: nil)
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        return btn
+    }()
+    
     /// MARK:  기본정보
     private lazy var topLabel: UILabel = {
         let label = UILabel()
@@ -101,10 +109,15 @@ final class UserInfoViewController: UIViewController {
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = leftButton
+        navigationController?.navigationBar.tintColor = .black
         view.backgroundColor = .white
         
         addSubviews()
         clickedButtons()
+        observeSelected()
     }
     
     /// MARK: Add UI
@@ -207,7 +220,7 @@ final class UserInfoViewController: UIViewController {
             .disposed(by: disposeBag)
         
         favLanguageButton.rx.tap
-            .bind {[weak self] in
+            .bind { [weak self] in
                 let choiceInterestingLanguageView = ChoiceInterestingLanguageView()
                 choiceInterestingLanguageView.modalPresentationStyle = .formSheet
                 choiceInterestingLanguageView.selctedCountry
@@ -221,10 +234,43 @@ final class UserInfoViewController: UIViewController {
             .disposed(by: disposeBag)
         
         nextButton.rx.tap
-            .bind {
-                
+            .bind { [weak self] in
+                self?.selectedAll()
             }
             .disposed(by: disposeBag)
         
+    }
+    
+    /// MARK: check Selected All
+    private func selectedAll(){
+        viewModel.checkSelectedAll()
+            .bind { [weak self] check in
+                if check{
+                    let personalInterestsViewController = PersonalInterestsViewController()
+                    self?.navigationItem.backButtonTitle = " "
+                    self?.navigationController?.pushViewController(personalInterestsViewController, animated: true)
+                    
+                    SignUpDataViewModel.viewModel.bornCountry.accept(self?.viewModel.bornCountry.value ?? "")
+                    SignUpDataViewModel.viewModel.interestingCountry.accept(self?.viewModel.interestingCountry.value ?? "")
+                    SignUpDataViewModel.viewModel.interestingLanguage.accept(self?.viewModel.interestingLanguage.value ?? "")
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    /// MARK: 모두 선택했을 때 버튼 색깔 바뀌게 하는 함수
+    private func observeSelected(){
+        viewModel.checkSelectedAll()
+            .bind { [weak self] check in
+                if check{
+                    self?.nextButton.backgroundColor = .systemBlue
+                    self?.nextButton.setTitleColor(.white, for: .normal)
+                }
+                else{
+                    self?.nextButton.backgroundColor =  UIColor(hexCode: "#F5F5F5")
+                    self?.nextButton.setTitleColor(.black, for: .normal)
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
