@@ -35,6 +35,10 @@ class PasswordTextField: UITextField {
         self.keyboardType = UIKeyboardType.alphabet
         self.returnKeyType = UIReturnKeyType.done
         self.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
+        
+        if #available(iOS 12.0, *) {
+            self.textContentType = .oneTimeCode
+        }
     }
     
     @objc private func showHidePassword(_ sender: UIButton) {

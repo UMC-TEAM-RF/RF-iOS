@@ -1,0 +1,58 @@
+PODS:
+  - Alamofire (5.7.1)
+  - FSCalendar (2.8.4)
+  - Mantis (2.14.1)
+  - Pageboy (4.0.2)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - SnapKit (5.6.0)
+  - SocketRocket (0.7.0)
+  - StompClientLib (1.4.1):
+    - SocketRocket
+  - Tabman (3.0.2):
+    - Pageboy (~> 4.0.2)
+
+DEPENDENCIES:
+  - Alamofire
+  - FSCalendar
+  - Mantis (~> 2.14.1)
+  - RxCocoa (= 6.5.0)
+  - RxSwift (= 6.5.0)
+  - SnapKit (~> 5.6.0)
+  - StompClientLib
+  - Tabman (~> 3.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - FSCalendar
+    - Mantis
+    - Pageboy
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - SocketRocket
+    - StompClientLib
+    - Tabman
+
+SPEC CHECKSUMS:
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
+  Mantis: b91a7fb2b16c180c77a76bc83bb126abba105cd5
+  Pageboy: 34ff11e8d1041b81769d5bcde9b19a0cb7218bd9
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
+  StompClientLib: ac40390e9660c574675f1c933bec81c8e2811a4f
+  Tabman: 6326ec3a792da1c2a6e79c7eddb56af7b591c9d6
+
+PODFILE CHECKSUM: 136749c222c3bf35ece4d45579e74b9bb560a985
+
+COCOAPODS: 1.11.3

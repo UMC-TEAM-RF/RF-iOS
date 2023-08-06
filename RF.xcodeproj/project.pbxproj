@@ -26,7 +26,6 @@
 		3B5402C52A6EA6A700D0AD21 /* MeetingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */; };
 		3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */; };
 		3B5402C92A6EAE1E00D0AD21 /* ProfileUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C82A6EAE1E00D0AD21 /* ProfileUIView.swift */; };
-		3B57FFC72A73CB9E007DB482 /* Mantis in Frameworks */ = {isa = PBXBuildFile; productRef = 3B57FFC62A73CB9E007DB482 /* Mantis */; };
 		3B57FFCD2A7408AE007DB482 /* DimmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFCC2A7408AE007DB482 /* DimmedViewController.swift */; };
 		3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFCE2A7408D4007DB482 /* SchedulePopUpViewController.swift */; };
 		3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */; };
@@ -56,13 +55,11 @@
 		3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */; };
 		3BA9FB8D2A7D307F0039B138 /* lifestyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */; };
 		3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */; };
-		3BB408A72A6AA5D900FBA617 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 3BB408A62A6AA5D900FBA617 /* FSCalendar */; };
 		3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A82A6AA68A00FBA617 /* ScheduleTableViewCell.swift */; };
 		3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408AB2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift */; };
 		3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */; };
 		3BB408B12A6AC4CA00FBA617 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408B02A6AC4CA00FBA617 /* ScheduleViewModel.swift */; };
 		3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408B22A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift */; };
-		3BC35CE32A5C3C3200D73163 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 3BC35CE22A5C3C3200D73163 /* Tabman */; };
 		3BC35CE62A5C3C6E00D73163 /* DetailMeetingTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE52A5C3C6E00D73163 /* DetailMeetingTabController.swift */; };
 		3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */; };
 		3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC35CE92A5C3CBA00D73163 /* DetailMeetingChatController.swift */; };
@@ -133,10 +130,6 @@
 		572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2322A51BF2400C0D6E1 /* SignInViewController.swift */; };
 		572DC2382A51BF2500C0D6E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 572DC2372A51BF2500C0D6E1 /* Assets.xcassets */; };
 		572DC23B2A51BF2500C0D6E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572DC2392A51BF2500C0D6E1 /* LaunchScreen.storyboard */; };
-		572DC2462A51C40F00C0D6E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 572DC2452A51C40F00C0D6E1 /* SnapKit */; };
-		572DC2492A51C42A00C0D6E1 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 572DC2482A51C42A00C0D6E1 /* Alamofire */; };
-		572DC24C2A51C4FB00C0D6E1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 572DC24B2A51C4FB00C0D6E1 /* RxCocoa */; };
-		572DC24E2A51C4FB00C0D6E1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 572DC24D2A51C4FB00C0D6E1 /* RxSwift */; };
 		572DC2502A51C5F300C0D6E1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC24F2A51C5F300C0D6E1 /* TabBarController.swift */; };
 		572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2522A51C64400C0D6E1 /* HomeViewController.swift */; };
 		572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2552A51C9BD00C0D6E1 /* SetNicknameViewController.swift */; };
@@ -147,9 +140,13 @@
 		57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */; };
 		57DD3E532A7E3033009F7139 /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */; };
 		57DD3E572A7E4C7E009F7139 /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */; };
+		F53C159A5B07594C59367F87 /* Pods_RF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1993FCFD8483C342C337F096 /* Pods_RF.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1993FCFD8483C342C337F096 /* Pods_RF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2505DAF5F18952160CB2275D /* Pods-RF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RF.debug.xcconfig"; path = "Target Support Files/Pods-RF/Pods-RF.debug.xcconfig"; sourceTree = "<group>"; };
+		2B0C13344295BF3D18F7D032 /* Pods-RF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RF.release.xcconfig"; path = "Target Support Files/Pods-RF/Pods-RF.release.xcconfig"; sourceTree = "<group>"; };
 		3B0B35282A7A5A31003B2D8C /* SecretKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecretKey.plist; sourceTree = "<group>"; };
 		3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox1.swift; sourceTree = "<group>"; };
 		3B15CD572A63E9590096871F /* SearchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewController.swift; sourceTree = "<group>"; };
@@ -292,19 +289,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BC35CE32A5C3C3200D73163 /* Tabman in Frameworks */,
-				3BB408A72A6AA5D900FBA617 /* FSCalendar in Frameworks */,
-				572DC24C2A51C4FB00C0D6E1 /* RxCocoa in Frameworks */,
-				572DC2462A51C40F00C0D6E1 /* SnapKit in Frameworks */,
-				572DC24E2A51C4FB00C0D6E1 /* RxSwift in Frameworks */,
-				3B57FFC72A73CB9E007DB482 /* Mantis in Frameworks */,
-				572DC2492A51C42A00C0D6E1 /* Alamofire in Frameworks */,
+				F53C159A5B07594C59367F87 /* Pods_RF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		129D8721F8FD4929C5C7BF7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1993FCFD8483C342C337F096 /* Pods_RF.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		25CD40F3E49A14898B2B4040 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2505DAF5F18952160CB2275D /* Pods-RF.debug.xcconfig */,
+				2B0C13344295BF3D18F7D032 /* Pods-RF.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		3B0F1EE22A7C02F3009F3F2B /* TermsConditions */ = {
 			isa = PBXGroup;
 			children = (
@@ -680,6 +688,8 @@
 			children = (
 				572DC22D2A51BF2400C0D6E1 /* RF */,
 				572DC22C2A51BF2400C0D6E1 /* Products */,
+				25CD40F3E49A14898B2B4040 /* Pods */,
+				129D8721F8FD4929C5C7BF7E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -821,24 +831,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 572DC23F2A51BF2500C0D6E1 /* Build configuration list for PBXNativeTarget "RF" */;
 			buildPhases = (
+				9B26E9FD6BAFE96145E51194 /* [CP] Check Pods Manifest.lock */,
 				572DC2272A51BF2400C0D6E1 /* Sources */,
 				572DC2282A51BF2400C0D6E1 /* Frameworks */,
 				572DC2292A51BF2400C0D6E1 /* Resources */,
+				6A72E0A83A235B914B87F688 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = RF;
-			packageProductDependencies = (
-				572DC2452A51C40F00C0D6E1 /* SnapKit */,
-				572DC2482A51C42A00C0D6E1 /* Alamofire */,
-				572DC24B2A51C4FB00C0D6E1 /* RxCocoa */,
-				572DC24D2A51C4FB00C0D6E1 /* RxSwift */,
-				3BC35CE22A5C3C3200D73163 /* Tabman */,
-				3BB408A62A6AA5D900FBA617 /* FSCalendar */,
-				3B57FFC62A73CB9E007DB482 /* Mantis */,
-			);
 			productName = RF;
 			productReference = 572DC22B2A51BF2400C0D6E1 /* RF.app */;
 			productType = "com.apple.product-type.application";
@@ -867,14 +870,6 @@
 				Base,
 			);
 			mainGroup = 572DC2222A51BF2400C0D6E1;
-			packageReferences = (
-				572DC2442A51C40F00C0D6E1 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				572DC2472A51C42A00C0D6E1 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				572DC24A2A51C4FB00C0D6E1 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				3BC35CE12A5C3C3200D73163 /* XCRemoteSwiftPackageReference "Tabman" */,
-				3BB408A52A6AA5D900FBA617 /* XCRemoteSwiftPackageReference "FSCalendar" */,
-				3B57FFC52A73CB9E007DB482 /* XCRemoteSwiftPackageReference "Mantis" */,
-			);
 			productRefGroup = 572DC22C2A51BF2400C0D6E1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -896,6 +891,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6A72E0A83A235B914B87F688 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RF/Pods-RF-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RF/Pods-RF-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RF/Pods-RF-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B26E9FD6BAFE96145E51194 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RF-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		572DC2272A51BF2400C0D6E1 /* Sources */ = {
@@ -1166,9 +1203,11 @@
 		};
 		572DC2402A51BF2500C0D6E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2505DAF5F18952160CB2275D /* Pods-RF.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5DFZR8RCQR;
@@ -1186,17 +1225,22 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		572DC2412A51BF2500C0D6E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B0C13344295BF3D18F7D032 /* Pods-RF.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5DFZR8RCQR;
@@ -1214,9 +1258,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1242,95 +1289,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		3B57FFC52A73CB9E007DB482 /* XCRemoteSwiftPackageReference "Mantis" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/guoyingtao/Mantis.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		3BB408A52A6AA5D900FBA617 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-		3BC35CE12A5C3C3200D73163 /* XCRemoteSwiftPackageReference "Tabman" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/uias/Tabman.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
-		572DC2442A51C40F00C0D6E1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		572DC2472A51C42A00C0D6E1 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		572DC24A2A51C4FB00C0D6E1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.6.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		3B57FFC62A73CB9E007DB482 /* Mantis */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3B57FFC52A73CB9E007DB482 /* XCRemoteSwiftPackageReference "Mantis" */;
-			productName = Mantis;
-		};
-		3BB408A62A6AA5D900FBA617 /* FSCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3BB408A52A6AA5D900FBA617 /* XCRemoteSwiftPackageReference "FSCalendar" */;
-			productName = FSCalendar;
-		};
-		3BC35CE22A5C3C3200D73163 /* Tabman */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3BC35CE12A5C3C3200D73163 /* XCRemoteSwiftPackageReference "Tabman" */;
-			productName = Tabman;
-		};
-		572DC2452A51C40F00C0D6E1 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 572DC2442A51C40F00C0D6E1 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		572DC2482A51C42A00C0D6E1 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 572DC2472A51C42A00C0D6E1 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		572DC24B2A51C4FB00C0D6E1 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 572DC24A2A51C4FB00C0D6E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		572DC24D2A51C4FB00C0D6E1 /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 572DC24A2A51C4FB00C0D6E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 572DC2232A51BF2400C0D6E1 /* Project object */;
 }
