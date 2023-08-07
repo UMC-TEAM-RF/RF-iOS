@@ -12,7 +12,7 @@ import RxSwift
 /// Singleton Pattern으로 회원가입 정보 저장하는 ViewModel
 final class SignUpDataViewModel {
     static let viewModel = SignUpDataViewModel()
-    private let service = SignUpDataService()
+    private let service = SignUpService()
     private init() {}
     private let disposeBag = DisposeBag()
     

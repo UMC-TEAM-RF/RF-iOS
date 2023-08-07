@@ -20,8 +20,3 @@ struct User: Codable {
     }
 }
 
-struct Welcome: Codable {
-    let isSuccess: Bool
-    let code: Int
-    let message: String
-}

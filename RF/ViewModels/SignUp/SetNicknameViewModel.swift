@@ -12,7 +12,7 @@ import RxRelay
 final class SetNicknameViewModel {
     
     private let disposeBag = DisposeBag()
-    private let service = NickNameService()
+    private let service = SignUpService()
     /// nickName Relay
     var nickNameRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
     
