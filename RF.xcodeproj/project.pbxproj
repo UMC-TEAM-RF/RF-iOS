@@ -140,6 +140,9 @@
 		57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */; };
 		57DD3E532A7E3033009F7139 /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */; };
 		57DD3E572A7E4C7E009F7139 /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */; };
+		57DD3E612A80BBD0009F7139 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E602A80BBD0009F7139 /* ChatService.swift */; };
+		57DD3E642A80C7C2009F7139 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E632A80C7C2009F7139 /* Domain.swift */; };
+		57DD3E662A80C7C9009F7139 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E652A80C7C9009F7139 /* API.swift */; };
 		F53C159A5B07594C59367F87 /* Pods_RF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1993FCFD8483C342C337F096 /* Pods_RF.framework */; };
 /* End PBXBuildFile section */
 
@@ -283,6 +286,9 @@
 		57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
 		57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		57DD3E5B2A80B77B009F7139 /* RF.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = RF.entitlements; sourceTree = "<group>"; };
+		57DD3E602A80BBD0009F7139 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		57DD3E632A80C7C2009F7139 /* Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
+		57DD3E652A80C7C9009F7139 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -515,6 +521,7 @@
 			children = (
 				3BC7D35B2A7D263100D92356 /* SignUp */,
 				3BD68EF92A77987B003A57A7 /* SignIn */,
+				57DD3E5F2A80BBC5009F7139 /* Chat */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -808,6 +815,7 @@
 		57673EDA2A56E9B000A13D07 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				57DD3E622A80C7B4009F7139 /* URL */,
 				57673EDB2A56E9D200A13D07 /* Interest.swift */,
 				3B6BA97D2A7E655600A11FE4 /* SelectUniversity.swift */,
 				3B4CAC972A7A4F3B00896DEB /* HomeMeetingDummy.swift */,
@@ -824,6 +832,23 @@
 				570063C22A77A01D0051F42A /* Language.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		57DD3E5F2A80BBC5009F7139 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				57DD3E602A80BBD0009F7139 /* ChatService.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		57DD3E622A80C7B4009F7139 /* URL */ = {
+			isa = PBXGroup;
+			children = (
+				57DD3E632A80C7C2009F7139 /* Domain.swift */,
+				57DD3E652A80C7C9009F7139 /* API.swift */,
+			);
+			path = URL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1006,6 +1031,7 @@
 				3B6C312B2A7E2616008FADA1 /* EmailService.swift in Sources */,
 				3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */,
 				3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */,
+				57DD3E612A80BBD0009F7139 /* ChatService.swift in Sources */,
 				3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */,
 				570063BF2A779D440051F42A /* MenuButtonDelegate.swift in Sources */,
 				3B6C312D2A7E26E1008FADA1 /* SendEmail.swift in Sources */,
@@ -1030,6 +1056,7 @@
 				570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */,
 				3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */,
 				3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */,
+				57DD3E662A80C7C9009F7139 /* API.swift in Sources */,
 				572A9A352A5CC21C004D2809 /* SetDescriptViewController.swift in Sources */,
 				3B5402C32A6EA61700D0AD21 /* ListViewModel.swift in Sources */,
 				3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */,
@@ -1058,6 +1085,7 @@
 				570063952A67BA000051F42A /* Rule.swift in Sources */,
 				3B57FFD32A741972007DB482 /* SchedulePopUpViewModel.swift in Sources */,
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
+				57DD3E642A80C7C2009F7139 /* Domain.swift in Sources */,
 				3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */,
 				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
 				570063E02A7CFD780051F42A /* ChatListTableViewCell.swift in Sources */,

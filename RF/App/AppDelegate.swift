@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         print(#function)
     
+        ChatService.shared.connect()
         // 앱이 시작될 때마다 푸시 알림 등록을 시도
         registerForPushNotifications()
         
@@ -48,11 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // 디바이스 토큰 등록 실패 처리
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register: \(error)")
-    }
-    
-    // 원격 알림 수신 처리
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print(#function)
     }
     
     func registerForPushNotifications() {
