@@ -183,7 +183,6 @@
 		3B6BA9812A7E6AB700A11FE4 /* ChooseUniversityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseUniversityViewModel.swift; sourceTree = "<group>"; };
 		3B6BA9842A7E6AE100A11FE4 /* SearchUniversityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUniversityViewModel.swift; sourceTree = "<group>"; };
 		3B6BA9862A7E771800A11FE4 /* SignUpDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataViewModel.swift; sourceTree = "<group>"; };
-		3B6BA9932A7FEA4E00A11FE4 /* RF.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = RF.entitlements; path = ../../../RF.entitlements; sourceTree = "<group>"; };
 		3B6BA9942A7FEB8C00A11FE4 /* CertificatedEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatedEmailViewController.swift; sourceTree = "<group>"; };
 		3B6BA9972A7FEC7F00A11FE4 /* EmailCustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCustomTextField.swift; sourceTree = "<group>"; };
 		3B6BA9992A7FF6E000A11FE4 /* CertificatedEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatedEmailViewModel.swift; sourceTree = "<group>"; };
@@ -722,7 +721,6 @@
 		572DC22D2A51BF2400C0D6E1 /* RF */ = {
 			isa = PBXGroup;
 			children = (
-				3B6BA9932A7FEA4E00A11FE4 /* RF.entitlements */,
 				572DC2432A51C36C00C0D6E1 /* App */,
 				57673EDA2A56E9B000A13D07 /* Constants */,
 				44F82A0F2A56D55D006B17F8 /* Extensions */,
@@ -1254,7 +1252,7 @@
 				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SN5J3DYFX4;
+				DEVELOPMENT_TEAM = 5DFZR8RCQR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
