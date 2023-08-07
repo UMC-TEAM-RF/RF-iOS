@@ -22,7 +22,6 @@ struct MailRounding: Codable{
 struct Mail: Codable {
     let code, mailAddress, university: String?
     let isAuth: Bool?
-    
 }
 
 struct MailBody: Codable{

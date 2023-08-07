@@ -21,10 +21,10 @@ final class SignUpService {
             AF.request(url,
                        method: .get)
             .validate(statusCode: 200..<201)
-            .responseDecodable(of: SignUpBase.self) { response in
+            .responseDecodable(of: ResponseData.self) { response in
                 switch response.result{
                 case .success(let data):
-                    observer.onNext(data.result.judge ?? false)
+                    observer.onNext(data.isSuccess ?? false)
                 case .failure(let error):
                     print("checkOverlapId error!\n\(error)")
                 }
@@ -33,5 +33,64 @@ final class SignUpService {
             return Disposables.create()
         }
     }
+    
+    /// 닉네임 중복 확인하는 함수
+    func checkOverlapNickName(name: String) -> Observable<Bool> {
+        let url = "\(Bundle.main.REST_API_URL)/user/nicknameCheck/\(name)"
+        
+        return Observable.create { observer in
+            AF.request(url,
+                       method: .get)
+            .validate(statusCode: 200..<201)
+            .responseDecodable(of: ResponseData.self) { response in
+                switch response.result{
+                case .success(let data):
+                    observer.onNext(data.isSuccess ?? false)
+                case .failure(let error):
+                    print("checkOverlapNickName error! \(error)")
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    
+    /// 유저 등록하는 함수
+    func addUserInfo() -> Observable<Bool>{
+        let url = "\(Bundle.main.REST_API_URL)/user"
+        
+        let body: User = User(userID: SignUpDataViewModel.viewModel.idRelay.value,
+                              password: SignUpDataViewModel.viewModel.pwRelay.value,
+                              university: SignUpDataViewModel.viewModel.universityRelay.value,
+                              nickname: SignUpDataViewModel.viewModel.nickNameRelay.value,
+                              interestLanguage: SignUpDataViewModel.viewModel.interestingLanguage.value,
+                              entrance: SignUpDataViewModel.viewModel.yearRelay.value,
+                              country: SignUpDataViewModel.viewModel.bornCountry.value,
+                              interestCountry: SignUpDataViewModel.viewModel.interestingCountry.value,
+                              introduce: SignUpDataViewModel.viewModel.introduceSelfRelay.value,
+                              interest: SignUpDataViewModel.viewModel.interestingRelay.value,
+                              mbti: SignUpDataViewModel.viewModel.mbtiRelay.value)
+        
+        return Observable.create { observer in
+            
+            AF.request(url,
+                       method: .post,
+                       parameters: body,
+                       encoder: JSONParameterEncoder.default)
+            .validate(statusCode: 200..<201)
+            .responseDecodable(of: ResponseData.self) { response in
+                print("addUserInfo response\n\(response)")
+                switch response.result{
+                case .success(let data):
+                    observer.onNext(data.isSuccess ?? false)
+                case .failure(let error):
+                    print("addUserInfo error! \n\(error)")
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
     
 }
