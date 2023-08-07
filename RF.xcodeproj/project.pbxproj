@@ -289,6 +289,7 @@
 		57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
 		57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
+		57DD3E5B2A80B77B009F7139 /* RF.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = RF.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -733,6 +734,7 @@
 				572DC2392A51BF2500C0D6E1 /* LaunchScreen.storyboard */,
 				572DC23C2A51BF2500C0D6E1 /* Info.plist */,
 				3B0B35282A7A5A31003B2D8C /* SecretKey.plist */,
+				57DD3E5B2A80B77B009F7139 /* RF.entitlements */,
 			);
 			path = RF;
 			sourceTree = "<group>";
