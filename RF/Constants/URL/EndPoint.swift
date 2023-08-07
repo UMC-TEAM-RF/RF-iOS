@@ -7,8 +7,8 @@
 
 import Foundation
 
-// STOMP API 주소
-struct SocketAPI {
+// Socket EndPoint
+struct SocketPath {
     static let connect = "/ws/websocket"
     static let subscribe = "/sub/channel"
     static let send = "/pub/redisChat"

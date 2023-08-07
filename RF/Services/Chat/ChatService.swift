@@ -16,14 +16,20 @@ class ChatService {
         socketClient = StompClientLib()
     }
     
+    // 소켓 연결
     func connect() {
-        if socketClient.isConnected() { return }
+        if socketClient.isConnected() {
+            print("Socket is already connected!")
+            return
+        }
         
         let urlString = "\(Domain.webSocket)\(SocketAPI.connect)"
         let url = NSURL(string: urlString)!
         socketClient.openSocketWithURLRequest(request: NSURLRequest(url: url as URL), delegate: self)
     }
     
+    /// 채팅방 구독
+    /// - Parameter partyId: 내가 가입한 모임 ID
     func subscribe(_ partyId: Int) {
         let destination = SocketAPI.subscribe
         socketClient.subscribe(destination: "\(destination)/\(partyId)")

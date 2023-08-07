@@ -11,13 +11,10 @@ import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         print(#function)
     
-        ChatService.shared.connect()
         // 앱이 시작될 때마다 푸시 알림 등록을 시도
         registerForPushNotifications()
         
