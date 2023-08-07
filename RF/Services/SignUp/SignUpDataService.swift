@@ -20,7 +20,6 @@ final class SignUpDataService {
                               password: SignUpDataViewModel.viewModel.pwRelay.value,
                               university: SignUpDataViewModel.viewModel.universityRelay.value,
                               nickname: SignUpDataViewModel.viewModel.nickNameRelay.value,
-                              phoneNumber: "010-1111-1111", // ??
                               interestLanguage: SignUpDataViewModel.viewModel.interestingLanguage.value,
                               entrance: SignUpDataViewModel.viewModel.yearRelay.value,
                               country: SignUpDataViewModel.viewModel.bornCountry.value,

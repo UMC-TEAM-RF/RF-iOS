@@ -46,7 +46,7 @@
 		3B6C31272A7E2106008FADA1 /* SignUpDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31262A7E2106008FADA1 /* SignUpDataService.swift */; };
 		3B6C31292A7E2166008FADA1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31282A7E2166008FADA1 /* User.swift */; };
 		3B6C312B2A7E2616008FADA1 /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C312A2A7E2616008FADA1 /* EmailService.swift */; };
-		3B6C312D2A7E26E1008FADA1 /* SendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C312C2A7E26E1008FADA1 /* SendEmail.swift */; };
+		3B6C312D2A7E26E1008FADA1 /* Mail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C312C2A7E26E1008FADA1 /* Mail.swift */; };
 		3B6C312F2A7E36C4008FADA1 /* PersonalInterestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C312E2A7E36C4008FADA1 /* PersonalInterestsViewModel.swift */; };
 		3B6C31312A7E5224008FADA1 /* ChooseUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31302A7E5224008FADA1 /* ChooseUniversityViewController.swift */; };
 		3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */; };
@@ -190,7 +190,7 @@
 		3B6C31262A7E2106008FADA1 /* SignUpDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataService.swift; sourceTree = "<group>"; };
 		3B6C31282A7E2166008FADA1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B6C312A2A7E2616008FADA1 /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
-		3B6C312C2A7E26E1008FADA1 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
+		3B6C312C2A7E26E1008FADA1 /* Mail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mail.swift; sourceTree = "<group>"; };
 		3B6C312E2A7E36C4008FADA1 /* PersonalInterestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInterestsViewModel.swift; sourceTree = "<group>"; };
 		3B6C31302A7E5224008FADA1 /* ChooseUniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseUniversityViewController.swift; sourceTree = "<group>"; };
 		3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestSmallCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -689,7 +689,7 @@
 				570063D22A7A55A20051F42A /* Codable */,
 				572A9A392A5E80D1004D2809 /* Member.swift */,
 				3B6C31282A7E2166008FADA1 /* User.swift */,
-				3B6C312C2A7E26E1008FADA1 /* SendEmail.swift */,
+				3B6C312C2A7E26E1008FADA1 /* Mail.swift */,
 				3BC7D35E2A7D27E000D92356 /* SignUp.swift */,
 				3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */,
 				3B5402C42A6EA6A700D0AD21 /* MeetingList.swift */,
@@ -1028,7 +1028,7 @@
 				3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */,
 				3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */,
 				570063BF2A779D440051F42A /* MenuButtonDelegate.swift in Sources */,
-				3B6C312D2A7E26E1008FADA1 /* SendEmail.swift in Sources */,
+				3B6C312D2A7E26E1008FADA1 /* Mail.swift in Sources */,
 				3BC7D35A2A7D244F00D92356 /* SignUpViewModel.swift in Sources */,
 				3BC35CF52A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
 				3BC35CF12A5C6CBD00D73163 /* RuleCollectionViewCell.swift in Sources */,
