@@ -81,6 +81,7 @@ final class MeetingViewController: UIViewController{
     }()
     
     private let disposeBag = DisposeBag()
+    private let viewModel = MeetingViewModel()
     
     // MARK:  - init
     override func viewDidLoad() {
@@ -112,6 +113,7 @@ final class MeetingViewController: UIViewController{
         
         configureConstraints()
         uiActions()
+        viewModel.getMeetingList()
     }
     
     /// MARK: setting AutoLayout
@@ -148,9 +150,7 @@ final class MeetingViewController: UIViewController{
         meetingCollectionView.snp.makeConstraints { make in
             make.top.equalTo(meetingListLabel.snp.bottom).offset(15)
             make.left.right.equalToSuperview().inset(20)
-            
-            //make.bottom.equalToSuperview()
-            make.height.equalTo(130)    // 1개 130, 2개 275, 3개 420
+            make.bottom.equalToSuperview()
         }
     }
     
@@ -215,15 +215,17 @@ extension MeetingViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return viewModel.meetingList.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MeetingCollectionViewCell", for: indexPath) as! MeetingCollectionViewCell
-        cell.inputTextData(title: HomeMeetingDummy.title[indexPath.row],
-                           description: HomeMeetingDummy.description[indexPath.row],
-                           personnel: HomeMeetingDummy.personnel[indexPath.row],
-                           tag: HomeMeetingDummy.tagList[indexPath.row])
+        
+        
+        cell.inputTextData(title: viewModel.meetingList.value[indexPath.row].name ?? "",
+                           description: viewModel.meetingList.value[indexPath.row].content ?? "",
+                           personnel: "\(viewModel.meetingList.value[indexPath.row].memberCount ?? 0)",
+                           tag: viewModel.meetingList.value[indexPath.row].interests ?? [])
         return cell
     }
     
