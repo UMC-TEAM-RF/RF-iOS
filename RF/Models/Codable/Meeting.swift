@@ -30,12 +30,6 @@ struct Meeting: Codable {
     var imageFilePath: String?  // 이미지 주소
 }
 
-struct ResponseData: Codable {
-    var isSuccess: Bool?
-    var code: Int?
-    var message: String?
-}
-
 
 // MARK: - Test
 import Alamofire

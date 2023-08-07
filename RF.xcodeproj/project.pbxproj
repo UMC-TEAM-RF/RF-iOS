@@ -143,7 +143,8 @@
 		57DD3E612A80BBD0009F7139 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E602A80BBD0009F7139 /* ChatService.swift */; };
 		57DD3E642A80C7C2009F7139 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E632A80C7C2009F7139 /* Domain.swift */; };
 		57DD3E662A80C7C9009F7139 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E652A80C7C9009F7139 /* EndPoint.swift */; };
-		57DD3E682A8106E7009F7139 /* MessageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E672A8106E7009F7139 /* MessageDTO.swift */; };
+		57DD3E682A8106E7009F7139 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E672A8106E7009F7139 /* Message.swift */; };
+		57DD3E6C2A810F60009F7139 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E6B2A810F60009F7139 /* Response.swift */; };
 		F53C159A5B07594C59367F87 /* Pods_RF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1993FCFD8483C342C337F096 /* Pods_RF.framework */; };
 /* End PBXBuildFile section */
 
@@ -290,7 +291,8 @@
 		57DD3E602A80BBD0009F7139 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		57DD3E632A80C7C2009F7139 /* Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
 		57DD3E652A80C7C9009F7139 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
-		57DD3E672A8106E7009F7139 /* MessageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDTO.swift; sourceTree = "<group>"; };
+		57DD3E672A8106E7009F7139 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		57DD3E6B2A810F60009F7139 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -623,7 +625,8 @@
 			isa = PBXGroup;
 			children = (
 				570063D32A7A57110051F42A /* Meeting.swift */,
-				57DD3E672A8106E7009F7139 /* MessageDTO.swift */,
+				57DD3E672A8106E7009F7139 /* Message.swift */,
+				57DD3E6B2A810F60009F7139 /* Response.swift */,
 			);
 			path = Codable;
 			sourceTree = "<group>";
@@ -1057,6 +1060,7 @@
 				3B6BA97C2A7E5ACD00A11FE4 /* SelectedButton.swift in Sources */,
 				3BD700CD2A796149005C7D7E /* UserInfoViewModel.swift in Sources */,
 				570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */,
+				57DD3E6C2A810F60009F7139 /* Response.swift in Sources */,
 				3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */,
 				3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */,
 				57DD3E662A80C7C9009F7139 /* EndPoint.swift in Sources */,
@@ -1072,7 +1076,7 @@
 				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
 				3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */,
 				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
-				57DD3E682A8106E7009F7139 /* MessageDTO.swift in Sources */,
+				57DD3E682A8106E7009F7139 /* Message.swift in Sources */,
 				570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */,
 				570063AD2A7258530051F42A /* DesignColor.swift in Sources */,
 				570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */,
