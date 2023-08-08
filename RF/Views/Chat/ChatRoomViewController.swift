@@ -85,21 +85,7 @@ class ChatRoomViewController: UIViewController {
     
     var editMenuInteraction: UIEditMenuInteraction?
     
-    var messages: [Message] = [
-        Message(sender: MessageSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
-        Message(sender: MessageSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: "t has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
-        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout"),
-        Message(sender: MessageSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."),
-        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "Contrary to popular belief, Lorem Ipsum is not simply random text."),
-        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."),
-        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."),
-        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "FC BARCELONA EL CLASICO FRENKIE DE JONG PEDRI GAVI SPAIN LA LIGA"),
-        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
-        Message(sender: MessageSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "테스트"),
-        Message(sender: MessageSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "테스트"),
-        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
-        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
-        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
+    var messages: [CustomMessage] = [
         
     ]
     
@@ -239,7 +225,7 @@ class ChatRoomViewController: UIViewController {
     /// - Parameter indexPath: indexPath
     /// - Returns: true: 연속, false: 비연속
     func isSenderConsecutiveMessages(row: Int) -> Bool {
-        if row != 0 && (messages[row - 1].sender.senderId == messages[row].sender.senderId) { return true }
+        if row != 0 && (messages[row - 1].sender?.id == messages[row].sender?.id) { return true }
         else { return false }
     }
     
@@ -347,7 +333,7 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
         
         let message = messages[indexPath.row]
         
-        if message.sender.senderId == "1" {
+        if message.sender?.id ?? 0 == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
     
             cell.message = message.content
@@ -356,7 +342,7 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
 
             cell.message = message.content
-            cell.displayName = message.sender.displayName
+            cell.displayName = message.sender?.displayName
             cell.delegate = self
 
             if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
@@ -425,7 +411,8 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         inputBarTopStackView.isHidden = true
         keyboardInputBar.isTranslated = false
         
-        messages.append(Message(sender: MessageSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: text))
+//        messages.append(Message(sender: MessageSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: text))
+        messages.append(CustomMessage(sender: CustomMessageSender(id: 1, displayName: "JD"), content: text))
         
         messagesTableView.reloadData()
         

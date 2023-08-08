@@ -36,11 +36,11 @@ struct Channel {
 
 struct CustomMessage: Codable {
     var id: Int?  // 메시지 ID
+    var sender: CustomMessageSender?  // 보내는 사람
     var type: String?  // 메시지 타입 (TEXT, IMAGE, SCHEDULE)
     var content: String?  // 내용
     var dateTime: String?  // 보낸 시각
     var replyMessageId: Int?  // 답장할 메시지 ID
-    var sender: CustomMessageSender?  // 보내는 사람
     var schedule: Schedule?
     
     var isNew: Bool = true  // 새 메시지 여부 (서버로부터 받을 때 기본 값으로 true 저장)

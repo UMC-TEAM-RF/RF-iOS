@@ -25,7 +25,22 @@ class ChatListViewController: UIViewController {
     
     let dummyChatList: [Channel] = [
         Channel(id: 1, name: "1번 모임", messages: [
-            CustomMessage(content: "TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST", dateTime: "21:09")
+            CustomMessage(content: "TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST", dateTime: "21:09"),
+            CustomMessage(sender: CustomMessageSender(id: 1, displayName: "JD"), content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+            CustomMessage(sender: CustomMessageSender(id: 1, displayName: "JD"), content: "t has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
+            CustomMessage(sender: CustomMessageSender(id: 2, displayName: "망고"), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout"),
+            CustomMessage(sender: CustomMessageSender(id: 3, displayName: "제이디"), content: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."),
+            CustomMessage(sender: CustomMessageSender(id: 4, displayName: "만자"), content: "Contrary to popular belief, Lorem Ipsum is not simply random text."),
+            CustomMessage(sender: CustomMessageSender(id: 2, displayName: "망고"), content: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."),
+            CustomMessage(sender: CustomMessageSender(id: 2, displayName: "망고"), content: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."),
+            CustomMessage(sender: CustomMessageSender(id: 2, displayName: "망고"), content: "FC BARCELONA EL CLASICO FRENKIE DE JONG PEDRI GAVI SPAIN LA LIGA"),
+            CustomMessage(sender: CustomMessageSender(id: 4, displayName: "만자"), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
+            CustomMessage(sender: CustomMessageSender(id: 3, displayName: "제이디"), content: "테스트"),
+            CustomMessage(sender: CustomMessageSender(id: 3, displayName: "제이디"), content: "테스트"),
+            CustomMessage(sender: CustomMessageSender(id: 4, displayName: "만자"), content: "테스트"),
+            CustomMessage(sender: CustomMessageSender(id: 4, displayName: "만자"), content: "테스트"),
+            CustomMessage(sender: CustomMessageSender(id: 4, displayName: "만자"), content: "테스트"),
+            CustomMessage(sender: CustomMessageSender(id: 2, displayName: "망고"), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout")
         ], userProfileImages: ["a", "a"])
     ]
     
@@ -89,6 +104,7 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChatRoomViewController()
         tabBarController?.tabBar.isHidden = true
+        vc.messages = self.dummyChatList[indexPath.row].messages
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
