@@ -47,4 +47,8 @@ final class SearchUniversityViewModel{
         }
     }
     
+    
+    // MARK: - API Connect
+    
+    
 }

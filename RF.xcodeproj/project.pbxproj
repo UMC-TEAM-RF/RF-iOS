@@ -35,6 +35,7 @@
 		3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */; };
 		3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */; };
 		3B59B2832A75653400027809 /* DetailMeetingJoinPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */; };
+		3B69EE402A81F522002DB6DF /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69EE3F2A81F522002DB6DF /* Enums.swift */; };
 		3B6BA97C2A7E5ACD00A11FE4 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */; };
 		3B6BA97E2A7E655600A11FE4 /* SelectUniversity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97D2A7E655600A11FE4 /* SelectUniversity.swift */; };
 		3B6BA9802A7E68FA00A11FE4 /* SearchUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97F2A7E68FA00A11FE4 /* SearchUniversityViewController.swift */; };
@@ -176,6 +177,7 @@
 		3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventPopUp.swift; sourceTree = "<group>"; };
 		3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUpViewController.swift; sourceTree = "<group>"; };
 		3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUp.swift; sourceTree = "<group>"; };
+		3B69EE3F2A81F522002DB6DF /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedButton.swift; sourceTree = "<group>"; };
 		3B6BA97D2A7E655600A11FE4 /* SelectUniversity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUniversity.swift; sourceTree = "<group>"; };
 		3B6BA97F2A7E68FA00A11FE4 /* SearchUniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUniversityViewController.swift; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 			isa = PBXGroup;
 			children = (
 				570063D32A7A57110051F42A /* Meeting.swift */,
+				3B69EE3F2A81F522002DB6DF /* Enums.swift */,
 			);
 			path = Codable;
 			sourceTree = "<group>";
@@ -978,6 +981,7 @@
 				3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */,
 				3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */,
 				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
+				3B69EE402A81F522002DB6DF /* Enums.swift in Sources */,
 				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
 				3BD700CF2A7962F0005C7D7E /* ChoiceInterestingCountryView.swift in Sources */,

@@ -24,6 +24,7 @@ final class SignUpService {
             .responseDecodable(of: ResponseData.self) { response in
                 switch response.result{
                 case .success(let data):
+                    print("checkOverlapId success \(data)")
                     observer.onNext(data.isSuccess ?? false)
                 case .failure(let error):
                     print("checkOverlapId error!\n\(error)")

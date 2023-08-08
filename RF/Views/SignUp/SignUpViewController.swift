@@ -253,13 +253,23 @@ final class SignUpViewController: UIViewController {
         idCheckButton.rx.tap
             .bind { [weak self] in
                 self?.viewModel.checkOverlapId()
+                    .subscribe(onNext:{ check in
+                        self?.view.endEditing(true)
+                        if check{
+                            self?.showOverlapAlert(text: "사용 가능한 아이디 입니다.")
+                        }
+                        else{
+                            self?.showOverlapAlert(text: "중복된 아이디 입니다.")
+                        }
+                    })
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
             }
             .disposed(by: disposeBag)
         
         idTextField.rx.text
             .bind { [weak self] id in
                 if let text = id{
-                    self?.viewModel.overlapCheckRelay.accept(false)
+                    
                     self?.viewModel.idRelay.accept(text)
                 }
             }
@@ -286,9 +296,10 @@ final class SignUpViewController: UIViewController {
     /// MARK: viewModel binding 하는 함수
     private func bind(){
         viewModel.confirmPasswordRelay
-            .bind(onNext: { check in
+            .bind(onNext: { [weak self] check in
                 if check{ // true: 비밀번호 일치
-                    
+                    self?.nextButton.backgroundColor = .systemBlue
+                    self?.nextButton.setTitleColor(.white, for: .normal)
                 }
                 else{ // false: 비밀번호가 일치하지 않는 경우 코드 작성
                     
@@ -296,18 +307,16 @@ final class SignUpViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.overlapCheckRelay
-            .bind(onNext: { [weak self] check in
-                if check{
-                    // true: 아이디 중복인 경우
-                    self?.showOverlapAlert()
-                }
-                else{
-                    // false: 아이디 중복이 아닌 경우 코드 작성
-                    
-                }
-            })
-            .disposed(by: disposeBag)
+//        viewModel.overlapCheckRelay
+//            .bind(onNext: { [weak self] check in
+//                if check{
+//                    self?.showOverlapAlert(text: "사용가능한 아이디입니다.")
+//                }
+//                else{
+//                    self?.showOverlapAlert(text: "중복된 아이디 입니다.")
+//                }
+//            })
+//            .disposed(by: disposeBag)
     }
     
     /// MARK: 다음 버튼 눌렀을 때 모든 정보 입력했는 지 확인하는 함수
@@ -326,8 +335,8 @@ final class SignUpViewController: UIViewController {
     }
     
     /// MARK: 중복된 아이디인 경우 팝행창 알림 실행
-    private func showOverlapAlert(){
-        let sheet = UIAlertController(title: "중복된 아이디 입니다.", message: nil, preferredStyle: .alert)
+    private func showOverlapAlert(text: String){
+        let sheet = UIAlertController(title: text, message: nil, preferredStyle: .alert)
         let success = UIAlertAction(title: "확인", style: .default)
         
         sheet.addAction(success)
@@ -337,6 +346,13 @@ final class SignUpViewController: UIViewController {
 }
 
 extension SignUpViewController : UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == idTextField{
+            print("Acavcxvadasklfhdsafljadsk")
+            viewModel.overlapCheckRelay.accept(false)
+        }
+    }
+    
     
 }
 
