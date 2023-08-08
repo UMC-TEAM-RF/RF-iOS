@@ -15,7 +15,7 @@ final class UserInfoViewModel {
     var bornCountry: BehaviorRelay<String> = BehaviorRelay(value: "")
     
     /// MARK: 선택한 관심 국가
-    var interestingCountry: BehaviorRelay<String> = BehaviorRelay(value: "")
+    var interestingCountry: BehaviorRelay<Set<KVO>> = BehaviorRelay<Set<KVO>>(value: [])
     
     /// MARK: 선택한 관심 언어
     var interestingLanguage: BehaviorRelay<String> = BehaviorRelay(value: "")
@@ -28,7 +28,7 @@ final class UserInfoViewModel {
     func checkSelectedAll() -> Observable<Bool>{
         
         let checkBorn = bornCountry.map { $0 != "" ? true : false }
-        let checkCountry = interestingCountry.map { $0 != "" ? true : false }
+        let checkCountry = interestingCountry.map { $0 != [] ? true : false }
         let checkLanguage = interestingLanguage.map { $0 != "" ? true : false }
         
         return Observable.create { [weak self] observer in

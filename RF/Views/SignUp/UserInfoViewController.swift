@@ -212,7 +212,9 @@ final class UserInfoViewController: UIViewController {
                 choiceInterestingCountryView.selctedCountry
                     .bind { country in
                         self?.viewModel.interestingCountry.accept(country)
-                        self?.favNationButton.setTitle("  \(country)", for: .normal)
+                        let _ = country.map { kvo in
+                            self?.favNationButton.setTitle("  \(String(describing: kvo.value))", for: .normal)
+                        }
                     }
                     .disposed(by: self?.disposeBag ?? DisposeBag())
                 self?.present(choiceInterestingCountryView, animated: true)
@@ -244,17 +246,17 @@ final class UserInfoViewController: UIViewController {
     /// MARK: check Selected All
     private func selectedAll(){
         viewModel.checkSelectedAll()
-            .bind { [weak self] check in
+            .subscribe(onNext: { [weak self] check in
                 if check{
                     let personalInterestsViewController = PersonalInterestsViewController()
                     self?.navigationItem.backButtonTitle = " "
                     self?.navigationController?.pushViewController(personalInterestsViewController, animated: true)
                     
                     SignUpDataViewModel.viewModel.bornCountry.accept(self?.viewModel.bornCountry.value ?? "")
-                    SignUpDataViewModel.viewModel.interestingCountry.accept(self?.viewModel.interestingCountry.value ?? "")
+                    SignUpDataViewModel.viewModel.interestingCountry.accept(self?.viewModel.interestingCountry.value ?? [])
                     SignUpDataViewModel.viewModel.interestingLanguage.accept(self?.viewModel.interestingLanguage.value ?? "")
                 }
-            }
+            })
             .disposed(by: disposeBag)
     }
     

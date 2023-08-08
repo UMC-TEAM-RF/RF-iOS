@@ -44,6 +44,7 @@ final class SignUpService {
                        method: .get)
             .validate(statusCode: 200..<201)
             .responseDecodable(of: ResponseData.self) { response in
+                print(response)
                 switch response.result{
                 case .success(let data):
                     observer.onNext(data.isSuccess ?? false)
@@ -67,8 +68,8 @@ final class SignUpService {
                               interestLanguage: SignUpDataViewModel.viewModel.interestingLanguage.value,
                               entrance: SignUpDataViewModel.viewModel.yearRelay.value,
                               country: SignUpDataViewModel.viewModel.bornCountry.value,
-                              interestCountry: SignUpDataViewModel.viewModel.interestingCountry.value,
                               introduce: SignUpDataViewModel.viewModel.introduceSelfRelay.value,
+                              interestCountry: SignUpDataViewModel.viewModel.interestingCountry.value.map({"\($0)"}),
                               interest: SignUpDataViewModel.viewModel.interestingRelay.value,
                               mbti: SignUpDataViewModel.viewModel.mbtiRelay.value)
         

@@ -10,8 +10,8 @@ import Foundation
 struct User: Codable {
     let userID, password, university, nickname: String?
     let interestLanguage, entrance, country: String?
-    let interestCountry, introduce: String?
-    let interest: [String]?
+    let introduce: String?
+    let interestCountry, interest: [String]?
     let mbti: String?
 
     enum CodingKeys: String, CodingKey {

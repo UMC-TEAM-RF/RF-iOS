@@ -12,27 +12,29 @@ import RxRelay
 /// 학교 선택
 final class SearchUniversityViewModel{
     
-    /// MARK: 국가 리스트
-    var universityRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+    /// MARK: 학교 리스트
+    var universityRelay: BehaviorRelay<[KVO]> = BehaviorRelay(value: [])
     
-    /// MARK: 필터링된 국가
-    var filteringUniversityRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+    /// MARK: 필터링된 학교
+    var filteringUniversityRelay: BehaviorRelay<[KVO]> = BehaviorRelay(value: [])
     
-    /// MARK: 선택된 나라
-    var selectedUniversity: BehaviorRelay<String> = BehaviorRelay(value: "")
+    /// MARK: 선택된 학교
+    var selectedUniversity: BehaviorRelay<KVO> = BehaviorRelay(value: KVO())
     
     /// MARK: Check Filtering
     var isFiltering: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     
+    private let disposeBag = DisposeBag()
+    
     /// dummy data
     func inputUniversity(){
-        var list: [String] = []
+        var list: [KVO] = []
         
-        list.append("인하대학교")
-        list.append("한국공학대학교")
-        list.append("한양대에리카")
-        list.append("가톨릭대학교")
-        
+        EnumFile.enumfile.enumList
+            .bind { enums in
+                list = enums.university ?? []
+            }
+            .disposed(by: disposeBag)
         universityRelay.accept(list)
     }
     
@@ -42,7 +44,7 @@ final class SearchUniversityViewModel{
             filteringUniversityRelay.accept(universityRelay.value)
         }
         else{
-            let list = universityRelay.value.filter { $0.localizedCaseInsensitiveContains(text) }
+            let list = universityRelay.value.filter { $0.value?.localizedCaseInsensitiveContains(text) ?? false }
             filteringUniversityRelay.accept(list)
         }
     }
