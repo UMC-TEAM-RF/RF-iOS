@@ -124,6 +124,9 @@ class ChatRoomViewController: UIViewController {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NotificationName.keyboardWillShow , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NotificationName.keyboardWillHide, object: nil)
+        
+        //
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateChat), name: NotificationName.updateChat, object: nil)
     }
     
     // MARK: - viewWillDisappear()
@@ -132,6 +135,8 @@ class ChatRoomViewController: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillHide, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: NotificationName.updateChat, object: nil)
     }
     
     // MARK: - addSubviews()
@@ -225,7 +230,7 @@ class ChatRoomViewController: UIViewController {
     /// - Parameter indexPath: indexPath
     /// - Returns: true: 연속, false: 비연속
     func isSenderConsecutiveMessages(row: Int) -> Bool {
-        if row != 0 && (messages[row - 1].sender?.id == messages[row].sender?.id) { return true }
+        if row != 0 && (messages[row - 1].sender?.speakerId == messages[row].sender?.speakerId) { return true }
         else { return false }
     }
     
@@ -293,6 +298,10 @@ class ChatRoomViewController: UIViewController {
         }
     }
     
+    @objc func updateChat() {
+        // 채팅 메시지 업데이트 시 화면 업데이트
+    }
+    
     @objc func handleTap() {
         view.endEditing(true)
     }
@@ -333,7 +342,7 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
         
         let message = messages[indexPath.row]
         
-        if message.sender?.id ?? 0 == 1 {
+        if message.sender?.speakerId ?? 0 == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
     
             cell.message = message.content
@@ -342,7 +351,7 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
 
             cell.message = message.content
-            cell.displayName = message.sender?.displayName
+            cell.displayName = message.sender?.speakerName
             cell.delegate = self
 
             if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
@@ -411,8 +420,10 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         inputBarTopStackView.isHidden = true
         keyboardInputBar.isTranslated = false
         
-//        messages.append(Message(sender: MessageSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: text))
-        messages.append(CustomMessage(sender: CustomMessageSender(id: 1, displayName: "JD"), content: text))
+
+        ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(speakerId: 1), type: MessageType.text, content: text), partyId: 1)
+        
+        messages.append(CustomMessage(sender: CustomMessageSender(speakerId: 1, speakerName: "JD"), content: text))
         
         messagesTableView.reloadData()
         

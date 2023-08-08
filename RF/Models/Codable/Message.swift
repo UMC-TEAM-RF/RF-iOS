@@ -54,30 +54,18 @@ struct CustomMessage: Codable {
 }
 
 struct CustomMessageSender: Codable {
-    var id: Int?
-    var displayName: String?
-    var imageUrl: String?
-    
-    enum Codingkeys: String, CodingKey {
-        case id = "speakerId"
-        case displayName = "senderName"
-        case imageUrl = "speakerImageUrl"
-    }
+    var speakerId: Int?
+    var speakerName: String?
+    var speakerImageUrl: String?
 }
 
 struct Schedule: Codable {
-    var id: Int?
-    var name: String?
+    var scheduleId: Int?
+    var scheduleName: String?
     var dateTime: String?
     var location: String?
     var participantCount: Int?
     var alert: Int?  // 몇 시간 전에 알림 올건지
-    
-    enum Codingkeys: String, CodingKey {
-        case dateTime, location, participantCount, alert
-        case id = "scheduleId"
-        case name = "scheduleName"
-    }
 }
 
 struct MessageType {

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         print(#function)
     
-        //ChatService.shared.connect()
+        ChatService.shared.connect()
         
         // 앱이 시작될 때마다 푸시 알림 등록을 시도
         registerForPushNotifications()
