@@ -13,6 +13,10 @@ extension Bundle {
         return getSecretKey(key: "REST_API_URL")
     }
     
+    var WEB_SOCKET_URL: String {
+        return getSecretKey(key: "WEB_SOCKET_URL")
+    }
+    
     // SecretKey.plist에서 값 가져오기
     /// - parameter key: SecretKey.plist에 등록된 Key
     /// - returns: Key에 해당하는 Value

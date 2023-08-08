@@ -8,18 +8,6 @@
 import UIKit
 import SnapKit
 
-struct CustomMessage {
-    var sender: CustomSender
-    var sentDate: Date
-    var content: String
-}
-
-struct CustomSender {
-    var photoUrlString: String?
-    var senderId: String
-    var displayName: String
-}
-
 class ChatRoomViewController: UIViewController {
     
     // 메시지 입력 창
@@ -97,21 +85,21 @@ class ChatRoomViewController: UIViewController {
     
     var editMenuInteraction: UIEditMenuInteraction?
     
-    var messages: [CustomMessage] = [
-        CustomMessage(sender: CustomSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
-        CustomMessage(sender: CustomSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: "t has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
-        CustomMessage(sender: CustomSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout"),
-        CustomMessage(sender: CustomSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."),
-        CustomMessage(sender: CustomSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "Contrary to popular belief, Lorem Ipsum is not simply random text."),
-        CustomMessage(sender: CustomSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."),
-        CustomMessage(sender: CustomSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."),
-        CustomMessage(sender: CustomSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "FC BARCELONA EL CLASICO FRENKIE DE JONG PEDRI GAVI SPAIN LA LIGA"),
-        CustomMessage(sender: CustomSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
-        CustomMessage(sender: CustomSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "테스트"),
-        CustomMessage(sender: CustomSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "테스트"),
-        CustomMessage(sender: CustomSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
-        CustomMessage(sender: CustomSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
-        CustomMessage(sender: CustomSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
+    var messages: [Message] = [
+        Message(sender: MessageSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+        Message(sender: MessageSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: "t has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
+        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout"),
+        Message(sender: MessageSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."),
+        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "Contrary to popular belief, Lorem Ipsum is not simply random text."),
+        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."),
+        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."),
+        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "FC BARCELONA EL CLASICO FRENKIE DE JONG PEDRI GAVI SPAIN LA LIGA"),
+        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
+        Message(sender: MessageSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "테스트"),
+        Message(sender: MessageSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "테스트"),
+        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
+        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
+        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
         
     ]
     
@@ -437,7 +425,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         inputBarTopStackView.isHidden = true
         keyboardInputBar.isTranslated = false
         
-        messages.append(CustomMessage(sender: CustomSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: text))
+        messages.append(Message(sender: MessageSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: text))
         
         messagesTableView.reloadData()
         
