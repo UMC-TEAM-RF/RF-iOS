@@ -144,6 +144,7 @@
 		57DD3E662A80C7C9009F7139 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E652A80C7C9009F7139 /* EndPoint.swift */; };
 		57DD3E682A8106E7009F7139 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E672A8106E7009F7139 /* Message.swift */; };
 		57DD3E6C2A810F60009F7139 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E6B2A810F60009F7139 /* Response.swift */; };
+		57DD3E6E2A825DDD009F7139 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E6D2A825DDD009F7139 /* NotificationName.swift */; };
 		F53C159A5B07594C59367F87 /* Pods_RF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1993FCFD8483C342C337F096 /* Pods_RF.framework */; };
 /* End PBXBuildFile section */
 
@@ -291,6 +292,7 @@
 		57DD3E652A80C7C9009F7139 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		57DD3E672A8106E7009F7139 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		57DD3E6B2A810F60009F7139 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		57DD3E6D2A825DDD009F7139 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -841,6 +843,7 @@
 				570063AC2A7258530051F42A /* DesignColor.swift */,
 				570063C02A779FED0051F42A /* AgeGroup.swift */,
 				570063C22A77A01D0051F42A /* Language.swift */,
+				57DD3E6D2A825DDD009F7139 /* NotificationName.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1098,6 +1101,7 @@
 				57DD3E642A80C7C2009F7139 /* Domain.swift in Sources */,
 				3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */,
 				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
+				57DD3E6E2A825DDD009F7139 /* NotificationName.swift in Sources */,
 				570063E02A7CFD780051F42A /* ChatListTableViewCell.swift in Sources */,
 				3BD700D52A796403005C7D7E /* ChoiceInterestingLanguageViewModel.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,
