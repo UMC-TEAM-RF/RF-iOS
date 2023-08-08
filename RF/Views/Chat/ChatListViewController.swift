@@ -23,11 +23,10 @@ class ChatListViewController: UIViewController {
     
     // MARK: - Property
     
-    let dummyChatList: [MeetingList] = [
-        MeetingList(imageList: ["a","a","a"], meetingTitle: "모임 1", university: "한국공학대학교", country: "한국", like: true),
-        MeetingList(imageList: ["a","a"], meetingTitle: "모임 1", university: "한국공학대학교", country: "한국", like: true),
-        MeetingList(imageList: ["a"], meetingTitle: "모임 1", university: "한국공학대학교", country: "한국", like: true),
-        MeetingList(imageList: ["a","a","a","a"], meetingTitle: "모임 1", university: "한국공학대학교", country: "한국", like: true)
+    let dummyChatList: [Channel] = [
+        Channel(id: 1, name: "1번 모임", messages: [
+            CustomMessage(content: "TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST", dateTime: "21:09")
+        ], userProfileImages: ["a", "a"])
     ]
     
     // MARK: - viewDidLoad()
@@ -79,7 +78,7 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.identifier, for: indexPath) as? ChatListTableViewCell else { return UITableViewCell() }
         let dummy = dummyChatList[indexPath.row]
-        cell.inputData(imageList: dummy.imageList, meetingName: dummy.meetingTitle)
+        cell.inputData(dummy)
         return cell
     }
     

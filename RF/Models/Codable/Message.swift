@@ -28,6 +28,7 @@ struct Channel {
     var id: Int   // 모임 ID
     var name: String   // 모임 이름
     var messages: [CustomMessage]
+    var userProfileImages: [String]
     //var users: [User]
 }
 

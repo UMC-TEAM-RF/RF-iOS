@@ -19,11 +19,34 @@ class ChatListTableViewCell: UITableViewCell {
         return view
     }()
     
+    private lazy var topStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.distribution = .fill
+        sv.alignment = .leading
+        sv.spacing = 10
+        return sv
+    }()
+    
     // 채팅방 이름
     private lazy var chatTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hexCode: "3C3A3A")
         label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        label.numberOfLines = 1
+        return label
+    }()
+    
+    private lazy var contentLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 13, weight: .medium)
+        label.textColor = .lightGray
+        label.numberOfLines = 2
+        
+        // 공간이 부족할 시 크기 줄어듦
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return label
     }()
     
@@ -32,7 +55,8 @@ class ChatListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.textColor = .lightGray
-        label.text = "7"
+        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return label
     }()
     
@@ -70,8 +94,12 @@ class ChatListTableViewCell: UITableViewCell {
     
     private func addSubviews() {
         addSubview(profileView)
-        addSubview(chatTitleLabel)
-        addSubview(personnelLabel)
+        
+        addSubview(topStackView)
+        topStackView.addArrangedSubview(chatTitleLabel)
+        topStackView.addArrangedSubview(personnelLabel)
+        
+        addSubview(contentLabel)
         addSubview(timeLabel)
     }
     
@@ -84,14 +112,16 @@ class ChatListTableViewCell: UITableViewCell {
             make.width.equalTo(profileView.snp.height)
         }
         
-        chatTitleLabel.snp.makeConstraints { make in
+        topStackView.snp.makeConstraints { make in
             make.leading.equalTo(profileView.snp.trailing).offset(15)
             make.top.equalTo(profileView.snp.top).offset(5)
+            make.trailing.equalTo(timeLabel.snp.leading).offset(-10)
         }
         
-        personnelLabel.snp.makeConstraints { make in
-            make.leading.equalTo(chatTitleLabel.snp.trailing).offset(10)
-            make.centerY.equalTo(chatTitleLabel.snp.centerY)
+        contentLabel.snp.makeConstraints { make in
+            make.top.equalTo(chatTitleLabel.snp.bottom).offset(5)
+            make.leading.equalTo(chatTitleLabel.snp.leading)
+            make.trailing.equalTo(timeLabel.snp.leading).offset(-10)
         }
         
         timeLabel.snp.makeConstraints { make in
@@ -100,13 +130,11 @@ class ChatListTableViewCell: UITableViewCell {
         }
     }
     
-    func inputData(imageList: [String?]?, meetingName: String?){
-        addSubviews()
+    func inputData(_ channel: Channel) {
         
-        guard let imageList = imageList,
-              let meetingName = meetingName else { return }
-        
-        chatTitleLabel.text = meetingName
-        profileView.inputData(imgList: imageList)
+        chatTitleLabel.text = channel.name
+        personnelLabel.text = "\(channel.userProfileImages.count)"
+        profileView.inputData(imgList: channel.userProfileImages)
+        contentLabel.text = channel.messages.last?.content
     }
 }
