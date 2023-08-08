@@ -297,7 +297,7 @@ final class SignUpViewController: UIViewController {
     private func bind(){
         viewModel.confirmPasswordRelay
             .bind(onNext: { [weak self] check in
-                if check{ // true: 비밀번호 일치
+                if check { // true: 비밀번호 일치
                     self?.nextButton.backgroundColor = .systemBlue
                     self?.nextButton.setTitleColor(.white, for: .normal)
                 }
@@ -307,23 +307,13 @@ final class SignUpViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-//        viewModel.overlapCheckRelay
-//            .bind(onNext: { [weak self] check in
-//                if check{
-//                    self?.showOverlapAlert(text: "사용가능한 아이디입니다.")
-//                }
-//                else{
-//                    self?.showOverlapAlert(text: "중복된 아이디 입니다.")
-//                }
-//            })
-//            .disposed(by: disposeBag)
     }
     
     /// MARK: 다음 버튼 눌렀을 때 모든 정보 입력했는 지 확인하는 함수
     private func checkTotalInformation(){
         viewModel.checkTotalInformation()
             .subscribe(onNext: { [weak self] check in
-                if check{
+                if check {
                     let termsConditionsViewController = TermsConditionsViewController()
                     self?.navigationItem.backButtonTitle = " "
                     self?.navigationController?.pushViewController(termsConditionsViewController, animated: true)
@@ -348,7 +338,6 @@ final class SignUpViewController: UIViewController {
 extension SignUpViewController : UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == idTextField{
-            print("Acavcxvadasklfhdsafljadsk")
             viewModel.overlapCheckRelay.accept(false)
         }
     }

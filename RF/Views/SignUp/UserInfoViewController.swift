@@ -197,8 +197,8 @@ final class UserInfoViewController: UIViewController {
                 choiceBornCountryView.modalPresentationStyle = .formSheet
                 choiceBornCountryView.selctedCountry
                     .bind { country in
-                        self?.viewModel.bornCountry.accept(country)
-                        self?.nationButton.setTitle("  \(country)", for: .normal)
+                        self?.viewModel.bornCountry.accept(country.key ?? "")
+                        self?.nationButton.setTitle("  \(country.value ?? "")", for: .normal)
                     }
                     .disposed(by: self?.disposeBag ?? DisposeBag())
                 self?.present(choiceBornCountryView, animated: true)

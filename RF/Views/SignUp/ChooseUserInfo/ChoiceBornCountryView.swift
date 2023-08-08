@@ -48,7 +48,7 @@ final class ChoiceBornCountryView: UIViewController{
     
     private let viewModel = ChoiceBornCountryViewModel()
     private let disposeBag = DisposeBag()
-    var selctedCountry: PublishSubject<String> = PublishSubject()
+    var selctedCountry: PublishSubject<KVO> = PublishSubject()
     
     // MARK: view did load
     override func viewDidLoad() {
@@ -162,10 +162,10 @@ extension ChoiceBornCountryView: UITableViewDelegate, UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChooseUserTableViewCell.identifer, for: indexPath) as? ChooseUserTableViewCell else { return UITableViewCell()}
         
         if viewModel.isFiltering.value{
-            cell.inputValue(text: viewModel.filteringCountryRelay.value[indexPath.row])
+            cell.inputValue(text: viewModel.filteringCountryRelay.value[indexPath.row].value ?? "")
         }
         else{
-            cell.inputValue(text: viewModel.countryRelay.value[indexPath.row])
+            cell.inputValue(text: viewModel.countryRelay.value[indexPath.row].value ?? "")
         }
         
         return cell
