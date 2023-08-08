@@ -212,9 +212,8 @@ final class UserInfoViewController: UIViewController {
                 choiceInterestingCountryView.selctedCountry
                     .bind { country in
                         self?.viewModel.interestingCountry.accept(country)
-                        let _ = country.map { kvo in
-                            self?.favNationButton.setTitle("  \(String(describing: kvo.value))", for: .normal)
-                        }
+                        let selectedList = country.map { "\($0.value ?? "")" }.joined(separator: ", ")
+                        self?.favNationButton.setTitle(selectedList, for: .normal)
                     }
                     .disposed(by: self?.disposeBag ?? DisposeBag())
                 self?.present(choiceInterestingCountryView, animated: true)
@@ -225,10 +224,11 @@ final class UserInfoViewController: UIViewController {
             .bind { [weak self] in
                 let choiceInterestingLanguageView = ChoiceInterestingLanguageView()
                 choiceInterestingLanguageView.modalPresentationStyle = .formSheet
-                choiceInterestingLanguageView.selctedCountry
+                choiceInterestingLanguageView.selctedLanguage
                     .bind { language in
                         self?.viewModel.interestingLanguage.accept(language)
-                        self?.favLanguageButton.setTitle("  \(language)", for: .normal)
+                        let selectedList = language.map { "\($0.value ?? "")" }.joined(separator: ", ")
+                        self?.favLanguageButton.setTitle(selectedList, for: .normal)
                     }
                     .disposed(by: self?.disposeBag ?? DisposeBag())
                 self?.present(choiceInterestingLanguageView, animated: true)
@@ -254,7 +254,7 @@ final class UserInfoViewController: UIViewController {
                     
                     SignUpDataViewModel.viewModel.bornCountry.accept(self?.viewModel.bornCountry.value ?? "")
                     SignUpDataViewModel.viewModel.interestingCountry.accept(self?.viewModel.interestingCountry.value ?? [])
-                    SignUpDataViewModel.viewModel.interestingLanguage.accept(self?.viewModel.interestingLanguage.value ?? "")
+                    SignUpDataViewModel.viewModel.interestingLanguage.accept(self?.viewModel.interestingLanguage.value ?? [])
                 }
             })
             .disposed(by: disposeBag)

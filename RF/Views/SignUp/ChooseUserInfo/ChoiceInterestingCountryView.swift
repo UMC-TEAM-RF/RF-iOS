@@ -127,6 +127,7 @@ final class ChoiceInterestingCountryView: UIViewController{
         completeButton.rx.tap
             .bind { [weak self] in
                 self?.selctedCountry.onNext(self?.viewModel.selectedCountry.value ?? Set<KVO>())
+                self?.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
             

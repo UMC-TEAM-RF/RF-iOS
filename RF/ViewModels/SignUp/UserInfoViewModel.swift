@@ -18,7 +18,7 @@ final class UserInfoViewModel {
     var interestingCountry: BehaviorRelay<Set<KVO>> = BehaviorRelay<Set<KVO>>(value: [])
     
     /// MARK: 선택한 관심 언어
-    var interestingLanguage: BehaviorRelay<String> = BehaviorRelay(value: "")
+    var interestingLanguage: BehaviorRelay<Set<KVO>> = BehaviorRelay<Set<KVO>>(value: [])
     
     private let disposeBag = DisposeBag()
     
@@ -29,7 +29,7 @@ final class UserInfoViewModel {
         
         let checkBorn = bornCountry.map { $0 != "" ? true : false }
         let checkCountry = interestingCountry.map { $0 != [] ? true : false }
-        let checkLanguage = interestingLanguage.map { $0 != "" ? true : false }
+        let checkLanguage = interestingLanguage.map { $0 != [] ? true : false }
         
         return Observable.create { [weak self] observer in
             

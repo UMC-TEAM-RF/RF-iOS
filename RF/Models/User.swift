@@ -9,9 +9,9 @@ import Foundation
 
 struct User: Codable {
     let userID, password, university, nickname: String?
-    let interestLanguage, entrance, country: String?
+    let entrance, country: String?
     let introduce: String?
-    let interestCountry, interest: [String]?
+    let interestLanguage, interestCountry, interest: [String]?
     let mbti: String?
 
     enum CodingKeys: String, CodingKey {

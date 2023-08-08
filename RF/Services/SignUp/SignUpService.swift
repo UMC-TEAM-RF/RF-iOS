@@ -60,19 +60,20 @@ final class SignUpService {
     /// 유저 등록하는 함수
     func addUserInfo() -> Observable<Bool>{
         let url = "\(Bundle.main.REST_API_URL)/user"
+        let interestLanguage = SignUpDataViewModel.viewModel.interestingLanguage.value.map({"\($0.key ?? "")"})
         
         let body: User = User(userID: SignUpDataViewModel.viewModel.idRelay.value,
                               password: SignUpDataViewModel.viewModel.pwRelay.value,
                               university: SignUpDataViewModel.viewModel.universityRelay.value,
                               nickname: SignUpDataViewModel.viewModel.nickNameRelay.value,
-                              interestLanguage: SignUpDataViewModel.viewModel.interestingLanguage.value,
                               entrance: SignUpDataViewModel.viewModel.yearRelay.value,
                               country: SignUpDataViewModel.viewModel.bornCountry.value,
                               introduce: SignUpDataViewModel.viewModel.introduceSelfRelay.value,
-                              interestCountry: SignUpDataViewModel.viewModel.interestingCountry.value.map({"\($0)"}),
+                              interestLanguage: SignUpDataViewModel.viewModel.interestingLanguage.value.map({"\($0.key ?? "")"}),
+                              interestCountry: SignUpDataViewModel.viewModel.interestingCountry.value.map({"\($0.key ?? "")"}),
                               interest: SignUpDataViewModel.viewModel.interestingRelay.value,
                               mbti: SignUpDataViewModel.viewModel.mbtiRelay.value)
-        
+        print(body)
         return Observable.create { observer in
             
             AF.request(url,

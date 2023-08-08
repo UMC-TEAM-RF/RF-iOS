@@ -41,7 +41,7 @@ final class SignUpDataViewModel {
     var interestingCountry: BehaviorRelay<Set<KVO>> = BehaviorRelay<Set<KVO>>(value: [])
     
     /// MARK: 선택한 관심 언어
-    var interestingLanguage: BehaviorRelay<String> = BehaviorRelay(value: "")
+    var interestingLanguage: BehaviorRelay<Set<KVO>> = BehaviorRelay<Set<KVO>>(value: [])
     
     /// 선택한 라이프 스타일
     var lifeStyleRelay: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
