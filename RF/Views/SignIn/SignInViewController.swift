@@ -47,6 +47,7 @@ final class SignInViewController: UIViewController {
         sv.distribution = .equalCentering
         sv.alignment = .center
         sv.spacing = 8
+        overrideUserInterfaceStyle = .light
         return sv
     }()
     
