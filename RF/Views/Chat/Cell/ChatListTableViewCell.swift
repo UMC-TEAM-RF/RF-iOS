@@ -12,10 +12,8 @@ class ChatListTableViewCell: UITableViewCell {
     
     // MARK: - UI Property
     
-    // 채팅방 이미지
-    private lazy var profileView: ProfileUIView = {
-        let view = ProfileUIView()
-        view.backgroundColor = .clear
+    private lazy var profileView: GroupProfileView = {
+        let view = GroupProfileView()
         return view
     }()
     
@@ -75,7 +73,7 @@ class ChatListTableViewCell: UITableViewCell {
     // MARK: - Property
     
     static let identifier = "ChatListTableViewCell"
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -89,6 +87,11 @@ class ChatListTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
     }
     
     // MARK: - addSubviews()
@@ -132,10 +135,12 @@ class ChatListTableViewCell: UITableViewCell {
     }
     
     func inputData(_ channel: Channel) {
-        
         chatTitleLabel.text = channel.name
         personnelLabel.text = "\(channel.userProfileImages.count)"
-        profileView.inputData(imgList: channel.userProfileImages)
+        //profileView.inputData(imgList: channel.userProfileImages)
+        profileView.updateProfileImages(with: channel.userProfileImages)
         contentLabel.text = channel.messages.last?.content
     }
 }
+
+

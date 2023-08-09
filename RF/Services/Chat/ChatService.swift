@@ -154,7 +154,7 @@ class SingletonChannel {
             CustomMessage(sender: CustomMessageSender(speakerId: 4, speakerName: "만자"), content: "테스트"),
             CustomMessage(sender: CustomMessageSender(speakerId: 4, speakerName: "만자"), content: "테스트"),
             CustomMessage(sender: CustomMessageSender(speakerId: 2, speakerName: "망고"), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout")
-        ], userProfileImages: ["a", "a"]),
+        ], userProfileImages: ["a", "a", "a", "a"]),
         Channel(id: 2, name: "2번 모임", messages: [
             CustomMessage(content: "TESTTESTTESTTESTESTTEST", dateTime: "21:09"),
             CustomMessage(sender: CustomMessageSender(speakerId: 1, speakerName: "JD"), content: "Lorem Ipsum has  type and scrambled it to make a type specimen book."),

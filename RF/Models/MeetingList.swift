@@ -9,7 +9,7 @@ import Foundation
 
 /// MARK: 모임 목록 Model
 struct MeetingList: Codable{
-    let imageList: [String?]?
+    let imageList: [String]?
     let meetingTitle: String?
     let university: String?
     let country: String?
