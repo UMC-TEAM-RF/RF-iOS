@@ -66,6 +66,7 @@ class ChatListTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 13, weight: .medium)
         label.textColor = .lightGray
         label.text = "오후 4:04"
+        label.textAlignment = .right
         return label
     }()
     

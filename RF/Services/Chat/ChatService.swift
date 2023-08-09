@@ -120,7 +120,6 @@ extension ChatService: StompClientLibDelegate {
             print("Decode Error")
             return
         }
-        dump(data)
         
         let destination = destination.components(separatedBy: "/").last!
         let index = SingletonChannel.shared.list.firstIndex { String($0.id) == destination }
@@ -129,8 +128,6 @@ extension ChatService: StompClientLibDelegate {
         
         NotificationCenter.default.post(name: NotificationName.updateChat, object: self)
     }
-    
-    
 }
 
 
@@ -199,6 +196,6 @@ class SingletonChannel {
     }
     
     func sortByLatest() {
-        
+        list.sort { $0.messages.last?.dateTime ?? "" > $1.messages.last?.dateTime ?? "" }
     }
 }

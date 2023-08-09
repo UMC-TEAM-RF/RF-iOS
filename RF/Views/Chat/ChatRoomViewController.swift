@@ -116,6 +116,7 @@ class ChatRoomViewController: UIViewController {
         DispatchQueue.main.async {
             self.scrollToBottom()
         }
+        
     }
     
     // MARK: - viewWillAppear()
@@ -455,7 +456,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         inputBarTopStackView.isHidden = true
         keyboardInputBar.isTranslated = false
 
-        ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(speakerId: 1), type: MessageType.text, content: text), partyId: 1)
+        ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(speakerId: 1), type: MessageType.text, content: text), partyId: channelId)
     }
     
     func didTapTranslate(_ isTranslated: Bool) {

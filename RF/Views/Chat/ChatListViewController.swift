@@ -23,6 +23,7 @@ class ChatListViewController: UIViewController {
     
     // MARK: - Property
     private var isUpdateChannel: Bool = false
+    private var isLocatedCurrentView: Bool = false
     
     // MARK: - viewDidLoad()
 
@@ -35,6 +36,8 @@ class ChatListViewController: UIViewController {
         
         addSubviews()
         configureConstraints()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateChat), name: NotificationName.updateChat, object: nil)
     }
     
     // MARK: - viewWillAppear()
@@ -43,6 +46,18 @@ class ChatListViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = false
+        isLocatedCurrentView = true
+        
+        if isUpdateChannel {
+            updateChannelList()
+            isUpdateChannel = false
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        isLocatedCurrentView = false
     }
     
     // MARK: - addSubviews()
@@ -60,7 +75,20 @@ class ChatListViewController: UIViewController {
         }
     }
     
-
+    private func updateChannelList() {
+        SingletonChannel.shared.sortByLatest()
+        self.chatListTableView.reloadData()
+    }
+    
+    // MARK: - @objc func
+    
+    @objc func updateChat() {
+        if isLocatedCurrentView {
+            updateChannelList()
+        } else {
+            isUpdateChannel = true
+        }
+    }
 }
 
 // MARK: - Ext: TableView
