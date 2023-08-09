@@ -94,6 +94,8 @@ extension ChatService: StompClientLibDelegate {
     func stompClientDidConnect(client: StompClientLib!) {
         // DB에서 내가 가입한 모임 리스트를 가져와서 각각 구독
         
+        subscribe(1)
+        subscribe(2)
     }
     
     func stompClientDidDisconnect(client: StompClientLib!) {
@@ -114,13 +116,18 @@ extension ChatService: StompClientLibDelegate {
     
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
         
-        print("Destination: \(destination.components(separatedBy: "/").last!)")
-        
         guard let data = decodeFromAnyObject(jsonBody, to: CustomMessage.self) else {
             print("Decode Error")
             return
         }
         dump(data)
+        
+        let destination = destination.components(separatedBy: "/").last!
+        let index = SingletonChannel.shared.list.firstIndex { String($0.id) == destination }
+        
+        SingletonChannel.shared.list[index ?? 0].messages.append(data)  // 수신된 메시지 추가
+        
+        NotificationCenter.default.post(name: NotificationName.updateChat, object: self)
     }
     
     
@@ -170,4 +177,28 @@ class SingletonChannel {
             CustomMessage(sender: CustomMessageSender(speakerId: 2, speakerName: "망고"), content: "It is a longooking at its layout")
         ], userProfileImages: ["a", "a", "a"])
     ]
+    
+    
+    /// 특정 채널의 메시지 리스트 가져오기
+    /// - Parameter id: Channel ID
+    /// - Returns: Messages
+    func getChannelMessages(_ id: Int) -> [CustomMessage] {
+        let index = list.firstIndex { $0.id == id }
+        guard let index else { return [] }
+        return list[index].messages
+    }
+    
+    /// 특정 채널에 메시지 추가
+    /// - Parameters:
+    ///   - channelId: Channel ID
+    ///   - message: Message
+    func appendMessage(channelId: Int, message: CustomMessage) {
+        let index = list.firstIndex { $0.id == channelId }
+        guard let index else { return }
+        list[index].messages.append(message)
+    }
+    
+    func sortByLatest() {
+        
+    }
 }

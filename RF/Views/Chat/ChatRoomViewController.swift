@@ -85,13 +85,13 @@ class ChatRoomViewController: UIViewController {
     
     var editMenuInteraction: UIEditMenuInteraction?
     
-    var messages: [CustomMessage] = [
-        
-    ]
-    
     private var isKeyboardShow: Bool = false
     
     private var keyboardRect: CGRect = CGRect()
+    
+    var channelId: Int!
+    var messages: [CustomMessage]!
+    
     
     // MARK: - viewDidLoad()
     
@@ -327,10 +327,13 @@ class ChatRoomViewController: UIViewController {
         
         //if isLastIndexPathVisible() || isSenderSelf(<#T##sender: CustomMessageSender?##CustomMessageSender?#>)
         if isLastIndexPathVisible() {
+            messages = SingletonChannel.shared.getChannelMessages(channelId)
             messagesTableView.reloadData()
             scrollToBottom()
         } else {
+            messages = SingletonChannel.shared.getChannelMessages(channelId)
             messagesTableView.reloadData()
+            scrollToBottom()  // 테스트
             print("메시지 업데이트")
         }
     }
@@ -372,7 +375,6 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let message = messages[indexPath.row]
         
         if isSenderSelf(message.sender) {
@@ -454,11 +456,6 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         keyboardInputBar.isTranslated = false
 
         ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(speakerId: 1), type: MessageType.text, content: text), partyId: 1)
-        
-        messages.append(CustomMessage(sender: CustomMessageSender(speakerId: 1, speakerName: "JD"), content: text))
-        
-//        messagesTableView.reloadData()
-//        scrollToBottom()
     }
     
     func didTapTranslate(_ isTranslated: Bool) {
