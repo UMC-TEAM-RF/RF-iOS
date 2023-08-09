@@ -125,7 +125,7 @@ class ChatRoomViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NotificationName.keyboardWillShow , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NotificationName.keyboardWillHide, object: nil)
         
-        //
+        // 새로운 메시지가 왔을 때 알림
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateChat), name: NotificationName.updateChat, object: nil)
     }
     
@@ -229,9 +229,31 @@ class ChatRoomViewController: UIViewController {
     /// 한 사람이 연속해서 메시지를 보내는지 체크
     /// - Parameter indexPath: indexPath
     /// - Returns: true: 연속, false: 비연속
-    func isSenderConsecutiveMessages(row: Int) -> Bool {
+    private func isSenderConsecutiveMessages(row: Int) -> Bool {
         if row != 0 && (messages[row - 1].sender?.speakerId == messages[row].sender?.speakerId) { return true }
         else { return false }
+    }
+    
+    private func isLastIndexPathVisible() -> Bool {
+        // 현재 보이는 indexPath 목록
+        guard let visibleIndexPaths = messagesTableView.indexPathsForVisibleRows else {
+            return false
+        }
+        
+        // 마지막 섹션을 가져오고 해당 섹션의 마지막 셀의 row 수를 얻는다
+        let lastSection = messagesTableView.numberOfSections - 1
+        let lastRowInLastSection = messagesTableView.numberOfRows(inSection: lastSection) - 1
+
+        // 마지막 indexPath 생성
+        let lastIndexPath = IndexPath(row: lastRowInLastSection, section: lastSection)
+
+        // 마지막 indexPath가 현재 보이는 셀 중 하나인지 확인
+        return visibleIndexPaths.contains(lastIndexPath)
+    }
+    
+    private func isSenderSelf(_ sender: CustomMessageSender?) -> Bool {
+        guard let sender else { return false }
+        return sender.speakerId == 1
     }
     
     // MARK: - @objc func
@@ -300,6 +322,17 @@ class ChatRoomViewController: UIViewController {
     
     @objc func updateChat() {
         // 채팅 메시지 업데이트 시 화면 업데이트
+        
+        // reload 하기 전 내가 현재 마지막 셀에 위치해 있는지 확인
+        
+        //if isLastIndexPathVisible() || isSenderSelf(<#T##sender: CustomMessageSender?##CustomMessageSender?#>)
+        if isLastIndexPathVisible() {
+            messagesTableView.reloadData()
+            scrollToBottom()
+        } else {
+            messagesTableView.reloadData()
+            print("메시지 업데이트")
+        }
     }
     
     @objc func handleTap() {
@@ -342,7 +375,7 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
         
         let message = messages[indexPath.row]
         
-        if message.sender?.speakerId ?? 0 == 1 {
+        if isSenderSelf(message.sender) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
     
             cell.message = message.content
@@ -367,17 +400,17 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        let contentOffsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let scrollViewHeight = scrollView.bounds.height
-        
-        // 뱅크 뷰가 나타날 위치를 계산합니다.
-        let bankViewY = contentHeight - scrollViewHeight + 50
-        
-        UIView.animate(withDuration: 0.3) {
-            let alpha = (contentOffsetY >= bankViewY - 100) ? 0.0 : 0.8
-            self.scrollToBottomButton.alpha = alpha
-        }
+//        let contentOffsetY = scrollView.contentOffset.y
+//        let contentHeight = scrollView.contentSize.height
+//        let scrollViewHeight = scrollView.bounds.height
+//
+//        // 뱅크 뷰가 나타날 위치를 계산합니다.
+//        let bankViewY = contentHeight - scrollViewHeight + 50
+//
+//        UIView.animate(withDuration: 0.3) {
+//            let alpha = (contentOffsetY >= bankViewY - 100) ? 0.0 : 0.8
+//            self.scrollToBottomButton.alpha = alpha
+//        }
     }
 }
 
@@ -419,15 +452,13 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         
         inputBarTopStackView.isHidden = true
         keyboardInputBar.isTranslated = false
-        
 
         ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(speakerId: 1), type: MessageType.text, content: text), partyId: 1)
         
         messages.append(CustomMessage(sender: CustomMessageSender(speakerId: 1, speakerName: "JD"), content: text))
         
-        messagesTableView.reloadData()
-        
-        scrollToBottom()
+//        messagesTableView.reloadData()
+//        scrollToBottom()
     }
     
     func didTapTranslate(_ isTranslated: Bool) {
