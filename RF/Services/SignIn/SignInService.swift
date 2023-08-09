@@ -13,7 +13,7 @@ final class SignInService {
     
     /// MARK: 로그인 성공 후 SignIn 모델 반환
     /// - Returns: SignIn Decoding Values
-    func loginService(id: String, pw: String) -> Observable<SignIn>{
+    func loginService(id: String, pw: String, deviceToken: String) -> Observable<SignIn>{
         
         let url = "\(Bundle.main.REST_API_URL)/signin"
 //        let body: [String: Any] = [
@@ -23,9 +23,10 @@ final class SignInService {
         
         let body: [String: Any] = [
             "loginId" : id,
-            "password" : pw
+            "password" : pw,
+            "deviceToken" : deviceToken
         ]
-        
+        print(body)
         return Observable.create { observer in
             AF.request(url,
                        method: .post,
@@ -33,6 +34,7 @@ final class SignInService {
                        encoding: JSONEncoding.default)
             .validate(statusCode: 200..<201)
             .responseDecodable(of: SignIn.self) { response in
+                print(response)
                 switch response.result{
                 case .success (let data):
                     observer.onNext(data)
