@@ -381,13 +381,11 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
         if isSenderSelf(message.sender) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
     
-            cell.message = message.content
+            cell.updateChatView(message)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
-
-            cell.message = message.content
-            cell.displayName = message.sender?.speakerName
+            cell.updateChatView(message)
             cell.delegate = self
 
             if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }

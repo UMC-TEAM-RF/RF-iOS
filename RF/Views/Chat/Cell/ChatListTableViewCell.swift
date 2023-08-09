@@ -134,12 +134,12 @@ class ChatListTableViewCell: UITableViewCell {
         }
     }
     
-    func inputData(_ channel: Channel) {
+    func updateChannelView(_ channel: Channel) {
         chatTitleLabel.text = channel.name
         personnelLabel.text = "\(channel.userProfileImages.count)"
-        //profileView.inputData(imgList: channel.userProfileImages)
         profileView.updateProfileImages(with: channel.userProfileImages)
         contentLabel.text = channel.messages.last?.content
+        timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(channel.messages.last?.dateTime, isCompareCurrentTime: true)
     }
 }
 

@@ -162,6 +162,13 @@ class OtherMessageTableViewCell: UITableViewCell {
         messageView.addGestureRecognizer(longPress)
     }
     
+    func updateChatView(_ message: CustomMessage) {
+        messageLabel.text = message.content
+        timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
+        displayNameLabel.text = message.sender?.speakerName
+        //avatarView.image = message.sender?.speakerImageUrl
+    }
+    
     @objc func longPressed(_ gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began {
             print("Long")

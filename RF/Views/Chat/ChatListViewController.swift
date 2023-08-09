@@ -101,7 +101,7 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.identifier, for: indexPath) as? ChatListTableViewCell else { return UITableViewCell() }
         let channel = SingletonChannel.shared.list[indexPath.row]
-        cell.inputData(channel)
+        cell.updateChannelView(channel)
         return cell
     }
     

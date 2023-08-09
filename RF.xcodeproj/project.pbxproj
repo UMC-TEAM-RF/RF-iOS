@@ -136,6 +136,7 @@
 		57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */; };
 		57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EE12A58314100A13D07 /* MeetingCollectionViewCell.swift */; };
 		57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */; };
+		57AF3D542A83B36B00C09715 /* DateTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF3D532A83B36B00C09715 /* DateTimeFormatter.swift */; };
 		57DD3E532A7E3033009F7139 /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */; };
 		57DD3E572A7E4C7E009F7139 /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */; };
 		57DD3E612A80BBD0009F7139 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E602A80BBD0009F7139 /* ChatService.swift */; };
@@ -283,6 +284,7 @@
 		57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EE12A58314100A13D07 /* MeetingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		57AF3D532A83B36B00C09715 /* DateTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeFormatter.swift; sourceTree = "<group>"; };
 		57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
 		57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		57DD3E5B2A80B77B009F7139 /* RF.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = RF.entitlements; sourceTree = "<group>"; };
@@ -844,6 +846,7 @@
 				570063C02A779FED0051F42A /* AgeGroup.swift */,
 				570063C22A77A01D0051F42A /* Language.swift */,
 				57DD3E6D2A825DDD009F7139 /* NotificationName.swift */,
+				57AF3D532A83B36B00C09715 /* DateTimeFormatter.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1020,6 +1023,7 @@
 				3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */,
 				570063E62A7D13320051F42A /* MyMessageTableViewCell.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
+				57AF3D542A83B36B00C09715 /* DateTimeFormatter.swift in Sources */,
 				3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
 				3B57FFCD2A7408AE007DB482 /* DimmedViewController.swift in Sources */,
