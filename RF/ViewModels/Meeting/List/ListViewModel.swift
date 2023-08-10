@@ -13,7 +13,9 @@ import RxRelay
 final class ListViewModel {
     
     /// MARK: 모임 목록 Relay
-    var meetingListRelay: BehaviorRelay<[MeetingList]> = BehaviorRelay(value: [])
+    var meetingListRelay: BehaviorRelay<[Meeting]> = BehaviorRelay(value: [])
+    var userProfileListRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+    
     private let disposeBag = DisposeBag()
     
     
@@ -34,15 +36,15 @@ final class ListViewModel {
     
     /// test Data
     func getData(){
-        var meetingList: [MeetingList] = []
+        var meetingList: [Meeting] = []
+        var profileList: [String] = []
         
-        meetingList.append(MeetingList(imageList: ["a","a"], meetingTitle: "언어 교환", university: "알프1", country: "🇰🇷", like: true))
-        meetingList.append(MeetingList(imageList: ["a"], meetingTitle: "언어 교환", university: "알프2", country: "🇰🇷", like: true))
-        meetingList.append(MeetingList(imageList: ["a","a","a","a"], meetingTitle: "언어 교환", university: "알프3", country: "🇰🇷", like: true))
-        meetingList.append(MeetingList(imageList: ["a","a","a"], meetingTitle: "언어 교환", university: "알프4", country: "🇰🇷", like: false))
-        meetingList.append(MeetingList(imageList: ["a","a","a"], meetingTitle: "언어 교환", university: "알프5", country: "🇰🇷", like: false))
-        meetingList.append(MeetingList(imageList: ["a","a"], meetingTitle: "언어 교환", university: "알프6", country: "🇰🇷", like: false))
+        /*
+         
+         API Connect 
+         */
         
+        userProfileListRelay.accept(profileList)
         meetingListRelay.accept(meetingList)
     }
     

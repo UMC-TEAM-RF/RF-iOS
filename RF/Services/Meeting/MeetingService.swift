@@ -60,11 +60,13 @@ final class MeetingService {
         return Observable.create { observer in
             AF.request(url, method: .get)
                 .validate(statusCode: 200..<201)
-                .responseDecodable(of: MeetingData.self) { response in
+                .responseDecodable(of: Response<Meeting>.self) { response in
                     switch response.result {
                     case .success(let data):
                         print(data)
-                        observer.onNext(data.result)
+                        if let meeting = data.result {
+                            observer.onNext(meeting)
+                        }
                     case .failure(let error):
                         observer.onError(error)
                     }
@@ -80,12 +82,14 @@ final class MeetingService {
         return Observable.create { observer in
             AF.request(url, method: .get)
                 .validate(statusCode: 200..<201)
-                .responseDecodable(of: MeetingListData.self) { response in
+                .responseDecodable(of: Response<[Meeting]>.self) { response in
                     print(response)
                     switch response.result {
                     case .success(let data):
                         print(data)
-                        observer.onNext(data.result)
+                        if let meetings = data.result {
+                            observer.onNext(meetings)
+                        }
                     case .failure(let error):
                         observer.onError(error)
                     }

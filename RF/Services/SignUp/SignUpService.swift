@@ -72,7 +72,8 @@ final class SignUpService {
                               interestLanguage: SignUpDataViewModel.viewModel.interestingLanguage.value.map({"\($0.key ?? "")"}),
                               interestCountry: SignUpDataViewModel.viewModel.interestingCountry.value.map({"\($0.key ?? "")"}),
                               interest: SignUpDataViewModel.viewModel.interestingRelay.value,
-                              mbti: SignUpDataViewModel.viewModel.mbtiRelay.value)
+                              mbti: SignUpDataViewModel.viewModel.mbtiRelay.value,
+                              profileImageUrl: nil)
         print(body)
         return Observable.create { observer in
             

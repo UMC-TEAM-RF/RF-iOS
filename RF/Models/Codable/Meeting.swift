@@ -7,14 +7,6 @@
 
 import Foundation
 
-struct MeetingData: Codable {
-    var result: Meeting
-}
-
-struct MeetingListData: Codable {
-    var result: [Meeting]
-}
-
 struct Meeting: Codable {
     var name: String?   // 모임 명
     var memberCount: Int?   // 모임 인원
@@ -28,6 +20,7 @@ struct Meeting: Codable {
     var tag: String?    // 태그
     var ownerId: Int?   // 모임 장
     var imageFilePath: String?  // 이미지 주소
+    var users: [User]?
 }
 
 

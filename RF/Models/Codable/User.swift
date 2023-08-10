@@ -13,10 +13,6 @@ struct User: Codable {
     let introduce: String?
     let interestLanguage, interestCountry, interest: [String]?
     let mbti: String?
-
-    enum CodingKeys: String, CodingKey {
-        case userID
-        case password, university, nickname, interestLanguage, entrance, country, interestCountry, introduce, interest, mbti
-    }
+    let profileImageUrl: String?
 }
 
