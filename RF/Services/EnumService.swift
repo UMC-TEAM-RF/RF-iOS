@@ -13,7 +13,7 @@ final class EnumService {
     
     /// 초기 데이터 리스트 받는 함수
     func getEnumList() -> Observable<Enums>{
-        let url = "\(Bundle.main.REST_API_URL)/enums"
+        let url = "\(Domain.restApi)\(SocketPath.enums)"
         
         return Observable.create{ observer in
             AF.request(url,
