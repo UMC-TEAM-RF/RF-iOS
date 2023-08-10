@@ -47,12 +47,12 @@ final class CreateViewModel {
     
     
     /// 모든 조건들을 다 선택했는지 확인하는 함수
-    func clickedNextButton() -> Observable<Void> {
-        
+//    func clickedNextButton() -> Observable<Void> {
+//
 //        let model = Meeting(name: meetingName.value,
 //                            interests: interestingRelay.value, imageFilePath: meetingImage.value)
-        
-        // service
-        return service.createMeeting(meeting: <#T##Meeting#>, image: <#T##Data#>).asObservable()
-    }
+//
+//        // service
+//        return service.createMeeting(meeting: , image: ).asObservable()
+//    }
 }
