@@ -14,8 +14,8 @@ final class ListTableViewCell: UITableViewCell{
     static let identifier = "ListTableViewCell"
     
     /// MARK: 프로필 들어갈 View
-    private lazy var profileUIView: ProfileUIView = {
-        let view = ProfileUIView()
+    private lazy var profileUIView: GroupProfileView = {
+        let view = GroupProfileView()
         view.backgroundColor = .clear
         return view
     }()
@@ -170,7 +170,7 @@ final class ListTableViewCell: UITableViewCell{
     ///   - meetingName: 모임 이름
     ///   - university: 학교 이름
     ///   - country: 도시 이름
-    func inputData(imageList: [String?]?, meetingName: String?, university: String?, country: String?, like: Bool?){
+    func inputData(imageList: [String]?, meetingName: String?, university: String?, country: String?, like: Bool?){
         addSubviews()
         
         guard let imageList = imageList,
@@ -184,7 +184,7 @@ final class ListTableViewCell: UITableViewCell{
         countryLabel.text = country
         viewModel.checkLike.accept(like)
         
-        profileUIView.inputData(imgList: imageList)
+        profileUIView.updateProfileImages(with: imageList)
         bind()
     }
     

@@ -85,27 +85,13 @@ class ChatRoomViewController: UIViewController {
     
     var editMenuInteraction: UIEditMenuInteraction?
     
-    var messages: [Message] = [
-        Message(sender: MessageSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
-        Message(sender: MessageSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: "t has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
-        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout"),
-        Message(sender: MessageSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."),
-        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "Contrary to popular belief, Lorem Ipsum is not simply random text."),
-        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."),
-        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."),
-        Message(sender: MessageSender(senderId: "2", displayName: "망고"), sentDate: Date(), content: "FC BARCELONA EL CLASICO FRENKIE DE JONG PEDRI GAVI SPAIN LA LIGA"),
-        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
-        Message(sender: MessageSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "테스트"),
-        Message(sender: MessageSender(senderId: "3", displayName: "제이디"), sentDate: Date(), content: "테스트"),
-        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
-        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
-        Message(sender: MessageSender(senderId: "4", displayName: "만자"), sentDate: Date(), content: "테스트"),
-        
-    ]
-    
     private var isKeyboardShow: Bool = false
     
     private var keyboardRect: CGRect = CGRect()
+    
+    var channelId: Int!
+    var messages: [CustomMessage]!
+    
     
     // MARK: - viewDidLoad()
     
@@ -130,22 +116,31 @@ class ChatRoomViewController: UIViewController {
         DispatchQueue.main.async {
             self.scrollToBottom()
         }
+        
     }
     
     // MARK: - viewWillAppear()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        tabBarController?.tabBar.isHidden = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NotificationName.keyboardWillShow , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NotificationName.keyboardWillHide, object: nil)
+        
+        // 새로운 메시지가 왔을 때 알림
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateChat), name: NotificationName.updateChat, object: nil)
     }
     
     // MARK: - viewWillDisappear()
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillHide, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: NotificationName.updateChat, object: nil)
     }
     
     // MARK: - addSubviews()
@@ -232,15 +227,38 @@ class ChatRoomViewController: UIViewController {
     }
     
     private func scrollToBottom() {
+        if messages.isEmpty { return }
         messagesTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: false)
     }
     
     /// 한 사람이 연속해서 메시지를 보내는지 체크
     /// - Parameter indexPath: indexPath
     /// - Returns: true: 연속, false: 비연속
-    func isSenderConsecutiveMessages(row: Int) -> Bool {
-        if row != 0 && (messages[row - 1].sender.senderId == messages[row].sender.senderId) { return true }
+    private func isSenderConsecutiveMessages(row: Int) -> Bool {
+        if row != 0 && (messages[row - 1].sender?.userId == messages[row].sender?.userId) { return true }
         else { return false }
+    }
+    
+    private func isLastIndexPathVisible() -> Bool {
+        // 현재 보이는 indexPath 목록
+        guard let visibleIndexPaths = messagesTableView.indexPathsForVisibleRows else {
+            return false
+        }
+        
+        // 마지막 섹션을 가져오고 해당 섹션의 마지막 셀의 row 수를 얻는다
+        let lastSection = messagesTableView.numberOfSections - 1
+        let lastRowInLastSection = messagesTableView.numberOfRows(inSection: lastSection) - 1
+
+        // 마지막 indexPath 생성
+        let lastIndexPath = IndexPath(row: lastRowInLastSection, section: lastSection)
+
+        // 마지막 indexPath가 현재 보이는 셀 중 하나인지 확인
+        return visibleIndexPaths.contains(lastIndexPath)
+    }
+    
+    private func isSenderSelf(_ sender: CustomMessageSender?) -> Bool {
+        guard let sender else { return false }
+        return sender.userId == 1
     }
     
     // MARK: - @objc func
@@ -307,6 +325,24 @@ class ChatRoomViewController: UIViewController {
         }
     }
     
+    @objc func updateChat() {
+        // 채팅 메시지 업데이트 시 화면 업데이트
+        
+        // reload 하기 전 내가 현재 마지막 셀에 위치해 있는지 확인
+        
+        //if isLastIndexPathVisible() || isSenderSelf(<#T##sender: CustomMessageSender?##CustomMessageSender?#>)
+        if isLastIndexPathVisible() {
+            messages = SingletonChannel.shared.getChannelMessages(channelId)
+            messagesTableView.reloadData()
+            scrollToBottom()
+        } else {
+            messages = SingletonChannel.shared.getChannelMessages(channelId)
+            messagesTableView.reloadData()
+            scrollToBottom()  // 테스트
+            print("메시지 업데이트")
+        }
+    }
+    
     @objc func handleTap() {
         view.endEditing(true)
     }
@@ -344,19 +380,16 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let message = messages[indexPath.row]
         
-        if message.sender.senderId == "1" {
+        if isSenderSelf(message.sender) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
     
-            cell.message = message.content
+            cell.updateChatView(message)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
-
-            cell.message = message.content
-            cell.displayName = message.sender.displayName
+            cell.updateChatView(message)
             cell.delegate = self
 
             if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
@@ -372,17 +405,17 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        let contentOffsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let scrollViewHeight = scrollView.bounds.height
-        
-        // 뱅크 뷰가 나타날 위치를 계산합니다.
-        let bankViewY = contentHeight - scrollViewHeight + 50
-        
-        UIView.animate(withDuration: 0.3) {
-            let alpha = (contentOffsetY >= bankViewY - 100) ? 0.0 : 0.8
-            self.scrollToBottomButton.alpha = alpha
-        }
+//        let contentOffsetY = scrollView.contentOffset.y
+//        let contentHeight = scrollView.contentSize.height
+//        let scrollViewHeight = scrollView.bounds.height
+//
+//        // 뱅크 뷰가 나타날 위치를 계산합니다.
+//        let bankViewY = contentHeight - scrollViewHeight + 50
+//
+//        UIView.animate(withDuration: 0.3) {
+//            let alpha = (contentOffsetY >= bankViewY - 100) ? 0.0 : 0.8
+//            self.scrollToBottomButton.alpha = alpha
+//        }
     }
 }
 
@@ -424,12 +457,8 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         
         inputBarTopStackView.isHidden = true
         keyboardInputBar.isTranslated = false
-        
-        messages.append(Message(sender: MessageSender(senderId: "1", displayName: "JD"), sentDate: Date(), content: text))
-        
-        messagesTableView.reloadData()
-        
-        scrollToBottom()
+
+        ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: channelId)
     }
     
     func didTapTranslate(_ isTranslated: Bool) {
