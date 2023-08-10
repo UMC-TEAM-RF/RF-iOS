@@ -91,6 +91,7 @@ class ChatRoomViewController: UIViewController {
     
     var channelId: Int!
     var messages: [CustomMessage]!
+    var row: Int?
     
     
     // MARK: - viewDidLoad()
@@ -116,7 +117,7 @@ class ChatRoomViewController: UIViewController {
         DispatchQueue.main.async {
             self.scrollToBottom()
         }
-        
+        print(row)
     }
     
     // MARK: - viewWillAppear()

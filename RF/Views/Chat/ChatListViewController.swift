@@ -113,11 +113,13 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
         let vc = ChatRoomViewController()
         
         let channel = SingletonChannel.shared.list[indexPath.row]
+        
+        let index = SingletonChannel.shared.readNewMessage(channel.id)
+        
         vc.channelId = channel.id
         vc.messages = channel.messages
+        vc.row = index
         
-        // 새 메시지 개수 초기화 (다음 화면에서 실행되도록 수정해야 될듯?)
-        SingletonChannel.shared.readNewMessage(channel.id)
         tableView.reloadData()
         
         navigationController?.pushViewController(vc, animated: true)

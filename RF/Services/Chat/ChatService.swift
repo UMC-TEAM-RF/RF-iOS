@@ -207,15 +207,30 @@ class SingletonChannel {
         list.sort { $0.messages.last?.dateTime ?? "" > $1.messages.last?.dateTime ?? "" }
     }
     
-    func readNewMessage(_ channelId: Int) {
-        guard let index = getChannelIndex(channelId) else { return }
+    /// 메시지를 모두 읽음 여부로 설정 후 가장 첫 새로운 메시지의 Index를 반환
+    /// - Parameter channelId: Channel ID
+    /// - Returns: Index
+    func readNewMessage(_ channelId: Int) -> Int {
+        guard let index = getChannelIndex(channelId) else { return 0 }
         var messages = getChannelMessages(channelId)
         
+        // 메시지 비어있으면 index = 0
+        if messages.isEmpty { return 0 }
+        
+        var firstNewMessageIndex = messages.count
+        
+        // 가장 마지막 메시지가 새로운 메시지가 아닐 경우 마지막 index 리턴
+        if messages.last?.isNew == false { return firstNewMessageIndex - 1}
+        
         for i in stride(from: messages.count - 1, through: 0, by: -1) {
-            if messages[i].isNew == false { break }
+            if messages[i].isNew == false {
+                break
+            }
             messages[i].isNew = false
+            firstNewMessageIndex -= 1
         }
         
         list[index].messages = messages
+        return firstNewMessageIndex
     }
 }
