@@ -117,6 +117,10 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
         vc.channelId = channel.id
         vc.messages = channel.messages
         
+        // 새 메시지 개수 초기화
+        SingletonChannel.shared.readNewMessage(channel.id)
+        tableView.reloadData()
+        
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

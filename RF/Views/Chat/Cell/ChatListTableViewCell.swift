@@ -68,6 +68,25 @@ class ChatListTableViewCell: UITableViewCell {
         return label
     }()
     
+    // 새 메시지 개수
+    private lazy var newMessageCountView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 10
+        view.isHidden = true
+        return view
+    }()
+    
+    private lazy var newMessageCountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "1"
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.textAlignment = .center
+        return label
+    }()
+    
     
     
     // MARK: - Property
@@ -105,6 +124,9 @@ class ChatListTableViewCell: UITableViewCell {
         
         addSubview(contentLabel)
         addSubview(timeLabel)
+        
+        addSubview(newMessageCountView)
+        newMessageCountView.addSubview(newMessageCountLabel)
     }
     
     // MARK: - configureConstraints()
@@ -132,6 +154,19 @@ class ChatListTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(20)
             make.centerY.equalTo(chatTitleLabel.snp.centerY)
         }
+        
+        newMessageCountView.snp.makeConstraints { make in
+            make.top.equalTo(contentLabel.snp.top)
+            make.trailing.equalTo(timeLabel.snp.trailing)
+            make.bottom.equalToSuperview().inset(20)
+            make.width.greaterThanOrEqualTo(newMessageCountView.snp.height)
+        }
+        
+        newMessageCountLabel.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview().inset(5)
+            make.horizontalEdges.equalToSuperview().inset(5)
+        }
+        
     }
     
     func updateChannelView(_ channel: Channel) {
@@ -139,7 +174,22 @@ class ChatListTableViewCell: UITableViewCell {
         personnelLabel.text = "\(channel.userProfileImages.count)"
         profileView.updateProfileImages(with: channel.userProfileImages)
         contentLabel.text = channel.messages.last?.content
-        timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(channel.messages.last?.dateTime, isCompareCurrentTime: true)
+        timeLabel.text =  DateTimeFormatter.shared.convertStringToDateTime(channel.messages.last?.dateTime, isCompareCurrentTime: true)
+        
+        let newMessageCount = countNewMessages(from: channel.messages)
+        
+        let bool = newMessageCount == 0 ? true : false
+        newMessageCountLabel.text = "\(newMessageCount)"
+        newMessageCountView.isHidden = bool
+    }
+    
+    func countNewMessages(from messages: [CustomMessage]) -> Int {
+        var count = 0
+        for message in messages.reversed() {
+            if !message.isNew { break }
+            count += 1
+        }
+        return count
     }
 }
 

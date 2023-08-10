@@ -115,6 +115,7 @@ extension ChatService: StompClientLibDelegate {
     }
     
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
+        print(#function)
         
         guard let data = decodeFromAnyObject(jsonBody, to: CustomMessage.self) else {
             print("Decode Error")
@@ -153,7 +154,7 @@ class SingletonChannel {
             CustomMessage(sender: CustomMessageSender(speakerId: 4, speakerName: "만자"), content: "테스트"),
             CustomMessage(sender: CustomMessageSender(speakerId: 4, speakerName: "만자"), content: "테스트"),
             CustomMessage(sender: CustomMessageSender(speakerId: 4, speakerName: "만자"), content: "테스트"),
-            CustomMessage(sender: CustomMessageSender(speakerId: 2, speakerName: "망고"), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout")
+            CustomMessage(sender: CustomMessageSender(speakerId: 2, speakerName: "망고"), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout", dateTime: "2023-08-07 21:41:44.889734")
         ], userProfileImages: ["a", "a", "a", "a"]),
         Channel(id: 2, name: "2번 모임", messages: [
             CustomMessage(content: "TESTTESTTESTTESTESTTEST", dateTime: "21:09"),
@@ -171,10 +172,17 @@ class SingletonChannel {
             CustomMessage(sender: CustomMessageSender(speakerId: 4, speakerName: "만자"), content: "테스트"),
             CustomMessage(sender: CustomMessageSender(speakerId: 4, speakerName: "만자"), content: "dummy"),
             CustomMessage(sender: CustomMessageSender(speakerId: 4, speakerName: "만자"), content: "printing"),
-            CustomMessage(sender: CustomMessageSender(speakerId: 2, speakerName: "망고"), content: "It is a longooking at its layout")
+            CustomMessage(sender: CustomMessageSender(speakerId: 2, speakerName: "망고"), content: "It is a longooking at its layout", dateTime: "2023-08-07 21:41:44.889734")
         ], userProfileImages: ["a", "a", "a"])
     ]
     
+    /// 채널 리스트에서 특정 채널의 index 위치 가져오기
+    /// - Parameter channelId: Channel ID
+    /// - Returns: Index(Int)
+    func getChannelIndex(_ channelId: Int) -> Int? {
+        let index = list.firstIndex { $0.id == channelId }
+        return index
+    }
     
     /// 특정 채널의 메시지 리스트 가져오기
     /// - Parameter id: Channel ID
@@ -197,5 +205,17 @@ class SingletonChannel {
     
     func sortByLatest() {
         list.sort { $0.messages.last?.dateTime ?? "" > $1.messages.last?.dateTime ?? "" }
+    }
+    
+    func readNewMessage(_ channelId: Int) {
+        guard let index = getChannelIndex(channelId) else { return }
+        var messages = getChannelMessages(channelId)
+        
+        for i in stride(from: messages.count - 1, through: 0, by: -1) {
+            if messages[i].isNew == false { break }
+            messages[i].isNew = false
+        }
+        
+        list[index].messages = messages
     }
 }
