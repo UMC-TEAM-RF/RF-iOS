@@ -187,6 +187,7 @@ final class SetDescriptViewController: UIViewController {
         nextButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 CreateViewModel.viewModel.meetingDescription.accept(self?.viewModel.meetingDescription.value ?? "")
+                CreateViewModel.viewModel.meetingImage.accept(self?.viewModel.meetingImage.value ?? UIImage())
                 self?.navigationController?.pushViewController(SetDetailInfoViewController(), animated: true)
             })
             .disposed(by: disposeBag)
