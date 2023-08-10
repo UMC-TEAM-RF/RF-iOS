@@ -22,13 +22,6 @@ final class MeetingViewController: UIViewController{
         return label
     }()
     
-    /// MARK: 모임 찾기 버튼
-    private lazy var alertButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(systemName: "bell")?.resize(newWidth: 25), for: .normal)
-        return btn
-    }()
-    
     /// MARK: 모임 생성 버튼
     private lazy var etcButton: UIButton = {
         let btn = UIButton()
@@ -37,15 +30,6 @@ final class MeetingViewController: UIViewController{
         return btn
     }()
     
-    /// MARK: 모임 찾기 버튼, 모임 생성 버튼 담는 StackView
-    private lazy var btnsStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [alertButton, etcButton])
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        stack.backgroundColor = .systemBackground
-        stack.spacing = 10
-        return stack
-    }()
     
     /// MARK: 모임 찾기, 모임 생성하기 UIView
     private lazy var makeFriendView: MakeFriendUIView = {
@@ -54,31 +38,77 @@ final class MeetingViewController: UIViewController{
         view.layer.cornerRadius = 20
         return view
     }()
+
     
-    /// MARK: 근처 모임 리스트 View
-    private lazy var meetingListView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    
-    /// MARK: 모임 제목
-    private lazy var meetingListLabel: UILabel = {
+    /// MARK: 나의 모임 기록 제목
+    private lazy var meetingLabel: UILabel = {
         let label = UILabel()
-        label.text = "지금 OO님 근처의 모임을 확인 해보세요!"
+        label.text = "나의 모임 기록"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
     
-    /// MARK: 모임 CollectionView
-    private lazy var meetingCollectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = 15
-        
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        cv.isScrollEnabled = false
-        return cv
+    /// MARK:  모임 일정 관리
+    private lazy var meetingScheduleUIButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("모임 일정 관리", for: .normal)
+        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
+        btn.titleLabel?.font = .systemFont(ofSize: 14)
+        btn.setTitleColor(.black, for: .normal)
+        btn.layer.cornerRadius = 10
+        return btn
     }()
+    
+    /// MARK:  모임 목록 관리
+    private lazy var meetingListUIButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("모임 목록 관리", for: .normal)
+        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
+        btn.titleLabel?.font = .systemFont(ofSize: 14)
+        btn.setTitleColor(.black, for: .normal)
+        btn.layer.cornerRadius = 10
+        return btn
+    }()
+  
+    // 꿀팁 배너
+    private lazy var tipsView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    private lazy var tipsImage: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "tips_icon")
+        iv.contentMode = .scaleAspectFill
+        return iv
+    }()
+    
+    private lazy var tipsLabelStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.spacing = 5
+        sv.distribution = .fill
+        sv.alignment = .fill
+        return sv
+    }()
+    
+    private lazy var tipsTopLabel: UILabel = {
+        let label = UILabel()
+        label.text = "외국인 친구들과 편하게 얘기하고 싶어?"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        return label
+    }()
+    
+    private lazy var tipsBottomLabel: UILabel = {
+        let label = UILabel()
+        label.text = "꿀팁 얻으러 가기!"
+        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        return label
+    }()
+    
+    
     
     private let disposeBag = DisposeBag()
     private let viewModel = MeetingViewModel()
@@ -90,7 +120,6 @@ final class MeetingViewController: UIViewController{
         
         addSubviews()
         clickedTopBtns()
-        configureCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,12 +133,18 @@ final class MeetingViewController: UIViewController{
     /// MARK: add UI
     private func addSubviews(){
         view.addSubview(titleLabel)
-        view.addSubview(btnsStackView)
+        view.addSubview(etcButton)
         view.addSubview(makeFriendView)
-        view.addSubview(meetingListView)
+        view.addSubview(meetingLabel)
+        view.addSubview(meetingScheduleUIButton)
+        view.addSubview(meetingListUIButton)
+        view.addSubview(tipsView)
         
-        meetingListView.addSubview(meetingListLabel)
-        meetingListView.addSubview(meetingCollectionView)
+        // 꿀팁
+        tipsView.addSubview(tipsImage)
+        tipsView.addSubview(tipsLabelStackView)
+        tipsLabelStackView.addArrangedSubview(tipsTopLabel)
+        tipsLabelStackView.addArrangedSubview(tipsBottomLabel)
         
         configureConstraints()
         uiActions()
@@ -123,7 +158,7 @@ final class MeetingViewController: UIViewController{
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
         }
         
-        btnsStackView.snp.makeConstraints { make in
+        etcButton.snp.makeConstraints { make in
             make.centerY.equalTo(titleLabel.snp.centerY)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
         }
@@ -135,31 +170,44 @@ final class MeetingViewController: UIViewController{
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*2/5)
         }
         
-        // 모임
-        meetingListView.snp.makeConstraints { make in
-            make.top.equalTo(makeFriendView.snp.bottom).offset(50)
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        
+        meetingLabel.snp.makeConstraints { make in
+            make.top.equalTo(makeFriendView.snp.bottom).offset(30)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
         }
         
-        meetingListLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview().inset(20)
+        meetingScheduleUIButton.snp.makeConstraints { make in
+            make.top.equalTo(meetingLabel.snp.bottom).offset(20)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.trailing.equalTo(view.snp.centerX).offset(-10)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/10)
         }
         
-        meetingCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(meetingListLabel.snp.bottom).offset(15)
-            make.left.right.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview()
+        meetingListUIButton.snp.makeConstraints { make in
+            make.top.equalTo(meetingLabel.snp.bottom).offset(20)
+            make.leading.equalTo(view.snp.centerX).offset(10)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/10)
         }
-    }
-    
-    /// MARK: - configureCollectionView
-    private func configureCollectionView() {
-        meetingCollectionView.delegate = self
-        meetingCollectionView.dataSource = self
         
-        meetingCollectionView.register(MeetingCollectionViewCell.self, forCellWithReuseIdentifier: "MeetingCollectionViewCell")
+        
+        // 꿀팁
+        tipsView.snp.makeConstraints { make in
+            make.top.equalTo(meetingListUIButton.snp.bottom).offset(40)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(75)
+        }
+        
+        tipsImage.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.width.equalTo(tipsImage.snp.height).multipliedBy(1)
+        }
+        
+        tipsLabelStackView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(tipsImage.snp.trailing).offset(10)
+        }
     }
     
     /// MARK: UI Action 함수
@@ -170,31 +218,29 @@ final class MeetingViewController: UIViewController{
     
     /// MARK: 모임 찾기, 모임 생성 아이콘 버튼 눌렀을 때
     private func clickedTopBtns(){
-        alertButton.rx.tap
+        etcButton.rx.tap
             .subscribe(onNext:{
-                print("clicked alertButton")
+                print("clicked etcButton")
             })
             .disposed(by: disposeBag)
         
-        let schedule = UIAction(title: "모임 일정", image: nil, handler: { [weak self] _ in
-            let scheduleViewController = ScheduleViewController()
-            self?.tabBarController?.tabBar.isHidden = true
-            self?.navigationController?.pushViewController(scheduleViewController, animated: true)
-        })
+        meetingScheduleUIButton.rx.tap
+            .bind { [weak self] in
+                let scheduleViewController = ScheduleViewController()
+                self?.tabBarController?.tabBar.isHidden = true
+                self?.navigationController?.pushViewController(scheduleViewController, animated: true)
+            }
+            .disposed(by: disposeBag)
         
-        let list = UIAction(title: "모임 목록", image: nil, handler: { [weak self] _ in
-            let listViewController = ListViewController()
-            self?.tabBarController?.tabBar.isHidden = true
-            self?.navigationItem.hidesBackButton = false
-            self?.navigationItem.leftItemsSupplementBackButton = true
-            self?.navigationController?.pushViewController(listViewController, animated: true)
-        })
-        
-        etcButton.menu = UIMenu(title: "ETC",
-                                  image: nil,
-                                  identifier: nil,
-                                  options: .displayInline,
-                                  children: [schedule,list])
+        meetingListUIButton.rx.tap
+            .bind { [weak self] in
+                let listViewController = ListViewController()
+                self?.tabBarController?.tabBar.isHidden = true
+                self?.navigationItem.hidesBackButton = false
+                self?.navigationItem.leftItemsSupplementBackButton = true
+                self?.navigationController?.pushViewController(listViewController, animated: true)
+            }
+            .disposed(by: disposeBag)
         
     }
     
@@ -205,34 +251,6 @@ final class MeetingViewController: UIViewController{
         navigationController?.pushViewController(setMeetingNameViewController, animated: true)
     }
     
-    
-}
-
-extension MeetingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: meetingCollectionView.frame.width, height: 130)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.meetingList.value.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MeetingCollectionViewCell", for: indexPath) as! MeetingCollectionViewCell
-        
-        
-        cell.inputTextData(title: viewModel.meetingList.value[indexPath.row].name ?? "",
-                           description: viewModel.meetingList.value[indexPath.row].content ?? "",
-                           personnel: "\(viewModel.meetingList.value[indexPath.row].memberCount ?? 0)",
-                           tag: viewModel.meetingList.value[indexPath.row].interests ?? [])
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let meetingTabController = DetailMeetingTabController()
-        navigationController?.pushViewController(meetingTabController, animated: true)
-    }
     
 }
 
