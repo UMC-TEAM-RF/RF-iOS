@@ -165,7 +165,7 @@ class OtherMessageTableViewCell: UITableViewCell {
     func updateChatView(_ message: CustomMessage) {
         messageLabel.text = message.content
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
-        displayNameLabel.text = message.sender?.speakerName
+        displayNameLabel.text = message.sender?.userName
         //avatarView.image = message.sender?.speakerImageUrl
     }
     

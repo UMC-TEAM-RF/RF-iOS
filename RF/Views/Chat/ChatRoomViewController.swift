@@ -123,6 +123,9 @@ class ChatRoomViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = true
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NotificationName.keyboardWillShow , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NotificationName.keyboardWillHide, object: nil)
         
@@ -224,6 +227,7 @@ class ChatRoomViewController: UIViewController {
     }
     
     private func scrollToBottom() {
+        if messages.isEmpty { return }
         messagesTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: false)
     }
     
@@ -231,7 +235,7 @@ class ChatRoomViewController: UIViewController {
     /// - Parameter indexPath: indexPath
     /// - Returns: true: 연속, false: 비연속
     private func isSenderConsecutiveMessages(row: Int) -> Bool {
-        if row != 0 && (messages[row - 1].sender?.speakerId == messages[row].sender?.speakerId) { return true }
+        if row != 0 && (messages[row - 1].sender?.userId == messages[row].sender?.userId) { return true }
         else { return false }
     }
     
@@ -254,7 +258,7 @@ class ChatRoomViewController: UIViewController {
     
     private func isSenderSelf(_ sender: CustomMessageSender?) -> Bool {
         guard let sender else { return false }
-        return sender.speakerId == 1
+        return sender.userId == 1
     }
     
     // MARK: - @objc func
@@ -454,7 +458,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         inputBarTopStackView.isHidden = true
         keyboardInputBar.isTranslated = false
 
-        ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(speakerId: 1), type: MessageType.text, content: text), partyId: channelId)
+        ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: channelId)
     }
     
     func didTapTranslate(_ isTranslated: Bool) {

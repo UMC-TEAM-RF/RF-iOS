@@ -81,8 +81,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
+    
     // foreground 상태일 때에도 알림 배너가 나오도록 설정
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.sound, .banner])
     }
+    
+    // 푸시 알림 배너 클릭했을 시 실행
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        navigateToSpecificScreen(userInfo)
+        completionHandler()
+    }
+    
+    // 특정 화면으로 이동하도록 설정
+    func navigateToSpecificScreen(_ userInfo: [AnyHashable: Any]) {
+        // 푸시 알림에 포함된 채팅방 정보를 가져옵니다.
+        if let chatRoomId = userInfo["chatRoomId"] as? String {
+            // AppDelegate가 UITabBarController를 참조할 수 있도록 합니다.
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }),
+                  let tabBarController = window.rootViewController as? TabBarController else {
+                return
+            }
+
+            // 탭의 인덱스를 선택
+            tabBarController.selectedIndex = 4
+
+            if let navController = tabBarController.selectedViewController as? UINavigationController {
+                // 채팅 목록 화면으로 이동합니다.
+                navController.popToRootViewController(animated: false)
+
+                // 새 채팅방 화면 인스턴스를 만듭니다.
+                let chatRoomVC = ChatRoomViewController()
+                
+                // 채팅방에 데이터 전달 (channelId, messages)
+                chatRoomVC.channelId = 1
+                chatRoomVC.messages = []
+
+                // 채팅방으로 이동하는 로직 작성
+                navController.pushViewController(chatRoomVC, animated: true)
+            }
+        }
+    }
+
 }

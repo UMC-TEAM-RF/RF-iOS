@@ -54,9 +54,9 @@ struct CustomMessage: Codable {
 }
 
 struct CustomMessageSender: Codable {
-    var speakerId: Int?
-    var speakerName: String?
-    var speakerImageUrl: String?
+    var userId: Int?
+    var userName: String?
+    var userImageUrl: String?
 }
 
 struct Schedule: Codable {

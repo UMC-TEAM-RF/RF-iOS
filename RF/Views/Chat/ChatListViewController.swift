@@ -111,13 +111,12 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChatRoomViewController()
-        tabBarController?.tabBar.isHidden = true
         
         let channel = SingletonChannel.shared.list[indexPath.row]
         vc.channelId = channel.id
         vc.messages = channel.messages
         
-        // 새 메시지 개수 초기화
+        // 새 메시지 개수 초기화 (다음 화면에서 실행되도록 수정해야 될듯?)
         SingletonChannel.shared.readNewMessage(channel.id)
         tableView.reloadData()
         
