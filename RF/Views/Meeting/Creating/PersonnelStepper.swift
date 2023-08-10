@@ -70,6 +70,7 @@ class PersonnelStepper: UIControl {
     }
     
     private let disposeBag = DisposeBag()
+    var selectedMembercount: BehaviorSubject<Int> = BehaviorSubject(value: 0)
     
     // MARK: - init()
 
