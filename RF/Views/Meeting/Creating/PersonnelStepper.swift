@@ -125,6 +125,7 @@ class PersonnelStepper: UIControl {
         guard (minimumCount...maximumCount) ~= currentCount + value else { return }
         
         countLabel.text = "\(currentCount + value)"
+        selectedMembercount.onNext(currentCount + value)
         currentValue = currentCount + value
         sendActions(for: .valueChanged)
     }

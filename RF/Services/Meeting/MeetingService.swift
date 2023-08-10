@@ -40,7 +40,7 @@ final class MeetingService {
                 multipartFormData.append(image, withName: "image", fileName: "\(image).jpeg", mimeType: "multipart/form-data")
                 
             }, to: url, method: .post, headers: headers)
-            .responseDecodable(of: ResponseData.self) { response in
+            .responseDecodable(of: Response<Meeting>.self) { response in
                 switch response.result {
                 case .success(let data):
                     print(data)

@@ -127,6 +127,7 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var ageGroupButton: MenuButton = {
         let button = MenuButton()
         button.title = "무관"
+        viewModel.preferAge.accept(button.title ?? "")
         button.tag = 0
         button.delegate = self
         return button
@@ -144,6 +145,7 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var languageButton: MenuButton = {
         let button = MenuButton()
         button.title = "한국어"
+        viewModel.language.accept(button.title ?? "")
         button.tag = 1
         button.delegate = self
         return button
@@ -212,8 +214,7 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var createButton: UIButton = {
         let button = UIButton()
         button.setTitle("모임 생성하기", for: .normal)
-        button.backgroundColor = .tintColor
-        button.setTitleColor(.white, for: .normal)
+        
         button.layer.cornerRadius = 5
         return button
     }()
@@ -416,28 +417,16 @@ final class SetDetailInfoViewController: UIViewController {
     
     private func addTargets() {
         ruleButton.rx.tap
-            .subscribe(onNext: {
-                let vc = RuleListViewController(rules: self.selectedRules)
+            .subscribe(onNext: { [weak self] in
+                let vc = RuleListViewController(rules: self?.selectedRules ?? [])
                 vc.delegate = self
-                self.navigationController?.pushViewController(vc, animated: true)
+                self?.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: disposeBag)
         
         createButton.rx.tap
-            .subscribe(onNext: {
-                
-                let alertController = UIAlertController(title: "모임을 생성하기", message: "모임을 생성하시겠습니까?", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "생성", style: .default) { _ in
-                    self.tabBarController?.tabBar.isHidden = false
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
-                let cancel = UIAlertAction(title: "취소", style: .cancel)
-                
-                alertController.addAction(ok)
-                alertController.addAction(cancel)
-                
-                self.present(alertController, animated: true)
-                
+            .subscribe(onNext: { [weak self] in
+                self?.nextPage()
             })
             .disposed(by: disposeBag)
         
@@ -447,6 +436,42 @@ final class SetDetailInfoViewController: UIViewController {
                     self?.viewModel.place.accept(text)
                 }
             }
+            .disposed(by: disposeBag)
+        
+        viewModel.checkAllDatas()
+            .subscribe(onNext:{ [weak self] check in
+                self?.createButton.backgroundColor = check ? .tintColor : .systemGray6
+                self?.createButton.setTitleColor( check ? .white : .black, for: .normal)
+                self?.createButton.isEnabled = check
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    /// MARK: 생성하기 눌렀을 때
+    private func nextPage(){
+        viewModel.clcikedNextButton()
+            .bind { [weak self] check in
+                let alertController = UIAlertController(title: "모임을 생성하기", message: "모임을 생성하시겠습니까?", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "생성", style: .default) { _ in
+                    self?.createMeeting()
+                }
+                let cancel = UIAlertAction(title: "취소", style: .cancel)
+                
+                alertController.addAction(ok)
+                alertController.addAction(cancel)
+                
+                self?.present(alertController, animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    /// MARK: 모임 생성 버튼 누른 후 생선 된 경우 실행
+    private func createMeeting(){
+        CreateViewModel.viewModel.clickedNextButton()
+            .subscribe(onNext:{ [weak self] in
+                self?.tabBarController?.tabBar.isHidden = false
+                self?.navigationController?.popToRootViewController(animated: true)
+            })
             .disposed(by: disposeBag)
     }
 }
@@ -499,11 +524,9 @@ extension SetDetailInfoViewController: SendDataDelegate {
         }
         else{
             menuButton = languageButton
-            viewModel.languages.accept(data)
+            viewModel.language.accept(data)
         }
         menuButton?.title = data
-
-        
     }
     
     func sendStringArrayData(_ data: [String]) {
