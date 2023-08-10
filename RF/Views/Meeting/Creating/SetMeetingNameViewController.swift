@@ -34,7 +34,7 @@ final class SetMeetingNameViewController: UIViewController {
     // 모임 명 입력 창
     private lazy var meetingNameTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = placeholder
+        tf.placeholder = viewModel.placeholder
         tf.borderStyle = .none
         tf.backgroundColor = .clear
         tf.addHorizontalPadding(5)
@@ -70,7 +70,6 @@ final class SetMeetingNameViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private let viewModel = SetMeetingNameViewModel()
-    private let placeholder = "2글자 이상"
     
     // MARK: - viewDidLoad()
     

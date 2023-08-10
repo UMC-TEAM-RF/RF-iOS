@@ -19,4 +19,7 @@ final class CreateViewModel {
     /// 취미 관심사
     var interestingRelay: BehaviorRelay<[String]> = BehaviorRelay<[String]>(value: [])
     
+    /// 모임 소개
+    let meetingDescription = BehaviorRelay<String>(value: "")
+    
 }

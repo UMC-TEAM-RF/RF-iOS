@@ -66,8 +66,6 @@ final class SetInterestViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = SetInterestViewModel()
     
-    // 셀 클릭 개수
-    private var selectedCount: Int = 0
     
     // MARK: - viewDidLoad()
     
@@ -152,13 +150,13 @@ final class SetInterestViewController: UIViewController {
     }
     
     /// MARK:
-    private func moveToNextPage(){
+    private func moveToNextPage() {
         let interests = viewModel.interestingRelay.value.map { EnumFile.enumfile.enumList.value.interest?[$0.row].key ?? "" }
         CreateViewModel.viewModel.interestingRelay.accept(interests)
     }
     
     /// MARK: binding viewModel
-    private func bind(){
+    private func bind() {
         viewModel.interestingRelay
             .bind { [weak self] items in
                 self?.updateInterestingItems(items)
