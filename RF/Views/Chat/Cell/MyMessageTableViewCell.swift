@@ -94,5 +94,10 @@ class MyMessageTableViewCell: UITableViewCell {
         }
         
     }
+    
+    func updateChatView(_ message: CustomMessage) {
+        messageLabel.text = message.content
+        timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
+    }
 }
 

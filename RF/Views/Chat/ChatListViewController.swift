@@ -22,13 +22,8 @@ class ChatListViewController: UIViewController {
     }()
     
     // MARK: - Property
-    
-    let dummyChatList: [MeetingList] = [
-        MeetingList(imageList: ["a","a","a"], meetingTitle: "모임 1", university: "한국공학대학교", country: "한국", like: true),
-        MeetingList(imageList: ["a","a"], meetingTitle: "모임 1", university: "한국공학대학교", country: "한국", like: true),
-        MeetingList(imageList: ["a"], meetingTitle: "모임 1", university: "한국공학대학교", country: "한국", like: true),
-        MeetingList(imageList: ["a","a","a","a"], meetingTitle: "모임 1", university: "한국공학대학교", country: "한국", like: true)
-    ]
+    private var isUpdateChannel: Bool = false
+    private var isLocatedCurrentView: Bool = false
     
     // MARK: - viewDidLoad()
 
@@ -41,6 +36,8 @@ class ChatListViewController: UIViewController {
         
         addSubviews()
         configureConstraints()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateChat), name: NotificationName.updateChat, object: nil)
     }
     
     // MARK: - viewWillAppear()
@@ -49,6 +46,18 @@ class ChatListViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = false
+        isLocatedCurrentView = true
+        
+        if isUpdateChannel {
+            updateChannelList()
+            isUpdateChannel = false
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        isLocatedCurrentView = false
     }
     
     // MARK: - addSubviews()
@@ -66,20 +75,33 @@ class ChatListViewController: UIViewController {
         }
     }
     
-
+    private func updateChannelList() {
+        SingletonChannel.shared.sortByLatest()
+        self.chatListTableView.reloadData()
+    }
+    
+    // MARK: - @objc func
+    
+    @objc func updateChat() {
+        if isLocatedCurrentView {
+            updateChannelList()
+        } else {
+            isUpdateChannel = true
+        }
+    }
 }
 
 // MARK: - Ext: TableView
 
 extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyChatList.count
+        return SingletonChannel.shared.list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.identifier, for: indexPath) as? ChatListTableViewCell else { return UITableViewCell() }
-        let dummy = dummyChatList[indexPath.row]
-        cell.inputData(imageList: dummy.imageList, meetingName: dummy.meetingTitle)
+        let channel = SingletonChannel.shared.list[indexPath.row]
+        cell.updateChannelView(channel)
         return cell
     }
     
@@ -89,7 +111,15 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChatRoomViewController()
-        tabBarController?.tabBar.isHidden = true
+        
+        let channel = SingletonChannel.shared.list[indexPath.row]
+        vc.channelId = channel.id
+        vc.messages = channel.messages
+        
+        // 새 메시지 개수 초기화 (다음 화면에서 실행되도록 수정해야 될듯?)
+        SingletonChannel.shared.readNewMessage(channel.id)
+        tableView.reloadData()
+        
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
