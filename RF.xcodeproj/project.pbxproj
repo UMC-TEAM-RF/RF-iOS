@@ -35,6 +35,9 @@
 		3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */; };
 		3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */; };
 		3B59B2832A75653400027809 /* DetailMeetingJoinPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */; };
+		3B62877C2A84BF7200E00B09 /* CreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B62877B2A84BF7200E00B09 /* CreateViewModel.swift */; };
+		3B62877E2A84C0D500E00B09 /* SetMeetingNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B62877D2A84C0D500E00B09 /* SetMeetingNameViewModel.swift */; };
+		3B6287802A84C90100E00B09 /* SetInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B62877F2A84C90100E00B09 /* SetInterestViewModel.swift */; };
 		3B69EE402A81F522002DB6DF /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69EE3F2A81F522002DB6DF /* Enums.swift */; };
 		3B6BA97C2A7E5ACD00A11FE4 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */; };
 		3B6BA97E2A7E655600A11FE4 /* SelectUniversity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97D2A7E655600A11FE4 /* SelectUniversity.swift */; };
@@ -183,6 +186,9 @@
 		3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventPopUp.swift; sourceTree = "<group>"; };
 		3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUpViewController.swift; sourceTree = "<group>"; };
 		3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUp.swift; sourceTree = "<group>"; };
+		3B62877B2A84BF7200E00B09 /* CreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewModel.swift; sourceTree = "<group>"; };
+		3B62877D2A84C0D500E00B09 /* SetMeetingNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMeetingNameViewModel.swift; sourceTree = "<group>"; };
+		3B62877F2A84C90100E00B09 /* SetInterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInterestViewModel.swift; sourceTree = "<group>"; };
 		3B69EE3F2A81F522002DB6DF /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedButton.swift; sourceTree = "<group>"; };
 		3B6BA97D2A7E655600A11FE4 /* SelectUniversity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUniversity.swift; sourceTree = "<group>"; };
@@ -378,6 +384,7 @@
 		3B15CD632A644FDE0096871F /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				3B62877A2A84BF6500E00B09 /* Create */,
 				3B5402C12A6EA60F00D0AD21 /* List */,
 				3BB408AF2A6AC4BD00FBA617 /* Schedule */,
 				3B15CD642A644FE40096871F /* Searching */,
@@ -435,6 +442,16 @@
 				3B5402C62A6EA99E00D0AD21 /* ListCellViewModel.swift */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		3B62877A2A84BF6500E00B09 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				3B62877B2A84BF7200E00B09 /* CreateViewModel.swift */,
+				3B62877D2A84C0D500E00B09 /* SetMeetingNameViewModel.swift */,
+				3B62877F2A84C90100E00B09 /* SetInterestViewModel.swift */,
+			);
+			path = Create;
 			sourceTree = "<group>";
 		};
 		3B6BA97A2A7E5ABB00A11FE4 /* ChooseUniversity */ = {
@@ -1053,6 +1070,7 @@
 				570063602A63D5120051F42A /* PersonnelStepper.swift in Sources */,
 				572A9A3A2A5E80D1004D2809 /* Member.swift in Sources */,
 				57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */,
+				3B62877C2A84BF7200E00B09 /* CreateViewModel.swift in Sources */,
 				570063D42A7A57110051F42A /* Meeting.swift in Sources */,
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,
 				3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */,
@@ -1073,6 +1091,7 @@
 				3BD68EF52A7795D5003A57A7 /* SignInViewModel.swift in Sources */,
 				3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */,
 				5700636B2A643CDA0051F42A /* DropDownTableViewCell.swift in Sources */,
+				3B62877E2A84C0D500E00B09 /* SetMeetingNameViewModel.swift in Sources */,
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
 				570063BD2A7797B50051F42A /* PickerViewController.swift in Sources */,
 				570063CF2A7A44BC0051F42A /* Bundle+Ext.swift in Sources */,
@@ -1132,6 +1151,7 @@
 				3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */,
 				3BD700CB2A793AA0005C7D7E /* UserInfo.swift in Sources */,
 				3BC7D3612A7D4D6300D92356 /* SetNicknameViewModel.swift in Sources */,
+				3B6287802A84C90100E00B09 /* SetInterestViewModel.swift in Sources */,
 				3B0F1EE42A7C0317009F3F2B /* UICheckBox1.swift in Sources */,
 				3B0E2EB92A80FE9200797782 /* MeetingService.swift in Sources */,
 				3B6BA9952A7FEB8C00A11FE4 /* CertificatedEmailViewController.swift in Sources */,
