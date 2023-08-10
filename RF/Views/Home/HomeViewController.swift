@@ -72,9 +72,11 @@ final class HomeViewController: UIViewController {
         return view
     }()
     
+    
+    
     private lazy var meetingListLabel: UILabel = {
         let label = UILabel()
-        label.text = "놓치기 아쉬운 모임들"
+        label.text = "다양한 친구들과 대화를 나눠보세요!"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
@@ -292,7 +294,7 @@ final class HomeViewController: UIViewController {
             
             make.bottom.equalToSuperview()
             
-            make.height.equalTo(420)    // 모임 2개 고정 (2개 275, 3개 420)
+            make.height.equalTo(700)    // 모임 3개 고정 (2개 275, 3개 420) 220*3+40
         }
         
         // 꿀팁
@@ -345,7 +347,7 @@ final class HomeViewController: UIViewController {
         meetingCollectionView.delegate = self
         meetingCollectionView.dataSource = self
         
-        meetingCollectionView.register(MeetingCollectionViewCell.self, forCellWithReuseIdentifier: MeetingCollectionViewCell.identifier)
+        meetingCollectionView.register(DetailedMeetingCollectionViewCell.self, forCellWithReuseIdentifier: DetailedMeetingCollectionViewCell.identifier)
         
         // 관심사
         interestCollectionView.delegate = self
@@ -390,7 +392,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 0:
             return CGSize(width: bannerCollectionView.frame.width, height: bannerCollectionView.frame.height)
         case 1:
-            return CGSize(width: meetingCollectionView.frame.width, height: 130)
+            return CGSize(width: meetingCollectionView.frame.width, height: 220)
         case 2:
             return CGSize(width: (interestCollectionView.frame.width - 2) / 3, height: (interestCollectionView.frame.height - 2) / 4)
         default:
@@ -419,11 +421,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.setBannerImage(UIImage(named: "banner"))
             return cell
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MeetingCollectionViewCell", for: indexPath) as! MeetingCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailedMeetingCollectionViewCell", for: indexPath) as! DetailedMeetingCollectionViewCell
             cell.inputTextData(title: HomeMeetingDummy.title[indexPath.row],
                                description: HomeMeetingDummy.description[indexPath.row],
                                personnel: HomeMeetingDummy.personnel[indexPath.row],
-                               tag: HomeMeetingDummy.tagList[indexPath.row])
+                               tag: HomeMeetingDummy.tagList[indexPath.row],
+                               imageName: HomeMeetingDummy.images[indexPath.row])
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InterestCollectionViewCell", for: indexPath) as! InterestCollectionViewCell

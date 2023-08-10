@@ -31,6 +31,8 @@
 		3B57FFD12A740E54007DB482 /* SchedulePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */; };
 		3B57FFD32A741972007DB482 /* SchedulePopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD22A741972007DB482 /* SchedulePopUpViewModel.swift */; };
 		3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */; };
+		3B595EF22A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B595EF12A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift */; };
+		3B595EF42A84DBC3008BD715 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B595EF32A84DBC3008BD715 /* UIImageView+Ext.swift */; };
 		3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */; };
 		3B59B2832A75653400027809 /* DetailMeetingJoinPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */; };
 		3B6BA97C2A7E5ACD00A11FE4 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */; };
@@ -175,6 +177,8 @@
 		3B57FFD02A740E54007DB482 /* SchedulePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUp.swift; sourceTree = "<group>"; };
 		3B57FFD22A741972007DB482 /* SchedulePopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUpViewModel.swift; sourceTree = "<group>"; };
 		3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventPopUp.swift; sourceTree = "<group>"; };
+		3B595EF12A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMeetingCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B595EF32A84DBC3008BD715 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUpViewController.swift; sourceTree = "<group>"; };
 		3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUp.swift; sourceTree = "<group>"; };
 		3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedButton.swift; sourceTree = "<group>"; };
@@ -590,6 +594,7 @@
 				572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */,
 				570063AA2A724CB40051F42A /* UIViewController+Ext.swift */,
 				570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */,
+				3B595EF32A84DBC3008BD715 /* UIImageView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -819,6 +824,7 @@
 				57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */,
 				57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */,
 				5700639C2A6AC60C0051F42A /* NotiListTableViewCell.swift */,
+				3B595EF12A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1077,8 +1083,10 @@
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
 				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
 				3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */,
+				3B595EF42A84DBC3008BD715 /* UIImageView+Ext.swift in Sources */,
 				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
 				57DD3E682A8106E7009F7139 /* Message.swift in Sources */,
+				3B595EF22A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift in Sources */,
 				570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */,
 				570063AD2A7258530051F42A /* DesignColor.swift in Sources */,
 				570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */,
@@ -1252,7 +1260,7 @@
 				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5DFZR8RCQR;
+				DEVELOPMENT_TEAM = 7WSFP8ZQ32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
@@ -1265,7 +1273,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF.gyfolder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1285,7 +1293,7 @@
 				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SN5J3DYFX4;
+				DEVELOPMENT_TEAM = 7WSFP8ZQ32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
@@ -1298,7 +1306,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF.gyfolder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

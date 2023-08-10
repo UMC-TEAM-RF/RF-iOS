@@ -32,4 +32,9 @@ struct HomeMeetingDummy{
         ["맛집", "돼지아님", "여행"]
     ]
     
+    static let images: [String] = [
+        "rf_logo",
+        "rf_logo",
+        "rf_logo"
+    ]
 }
