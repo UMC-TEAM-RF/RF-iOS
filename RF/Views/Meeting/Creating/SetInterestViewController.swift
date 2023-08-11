@@ -64,9 +64,8 @@ final class SetInterestViewController: UIViewController {
     // MARK: - Property
     
     private let disposeBag = DisposeBag()
+    private let viewModel = SetInterestViewModel()
     
-    // 셀 클릭 개수
-    private var selectedCount: Int = 0
     
     // MARK: - viewDidLoad()
     
@@ -80,6 +79,7 @@ final class SetInterestViewController: UIViewController {
         
         addSubviews()
         configureConstraints()
+        bind()
         addTargets()
         configureCollectionView()
     }
@@ -135,17 +135,61 @@ final class SetInterestViewController: UIViewController {
     private func configureCollectionView() {
         interestCollectionView.delegate = self
         interestCollectionView.dataSource = self
-        interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: "InterestCollectionViewCell")
+        interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: InterestCollectionViewCell.identifier)
     }
     
     // MARK: - addTargets()
     
     private func addTargets() {
         nextButton.rx.tap
-            .subscribe(onNext: {
-                self.navigationController?.pushViewController(SetDescriptViewController(), animated: true)
+            .bind(onNext: { [weak self] in
+                self?.moveToNextPage()
+                self?.navigationController?.pushViewController(SetDescriptViewController(), animated: true)
             })
             .disposed(by: disposeBag)
+    }
+    
+    /// MARK:
+    private func moveToNextPage() {
+        let interests = viewModel.interestingRelay.value.map { EnumFile.enumfile.enumList.value.interest?[$0.row].key ?? "" }
+        CreateViewModel.viewModel.interestingRelay.accept(interests)
+    }
+    
+    /// MARK: binding viewModel
+    private func bind() {
+        viewModel.interestingRelay
+            .bind { [weak self] items in
+                self?.updateInterestingItems(items)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.checkSelectedAll
+            .bind { [weak self] check in
+                if check{
+                    self?.nextButton.backgroundColor = .tintColor
+                    self?.nextButton.setTitleColor(.white, for: .normal)
+                    self?.nextButton.isEnabled = true
+                }
+                else{
+                    self?.nextButton.backgroundColor = .systemGray6
+                    self?.nextButton.setTitleColor(.black, for: .normal)
+                    self?.nextButton.isEnabled = false
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    /// MARK: 선택된 셀 업데이트 하는 함수
+    private func updateInterestingItems(_ items: Set<IndexPath>) {
+        for indexPath in interestCollectionView.indexPathsForVisibleItems {
+            guard let cell = interestCollectionView.cellForItem(at: indexPath) as? InterestCollectionViewCell else { return }
+            if items.contains(indexPath) {
+                cell.setColor(textColor: .white, backgroundColor: .systemBlue)
+            }
+            else{
+                cell.setColor(textColor: .label, backgroundColor: .systemGray6)
+            }
+        }
     }
 }
 
@@ -158,45 +202,20 @@ extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Interest.list.count
+        return EnumFile.enumfile.enumList.value.interest?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InterestCollectionViewCell", for: indexPath) as! InterestCollectionViewCell
-        cell.setTextLabel(Interest.list[indexPath.item])
-        cell.contentView.backgroundColor = .systemGray6
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestCollectionViewCell.identifier, for: indexPath) as! InterestCollectionViewCell
+        
+        cell.setTextLabel(EnumFile.enumfile.enumList.value.interest?[indexPath.item].value ?? "")
+        cell.setColor(textColor: .black, backgroundColor: .systemGray6)
         cell.contentView.layer.cornerRadius = 8
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? InterestCollectionViewCell else { return }
-        
-        if !cell.isSelectedCell && self.selectedCount == 3 {
-            print("초과")
-            return
-        }
-        
-        cell.isSelectedCell.toggle()
-        
-        // 최대 3개 선택할 수 있도록 설정
-        if cell.isSelectedCell { // 활성화
-            self.selectedCount += 1
-            cell.setColor(textColor: .white, backgroundColor: .tintColor)
-        } else {  // 비활성화
-            self.selectedCount -= 1
-            cell.setColor(textColor: .label, backgroundColor: .systemGray6)
-        }
-    
-        // 다음 버튼 활성화 여부
-        if self.selectedCount == 0 {
-            nextButton.backgroundColor = .systemGray6
-            nextButton.setTitleColor(.black, for: .normal)
-            nextButton.isEnabled = false
-        } else {
-            nextButton.backgroundColor = .tintColor
-            nextButton.setTitleColor(.white, for: .normal)
-            nextButton.isEnabled = true
-        }
+        viewModel.selectedInterestingItems(at: indexPath)
+
     }
 }

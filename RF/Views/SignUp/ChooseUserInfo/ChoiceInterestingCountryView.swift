@@ -21,6 +21,14 @@ final class ChoiceInterestingCountryView: UIViewController{
         return label
     }()
     
+    /// MARK: 완료 버튼
+    private lazy var completeButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("완료", for: .normal)
+        btn.setTitleColor(.systemBlue, for: .normal)
+        return btn
+    }()
+    
     /// MARK: 검색 바
     private lazy var searchBar: UISearchBar = {
         let bar = UISearchBar()
@@ -48,7 +56,7 @@ final class ChoiceInterestingCountryView: UIViewController{
     
     private let viewModel = ChoiceInterestingCountryViewModel()
     private let disposeBag = DisposeBag()
-    var selctedCountry: PublishSubject<String> = PublishSubject()
+    var selctedCountry: PublishSubject<Set<KVO>> = PublishSubject<Set<KVO>>()
     
     // MARK: view did load
     override func viewDidLoad() {
@@ -56,6 +64,7 @@ final class ChoiceInterestingCountryView: UIViewController{
         view.backgroundColor = .white
         
         addSubviews()
+        clickedButton()
         viewModel.inputCountry()
     }
     
@@ -69,6 +78,7 @@ final class ChoiceInterestingCountryView: UIViewController{
         view.addSubview(topBackgroundView)
         
         topBackgroundView.addSubview(titleLabel)
+        topBackgroundView.addSubview(completeButton)
         topBackgroundView.addSubview(searchBar)
         searchBar.delegate = self
         
@@ -88,6 +98,11 @@ final class ChoiceInterestingCountryView: UIViewController{
             make.centerX.equalToSuperview()
         }
         
+        completeButton.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.centerY)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
             make.leading.equalToSuperview()
@@ -105,6 +120,17 @@ final class ChoiceInterestingCountryView: UIViewController{
             make.top.equalTo(searchBar.snp.bottom).offset(10)
             make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+    
+    /// MARK: 버튼 클릭 시
+    private func clickedButton(){
+        completeButton.rx.tap
+            .bind { [weak self] in
+                self?.selctedCountry.onNext(self?.viewModel.selectedCountry.value ?? Set<KVO>())
+                self?.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+            
     }
     
 }
@@ -162,10 +188,22 @@ extension ChoiceInterestingCountryView: UITableViewDelegate, UITableViewDataSour
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChooseUserTableViewCell.identifer, for: indexPath) as? ChooseUserTableViewCell else { return UITableViewCell()}
         
         if viewModel.isFiltering.value{
-            cell.inputValue(text: viewModel.filteringCountryRelay.value[indexPath.row])
+            cell.inputValue(text: viewModel.filteringCountryRelay.value[indexPath.row].value ?? "")
+            if viewModel.checkMarkSelectedCountry(country: viewModel.filteringCountryRelay.value[indexPath.row].value ?? ""){
+                cell.accessoryType = .checkmark
+            }
+            else{
+                cell.accessoryType = .none
+            }
         }
         else{
-            cell.inputValue(text: viewModel.countryRelay.value[indexPath.row])
+            cell.inputValue(text: viewModel.countryRelay.value[indexPath.row].value ?? "")
+            if viewModel.checkMarkSelectedCountry(country: viewModel.countryRelay.value[indexPath.row].value ?? ""){
+                cell.accessoryType = .checkmark
+            }
+            else{
+                cell.accessoryType = .none
+            }
         }
         
         return cell
@@ -182,10 +220,29 @@ extension ChoiceInterestingCountryView: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        viewModel.isFiltering.value ? viewModel.selectedCountry.accept(viewModel.filteringCountryRelay.value[indexPath.row]) : viewModel.selectedCountry.accept(viewModel.countryRelay.value[indexPath.row])
+        guard let cell = tableView.cellForRow(at: indexPath) as? ChooseUserTableViewCell else { return }
+      
+        if viewModel.isFiltering.value{
+            viewModel.selectedInterestingItems(at: viewModel.filteringCountryRelay.value[indexPath.row])
+            if viewModel.checkMarkSelectedCountry(country: viewModel.filteringCountryRelay.value[indexPath.row].value ?? ""){
+                cell.accessoryType = .checkmark
+            }
+            else{
+                cell.accessoryType = .none
+            }
+        }
+        else{
+            viewModel.selectedInterestingItems(at: viewModel.countryRelay.value[indexPath.row])
+            if viewModel.checkMarkSelectedCountry(country: viewModel.countryRelay.value[indexPath.row].value ?? ""){
+                cell.accessoryType = .checkmark
+            }
+            else{
+                cell.accessoryType = .none
+            }
+        }
         
-        selctedCountry.onNext(viewModel.selectedCountry.value)
-        dismiss(animated: true)
+        
     }
     
 }
+

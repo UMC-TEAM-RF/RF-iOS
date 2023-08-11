@@ -14,8 +14,8 @@ final class EmailService {
     
     /// 이메일로 인증번호 전송하는 함수
     func sendingEmail(email: String, university: String) -> Observable<Mail>{
-        let url = "\(Bundle.main.REST_API_URL)/mail/send"
-        let body = MailBody(mail: email, university: university, code: nil)
+        let url = "\(Domain.restApi)\(SocketPath.sendMail)"
+        let body = Mail(mail: email, university: university, code: nil)
         print(body)
         return Observable.create { observer in
             AF.request(url,
@@ -23,11 +23,13 @@ final class EmailService {
                        parameters: body,
                        encoder: JSONParameterEncoder.default)
             .validate(statusCode: 200..<201)
-            .responseDecodable(of: MailData.self) { response in
+            .responseDecodable(of: Response<Mail>.self) { response in
                 print(response)
                 switch response.result{
                 case .success(let data):
-                    observer.onNext(data.result.mail)
+                    if let data = data.result{
+                        observer.onNext(data)
+                    }
                 case.failure(let error):
                     print("sendingEmail error!\n \(error)")
                     observer.onError(error)
@@ -40,8 +42,8 @@ final class EmailService {
     
     /// 인증번호 인증하는 함수
     func checkEmailCode(email: String, university: String, code: String) -> Observable<Bool>{
-        let url = "\(Bundle.main.REST_API_URL)/mail/check"
-        let body = MailBody(mail: email, university: university, code: code)
+        let url = "\(Domain.restApi)\(SocketPath.checkCode)"
+        let body = Mail(mail: email, university: university, code: code)
         
         return Observable.create { observer in
             AF.request(url,
@@ -49,7 +51,7 @@ final class EmailService {
                        parameters: body,
                        encoder: JSONParameterEncoder.default)
             .validate(statusCode: 200..<201)
-            .responseDecodable(of: ResponseData.self) { response in
+            .responseDecodable(of: Response<String>.self) { response in
                 switch response.result{
                 case .success(let data):
                     observer.onNext(data.isSuccess ?? false)

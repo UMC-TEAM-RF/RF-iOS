@@ -46,13 +46,10 @@ final class SignUpViewModel {
     
     /// 아이디 중복확인, 비밀번호 확인이 통과 했는지 확인하는 함수
     func checkTotalInformation() -> Observable<Bool>{
-        let overlapId = overlapCheckRelay.value
-        let confirmPw = confirmPasswordRelay.value
-        
         return Observable.create { [weak self] observer in
             
-            Observable.combineLatest(self?.overlapCheckRelay ?? BehaviorRelay(value: false),
-                                     self?.confirmPasswordRelay ?? BehaviorRelay(value: false))
+            Observable.zip(self?.overlapCheckRelay ?? BehaviorRelay(value: false),
+                           self?.confirmPasswordRelay ?? BehaviorRelay(value: false))
             .subscribe(onNext: { first, second in
                 if first && second{
                     observer.onNext(true)
@@ -71,11 +68,19 @@ final class SignUpViewModel {
     // MARK: - API Connect Functions
     
     /// 아이디 중복 체크
-    func checkOverlapId() {
-        service.checkOverlapId(userId: "")
-            .bind { [weak self] check in
-                self?.overlapCheckRelay.accept(true)
-            }
-            .disposed(by: disposeBag)
+    func checkOverlapId()  -> Observable<Bool>{
+        let id = idRelay.value
+        return Observable.create { [weak self] observer in
+            self?.service.checkOverlapId(userId: id)
+                .bind { [weak self] check in
+                    if check{
+                        self?.overlapCheckRelay.accept(true)
+                    }
+                    
+                    observer.onNext(check)
+                }
+                .disposed(by: self?.disposeBag ?? DisposeBag())
+            return Disposables.create()
+        }
     }
 }
