@@ -117,8 +117,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 let index = SingletonChannel.shared.readNewMessage(1)
                 
                 // 채팅방 화면에 chatRoomId 값을 전달합니다 (이름은 적절하게 변경할 수 있습니다).
-                chatRoomVC.channelId = 1
-                chatRoomVC.messages = SingletonChannel.shared.list[0].messages
+                chatRoomVC.channel = SingletonChannel.shared.list[0]
                 chatRoomVC.row = index
                 
                 

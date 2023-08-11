@@ -116,8 +116,7 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
         
         let index = SingletonChannel.shared.readNewMessage(channel.id)
         
-        vc.channelId = channel.id
-        vc.messages = channel.messages
+        vc.channel = channel
         vc.row = index
         
         tableView.reloadData()

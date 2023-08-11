@@ -89,8 +89,7 @@ class ChatRoomViewController: UIViewController {
     
     private var keyboardRect: CGRect = CGRect()
     
-    var channelId: Int!
-    var messages: [CustomMessage]!
+    var channel: Channel!
     var row: Int?
     
     
@@ -99,12 +98,10 @@ class ChatRoomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         view.backgroundColor = .white
         
         setupCustomBackButton()
-        updateTitleView(title: "Channel")
-        
+        updateTitleView(title: channel.name)
         
         addSubviews()
         configureConstraints()
@@ -115,9 +112,8 @@ class ChatRoomViewController: UIViewController {
         messagesTableView.addInteraction(editMenuInteraction!)
         
         DispatchQueue.main.async {
-            self.scrollToBottom()
+            self.messagesTableView.scrollToRow(at: IndexPath(row: self.row ?? 0, section: 0), at: .bottom, animated: false)
         }
-        print(row)
     }
     
     // MARK: - viewWillAppear()
@@ -228,15 +224,15 @@ class ChatRoomViewController: UIViewController {
     }
     
     private func scrollToBottom() {
-        if messages.isEmpty { return }
-        messagesTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: false)
+        if channel.messages.isEmpty { return }
+        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
     }
     
     /// 한 사람이 연속해서 메시지를 보내는지 체크
     /// - Parameter indexPath: indexPath
     /// - Returns: true: 연속, false: 비연속
     private func isSenderConsecutiveMessages(row: Int) -> Bool {
-        if row != 0 && (messages[row - 1].sender?.userId == messages[row].sender?.userId) { return true }
+        if row != 0 && (channel.messages[row - 1].sender?.userId == channel.messages[row].sender?.userId) { return true }
         else { return false }
     }
     
@@ -333,11 +329,11 @@ class ChatRoomViewController: UIViewController {
         
         //if isLastIndexPathVisible() || isSenderSelf(<#T##sender: CustomMessageSender?##CustomMessageSender?#>)
         if isLastIndexPathVisible() {
-            messages = SingletonChannel.shared.getChannelMessages(channelId)
+            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
             messagesTableView.reloadData()
             scrollToBottom()
         } else {
-            messages = SingletonChannel.shared.getChannelMessages(channelId)
+            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
             messagesTableView.reloadData()
             scrollToBottom()  // 테스트
             print("메시지 업데이트")
@@ -377,11 +373,11 @@ class ChatRoomViewController: UIViewController {
 
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return channel.messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let message = messages[indexPath.row]
+        let message = channel.messages[indexPath.row]
         
         if isSenderSelf(message.sender) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
@@ -459,7 +455,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         inputBarTopStackView.isHidden = true
         keyboardInputBar.isTranslated = false
 
-        ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: channelId)
+        ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: channel.id)
     }
     
     func didTapTranslate(_ isTranslated: Bool) {
