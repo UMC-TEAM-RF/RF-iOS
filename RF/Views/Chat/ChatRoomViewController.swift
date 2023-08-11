@@ -464,11 +464,11 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
                 self.keyboardInputBar.inputFieldText = result
             }
         } else { // 메시지 전송 버튼 클릭인 경우
-            inputBarTopStackView.isHidden = true
             //keyboardInputBar.isTranslated = false
 
             ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: channel.id)
         }
+        inputBarTopStackView.isHidden = true
     }
     
     func didTapTranslate(_ isTranslated: Bool) {
