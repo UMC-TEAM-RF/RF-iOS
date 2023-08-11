@@ -22,8 +22,6 @@ class InterestCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "InterestCollectionViewCell"
     
-    var isSelectedCell: Bool = false
-    
     // MARK: - init()
     
     override init(frame: CGRect) {

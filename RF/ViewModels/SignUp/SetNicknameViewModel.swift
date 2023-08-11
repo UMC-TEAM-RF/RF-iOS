@@ -53,12 +53,11 @@ final class SetNicknameViewModel {
         return Observable.create { [weak self] observer in
             self?.service.checkOverlapNickName(name: name)
             .bind { [weak self] check in
-                if !check{
+                if check{
                     self?.finalNickNameRelay.accept(name)
+                    
                 }
-                else{
-                    observer.onNext(check)
-                }
+                observer.onNext(check)
             }
             .disposed(by: self?.disposeBag ?? DisposeBag())
             

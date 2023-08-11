@@ -605,7 +605,7 @@
 		F7C20C67D0D5A1C73A0A057268A719C1 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A8B55324C33BADC25117E0A35085C9 /* FSCalendar.m */; };
 		F816E8668B61262B5A2B847887710543 /* PageboyViewController+RelativeCurrentPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5840009C3101CEA1BE319256864D90FB /* PageboyViewController+RelativeCurrentPosition.swift */; };
 		F837609C6FE8C55E8434F1E482C470E6 /* Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99941A72737236DE0F01D63B885441F0 /* Debounce.swift */; };
-		F8FDE8D1B9DC98D38B3C762AC5A8F0B8 /* Mantis-MantisResources in Resources */ = {isa = PBXBuildFile; fileRef = E50395ED50F3D5D97E3957A2ED43921F /* Mantis-MantisResources */; };
+		F8FDE8D1B9DC98D38B3C762AC5A8F0B8 /* MantisResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E50395ED50F3D5D97E3957A2ED43921F /* MantisResources.bundle */; };
 		F953AA9104BFE0C2DAD639EA60104A75 /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57490739B6C85D8AAD29072C9EFA46F /* ConstraintView+Extensions.swift */; };
 		F9821B669566BA01F845426DC6834E76 /* Observable+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3E42CEDE18EB612F56C38B794459A /* Observable+Bind.swift */; };
 		F9D1568D559BBBE21E30EDB3A300FDC3 /* SynchronizedUnsubscribeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1090C481EAD37513EC8A73A9719210C4 /* SynchronizedUnsubscribeType.swift */; };
@@ -1194,7 +1194,7 @@
 		9CC823A0F4717D595708A75E5DF787DF /* Enumerated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enumerated.swift; path = RxSwift/Observables/Enumerated.swift; sourceTree = "<group>"; };
 		9CE8B3B20459C608B8A87CEF36669F2B /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Sources/ConstraintItem.swift; sourceTree = "<group>"; };
 		9D2CFCA7B2264972548B288CDCB0D4C7 /* RxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RxSwift.debug.xcconfig; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DA5E0826C326B26232485830CEC7F71 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		9DBC4F0683505BDD599380238C8C50B3 /* PageboyViewController+ScrollDetection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "PageboyViewController+ScrollDetection.swift"; path = "Sources/Pageboy/PageboyViewController+ScrollDetection.swift"; sourceTree = "<group>"; };
 		9F30E4D1B326C197CF2F8626FB1B3A1A /* OperationQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OperationQueue+Alamofire.swift"; path = "Source/OperationQueue+Alamofire.swift"; sourceTree = "<group>"; };
@@ -1385,7 +1385,7 @@
 		E44E5972255FCE1582AAA89A1DB7A928 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		E453F7E10CB519AE92F5B0F99133F64A /* StompClientLib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = StompClientLib.release.xcconfig; sourceTree = "<group>"; };
 		E4D6F623D941C78A3E86369B8DE2FC5B /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Sources/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
-		E50395ED50F3D5D97E3957A2ED43921F /* Mantis-MantisResources */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Mantis-MantisResources"; path = MantisResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		E50395ED50F3D5D97E3957A2ED43921F /* MantisResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MantisResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50D4D1424CD831EEFC2B217DA5996CD /* SRWebSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SRWebSocket.m; path = SocketRocket/SRWebSocket.m; sourceTree = "<group>"; };
 		E642A3564BF56605230AB56BB3DC735E /* RotationCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RotationCalculator.swift; path = Sources/Mantis/RotationDial/RotationDial/RotationCalculator.swift; sourceTree = "<group>"; };
 		E6C5BA5F2CD645646BC7C445D43AE41C /* SRHTTPConnectMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SRHTTPConnectMessage.m; path = SocketRocket/Internal/Utilities/SRHTTPConnectMessage.m; sourceTree = "<group>"; };
@@ -1611,7 +1611,6 @@
 				C5FAD6B8A5B6296420B3439060E1D141 /* Validation.swift */,
 				6409A92BA1F4E211F147DC1E1FF6B670 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -1668,7 +1667,6 @@
 				196D7FA68BDCB208A034CD60B5528582 /* FSCalendarWeekdayView.m */,
 				A0D513D0CD68721C8DDECD20D5B4E5C0 /* Support Files */,
 			);
-			name = FSCalendar;
 			path = FSCalendar;
 			sourceTree = "<group>";
 		};
@@ -1678,7 +1676,7 @@
 				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */,
 				95209B8BB966524BC76543F99C75F5FE /* FSCalendar */,
 				316D22F8B19400DBC5073973480D1521 /* Mantis */,
-				E50395ED50F3D5D97E3957A2ED43921F /* Mantis-MantisResources */,
+				E50395ED50F3D5D97E3957A2ED43921F /* MantisResources.bundle */,
 				23D5CD291D18F2187712FE6F84B6F1C6 /* Pageboy */,
 				47882824C1887DAD42D6DD3F4C8E50FD /* Pods-RF */,
 				BC432FD48A5932251F1CAFBC4BF74894 /* RxCocoa */,
@@ -1763,7 +1761,6 @@
 				B31B6EFA215C311FF2CA6088677BEC73 /* Resources */,
 				D666DD5039F31FAB0F54C34F984D51F5 /* Support Files */,
 			);
-			name = Mantis;
 			path = Mantis;
 			sourceTree = "<group>";
 		};
@@ -1773,7 +1770,6 @@
 				709E77E74D9AD308ADE6F65C127949DE /* StompClientLib.swift */,
 				737D8571C04841057A427873B456B746 /* Support Files */,
 			);
-			name = StompClientLib;
 			path = StompClientLib;
 			sourceTree = "<group>";
 		};
@@ -1868,7 +1864,6 @@
 				C30E8578575D9DED255C216B69432F3A /* WeakContainer.swift */,
 				ABE7D2FA54A4DB140CC159A5611620F8 /* Support Files */,
 			);
-			name = Pageboy;
 			path = Pageboy;
 			sourceTree = "<group>";
 		};
@@ -1944,7 +1939,6 @@
 				7216EC6AE3C45A4607E0A059BDEF4267 /* WeakContainer.swift */,
 				639857F0625AEA6FC41F0057A665D70D /* Support Files */,
 			);
-			name = Tabman;
 			path = Tabman;
 			sourceTree = "<group>";
 		};
@@ -1990,7 +1984,6 @@
 				E764B10A4E1F126BEC17F7256DC6326D /* UILayoutSupport+Extensions.swift */,
 				AEB6784284D23EF0A50FEC46D899FCE0 /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -2250,7 +2243,6 @@
 				AF585A0B984E2E5D8A9367F76FC7E3FC /* Zip+Collection.swift */,
 				56B803D52FBA2053485F194D7AE48A4F /* Support Files */,
 			);
-			name = RxSwift;
 			path = RxSwift;
 			sourceTree = "<group>";
 		};
@@ -2264,7 +2256,6 @@
 				CF0E60B6004653D4AD61895C1A1CFDB5 /* Utils.swift */,
 				DE782F214AAA524E8FA530B1F30D851E /* Support Files */,
 			);
-			name = RxRelay;
 			path = RxRelay;
 			sourceTree = "<group>";
 		};
@@ -2314,7 +2305,6 @@
 				E50D4D1424CD831EEFC2B217DA5996CD /* SRWebSocket.m */,
 				AC5C43689BDD18725C0DFC025C6AFED1 /* Support Files */,
 			);
-			name = SocketRocket;
 			path = SocketRocket;
 			sourceTree = "<group>";
 		};
@@ -2444,7 +2434,6 @@
 				F200675573B4660250209F3864998378 /* WKWebView+Rx.swift */,
 				563CEF7BDCF658DE1E797DEB7DF8F5F7 /* Support Files */,
 			);
-			name = RxCocoa;
 			path = RxCocoa;
 			sourceTree = "<group>";
 		};
@@ -2781,7 +2770,7 @@
 			);
 			name = "Mantis-MantisResources";
 			productName = MantisResources;
-			productReference = E50395ED50F3D5D97E3957A2ED43921F /* Mantis-MantisResources */;
+			productReference = E50395ED50F3D5D97E3957A2ED43921F /* MantisResources.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		3EF26018CD886BA3143044A409D6D0B9 /* Tabman */ = {
@@ -2973,7 +2962,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8FDE8D1B9DC98D38B3C762AC5A8F0B8 /* Mantis-MantisResources in Resources */,
+				F8FDE8D1B9DC98D38B3C762AC5A8F0B8 /* MantisResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3946,6 +3935,7 @@
 			baseConfigurationReference = AB4C89A1D529D0C0CC274F074296F7CC /* Mantis.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Mantis";
+				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				IBSC_MODULE = Mantis;
 				INFOPLIST_FILE = "Target Support Files/Mantis/ResourceBundle-MantisResources-Mantis-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -4626,6 +4616,7 @@
 			baseConfigurationReference = 6BE536740B8242818948F6EB0519B010 /* Mantis.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Mantis";
+				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				IBSC_MODULE = Mantis;
 				INFOPLIST_FILE = "Target Support Files/Mantis/ResourceBundle-MantisResources-Mantis-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

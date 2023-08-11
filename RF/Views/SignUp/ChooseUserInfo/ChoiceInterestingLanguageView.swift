@@ -32,6 +32,14 @@ final class ChoiceInterestingLanguageView: UIViewController{
         return bar
     }()
     
+    /// MARK: 완료 버튼
+    private lazy var completeButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("완료", for: .normal)
+        btn.setTitleColor(.systemBlue, for: .normal)
+        return btn
+    }()
+    
     /// MARK: 위쪽 백그라운드
     private lazy var topBackgroundView: UIView = {
         let view = UIView()
@@ -48,7 +56,7 @@ final class ChoiceInterestingLanguageView: UIViewController{
     
     private let viewModel = ChoiceInterestingLanguageViewModel()
     private let disposeBag = DisposeBag()
-    var selctedCountry: PublishSubject<String> = PublishSubject()
+    var selctedLanguage: PublishSubject<Set<KVO>> = PublishSubject<Set<KVO>>()
     
     // MARK: view did load
     override func viewDidLoad() {
@@ -56,7 +64,8 @@ final class ChoiceInterestingLanguageView: UIViewController{
         view.backgroundColor = .white
         
         addSubviews()
-        viewModel.inputCountry()
+        clickedButton()
+        viewModel.inputLanguage()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -69,6 +78,7 @@ final class ChoiceInterestingLanguageView: UIViewController{
         view.addSubview(topBackgroundView)
         
         topBackgroundView.addSubview(titleLabel)
+        topBackgroundView.addSubview(completeButton)
         topBackgroundView.addSubview(searchBar)
         searchBar.delegate = self
         
@@ -95,6 +105,11 @@ final class ChoiceInterestingLanguageView: UIViewController{
             make.bottom.equalToSuperview()
         }
         
+        completeButton.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.centerY)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
         topBackgroundView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
@@ -107,6 +122,16 @@ final class ChoiceInterestingLanguageView: UIViewController{
         }
     }
     
+    /// MARK: 버튼 클릭 시
+    private func clickedButton(){
+        completeButton.rx.tap
+            .bind { [weak self] in
+                self?.selctedLanguage.onNext(self?.viewModel.selectedLanguage.value ?? Set<KVO>())
+                self?.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+            
+    }
 }
 
 extension ChoiceInterestingLanguageView: UISearchBarDelegate{
@@ -138,7 +163,7 @@ extension ChoiceInterestingLanguageView: UISearchBarDelegate{
         searchBar.resignFirstResponder()
         
         viewModel.isFiltering.accept(false)
-        viewModel.inputCountry()
+        viewModel.inputLanguage()
         
         tableView.reloadData()
     }
@@ -146,7 +171,7 @@ extension ChoiceInterestingLanguageView: UISearchBarDelegate{
     /// 서치바 검색이 끝났을 때 호출
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         viewModel.isFiltering.accept(false)
-        viewModel.inputCountry()
+        viewModel.inputLanguage()
         
         tableView.reloadData()
     }
@@ -162,10 +187,22 @@ extension ChoiceInterestingLanguageView: UITableViewDelegate, UITableViewDataSou
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChooseUserTableViewCell.identifer, for: indexPath) as? ChooseUserTableViewCell else { return UITableViewCell()}
         
         if viewModel.isFiltering.value{
-            cell.inputValue(text: viewModel.filteringLanguageRelay.value[indexPath.row])
+            cell.inputValue(text: viewModel.filteringLanguageRelay.value[indexPath.row].value ?? "")
+            if viewModel.checkMarkSelectedCountry(language: viewModel.filteringLanguageRelay.value[indexPath.row].value ?? ""){
+                cell.accessoryType = .checkmark
+            }
+            else{
+                cell.accessoryType = .none
+            }
         }
         else{
-            cell.inputValue(text: viewModel.languageRelay.value[indexPath.row])
+            cell.inputValue(text: viewModel.languageRelay.value[indexPath.row].value ?? "")
+            if viewModel.checkMarkSelectedCountry(language: viewModel.languageRelay.value[indexPath.row].value ?? ""){
+                cell.accessoryType = .checkmark
+            }
+            else{
+                cell.accessoryType = .none
+            }
         }
         
         return cell
@@ -182,10 +219,26 @@ extension ChoiceInterestingLanguageView: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        viewModel.isFiltering.value ? viewModel.selectedLanguage.accept(viewModel.filteringLanguageRelay.value[indexPath.row]) : viewModel.selectedLanguage.accept(viewModel.languageRelay.value[indexPath.row])
+        guard let cell = tableView.cellForRow(at: indexPath) as? ChooseUserTableViewCell else { return }
         
-        selctedCountry.onNext(viewModel.selectedLanguage.value)
-        dismiss(animated: true)
+        if viewModel.isFiltering.value{
+            viewModel.selectedInterestingItems(at: viewModel.filteringLanguageRelay.value[indexPath.row])
+            if viewModel.checkMarkSelectedCountry(language: viewModel.filteringLanguageRelay.value[indexPath.row].value ?? ""){
+                cell.accessoryType = .checkmark
+            }
+            else{
+                cell.accessoryType = .none
+            }
+        }
+        else{
+            viewModel.selectedInterestingItems(at: viewModel.languageRelay.value[indexPath.row])
+            if viewModel.checkMarkSelectedCountry(language: viewModel.languageRelay.value[indexPath.row].value ?? ""){
+                cell.accessoryType = .checkmark
+            }
+            else{
+                cell.accessoryType = .none
+            }
+        }
     }
     
 }

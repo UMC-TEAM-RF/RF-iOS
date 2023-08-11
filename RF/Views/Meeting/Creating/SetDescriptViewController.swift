@@ -73,6 +73,7 @@ final class SetDescriptViewController: UIViewController {
         tv.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         tv.layer.cornerRadius = 10
         tv.delegate = self
+        viewModel.meetingDescriptionColor.accept("gray")
         return tv
     }()
     
@@ -80,15 +81,16 @@ final class SetDescriptViewController: UIViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.backgroundColor = .tintColor
-        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 5
         return button
     }()
     
     // MARK: - Property
     
-    private let textViewPlaceholder = "모임에 대해 소개해 주세요!"
+    private let textViewPlaceholder = "최소 30자 이상 작성"
+    private let viewModel = SetDescriptViewModel()
     private let disposeBag = DisposeBag()
     
     // MARK: - viewDidLoad()
@@ -104,7 +106,7 @@ final class SetDescriptViewController: UIViewController {
         addSubviews()
         configureConstraints()
         addTargets()
-        
+        bind()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -183,8 +185,29 @@ final class SetDescriptViewController: UIViewController {
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageViewTapped)))
         
         nextButton.rx.tap
-            .subscribe(onNext: {
-                self.navigationController?.pushViewController(SetDetailInfoViewController(), animated: true)
+            .subscribe(onNext: { [weak self] in
+                CreateViewModel.viewModel.meetingDescription.accept(self?.viewModel.meetingDescription.value ?? "")
+                CreateViewModel.viewModel.meetingImage.accept(self?.viewModel.meetingImage.value ?? UIImage())
+                self?.navigationController?.pushViewController(SetDetailInfoViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    /// MARK:
+    private func bind() {
+        descriptTextView.rx.text
+            .bind(onNext: { [weak self] text in
+                if let text = text {
+                    self?.viewModel.meetingDescription.accept(text)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.isValid()
+            .subscribe(onNext: { [weak self] isValid in
+                self?.nextButton.backgroundColor = isValid ? .tintColor : .systemGray6
+                self?.nextButton.setTitleColor(isValid ? .white : .black, for: .normal)
+                self?.nextButton.isEnabled = isValid
             })
             .disposed(by: disposeBag)
     }
@@ -212,34 +235,16 @@ extension SetDescriptViewController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .black
         }
+        viewModel.meetingDescriptionColor.accept("black")
     }
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
-        //        if textView.text.trimmingCharacters(in: .whitespaces).isEmpty {
         if textView.text.isEmpty {
             textView.text = textViewPlaceholder
             textView.textColor = .lightGray
         }
+        
     }
-    
-    //    func textViewDidChange(_ textView: UITextView) {
-    //        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-    //            textView.text = textViewPlaceholder
-    //            textView.textColor = .lightGray
-    //            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
-    //        } else {
-    //            textView.textColor = .black
-    //        }
-    //    }
-    
-    //    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-    //        if textView.text.count <= 10 || text.isEmpty {  // 10자를 초과하지 않거나, Backspace를 누를 때
-    //            return true
-    //        } else {
-    //            return false
-    //        }
-    //    }
-    
 }
 
 // MARK: - Ext: ImagePickerDelegate
@@ -269,6 +274,7 @@ extension SetDescriptViewController: CropViewControllerDelegate{
     func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation, cropInfo: CropInfo) {
         
         imageView.image = cropped
+        viewModel.meetingImage.accept(cropped)
         cropViewController.dismiss(animated: true)
     }
     

@@ -404,7 +404,7 @@ final class SignInViewController: UIViewController {
         viewModel.idRelay
             .accept(inputId)
         
-        viewModel.idRelay
+        viewModel.passwordRelay
             .accept(inputPW)
         
         viewModel.checkingLogin()

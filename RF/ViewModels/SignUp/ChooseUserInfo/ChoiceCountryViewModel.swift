@@ -11,27 +11,29 @@ import RxRelay
 
 /// 출생 국가
 final class ChoiceBornCountryViewModel{
+    private let disposeBag = DisposeBag()
     
     /// MARK: 국가 리스트
-    var countryRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+    var countryRelay: BehaviorRelay<[KVO]> = BehaviorRelay(value: [])
     
     /// MARK: 필터링된 국가
-    var filteringCountryRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+    var filteringCountryRelay: BehaviorRelay<[KVO]> = BehaviorRelay(value: [])
     
     /// MARK: 선택된 나라
-    var selectedCountry: BehaviorRelay<String> = BehaviorRelay(value: "")
+    var selectedCountry: BehaviorRelay<KVO> = BehaviorRelay(value: KVO())
     
     /// MARK: Check Filtering
     var isFiltering: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     
     /// dummy data
     func inputCountry(){
-        var list: [String] = []
+        var list: [KVO] = []
         
-        list.append("대한민국")
-        list.append("미국")
-        list.append("중국")
-        list.append("일본")
+        EnumFile.enumfile.enumList
+            .bind { enums in
+                list = enums.country ?? []
+            }
+            .disposed(by: disposeBag)
         
         countryRelay.accept(list)
     }
@@ -42,7 +44,7 @@ final class ChoiceBornCountryViewModel{
             filteringCountryRelay.accept(countryRelay.value)
         }
         else{
-            let list = countryRelay.value.filter { $0.localizedCaseInsensitiveContains(text) }
+            let list = countryRelay.value.filter { $0.value?.localizedCaseInsensitiveContains(text) ?? false }
             filteringCountryRelay.accept(list)
         }
     }

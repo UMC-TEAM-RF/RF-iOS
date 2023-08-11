@@ -29,8 +29,11 @@ final class SignInViewModel {
     /// MARK: 로그인이 성공 했는지 반환하는 함수
     /// - Returns: true: 로그인 성공, false: 로그인 실패
     func checkingLogin() -> Observable<Bool>{
+        let deviceToken = UserDefaults.standard.string(forKey: "deviceToken")
         return Observable.create { [weak self] observer in
-            self?.service.loginService(id: self?.idRelay.value ?? "", pw: self?.passwordRelay.value ?? "")
+            self?.service.loginService(id: self?.idRelay.value ?? "",
+                                       pw: self?.passwordRelay.value ?? "",
+                                       deviceToken: deviceToken ?? "")
                 .subscribe(onNext:{ data in
                     if let accessToken = data.accessToken, let refreshToken = data.refreshToken{
                         UserDefaults.standard.set(accessToken, forKey: "AccessToken")

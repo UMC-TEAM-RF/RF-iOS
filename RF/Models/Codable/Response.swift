@@ -15,11 +15,3 @@ struct Response<T: Codable>: Codable {
 }
 
 
-// MARK: - 이후에 지워주세요
-struct ResponseData: Codable {
-    var isSuccess: Bool?
-    var code: Int?
-    var message: String?
-}
-
-
