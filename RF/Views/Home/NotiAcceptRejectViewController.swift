@@ -106,6 +106,43 @@ extension NotiAcceptRejectViewController: UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.safeAreaLayoutGuide.layoutFrame.height/4
+    }
     
+}
+
+import SwiftUI
+
+#if DEBUG
+extension UIViewController {
+    private struct Preview: UIViewControllerRepresentable {
+        let viewController: UIViewController
+        
+        func makeUIViewController(context: Context) -> UIViewController {
+            return viewController
+        }
+        
+        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        }
+    }
     
+    func toPreview() -> some View {
+        Preview(viewController: self)
+    }
+}
+#endif
+
+import SwiftUI
+struct VCPreViewNotiAcceptRejectViewController:PreviewProvider {
+    static var previews: some View {
+        NotiAcceptRejectViewController().toPreview().previewDevice("iPhone 14 Pro")
+        // 실행할 ViewController이름 구분해서 잘 지정하기
+    }
+}
+struct VCPreViewNotiAcceptRejectViewController2:PreviewProvider {
+    static var previews: some View {
+        NotiAcceptRejectViewController().toPreview().previewDevice("iPhone 11")
+        // 실행할 ViewController이름 구분해서 잘 지정하기
+    }
 }
