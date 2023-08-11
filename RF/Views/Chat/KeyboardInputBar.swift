@@ -168,7 +168,8 @@ class KeyboardInputBar: UIView {
     
     @objc func sendButtonTapped() {
         if isTranslated {
-            inputField.text = "Translate!!"
+            delegate?.didTapSend(inputField.text)
+            isTranslated = false
         } else {
             delegate?.didTapSend(inputField.text)
             inputField.text.removeAll()
