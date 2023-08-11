@@ -17,6 +17,18 @@ extension Bundle {
         return getSecretKey(key: "WEB_SOCKET_URL")
     }
     
+    var NAVER_CLIEND_SECRET: String {
+        return getSecretKey(key: "NAVER_CLIEND_SECRET")
+    }
+    
+    var NAVER_CLIEND_ID: String {
+        return getSecretKey(key: "NAVER_CLIEND_ID")
+    }
+    
+    var NAVER_API_URL: String {
+        return getSecretKey(key: "NAVER_API_URL")
+    }
+    
     // SecretKey.plist에서 값 가져오기
     /// - parameter key: SecretKey.plist에 등록된 Key
     /// - returns: Key에 해당하는 Value

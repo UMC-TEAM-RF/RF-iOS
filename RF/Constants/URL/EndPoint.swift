@@ -13,3 +13,8 @@ struct SocketPath {
     static let subscribe = "/sub/channel"
     static let send = "/pub/redisChat"
 }
+
+// Naver Api EndPoint
+struct NaverApiPath {
+    static let papago = "/v1/papago/n2mt"
+}

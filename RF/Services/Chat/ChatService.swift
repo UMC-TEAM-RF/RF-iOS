@@ -51,6 +51,10 @@ class ChatService {
         socketClient.sendJSONForDict(dict: object, toDestination: "\(destination)/\(partyId)")
     }
     
+    func translateMessage(source: String, target: String, text: String) {
+        
+    }
+    
     /// Codable 타입을 AnyObject 타입으로 변환
     /// - Parameter codableObject: AnyObject로 변환할 Codable 객체
     /// - Returns: AnyObject 타입의 객체
