@@ -329,10 +329,12 @@ class ChatRoomViewController: UIViewController {
         
         //if isLastIndexPathVisible() || isSenderSelf(<#T##sender: CustomMessageSender?##CustomMessageSender?#>)
         if isLastIndexPathVisible() {
+            let _ = SingletonChannel.shared.readNewMessage(channel.id)
             channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
             messagesTableView.reloadData()
             scrollToBottom()
         } else {
+            let _ = SingletonChannel.shared.readNewMessage(channel.id)
             channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
             messagesTableView.reloadData()
             scrollToBottom()  // 테스트
@@ -450,13 +452,23 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         keyboardInputBar.keyboardInputView = keyboardInputView
     }
     
-    func didTapSend(_ text: String) {
+    func didTapSend(_ text: String, isTranslated: Bool) {
         print(#function)
         
-        inputBarTopStackView.isHidden = true
-        keyboardInputBar.isTranslated = false
+        if isTranslated { // 번역 버튼 클릭인 경우
+            // 1. 번역
+            let source = sourceLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
+            let target = targetLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
+            ChatService.shared.translateMessage(source: source!, target: target!, text: text) { result in
+                // 2. keyboardInputBar.inputField.text = "번역된 텍스트"
+                self.keyboardInputBar.inputFieldText = result
+            }
+        } else { // 메시지 전송 버튼 클릭인 경우
+            inputBarTopStackView.isHidden = true
+            //keyboardInputBar.isTranslated = false
 
-//        ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: channel.id)
+            ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: channel.id)
+        }
     }
     
     func didTapTranslate(_ isTranslated: Bool) {
