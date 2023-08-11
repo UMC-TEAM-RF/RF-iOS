@@ -20,6 +20,9 @@
 		3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */; };
 		3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */; };
 		3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2670E52A5ECCF600EA4F45 /* TermsConditionsViewController.swift */; };
+		3B267B8F2A861E3200F3949A /* NotiAcceptRejectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B267B8E2A861E3200F3949A /* NotiAcceptRejectViewController.swift */; };
+		3B267B922A86281100F3949A /* NotiAcceptRejectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B267B912A86281100F3949A /* NotiAcceptRejectViewModel.swift */; };
+		3B267B942A862AB100F3949A /* NotiAcceptRejectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B267B932A862AB100F3949A /* NotiAcceptRejectTableViewCell.swift */; };
 		3B4CAC982A7A4F3B00896DEB /* HomeMeetingDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CAC972A7A4F3B00896DEB /* HomeMeetingDummy.swift */; };
 		3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */; };
 		3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */; };
@@ -163,6 +166,9 @@
 		3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFriendUIView.swift; sourceTree = "<group>"; };
 		3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFreindUIButton.swift; sourceTree = "<group>"; };
 		3B2670E52A5ECCF600EA4F45 /* TermsConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsViewController.swift; sourceTree = "<group>"; };
+		3B267B8E2A861E3200F3949A /* NotiAcceptRejectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiAcceptRejectViewController.swift; sourceTree = "<group>"; };
+		3B267B912A86281100F3949A /* NotiAcceptRejectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiAcceptRejectViewModel.swift; sourceTree = "<group>"; };
+		3B267B932A862AB100F3949A /* NotiAcceptRejectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiAcceptRejectTableViewCell.swift; sourceTree = "<group>"; };
 		3B4CAC972A7A4F3B00896DEB /* HomeMeetingDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMeetingDummy.swift; sourceTree = "<group>"; };
 		3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
@@ -358,6 +364,7 @@
 		3B15CD622A644FB90096871F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				3B267B902A86280400F3949A /* Home */,
 				3BD68EF32A7795C8003A57A7 /* SignIn */,
 				3BD700C62A793635005C7D7E /* SignUp */,
 				3B15CD632A644FDE0096871F /* Meeting */,
@@ -399,6 +406,14 @@
 				3BC35CE42A5C3C4B00D73163 /* DetailMeeting */,
 			);
 			path = Meeting;
+			sourceTree = "<group>";
+		};
+		3B267B902A86280400F3949A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3B267B912A86281100F3949A /* NotiAcceptRejectViewModel.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		3B5402BB2A6E76AD00D0AD21 /* List */ = {
@@ -790,6 +805,7 @@
 				57673ED72A56DF6500A13D07 /* Cell */,
 				572DC2522A51C64400C0D6E1 /* HomeViewController.swift */,
 				570063982A6AB8520051F42A /* NotiMessageViewController.swift */,
+				3B267B8E2A861E3200F3949A /* NotiAcceptRejectViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -841,6 +857,7 @@
 				57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */,
 				57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */,
 				5700639C2A6AC60C0051F42A /* NotiListTableViewCell.swift */,
+				3B267B932A862AB100F3949A /* NotiAcceptRejectTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1005,6 +1022,7 @@
 				3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */,
 				3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */,
 				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
+				3B267B8F2A861E3200F3949A /* NotiAcceptRejectViewController.swift in Sources */,
 				3B69EE402A81F522002DB6DF /* Enums.swift in Sources */,
 				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
@@ -1066,6 +1084,7 @@
 				572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */,
 				570063BD2A7797B50051F42A /* PickerViewController.swift in Sources */,
 				570063CF2A7A44BC0051F42A /* Bundle+Ext.swift in Sources */,
+				3B267B922A86281100F3949A /* NotiAcceptRejectViewModel.swift in Sources */,
 				3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */,
 				3BD700D32A7963DD005C7D7E /* ChoiceInterestingLanguageView.swift in Sources */,
 				3B6C31312A7E5224008FADA1 /* ChooseUniversityViewController.swift in Sources */,
@@ -1114,6 +1133,7 @@
 				3BA9A8472A81F6C900349407 /* EnumService.swift in Sources */,
 				3B6287822A84D84600E00B09 /* SetDescriptViewModel.swift in Sources */,
 				57DD3E572A7E4C7E009F7139 /* OptionCollectionViewCell.swift in Sources */,
+				3B267B942A862AB100F3949A /* NotiAcceptRejectTableViewCell.swift in Sources */,
 				570063DD2A7CFB280051F42A /* ChatListViewController.swift in Sources */,
 				3B6BA99A2A7FF6E000A11FE4 /* CertificatedEmailViewModel.swift in Sources */,
 				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
