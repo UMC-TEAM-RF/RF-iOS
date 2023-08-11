@@ -7,6 +7,7 @@
 
 import Foundation
 import StompClientLib
+import Alamofire
 
 class ChatService {
     static let shared = ChatService()
@@ -51,8 +52,30 @@ class ChatService {
         socketClient.sendJSONForDict(dict: object, toDestination: "\(destination)/\(partyId)")
     }
     
-    func translateMessage(source: String, target: String, text: String) {
+    func translateMessage(source: String, target: String, text: String, completion: @escaping (String)->()) {
         
+        let url = "\(Domain.naverApi)\(NaverApiPath.papago)"
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-Naver-Client-Id": NaverApiHeaders.clientId,
+            "X-Naver-Client-Secret": NaverApiHeaders.clientSecret
+        ]
+        let params: [String: Any] = [
+            "source": Language.listWithCode[source]!,
+            "target": Language.listWithCode[target]!,
+            "text": text
+        ]
+        
+        AF.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: headers)
+            .validate(statusCode: 200..<201)
+            .responseDecodable(of: TranslationData.self) { response in
+                switch response.result{
+                case .success (let data):
+                    completion(data.message.result.translatedText)
+                case .failure (let error):
+                    print("Translate error!\n\(error)")
+                }
+            }
     }
     
     /// Codable 타입을 AnyObject 타입으로 변환

@@ -355,14 +355,14 @@ class ChatRoomViewController: UIViewController {
     }
     
     @objc func sourceLanguageButtonTapped() {
-        let vc = PickerViewController(tag: 0, pickerValues: Language.list)
+        let vc = PickerViewController(tag: 0, pickerValues: Language.getLanguageList())
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true, completion: nil)
     }
     
     @objc func targetLanguageButtonTapped() {
-        let vc = PickerViewController(tag: 1, pickerValues: Language.list)
+        let vc = PickerViewController(tag: 1, pickerValues: Language.getLanguageList())
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true, completion: nil)

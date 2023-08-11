@@ -17,12 +17,12 @@ extension Bundle {
         return getSecretKey(key: "WEB_SOCKET_URL")
     }
     
-    var NAVER_CLIEND_SECRET: String {
-        return getSecretKey(key: "NAVER_CLIEND_SECRET")
+    var NAVER_CLIENT_SECRET: String {
+        return getSecretKey(key: "NAVER_CLIENT_SECRET")
     }
     
-    var NAVER_CLIEND_ID: String {
-        return getSecretKey(key: "NAVER_CLIEND_ID")
+    var NAVER_CLIENT_ID: String {
+        return getSecretKey(key: "NAVER_CLIENT_ID")
     }
     
     var NAVER_API_URL: String {
