@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import RxSwift
 
 final class NotiAcceptRejectTableViewCell: UITableViewCell {
     static let identifier = "NotiAcceptRejectTableViewCell"
@@ -106,11 +107,16 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
         return btn
     }()
     
+    private let disposeBag = DisposeBag()
+    var clickedAccept: PublishSubject<Void> = PublishSubject<Void>()
+    var clickedReject: PublishSubject<Void> = PublishSubject<Void>()
+    
     // MARK: - init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
+        clickedButtons()
     }
     
     required init?(coder: NSCoder) {
@@ -135,12 +141,12 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
     private func configureConstraints() {
         profileImgae.snp.makeConstraints { make in
             make.centerY.equalTo(titleStackView.snp.centerY)
-            make.leading.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(30)
         }
         
         titleStackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
-            make.leading.equalTo(profileImgae.snp.trailing).offset(20)
+            make.leading.equalTo(profileImgae.snp.trailing).offset(30)
             make.height.equalToSuperview().multipliedBy(0.6)
         }
         
@@ -174,6 +180,28 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
     private func setOptions(){
         layoutIfNeeded()
         profileImgae.layer.cornerRadius = profileImgae.frame.height/2
+    }
+    
+    /// MARK: 버튼 클릭 시
+    private func clickedButtons(){
+        rejectButton.rx.tap
+            .bind { [weak self] in
+                self?.clickedReject.onNext(())
+            }
+            .disposed(by: disposeBag)
+        
+        acceptButton.rx.tap
+            .bind { [weak self] in
+                self?.clickedAccept.onNext(())
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    /// MARK: 데이터 입력
+    func inputData(profileIamge: String, joinedGroup: String, country: String, mbti: String){
+        self.joinedGroup.text = joinedGroup
+        self.country.text = country
+        self.MBTI.text = mbti
     }
 }
 

@@ -11,4 +11,6 @@ import RxRelay
 
 final class NotiAcceptRejectViewModel {
     
+    
+    
 }

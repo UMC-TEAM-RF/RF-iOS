@@ -92,6 +92,16 @@ final class NotiAcceptRejectViewController: UIViewController {
         .disposed(by: disposeBag)
     }
     
+    /// MARK: 수락 버튼 누른 경우
+    private func clickedAcceptButton(indexPath: IndexPath){
+        
+    }
+    
+    /// MARK: 거절 버튼 누른 경우
+    private func clickedRejectButton(indexPath: IndexPath){
+        
+    }
+    
     
 }
 
@@ -102,6 +112,23 @@ extension NotiAcceptRejectViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NotiAcceptRejectTableViewCell.identifier, for: indexPath) as? NotiAcceptRejectTableViewCell else {return UITableViewCell()}
+        cell.selectionStyle = .none
+        
+        cell.clickedAccept
+            .bind { [weak self] in
+                self?.clickedAcceptButton(indexPath: IndexPath())
+                // 수락 버튼 누른 경우 실행되는 함수
+                // indexPath로 구분 가능
+            }
+            .disposed(by: disposeBag)
+        
+        cell.clickedReject
+            .bind { [weak self] in
+                self?.clickedRejectButton(indexPath: IndexPath())
+                // 거절 버튼 누른 경우 실행되는 함수
+                // indexPath로 구분 가능
+            }
+            .disposed(by: disposeBag)
         
         return cell
     }
@@ -110,39 +137,4 @@ extension NotiAcceptRejectViewController: UITableViewDelegate, UITableViewDataSo
         return view.safeAreaLayoutGuide.layoutFrame.height/4
     }
     
-}
-
-import SwiftUI
-
-#if DEBUG
-extension UIViewController {
-    private struct Preview: UIViewControllerRepresentable {
-        let viewController: UIViewController
-        
-        func makeUIViewController(context: Context) -> UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        }
-    }
-    
-    func toPreview() -> some View {
-        Preview(viewController: self)
-    }
-}
-#endif
-
-import SwiftUI
-struct VCPreViewNotiAcceptRejectViewController:PreviewProvider {
-    static var previews: some View {
-        NotiAcceptRejectViewController().toPreview().previewDevice("iPhone 14 Pro")
-        // 실행할 ViewController이름 구분해서 잘 지정하기
-    }
-}
-struct VCPreViewNotiAcceptRejectViewController2:PreviewProvider {
-    static var previews: some View {
-        NotiAcceptRejectViewController().toPreview().previewDevice("iPhone 11")
-        // 실행할 ViewController이름 구분해서 잘 지정하기
-    }
 }
