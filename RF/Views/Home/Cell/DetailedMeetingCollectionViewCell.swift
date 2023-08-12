@@ -19,7 +19,7 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
     
     private lazy var backgroundImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "rf_logo")
+        view.image = UIImage(named: "soccer")
         view.contentMode = .scaleToFill
         return view
     }()
@@ -83,6 +83,7 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
         
         contentView.backgroundColor = .systemGray6
         contentView.layer.cornerRadius = 10
+        contentView.clipsToBounds = true
         
         addSubviews()
         configureConstraints()
@@ -136,15 +137,14 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
         
         tagCollectionView.snp.makeConstraints { make in
             make.bottom.equalTo(titleLabel.snp.top).offset(-8)
-            make.leading.equalToSuperview().inset(15)
+            make.leading.trailing.equalToSuperview().inset(15)
             make.height.equalTo(25)
-            make.width.equalTo(200)
         }
     }
     
     /// 데이터 넣는 함수
     func inputTextData(title: String, description: String, personnel: String, tag: [String], imageName: String){
-        //backgroundImageView.image = UIImage(named: imageName)
+        backgroundImageView.image = UIImage(named: imageName)
         //backgroundImageView.gradientFilter(colors: bgdPictureFilter)
         
         titleLabel.text = title

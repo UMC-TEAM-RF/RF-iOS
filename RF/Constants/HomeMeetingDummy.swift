@@ -34,7 +34,7 @@ struct HomeMeetingDummy{
     
     static let images: [String] = [
         "rf_logo",
-        "rf_logo",
+        "soccer",
         "rf_logo"
     ]
 }
