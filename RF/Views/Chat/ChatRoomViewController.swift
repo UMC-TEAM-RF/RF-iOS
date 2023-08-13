@@ -253,7 +253,7 @@ class ChatRoomViewController: UIViewController {
         return visibleIndexPaths.contains(lastIndexPath)
     }
     
-    private func isSenderSelf(_ sender: CustomMessageSender?) -> Bool {
+    private func isSenderSelf(_ sender: Sender?) -> Bool {
         guard let sender else { return false }
         return sender.userId == 1
     }
@@ -471,7 +471,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
             // 메시지 전송 전 언어 코드 확인
             ChatService.shared.detectLanguage(text) { result in
                 // 언어 코드 확인 후 메시지 전송
-                ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: self.channel.id)
+                ChatService.shared.send(message: Message(sender: Sender(userId: 1), type: MessageType.text, content: text), partyId: self.channel.id)
             }
         }
         inputBarTopStackView.isHidden = true
@@ -495,6 +495,18 @@ extension ChatRoomViewController: MessageTableViewCellDelegate {
         
         let conf = UIEditMenuConfiguration(identifier: "", sourcePoint: location)
         editMenuInteraction?.presentEditMenu(with: conf)
+//        guard let indexPath = messagesTableView.indexPathForRow(at: location) else { return }
+//
+//        guard let code = channel.messages[indexPath.row].langCode else { return }
+//        if !Language.listWithCode.keys.contains(code) { return }
+//
+//        ChatService.shared.translateMessage(source: code, target: "ko", text: channel.messages[indexPath.row].content!) { str in
+//            self.channel.messages[indexPath.row].content = str
+//
+//            DispatchQueue.main.async {
+//                self.messagesTableView.reloadRows(at: [indexPath], with: .automatic)
+//            }
+//        }
     }
 }
 
@@ -502,6 +514,7 @@ extension ChatRoomViewController: MessageTableViewCellDelegate {
 // MARK: - Ext: SendDataDelegate
 
 extension ChatRoomViewController: SendDataDelegate {
+    // PickerViewController로 부터 전달받은 데이터
     func sendData(tag: Int, data: String) {
         let button = tag == 0 ? sourceLanguageButton : targetLanguageButton
         button.setTitle("\(data) ", for: .normal)

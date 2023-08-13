@@ -144,7 +144,7 @@ class OtherMessageTableViewCell: UITableViewCell {
         messageView.addGestureRecognizer(longPress)
     }
     
-    func updateChatView(_ message: CustomMessage) {
+    func updateChatView(_ message: Message) {
         messageLabel.text = message.content
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
         displayNameLabel.text = message.sender?.userName

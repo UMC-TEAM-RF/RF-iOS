@@ -39,7 +39,7 @@ class ChatService {
     
     /// 입력한 메시지 전달
     /// - Parameter message: 메시지
-    func send(message: CustomMessage, partyId: Int) {
+    func send(message: Message, partyId: Int) {
         print(#function)
         
         let destination = SocketPath.send
@@ -168,7 +168,7 @@ extension ChatService: StompClientLibDelegate {
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
         print(#function)
         
-        guard let data = decodeFromAnyObject(jsonBody, to: CustomMessage.self) else {
+        guard let data = decodeFromAnyObject(jsonBody, to: Message.self) else {
             print("Decode Error")
             return
         }
@@ -190,40 +190,39 @@ class SingletonChannel {
     
     var list: [Channel] = [
         Channel(id: 1, name: "1번 모임", messages: [
-            CustomMessage(content: "TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST", dateTime: "21:09"),
-            CustomMessage(sender: CustomMessageSender(userId: 1, userName: "JD"), content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
-            CustomMessage(sender: CustomMessageSender(userId: 1, userName: "JD"), content: "t has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
-            CustomMessage(sender: CustomMessageSender(userId: 2, userName: "망고"), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout"),
-            CustomMessage(sender: CustomMessageSender(userId: 3, userName: "제이디"), content: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."),
-            CustomMessage(sender: CustomMessageSender(userId: 4, userName: "만자"), content: "Contrary to popular belief, Lorem Ipsum is not simply random text."),
-            CustomMessage(sender: CustomMessageSender(userId: 2, userName: "망고"), content: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."),
-            CustomMessage(sender: CustomMessageSender(userId: 2, userName: "망고"), content: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."),
-            CustomMessage(sender: CustomMessageSender(userId: 2, userName: "망고"), content: "FC BARCELONA EL CLASICO FRENKIE DE JONG PEDRI GAVI SPAIN LA LIGA"),
-            CustomMessage(sender: CustomMessageSender(userId: 4, userName: "만자"), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
-            CustomMessage(sender: CustomMessageSender(userId: 3, userName: "제이디"), content: "테스트"),
-            CustomMessage(sender: CustomMessageSender(userId: 3, userName: "제이디"), content: "테스트"),
-            CustomMessage(sender: CustomMessageSender(userId: 4, userName: "만자"), content: "테스트"),
-            CustomMessage(sender: CustomMessageSender(userId: 4, userName: "만자"), content: "테스트"),
-            CustomMessage(sender: CustomMessageSender(userId: 4, userName: "만자"), content: "테스트"),
-            CustomMessage(sender: CustomMessageSender(userId: 2, userName: "망고"), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout", dateTime: "2023-08-07 21:41:44.889734")
+            Message(sender: Sender(userId: 1, userName: "JD"), content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+            Message(sender: Sender(userId: 1, userName: "JD"), content: "t has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout", langCode: "en"),
+            Message(sender: Sender(userId: 3, userName: "제이디"), content: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "Contrary to popular belief, Lorem Ipsum is not simply random text.", langCode: "en"),
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."),
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.", langCode: "en"),
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "FC BARCELONA EL CLASICO FRENKIE DE JONG PEDRI GAVI SPAIN LA LIGA"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
+            Message(sender: Sender(userId: 3, userName: "제이디"), content: "테스트"),
+            Message(sender: Sender(userId: 3, userName: "제이디"), content: "테스트"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트"),
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout", dateTime: "2023-08-07 21:41:44.889734", langCode: "en")
         ], userProfileImages: ["a", "a", "a", "a"]),
         Channel(id: 2, name: "2번 모임", messages: [
-            CustomMessage(content: "TESTTESTTESTTESTESTTEST", dateTime: "21:09"),
-            CustomMessage(sender: CustomMessageSender(userId: 1, userName: "JD"), content: "Lorem Ipsum has  type and scrambled it to make a type specimen book."),
-            CustomMessage(sender: CustomMessageSender(userId: 1, userName: "JD"), content: "t has survived not only five centurid."),
-            CustomMessage(sender: CustomMessageSender(userId: 2, userName: "망고"), content: "It is a long established  its layout"),
-            CustomMessage(sender: CustomMessageSender(userId: 3, userName: "제이디"), content: "Neque it..."),
-            CustomMessage(sender: CustomMessageSender(userId: 4, userName: "만자"), content: "Contrary to popular belief, Lorem Ipsum is not simply random text."),
-            CustomMessage(sender: CustomMessageSender(userId: 2, userName: "망고"), content: "There are many varvable."),
-            CustomMessage(sender: CustomMessageSender(userId: 2, userName: "망고"), content: "The standard chunk of Lorem Ipsum ubelow for those interested."),
-            CustomMessage(sender: CustomMessageSender(userId: 2, userName: "망고"), content: "FC BARCELONA EL CLASIE DE JONG PEDRI GAVI SPAIN LA LIGA"),
-            CustomMessage(sender: CustomMessageSender(userId: 4, userName: "만자"), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
-            CustomMessage(sender: CustomMessageSender(userId: 3, userName: "제이디"), content: "테스트"),
-            CustomMessage(sender: CustomMessageSender(userId: 3, userName: "제이디"), content: "Lorem"),
-            CustomMessage(sender: CustomMessageSender(userId: 4, userName: "만자"), content: "테스트"),
-            CustomMessage(sender: CustomMessageSender(userId: 4, userName: "만자"), content: "dummy"),
-            CustomMessage(sender: CustomMessageSender(userId: 4, userName: "만자"), content: "printing"),
-            CustomMessage(sender: CustomMessageSender(userId: 2, userName: "망고"), content: "It is a longooking at its layout", dateTime: "2023-08-07 21:41:44.889734")
+            Message(content: "TESTTESTTESTTESTESTTEST", dateTime: "21:09"),
+            Message(sender: Sender(userId: 1, userName: "JD"), content: "Lorem Ipsum has  type and scrambled it to make a type specimen book."),
+            Message(sender: Sender(userId: 1, userName: "JD"), content: "t has survived not only five centurid."),
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "It is a long established  its layout"),
+            Message(sender: Sender(userId: 3, userName: "제이디"), content: "Neque it..."),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "Contrary to popular belief, Lorem Ipsum is not simply random text."),
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "There are many varvable."),
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "The standard chunk of Lorem Ipsum ubelow for those interested."),
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "FC BARCELONA EL CLASIE DE JONG PEDRI GAVI SPAIN LA LIGA"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
+            Message(sender: Sender(userId: 3, userName: "제이디"), content: "테스트"),
+            Message(sender: Sender(userId: 3, userName: "제이디"), content: "Lorem"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "dummy"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "printing"),
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "It is a longooking at its layout", dateTime: "2023-08-07 21:41:44.889734")
         ], userProfileImages: ["a", "a", "a"])
     ]
     
@@ -238,7 +237,7 @@ class SingletonChannel {
     /// 특정 채널의 메시지 리스트 가져오기
     /// - Parameter id: Channel ID
     /// - Returns: Messages
-    func getChannelMessages(_ id: Int) -> [CustomMessage] {
+    func getChannelMessages(_ id: Int) -> [Message] {
         let index = list.firstIndex { $0.id == id }
         guard let index else { return [] }
         return list[index].messages
@@ -248,7 +247,7 @@ class SingletonChannel {
     /// - Parameters:
     ///   - channelId: Channel ID
     ///   - message: Message
-    func appendMessage(channelId: Int, message: CustomMessage) {
+    func appendMessage(channelId: Int, message: Message) {
         let index = list.firstIndex { $0.id == channelId }
         guard let index else { return }
         list[index].messages.append(message)
