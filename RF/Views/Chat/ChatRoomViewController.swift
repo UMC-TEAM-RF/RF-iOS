@@ -468,9 +468,11 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
                 self.keyboardInputBar.inputFieldText = result
             }
         } else { // 메시지 전송 버튼 클릭인 경우
-            //keyboardInputBar.isTranslated = false
-            
-            ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: channel.id)
+            // 메시지 전송 전 언어 코드 확인
+            ChatService.shared.detectLanguage(text) { result in
+                // 언어 코드 확인 후 메시지 전송
+                ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: self.channel.id)
+            }
         }
         inputBarTopStackView.isHidden = true
     }

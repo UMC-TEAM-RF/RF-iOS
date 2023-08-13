@@ -78,6 +78,30 @@ class ChatService {
             }
     }
     
+    func detectLanguage(_ text: String, completion: @escaping (String)->()) {
+        let url = "\(Domain.naverApi)\(PapagoApiPath.detectLangs)"
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-Naver-Client-Id": NaverApiHeaders.clientId,
+            "X-Naver-Client-Secret": NaverApiHeaders.clientSecret
+        ]
+        
+        let params: [String: Any] = [
+            "query": text
+        ]
+        
+        AF.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: headers)
+            .validate(statusCode: 200..<201)
+            .responseDecodable(of: Sensing.self) { response in
+                switch response.result{
+                case .success (let data):
+                    completion(data.langCode)
+                case .failure (let error):
+                    print("Translate error!\n\(error)")
+                }
+            }
+    }
+    
     /// Codable 타입을 AnyObject 타입으로 변환
     /// - Parameter codableObject: AnyObject로 변환할 Codable 객체
     /// - Returns: AnyObject 타입의 객체

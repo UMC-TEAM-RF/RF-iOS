@@ -22,5 +22,5 @@ struct TranslationResult: Codable {
 
 // 언어 감지
 struct Sensing: Codable {
-    var langCode: String?
+    var langCode: String
 }
