@@ -10,7 +10,9 @@ import UIKit
 
 //Background Picture Filter
 //
-let bgdPictureFilter = [UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1).cgColor,UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor]
+let bgdPictureFilter = [UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1).cgColor,UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.6).cgColor,UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor]
+let bgdLocations : [NSNumber] = [0.0, 0.4, 1]
+
 
 
 class DetailedMeetingCollectionViewCell: UICollectionViewCell {
@@ -145,7 +147,6 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
     /// 데이터 넣는 함수
     func inputTextData(title: String, description: String, personnel: String, tag: [String], imageName: String){
         backgroundImageView.image = UIImage(named: imageName)
-        //backgroundImageView.gradientFilter(colors: bgdPictureFilter)
         
         titleLabel.text = title
         descriptLabel.text = description
@@ -188,6 +189,8 @@ class GradientView: UIView {
 
     override func layoutSubviews() {
         (layer as! CAGradientLayer).colors = bgdPictureFilter
-        (layer as! CAGradientLayer).locations = [0.0, 0.40]
+        (layer as! CAGradientLayer).locations = bgdLocations
     }
 }
+
+
