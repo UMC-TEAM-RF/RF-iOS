@@ -245,10 +245,10 @@ class ChatRoomViewController: UIViewController {
         // 마지막 섹션을 가져오고 해당 섹션의 마지막 셀의 row 수를 얻는다
         let lastSection = messagesTableView.numberOfSections - 1
         let lastRowInLastSection = messagesTableView.numberOfRows(inSection: lastSection) - 1
-
+        
         // 마지막 indexPath 생성
         let lastIndexPath = IndexPath(row: lastRowInLastSection, section: lastSection)
-
+        
         // 마지막 indexPath가 현재 보이는 셀 중 하나인지 확인
         return visibleIndexPaths.contains(lastIndexPath)
     }
@@ -286,9 +286,9 @@ class ChatRoomViewController: UIViewController {
             
             var newContentOffset = messagesTableView.contentOffset
             newContentOffset.y = max(0, newContentOffset.y + diffHeight)
-        
+            
             messagesTableView.contentOffset = newContentOffset
-
+            
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
@@ -383,42 +383,42 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
         
         if isSenderSelf(message.sender) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
-    
+            
             cell.updateChatView(message)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
             cell.updateChatView(message)
             cell.delegate = self
-
+            
             if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
             else { cell.isContinuous = false }
-
+            
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       return UITableView.automaticDimension
+        return UITableView.automaticDimension
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-//        let contentOffsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
-//        let scrollViewHeight = scrollView.bounds.height
-//
-//        // 뱅크 뷰가 나타날 위치를 계산합니다.
-//        let bankViewY = contentHeight - scrollViewHeight + 50
-//
-//        UIView.animate(withDuration: 0.3) {
-//            let alpha = (contentOffsetY >= bankViewY - 100) ? 0.0 : 0.8
-//            self.scrollToBottomButton.alpha = alpha
-//        }
+        //        let contentOffsetY = scrollView.contentOffset.y
+        //        let contentHeight = scrollView.contentSize.height
+        //        let scrollViewHeight = scrollView.bounds.height
+        //
+        //        // 뱅크 뷰가 나타날 위치를 계산합니다.
+        //        let bankViewY = contentHeight - scrollViewHeight + 50
+        //
+        //        UIView.animate(withDuration: 0.3) {
+        //            let alpha = (contentOffsetY >= bankViewY - 100) ? 0.0 : 0.8
+        //            self.scrollToBottomButton.alpha = alpha
+        //        }
     }
 }
 
-// MARK: - Ext:
+// MARK: - Ext: UIEditMenuInteractionDelegate
 
 extension ChatRoomViewController: UIEditMenuInteractionDelegate {
     func editMenuInteraction(_ interaction: UIEditMenuInteraction,
@@ -465,7 +465,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
             }
         } else { // 메시지 전송 버튼 클릭인 경우
             //keyboardInputBar.isTranslated = false
-
+            
             ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: channel.id)
         }
         inputBarTopStackView.isHidden = true

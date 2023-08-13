@@ -124,4 +124,30 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // 오른쪽에 만들기
+        
+        let alert = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print("알림 여부 클릭")
+            success(true)
+        }
+        alert.backgroundColor = .lightGray
+        alert.image = UIImage(systemName: "bell.fill")
+        
+        let exit = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print("나가기 클릭")
+            success(true)
+        }
+        exit.backgroundColor = .systemRed
+        exit.image = UIImage(systemName: "rectangle.portrait.and.arrow.right")
+        
+        //actions배열 인덱스 0이 오른쪽에 붙어서 나옴
+        let configure = UISwipeActionsConfiguration(actions: [exit, alert])
+        configure.performsFirstActionWithFullSwipe = false
+        
+        return configure
+    }
+    
+    
 }
