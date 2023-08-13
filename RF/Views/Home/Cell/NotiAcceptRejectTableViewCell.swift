@@ -15,9 +15,9 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
     static let identifier = "NotiAcceptRejectTableViewCell"
     
     /// MARK: 사용자 프로필 이미지
-    private lazy var profileImgae: UIImageView = {
+    private lazy var profileImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "soccer")?.resize(newWidth: 50,newHeight: 50)
+        image.image = UIImage(named: "LogoImage")?.resize(newWidth: 50,newHeight: 50)
         image.clipsToBounds = true
         return image
     }()
@@ -128,7 +128,7 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
     // MARK: - addSubviews
     
     private func addSubviews() {
-        addSubview(profileImgae)
+        addSubview(profileImage)
         addSubview(titleStackView)
         addSubview(stackView)
         
@@ -140,14 +140,14 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        profileImgae.snp.makeConstraints { make in
+        profileImage.snp.makeConstraints { make in
             make.centerY.equalTo(titleStackView.snp.centerY)
             make.leading.equalToSuperview().offset(30)
         }
         
         titleStackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
-            make.leading.equalTo(profileImgae.snp.trailing).offset(30)
+            make.leading.equalTo(profileImage.snp.trailing).offset(30)
             make.height.equalToSuperview().multipliedBy(0.6)
         }
         
@@ -177,7 +177,7 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
     /// MARK: setting more options about UI
     private func setOptions(){
         layoutIfNeeded()
-        profileImgae.layer.cornerRadius = profileImgae.frame.height/2
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
     }
     
     /// MARK: 버튼 클릭 시
@@ -197,6 +197,7 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
     
     /// MARK: 데이터 입력
     func inputData(profileIamge: String, joinedGroup: String, country: String, mbti: String){
+        self.profileImage.image = UIImage(named: profileIamge)?.resize(newWidth: 50,newHeight: 50)
         self.joinedGroup.text = joinedGroup
         self.country.text = country
         self.MBTI.text = mbti

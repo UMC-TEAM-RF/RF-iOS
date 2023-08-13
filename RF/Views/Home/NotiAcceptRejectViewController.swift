@@ -95,6 +95,7 @@ final class NotiAcceptRejectViewController: UIViewController {
     /// MARK: 수락 버튼 누른 경우
     private func clickedAcceptButton(indexPath: IndexPath){
         print("clickedAcceptButton\n\(indexPath)")
+        
     }
     
     /// MARK: 거절 버튼 누른 경우
@@ -107,7 +108,7 @@ final class NotiAcceptRejectViewController: UIViewController {
 
 extension NotiAcceptRejectViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.notificationAcceptRejectList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -116,6 +117,11 @@ extension NotiAcceptRejectViewController: UITableViewDelegate, UITableViewDataSo
         cell.delegate = self
         cell.indexPath.accept(indexPath)
         
+        let data = viewModel.notificationAcceptRejectList.value
+        cell.inputData(profileIamge: data[indexPath.row].profileImage ?? "",
+                       joinedGroup: data[indexPath.row].joinedGroup ?? "",
+                       country: data[indexPath.row].country ?? "",
+                       mbti: data[indexPath.row].mbti ?? "")
         return cell
     }
     
