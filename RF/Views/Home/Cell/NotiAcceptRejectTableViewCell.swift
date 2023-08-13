@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 import RxSwift
+import RxRelay
 
 final class NotiAcceptRejectTableViewCell: UITableViewCell {
     static let identifier = "NotiAcceptRejectTableViewCell"
@@ -108,8 +109,8 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
     }()
     
     private let disposeBag = DisposeBag()
-    var clickedAccept: PublishSubject<Void> = PublishSubject<Void>()
-    var clickedReject: PublishSubject<Void> = PublishSubject<Void>()
+    weak var delegate: ClickedAcceptRejectDelegate?
+    var indexPath: BehaviorRelay<IndexPath> = BehaviorRelay<IndexPath>(value: IndexPath())
     
     // MARK: - init
     
@@ -151,24 +152,21 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
         }
         
         stackView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalTo(titleStackView.snp.top)
             make.leading.equalTo(titleStackView.snp.trailing).offset(10)
-            
-            make.height.equalToSuperview().multipliedBy(0.6)
+            make.bottom.equalTo(titleStackView.snp.bottom)
         }
         
         rejectButton.snp.makeConstraints { make in
             make.top.equalTo(titleStackView.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalTo(self.snp.centerX).offset(-10)
-            make.bottom.equalToSuperview().offset(-20)
         }
         
         acceptButton.snp.makeConstraints { make in
             make.top.equalTo(titleStackView.snp.bottom).offset(10)
             make.trailing.equalToSuperview().offset(-20)
             make.leading.equalTo(self.snp.centerX).offset(10)
-            make.bottom.equalToSuperview().offset(-20)
         }
 
         setOptions()
@@ -186,13 +184,13 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
     private func clickedButtons(){
         rejectButton.rx.tap
             .bind { [weak self] in
-                self?.clickedReject.onNext(())
+                self?.delegate?.clickedReject(self?.indexPath.value ?? IndexPath())
             }
             .disposed(by: disposeBag)
         
         acceptButton.rx.tap
             .bind { [weak self] in
-                self?.clickedAccept.onNext(())
+                self?.delegate?.clickedAccept(self?.indexPath.value ?? IndexPath())
             }
             .disposed(by: disposeBag)
     }

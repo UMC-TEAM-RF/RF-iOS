@@ -38,6 +38,7 @@
 		3B6287802A84C90100E00B09 /* SetInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B62877F2A84C90100E00B09 /* SetInterestViewModel.swift */; };
 		3B6287822A84D84600E00B09 /* SetDescriptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6287812A84D84600E00B09 /* SetDescriptViewModel.swift */; };
 		3B6287842A84EC5100E00B09 /* SetDetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6287832A84EC5100E00B09 /* SetDetailInfoViewModel.swift */; };
+		3B657DD82A88FC0700148496 /* ClickedAcceptRejectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B657DD72A88FC0700148496 /* ClickedAcceptRejectDelegate.swift */; };
 		3B69EE402A81F522002DB6DF /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69EE3F2A81F522002DB6DF /* Enums.swift */; };
 		3B6BA97C2A7E5ACD00A11FE4 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */; };
 		3B6BA9802A7E68FA00A11FE4 /* SearchUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97F2A7E68FA00A11FE4 /* SearchUniversityViewController.swift */; };
@@ -184,6 +185,7 @@
 		3B62877F2A84C90100E00B09 /* SetInterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInterestViewModel.swift; sourceTree = "<group>"; };
 		3B6287812A84D84600E00B09 /* SetDescriptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDescriptViewModel.swift; sourceTree = "<group>"; };
 		3B6287832A84EC5100E00B09 /* SetDetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailInfoViewModel.swift; sourceTree = "<group>"; };
+		3B657DD72A88FC0700148496 /* ClickedAcceptRejectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickedAcceptRejectDelegate.swift; sourceTree = "<group>"; };
 		3B69EE3F2A81F522002DB6DF /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedButton.swift; sourceTree = "<group>"; };
 		3B6BA97F2A7E68FA00A11FE4 /* SearchUniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUniversityViewController.swift; sourceTree = "<group>"; };
@@ -452,6 +454,14 @@
 				3B62877F2A84C90100E00B09 /* SetInterestViewModel.swift */,
 			);
 			path = Create;
+			sourceTree = "<group>";
+		};
+		3B657DD62A88FBE700148496 /* Notifictaion */ = {
+			isa = PBXGroup;
+			children = (
+				3B657DD72A88FC0700148496 /* ClickedAcceptRejectDelegate.swift */,
+			);
+			path = Notifictaion;
 			sourceTree = "<group>";
 		};
 		3B6BA97A2A7E5ABB00A11FE4 /* ChooseUniversity */ = {
@@ -843,6 +853,7 @@
 		575032912A596DB30060D629 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				3B657DD62A88FBE700148496 /* Notifictaion */,
 				570063C42A77A0E20051F42A /* Common */,
 				5700636C2A6509F90051F42A /* Creating */,
 			);
@@ -1142,6 +1153,7 @@
 				3B6287802A84C90100E00B09 /* SetInterestViewModel.swift in Sources */,
 				3B0F1EE42A7C0317009F3F2B /* UICheckBox1.swift in Sources */,
 				3B0E2EB92A80FE9200797782 /* MeetingService.swift in Sources */,
+				3B657DD82A88FC0700148496 /* ClickedAcceptRejectDelegate.swift in Sources */,
 				3B6BA9952A7FEB8C00A11FE4 /* CertificatedEmailViewController.swift in Sources */,
 				3BB408B12A6AC4CA00FBA617 /* ScheduleViewModel.swift in Sources */,
 			);

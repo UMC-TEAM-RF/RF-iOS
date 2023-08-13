@@ -84,7 +84,7 @@ final class NotiAcceptRejectViewController: UIViewController {
 
     // MARK: - bind
     
-    /// MARK:
+    /// MARK: binding viewModel
     private func bind() {
         titleRelay.bind { [weak self] title in
             self?.leftButton.title = title
@@ -94,12 +94,12 @@ final class NotiAcceptRejectViewController: UIViewController {
     
     /// MARK: 수락 버튼 누른 경우
     private func clickedAcceptButton(indexPath: IndexPath){
-        
+        print("clickedAcceptButton\n\(indexPath)")
     }
     
     /// MARK: 거절 버튼 누른 경우
     private func clickedRejectButton(indexPath: IndexPath){
-        
+        print("clickedRejectButton\n\(indexPath)")
     }
     
     
@@ -107,28 +107,14 @@ final class NotiAcceptRejectViewController: UIViewController {
 
 extension NotiAcceptRejectViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NotiAcceptRejectTableViewCell.identifier, for: indexPath) as? NotiAcceptRejectTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NotiAcceptRejectTableViewCell.identifier, for: indexPath) as? NotiAcceptRejectTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
-        
-        cell.clickedAccept
-            .bind { [weak self] in
-                self?.clickedAcceptButton(indexPath: IndexPath())
-                // 수락 버튼 누른 경우 실행되는 함수
-                // indexPath로 구분 가능
-            }
-            .disposed(by: disposeBag)
-        
-        cell.clickedReject
-            .bind { [weak self] in
-                self?.clickedRejectButton(indexPath: IndexPath())
-                // 거절 버튼 누른 경우 실행되는 함수
-                // indexPath로 구분 가능
-            }
-            .disposed(by: disposeBag)
+        cell.delegate = self
+        cell.indexPath.accept(indexPath)
         
         return cell
     }
@@ -136,5 +122,17 @@ extension NotiAcceptRejectViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.safeAreaLayoutGuide.layoutFrame.height/4
     }
+    
+}
+
+extension NotiAcceptRejectViewController: ClickedAcceptRejectDelegate {
+    func clickedReject(_ indexPath: IndexPath) {
+        clickedRejectButton(indexPath: indexPath)
+    }
+    
+    func clickedAccept(_ indexPath: IndexPath) {
+        clickedAcceptButton(indexPath: indexPath)
+    }
+    
     
 }
