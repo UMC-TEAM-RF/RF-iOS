@@ -22,9 +22,8 @@ class ProfileSettingTableViewCell: UITableViewCell {
     
     private lazy var menubutton: UIButton = {
         let button = UIButton()
-        if let image = UIImage(named: "carat.png") {
-            button.setBackgroundImage(image, for: .normal)
-        }
+        let btimage = UIImage(systemName: "chevron.right.to.line")
+        button.setImage(btimage, for: .normal)
         return button
     }()
 

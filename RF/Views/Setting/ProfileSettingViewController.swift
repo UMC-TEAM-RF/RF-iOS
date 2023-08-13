@@ -25,7 +25,7 @@ class ProfileSettingViewController: UIViewController {
     }()
     
     //MARK: - UI Property UI구성
-    let menuList: [String] = [ "    프리미엄 이용권", "    공지사항", "    고객센터 / 도움말", "    버전 정보", "    차단 관리", "    회원 탈퇴"]
+    let menuList: [String] = [ "프리미엄 이용권", "공지사항", "고객센터 / 도움말", "버전 정보", "차단 관리", "회원 탈퇴"]
     
     // MARK: - viewDidLoad()
     override func viewDidLoad() {
