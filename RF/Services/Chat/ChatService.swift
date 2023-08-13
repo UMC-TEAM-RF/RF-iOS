@@ -54,15 +54,15 @@ class ChatService {
     
     func translateMessage(source: String, target: String, text: String, completion: @escaping (String)->()) {
         
-        let url = "\(Domain.naverApi)\(NaverApiPath.papago)"
+        let url = "\(Domain.naverApi)\(PapagoApiPath.translation)"
         let headers: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded",
             "X-Naver-Client-Id": NaverApiHeaders.clientId,
             "X-Naver-Client-Secret": NaverApiHeaders.clientSecret
         ]
         let params: [String: Any] = [
-            "source": Language.listWithCode[source]!,
-            "target": Language.listWithCode[target]!,
+            "source": source,
+            "target": target,
             "text": text
         ]
         

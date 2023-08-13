@@ -24,6 +24,7 @@ struct SocketPath {
 }
 
 // Naver Api EndPoint
-struct NaverApiPath {
-    static let papago = "/v1/papago/n2mt"
+struct PapagoApiPath {
+    static let translation = "/v1/papago/n2mt"
+    static let detectLangs = "/v1/papago/detectLangs"
 }

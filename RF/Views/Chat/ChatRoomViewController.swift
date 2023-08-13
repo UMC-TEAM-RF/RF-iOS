@@ -457,9 +457,13 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         
         if isTranslated { // 번역 버튼 클릭인 경우
             // 1. 번역
-            let source = sourceLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
-            let target = targetLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
-            ChatService.shared.translateMessage(source: source!, target: target!, text: text) { result in
+            let sourceLanguage = sourceLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
+            let targetLanguage = targetLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
+            
+            guard let source = Language.getLanguageCode(sourceLanguage!) else { return }
+            guard let target = Language.getLanguageCode(targetLanguage!) else { return }
+            
+            ChatService.shared.translateMessage(source: source, target: target, text: text) { result in
                 // 2. keyboardInputBar.inputField.text = "번역된 텍스트"
                 self.keyboardInputBar.inputFieldText = result
             }
