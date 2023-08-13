@@ -132,10 +132,13 @@ extension NotiAcceptRejectViewController: UITableViewDelegate, UITableViewDataSo
 }
 
 extension NotiAcceptRejectViewController: ClickedAcceptRejectDelegate {
+    
+    /// 거절 버튼을 눌렀을 때
     func clickedReject(_ indexPath: IndexPath) {
         clickedRejectButton(indexPath: indexPath)
     }
     
+    /// 수락 버튼을 눌렀을 때
     func clickedAccept(_ indexPath: IndexPath) {
         clickedAcceptButton(indexPath: indexPath)
     }
