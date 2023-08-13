@@ -59,24 +59,6 @@ class OtherMessageTableViewCell: UITableViewCell {
     }()
     
     weak var delegate: MessageTableViewCellDelegate?
-
-    var message: String? {
-        didSet {
-            messageLabel.text = message
-        }
-    }
-    
-    var displayName: String? {
-        didSet {
-            displayNameLabel.text = displayName
-        }
-    }
-    
-    var time: Date? {
-        didSet {
-            
-        }
-    }
     
     var isContinuous: Bool = false {
         didSet {

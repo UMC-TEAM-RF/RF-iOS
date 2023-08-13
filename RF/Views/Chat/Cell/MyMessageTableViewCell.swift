@@ -36,19 +36,6 @@ class MyMessageTableViewCell: UITableViewCell {
         return label
     }()
     
-    var message: String? {
-        didSet {
-            messageLabel.text = message
-        }
-    }
-    
-    var time: Date? {
-        didSet {
-            
-        }
-    }
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
