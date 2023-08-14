@@ -10,10 +10,10 @@ import SnapKit
 
 class ProfileSettingTableViewCell: UITableViewCell {
     
-    //MARK: - UI Property UI구성
+    //MARK: - UI Property
     private lazy var menuLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.textColor = .darkGray
         label.numberOfLines = 1
         label.textAlignment = .left
@@ -22,13 +22,22 @@ class ProfileSettingTableViewCell: UITableViewCell {
     
     private lazy var menubutton: UIButton = {
         let button = UIButton()
-        let btimage = UIImage(systemName: "chevron.right.to.line")
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .regular)
+        let btimage = UIImage(systemName: "chevron.right", withConfiguration: imageConfig)?.withTintColor(.gray, renderingMode: .alwaysOriginal)
         button.setImage(btimage, for: .normal)
+        
+        button.addTarget(self, action: #selector(menubuttonTapped(_:)), for: .touchUpInside)
+        
         return button
     }()
 
-    
-    // MARK: - Property 테이블 뷰 입력
+    @objc private func menubuttonTapped(_ sender: UIButton) {
+        print("Arrow button tapped ")
+        // 버튼을 눌렀을 때 
+    }
+
+
+    // MARK: - Property
     static let identifier = "ProfileSettingTableViewCell"
     
     var menuLabelText: String? {
@@ -50,13 +59,13 @@ class ProfileSettingTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - addSubviews() 뷰 나타내기
+    // MARK: - addSubviews()
     private func addSubviews() {
         contentView.addSubview(menuLabel)
         contentView.addSubview(menubutton)
     }
     
-    // MARK: - configureConstraints() 뷰 제약걸기
+    // MARK: - configureConstraints() 
     private func configureConstraints() {
         menuLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -66,7 +75,7 @@ class ProfileSettingTableViewCell: UITableViewCell {
         
         menubutton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(-40)
         }
 
         }

@@ -11,7 +11,7 @@ import SnapKit
 
 class ProfileSettingViewController: UIViewController {
     
-    //MARK: - UI Property UI구성
+    //MARK: - UI Property
     
     
     private lazy var menuTableView: UITableView = {
@@ -23,8 +23,7 @@ class ProfileSettingViewController: UIViewController {
         tableView.rowHeight = 60
         return tableView
     }()
-    
-    //MARK: - UI Property UI구성
+
     let menuList: [String] = [ "프리미엄 이용권", "공지사항", "고객센터 / 도움말", "버전 정보", "차단 관리", "회원 탈퇴"]
     
     // MARK: - viewDidLoad()
@@ -33,6 +32,7 @@ class ProfileSettingViewController: UIViewController {
         view.backgroundColor = .white
         
         updateTitleView(title: "설정")
+        setupCustomBackButton()
         
         addSubviews()
         configureConstraints()
@@ -42,7 +42,7 @@ class ProfileSettingViewController: UIViewController {
     private func addSubviews() {
         view.addSubview(menuTableView)
     }
-    
+
     // MARK: - configureConstraints()
     private func configureConstraints() {
         menuTableView.snp.makeConstraints { make in
@@ -62,6 +62,14 @@ extension ProfileSettingViewController: UITableViewDelegate, UITableViewDataSour
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingTableViewCell.identifier, for: indexPath) as? ProfileSettingTableViewCell else { return UITableViewCell() }
 
         cell.menuLabelText = "    " + menuList[indexPath.row]
+
+        let separatorView = UIView()
+        separatorView.backgroundColor = .systemGray4
+        cell.addSubview(separatorView)
+        separatorView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(1)
+        }
 
         return cell
     }
