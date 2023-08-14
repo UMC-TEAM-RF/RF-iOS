@@ -199,14 +199,14 @@ class SingletonChannel {
             Message(sender: Sender(userId: 4, userName: "만자"), content: "Contrary to popular belief, Lorem Ipsum is not simply random text.", langCode: "en"),
             Message(sender: Sender(userId: 2, userName: "망고"), content: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."),
             Message(sender: Sender(userId: 2, userName: "망고"), content: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.", langCode: "en"),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "FC BARCELONA EL CLASICO FRENKIE DE JONG PEDRI GAVI SPAIN LA LIGA"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
-            Message(sender: Sender(userId: 3, userName: "제이디"), content: "테스트"),
-            Message(sender: Sender(userId: 3, userName: "제이디"), content: "테스트"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트"),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout", dateTime: "2023-08-07 21:41:44.889734", langCode: "en")
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "FC BARCELONA EL CLASICO FRENKIE DE JONG PEDRI GAVI SPAIN LA LIGA", dateTime: "2023-08-07 21:41:44.889734"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", dateTime: "2023-08-07 21:41:44.889734"),
+            Message(sender: Sender(userId: 3, userName: "제이디"), content: "테스트", dateTime: "2023-08-07 21:41:44.889734"),
+            Message(sender: Sender(userId: 3, userName: "제이디"), content: "테스트", dateTime: "2023-08-07 21:41:44.889734"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트", dateTime: "2023-08-07 21:41:44.889734"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트", dateTime: "2023-08-07 21:41:44.889734"),
+            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트", dateTime: "2023-08-07 21:41:44.889734"),
+            Message(sender: Sender(userId: 2, userName: "망고"), content: "It", dateTime: "2023-08-07 21:41:44.889734", langCode: "en")
         ], userProfileImages: ["a", "a", "a", "a"]),
         Channel(id: 2, name: "2번 모임", messages: [
             Message(content: "TESTTESTTESTTESTESTTEST", dateTime: "21:09"),

@@ -12,7 +12,6 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         configureTabBar()
     }
     
@@ -51,7 +50,7 @@ final class TabBarController: UITabBarController {
     
     @objc func updateTabBarIcon() {
 //        if selectedIndex != 3, let items = tabBar.items, items.indices.contains(3) {
-//            items[3].image = UIImage(named: "new_chat")
+//            items[3].image = UIImage(named: "newChat")
 //        }
     }
     

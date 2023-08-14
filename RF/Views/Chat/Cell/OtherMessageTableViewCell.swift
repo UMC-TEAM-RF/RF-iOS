@@ -8,7 +8,8 @@
 import UIKit
 
 protocol MessageTableViewCellDelegate: AnyObject {
-    func messagePressed(_ gesture: UILongPressGestureRecognizer)
+    func longPressedMessageView(_ gesture: UILongPressGestureRecognizer)
+    func convertMessage(_ indexPath: IndexPath)
 }
 
 class OtherMessageTableViewCell: UITableViewCell {
@@ -47,6 +48,16 @@ class OtherMessageTableViewCell: UITableViewCell {
         label.lineBreakMode = .byCharWrapping // 글자 단위로 줄바꿈
         label.isUserInteractionEnabled = true
         return label
+    }()
+    
+    private lazy var translateButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "arrow.2.squarepath"), for: .normal)
+        button.imageView?.contentMode = .scaleToFill
+        button.isHidden = true
+        button.tintColor = .lightGray
+        button.contentHorizontalAlignment = .leading
+        return button
     }()
     
     private lazy var timeLabel: UILabel = {
@@ -100,6 +111,8 @@ class OtherMessageTableViewCell: UITableViewCell {
         contentView.addSubview(avatarView)
         contentView.addSubview(displayNameLabel)
         
+        contentView.addSubview(translateButton)
+        
         messageView.addSubview(messageLabel)
     }
     
@@ -127,14 +140,21 @@ class OtherMessageTableViewCell: UITableViewCell {
         }
         
         messageLabel.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(5)
+            make.verticalEdges.equalToSuperview().inset(8)
             make.horizontalEdges.equalToSuperview().inset(10)
             make.width.lessThanOrEqualTo(contentView.snp.width).multipliedBy(0.6)
         }
         
         timeLabel.snp.makeConstraints { make in
             make.bottom.equalTo(messageView.snp.bottom)
-            make.leading.equalTo(messageView.snp.trailing).offset(3)
+            make.leading.equalTo(messageView.snp.trailing).offset(5)
+        }
+        
+        translateButton.snp.makeConstraints { make in
+            make.bottom.equalTo(timeLabel.snp.top).offset(-3)
+            make.leading.equalTo(timeLabel.snp.leading)
+            make.width.equalTo(24)
+            make.height.equalTo(12)
         }
         
     }
@@ -142,6 +162,8 @@ class OtherMessageTableViewCell: UITableViewCell {
     private func addTargets() {
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
         messageView.addGestureRecognizer(longPress)
+        
+        translateButton.addTarget(self, action: #selector(translateButtonTapped), for: .touchUpInside)
     }
     
     func updateChatView(_ message: Message) {
@@ -149,14 +171,21 @@ class OtherMessageTableViewCell: UITableViewCell {
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
         displayNameLabel.text = message.sender?.userName
         //avatarView.image = message.sender?.speakerImageUrl
+        
+        if message.langCode != "ko" { translateButton.isHidden = false }
     }
     
     @objc func longPressed(_ gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began {
             print("Long")
-            delegate?.messagePressed(gesture)
+            delegate?.longPressedMessageView(gesture)
         }
         
+    }
+    
+    @objc func translateButtonTapped() {
+        guard let indexPath = (superview as? UITableView)?.indexPath(for: self) else { return }
+        delegate?.convertMessage(indexPath)
     }
 
 }

@@ -490,23 +490,27 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
 // MARK: - Ext: MessageTableViewCellDelegate
 
 extension ChatRoomViewController: MessageTableViewCellDelegate {
-    func messagePressed(_ gesture: UILongPressGestureRecognizer) {
+    // 메시지 뷰 롱 프레스
+    func longPressedMessageView(_ gesture: UILongPressGestureRecognizer) {
         let location = gesture.location(in: messagesTableView)
         
         let conf = UIEditMenuConfiguration(identifier: "", sourcePoint: location)
         editMenuInteraction?.presentEditMenu(with: conf)
-//        guard let indexPath = messagesTableView.indexPathForRow(at: location) else { return }
-//
-//        guard let code = channel.messages[indexPath.row].langCode else { return }
-//        if !Language.listWithCode.keys.contains(code) { return }
-//
-//        ChatService.shared.translateMessage(source: code, target: "ko", text: channel.messages[indexPath.row].content!) { str in
-//            self.channel.messages[indexPath.row].content = str
-//
-//            DispatchQueue.main.async {
-//                self.messagesTableView.reloadRows(at: [indexPath], with: .automatic)
-//            }
-//        }
+    }
+    
+    // 메시지 번역 버튼 클릭
+    func convertMessage(_ indexPath: IndexPath) {
+        guard let code = channel.messages[indexPath.row].langCode else { return }
+
+        if !Language.listWithCode.keys.contains(code) { return }
+
+        ChatService.shared.translateMessage(source: code, target: "ko", text: channel.messages[indexPath.row].content!) { str in
+            self.channel.messages[indexPath.row].content = str
+
+            DispatchQueue.main.async {
+                self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
+            }
+        }
     }
 }
 

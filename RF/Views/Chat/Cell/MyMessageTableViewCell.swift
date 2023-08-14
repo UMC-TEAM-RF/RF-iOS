@@ -70,7 +70,7 @@ class MyMessageTableViewCell: UITableViewCell {
         }
         
         messageLabel.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(5)
+            make.verticalEdges.equalToSuperview().inset(8)
             make.horizontalEdges.equalToSuperview().inset(10)
             make.width.lessThanOrEqualTo(contentView.snp.width).multipliedBy(0.65)
         }
