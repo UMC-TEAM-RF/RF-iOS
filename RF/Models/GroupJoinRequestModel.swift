@@ -8,7 +8,7 @@
 import Foundation
 
 /// 거절 수락 화면 (임시용 모델)
-struct NotificationAcceptReject: Codable {
+struct GroupJoinRequestModel: Codable {
     let profileImage: String?
     let joinedGroup: String?
     let country: String?

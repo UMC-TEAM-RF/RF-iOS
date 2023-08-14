@@ -36,7 +36,7 @@ final class GroupJoinRequestViewController: UIViewController {
     }()
     
     var titleRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
-    private let viewModel = NotiAcceptRejectViewModel()
+    private let viewModel = GroupJoinRequestViewModel()
     private let disposeBag = DisposeBag()
     
     // MARK: - View Did Load

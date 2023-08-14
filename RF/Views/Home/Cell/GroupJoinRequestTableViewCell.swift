@@ -196,7 +196,7 @@ final class GroupJoinRequestTableViewCell: UITableViewCell {
     }
     
     /// MARK: 데이터 입력
-    func inputData(data: NotificationAcceptReject){
+    func inputData(data: GroupJoinRequestModel){
         self.profileImage.image = UIImage(named: data.profileImage ?? "")?.resize(newWidth: 50,newHeight: 50)
         self.joinedGroup.text = data.joinedGroup ?? ""
         self.country.text = data.country ?? ""
