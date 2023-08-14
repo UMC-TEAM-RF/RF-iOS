@@ -8,15 +8,21 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         configureTabBar()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     private func configureTabBar() {
+        
+        delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTabBarIcon), name: NotificationName.updateTabBarIcon, object: nil)
         
@@ -44,7 +50,17 @@ final class TabBarController: UITabBarController {
     }
     
     @objc func updateTabBarIcon() {
-        
+//        if selectedIndex != 3, let items = tabBar.items, items.indices.contains(3) {
+//            items[3].image = UIImage(named: "new_chat")
+//        }
     }
+    
+}
 
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+//        if let tabBarItems = tabBar.items, selectedIndex == 3 {
+//            tabBarItems[3].image = UIImage(named: "chat")
+//        }
+    }
 }
