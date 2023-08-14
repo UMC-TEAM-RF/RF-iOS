@@ -127,7 +127,7 @@ class ChatRoomViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NotificationName.keyboardWillHide, object: nil)
         
         // 새로운 메시지가 왔을 때 알림
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateChat), name: NotificationName.updateChat, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateChat), name: NotificationName.updateChatRoom, object: nil)
     }
     
     // MARK: - viewWillDisappear()
@@ -137,7 +137,7 @@ class ChatRoomViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillHide, object: nil)
         
-        NotificationCenter.default.removeObserver(self, name: NotificationName.updateChat, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NotificationName.updateChatRoom, object: nil)
     }
     
     // MARK: - addSubviews()

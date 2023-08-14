@@ -178,7 +178,9 @@ extension ChatService: StompClientLibDelegate {
         
         SingletonChannel.shared.list[index ?? 0].messages.append(data)  // 수신된 메시지 추가
         
-        NotificationCenter.default.post(name: NotificationName.updateChat, object: self)
+        NotificationCenter.default.post(name: NotificationName.updateChatList, object: self)
+        NotificationCenter.default.post(name: NotificationName.updateChatRoom, object: self)
+        NotificationCenter.default.post(name: NotificationName.updateTabBarIcon, object: self)
     }
 }
 

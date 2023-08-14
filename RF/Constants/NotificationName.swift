@@ -11,5 +11,7 @@ import UIKit
 struct NotificationName {
     static let keyboardWillShow = UIResponder.keyboardWillShowNotification  // 키보드 보임
     static let keyboardWillHide = UIResponder.keyboardWillHideNotification  // 키보드 숨김
-    static let updateChat = NSNotification.Name("UpdateChat")  // 채팅 업데이트
+    static let updateChatList = NSNotification.Name("UpdateChatList")  // 채팅 업데이트
+    static let updateChatRoom = NSNotification.Name("UpdateChatRoom")
+    static let updateTabBarIcon = NSNotification.Name("UpdateTabBarIcon")
 }

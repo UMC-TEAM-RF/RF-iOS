@@ -17,6 +17,9 @@ final class TabBarController: UITabBarController {
     }
     
     private func configureTabBar() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBarIcon), name: NotificationName.updateTabBarIcon, object: nil)
+        
         let vc1 = UINavigationController(rootViewController: HomeViewController())
         let vc2 = UINavigationController(rootViewController: MeetingViewController())
         let vc3 = UINavigationController(rootViewController: ProfileSettingViewController())
@@ -38,6 +41,10 @@ final class TabBarController: UITabBarController {
         tabBar.layer.applyShadow(color: .gray, alpha: 0.3, x: 0, y: 0, blur: 12)
         
         self.setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: false)
+    }
+    
+    @objc func updateTabBarIcon() {
+        
     }
 
 }

@@ -37,7 +37,7 @@ class ChatListViewController: UIViewController {
         addSubviews()
         configureConstraints()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateChat), name: NotificationName.updateChat, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateChat), name: NotificationName.updateChatList, object: nil)
     }
     
     // MARK: - viewWillAppear()
