@@ -12,7 +12,7 @@ import RxSwift
 final class MeetingService {
     
     func createMeeting(meeting: Meeting, image: Data) -> Observable<Void> {
-        let url = "\(Domain.restApi)\(SocketPath.createMeeting)"
+        let url = "\(Domain.restApi)\(MeetingPath.createMeeting)"
         let headers: HTTPHeaders = ["Content-Type": "multipart/form-data"]
         
         return Observable.create { observer in
@@ -55,7 +55,7 @@ final class MeetingService {
     
     /// 모임 정보 API
     func requestMeetingInfo() -> Observable<Meeting> {
-        let url = "\(Domain.restApi)\(SocketPath.createMeeting)/179"
+        let url = "\(Domain.restApi)\(MeetingPath.createMeeting)/179"
         
         return Observable.create { observer in
             AF.request(url, method: .get)
@@ -77,7 +77,7 @@ final class MeetingService {
     
     /// 모임 리스트 API
     func requestMeetingList(userId: Int) -> Observable<[Meeting]> {
-        let url = "\(Domain.restApi)\(SocketPath.meetingList)/\(userId)"
+        let url = "\(Domain.restApi)\(MeetingPath.meetingList)/\(userId)"
         
         return Observable.create { observer in
             AF.request(url, method: .get)
