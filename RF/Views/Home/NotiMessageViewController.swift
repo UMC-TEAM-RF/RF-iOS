@@ -87,7 +87,7 @@ extension NotiMessageViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let notiAcceptRejectViewController = NotiAcceptRejectViewController()
+        let notiAcceptRejectViewController = GroupJoinRequestViewController()
         notiAcceptRejectViewController.titleRelay.accept(dummy[indexPath.row])  // 알림에 대한 모임 이름 넣으면 됨
         navigationItem.backButtonTitle = " "
         navigationController?.pushViewController(notiAcceptRejectViewController, animated: true)

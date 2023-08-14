@@ -11,7 +11,7 @@ import SnapKit
 import RxSwift
 import RxRelay
 
-final class NotiAcceptRejectTableViewCell: UITableViewCell {
+final class GroupJoinRequestTableViewCell: UITableViewCell {
     static let identifier = "NotiAcceptRejectTableViewCell"
     
     /// MARK: 사용자 프로필 이미지
@@ -109,7 +109,7 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
     }()
     
     private let disposeBag = DisposeBag()
-    weak var delegate: ClickedAcceptRejectDelegate?
+    weak var delegate: GroupJoinRequestDelegate?
     var indexPath: BehaviorRelay<IndexPath> = BehaviorRelay<IndexPath>(value: IndexPath())
     
     // MARK: - init
@@ -196,11 +196,11 @@ final class NotiAcceptRejectTableViewCell: UITableViewCell {
     }
     
     /// MARK: 데이터 입력
-    func inputData(profileIamge: String, joinedGroup: String, country: String, mbti: String){
-        self.profileImage.image = UIImage(named: profileIamge)?.resize(newWidth: 50,newHeight: 50)
-        self.joinedGroup.text = joinedGroup
-        self.country.text = country
-        self.MBTI.text = mbti
+    func inputData(data: NotificationAcceptReject){
+        self.profileImage.image = UIImage(named: data.profileImage ?? "")?.resize(newWidth: 50,newHeight: 50)
+        self.joinedGroup.text = data.joinedGroup ?? ""
+        self.country.text = data.country ?? ""
+        self.MBTI.text = data.mbti ?? ""
     }
 }
 

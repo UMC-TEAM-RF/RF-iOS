@@ -7,7 +7,8 @@
 
 import Foundation
 
-protocol ClickedAcceptRejectDelegate{
+@objc
+protocol GroupJoinRequestDelegate{
     
     /// 거절 버튼 눌렀을 때
     func clickedReject(_ indexPath: IndexPath)

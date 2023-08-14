@@ -11,7 +11,7 @@ import RxSwift
 import RxRelay
 import SnapKit
 
-final class NotiAcceptRejectViewController: UIViewController {
+final class GroupJoinRequestViewController: UIViewController {
     
     
     /// MARK: 네비게이션 바 왼쪽 아이템
@@ -62,7 +62,7 @@ final class NotiAcceptRejectViewController: UIViewController {
         view.addSubview(listTableView)
         listTableView.dataSource = self
         listTableView.delegate = self
-        listTableView.register(NotiAcceptRejectTableViewCell.self, forCellReuseIdentifier: NotiAcceptRejectTableViewCell.identifier)
+        listTableView.register(GroupJoinRequestTableViewCell.self, forCellReuseIdentifier: GroupJoinRequestTableViewCell.identifier)
         
         configureConstraints()
     }
@@ -106,22 +106,19 @@ final class NotiAcceptRejectViewController: UIViewController {
     
 }
 
-extension NotiAcceptRejectViewController: UITableViewDelegate, UITableViewDataSource {
+extension GroupJoinRequestViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.notificationAcceptRejectList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NotiAcceptRejectTableViewCell.identifier, for: indexPath) as? NotiAcceptRejectTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupJoinRequestTableViewCell.identifier, for: indexPath) as? GroupJoinRequestTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
         cell.delegate = self
         cell.indexPath.accept(indexPath)
         
         let data = viewModel.notificationAcceptRejectList.value
-        cell.inputData(profileIamge: data[indexPath.row].profileImage ?? "",
-                       joinedGroup: data[indexPath.row].joinedGroup ?? "",
-                       country: data[indexPath.row].country ?? "",
-                       mbti: data[indexPath.row].mbti ?? "")
+        cell.inputData(data: data[indexPath.row])
         return cell
     }
     
@@ -131,7 +128,7 @@ extension NotiAcceptRejectViewController: UITableViewDelegate, UITableViewDataSo
     
 }
 
-extension NotiAcceptRejectViewController: ClickedAcceptRejectDelegate {
+extension GroupJoinRequestViewController: GroupJoinRequestDelegate {
     
     /// 거절 버튼을 눌렀을 때
     func clickedReject(_ indexPath: IndexPath) {
