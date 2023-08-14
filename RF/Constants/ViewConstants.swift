@@ -51,6 +51,7 @@ struct SchedulePopUp {
 // MARK: - MeetingFiltering
 
 struct MeetingFiltering {
+    static let searching: String = "나와 잘맞는 모임을 검색해 보세요"
     static let done: String = "완료"
     static let joinStatus: String = "모집 상태"
     static let joinStatusList: [String] = ["모집 중", "모집 완료"]
