@@ -11,36 +11,25 @@ import RxSwift
 
 final class MeetingService {
     
-    func createMeeting(meeting: Meeting, image: Data) -> Observable<Void> {
+    func createMeeting(meeting: Meeting, image: UIImage) -> Observable<Void> {
         let url = "\(Domain.restApi)\(MeetingPath.createMeeting)"
         let headers: HTTPHeaders = ["Content-Type": "multipart/form-data"]
         
+        let jsonString = convertMeetingToJSONString(meeting: meeting) ?? ""
+        let imageData = image.jpegData(compressionQuality: 0.5)!
+        
         return Observable.create { observer in
             AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(meeting.name!.data(using: .utf8)!, withName: "name")   // 모임 명
-                multipartFormData.append("\(meeting.memberCount!)".data(using: .utf8)!, withName: "memberCount")   // 모임 인원
-                multipartFormData.append("\(meeting.nativeCount!)".data(using: .utf8)!, withName: "nativeCount")   // 한국인 멤버 수
-                multipartFormData.append(meeting.content!.data(using: .utf8)!, withName: "content")   // 소개글
-                multipartFormData.append(meeting.preferAges!.data(using: .utf8)!, withName: "preferAges")   // 선호 연령대
-                multipartFormData.append(meeting.language!.data(using: .utf8)!, withName: "language")   // 사용 언어
-                multipartFormData.append(meeting.location!.data(using: .utf8)!, withName: "location")   // 활동 장소
-                multipartFormData.append("\(meeting.ownerId!)".data(using: .utf8)!, withName: "ownerId")   // 모임 장
                 
-                // 관심사
-                for (key, value) in meeting.interests!.enumerated() {
-                    multipartFormData.append(value.data(using: .utf8)!, withName: "interests[\(key)]")
-                }
-                
-                // 규칙
-                for (key, value) in meeting.rule!.enumerated() {
-                    multipartFormData.append(value.data(using: .utf8)!, withName: "rule[\(key)]")
-                }
+                // JSON String
+                multipartFormData.append(jsonString.data(using: .utf8)!, withName: "postPartyReq", mimeType: "application/json")
                 
                 // 이미지
-                multipartFormData.append(image, withName: "image", fileName: "\(image).jpeg", mimeType: "multipart/form-data")
+                multipartFormData.append(imageData, withName: "file", fileName: "test.png", mimeType: "multipart/form-data")
                 
             }, to: url, method: .post, headers: headers)
             .responseDecodable(of: Response<Meeting>.self) { response in
+                print(response)
                 switch response.result {
                 case .success(let data):
                     print(data)
@@ -95,6 +84,19 @@ final class MeetingService {
                     }
                 }
             return Disposables.create()
+        }
+    }
+    
+    func convertMeetingToJSONString(meeting: Meeting) -> String? {
+        let jsonEncoder = JSONEncoder()
+
+        do {
+            let jsonData = try jsonEncoder.encode(meeting)
+            let jsonString = String(data: jsonData, encoding: .utf8)
+            return jsonString
+        } catch {
+            print("JSON 변환 실패: \(error)")
+            return nil
         }
     }
 }
