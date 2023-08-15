@@ -14,7 +14,7 @@ final class EmailService {
     
     /// 이메일로 인증번호 전송하는 함수
     func sendingEmail(email: String, university: String) -> Observable<Mail>{
-        let url = "\(Domain.restApi)\(SocketPath.sendMail)"
+        let url = "\(Domain.restApi)\(EmailPath.sendMail)"
         let body = Mail(mail: email, university: university, code: nil)
         print(body)
         return Observable.create { observer in
@@ -42,7 +42,7 @@ final class EmailService {
     
     /// 인증번호 인증하는 함수
     func checkEmailCode(email: String, university: String, code: String) -> Observable<Bool>{
-        let url = "\(Domain.restApi)\(SocketPath.checkCode)"
+        let url = "\(Domain.restApi)\(EmailPath.checkCode)"
         let body = Mail(mail: email, university: university, code: code)
         
         return Observable.create { observer in

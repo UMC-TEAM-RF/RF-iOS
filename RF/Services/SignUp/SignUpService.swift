@@ -14,7 +14,7 @@ final class SignUpService {
     /// 아이디 중복 체크
     /// - Returns: Observable<Bool>
     func checkOverlapId(userId: String) -> Observable<Bool>{
-        let url = "\(Domain.restApi)\(SocketPath.checkOverlapId)/\(userId)"
+        let url = "\(Domain.restApi)\(SignUpPath.checkOverlapId)/\(userId)"
         
         return Observable.create { observer in
             
@@ -37,7 +37,7 @@ final class SignUpService {
     
     /// 닉네임 중복 확인하는 함수
     func checkOverlapNickName(name: String) -> Observable<Bool> {
-        let url = "\(Domain.restApi)\(SocketPath.checkOverlapNickName)/\(name)"
+        let url = "\(Domain.restApi)\(SignUpPath.checkOverlapNickName)/\(name)"
         
         return Observable.create { observer in
             AF.request(url,
@@ -59,7 +59,7 @@ final class SignUpService {
     
     /// 유저 등록하는 함수
     func addUserInfo() -> Observable<Bool>{
-        let url = "\(Domain.restApi)\(SocketPath.addUser)"
+        let url = "\(Domain.restApi)\(SignUpPath.addUser)"
         let interestLanguage = SignUpDataViewModel.viewModel.interestingLanguage.value.map({"\($0.key ?? "")"})
         
         let body: User = User(userID: SignUpDataViewModel.viewModel.idRelay.value,

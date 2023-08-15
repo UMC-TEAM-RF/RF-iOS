@@ -50,12 +50,6 @@ class NotiMessageViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.navigationBar.isHidden = true
-    }
-    
     // MARK: - addSubviews()
     
     private func addSubviews() {
@@ -89,6 +83,15 @@ extension NotiMessageViewController: UITableViewDelegate, UITableViewDataSource 
         cell.timeLabelText = "23시간"
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let notiAcceptRejectViewController = GroupJoinRequestViewController()
+        notiAcceptRejectViewController.titleRelay.accept(dummy[indexPath.row])  // 알림에 대한 모임 이름 넣으면 됨
+        navigationItem.backButtonTitle = " "
+        navigationController?.pushViewController(notiAcceptRejectViewController, animated: true)
+        
     }
 }
 

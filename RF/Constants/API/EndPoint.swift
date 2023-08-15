@@ -12,14 +12,10 @@ struct SocketPath {
     static let connect = "/ws/websocket"
     static let subscribe = "/sub/channel"
     static let send = "/pub/redisChat"
-    static let checkOverlapId = "/user/idCheck"
-    static let checkOverlapNickName = "/user/nicknameCheck"
-    static let addUser = "/user"
-    static let sendMail = "/mail/send"
-    static let checkCode = "/mail/check"
-    static let createMeeting = "/party"
-    static let meetingList = "/party/non-blocked"
-    static let login = "/signin"
+}
+
+/// Enum EndPoint
+struct EnumPath {
     static let enums = "/enums"
 }
 
@@ -27,4 +23,28 @@ struct SocketPath {
 struct PapagoApiPath {
     static let translation = "/v1/papago/n2mt"
     static let detectLangs = "/v1/papago/detectLangs"
+}
+
+/// SignUp EndPoint
+struct SignUpPath {
+    static let checkOverlapId = "/user/idCheck"
+    static let checkOverlapNickName = "/user/nicknameCheck"
+    static let addUser = "/user"
+}
+
+/// Email EndPoint
+struct EmailPath {
+    static let sendMail = "/mail/send"
+    static let checkCode = "/mail/check"
+}
+
+/// Meeting EndPoint
+struct MeetingPath {
+    static let createMeeting = "/party"
+    static let meetingList = "/party/non-blocked"
+}
+
+/// Login EndPoint
+struct LoginPath {
+    static let login = "/signin"
 }

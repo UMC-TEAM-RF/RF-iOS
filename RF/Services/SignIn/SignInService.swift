@@ -15,7 +15,7 @@ final class SignInService {
     /// - Returns: SignIn Decoding Values
     func loginService(id: String, pw: String, deviceToken: String) -> Observable<SignIn>{
         
-        let url = "\(Domain.restApi)\(SocketPath.login)"
+        let url = "\(Domain.restApi)\(LoginPath.login)"
 //        let body: [String: Any] = [
 //            SignInBody.first.body: id,
 //            SignInBody.second.body: pw
