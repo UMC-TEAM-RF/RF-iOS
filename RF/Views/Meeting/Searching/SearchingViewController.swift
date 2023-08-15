@@ -69,7 +69,7 @@ final class SearchingViewController: UIViewController{
         
         filteringScreen.ageRelay
             .subscribe(onNext:{ [weak self] data in
-                print("data \(data)")
+
                 self?.viewModel.ageRelay.accept(data)
             })
             .disposed(by: disposeBag)

@@ -125,6 +125,7 @@ final class FilteringViewModel {
         }
     }
     
+    /// 선택한 모집 인원 포함되어 있는지 확인
     func checkRemainjoinNumberItems(at indexPath: IndexPath) -> Bool {
         let selectedItems = joinNumberRelay.value
         
@@ -136,6 +137,7 @@ final class FilteringViewModel {
         }
     }
     
+    /// 선택한 모집 상태 포함되어 있는지 확인
     func checkJoinStatusItem(at indexPath: IndexPath) -> Bool {
         let selectedItems = joinStatusRelay.value
         
