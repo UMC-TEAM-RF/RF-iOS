@@ -11,6 +11,18 @@ import RxRelay
 
 final class SearchingViewModel {
     
+    /// 선택된 관심 주제 목록
+    var interestingTopicRelay = BehaviorRelay<Set<IndexPath>>(value: [])
+    
+    /// 선택한 연령 대
+    var ageRelay = BehaviorRelay<IndexPath>(value: IndexPath())
+    
+    /// 모집 상태
+    var joinStatusRelay = BehaviorRelay<IndexPath>(value: IndexPath())
+    
+    /// 모집 인원
+    var joinNumberRelay = BehaviorRelay<IndexPath>(value: IndexPath())
+    
     /// searching meeting result List
     var meetingList: BehaviorRelay<[Meeting]> = BehaviorRelay(value: [])
     

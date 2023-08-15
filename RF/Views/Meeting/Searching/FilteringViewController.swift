@@ -114,7 +114,19 @@ final class FilteringViewController: UIViewController{
     }()
     
     private let disposeBag = DisposeBag()
-    private let viewModel = FilteringViewModel()
+    var viewModel = FilteringViewModel()
+    
+    /// 선택된 관심 주제 목록
+    var interestingTopicRelay = BehaviorRelay<Set<IndexPath>>(value: [])
+    
+    /// 선택한 연령 대
+    var ageRelay = BehaviorRelay<IndexPath>(value: IndexPath())
+    
+    /// 모집 상태
+    var joinStatusRelay = BehaviorRelay<IndexPath>(value: IndexPath())
+    
+    /// 모집 인원
+    var joinNumberRelay = BehaviorRelay<IndexPath>(value: IndexPath())
     
     // MARK: View Did Load
     override func viewDidLoad() {
@@ -228,6 +240,10 @@ final class FilteringViewController: UIViewController{
         
         doneButton.rx.tap
             .bind { [weak self] in
+                self?.interestingTopicRelay.accept(self?.viewModel.interestingTopicRelay.value ?? [])
+                self?.ageRelay.accept(self?.viewModel.ageRelay.value ?? IndexPath())
+                self?.joinNumberRelay.accept(self?.viewModel.joinNumberRelay.value ?? IndexPath())
+                self?.joinStatusRelay.accept(self?.viewModel.joinStatusRelay.value ?? IndexPath())
                 self?.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
@@ -242,6 +258,11 @@ final class FilteringViewController: UIViewController{
     
     /// MARK: ViewModel에서 데이터를 받아오는 함수
     private func getDataFromViewModel(){
+        viewModel.interestingTopicRelay.accept(interestingTopicRelay.value)
+        viewModel.ageRelay.accept(ageRelay.value)
+        viewModel.joinStatusRelay.accept(joinStatusRelay.value)
+        viewModel.joinNumberRelay.accept(joinNumberRelay.value)
+        
         viewModel.ageRelay
             .subscribe(onNext: { [weak self] item in
                 self?.updateAgeItem(item)
@@ -267,9 +288,7 @@ final class FilteringViewController: UIViewController{
                 self?.updateJoinNumberItem(item)
             }
             .disposed(by: disposeBag)
-        
     }
-    
 
     /// MARK:  모집 상태 업데이트 하는 함수
     private func updatejoinStatusItem(_ item: IndexPath){
@@ -339,7 +358,15 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
         if collectionView == joinStatusCollectionView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AgeCollectionViewCell.identifier, for: indexPath) as? AgeCollectionViewCell else {return UICollectionViewCell() }
             
-            cell.backgroundColor = UIColor(hexCode: "F5F5F5")
+            if viewModel.checkJoinStatusItem(at: indexPath){
+                cell.backgroundColor = .systemBlue
+                cell.setColor(color: .white)
+            }
+            else{
+                cell.backgroundColor = UIColor(hexCode: "F5F5F5")
+                cell.setColor(color: .black)
+            }
+            
             cell.layer.cornerRadius = 10
             cell.inputData(text: MeetingFiltering.joinStatusList[indexPath.row])
             return cell
@@ -347,7 +374,15 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
         else if collectionView == ageCollectionView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AgeCollectionViewCell.identifier, for: indexPath) as? AgeCollectionViewCell else {return UICollectionViewCell() }
             
-            cell.backgroundColor = UIColor(hexCode: "F5F5F5")
+            if viewModel.checkRemainAgeItem(at: indexPath){
+                cell.backgroundColor = .systemBlue
+                cell.setColor(color: .white)
+            }
+            else{
+                cell.backgroundColor = UIColor(hexCode: "F5F5F5")
+                cell.setColor(color: .black)
+            }
+            
             cell.layer.cornerRadius = 10
             cell.inputData(text: MeetingFiltering.ageList[indexPath.row])
             return cell
@@ -355,7 +390,15 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
         else if collectionView == joinNumberCollectionView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AgeCollectionViewCell.identifier, for: indexPath) as? AgeCollectionViewCell else {return UICollectionViewCell() }
             
-            cell.backgroundColor = UIColor(hexCode: "F5F5F5")
+            if viewModel.checkRemainjoinNumberItems(at: indexPath){
+                cell.backgroundColor = .systemBlue
+                cell.setColor(color: .white)
+            }
+            else{
+                cell.backgroundColor = UIColor(hexCode: "F5F5F5")
+                cell.setColor(color: .black)
+            }
+            
             cell.layer.cornerRadius = 10
             cell.inputData(text: MeetingFiltering.joinNumberList[indexPath.row])
             return cell
@@ -363,7 +406,15 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
         else if collectionView == interestingTopicCollectionView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestingTopicCollectionViewCell.identifier, for: indexPath) as? InterestingTopicCollectionViewCell else {return UICollectionViewCell() }
             
-            cell.backgroundColor = UIColor(hexCode: "F5F5F5")
+            if viewModel.checkRemainInterestingTopicItems(at: indexPath){
+                cell.backgroundColor = .systemBlue
+                cell.setColor(color: .white)
+            }
+            else{
+                cell.backgroundColor = UIColor(hexCode: "F5F5F5")
+                cell.setColor(color: .black)
+            }
+            
             cell.layer.cornerRadius = 10
             cell.layer.borderColor = UIColor(hexCode: "DADADA").cgColor
             

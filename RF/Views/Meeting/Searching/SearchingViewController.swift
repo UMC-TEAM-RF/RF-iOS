@@ -60,6 +60,38 @@ final class SearchingViewController: UIViewController{
     private func moveFilteringScreen(){
         let filteringScreen = FilteringViewController()
         filteringScreen.modalPresentationStyle = .formSheet
+        filteringScreen.ageRelay.accept(viewModel.ageRelay.value)
+        filteringScreen.interestingTopicRelay.accept(viewModel.interestingTopicRelay.value)
+        filteringScreen.joinNumberRelay.accept(viewModel.joinNumberRelay.value)
+        filteringScreen.joinStatusRelay.accept(viewModel.joinStatusRelay.value)
+        
+        filteringScreen.viewModel.selectedAgeItem(at: viewModel.ageRelay.value)
+        
+        filteringScreen.ageRelay
+            .subscribe(onNext:{ [weak self] data in
+                print("data \(data)")
+                self?.viewModel.ageRelay.accept(data)
+            })
+            .disposed(by: disposeBag)
+        
+        filteringScreen.interestingTopicRelay
+            .subscribe(onNext:{ [weak self] data in
+                self?.viewModel.interestingTopicRelay.accept(data)
+            })
+            .disposed(by: disposeBag)
+        
+        filteringScreen.joinNumberRelay
+            .subscribe(onNext:{ [weak self] data in
+                self?.viewModel.joinNumberRelay.accept(data)
+            })
+            .disposed(by: disposeBag)
+        
+        filteringScreen.joinStatusRelay
+            .subscribe(onNext:{ [weak self] data in
+                self?.viewModel.joinStatusRelay.accept(data)
+            })
+            .disposed(by: disposeBag)
+        
         present(filteringScreen, animated: true)
     }
     

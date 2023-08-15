@@ -16,16 +16,12 @@ final class SignInService {
     func loginService(id: String, pw: String, deviceToken: String) -> Observable<SignIn>{
         
         let url = "\(Domain.restApi)\(LoginPath.login)"
-//        let body: [String: Any] = [
-//            SignInBody.first.body: id,
-//            SignInBody.second.body: pw
-//        ]
-        
         let body: [String: Any] = [
-            "loginId" : id,
-            "password" : pw,
-            "deviceToken" : deviceToken
+            SignInBody.first.body: id,
+            SignInBody.second.body: pw,
+            SignInBody.deviceToken.body: deviceToken
         ]
+        
         print(body)
         return Observable.create { observer in
             AF.request(url,
