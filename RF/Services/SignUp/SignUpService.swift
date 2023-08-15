@@ -21,7 +21,7 @@ final class SignUpService {
             AF.request(url,
                        method: .get)
             .validate(statusCode: 200..<201)
-            .responseDecodable(of: Response<String>.self) { response in
+            .responseDecodable(of: Response<Judge>.self) { response in
                 switch response.result{
                 case .success(let data):
                     print("checkOverlapId success \(data)")
@@ -43,7 +43,7 @@ final class SignUpService {
             AF.request(url,
                        method: .get)
             .validate(statusCode: 200..<201)
-            .responseDecodable(of: Response<String>.self) { response in
+            .responseDecodable(of: Response<Judge>.self) { response in
                 print(response)
                 switch response.result{
                 case .success(let data):
@@ -82,7 +82,7 @@ final class SignUpService {
                        parameters: body,
                        encoder: JSONParameterEncoder.default)
             .validate(statusCode: 200..<201)
-            .responseDecodable(of: Response<String>.self) { response in
+            .responseDecodable(of: Response<Judge>.self) { response in
                 print("addUserInfo response\n\(response)")
                 switch response.result{
                 case .success(let data):

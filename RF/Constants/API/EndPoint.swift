@@ -46,5 +46,5 @@ struct MeetingPath {
 
 /// Login EndPoint
 struct LoginPath {
-    static let login = "/signin"
+    static let login = "/user/login"
 }

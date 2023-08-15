@@ -51,7 +51,7 @@ final class EmailService {
                        parameters: body,
                        encoder: JSONParameterEncoder.default)
             .validate(statusCode: 200..<201)
-            .responseDecodable(of: Response<String>.self) { response in
+            .responseDecodable(of: Response<Judge>.self) { response in
                 switch response.result{
                 case .success(let data):
                     observer.onNext(data.isSuccess ?? false)
