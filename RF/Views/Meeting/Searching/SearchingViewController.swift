@@ -33,7 +33,16 @@ final class SearchingViewController: UIViewController{
         return btn
     }()
     
+    /// MARK: 검색 및 필터링 결과 값 보여줄 CollectionView
+    private lazy var meetingListCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return cv
+    }()
+    
     private let disposeBag = DisposeBag()
+    private let viewModel = SearchingViewModel()
     
     // MARK: View Did Load
     override func viewDidLoad() {
@@ -44,6 +53,7 @@ final class SearchingViewController: UIViewController{
         moveFilteringScreen()
         addSubviews()
         clickedBtns()
+        viewModel.getData()
     }
     
     /// MARK: 필터링 화면 이동
@@ -57,19 +67,29 @@ final class SearchingViewController: UIViewController{
     private func addSubviews(){
         navigationItem.titleView = searchBtn
         searchBtn.delegate = self
+        
         view.addSubview(filteringBtn)
+        view.addSubview(meetingListCollectionView)
+        meetingListCollectionView.register(SearchingCollectionViewCell.self, forCellWithReuseIdentifier: SearchingCollectionViewCell.identifier)
+        meetingListCollectionView.dataSource = self
+        meetingListCollectionView.delegate = self
         
         configureConstraints()
     }
     
     /// MARK: setting AutoLayout
     private func configureConstraints(){
+        meetingListCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(filteringBtn.snp.top)
+        }
+        
         filteringBtn.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/20)
         }
-        
     }
     
     /// MARK: 버튼들 클릭 했을 때 실행
@@ -81,8 +101,29 @@ final class SearchingViewController: UIViewController{
             .disposed(by: disposeBag)
     }
     
+    
+    
 }
 
-extension SearchingViewController: UISearchBarDelegate{
+extension SearchingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchingCollectionViewCell.identifier, for: indexPath) as? SearchingCollectionViewCell else { return UICollectionViewCell() }
+        cell.inputTextData(meeting: viewModel.meetingList.value[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.meetingList.value.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width - 20, height: collectionView.frame.height/3)
+       }
+    
+    
+    
+}
+
+extension SearchingViewController: UISearchBarDelegate {
     
 }
