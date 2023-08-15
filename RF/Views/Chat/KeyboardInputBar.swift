@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol KeyboardInputBarDelegate: AnyObject {
-    func didTapSend(_ text: String)
+    func didTapSend(_ text: String, isTranslated: Bool)
     func didTapTranslate(_ isTranslated: Bool)
     func didTapPlus()
 }
@@ -73,7 +73,12 @@ class KeyboardInputBar: UIView {
         didSet {
             inputField.inputView = keyboardInputView
             inputField.reloadInputViews()
-            
+        }
+    }
+    
+    var inputFieldText: String? {
+        didSet {
+            inputField.text = inputFieldText
         }
     }
     
@@ -144,6 +149,7 @@ class KeyboardInputBar: UIView {
         
     }
     
+    // 전송 버튼 활성화 여부 결정
     private func isSendButtonActivate(_ bool: Bool) {
         if bool {
             sendButton.isEnabled = true
@@ -156,26 +162,30 @@ class KeyboardInputBar: UIView {
         }
     }
     
+    // 메시지 입력 필드 더보기 버튼
+    // (KeyboardInputBar View에서 변경할 수 있도록 수정하기 => Delegate 사용 X)
     @objc func plusButtonTapped() {
         inputField.tintColor = .clear
         delegate?.didTapPlus()
     }
     
+    // 메시지 입력 필드 번역 버튼
     @objc func translateButtonTapped() {
         isTranslated.toggle()
         delegate?.didTapTranslate(isTranslated)
     }
     
+    // 메시지 입력 필드 전송 버튼
     @objc func sendButtonTapped() {
-        if isTranslated {
-            inputField.text = "Translate!!"
-        } else {
-            delegate?.didTapSend(inputField.text)
+        delegate?.didTapSend(inputField.text, isTranslated: isTranslated)
+        if !isTranslated { // 메시지 전송인 경우
             inputField.text.removeAll()
             isSendButtonActivate(false)
         }
+        isTranslated = false
     }
     
+    // TextView.inputView를 키보드로 변경
     @objc func textViewTapped() {
         inputField.tintColor = .tintColor
         inputField.inputView = nil

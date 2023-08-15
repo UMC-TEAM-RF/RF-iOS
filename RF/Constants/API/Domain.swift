@@ -10,4 +10,5 @@ import Foundation
 struct Domain {
     static let restApi = Bundle.main.REST_API_URL
     static let webSocket = Bundle.main.WEB_SOCKET_URL
+    static let naverApi = Bundle.main.NAVER_API_URL
 }

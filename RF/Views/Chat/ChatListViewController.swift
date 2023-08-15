@@ -37,7 +37,7 @@ class ChatListViewController: UIViewController {
         addSubviews()
         configureConstraints()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateChat), name: NotificationName.updateChat, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateChat), name: NotificationName.updateChatList, object: nil)
     }
     
     // MARK: - viewWillAppear()
@@ -113,14 +113,41 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
         let vc = ChatRoomViewController()
         
         let channel = SingletonChannel.shared.list[indexPath.row]
-        vc.channelId = channel.id
-        vc.messages = channel.messages
         
-        // 새 메시지 개수 초기화 (다음 화면에서 실행되도록 수정해야 될듯?)
-        SingletonChannel.shared.readNewMessage(channel.id)
+        let index = SingletonChannel.shared.readNewMessage(channel.id)
+        
+        vc.channel = channel
+        vc.row = index
+        
         tableView.reloadData()
         
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // 오른쪽에 만들기
+        
+        let alert = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print("알림 여부 클릭")
+            success(true)
+        }
+        alert.backgroundColor = .lightGray
+        alert.image = UIImage(systemName: "bell.fill")
+        
+        let exit = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print("나가기 클릭")
+            success(true)
+        }
+        exit.backgroundColor = .systemRed
+        exit.image = UIImage(systemName: "rectangle.portrait.and.arrow.right")
+        
+        //actions배열 인덱스 0이 오른쪽에 붙어서 나옴
+        let configure = UISwipeActionsConfiguration(actions: [exit, alert])
+        configure.performsFirstActionWithFullSwipe = false
+        
+        return configure
+    }
+    
+    
 }

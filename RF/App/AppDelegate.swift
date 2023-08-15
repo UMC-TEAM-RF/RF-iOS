@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         print(#function)
-    
+        
         ChatService.shared.connect()
         
         // 앱이 시작될 때마다 푸시 알림 등록을 시도
@@ -104,25 +104,28 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                   let tabBarController = window.rootViewController as? TabBarController else {
                 return
             }
-
+            
             // 탭의 인덱스를 선택
-            tabBarController.selectedIndex = 4
-
+            tabBarController.selectedIndex = 3
+            
             if let navController = tabBarController.selectedViewController as? UINavigationController {
-                // 채팅 목록 화면으로 이동합니다.
+                // 기존 뷰 컨트롤러를 모두 제거하고 ChatListVC로 이동합니다.
                 navController.popToRootViewController(animated: false)
-
+                
                 // 새 채팅방 화면 인스턴스를 만듭니다.
                 let chatRoomVC = ChatRoomViewController()
                 
-                // 채팅방에 데이터 전달 (channelId, messages)
-                chatRoomVC.channelId = 1
-                chatRoomVC.messages = []
-
+                let index = SingletonChannel.shared.readNewMessage(1)
+                
+                // 채팅방 화면에 chatRoomId 값을 전달합니다 (이름은 적절하게 변경할 수 있습니다).
+                chatRoomVC.channel = SingletonChannel.shared.list[0]
+                chatRoomVC.row = index
+                
+                
                 // 채팅방으로 이동하는 로직 작성
                 navController.pushViewController(chatRoomVC, animated: true)
             }
         }
     }
-
+    
 }
