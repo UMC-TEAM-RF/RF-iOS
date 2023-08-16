@@ -61,7 +61,7 @@ final class CreateViewModel {
 //                            ownerId: 1)
         
         // Meeting Dummy Data
-        let model = Meeting(name: "이름", memberCount: 5, nativeCount: 3, interests: ["MUSIC", "SPORT"], content: "소개", rules: ["ATTENDANCE"], preferAges: "NONE", language: "CHINESE", location: "1층", ownerId: 1)
+        let model = Meeting(id: 1, name: "이름", memberCount: 5, nativeCount: 3, interests: ["MUSIC", "SPORT"], content: "소개", rules: ["ATTENDANCE"], preferAges: "NONE", language: "CHINESE", location: "1층", ownerId: 1)
         
         let img = meetingImage.value
 

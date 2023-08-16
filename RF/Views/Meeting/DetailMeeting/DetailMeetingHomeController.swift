@@ -170,6 +170,7 @@ final class DetailMeetingHomeController: UIViewController {
         let view = UIView()
         view.backgroundColor = UIColor(hexCode: "F5F5F5")
         view.layer.cornerRadius = 10
+        
         return view
     }()
     
@@ -197,6 +198,7 @@ final class DetailMeetingHomeController: UIViewController {
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
         cv.isScrollEnabled = true
         return cv
     }()
@@ -252,15 +254,8 @@ final class DetailMeetingHomeController: UIViewController {
     
     
     private let disposeBag = DisposeBag()
+    private let viewModel = DetailMeetingHomeViewModel()
     var meetingIdRelay: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
-    
-    private var interestingList: [String] = []
-    private var memberList: [Member] = []
-    private var ruleList: [String] = []
-    private var meetingIntroductionUIViewConstraint: Constraint?
-    private var ruleCollectionViewConstraint: Constraint?
-    private var ruleCollectionViewHeight: CGFloat = 0
-    private var ruleCellWidth: CGFloat = 0
     
     // MARK: - init
     
@@ -448,9 +443,10 @@ final class DetailMeetingHomeController: UIViewController {
             make.trailing.equalToSuperview().offset(-30)
         }
         
+        
         meetingIntroduction.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(15)
-            make.bottom.equalToSuperview().offset(-15)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
         }
@@ -459,7 +455,7 @@ final class DetailMeetingHomeController: UIViewController {
             make.top.equalTo(meetingLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(30)
             make.trailing.equalToSuperview().offset(-30)
-            meetingIntroductionUIViewConstraint = make.height.equalTo(40).priority(250).constraint
+            viewModel.meetingIntroductionUIViewConstraint.accept(make.height.equalTo(0).constraint)
         }
         
         /// 규칙
@@ -538,33 +534,20 @@ final class DetailMeetingHomeController: UIViewController {
     
     /// MARK: 테스트용 더미 데이터
     private func dummyData(){
-        interestingList.append("스포츠")
-        interestingList.append("경기")
-        interestingList.append("축구")
         
-        let longText = """
-        해외 축구 팬들 모여라! 같이 이야기도 나누고
-        직접 축구도 같이 해봐요!
-        다른 국가의 분들은 어느 구단을 좋아하시나요?
-        """
+        viewModel.getData(meetingIntroduction: meetingIntroduction)
         
-        meetingIntroduction.setTextWithLineHeight(text: longText, lineHeight: 25)
-        let newHeight = meetingIntroduction.sizeThatFits(meetingIntroduction.attributedText?.size() ?? CGSize(width: 0, height: 0)).height
-        meetingIntroductionUIViewConstraint?.update(offset: newHeight)
         
-        ruleList.append("상호 존중하는 태도를 가져요")
-        ruleList.append("활동적으로 해요")
+        viewModel.meetingInfo
+            .subscribe(onNext: { [weak self] data in
+                self?.memberContentLabel.text = "\(data?.memberCount ?? 0)"
+                self?.ageContentLabel.text = data?.preferAges ?? ""
+                self?.languageContentLabel.text = data?.language ?? ""
+                self?.placeContentLabel.text = data?.location ?? ""
+            })
+            .disposed(by: disposeBag)
         
-        memberList.append(Member(imgPath: "", name: "Kiwi", nationality: "한국"))
-        memberList.append(Member(imgPath: "", name: "Kiwi", nationality: "한국"))
-        memberList.append(Member(imgPath: "", name: "Kiwi", nationality: "한국"))
-        memberList.append(Member(imgPath: "", name: "Kiwi", nationality: "한국"))
-        memberList.append(Member(imgPath: "", name: "Kiwi", nationality: "한국"))
         
-        memberContentLabel.text = "NN 명"
-        ageContentLabel.text = "20대 초반"
-        languageContentLabel.text = "영어, 한국어"
-        placeContentLabel.text = "대운동장"
     }
     
 }
@@ -574,6 +557,8 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == interestingCollectionView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestingCollectionViewCell.identifier, for: indexPath) as? InterestingCollectionViewCell else {return UICollectionViewCell() }
+            guard let interestingList = viewModel.meetingInfo.value?.interests else { return UICollectionViewCell() }
+            
             cell.inputData(text: interestingList[indexPath.row])
             cell.backgroundColor = UIColor(hexCode: "006FF2")
             cell.layer.cornerRadius = 10
@@ -581,8 +566,9 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
         }
         else if collectionView == ruleCollectionView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RuleCollectionViewCell.identifier, for: indexPath) as? RuleCollectionViewCell else {return UICollectionViewCell() }
+            guard let rules = viewModel.meetingInfo.value?.rules else { return UICollectionViewCell() }
             
-            cell.inputData(text: ruleList[indexPath.row])
+            cell.inputData(text: rules[indexPath.row])
             cell.backgroundColor = UIColor(hexCode: "f5f5f5")
             cell.layer.cornerRadius = 15
             
@@ -590,10 +576,10 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
         }
         else if collectionView == joinMemberCollectionView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JoinMemberCollectionViewCell.identifier, for: indexPath) as? JoinMemberCollectionViewCell else {return UICollectionViewCell() }
-            
-            cell.inputData(profileImg: memberList[indexPath.row].imgPath ?? "",
-                           name: memberList[indexPath.row].name ?? "",
-                           nationality: memberList[indexPath.row].nationality ?? "")
+            guard let memberList = viewModel.meetingInfo.value?.users else { return UICollectionViewCell() }
+            cell.inputData(profileImg: memberList[indexPath.row].profileImageUrl ?? "",
+                           name: memberList[indexPath.row].nickname ?? "",
+                           nationality: memberList[indexPath.row].country ?? "")
             cell.backgroundColor = .systemBackground
             
             return cell
@@ -605,6 +591,8 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == interestingCollectionView{
+            guard let interestingList = viewModel.meetingInfo.value?.interests else { return CGSize()}
+            
             let interesting = interestingList[indexPath.row]
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
             let newSize = (interesting as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
@@ -612,7 +600,7 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             return CGSize(width: newSize.width + 10, height: collectionView.bounds.height)
         }
         else if collectionView == ruleCollectionView{
-            let rule = ruleList[indexPath.row]
+            guard let rule = viewModel.meetingInfo.value?.rules?[indexPath.row] else { return CGSize() }
             
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
             let newSize = (rule as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
@@ -641,13 +629,13 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == interestingCollectionView{
-            return interestingList.count
+            return viewModel.meetingInfo.value?.interests?.count ?? 0
         }
         else if collectionView == ruleCollectionView{
-            return ruleList.count
+            return viewModel.meetingInfo.value?.rules?.count ?? 0
         }
         else if collectionView == joinMemberCollectionView{
-            return memberList.count
+            return viewModel.meetingInfo.value?.users?.count ?? 0
         }
         else{
             return 0
