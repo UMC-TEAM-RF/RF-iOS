@@ -89,8 +89,8 @@ class ChatRoomViewController: UIViewController {
     
     private var keyboardRect: CGRect = CGRect()
     
-    var channelId: Int!
-    var messages: [CustomMessage]!
+    var channel: Channel!
+    var row: Int?
     
     
     // MARK: - viewDidLoad()
@@ -98,12 +98,10 @@ class ChatRoomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         view.backgroundColor = .white
         
         setupCustomBackButton()
-        updateTitleView(title: "Channel")
-        
+        updateTitleView(title: channel.name)
         
         addSubviews()
         configureConstraints()
@@ -114,9 +112,8 @@ class ChatRoomViewController: UIViewController {
         messagesTableView.addInteraction(editMenuInteraction!)
         
         DispatchQueue.main.async {
-            self.scrollToBottom()
+            self.messagesTableView.scrollToRow(at: IndexPath(row: self.row ?? 0, section: 0), at: .bottom, animated: false)
         }
-        
     }
     
     // MARK: - viewWillAppear()
@@ -130,7 +127,7 @@ class ChatRoomViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NotificationName.keyboardWillHide, object: nil)
         
         // 새로운 메시지가 왔을 때 알림
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateChat), name: NotificationName.updateChat, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateChat), name: NotificationName.updateChatRoom, object: nil)
     }
     
     // MARK: - viewWillDisappear()
@@ -140,7 +137,7 @@ class ChatRoomViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillHide, object: nil)
         
-        NotificationCenter.default.removeObserver(self, name: NotificationName.updateChat, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NotificationName.updateChatRoom, object: nil)
     }
     
     // MARK: - addSubviews()
@@ -227,15 +224,15 @@ class ChatRoomViewController: UIViewController {
     }
     
     private func scrollToBottom() {
-        if messages.isEmpty { return }
-        messagesTableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: false)
+        if channel.messages.isEmpty { return }
+        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
     }
     
     /// 한 사람이 연속해서 메시지를 보내는지 체크
     /// - Parameter indexPath: indexPath
     /// - Returns: true: 연속, false: 비연속
     private func isSenderConsecutiveMessages(row: Int) -> Bool {
-        if row != 0 && (messages[row - 1].sender?.userId == messages[row].sender?.userId) { return true }
+        if row != 0 && (channel.messages[row - 1].sender?.userId == channel.messages[row].sender?.userId) { return true }
         else { return false }
     }
     
@@ -248,15 +245,15 @@ class ChatRoomViewController: UIViewController {
         // 마지막 섹션을 가져오고 해당 섹션의 마지막 셀의 row 수를 얻는다
         let lastSection = messagesTableView.numberOfSections - 1
         let lastRowInLastSection = messagesTableView.numberOfRows(inSection: lastSection) - 1
-
+        
         // 마지막 indexPath 생성
         let lastIndexPath = IndexPath(row: lastRowInLastSection, section: lastSection)
-
+        
         // 마지막 indexPath가 현재 보이는 셀 중 하나인지 확인
         return visibleIndexPaths.contains(lastIndexPath)
     }
     
-    private func isSenderSelf(_ sender: CustomMessageSender?) -> Bool {
+    private func isSenderSelf(_ sender: Sender?) -> Bool {
         guard let sender else { return false }
         return sender.userId == 1
     }
@@ -289,9 +286,9 @@ class ChatRoomViewController: UIViewController {
             
             var newContentOffset = messagesTableView.contentOffset
             newContentOffset.y = max(0, newContentOffset.y + diffHeight)
-        
+            
             messagesTableView.contentOffset = newContentOffset
-
+            
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
@@ -332,11 +329,13 @@ class ChatRoomViewController: UIViewController {
         
         //if isLastIndexPathVisible() || isSenderSelf(<#T##sender: CustomMessageSender?##CustomMessageSender?#>)
         if isLastIndexPathVisible() {
-            messages = SingletonChannel.shared.getChannelMessages(channelId)
+            let _ = SingletonChannel.shared.readNewMessage(channel.id)
+            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
             messagesTableView.reloadData()
             scrollToBottom()
         } else {
-            messages = SingletonChannel.shared.getChannelMessages(channelId)
+            let _ = SingletonChannel.shared.readNewMessage(channel.id)
+            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
             messagesTableView.reloadData()
             scrollToBottom()  // 테스트
             print("메시지 업데이트")
@@ -358,14 +357,14 @@ class ChatRoomViewController: UIViewController {
     }
     
     @objc func sourceLanguageButtonTapped() {
-        let vc = PickerViewController(tag: 0, pickerValues: Language.list)
+        let vc = PickerViewController(tag: 0, pickerValues: Language.getLanguageList())
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true, completion: nil)
     }
     
     @objc func targetLanguageButtonTapped() {
-        let vc = PickerViewController(tag: 1, pickerValues: Language.list)
+        let vc = PickerViewController(tag: 1, pickerValues: Language.getLanguageList())
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true, completion: nil)
@@ -376,50 +375,50 @@ class ChatRoomViewController: UIViewController {
 
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return channel.messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let message = messages[indexPath.row]
+        let message = channel.messages[indexPath.row]
         
         if isSenderSelf(message.sender) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
-    
+            
             cell.updateChatView(message)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
             cell.updateChatView(message)
             cell.delegate = self
-
+            
             if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
             else { cell.isContinuous = false }
-
+            
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       return UITableView.automaticDimension
+        return UITableView.automaticDimension
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-//        let contentOffsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
-//        let scrollViewHeight = scrollView.bounds.height
-//
-//        // 뱅크 뷰가 나타날 위치를 계산합니다.
-//        let bankViewY = contentHeight - scrollViewHeight + 50
-//
-//        UIView.animate(withDuration: 0.3) {
-//            let alpha = (contentOffsetY >= bankViewY - 100) ? 0.0 : 0.8
-//            self.scrollToBottomButton.alpha = alpha
-//        }
+        //        let contentOffsetY = scrollView.contentOffset.y
+        //        let contentHeight = scrollView.contentSize.height
+        //        let scrollViewHeight = scrollView.bounds.height
+        //
+        //        // 뱅크 뷰가 나타날 위치를 계산합니다.
+        //        let bankViewY = contentHeight - scrollViewHeight + 50
+        //
+        //        UIView.animate(withDuration: 0.3) {
+        //            let alpha = (contentOffsetY >= bankViewY - 100) ? 0.0 : 0.8
+        //            self.scrollToBottomButton.alpha = alpha
+        //        }
     }
 }
 
-// MARK: - Ext:
+// MARK: - Ext: UIEditMenuInteractionDelegate
 
 extension ChatRoomViewController: UIEditMenuInteractionDelegate {
     func editMenuInteraction(_ interaction: UIEditMenuInteraction,
@@ -453,12 +452,29 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         keyboardInputBar.keyboardInputView = keyboardInputView
     }
     
-    func didTapSend(_ text: String) {
+    func didTapSend(_ text: String, isTranslated: Bool) {
+        print(#function)
         
+        if isTranslated { // 번역 버튼 클릭인 경우
+            // 1. 번역
+            let sourceLanguage = sourceLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
+            let targetLanguage = targetLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
+            
+            guard let source = Language.getLanguageCode(sourceLanguage!) else { return }
+            guard let target = Language.getLanguageCode(targetLanguage!) else { return }
+            
+            ChatService.shared.translateMessage(source: source, target: target, text: text) { result in
+                // 2. keyboardInputBar.inputField.text = "번역된 텍스트"
+                self.keyboardInputBar.inputFieldText = result
+            }
+        } else { // 메시지 전송 버튼 클릭인 경우
+            // 메시지 전송 전 언어 코드 확인
+            ChatService.shared.detectLanguage(text) { result in
+                // 언어 코드 확인 후 메시지 전송
+                ChatService.shared.send(message: Message(sender: Sender(userId: 1), type: MessageType.text, content: text), partyId: self.channel.id)
+            }
+        }
         inputBarTopStackView.isHidden = true
-        keyboardInputBar.isTranslated = false
-
-        ChatService.shared.send(message: CustomMessage(sender: CustomMessageSender(userId: 1), type: MessageType.text, content: text), partyId: channelId)
     }
     
     func didTapTranslate(_ isTranslated: Bool) {
@@ -474,11 +490,27 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
 // MARK: - Ext: MessageTableViewCellDelegate
 
 extension ChatRoomViewController: MessageTableViewCellDelegate {
-    func messagePressed(_ gesture: UILongPressGestureRecognizer) {
+    // 메시지 뷰 롱 프레스
+    func longPressedMessageView(_ gesture: UILongPressGestureRecognizer) {
         let location = gesture.location(in: messagesTableView)
         
         let conf = UIEditMenuConfiguration(identifier: "", sourcePoint: location)
         editMenuInteraction?.presentEditMenu(with: conf)
+    }
+    
+    // 메시지 번역 버튼 클릭
+    func convertMessage(_ indexPath: IndexPath) {
+        guard let code = channel.messages[indexPath.row].langCode else { return }
+
+        if !Language.listWithCode.keys.contains(code) { return }
+
+        ChatService.shared.translateMessage(source: code, target: "ko", text: channel.messages[indexPath.row].content!) { str in
+            self.channel.messages[indexPath.row].content = str
+
+            DispatchQueue.main.async {
+                self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
+            }
+        }
     }
 }
 
@@ -486,6 +518,7 @@ extension ChatRoomViewController: MessageTableViewCellDelegate {
 // MARK: - Ext: SendDataDelegate
 
 extension ChatRoomViewController: SendDataDelegate {
+    // PickerViewController로 부터 전달받은 데이터
     func sendData(tag: Int, data: String) {
         let button = tag == 0 ? sourceLanguageButton : targetLanguageButton
         button.setTitle("\(data) ", for: .normal)

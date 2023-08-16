@@ -183,7 +183,7 @@ class ChatListTableViewCell: UITableViewCell {
         newMessageCountView.isHidden = bool
     }
     
-    func countNewMessages(from messages: [CustomMessage]) -> Int {
+    func countNewMessages(from messages: [Message]) -> Int {
         var count = 0
         for message in messages.reversed() {
             if !message.isNew { break }

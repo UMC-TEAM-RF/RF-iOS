@@ -19,6 +19,12 @@ struct EnumPath {
     static let enums = "/enums"
 }
 
+// Naver Api EndPoint
+struct PapagoApiPath {
+    static let translation = "/v1/papago/n2mt"
+    static let detectLangs = "/v1/papago/detectLangs"
+}
+
 /// SignUp EndPoint
 struct SignUpPath {
     static let checkOverlapId = "/user/idCheck"
@@ -40,5 +46,5 @@ struct MeetingPath {
 
 /// Login EndPoint
 struct LoginPath {
-    static let login = "/signin"
+    static let login = "/user/login"
 }

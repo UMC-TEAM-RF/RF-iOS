@@ -29,11 +29,12 @@ final class SignInService {
                        parameters: body,
                        encoding: JSONEncoding.default)
             .validate(statusCode: 200..<201)
-            .responseDecodable(of: SignIn.self) { response in
-                print(response)
+            .responseDecodable(of: Response<SignIn>.self) { response in
                 switch response.result{
                 case .success (let data):
-                    observer.onNext(data)
+                    if let data = data.result {
+                        observer.onNext(data)
+                    }
                 case .failure (let error):
                     print("loginService error!\n\(error)")
                 }

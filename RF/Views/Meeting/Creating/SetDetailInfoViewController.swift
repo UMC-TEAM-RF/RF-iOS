@@ -467,12 +467,12 @@ final class SetDetailInfoViewController: UIViewController {
     
     /// MARK: 모임 생성 버튼 누른 후 생선 된 경우 실행
     private func createMeeting(){
-//        CreateViewModel.viewModel.clickedNextButton()
-//            .subscribe(onNext:{ [weak self] in
-//                self?.tabBarController?.tabBar.isHidden = false
-//                self?.navigationController?.popToRootViewController(animated: true)
-//            })
-//            .disposed(by: disposeBag)
+        CreateViewModel.viewModel.clickedNextButton()
+            .subscribe(onNext:{ [weak self] in
+                self?.tabBarController?.tabBar.isHidden = false
+                self?.navigationController?.popToRootViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

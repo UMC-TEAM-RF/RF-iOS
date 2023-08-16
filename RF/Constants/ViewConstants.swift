@@ -11,6 +11,32 @@ import Foundation
 
 struct Language {
     static let list: [String] = ["한국어", "영어", "중국어", "일본어", "불어", "베트남어"]
+    static let listWithCode: [String: String] = [
+        "ko": "한국어",
+        "en": "영어",
+        "ja": "일본어",
+        "zh-CN": "중국어 간체",
+        "zh-TW": "중국어 번체",
+        "vi": "베트남어",
+        "id": "인도네시아어",
+        "th": "태국어",
+        "de": "독일어",
+        "ru": "러시아어",
+        "es": "스페인어",
+        "it": "이탈리아어",
+        "fr": "프랑스어"
+    ]
+    
+    static func getLanguageList() -> [String] {
+        return listWithCode.values.sorted()
+    }
+    
+    static func getLanguageCode(_ language: String) -> String? {
+        for (key, value) in listWithCode {
+            if value == language { return key }
+        }
+        return nil
+    }
 }
 
 // MARK: - AgeGroup
