@@ -265,7 +265,7 @@ final class DetailMeetingHomeController: UIViewController {
         view.backgroundColor = .systemBackground
         
         addSubviews()
-        dummyData()
+        getData()
         clickedBtns()
     }
     
@@ -533,7 +533,7 @@ final class DetailMeetingHomeController: UIViewController {
     }
     
     /// MARK: 테스트용 더미 데이터
-    private func dummyData(){
+    private func getData(){
         
         viewModel.getData(meetingIntroduction: meetingIntroduction)
         

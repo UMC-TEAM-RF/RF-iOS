@@ -18,13 +18,14 @@ final class DetailMeetingHomeViewModel {
     /// 모임 정보
     var meetingInfo: BehaviorRelay<Meeting?> = BehaviorRelay(value: nil)
     
+    /// 모임 소개글 길이에 따라 높이 길이 계산
     func resizeMeetingIntroductionHeight(meetingIntroduction: UILabel, longText: String){
         meetingIntroduction.setTextWithLineHeight(text: longText, lineHeight: 20)
         let newHeight = meetingIntroduction.sizeThatFits(CGSize(width: meetingIntroduction.frame.width, height: .greatestFiniteMagnitude)).height + 30
         meetingIntroductionUIViewConstraint.value?.update(offset: newHeight)
     }
     
-    
+    /// 모임 데이터 가져옴
     func getData(meetingIntroduction: UILabel) {
         
         let longText = """
