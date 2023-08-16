@@ -154,6 +154,7 @@ extension SearchingViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailMeetingTabController = DetailMeetingTabController()
+        detailMeetingTabController.meetingIdRelay.accept(viewModel.meetingList.value[indexPath.row].id)
         navigationItem.backButtonTitle = " "
         navigationController?.pushViewController(detailMeetingTabController, animated: true)
     }

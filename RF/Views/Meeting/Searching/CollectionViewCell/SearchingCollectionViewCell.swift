@@ -154,7 +154,7 @@ extension SearchingCollectionViewCell: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           return CGSize(width: viewModel.tagList.value[indexPath.item].size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 30, height: collectionView.frame.height-2)
+           return CGSize(width: viewModel.tagList.value[indexPath.item].size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 10, height: collectionView.frame.height-2)
        }
     
 }

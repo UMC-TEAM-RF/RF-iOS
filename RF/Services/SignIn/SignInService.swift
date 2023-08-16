@@ -33,6 +33,7 @@ final class SignInService {
                 switch response.result{
                 case .success (let data):
                     if let data = data.result {
+                        print("loginService success! \n\(data)")
                         observer.onNext(data)
                     }
                 case .failure (let error):

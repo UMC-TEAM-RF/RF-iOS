@@ -33,7 +33,8 @@ final class SearchingViewModel {
     func getData(){
         var list: [Meeting] = []
         
-        list.append(Meeting(name: "짜장 미친자 모임",
+        list.append(Meeting(id: 1,
+                            name: "짜장 미친자 모임",
                             memberCount: 5,
                             nativeCount: 2,
                             interests: [ "FOOD", "CAFE", "COUNTRY"],
@@ -45,7 +46,8 @@ final class SearchingViewModel {
                             ownerId: 1,
                             imageFilePath: "soccer",
                             users: []))
-        list.append(Meeting(name: "짜장 미친자 모임",
+        list.append(Meeting(id: 1,
+                            name: "짜장 미친자 모임",
                             memberCount: 5,
                             nativeCount: 2,
                             interests: [ "FOOD", "CAFE", "COUNTRY"],
@@ -57,7 +59,8 @@ final class SearchingViewModel {
                             ownerId: 1,
                             imageFilePath: "soccer",
                             users: []))
-        list.append(Meeting(name: "짜장 미친자 모임",
+        list.append(Meeting(id: 1,
+                            name: "짜장 미친자 모임",
                             memberCount: 5,
                             nativeCount: 2,
                             interests: [ "FOOD", "CAFE", "COUNTRY"],
@@ -69,7 +72,8 @@ final class SearchingViewModel {
                             ownerId: 1,
                             imageFilePath: "soccer",
                             users: []))
-        list.append(Meeting(name: "짜장 미친자 모임",
+        list.append(Meeting(id: 1,
+                            name: "짜장 미친자 모임",
                             memberCount: 5,
                             nativeCount: 2,
                             interests: [ "FOOD", "CAFE", "COUNTRY"],

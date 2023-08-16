@@ -10,6 +10,7 @@ import UIKit
 import Tabman
 import SnapKit
 import RxSwift
+import RxRelay
 
 /// 모임 상세보기 '홈' 화면
 final class DetailMeetingHomeController: UIViewController {
@@ -251,6 +252,8 @@ final class DetailMeetingHomeController: UIViewController {
     
     
     private let disposeBag = DisposeBag()
+    var meetingIdRelay: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
+    
     private var interestingList: [String] = []
     private var memberList: [Member] = []
     private var ruleList: [String] = []
@@ -520,6 +523,14 @@ final class DetailMeetingHomeController: UIViewController {
             .subscribe(onNext:{ [weak self] in
                 print("clicked join Button")
                 let detailMeetingJoinPopUpViewController = DetailMeetingJoinPopUpViewController()
+                detailMeetingJoinPopUpViewController.meetingIdRelay.accept(self?.meetingIdRelay.value)
+                detailMeetingJoinPopUpViewController.clicekdButtonSubject
+                    .bind { [weak self] in
+                        if $0{
+                            self?.navigationController?.popToRootViewController(animated: true)
+                        }
+                    }
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
                 self?.present(detailMeetingJoinPopUpViewController, animated: true)
             })
             .disposed(by: disposeBag)
