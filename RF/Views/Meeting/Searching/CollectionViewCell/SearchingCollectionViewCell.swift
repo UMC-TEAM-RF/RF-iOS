@@ -135,7 +135,7 @@ final class SearchingCollectionViewCell: UICollectionViewCell {
         titleLabel.text = meeting?.name ?? ""
         descriptLabel.text = meeting?.content ?? ""
         personnelLabel.text = "모집인원: \(meeting?.users?.count ?? 0)/\(meeting?.memberCount ?? 0)"
-        viewModel.tagList.accept(meeting?.rule ?? [])
+        viewModel.tagList.accept(meeting?.rules ?? [])
          tagCollectionView.reloadData()
      }
     

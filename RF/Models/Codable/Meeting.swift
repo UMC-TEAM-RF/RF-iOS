@@ -18,6 +18,7 @@ struct Meeting: Codable {
     var language: String?   // 사용 언어
     var location: String?   // 활동 장소
     var ownerId: Int?   // 모임 장
+    var imageFilePath: String?  // 이미지 주소
     var users: [User]?
 }
 

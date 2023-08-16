@@ -33,17 +33,15 @@ final class SearchingViewModel {
     func getData(){
         var list: [Meeting] = []
         
-        
         list.append(Meeting(name: "짜장 미친자 모임",
                             memberCount: 5,
                             nativeCount: 2,
                             interests: [ "FOOD", "CAFE", "COUNTRY"],
                             content: "짜장 같이먹어요!",
-                            rule: ["a","b","c"],
+                            rules: ["a","b","c"],
                             preferAges: "EARLY_TWENTIES",
                             language:  "KOREAN",
                             location: "인하대학교 후문",
-                            tag: "aa",
                             ownerId: 1,
                             imageFilePath: "soccer",
                             users: []))
@@ -52,11 +50,10 @@ final class SearchingViewModel {
                             nativeCount: 2,
                             interests: [ "FOOD", "CAFE", "COUNTRY"],
                             content: "짜장 같이먹어요!",
-                            rule: ["a","b","c"],
+                            rules: ["a","b","c"],
                             preferAges: "EARLY_TWENTIES",
                             language:  "KOREAN",
                             location: "인하대학교 후문",
-                            tag: "aa",
                             ownerId: 1,
                             imageFilePath: "soccer",
                             users: []))
@@ -65,11 +62,10 @@ final class SearchingViewModel {
                             nativeCount: 2,
                             interests: [ "FOOD", "CAFE", "COUNTRY"],
                             content: "짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!",
-                            rule: ["a","b","c"],
+                            rules: ["a","b","c"],
                             preferAges: "EARLY_TWENTIES",
                             language:  "KOREAN",
                             location: "인하대학교 후문",
-                            tag: "aa",
                             ownerId: 1,
                             imageFilePath: "soccer",
                             users: []))
@@ -78,11 +74,10 @@ final class SearchingViewModel {
                             nativeCount: 2,
                             interests: [ "FOOD", "CAFE", "COUNTRY"],
                             content: "짜장 같이먹어요!",
-                            rule: ["a","b","c"],
+                            rules: ["a","b","c"],
                             preferAges: "EARLY_TWENTIES",
                             language:  "KOREAN",
                             location: "인하대학교 후문",
-                            tag: "aa",
                             ownerId: 1,
                             imageFilePath: "soccer",
                             users: []))
