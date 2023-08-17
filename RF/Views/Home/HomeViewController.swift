@@ -69,11 +69,6 @@ final class HomeViewController: UIViewController {
     
     // 모임
     
-    private lazy var tabBarView: MenuBar = {
-        let view = MenuBar()
-        return view
-    }()
-    
     private lazy var meetingListView: UIView = {
         let view = UIView()
         return view
@@ -220,7 +215,6 @@ final class HomeViewController: UIViewController {
         navigationContainerView.addSubview(navigationNotiButton)
         
         // 모임
-        meetingListView.addSubview(tabBarView)
         meetingListView.addSubview(meetingListLabel)
         meetingListView.addSubview(moreMeetingButton)
         meetingListView.addSubview(meetingCollectionView)
@@ -287,15 +281,8 @@ final class HomeViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
         }
         
-        tabBarView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.horizontalEdges.equalToSuperview().inset(20)
-            
-            make.height.equalTo(40)    // 모임 3개 고정 (2개 275, 3개 420) 220*3+40
-        }
-        
         meetingListLabel.snp.makeConstraints { make in
-            make.top.equalTo(tabBarView.snp.bottom).offset(20)
+            make.top.equalToSuperview()
             make.leading.equalToSuperview().inset(20)
         }
         

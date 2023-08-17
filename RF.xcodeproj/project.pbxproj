@@ -56,8 +56,6 @@
 		3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D532A56D45C00FECE3A /* PasswordTextField.swift */; };
 		3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D552A56D4AA00FECE3A /* UICheckBox.swift */; };
 		3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D572A56F00200FECE3A /* SignUpViewController.swift */; };
-		3B961AC52A8A52AF00700C1E /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B961AC42A8A52AF00700C1E /* MenuCell.swift */; };
-		3B961AC72A8A535700700C1E /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B961AC62A8A535700700C1E /* MenuBar.swift */; };
 		3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */; };
 		3BA9FB8D2A7D307F0039B138 /* lifestyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */; };
 		3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */; };
@@ -204,8 +202,6 @@
 		3B935D532A56D45C00FECE3A /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		3B935D552A56D4AA00FECE3A /* UICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox.swift; sourceTree = "<group>"; };
 		3B935D572A56F00200FECE3A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		3B961AC42A8A52AF00700C1E /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
-		3B961AC62A8A535700700C1E /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lifestyleCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -829,8 +825,6 @@
 				57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */,
 				5700639C2A6AC60C0051F42A /* NotiListTableViewCell.swift */,
 				3B595EF12A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift */,
-				3B961AC42A8A52AF00700C1E /* MenuCell.swift */,
-				3B961AC62A8A535700700C1E /* MenuBar.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1043,7 +1037,6 @@
 				572A9A322A5CB445004D2809 /* SetInterestViewController.swift in Sources */,
 				570063602A63D5120051F42A /* PersonnelStepper.swift in Sources */,
 				572A9A3A2A5E80D1004D2809 /* Member.swift in Sources */,
-				3B961AC72A8A535700700C1E /* MenuBar.swift in Sources */,
 				57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */,
 				570063D42A7A57110051F42A /* Meeting.swift in Sources */,
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,
@@ -1112,7 +1105,6 @@
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
 				57DD3E642A80C7C2009F7139 /* Domain.swift in Sources */,
 				3B15CD5F2A643AD80096871F /* MeetingFiltering.swift in Sources */,
-				3B961AC52A8A52AF00700C1E /* MenuCell.swift in Sources */,
 				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
 				570063E02A7CFD780051F42A /* ChatListTableViewCell.swift in Sources */,
 				3BD700D52A796403005C7D7E /* ChoiceInterestingLanguageViewModel.swift in Sources */,
