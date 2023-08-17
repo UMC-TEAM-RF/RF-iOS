@@ -1260,7 +1260,7 @@
 				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7WSFP8ZQ32;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
@@ -1273,7 +1273,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF.gyfolder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
