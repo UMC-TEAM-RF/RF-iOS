@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B0B35292A7A5A31003B2D8C /* SecretKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B0B35282A7A5A31003B2D8C /* SecretKey.plist */; };
+		3B0BA20A2A8DEEAA00F7E818 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BA2092A8DEEAA00F7E818 /* GradientView.swift */; };
 		3B0F1EE42A7C0317009F3F2B /* UICheckBox1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */; };
 		3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD572A63E9590096871F /* SearchingViewController.swift */; };
 		3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD592A63ECB80096871F /* FilteringViewController.swift */; };
@@ -32,7 +33,6 @@
 		3B57FFD32A741972007DB482 /* SchedulePopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD22A741972007DB482 /* SchedulePopUpViewModel.swift */; };
 		3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */; };
 		3B595EF22A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B595EF12A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift */; };
-		3B595EF42A84DBC3008BD715 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B595EF32A84DBC3008BD715 /* UIImageView+Ext.swift */; };
 		3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */; };
 		3B59B2832A75653400027809 /* DetailMeetingJoinPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */; };
 		3B6BA97C2A7E5ACD00A11FE4 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */; };
@@ -154,6 +154,7 @@
 		2505DAF5F18952160CB2275D /* Pods-RF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RF.debug.xcconfig"; path = "Target Support Files/Pods-RF/Pods-RF.debug.xcconfig"; sourceTree = "<group>"; };
 		2B0C13344295BF3D18F7D032 /* Pods-RF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RF.release.xcconfig"; path = "Target Support Files/Pods-RF/Pods-RF.release.xcconfig"; sourceTree = "<group>"; };
 		3B0B35282A7A5A31003B2D8C /* SecretKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecretKey.plist; sourceTree = "<group>"; };
+		3B0BA2092A8DEEAA00F7E818 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox1.swift; sourceTree = "<group>"; };
 		3B15CD572A63E9590096871F /* SearchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewController.swift; sourceTree = "<group>"; };
 		3B15CD592A63ECB80096871F /* FilteringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringViewController.swift; sourceTree = "<group>"; };
@@ -178,7 +179,6 @@
 		3B57FFD22A741972007DB482 /* SchedulePopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUpViewModel.swift; sourceTree = "<group>"; };
 		3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventPopUp.swift; sourceTree = "<group>"; };
 		3B595EF12A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMeetingCollectionViewCell.swift; sourceTree = "<group>"; };
-		3B595EF32A84DBC3008BD715 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUpViewController.swift; sourceTree = "<group>"; };
 		3B59B2822A75653400027809 /* DetailMeetingJoinPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUp.swift; sourceTree = "<group>"; };
 		3B6BA97B2A7E5ACD00A11FE4 /* SelectedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedButton.swift; sourceTree = "<group>"; };
@@ -594,7 +594,6 @@
 				572A9A2F2A5C267D004D2809 /* UITextField+Ext.swift */,
 				570063AA2A724CB40051F42A /* UIViewController+Ext.swift */,
 				570063CE2A7A44BC0051F42A /* Bundle+Ext.swift */,
-				3B595EF32A84DBC3008BD715 /* UIImageView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -825,6 +824,7 @@
 				57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */,
 				5700639C2A6AC60C0051F42A /* NotiListTableViewCell.swift */,
 				3B595EF12A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift */,
+				3B0BA2092A8DEEAA00F7E818 /* GradientView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1083,7 +1083,6 @@
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
 				3BC35CEA2A5C3CBA00D73163 /* DetailMeetingChatController.swift in Sources */,
 				3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */,
-				3B595EF42A84DBC3008BD715 /* UIImageView+Ext.swift in Sources */,
 				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
 				57DD3E682A8106E7009F7139 /* Message.swift in Sources */,
 				3B595EF22A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift in Sources */,
@@ -1101,6 +1100,7 @@
 				3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */,
 				3BD700C22A793371005C7D7E /* ChooseUserTableViewCell.swift in Sources */,
 				570063952A67BA000051F42A /* Rule.swift in Sources */,
+				3B0BA20A2A8DEEAA00F7E818 /* GradientView.swift in Sources */,
 				3B57FFD32A741972007DB482 /* SchedulePopUpViewModel.swift in Sources */,
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
 				57DD3E642A80C7C2009F7139 /* Domain.swift in Sources */,
