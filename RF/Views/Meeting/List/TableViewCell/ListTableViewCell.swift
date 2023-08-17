@@ -14,8 +14,8 @@ final class ListTableViewCell: UITableViewCell{
     static let identifier = "ListTableViewCell"
     
     /// MARK: 프로필 들어갈 View
-    private lazy var profileUIView: ProfileUIView = {
-        let view = ProfileUIView()
+    private lazy var profileUIView: GroupProfileView = {
+        let view = GroupProfileView()
         view.backgroundColor = .clear
         return view
     }()
@@ -29,7 +29,7 @@ final class ListTableViewCell: UITableViewCell{
     }()
     
     /// MARK: 소속된 학교 이름
-    private lazy var universityLabel: UILabel = {
+    private lazy var introduceLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hexCode: "818181")
         label.font = .systemFont(ofSize: 12, weight: .medium)
@@ -93,7 +93,7 @@ final class ListTableViewCell: UITableViewCell{
         addSubview(profileUIView)
         addSubview(stackView)
         
-        organizationView.addSubview(universityLabel)
+        organizationView.addSubview(introduceLabel)
         organizationView.addSubview(separateView)
         organizationView.addSubview(countryLabel)
         contentView.addSubview(likeButton)
@@ -116,21 +116,21 @@ final class ListTableViewCell: UITableViewCell{
             make.leading.equalTo(profileUIView.snp.trailing).offset(10)
         }
         
-        universityLabel.snp.makeConstraints { make in
+        introduceLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.equalToSuperview()
         }
         
         separateView.snp.makeConstraints { make in
-            make.top.equalTo(universityLabel.snp.top)
-            make.bottom.equalTo(universityLabel.snp.bottom)
-            make.leading.equalTo(universityLabel.snp.trailing).offset(3)
+            make.top.equalTo(introduceLabel.snp.top)
+            make.bottom.equalTo(introduceLabel.snp.bottom)
+            make.leading.equalTo(introduceLabel.snp.trailing).offset(3)
             make.width.equalTo(1)
         }
         
         countryLabel.snp.makeConstraints { make in
-            make.top.equalTo(universityLabel.snp.top)
-            make.bottom.equalTo(universityLabel.snp.bottom)
+            make.top.equalTo(introduceLabel.snp.top)
+            make.bottom.equalTo(introduceLabel.snp.bottom)
             make.leading.equalTo(separateView.snp.trailing).offset(3)
         }
         
@@ -168,23 +168,24 @@ final class ListTableViewCell: UITableViewCell{
     /// 모임 목록 데이터 넣는 함수
     /// - Parameters:
     ///   - meetingName: 모임 이름
-    ///   - university: 학교 이름
+    ///   - introduce: 모임 소개
     ///   - country: 도시 이름
-    func inputData(imageList: [String?]?, meetingName: String?, university: String?, country: String?, like: Bool?){
+    func inputData(imageList: [String]?, meetingName: String?, introduce: String?, country: String?, like: Bool?){
         addSubviews()
         
         guard let imageList = imageList,
               let meetingName = meetingName,
-              let university = university,
-              let country = country,
-              let like = like else { return }
+              let introduce = introduce,
+              let country = country else { return }
         
         meetingTitleLabel.text = meetingName
-        universityLabel.text = university
+        introduceLabel.text = introduce
         countryLabel.text = country
-        viewModel.checkLike.accept(like)
         
-        profileUIView.inputData(imgList: imageList)
+        if let like = like {
+            viewModel.checkLike.accept(like)
+        }
+        profileUIView.updateProfileImages(with: imageList)
         bind()
     }
     

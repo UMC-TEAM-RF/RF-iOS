@@ -14,8 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         print(#function)
-    
-        //ChatService.shared.connect()
+        
+        ChatService.shared.connect()
         
         // 앱이 시작될 때마다 푸시 알림 등록을 시도
         registerForPushNotifications()
@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
+        UserDefaults.standard.setValue(token, forKey: "deviceToken")
         print("Device Token: \(token)")
     }
     
@@ -81,8 +82,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
+    
     // foreground 상태일 때에도 알림 배너가 나오도록 설정
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.sound, .banner])
     }
+    
+    // 푸시 알림 배너 클릭했을 시 실행
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        navigateToSpecificScreen(userInfo)
+        completionHandler()
+    }
+    
+    // 특정 화면으로 이동하도록 설정
+    func navigateToSpecificScreen(_ userInfo: [AnyHashable: Any]) {
+        // 푸시 알림에 포함된 채팅방 정보를 가져옵니다.
+        if let chatRoomId = userInfo["chatRoomId"] as? String {
+            // AppDelegate가 UITabBarController를 참조할 수 있도록 합니다.
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }),
+                  let tabBarController = window.rootViewController as? TabBarController else {
+                return
+            }
+            
+            // 탭의 인덱스를 선택
+            tabBarController.selectedIndex = 3
+            
+            if let navController = tabBarController.selectedViewController as? UINavigationController {
+                // 기존 뷰 컨트롤러를 모두 제거하고 ChatListVC로 이동합니다.
+                navController.popToRootViewController(animated: false)
+                
+                // 새 채팅방 화면 인스턴스를 만듭니다.
+                let chatRoomVC = ChatRoomViewController()
+                
+                let index = SingletonChannel.shared.readNewMessage(1)
+                
+                // 채팅방 화면에 chatRoomId 값을 전달합니다 (이름은 적절하게 변경할 수 있습니다).
+                chatRoomVC.channel = SingletonChannel.shared.list[0]
+                chatRoomVC.row = index
+                
+                
+                // 채팅방으로 이동하는 로직 작성
+                navController.pushViewController(chatRoomVC, animated: true)
+            }
+        }
+    }
+    
 }

@@ -78,14 +78,16 @@ final class ListViewController: UIViewController{
 extension ListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as? ListTableViewCell else { return UITableViewCell() }
         
         let data = viewModel.meetingListRelay.value[indexPath.row]
-        cell.inputData(imageList: data.imageList,
-                       meetingName: data.meetingTitle,
-                       university: data.university,
-                       country: data.country,
-                       like: data.like)
+        
+        cell.inputData(imageList: viewModel.userProfileListRelay.value,
+                       meetingName: data.name ?? "",
+                       introduce: data.content ?? "",
+                       country: data.language,
+                       like: nil)
         
         return cell
     }
@@ -101,9 +103,9 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
         }
         delete.backgroundColor = UIColor(hexCode: "F0EEEE")
         
-        if let like = viewModel.meetingListRelay.value[indexPath.row].like, like{
-            delete.title = "탈퇴"
-        }
+//        if let like = viewModel.meetingListRelay.value[indexPath.row].like, like{
+//            delete.title = "탈퇴"
+//        }
         
         /// 신고 버튼
         let report = UIContextualAction(style: .normal, title: "신고"){ action, view, handler in

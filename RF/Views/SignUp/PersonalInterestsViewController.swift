@@ -340,8 +340,9 @@ final class PersonalInterestsViewController: UIViewController {
     
     /// MARK: 다음 화면으로 이동
     private func moveNextPage(){
-        SignUpDataViewModel.viewModel.lifeStyleRelay.accept(Interest.list[viewModel.lifeStyleRelay.value.row])
-        SignUpDataViewModel.viewModel.mbtiRelay.accept(Interest.list[viewModel.mbtiRelay.value.row])
+        
+        SignUpDataViewModel.viewModel.lifeStyleRelay.accept(EnumFile.enumfile.enumList.value.lifeStyle?[viewModel.lifeStyleRelay.value.row].key ?? "")
+        SignUpDataViewModel.viewModel.mbtiRelay.accept(Mbti.list[viewModel.mbtiRelay.value.row])
         viewModel.convertInterestingValue()
             .bind { list in
                 SignUpDataViewModel.viewModel.interestingRelay.accept(list)
@@ -390,9 +391,9 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == interestCollectionView{
-            return Interest.list.count
+            return EnumFile.enumfile.enumList.value.interest?.count ?? 0
         }else if collectionView == lifeStyleCollectionView{
-            return LifeStyle.list.count
+            return EnumFile.enumfile.enumList.value.lifeStyle?.count ?? 0
         }else if collectionView == mbtiCollectionView{
             return Mbti.list.count
         }
@@ -403,20 +404,22 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
         
         if collectionView == interestCollectionView{
             let str: String = Interest.list[indexPath.item]
+            let interest = EnumFile.enumfile.enumList.value.interest?[indexPath.item]
             guard let cell = interestCollectionView.dequeueReusableCell(withReuseIdentifier: InterestSmallCollectionViewCell.identifier,
                                                                         for: indexPath) as? InterestSmallCollectionViewCell else { return UICollectionViewCell() }
             
-            cell.setTextLabel( str )
+            cell.setTextLabel( interest?.value ?? "" )
             cell.contentView.backgroundColor = .systemGray6
             cell.setCornerRadius()
             return cell
             
         } else if collectionView == lifeStyleCollectionView {
-            let str : [String] = LifeStyle.list[indexPath.item]
+//            let str : [String] = LifeStyle.list[indexPath.item]
+            let lifestyle = EnumFile.enumfile.enumList.value.lifeStyle?[indexPath.item]
             guard let cell = lifeStyleCollectionView.dequeueReusableCell(withReuseIdentifier: lifestyleCollectionViewCell.identifier, for: indexPath) as? lifestyleCollectionViewCell else {return UICollectionViewCell()}
             
-            cell.setImage( str[0] )
-            cell.setTextLabel( str[1] )
+            cell.setImage( lifestyle?.key ?? "" )
+            cell.setTextLabel( lifestyle?.value ?? "" )
             cell.contentView.backgroundColor = .systemGray6
             cell.setCornerRadius()
             return cell

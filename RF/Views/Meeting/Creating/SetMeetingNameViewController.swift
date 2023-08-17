@@ -34,10 +34,9 @@ final class SetMeetingNameViewController: UIViewController {
     // 모임 명 입력 창
     private lazy var meetingNameTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = placeholder
+        tf.placeholder = viewModel.placeholder
         tf.borderStyle = .none
         tf.backgroundColor = .clear
-        tf.delegate = self
         tf.addHorizontalPadding(5)
         tf.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         return tf
@@ -70,7 +69,7 @@ final class SetMeetingNameViewController: UIViewController {
     // MARK: - Property
     
     private let disposeBag = DisposeBag()
-    private let placeholder = "2글자 이상"
+    private let viewModel = SetMeetingNameViewModel()
     
     // MARK: - viewDidLoad()
     
@@ -146,44 +145,29 @@ final class SetMeetingNameViewController: UIViewController {
     
     private func addTargets() {
         nextButton.rx.tap
-            .subscribe(onNext: {
-                self.navigationController?.pushViewController(SetInterestViewController(), animated: true)
+            .withLatestFrom(viewModel.isValid())
+            .filter { $0 }
+            .bind(onNext: { [weak self] _ in
+                self?.navigationController?.pushViewController(SetInterestViewController(), animated: true)
             })
             .disposed(by: disposeBag)
-        
+
         meetingNameTextField.rx.text
-            .orEmpty
-            .distinctUntilChanged()
-            .subscribe(onNext: {
-                //if $0 == "" || $0.split(separator: " ").count == 0 {
-                if $0.trimmingCharacters(in: .whitespaces).count < 2 {
-                    self.nextButton.backgroundColor = .systemGray6
-                    self.nextButton.setTitleColor(.black, for: .normal)
-                    self.nextButton.isEnabled = false
-                } else {
-                    self.nextButton.backgroundColor = .tintColor
-                    self.nextButton.setTitleColor(.white, for: .normal)
-                    self.nextButton.isEnabled = true
+            .bind(onNext: { [weak self] text in
+                if let text = text {
+                    CreateViewModel.viewModel.meetingName.accept(text)
+                    self?.viewModel.meetingName.accept(text)
                 }
             })
             .disposed(by: disposeBag)
-    }
-}
-
-// MARK: - Ext: TextFieldDelegate
-
-extension SetMeetingNameViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
         
-        guard let text = textField.text else { return }
-        
-        if text.trimmingCharacters(in: .whitespaces).isEmpty {
-            textField.text = nil
-            nextButton.backgroundColor = .systemGray6
-            nextButton.setTitleColor(.black, for: .normal)
-            nextButton.isEnabled = false
-        }
+        viewModel.isValid()
+            .subscribe(onNext: { [weak self] isValid in
+                self?.nextButton.backgroundColor = isValid ? .tintColor : .systemGray6
+                self?.nextButton.setTitleColor(isValid ? .white : .black, for: .normal)
+                self?.nextButton.isEnabled = isValid
+            })
+            .disposed(by: disposeBag)
     }
+
 }
-
-

@@ -70,6 +70,7 @@ class PersonnelStepper: UIControl {
     }
     
     private let disposeBag = DisposeBag()
+    var selectedMembercount: BehaviorSubject<Int> = BehaviorSubject(value: 0)
     
     // MARK: - init()
 
@@ -124,6 +125,7 @@ class PersonnelStepper: UIControl {
         guard (minimumCount...maximumCount) ~= currentCount + value else { return }
         
         countLabel.text = "\(currentCount + value)"
+        selectedMembercount.onNext(currentCount + value)
         currentValue = currentCount + value
         sendActions(for: .valueChanged)
     }

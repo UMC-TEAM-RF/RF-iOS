@@ -400,11 +400,11 @@ final class SignInViewController: UIViewController {
     private func clickedLoginButton(){
         guard let inputId = idTextField.text else { return }
         guard let inputPW = pwTextField.text else { return }
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+//        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
         viewModel.idRelay
             .accept(inputId)
         
-        viewModel.idRelay
+        viewModel.passwordRelay
             .accept(inputPW)
         
         viewModel.checkingLogin()

@@ -48,7 +48,7 @@ final class SearchUniversityViewController: UIViewController{
     
     private let viewModel = SearchUniversityViewModel()
     private let disposeBag = DisposeBag()
-    var selctedUniversity: PublishSubject<String> = PublishSubject()
+    var selctedUniversity: PublishSubject<KVO> = PublishSubject()
     
     // MARK: view did load
     override func viewDidLoad() {
@@ -162,10 +162,10 @@ extension SearchUniversityViewController: UITableViewDelegate, UITableViewDataSo
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChooseUserTableViewCell.identifer, for: indexPath) as? ChooseUserTableViewCell else { return UITableViewCell()}
         
         if viewModel.isFiltering.value{
-            cell.inputValue(text: viewModel.filteringUniversityRelay.value[indexPath.row])
+            cell.inputValue(text: viewModel.filteringUniversityRelay.value[indexPath.row].value ?? "")
         }
         else{
-            cell.inputValue(text: viewModel.universityRelay.value[indexPath.row])
+            cell.inputValue(text: viewModel.universityRelay.value[indexPath.row].value ?? "")
         }
         
         return cell

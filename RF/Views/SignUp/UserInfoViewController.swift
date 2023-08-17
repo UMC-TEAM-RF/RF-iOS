@@ -197,8 +197,8 @@ final class UserInfoViewController: UIViewController {
                 choiceBornCountryView.modalPresentationStyle = .formSheet
                 choiceBornCountryView.selctedCountry
                     .bind { country in
-                        self?.viewModel.bornCountry.accept(country)
-                        self?.nationButton.setTitle("  \(country)", for: .normal)
+                        self?.viewModel.bornCountry.accept(country.key ?? "")
+                        self?.nationButton.setTitle("  \(country.value ?? "")", for: .normal)
                     }
                     .disposed(by: self?.disposeBag ?? DisposeBag())
                 self?.present(choiceBornCountryView, animated: true)
@@ -212,7 +212,8 @@ final class UserInfoViewController: UIViewController {
                 choiceInterestingCountryView.selctedCountry
                     .bind { country in
                         self?.viewModel.interestingCountry.accept(country)
-                        self?.favNationButton.setTitle("  \(country)", for: .normal)
+                        let selectedList = country.map { "\($0.value ?? "")" }.joined(separator: ", ")
+                        self?.favNationButton.setTitle(selectedList, for: .normal)
                     }
                     .disposed(by: self?.disposeBag ?? DisposeBag())
                 self?.present(choiceInterestingCountryView, animated: true)
@@ -223,10 +224,11 @@ final class UserInfoViewController: UIViewController {
             .bind { [weak self] in
                 let choiceInterestingLanguageView = ChoiceInterestingLanguageView()
                 choiceInterestingLanguageView.modalPresentationStyle = .formSheet
-                choiceInterestingLanguageView.selctedCountry
+                choiceInterestingLanguageView.selctedLanguage
                     .bind { language in
                         self?.viewModel.interestingLanguage.accept(language)
-                        self?.favLanguageButton.setTitle("  \(language)", for: .normal)
+                        let selectedList = language.map { "\($0.value ?? "")" }.joined(separator: ", ")
+                        self?.favLanguageButton.setTitle(selectedList, for: .normal)
                     }
                     .disposed(by: self?.disposeBag ?? DisposeBag())
                 self?.present(choiceInterestingLanguageView, animated: true)
@@ -244,17 +246,17 @@ final class UserInfoViewController: UIViewController {
     /// MARK: check Selected All
     private func selectedAll(){
         viewModel.checkSelectedAll()
-            .bind { [weak self] check in
+            .subscribe(onNext: { [weak self] check in
                 if check{
                     let personalInterestsViewController = PersonalInterestsViewController()
                     self?.navigationItem.backButtonTitle = " "
                     self?.navigationController?.pushViewController(personalInterestsViewController, animated: true)
                     
                     SignUpDataViewModel.viewModel.bornCountry.accept(self?.viewModel.bornCountry.value ?? "")
-                    SignUpDataViewModel.viewModel.interestingCountry.accept(self?.viewModel.interestingCountry.value ?? "")
-                    SignUpDataViewModel.viewModel.interestingLanguage.accept(self?.viewModel.interestingLanguage.value ?? "")
+                    SignUpDataViewModel.viewModel.interestingCountry.accept(self?.viewModel.interestingCountry.value ?? [])
+                    SignUpDataViewModel.viewModel.interestingLanguage.accept(self?.viewModel.interestingLanguage.value ?? [])
                 }
-            }
+            })
             .disposed(by: disposeBag)
     }
     

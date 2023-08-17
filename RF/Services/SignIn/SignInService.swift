@@ -13,29 +13,27 @@ final class SignInService {
     
     /// MARK: 로그인 성공 후 SignIn 모델 반환
     /// - Returns: SignIn Decoding Values
-    func loginService(id: String, pw: String) -> Observable<SignIn>{
+    func loginService(id: String, pw: String, deviceToken: String) -> Observable<SignIn>{
         
-        let url = "\(Bundle.main.REST_API_URL)/signin"
-//        let body: [String: Any] = [
-//            SignInBody.first.body: id,
-//            SignInBody.second.body: pw
-//        ]
-        
+        let url = "\(Domain.restApi)\(LoginPath.login)"
         let body: [String: Any] = [
-            "loginId" : id,
-            "password" : pw
+            SignInBody.first.body: id,
+            SignInBody.second.body: pw
         ]
         
+        print(body)
         return Observable.create { observer in
             AF.request(url,
                        method: .post,
                        parameters: body,
                        encoding: JSONEncoding.default)
             .validate(statusCode: 200..<201)
-            .responseDecodable(of: SignIn.self) { response in
+            .responseDecodable(of: Response<SignIn>.self) { response in
                 switch response.result{
                 case .success (let data):
-                    observer.onNext(data)
+                    if let data = data.result {
+                        observer.onNext(data)
+                    }
                 case .failure (let error):
                     print("loginService error!\n\(error)")
                 }

@@ -182,7 +182,12 @@ final class SetNicknameViewController: UIViewController {
             .bind{ [weak self] in
                 self?.viewModel.checkNickName()
                     .subscribe(onNext: { check in // 닉네임 중복인 경우
-                        self?.showOverlapAlert(text: "닉네임 중복입니다!")
+                        if check{
+                            self?.showOverlapAlert(text: "사용 가능한 닉네임 입니다.")
+                        }
+                        else{
+                            self?.showOverlapAlert(text: "닉네임 중복입니다!")
+                        }
                     })
                     .disposed(by: self?.disposeBag ?? DisposeBag())
             }

@@ -121,7 +121,7 @@ final class PersonalInterestsViewModel{
         var convertList: [String] = []
         
         let _ = list.map { indexPath in
-            convertList.append(Interest.list[indexPath.row])
+            convertList.append(EnumFile.enumfile.enumList.value.interest?[indexPath.row].key ?? "")
         }
         return Observable.create { observer in
             

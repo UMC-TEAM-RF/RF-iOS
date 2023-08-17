@@ -180,8 +180,8 @@ final class ChooseUniversityViewController: UIViewController {
                 searchUniversityViewController.modalPresentationStyle = .formSheet
                 searchUniversityViewController.selctedUniversity
                     .bind { university in
-                        self?.universityButton.inputData(text: university)
-                        self?.viewModel.universityRelay.accept(university)
+                        self?.universityButton.inputData(text: university.value ?? "")
+                        self?.viewModel.universityRelay.accept(university.key ?? "")
                     }
                     .disposed(by: self?.disposeBag ?? DisposeBag())
                 self?.present(searchUniversityViewController,animated: true)

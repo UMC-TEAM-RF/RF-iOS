@@ -194,6 +194,12 @@ final class HomeViewController: UIViewController {
         setAutomaticPaging()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: - addSubviews()
     
     private func addSubviews() {
