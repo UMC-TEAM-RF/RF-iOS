@@ -43,17 +43,20 @@ final class MeetingService {
     }
     
     /// 모임 정보 API
-    func requestMeetingInfo() -> Observable<Meeting> {
-        let url = "\(Domain.restApi)\(MeetingPath.createMeeting)/179"
+    func requestMeetingInfo(id: Int) -> Observable<Meeting> {
+        let url = "\(Domain.restApi)\(MeetingPath.createMeeting)/\(id)"
         
         return Observable.create { observer in
             AF.request(url, method: .get)
                 .validate(statusCode: 200..<201)
                 .responseDecodable(of: Response<Meeting>.self) { response in
                     switch response.result {
-                    case .success(let data):
+                    case .success(var data):
                         print(data)
-                        if let meeting = data.result {
+                        if var meeting = data.result {
+                            let file = EnumFile.enumfile.enumList.value
+                            meeting.preferAges = file.preferAges?.filter{$0.key ?? "" == meeting.preferAges ?? ""}.first?.value
+                            meeting.language = file.language?.filter{$0.key ?? "" == meeting.language ?? ""}.first?.value
                             observer.onNext(meeting)
                         }
                     case .failure(let error):

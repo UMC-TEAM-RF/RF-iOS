@@ -8,7 +8,7 @@
 import Foundation
 
 struct Meeting: Codable {
-    let id: Int?    // 모임 id
+    var id: Int?    // 모임 id
     var name: String?   // 모임 명
     var memberCount: Int?   // 모임 인원
     var nativeCount: Int?    // 자국인 멤버 수

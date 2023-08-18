@@ -535,11 +535,12 @@ final class DetailMeetingHomeController: UIViewController {
     /// MARK: 테스트용 더미 데이터
     private func getData(){
         
-        viewModel.getData(meetingIntroduction: meetingIntroduction)
+        viewModel.getData(meetingIntroduction: meetingIntroduction, id: meetingIdRelay.value ?? 0)
         
         
         viewModel.meetingInfo
             .subscribe(onNext: { [weak self] data in
+//                self?.titleImg.image = 이미지 넣기
                 self?.memberContentLabel.text = "\(data?.memberCount ?? 0)"
                 self?.ageContentLabel.text = data?.preferAges ?? ""
                 self?.languageContentLabel.text = data?.language ?? ""
