@@ -38,6 +38,7 @@ final class SearchingViewController: UIViewController{
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.isUserInteractionEnabled = true
         return cv
     }()
     
@@ -64,8 +65,6 @@ final class SearchingViewController: UIViewController{
         filteringScreen.interestingTopicRelay.accept(viewModel.interestingTopicRelay.value)
         filteringScreen.joinNumberRelay.accept(viewModel.joinNumberRelay.value)
         filteringScreen.joinStatusRelay.accept(viewModel.joinStatusRelay.value)
-        
-        filteringScreen.viewModel.selectedAgeItem(at: viewModel.ageRelay.value)
         
         filteringScreen.ageRelay
             .subscribe(onNext:{ [weak self] data in
@@ -141,6 +140,7 @@ extension SearchingViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchingCollectionViewCell.identifier, for: indexPath) as? SearchingCollectionViewCell else { return UICollectionViewCell() }
         cell.inputTextData(meeting: viewModel.meetingList.value[indexPath.row])
+        cell.isUserInteractionEnabled = true
         return cell
     }
     

@@ -114,7 +114,7 @@ final class FilteringViewController: UIViewController{
     }()
     
     private let disposeBag = DisposeBag()
-    var viewModel = FilteringViewModel()
+    private let viewModel = FilteringViewModel()
     
     /// 선택된 관심 주제 목록
     var interestingTopicRelay = BehaviorRelay<Set<IndexPath>>(value: [])

@@ -26,6 +26,7 @@ final class SearchingCollectionViewCell: UICollectionViewCell {
         flowLayout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         cv.backgroundColor = .clear
+        cv.isUserInteractionEnabled = true
         return cv
     }()
     
@@ -149,7 +150,7 @@ extension SearchingCollectionViewCell: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
         cell.setupTagLabel(viewModel.tagList.value[indexPath.row])
-        
+        cell.isUserInteractionEnabled = true
         return cell
     }
     
