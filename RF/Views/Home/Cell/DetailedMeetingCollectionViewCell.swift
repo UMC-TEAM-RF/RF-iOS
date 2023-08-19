@@ -24,9 +24,9 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
     
     private lazy var backgroundMaskedView: GradientView = {
         let view = GradientView()
-        view.addFilter( color: UIColor.white.withAlphaComponent(0.1).cgColor, locationY: 0.1)
-        view.addFilter( color: UIColor.black.withAlphaComponent(0.6).cgColor, locationY: 0.4)
-        view.addFilter( color: UIColor.black.withAlphaComponent(1).cgColor, locationY: 1)
+        view.addFilter( color: UIColor.black.withAlphaComponent(0.06).cgColor, locationY: 0.0)
+        view.addFilter( color: UIColor.black.withAlphaComponent(0.36).cgColor, locationY: 0.6)
+        view.addFilter( color: UIColor.black.withAlphaComponent(0.72).cgColor, locationY: 1)
         return view
     }()
     

@@ -21,9 +21,9 @@ struct HomeMeetingDummy{
     ]
     
     static let personnel: [String] = [
-        "모집 인원 : 4/5",
-        "모집 인원 : 2/5",
-        "모집 인원 : 3/4"
+        "모집 인원 : 1/2",
+        "모집 인원 : 2/2",
+        "모집 인원 : 1/2"
     ]
     
     static let tagList: [[String]] = [
@@ -33,8 +33,19 @@ struct HomeMeetingDummy{
     ]
     
     static let images: [String] = [
-        "rf_logo",
-        "soccer",
-        "rf_logo"
+        "meeting_1",
+        "meeting_2",
+        "meeting_3"
+    ]
+    
+    static let multiPersonnel: [String] = [
+        "모집 인원 : 4/5",
+        "모집 인원 : 2/5",
+        "모집 인원 : 3/4"
+    ]
+    static let multiImages: [String] = [
+        "meeting_2",
+        "meeting_5",
+        "meeting_4"
     ]
 }
