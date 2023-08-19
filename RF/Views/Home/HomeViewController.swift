@@ -67,6 +67,37 @@ final class HomeViewController: UIViewController {
     }()
     
     
+    //Tabbar
+    private let tabBarTitles = ["개인 모임", "단체 모임"]
+    private let tapBarCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.tag = 3
+        collectionView.decelerationRate = .fast
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isScrollEnabled = false
+        return collectionView
+    }()
+    private let pageCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.tag = 4
+        collectionView.decelerationRate = .fast
+        collectionView.showsHorizontalScrollIndicator = false
+        
+        return collectionView
+    }()
+
+    private let highlightView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .darkGray
+        return view
+    }()
+    
     // 모임
     
     private lazy var meetingListView: UIView = {
@@ -186,6 +217,7 @@ final class HomeViewController: UIViewController {
         
         navigationController?.navigationBar.isHidden = true
         
+        
         addSubviews()
         configureConstraints()
         configureCollectionView()
@@ -219,6 +251,12 @@ final class HomeViewController: UIViewController {
         // 네비게이션 바
         navigationContainerView.addSubview(navigationLogo)
         navigationContainerView.addSubview(navigationNotiButton)
+        
+        
+        //tabbar
+        containerView.addSubview(tapBarCollectionView)
+        containerView.addSubview(pageCollectionView)
+        containerView.addSubview(highlightView)
         
         // 모임
         meetingListView.addSubview(meetingListLabel)
@@ -281,9 +319,33 @@ final class HomeViewController: UIViewController {
             make.bottom.equalTo(bannerCollectionView.snp.bottom).offset(-10)
         }
         
+        
+        //tabbar
+        
+        tapBarCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(bannerCollectionView.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(30)
+        }
+        
+        highlightView.snp.makeConstraints { make in
+            make.top.equalTo(tapBarCollectionView.snp.bottom).offset(0)
+            make.horizontalEdges.equalToSuperview().inset(20)
+            make.height.equalTo(1)
+        }
+        
+        pageCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(highlightView.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(200)    // 모임 3개 고정 (2개 275, 3개 420) 220*3+40
+        }
+        
+        
+        
+        
         // 모임
         meetingListView.snp.makeConstraints { make in
-            make.top.equalTo(bannerCollectionView.snp.bottom).offset(10)
+            make.top.equalTo(pageCollectionView.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview()
         }
         
@@ -366,6 +428,21 @@ final class HomeViewController: UIViewController {
         interestCollectionView.dataSource = self
         
         interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: InterestCollectionViewCell.identifier)
+        
+        //tabBar
+        tapBarCollectionView.delegate = self
+        tapBarCollectionView.dataSource = self
+        
+        tapBarCollectionView.register(TapBarCollectionViewCell.self, forCellWithReuseIdentifier: TapBarCollectionViewCell.identifier)
+        let firstIndex = IndexPath(item: 0, section: 0)
+        tapBarCollectionView.selectItem(at: firstIndex, animated: false, scrollPosition: .right)
+        
+        //pageCollectionView
+        pageCollectionView.delegate = self
+        pageCollectionView.dataSource = self
+        
+        pageCollectionView.register(PageCollectionViewCell.self, forCellWithReuseIdentifier: PageCollectionViewCell.identifier)
+        pageCollectionView.selectItem(at: firstIndex, animated: false, scrollPosition: .right)
     }
     
     private func bind() {
@@ -395,6 +472,14 @@ final class HomeViewController: UIViewController {
     }
 }
 
+//collection tag
+// 0 : bannerCollectionView
+// 1 : meetingCollectionView
+// 2 : interestCollectionView
+// 3 : tapBarCollectionView
+// 4 : pageCollectionView
+
+
 // MARK: - Ext: CollectionView
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -407,6 +492,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return CGSize(width: meetingCollectionView.frame.width, height: 220)
         case 2:
             return CGSize(width: (interestCollectionView.frame.width - 2) / 3, height: (interestCollectionView.frame.height - 2) / 4)
+        case 3:
+            return CGSize(width: (tapBarCollectionView.frame.width) / 2, height: (tapBarCollectionView.frame.height))
+        case 4:
+            return CGSize(width: pageCollectionView.frame.width, height: pageCollectionView.frame.height)
         default:
             return CGSize()
         }
@@ -421,6 +510,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return 3
         case 2:
             return Interest.listWithIcon.count
+        case 3:
+            return 2
+        case 4:
+            return 2
         default:
             return 0
         }
@@ -442,10 +535,184 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestCollectionViewCell.identifier, for: indexPath) as! InterestCollectionViewCell
+            
             cell.setTextLabel(Interest.listWithIcon[indexPath.item])
+            return cell
+        case 3:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TapBarCollectionViewCell.identifier, for: indexPath) as! TapBarCollectionViewCell
+            
+            cell.setTextLabel(tabBarTitles[indexPath.item])
+            return cell
+        case 4:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCollectionViewCell.identifier, for: indexPath) as! PageCollectionViewCell
+            
+            cell.backgroundColor = [.red, .blue][indexPath.item]
+            
+            
             return cell
         default:
             return UICollectionViewCell()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        switch collectionView.tag {
+        case 3:
+            //set underline bar
+            if(indexPath.item == 0){
+                self.highlightView.snp.remakeConstraints { (make) -> Void in
+                    make.top.equalTo(tapBarCollectionView.snp.bottom).offset(0)
+                    make.horizontalEdges.equalTo(cell.snp.horizontalEdges)
+                    make.height.equalTo(1)
+                }
+                self.view.layoutIfNeeded()
+            }
+        default:
+            return
+        }
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView.tag {
+        case 3:
+            guard let cell = tapBarCollectionView.cellForItem(at: indexPath) as? TapBarCollectionViewCell else { return }
+
+            self.highlightView.snp.remakeConstraints { (make) -> Void in
+                make.top.equalTo(tapBarCollectionView.snp.bottom).offset(0)
+                make.horizontalEdges.equalTo(cell.snp.horizontalEdges)
+                make.height.equalTo(1)
+            }
+            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
+                self.view.layoutIfNeeded()
+            })
+            pageCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        default:
+            return
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint,targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        guard let layout = self.pageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        if scrollView == pageCollectionView {
+            let cellWidthIncludingSpacing = pageCollectionView.frame.width + layout.minimumLineSpacing
+            let offset = targetContentOffset.pointee
+            let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
+            let roundedIndex = round(index)
+            let indexPath = IndexPath(item: Int(roundedIndex), section: 0)
+            
+            targetContentOffset.pointee = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left,
+                                                  y: scrollView.contentInset.top)
+            // topTapItem Select
+            tapBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .bottom)
+            // collectionView didSelectedItemAt delegate
+            collectionView(tapBarCollectionView, didSelectItemAt: indexPath)
+            // topTapMenu Scroll
+            tapBarCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        }
+    }
+}
+
+
+
+
+
+class TapBarCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - UI Property
+    
+    private lazy var textLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        return label
+    }()
+    
+    // MARK: - Property
+    
+    static let identifier = "TapBarCollectionViewCell"
+    
+    // MARK: - init()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        contentView.backgroundColor = .white
+        
+        addSubviews()
+        configureConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    // MARK: - addSubviews()
+    
+    private func addSubviews() {
+        contentView.addSubview(textLabel)
+    }
+    
+    // MARK: - configureConstraints()
+    
+    private func configureConstraints() {
+        textLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+    }
+    
+    func setTextLabel(_ text: String) {
+        self.textLabel.text = text
+    }
+        
+    func setColor(textColor: UIColor, backgroundColor: UIColor) {
+        self.textLabel.textColor = textColor
+        self.contentView.backgroundColor = backgroundColor
+    }
+}
+class PageCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - UI Property
+    
+    lazy var view: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    // MARK: - Property
+    
+    static let identifier = "PageCollectionViewCell"
+    
+    // MARK: - init()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+//        contentView.backgroundColor = .black
+        
+        addSubviews()
+        configureConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    // MARK: - addSubviews()
+    
+    private func addSubviews() {
+        contentView.addSubview(view)
+    }
+    
+    // MARK: - configureConstraints()
+    
+    private func configureConstraints() {
+        view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    func setView(_ view: UIView) {
+        self.view = view
     }
 }
