@@ -11,6 +11,32 @@ import RxSwift
 
 final class MeetingService {
     
+    func getMeetingList(page: Int, size: Int) -> Observable<[Meeting]> {
+        let url = "\(Domain.restApi)\(MeetingPath.getMeetingList)/{userId}/search?page=\(page)&size=\(size)&sort={fieldName},{desc|asc}"
+        
+        return Observable.create { observer in
+            AF.request(url,
+                       method: .get)
+            .validate(statusCode: 200..<201)
+            .responseDecodable(of: Response<MeetingList>.self) { response in
+                switch response.result {
+                case .success(let data):
+                    if let data = data.result?.content {
+                        print("getMeetingList\n\(data)")
+                        observer.onNext(data)
+                    }
+                case .failure(let error):
+                    observer.onError(error)
+                    print("getMeetingList error! \n\(error)")
+                }
+                
+            }
+        
+            return Disposables.create()
+        }
+    }
+    
+    /// 모임 생성
     func createMeeting(meeting: Meeting, image: UIImage) -> Observable<Void> {
         let url = "\(Domain.restApi)\(MeetingPath.createMeeting)"
         let headers: HTTPHeaders = ["Content-Type": "multipart/form-data"]
@@ -51,7 +77,7 @@ final class MeetingService {
                 .validate(statusCode: 200..<201)
                 .responseDecodable(of: Response<Meeting>.self) { response in
                     switch response.result {
-                    case .success(var data):
+                    case .success(let data):
                         print(data)
                         if var meeting = data.result {
                             let file = EnumFile.enumfile.enumList.value
@@ -90,6 +116,7 @@ final class MeetingService {
         }
     }
     
+    /// JSON To String
     func convertMeetingToJSONString(meeting: Meeting) -> String? {
         let jsonEncoder = JSONEncoder()
 

@@ -24,3 +24,8 @@ struct Meeting: Codable {
 }
 
 
+struct MeetingList: Codable {
+    let currentPage: Int?
+    let totalPage: Int?
+    let content: [Meeting]?
+}
