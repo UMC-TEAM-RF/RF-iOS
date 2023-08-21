@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B0B35292A7A5A31003B2D8C /* SecretKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B0B35282A7A5A31003B2D8C /* SecretKey.plist */; };
+		3B0BA20A2A8DEEAA00F7E818 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BA2092A8DEEAA00F7E818 /* GradientView.swift */; };
 		3B0E2EB92A80FE9200797782 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E2EB82A80FE9200797782 /* MeetingService.swift */; };
 		3B0E2EBB2A81024700797782 /* MeetingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E2EBA2A81024700797782 /* MeetingViewModel.swift */; };
 		3B0F1EE42A7C0317009F3F2B /* UICheckBox1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */; };
@@ -32,6 +33,7 @@
 		3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFCE2A7408D4007DB482 /* SchedulePopUpViewController.swift */; };
 		3B57FFD32A741972007DB482 /* SchedulePopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD22A741972007DB482 /* SchedulePopUpViewModel.swift */; };
 		3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */; };
+		3B595EF22A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B595EF12A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift */; };
 		3B59B2812A75635100027809 /* DetailMeetingJoinPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */; };
 		3B62877C2A84BF7200E00B09 /* CreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B62877B2A84BF7200E00B09 /* CreateViewModel.swift */; };
 		3B62877E2A84C0D500E00B09 /* SetMeetingNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B62877D2A84C0D500E00B09 /* SetMeetingNameViewModel.swift */; };
@@ -56,6 +58,8 @@
 		3B6C312F2A7E36C4008FADA1 /* PersonalInterestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C312E2A7E36C4008FADA1 /* PersonalInterestsViewModel.swift */; };
 		3B6C31312A7E5224008FADA1 /* ChooseUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31302A7E5224008FADA1 /* ChooseUniversityViewController.swift */; };
 		3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */; };
+		3B8ACC462A925C1300AC082F /* TabBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8ACC452A925C1300AC082F /* TabBarCollectionViewCell.swift */; };
+		3B8ACC482A925C3B00AC082F /* PageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8ACC472A925C3B00AC082F /* PageCollectionViewCell.swift */; };
 		3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D532A56D45C00FECE3A /* PasswordTextField.swift */; };
 		3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D552A56D4AA00FECE3A /* UICheckBox.swift */; };
 		3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D572A56F00200FECE3A /* SignUpViewController.swift */; };
@@ -160,6 +164,7 @@
 		2505DAF5F18952160CB2275D /* Pods-RF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RF.debug.xcconfig"; path = "Target Support Files/Pods-RF/Pods-RF.debug.xcconfig"; sourceTree = "<group>"; };
 		2B0C13344295BF3D18F7D032 /* Pods-RF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RF.release.xcconfig"; path = "Target Support Files/Pods-RF/Pods-RF.release.xcconfig"; sourceTree = "<group>"; };
 		3B0B35282A7A5A31003B2D8C /* SecretKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecretKey.plist; sourceTree = "<group>"; };
+		3B0BA2092A8DEEAA00F7E818 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		3B0E2EB82A80FE9200797782 /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		3B0E2EBA2A81024700797782 /* MeetingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewModel.swift; sourceTree = "<group>"; };
 		3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox1.swift; sourceTree = "<group>"; };
@@ -184,6 +189,7 @@
 		3B57FFCE2A7408D4007DB482 /* SchedulePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUpViewController.swift; sourceTree = "<group>"; };
 		3B57FFD22A741972007DB482 /* SchedulePopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopUpViewModel.swift; sourceTree = "<group>"; };
 		3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventPopUp.swift; sourceTree = "<group>"; };
+		3B595EF12A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMeetingCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUpViewController.swift; sourceTree = "<group>"; };
 		3B62877B2A84BF7200E00B09 /* CreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewModel.swift; sourceTree = "<group>"; };
 		3B62877D2A84C0D500E00B09 /* SetMeetingNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMeetingNameViewModel.swift; sourceTree = "<group>"; };
@@ -208,6 +214,8 @@
 		3B6C312E2A7E36C4008FADA1 /* PersonalInterestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInterestsViewModel.swift; sourceTree = "<group>"; };
 		3B6C31302A7E5224008FADA1 /* ChooseUniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseUniversityViewController.swift; sourceTree = "<group>"; };
 		3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestSmallCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B8ACC452A925C1300AC082F /* TabBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B8ACC472A925C3B00AC082F /* PageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B935D532A56D45C00FECE3A /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		3B935D552A56D4AA00FECE3A /* UICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox.swift; sourceTree = "<group>"; };
 		3B935D572A56F00200FECE3A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -890,7 +898,11 @@
 				57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */,
 				57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */,
 				5700639C2A6AC60C0051F42A /* NotiListTableViewCell.swift */,
+				3B595EF12A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift */,
+				3B0BA2092A8DEEAA00F7E818 /* GradientView.swift */,
 				3B267B932A862AB100F3949A /* GroupJoinRequestTableViewCell.swift */,
+				3B8ACC452A925C1300AC082F /* TabBarCollectionViewCell.swift */,
+				3B8ACC472A925C3B00AC082F /* PageCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1053,6 +1065,7 @@
 				3BEEE7D12A7658C0007092DF /* MeetingCreatePopUpViewController.swift in Sources */,
 				3BD700D12A796312005C7D7E /* ChoiceInterestingCountryViewModel.swift in Sources */,
 				3B6BA9872A7E771800A11FE4 /* SignUpDataViewModel.swift in Sources */,
+				3B8ACC462A925C1300AC082F /* TabBarCollectionViewCell.swift in Sources */,
 				3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */,
 				3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */,
 				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
@@ -1149,9 +1162,11 @@
 				3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */,
 				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
 				57DD3E682A8106E7009F7139 /* Message.swift in Sources */,
+				3B595EF22A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift in Sources */,
 				570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */,
 				570063AD2A7258530051F42A /* DesignColor.swift in Sources */,
 				570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */,
+				3B8ACC482A925C3B00AC082F /* PageCollectionViewCell.swift in Sources */,
 				3B15CD612A64437D0096871F /* InterestingTopicCollectionViewCell.swift in Sources */,
 				3BD700C82A79364B005C7D7E /* ChoiceCountryViewModel.swift in Sources */,
 				572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */,
@@ -1161,6 +1176,7 @@
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
 				3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */,
 				3BD700C22A793371005C7D7E /* ChooseUserTableViewCell.swift in Sources */,
+				3B0BA20A2A8DEEAA00F7E818 /* GradientView.swift in Sources */,
 				3B57FFD32A741972007DB482 /* SchedulePopUpViewModel.swift in Sources */,
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
 				57DD3E642A80C7C2009F7139 /* Domain.swift in Sources */,
