@@ -670,6 +670,8 @@
 				3BF2E7732A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift */,
 			);
 			path = Detail;
+               sourceTree = "<group>";
+        };
 		44CC47742A8DEA1F0025EAEC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
