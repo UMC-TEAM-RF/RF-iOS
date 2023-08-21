@@ -41,7 +41,7 @@ struct EmailPath {
 /// Meeting EndPoint
 struct MeetingPath {
     static let createMeeting = "/party"
-    static let meetingList = "/party/non-blocked"
+    static let meetingList = "/party/user/:userId/search"
 }
 
 /// Login EndPoint

@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct Page: Codable {
+    let currentPage: Int?
+    let totalPage: Int?
+    let content: [Meeting]?
+}
+
 struct Meeting: Codable {
     var name: String?   // 모임 명
     var memberCount: Int?   // 모임 인원
