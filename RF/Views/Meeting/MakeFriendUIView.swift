@@ -15,8 +15,7 @@ final class MakeFriendUIView: UIView {
     /// MARK: 제목 라벨
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "새로운 친구 사귀기 좋은 날 아닌가요?"
-        //label.font = .boldSystemFont(ofSize: 18)
+        label.text = "취향저격 모임 추천!"
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         return label
     }()
@@ -60,13 +59,13 @@ final class MakeFriendUIView: UIView {
     /// MARK: setting AutoLayout
     private func configureConstraints(height: CGFloat){
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(30)
-            make.leading.equalToSuperview().offset(30)
+            make.top.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(20)
         }
         
         searchMeetingBtn.snp.makeConstraints { make in
             make.leading.equalTo(titleLabel.snp.leading)
-            make.top.equalTo(titleLabel.snp.bottom).offset(30)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.trailing.equalToSuperview().offset(-30)
             make.height.equalTo(100)
         }
@@ -76,7 +75,7 @@ final class MakeFriendUIView: UIView {
             make.top.equalTo(searchMeetingBtn.snp.bottom).offset(20)
             make.trailing.equalToSuperview().offset(-30)
             make.height.equalTo(100)
-            make.bottom.equalToSuperview().inset(30)
+            make.bottom.equalToSuperview().inset(10)
         }
     }
     

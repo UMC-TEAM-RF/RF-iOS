@@ -25,8 +25,6 @@ final class MeetingViewController: UIViewController{
     /// MARK: 모임 찾기, 모임 생성하기 UIView
     private lazy var makeFriendView: MakeFriendUIView = {
         let view = MakeFriendUIView()
-        view.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0) /* #f9f9f9 */
-        view.layer.cornerRadius = 20
         return view
     }()
 
@@ -144,7 +142,7 @@ final class MeetingViewController: UIViewController{
         }
         
         makeFriendView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(25)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.equalTo(view.safeAreaLayoutGuide)
             make.trailing.equalTo(view.safeAreaLayoutGuide)
             
@@ -152,7 +150,7 @@ final class MeetingViewController: UIViewController{
         
         
         meetingLabel.snp.makeConstraints { make in
-            make.top.equalTo(makeFriendView.snp.bottom).offset(30)
+            make.top.equalTo(makeFriendView.snp.bottom).offset(10)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
         }
         
@@ -160,20 +158,20 @@ final class MeetingViewController: UIViewController{
             make.top.equalTo(meetingLabel.snp.bottom).offset(20)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.trailing.equalTo(view.snp.centerX).offset(-10)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/10)
+            make.height.equalTo(80)
         }
         
         meetingListUIButton.snp.makeConstraints { make in
             make.top.equalTo(meetingLabel.snp.bottom).offset(20)
             make.leading.equalTo(view.snp.centerX).offset(10)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/10)
+            make.height.equalTo(80)
         }
         
         
         // 꿀팁
         tipsView.snp.makeConstraints { make in
-            make.top.equalTo(meetingListUIButton.snp.bottom).offset(40)
+            make.top.equalTo(meetingListUIButton.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(75)
         }

@@ -316,7 +316,7 @@ final class HomeViewController: UIViewController {
             make.top.equalTo(navigationContainerView.snp.bottom)
             make.leading.trailing.equalToSuperview()
             //make.width.equalToSuperview()
-            make.height.equalTo(200)
+            make.height.equalTo(bannerCollectionView.snp.width).multipliedBy(0.9/1.6)
         }
         
         bannerPageControl.snp.makeConstraints { make in
