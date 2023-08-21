@@ -102,7 +102,7 @@ extension PageCollectionViewCell: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return meetingsData?.count ?? 0
     }
     
     //각 태그(개인 모임:0, 단체 모임:1)마다 보여줄 모임 리스트 데이터소스를 설정한다.

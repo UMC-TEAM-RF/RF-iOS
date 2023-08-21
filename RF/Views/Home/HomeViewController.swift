@@ -202,7 +202,7 @@ final class HomeViewController: UIViewController {
     
     private var currentPageIndex = 0
     
-    private var meetingsData : [Meeting]?
+    private var meetingsData : [Meeting] = []
     
     // MARK: - viewDidLoad()
     
@@ -224,7 +224,7 @@ final class HomeViewController: UIViewController {
         let service = MeetingService()
         service.requestMeetingList(userId: 1) { meetings in
             dump(meetings)
-            self.meetingsData = meetings
+            self.meetingsData = meetings!
             
             DispatchQueue.main.async {
                 self.pageCollectionView.reloadData()
@@ -525,12 +525,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.setTextLabel(tabBarTitles[indexPath.item])
             return cell
         case 4:
-            guard let meetings = meetingsData else { return UICollectionViewCell() }
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCollectionViewCell.identifier, for: indexPath) as! PageCollectionViewCell
             
             cell.setTag(indexPath.item)
-            cell.setData(meetings)
+            cell.setData(meetingsData)
             
             
             return cell
