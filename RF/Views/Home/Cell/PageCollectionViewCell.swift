@@ -31,6 +31,8 @@ class PageCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "PageCollectionViewCell"
     
+    private var meetingsData : [Meeting]?
+    
     // MARK: - init()
     
     override init(frame: CGRect) {
@@ -72,6 +74,11 @@ class PageCollectionViewCell: UICollectionViewCell {
         self.meetingCollectionView.tag = tagNumber
     }
     
+    func setData(_ meetingsData : [Meeting]){
+        self.meetingsData = meetingsData
+        meetingCollectionView.reloadData()
+    }
+    
     /**
      CollectionView 초기화 함수
     */
@@ -103,19 +110,17 @@ extension PageCollectionViewCell: UICollectionViewDelegate, UICollectionViewData
         switch collectionView.tag {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as! DetailedMeetingCollectionViewCell
-            cell.inputTextData(title: HomeMeetingDummy.title[indexPath.row],
-                               description: HomeMeetingDummy.description[indexPath.row],
-                               personnel: HomeMeetingDummy.personnel[indexPath.row],
-                               tag: HomeMeetingDummy.tagList[indexPath.row],
-                               imageName: HomeMeetingDummy.images[indexPath.row])
+            
+            guard let meetings = meetingsData else { return UICollectionViewCell() }
+            
+            cell.meetingData = meetings[indexPath.item]
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as! DetailedMeetingCollectionViewCell
-            cell.inputTextData(title: HomeMeetingDummy.title[indexPath.row],
-                               description: HomeMeetingDummy.description[indexPath.row],
-                               personnel: HomeMeetingDummy.multiPersonnel[indexPath.row],
-                               tag: HomeMeetingDummy.tagList[indexPath.row],
-                               imageName: HomeMeetingDummy.multiImages[indexPath.row])
+            
+            guard let meetings = meetingsData else { return UICollectionViewCell() }
+            
+            cell.meetingData = meetings[indexPath.item]
             return cell
         default:
             return UICollectionViewCell()
