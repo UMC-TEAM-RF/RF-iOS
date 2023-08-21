@@ -75,6 +75,8 @@ final class MeetingService {
         let jsonString = convertMeetingToJSONString(meeting: meeting) ?? ""
         let imageData = image.jpegData(compressionQuality: 0.5)!
         
+        print("jsonString \n\(jsonString)")
+        
         return Observable.create { observer in
             AF.upload(multipartFormData: { multipartFormData in
                 

@@ -465,8 +465,15 @@ final class SetDetailInfoViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    /// MARK: 모임 생성 버튼 누른 후 생선 된 경우 실행
+    /// MARK: 모임 생성 버튼 누른 후 생성 된 경우 실행
     private func createMeeting(){
+        CreateViewModel.viewModel.language.accept(viewModel.language.value)
+        CreateViewModel.viewModel.preferAge.accept(viewModel.preferAge.value)
+        CreateViewModel.viewModel.meetingAllMember.accept(viewModel.meetingAllMember.value)
+        CreateViewModel.viewModel.meetingKoreanMember.accept(viewModel.meetingKoreanMember.value)
+        CreateViewModel.viewModel.place.accept(viewModel.place.value)
+        CreateViewModel.viewModel.rule.accept(viewModel.rule.value)
+        
         CreateViewModel.viewModel.clickedNextButton()
             .subscribe(onNext:{ [weak self] in
                 self?.tabBarController?.tabBar.isHidden = false
