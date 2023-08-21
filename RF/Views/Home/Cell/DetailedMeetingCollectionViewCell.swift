@@ -190,9 +190,10 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
         
         titleLabel.text = data.name
         descriptLabel.text = data.content
-        personnelLabel.text = "\(data.nativeCount ?? 0)/\(data.memberCount ?? 0)"
+        personnelLabel.text = "모임인원: \(data.nativeCount ?? 0)/\(data.memberCount ?? 0)"
         tagCollectionView.reloadData()
     }
+    
 }
 
 // MARK: - Ext: DetailedMeetingCollectionViewCell

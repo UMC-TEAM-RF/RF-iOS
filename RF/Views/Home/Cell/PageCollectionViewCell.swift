@@ -107,24 +107,12 @@ extension PageCollectionViewCell: UICollectionViewDelegate, UICollectionViewData
     
     //각 태그(개인 모임:0, 단체 모임:1)마다 보여줄 모임 리스트 데이터소스를 설정한다.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView.tag {
-        case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as! DetailedMeetingCollectionViewCell
-            
-            guard let meetings = meetingsData else { return UICollectionViewCell() }
-            
-            cell.meetingData = meetings[indexPath.item]
-            return cell
-        case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as! DetailedMeetingCollectionViewCell
-            
-            guard let meetings = meetingsData else { return UICollectionViewCell() }
-            
-            cell.meetingData = meetings[indexPath.item]
-            return cell
-        default:
-            return UICollectionViewCell()
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as! DetailedMeetingCollectionViewCell
+        
+        guard let meetings = meetingsData else { return UICollectionViewCell() }
+        
+        cell.meetingData = meetings[indexPath.item]
+        return cell
     }
 }
 
