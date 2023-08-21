@@ -202,6 +202,8 @@ final class HomeViewController: UIViewController {
     
     private var currentPageIndex = 0
     
+    private var meetingsData : [Meeting] = []
+    
     // MARK: - viewDidLoad()
     
     override func viewDidLoad() {
@@ -218,6 +220,16 @@ final class HomeViewController: UIViewController {
      
         bind()
         setAutomaticPaging()
+        
+        let service = MeetingService()
+        service.requestMeetingList(userId: 1) { meetings in
+            dump(meetings)
+            self.meetingsData = meetings!
+            
+            DispatchQueue.main.async {
+                self.pageCollectionView.reloadData()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -513,9 +525,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.setTextLabel(tabBarTitles[indexPath.item])
             return cell
         case 4:
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCollectionViewCell.identifier, for: indexPath) as! PageCollectionViewCell
             
             cell.setTag(indexPath.item)
+            cell.setData(meetingsData)
             
             
             return cell

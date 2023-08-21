@@ -14,48 +14,9 @@ import FSCalendar
 
 class MyPageViewController: UIViewController {
     
-    /// MARK: 스크롤 가능한 화면을 만들기 위해 스크롤뷰와 컨테이너뷰 정의하기
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
-    }()
     private lazy var containerView: UIView = {
         let view = UIView()
         return view
-    }()
-    
-    
-    
-    /// MARK: 모임 제목 라벨
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "마이페이지"
-        label.font = .boldSystemFont(ofSize: 30)
-        return label
-    }()
-    
-    /// MARK: 모임 찾기 버튼
-    private lazy var alertButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(systemName: "bell")?.resize(newWidth: 25), for: .normal)
-        return btn
-    }()
-    /// MARK: 모임 생성 버튼
-    private lazy var etcButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(systemName: "gearshape")?.resize(newWidth: 25).rotate(degrees: 0), for: .normal)
-        return btn
-    }()
-    
-    
-    /// MARK: 모임 찾기 버튼, 모임 생성 버튼 담는 StackView
-    private lazy var btnsStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [alertButton, etcButton])
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        stack.backgroundColor = .systemBackground
-        stack.spacing = 10
-        return stack
     }()
     
     
@@ -73,7 +34,7 @@ class MyPageViewController: UIViewController {
     
     
     
-    /// MARK:
+    /// MARK: 이름 레이블
     private lazy var profileLabel: UILabel = {
         let label = UILabel()
         label.text = "KPOP 매니아 | 소융대 🇰🇷"
@@ -81,7 +42,7 @@ class MyPageViewController: UIViewController {
         return label
     }()
     
-    /// MARK: 모임 찾기 버튼
+    /// MARK: 이름 수정 버튼
     private lazy var profileMoreButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "chevron.down")?.resize(newWidth: 14), for: .normal)
@@ -144,7 +105,8 @@ class MyPageViewController: UIViewController {
         pv.progressViewStyle = .bar
         pv.backgroundColor = UIColor(hexCode: "D1D1D1")
         pv.progress = Float((temper / maxTemperature))
-        pv.layer.cornerRadius = 10
+        pv.layer.cornerRadius = 3
+        pv.clipsToBounds = true
         return pv
     }()
     
@@ -176,11 +138,11 @@ class MyPageViewController: UIViewController {
     private var meetingTipMessage : String {
         get{
             if(meetingperMonth >= 0 && meetingperMonth < 5){
-                return temperMessageList[0]
+                return meetingTipMessageList[0]
             }else if(meetingperMonth >= 5 && meetingperMonth < 10){
-                return temperMessageList[1]
+                return meetingTipMessageList[1]
             }else{
-                return temperMessageList[2]
+                return meetingTipMessageList[2]
             }
                 
         }
@@ -293,28 +255,37 @@ class MyPageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        
+        updateTitleView(title: "마이페이지")
+        
         getData()
         addSubviews()
+        configureConstraints()
+        configureCollectionView()
+        
         clickedButtons()
+        
+        let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingButtonTapped))
+        let reportButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: #selector(settingButtonTapped))
+        
+        navigationItem.rightBarButtonItems = [settingButton, reportButton]
     }
     
     // MARK: View Will Appear
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
         navigationItem.backButtonTitle = ""
         navigationController?.toolbar.isHidden = true
+        
+        
+        //날짜 현재일로 조정
+        self.tipTitleLabel.text = self.dateFormatterAbbreviated.string(from: today)
     }
     
     /// MARK: Add UI
     private func addSubviews(){
         
-        view.addSubview(scrollView)
+        view.addSubview(containerView)
         
-        scrollView.addSubview(containerView)
-        
-        
-        containerView.addSubview(titleLabel)
-        containerView.addSubview(btnsStackView)
         containerView.addSubview(profileImageView)
         containerView.addSubview(profileLabel)
         containerView.addSubview(profileMoreButton)
@@ -340,43 +311,26 @@ class MyPageViewController: UIViewController {
         containerView.addSubview(prevMonthButton)
         containerView.addSubview(nextMonthButton)
         containerView.addSubview(calendarView)
-        
-        
+    }
+    
+    /// MARK: Setting AutoLayout
+    private func configureCollectionView(){
         calendarView.delegate = self
         calendarView.dataSource = self
         calendarView.register(ScheduleFSCalendarCell.self, forCellReuseIdentifier: ScheduleFSCalendarCell.identifier)
         
-        configureConstraints()
     }
     
-    /// MARK: Setting AutoLayout
+    
     private func configureConstraints(){
         
-        // 스크롤 뷰
-        scrollView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide).offset(5)
-        }
         // 컨테이너 뷰
         containerView.snp.makeConstraints { make in
-            make.edges.equalTo(scrollView.contentLayoutGuide)
-            make.width.equalTo(scrollView.frameLayoutGuide)
-        }
-        
-        
-    
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.leading.equalToSuperview().offset(20)
-        }
-        
-        btnsStackView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.bottom.equalTo(titleLabel.snp.bottom)
-            make.trailing.equalToSuperview().offset(-20)
+            make.edges.equalTo(view.safeAreaLayoutGuide).inset(5)
         }
         
         profileImageView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            make.top.equalToSuperview().offset(20)
             make.width.height.equalTo(80)
             make.centerX.equalToSuperview()
         }
@@ -437,7 +391,7 @@ class MyPageViewController: UIViewController {
         }
         tipTextLabel.snp.makeConstraints { make in
             make.top.equalTo(tipTitleLabel.snp.bottom).offset(20)
-            make.leading.equalTo(tipTitleLabel.snp.trailing).offset(8)
+            make.leading.equalTo(tipTitleLabel.snp.leading)
             make.bottom.equalToSuperview().inset(20)
         }
         
@@ -467,7 +421,7 @@ class MyPageViewController: UIViewController {
             make.top.equalTo(calHeaderLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(10)
-            make.height.equalTo(300)
+//            make.height.equalTo(300)
         }
     }
     
@@ -523,6 +477,14 @@ class MyPageViewController: UIViewController {
     private func getData(){
         viewModel.getData()
     }
+    
+    @objc func settingButtonTapped() {
+        self.navigationController?.pushViewController(ProfileSettingViewController(), animated: true)
+    }
+    
+    @objc func reportButtonTapped() {
+        
+    }
 
 
 }
@@ -560,18 +522,6 @@ extension MyPageViewController: FSCalendarDelegate, FSCalendarDataSource, FSCale
         
         print(viewModel.formattingDate(date: date))
     }
-    
-//    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
-//        guard let cell = calendar.dequeueReusableCell(withIdentifier: ScheduleFSCalendarCell.identifier, for: date, at: position) as? ScheduleFSCalendarCell else { return FSCalendarCell()}
-//
-//        viewModel.dateFiltering(date: date)
-//            .subscribe(onNext:{ list in
-//                cell.inputData(events: list)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        return cell
-//    }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         viewModel.getData()//ViewModel에서 데이터 얻는 함수
