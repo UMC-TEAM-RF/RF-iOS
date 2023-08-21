@@ -8,7 +8,11 @@
 import UIKit
 
 
-class TapBarCollectionViewCell: UICollectionViewCell {
+/**
+ TabBarCollectionView의 셀이다. tabbar 부분(개인 모임, 단체 모임 선택부분)의 셀이다.
+ > textLabel 하나만 갖고 있는 단순한 Cell이다. 메서드로는 setTextLabel, setColor 이 두개를 갖고 있다.
+ */
+class TabBarCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
@@ -20,7 +24,7 @@ class TapBarCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
     
-    static let identifier = "TapBarCollectionViewCell"
+    static let identifier = "TabBarCollectionViewCell"
     
     // MARK: - init()
     
@@ -51,10 +55,23 @@ class TapBarCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    /**
+     제목을 설정하는 함수
+     > 셀 초기화할 때 사용
+     - Parameters:
+        - _ text : 제목 String
+    */
     func setTextLabel(_ text: String) {
         self.textLabel.text = text
     }
-        
+    
+    /**
+     제목 색깔을 설정하는 함수
+     > 셀 초기화할 때 사용
+     - Parameters:
+        - textColor : 글자색 바꾸는 변수
+        - backgroundColor : 셀 배경색깔을 바꾸는 변수
+    */
     func setColor(textColor: UIColor, backgroundColor: UIColor) {
         self.textLabel.textColor = textColor
         self.contentView.backgroundColor = backgroundColor

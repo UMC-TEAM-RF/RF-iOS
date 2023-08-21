@@ -25,7 +25,7 @@ final class HomeViewController: UIViewController {
         return view
     }()
     
-    // 네비게이션 바
+    // MARK: 네비게이션 바
     private lazy var navigationContainerView: UIView = {
         let view = UIView()
         return view
@@ -46,7 +46,7 @@ final class HomeViewController: UIViewController {
         return view
     }()
     
-    // 배너
+    // MARK: 배너
     private let bannerCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -67,7 +67,7 @@ final class HomeViewController: UIViewController {
     }()
     
     
-    // 모임
+    // MARK: 모임
     
     private lazy var meetingListView: UIView = {
         let view = UIView()
@@ -92,7 +92,7 @@ final class HomeViewController: UIViewController {
     }()
     
     private let tabBarTitles = ["개인 모임", "단체 모임"]
-    private let tapBarCollectionView: UICollectionView = {
+    private let tabBarCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
@@ -127,7 +127,7 @@ final class HomeViewController: UIViewController {
     }()
     
     
-    // 꿀팁 배너
+    // MARK: 꿀팁 배너
     private lazy var tipsView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray6
@@ -165,7 +165,7 @@ final class HomeViewController: UIViewController {
         return label
     }()
     
-    // 관심사
+    // MARK: 관심사
     private lazy var interestView: UIView = {
         let view = UIView()
         return view
@@ -250,7 +250,7 @@ final class HomeViewController: UIViewController {
         // 모임
         meetingListView.addSubview(meetingListLabel)
         meetingListView.addSubview(moreMeetingButton)
-        meetingListView.addSubview(tapBarCollectionView)
+        meetingListView.addSubview(tabBarCollectionView)
         meetingListView.addSubview(pageCollectionView)
         meetingListView.addSubview(highlightBackView)
         meetingListView.addSubview(highlightView)
@@ -322,26 +322,26 @@ final class HomeViewController: UIViewController {
         }
         
         
-        tapBarCollectionView.snp.makeConstraints { make in
+        tabBarCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(30)
         }
         
         highlightBackView.snp.makeConstraints { make in
-            make.top.equalTo(tapBarCollectionView.snp.bottom).offset(0)
+            make.top.equalTo(tabBarCollectionView.snp.bottom).offset(0)
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(3)
         }
         
         highlightView.snp.makeConstraints { make in
-            make.top.equalTo(tapBarCollectionView.snp.bottom).offset(0)
+            make.top.equalTo(tabBarCollectionView.snp.bottom).offset(0)
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(0)
         }
         
         meetingListLabel.snp.makeConstraints { make in
-            make.top.equalTo(tapBarCollectionView.snp.bottom).offset(20)
+            make.top.equalTo(tabBarCollectionView.snp.bottom).offset(20)
             make.leading.equalToSuperview()
         }
         
@@ -412,12 +412,12 @@ final class HomeViewController: UIViewController {
         interestCollectionView.register(InterestCollectionViewCell.self, forCellWithReuseIdentifier: InterestCollectionViewCell.identifier)
         
         //tabBar
-        tapBarCollectionView.delegate = self
-        tapBarCollectionView.dataSource = self
+        tabBarCollectionView.delegate = self
+        tabBarCollectionView.dataSource = self
         
-        tapBarCollectionView.register(TapBarCollectionViewCell.self, forCellWithReuseIdentifier: TapBarCollectionViewCell.identifier)
+        tabBarCollectionView.register(TabBarCollectionViewCell.self, forCellWithReuseIdentifier: TabBarCollectionViewCell.identifier)
         let firstIndex = IndexPath(item: 0, section: 0)
-        tapBarCollectionView.selectItem(at: firstIndex, animated: false, scrollPosition: .right)
+        tabBarCollectionView.selectItem(at: firstIndex, animated: false, scrollPosition: .right)
         
         //pageCollectionView
         pageCollectionView.delegate = self
@@ -456,7 +456,6 @@ final class HomeViewController: UIViewController {
 
 //collection tag
 // 0 : bannerCollectionView
-// 1 : meetingCollectionView
 // 2 : interestCollectionView
 // 3 : tapBarCollectionView
 // 4 : pageCollectionView
@@ -473,7 +472,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 2:
             return CGSize(width: (interestCollectionView.frame.width - 2) / 3, height: (interestCollectionView.frame.height - 2) / 4)
         case 3:
-            return CGSize(width: (tapBarCollectionView.frame.width) / 2, height: (tapBarCollectionView.frame.height))
+            return CGSize(width: (tabBarCollectionView.frame.width) / 2, height: (tabBarCollectionView.frame.height))
         case 4:
             return CGSize(width: pageCollectionView.frame.width, height: pageCollectionView.frame.height)
         default:
@@ -509,14 +508,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.setTextLabel(Interest.listWithIcon[indexPath.item])
             return cell
         case 3:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TapBarCollectionViewCell.identifier, for: indexPath) as! TapBarCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabBarCollectionViewCell.identifier, for: indexPath) as! TabBarCollectionViewCell
             
             cell.setTextLabel(tabBarTitles[indexPath.item])
             return cell
         case 4:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCollectionViewCell.identifier, for: indexPath) as! PageCollectionViewCell
             
-//            cell.backgroundColor = [.red, .blue][indexPath.item]
             cell.setTag(indexPath.item)
             
             
@@ -533,7 +531,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             //set underline bar
             if(indexPath.item == 0){
                 self.highlightView.snp.remakeConstraints { (make) -> Void in
-                    make.top.equalTo(tapBarCollectionView.snp.bottom).offset(0)
+                    make.top.equalTo(tabBarCollectionView.snp.bottom).offset(0)
                     make.horizontalEdges.equalTo(cell.snp.horizontalEdges)
                     make.height.equalTo(3)
                 }
@@ -548,10 +546,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView.tag {
         case 3:
-            guard let cell = tapBarCollectionView.cellForItem(at: indexPath) as? TapBarCollectionViewCell else { return }
+            guard let cell = tabBarCollectionView.cellForItem(at: indexPath) as? TabBarCollectionViewCell else { return }
 
             self.highlightView.snp.remakeConstraints { (make) -> Void in
-                make.top.equalTo(tapBarCollectionView.snp.bottom).offset(0)
+                make.top.equalTo(tabBarCollectionView.snp.bottom).offset(0)
                 make.horizontalEdges.equalTo(cell.snp.horizontalEdges)
                 make.height.equalTo(3)
             }
@@ -576,11 +574,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             targetContentOffset.pointee = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left,
                                                   y: scrollView.contentInset.top)
             // topTapItem Select
-            tapBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .bottom)
+            tabBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .bottom)
             // collectionView didSelectedItemAt delegate
-            collectionView(tapBarCollectionView, didSelectItemAt: indexPath)
+            collectionView(tabBarCollectionView, didSelectItemAt: indexPath)
             // topTapMenu Scroll
-            tapBarCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+            tabBarCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         }
     }
 }
