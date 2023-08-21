@@ -13,7 +13,7 @@ final class MeetingService {
     
     /// 내가 속한 모임 리스트
     func getMyMeetingList(page: Int, size: Int) -> Observable<[Meeting]> {
-        let url = "\(Domain.restApi)\(MeetingPath.getMeetingList)/{userId}/belong??page=\(page)&size=\(size)&sort=id,{desc|asc}"
+        let url = "\(Domain.restApi)\(MeetingPath.meetingList)/{userId}/belong??page=\(page)&size=\(size)&sort=id,{desc|asc}"
         
         return Observable.create { observer in
             AF.request(url,
@@ -39,7 +39,7 @@ final class MeetingService {
     
     /// 모든 모임 조회
     func getMeetingList(page: Int, size: Int) -> Observable<[Meeting]> {
-        let url = "\(Domain.restApi)\(MeetingPath.getMeetingList)/{userId}/search?page=\(page)&size=\(size)&sort=id,{desc|asc}"
+        let url = "\(Domain.restApi)\(MeetingPath.meetingList)/{userId}/search?page=\(page)&size=\(size)&sort=id,{desc|asc}"
         
         return Observable.create { observer in
             AF.request(url,
