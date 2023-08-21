@@ -203,7 +203,12 @@ extension DetailedMeetingCollectionViewCell: UICollectionViewDelegate, UICollect
     //태그 셀 사이즈 설정(폰트 사이즈 14 기준)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let meeting = meetingData else { return CGSize() }
-        return CGSize(width: meeting.interests![indexPath.item].size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 30, height: tagCollectionView.frame.height)
+        
+        let data = EnumFile.enumfile.enumList.value
+        let text = data.interest?.filter{ $0.key  == meeting.interests?[indexPath.item] }.first
+        let textSize = text?.value?.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
+        
+        return CGSize(width: (textSize?.width ?? CGFloat()) + 30, height: tagCollectionView.frame.height)
     }
     
     //태그 목록 개수 : 3

@@ -101,7 +101,7 @@ final class SearchingViewController: UIViewController{
         
         view.addSubview(filteringBtn)
         view.addSubview(meetingListCollectionView)
-        meetingListCollectionView.register(SearchingCollectionViewCell.self, forCellWithReuseIdentifier: SearchingCollectionViewCell.identifier)
+        meetingListCollectionView.register(DetailedMeetingCollectionViewCell.self, forCellWithReuseIdentifier: DetailedMeetingCollectionViewCell.identifier)
         meetingListCollectionView.dataSource = self
         meetingListCollectionView.delegate = self
         
@@ -138,8 +138,9 @@ final class SearchingViewController: UIViewController{
 
 extension SearchingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchingCollectionViewCell.identifier, for: indexPath) as? SearchingCollectionViewCell else { return UICollectionViewCell() }
-        cell.inputTextData(meeting: viewModel.meetingList.value[indexPath.row])
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as? DetailedMeetingCollectionViewCell else { return UICollectionViewCell() }
+        //cell.inputTextData(meeting: viewModel.meetingList.value[indexPath.row])
+        cell.meetingData = viewModel.meetingList.value[indexPath.row]
         cell.isUserInteractionEnabled = true
         return cell
     }
