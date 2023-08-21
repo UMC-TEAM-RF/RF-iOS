@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GroupProfileView: UIView {
+final class GroupProfileView: UIView {
     
     // 이미지 뷰 배열
     private var imageViews: [UIImageView] = []
@@ -42,7 +42,9 @@ class GroupProfileView: UIView {
                 if let url = URL(string: profiles[index]){
                     imageView.load(url: url)
                 }
-                imageView.image = UIImage(named: "LogoImage")
+                else{
+                    imageView.image = UIImage(named: "LogoImage")
+                }
                 imageView.isHidden = false
             } else {
                 imageView.isHidden = true
