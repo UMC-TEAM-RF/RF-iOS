@@ -10,8 +10,8 @@ import Foundation
 // Socket EndPoint
 struct SocketPath {
     static let connect = "/ws/websocket"
-    static let subscribe = "/sub/channel"
-    static let send = "/pub/redisChat"
+    static let subscribe = "/listen/chat"
+    static let send = "/speak/chat"
 }
 
 /// Enum EndPoint
@@ -41,7 +41,7 @@ struct EmailPath {
 /// Meeting EndPoint
 struct MeetingPath {
     static let createMeeting = "/party"
-    static let meetingList = "/party/non-blocked"
+    static let meetingList = "/party/user/:userId/search"
 }
 
 /// Login EndPoint

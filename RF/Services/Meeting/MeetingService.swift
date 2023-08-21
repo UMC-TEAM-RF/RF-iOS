@@ -64,27 +64,27 @@ final class MeetingService {
         }
     }
     
-    /// 모임 리스트 API
-    func requestMeetingList(userId: Int) -> Observable<[Meeting]> {
-        let url = "\(Domain.restApi)\(MeetingPath.meetingList)/\(userId)"
+    
+    /// 사용자가 차단한 모임을 제외한 리스트를 불러옴
+    /// - Parameters:
+    ///   - userId: 사용자 ID
+    ///   - page: Page 번호 (default: 0)
+    ///   - size: 가져올 모임 개수 (default: 3)
+    func requestMeetingList(userId: Int, page: Int = 0, size: Int = 3, completion: @escaping ([Meeting]?)->()) {
+        let path = MeetingPath.meetingList.replacingOccurrences(of: ":userId", with: "1")
+        let url = "\(Domain.restApi)\(path)"
+        let param: Parameters = ["page": page, "size": size]
         
-        return Observable.create { observer in
-            AF.request(url, method: .get)
-                .validate(statusCode: 200..<201)
-                .responseDecodable(of: Response<[Meeting]>.self) { response in
-                    print(response)
-                    switch response.result {
-                    case .success(let data):
-                        print(data)
-                        if let meetings = data.result {
-                            observer.onNext(meetings)
-                        }
-                    case .failure(let error):
-                        observer.onError(error)
-                    }
+        AF.request(url, method: .get, parameters: param)
+            .validate(statusCode: 200..<201)
+            .responseDecodable(of: Response<Page>.self) { response in
+                switch response.result {
+                case .success(let data):
+                    completion(data.result?.content)
+                case .failure(let error):
+                    print(error)
                 }
-            return Disposables.create()
-        }
+            }
     }
     
     func convertMeetingToJSONString(meeting: Meeting) -> String? {

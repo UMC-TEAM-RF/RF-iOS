@@ -29,8 +29,8 @@ class MyMessageTableViewCell: UITableViewCell {
     
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+        label.textColor = .lightGray
         label.numberOfLines = 1
         label.text = "오후 7:15"
         return label

@@ -148,7 +148,7 @@ final class MeetingViewController: UIViewController{
         
         configureConstraints()
         uiActions()
-        viewModel.getMeetingList()
+        
     }
     
     /// MARK: setting AutoLayout
