@@ -312,6 +312,10 @@ class MyPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.backButtonTitle = ""
         navigationController?.toolbar.isHidden = true
+        
+        
+        //날짜 현재일로 조정
+        self.tipTitleLabel.text = self.dateFormatterAbbreviated.string(from: today)
     }
     
     /// MARK: Add UI
@@ -519,7 +523,6 @@ class MyPageViewController: UIViewController {
             
         self.currentPage = cal.date(byAdding: dateComponents, to: self.currentPage ?? self.today)
         self.calendarView.setCurrentPage(self.currentPage!, animated: true)
-        self.tipTitleLabel.text = self.dateFormatterAbbreviated.string(from: self.currentPage!)
     }
     
     /// MARK: ViewModel에서 데이터 얻는 함수
