@@ -27,6 +27,10 @@ class UICheckBox: UIButton {
         self.addTarget(self, action: #selector(showHidePassword(_:)), for: .touchUpInside)
     }
     
+    func setColor(_ color: UIColor) {
+        self.imageView?.tintColor = color
+    }
+    
     @objc private func showHidePassword(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
     }

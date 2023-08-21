@@ -18,7 +18,7 @@ final class SignInViewController: UIViewController {
     // 로고 이미지
     private lazy var logoImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "rf_logo")?.resize(newWidth: 100)
+        view.image = UIImage(named: "rf_logo")?.resize(newWidth: 140)
         view.contentMode = .scaleAspectFit
         return view
     }()
@@ -26,29 +26,19 @@ final class SignInViewController: UIViewController {
     // 부제목 레이블 (글로벌한 대학 생활을 위한 첫 단계)
     private lazy var subTitleLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 15)
-        view.textColor = .gray
+        view.font = .systemFont(ofSize: 16)
+        view.textColor = TextColor.first.color
         view.numberOfLines = 0
         view.text = "글로벌한 대학 생활을 위한 첫 단계"
         
         return view
     }()
     
-    // 제목 레이블 (알프)
-    private lazy var mainTitleLabel: UILabel = {
-        let view = UILabel()
-        view.font = .boldSystemFont(ofSize: 39)
-        view.textColor = .gray
-        view.numberOfLines = 0
-        view.text = "알프"
-        return view
-    }()
-    
     // 로고, 부제목 레이블, 제목 레이블을 스마트폰 화면 크기에 따라 유동적으로 크기를 조절하는 스택 뷰
     private lazy var logoStackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [logoImageView, subTitleLabel, mainTitleLabel])
+        let sv = UIStackView(arrangedSubviews: [logoImageView, subTitleLabel])
         sv.axis = .vertical
-        sv.distribution = .equalCentering
+        sv.distribution = .fillProportionally
         sv.alignment = .center
         sv.spacing = 8
         return sv
@@ -59,7 +49,8 @@ final class SignInViewController: UIViewController {
         var view = UITextField()
         view.placeholder = "아이디"
         view.delegate = self
-        view.font = .systemFont(ofSize: 12)
+        view.font = .systemFont(ofSize: 14)
+        view.textColor = TextColor.secondary.color
         view.borderStyle = UITextField.BorderStyle.none
         view.keyboardType = UIKeyboardType.default
         view.returnKeyType = UIReturnKeyType.done
@@ -69,7 +60,7 @@ final class SignInViewController: UIViewController {
     }()
     private lazy var idUnderLineView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = TextColor.secondary.color
         return view
     }()
     
@@ -78,13 +69,14 @@ final class SignInViewController: UIViewController {
         var view = PasswordTextField()
         view.placeholder = "비밀번호"
         view.delegate = self
-        view.font = .systemFont(ofSize: 12)
+        view.font = .systemFont(ofSize: 14)
+        view.setColor(TextColor.secondary.color)
         view.borderStyle = UITextField.BorderStyle.none
         return view
     }()
     private lazy var pwUnderLineView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = TextColor.secondary.color
         return view
     }()
     
@@ -92,9 +84,10 @@ final class SignInViewController: UIViewController {
     private lazy var autoLoginCheckBox: UICheckBox = {
         let button = UICheckBox()
         button.setTitle("  " + "로그인 상태 유지하기", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
-        button.setTitleColor(.gray, for: .selected)
-        button.titleLabel?.font = .systemFont(ofSize: 12)
+        button.setTitleColor(TextColor.first.color, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .selected)
+        button.setColor(UIColor.init(hexCode: "#555555"))
+        button.titleLabel?.font = .systemFont(ofSize: 14)
         return button
     }()
     
@@ -102,8 +95,9 @@ final class SignInViewController: UIViewController {
     private lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("로그인", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = .systemGray6
+        button.setTitleColor(TextColor.first.color, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        button.backgroundColor = UIColor.init(hexCode: "#F5F5F5")
         button.layer.cornerRadius = 10
         return button
     }()
@@ -112,7 +106,7 @@ final class SignInViewController: UIViewController {
     private lazy var findIdButton: UIButton = {
         let button = UIButton()
         button.setTitle("아이디 찾기", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12)
         return button
     }()
@@ -121,7 +115,7 @@ final class SignInViewController: UIViewController {
     private lazy var resetPasswordButton: UIButton = {
         let button = UIButton()
         button.setTitle("비밀번호 재설정", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12)
         return button
     }()
@@ -130,7 +124,7 @@ final class SignInViewController: UIViewController {
     private lazy var signUpButton: UIButton = {
         let button = UIButton()
         button.setTitle("회원가입", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12)
         return button
     }()
@@ -139,7 +133,7 @@ final class SignInViewController: UIViewController {
     private lazy var korLangButton: UIButton = {
         let button = UIButton()
         button.setTitle("KOR", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12)
         return button
     }()
@@ -148,26 +142,26 @@ final class SignInViewController: UIViewController {
     private lazy var engLangButton: UIButton = {
         let button = UIButton()
         button.setTitle("ENG", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12)
         return button
     }()
     
     private lazy var firstDivLine: UIView = {
         let box = UIView()
-        box.backgroundColor = .gray
+        box.backgroundColor = UIColor.init(hexCode: "#DFDFDF")
         return box
     }()
     
     private lazy var secondDivLine: UIView = {
         let box = UIView()
-        box.backgroundColor = .gray
+        box.backgroundColor = UIColor.init(hexCode: "#DFDFDF")
         return box
     }()
     
     private lazy var thirdDivLine: UIView = {
         let box = UIView()
-        box.backgroundColor = .gray
+        box.backgroundColor = UIColor.init(hexCode: "#DFDFDF")
         return box
     }()
     
@@ -209,7 +203,7 @@ final class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         
         addSubViews()
         configureConstraints()
@@ -252,8 +246,8 @@ final class SignInViewController: UIViewController {
         
         logoStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
-            make.bottom.equalTo(idTextField.snp.top).offset(-15)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+            make.bottom.equalTo(idTextField.snp.top).offset(-40)
         }
         
         idTextField.snp.makeConstraints { make in

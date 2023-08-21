@@ -440,6 +440,12 @@ class MyPageViewController: UIViewController {
                 self.scrollCurrentPage(isPrev: true)
             }
             .disposed(by: disposeBag)
+        
+        changeMonthButton.rx.tap
+            .bind {
+                self.scrollCurrentPage(isPrev: false)
+            }
+            .disposed(by: disposeBag)
     }
     
     private var currentPage: Date?
@@ -510,7 +516,7 @@ extension MyPageViewController: FSCalendarDelegate, FSCalendarDataSource, FSCale
         let dateDay = Calendar.current.dateComponents([.day], from: date)
         let todayDay = Calendar.current.dateComponents([.day], from: today)
         if dateMonth == todayMonth && dateDay == todayDay{
-            return .red
+            return .purple
         }else{
             return .none
         }

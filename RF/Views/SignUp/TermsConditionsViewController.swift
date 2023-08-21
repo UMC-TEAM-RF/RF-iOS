@@ -19,7 +19,7 @@ final class TermsConditionsViewController: UIViewController {
     private lazy var leftButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "회원 가입", style: .done, target: self, action: nil)
         btn.isEnabled = false
-        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: .bold)], for: .disabled)
         return btn
     }()
     
@@ -38,17 +38,18 @@ final class TermsConditionsViewController: UIViewController {
         let offimage = UIImage(systemName: "square")
         let onimage = UIImage(systemName: "checkmark.square.fill")
         button.setTitle("  " + "아래 약관에 모두 동의합니다", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.setImage(offimage, for: .normal)
         button.setImage(onimage, for: .selected)
-        button.imageView?.tintColor = .black
+        button.imageView?.tintColor = TextColor.first.color
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.addTarget(self, action: #selector(changeStateAll(_:)), for: .touchUpInside)
         return button
     }()
  
     private lazy var agreeAllUnderLineView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = StrokeColor.sub.color
         return view
     }()
     
@@ -101,14 +102,14 @@ final class TermsConditionsViewController: UIViewController {
     private lazy var realNameLabelBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = BackgroundColor.gray.color
         return view
     }()
     
     private lazy var realNameLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 15)
-        view.textColor = .black
+        view.font = .systemFont(ofSize: 14)
+        view.textColor = TextColor.first.color
         view.numberOfLines = 0
         view.text = "본인 명의를 이용하여 가입을 진행하겠습니다. 본인 명의를 이용하여 가입을 진행하겠습니다. 본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다."
         return view
@@ -127,14 +128,14 @@ final class TermsConditionsViewController: UIViewController {
     private lazy var ageLabelBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = BackgroundColor.gray.color
         return view
     }()
     
     private lazy var ageLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 15)
-        view.textColor = .black
+        view.font = .systemFont(ofSize: 14)
+        view.textColor = TextColor.first.color
         view.numberOfLines = 0
         view.text = "본인 명의를 이용하여 가입을 진행하겠습니다. 본인 명의를 이용하여 가입을 진행하겠습니다. 본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다.본인 명의를 이용하여 가입을 진행하겠습니다."
         
@@ -146,6 +147,7 @@ final class TermsConditionsViewController: UIViewController {
         button.setTitle("다음", for: .normal)
         buttonInactivate(button)
         button.layer.cornerRadius = 10
+        nextButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         return button
     }()
     
@@ -317,14 +319,14 @@ final class TermsConditionsViewController: UIViewController {
     }
     
     private func phoneButtonActivate(){
-        nextButton.backgroundColor = .blue
+        nextButton.backgroundColor = UIColor.init(hexCode: "#006FF2")
         nextButton.setTitleColor(.white, for: .normal)
     }
     
     
     private func buttonInactivate(_ button : UIButton){
-        button.backgroundColor = .systemGray
-        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = BackgroundColor.white.color
+        button.setTitleColor(TextColor.secondary.color, for: .normal)
     }
     
     /// MARK: 휴대폰 인증, 아이핀 인증 버튼 눌렀을 때 실행

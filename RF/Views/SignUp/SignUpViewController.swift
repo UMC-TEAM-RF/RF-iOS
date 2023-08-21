@@ -19,7 +19,7 @@ final class SignUpViewController: UIViewController {
     private lazy var leftButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "회원 가입", style: .done, target: self, action: nil)
         btn.isEnabled = false
-        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
         return btn
     }()
     
@@ -28,14 +28,14 @@ final class SignUpViewController: UIViewController {
         let pv = UIProgressView()
         pv.progressViewStyle = .bar
         pv.backgroundColor = UIColor(hexCode: "D1D1D1")
-        pv.progress = 0.5
+        pv.progress = 1/7
         return pv
     }()
     
     private lazy var idLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 20, weight: .semibold)
-        view.textColor = .black
+        view.font = .systemFont(ofSize: 16, weight: .bold)
+        view.textColor = TextColor.first.color
         view.numberOfLines = 0
         view.text = "아이디"
         
@@ -50,6 +50,7 @@ final class SignUpViewController: UIViewController {
         view.returnKeyType = UIReturnKeyType.done
         view.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
         view.placeholder = " 아이디를 입력해주세요."
+        view.font = .systemFont(ofSize: 14, weight: .regular)
         return view
     }()
     
@@ -58,23 +59,23 @@ final class SignUpViewController: UIViewController {
         button.setTitle("중복확인", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15)
-        button.backgroundColor = UIColor(hexCode: "F5F5F5")
+        button.backgroundColor = ButtonColor.normal.color
         button.layer.cornerRadius = 15
         return button
     }()
     
     private lazy var idUnderLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = TextColor.secondary.color
         return view
     }()
     
     private lazy var pwLabel: UILabel = {
         let view = UILabel()
-        view.textColor = .black
+        view.textColor = TextColor.first.color
         view.numberOfLines = 0
         view.text = "비밀번호"
-        view.font = .systemFont(ofSize: 20, weight: .semibold)
+        view.font = .systemFont(ofSize: 16, weight: .bold)
         return view
     }()
     
@@ -83,19 +84,20 @@ final class SignUpViewController: UIViewController {
         view.delegate = self
         view.borderStyle = UITextField.BorderStyle.none
         view.placeholder = " 비밀번호"
+        view.setColor(TextColor.secondary.color)
         return view
     }()
     
     private lazy var pwUnderLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = TextColor.secondary.color
         return view
     }()
     
     private lazy var pwConfirmLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 20, weight: .semibold)
-        view.textColor = .black
+        view.font = .systemFont(ofSize: 16, weight: .semibold)
+        view.textColor = TextColor.first.color
         view.numberOfLines = 0
         view.text = "비밀번호 확인"
         
@@ -107,20 +109,21 @@ final class SignUpViewController: UIViewController {
         view.delegate = self
         view.borderStyle = UITextField.BorderStyle.none
         view.placeholder = " 비밀번호"
+        view.setColor(TextColor.secondary.color)
         return view
     }()
     
     private lazy var pwConfirmUnderLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = StrokeColor.sub.color
         return view
     }()
     
     private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = .systemGray6
+        button.setTitleColor(TextColor.first.color, for: .normal)
+        button.backgroundColor = ButtonColor.normal.color
         button.layer.cornerRadius = 10
         return button
     }()
@@ -132,7 +135,7 @@ final class SignUpViewController: UIViewController {
         
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItem = leftButton
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = BackgroundColor.dark.color
         view.backgroundColor = .white
         
         addSubViews()
@@ -298,11 +301,12 @@ final class SignUpViewController: UIViewController {
         viewModel.confirmPasswordRelay
             .bind(onNext: { [weak self] check in
                 if check { // true: 비밀번호 일치
-                    self?.nextButton.backgroundColor = .systemBlue
+                    self?.nextButton.backgroundColor = UIColor.init(hexCode: "#006FF2")
                     self?.nextButton.setTitleColor(.white, for: .normal)
                 }
                 else{ // false: 비밀번호가 일치하지 않는 경우 코드 작성
-                    
+                    self?.nextButton.setTitleColor(TextColor.first.color, for: .normal)
+                    self?.nextButton.backgroundColor = ButtonColor.normal.color
                 }
             })
             .disposed(by: disposeBag)
