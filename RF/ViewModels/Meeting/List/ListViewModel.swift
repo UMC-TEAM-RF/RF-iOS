@@ -14,7 +14,6 @@ final class ListViewModel {
     
     /// MARK: 모임 목록 Relay
     var meetingListRelay: BehaviorRelay<[Meeting]> = BehaviorRelay(value: [])
-    var userProfileListRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
     private let disposeBag = DisposeBag()
     private let service = MeetingService()
@@ -40,6 +39,7 @@ final class ListViewModel {
     ///  check: true: 처음 요청하는 것, false: 두번째 부터 요청
     func getData(check: Bool){
         var meetingList: [Meeting] = meetingListRelay.value
+        
         if check{
             page = 0
             meetingList = []
@@ -55,7 +55,6 @@ final class ListViewModel {
                 print("getData error! \(error)")
             })
             .disposed(by: disposeBag)
-        
         
         meetingListRelay.accept(meetingList)
     }

@@ -83,7 +83,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
         
         let data = viewModel.meetingListRelay.value[indexPath.row]
         
-        cell.inputData(imageList: viewModel.userProfileListRelay.value,
+        cell.inputData(imageList: viewModel.meetingListRelay.value[indexPath.row].users,
                        meetingName: data.name ?? "",
                        introduce: data.content ?? "",
                        country: data.language,

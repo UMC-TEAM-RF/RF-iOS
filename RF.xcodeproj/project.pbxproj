@@ -59,6 +59,7 @@
 		3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D532A56D45C00FECE3A /* PasswordTextField.swift */; };
 		3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D552A56D4AA00FECE3A /* UICheckBox.swift */; };
 		3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D572A56F00200FECE3A /* SignUpViewController.swift */; };
+		3B938C8E2A93399700CBF734 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B938C8D2A93399700CBF734 /* UIImageView+Ext.swift */; };
 		3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */; };
 		3BA9A8472A81F6C900349407 /* EnumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9A8462A81F6C900349407 /* EnumService.swift */; };
 		3BA9FB8D2A7D307F0039B138 /* lifestyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */; };
@@ -216,6 +217,7 @@
 		3B935D532A56D45C00FECE3A /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		3B935D552A56D4AA00FECE3A /* UICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox.swift; sourceTree = "<group>"; };
 		3B935D572A56F00200FECE3A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3B938C8D2A93399700CBF734 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		3BA9A8462A81F6C900349407 /* EnumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumService.swift; sourceTree = "<group>"; };
 		3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lifestyleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -663,6 +665,7 @@
 			isa = PBXGroup;
 			children = (
 				44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */,
+				3B938C8D2A93399700CBF734 /* UIImageView+Ext.swift */,
 				572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */,
 				572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */,
 				572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */,
@@ -1060,6 +1063,7 @@
 				3B6C31252A7E17DC008FADA1 /* UserInfoSelfViewModel.swift in Sources */,
 				570063932A67B23A0051F42A /* RuleListViewController.swift in Sources */,
 				3B6BA9982A7FEC7F00A11FE4 /* EmailCustomTextField.swift in Sources */,
+				3B938C8E2A93399700CBF734 /* UIImageView+Ext.swift in Sources */,
 				44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */,
 				570063AB2A724CB40051F42A /* UIViewController+Ext.swift in Sources */,
 				57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */,
