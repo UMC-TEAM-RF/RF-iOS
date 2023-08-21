@@ -403,7 +403,7 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == interestCollectionView{
-            let str: String = Interest.list[indexPath.item]
+            let _: String = Interest.list[indexPath.item]
             let interest = EnumFile.enumfile.enumList.value.interest?[indexPath.item]
             guard let cell = interestCollectionView.dequeueReusableCell(withReuseIdentifier: InterestSmallCollectionViewCell.identifier,
                                                                         for: indexPath) as? InterestSmallCollectionViewCell else { return UICollectionViewCell() }
