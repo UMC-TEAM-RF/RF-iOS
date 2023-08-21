@@ -85,7 +85,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     // foreground 상태일 때에도 알림 배너가 나오도록 설정
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.sound, .banner])
+        print(#function)
+        let userInfo = notification.request.content.userInfo
+        completionHandler([])
     }
     
     // 푸시 알림 배너 클릭했을 시 실행
