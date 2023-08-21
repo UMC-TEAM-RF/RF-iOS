@@ -22,7 +22,7 @@ final class CreateViewModel {
     
     /// 모임 배너 이미지
     /// value: 기본 이미지로 바꿔야함
-    var meetingImage: BehaviorRelay<UIImage> = BehaviorRelay<UIImage>(value: UIImage())
+    var meetingImage: BehaviorRelay<UIImage?> = BehaviorRelay<UIImage?>(value: nil)
     
     /// 모임 소개
     let meetingDescription = BehaviorRelay<String>(value: "")
@@ -63,7 +63,8 @@ final class CreateViewModel {
         // Meeting Dummy Data
         let model = Meeting(id: 1, name: "이름", memberCount: 5, nativeCount: 3, interests: ["MUSIC", "SPORT"], content: "소개", rules: ["ATTENDANCE"], preferAges: "NONE", language: "CHINESE", location: "1층", ownerId: 1)
         
-        let img = meetingImage.value
+        
+        let img = (meetingImage.value ?? UIImage(named: "meeting_\(Int.random(in: 1...5))")) ?? UIImage()
 
         // service
         return service.createMeeting(meeting: model, image: img).asObservable()
