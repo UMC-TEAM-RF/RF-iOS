@@ -31,6 +31,8 @@ class PageCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "PageCollectionViewCell"
     
+    private var meetingsData : [Meeting]?
+    
     // MARK: - init()
     
     override init(frame: CGRect) {
@@ -72,6 +74,11 @@ class PageCollectionViewCell: UICollectionViewCell {
         self.meetingCollectionView.tag = tagNumber
     }
     
+    func setData(_ meetingsData : [Meeting]){
+        self.meetingsData = meetingsData
+        meetingCollectionView.reloadData()
+    }
+    
     /**
      CollectionView 초기화 함수
     */
@@ -95,31 +102,17 @@ extension PageCollectionViewCell: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return meetingsData?.count ?? 0
     }
     
     //각 태그(개인 모임:0, 단체 모임:1)마다 보여줄 모임 리스트 데이터소스를 설정한다.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView.tag {
-        case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as! DetailedMeetingCollectionViewCell
-            cell.inputTextData(title: HomeMeetingDummy.title[indexPath.row],
-                               description: HomeMeetingDummy.description[indexPath.row],
-                               personnel: HomeMeetingDummy.personnel[indexPath.row],
-                               tag: HomeMeetingDummy.tagList[indexPath.row],
-                               imageName: HomeMeetingDummy.images[indexPath.row])
-            return cell
-        case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as! DetailedMeetingCollectionViewCell
-            cell.inputTextData(title: HomeMeetingDummy.title[indexPath.row],
-                               description: HomeMeetingDummy.description[indexPath.row],
-                               personnel: HomeMeetingDummy.multiPersonnel[indexPath.row],
-                               tag: HomeMeetingDummy.tagList[indexPath.row],
-                               imageName: HomeMeetingDummy.multiImages[indexPath.row])
-            return cell
-        default:
-            return UICollectionViewCell()
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as! DetailedMeetingCollectionViewCell
+        
+        guard let meetings = meetingsData else { return UICollectionViewCell() }
+        
+        cell.meetingData = meetings[indexPath.item]
+        return cell
     }
 }
 

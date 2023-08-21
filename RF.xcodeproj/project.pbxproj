@@ -63,6 +63,8 @@
 		3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D532A56D45C00FECE3A /* PasswordTextField.swift */; };
 		3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D552A56D4AA00FECE3A /* UICheckBox.swift */; };
 		3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B935D572A56F00200FECE3A /* SignUpViewController.swift */; };
+		3B938C8E2A93399700CBF734 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B938C8D2A93399700CBF734 /* UIImageView+Ext.swift */; };
+		3B938C902A93847A00CBF734 /* MeetingManageUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B938C8F2A93847A00CBF734 /* MeetingManageUIButton.swift */; };
 		3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */; };
 		3BA9A8472A81F6C900349407 /* EnumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9A8462A81F6C900349407 /* EnumService.swift */; };
 		3BA9FB8D2A7D307F0039B138 /* lifestyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */; };
@@ -97,6 +99,11 @@
 		3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */; };
 		3BEEE7D12A7658C0007092DF /* MeetingCreatePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */; };
 		3BF2E7662A8B50CC00FD09F7 /* Judge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E7652A8B50CC00FD09F7 /* Judge.swift */; };
+		3BF2E7682A8B5BA200FD09F7 /* SearchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E7672A8B5BA200FD09F7 /* SearchingViewModel.swift */; };
+		3BF2E76D2A8B609100FD09F7 /* SearchingCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E76C2A8B609100FD09F7 /* SearchingCollectionViewCellViewModel.swift */; };
+		3BF2E7702A8CB01300FD09F7 /* DetailMeetingJoinPopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E76F2A8CB01300FD09F7 /* DetailMeetingJoinPopUpViewModel.swift */; };
+		3BF2E7722A8CB32300FD09F7 /* DetailMeetingJoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E7712A8CB32300FD09F7 /* DetailMeetingJoinService.swift */; };
+		3BF2E7742A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E7732A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift */; };
 		443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */; };
 		44CC47732A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC47722A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift */; };
 		44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */; };
@@ -219,6 +226,8 @@
 		3B935D532A56D45C00FECE3A /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		3B935D552A56D4AA00FECE3A /* UICheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox.swift; sourceTree = "<group>"; };
 		3B935D572A56F00200FECE3A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3B938C8D2A93399700CBF734 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
+		3B938C8F2A93847A00CBF734 /* MeetingManageUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManageUIButton.swift; sourceTree = "<group>"; };
 		3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		3BA9A8462A81F6C900349407 /* EnumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumService.swift; sourceTree = "<group>"; };
 		3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lifestyleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -253,6 +262,11 @@
 		3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInterestsViewController.swift; sourceTree = "<group>"; };
 		3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreatePopUpViewController.swift; sourceTree = "<group>"; };
 		3BF2E7652A8B50CC00FD09F7 /* Judge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Judge.swift; sourceTree = "<group>"; };
+		3BF2E7672A8B5BA200FD09F7 /* SearchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewModel.swift; sourceTree = "<group>"; };
+		3BF2E76C2A8B609100FD09F7 /* SearchingCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		3BF2E76F2A8CB01300FD09F7 /* DetailMeetingJoinPopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinPopUpViewModel.swift; sourceTree = "<group>"; };
+		3BF2E7712A8CB32300FD09F7 /* DetailMeetingJoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinService.swift; sourceTree = "<group>"; };
+		3BF2E7732A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingHomeViewModel.swift; sourceTree = "<group>"; };
 		443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSelfViewController.swift; sourceTree = "<group>"; };
 		44CC47712A8DE8270025EAEC /* RF.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = RF.entitlements; sourceTree = "<group>"; };
 		44CC47722A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingTableViewCell.swift; sourceTree = "<group>"; };
@@ -350,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				3B0E2EB82A80FE9200797782 /* MeetingService.swift */,
+				3BF2E7712A8CB32300FD09F7 /* DetailMeetingJoinService.swift */,
 			);
 			path = Meeting;
 			sourceTree = "<group>";
@@ -395,6 +410,7 @@
 		3B15CD632A644FDE0096871F /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				3BF2E76E2A8CB00000FD09F7 /* Detail */,
 				3B62877A2A84BF6500E00B09 /* Create */,
 				3B5402C12A6EA60F00D0AD21 /* List */,
 				3BB408AF2A6AC4BD00FBA617 /* Schedule */,
@@ -408,6 +424,8 @@
 			isa = PBXGroup;
 			children = (
 				3B15CD652A644FF90096871F /* FilteringViewModel.swift */,
+				3BF2E7672A8B5BA200FD09F7 /* SearchingViewModel.swift */,
+				3BF2E76C2A8B609100FD09F7 /* SearchingCollectionViewCellViewModel.swift */,
 			);
 			path = Searching;
 			sourceTree = "<group>";
@@ -416,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				3B181D192A56DCDF00B62DEB /* MeetingViewController.swift */,
+				3B938C8F2A93847A00CBF734 /* MeetingManageUIButton.swift */,
 				3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */,
 				3B181D1D2A56E99300B62DEB /* MakeFriendUIView.swift */,
 				3B181D1F2A56EADB00B62DEB /* MakeFreindUIButton.swift */,
@@ -644,6 +663,15 @@
 			path = ChooseUserInfo;
 			sourceTree = "<group>";
 		};
+		3BF2E76E2A8CB00000FD09F7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				3BF2E76F2A8CB01300FD09F7 /* DetailMeetingJoinPopUpViewModel.swift */,
+				3BF2E7732A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		44CC47742A8DEA1F0025EAEC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -656,6 +684,7 @@
 			isa = PBXGroup;
 			children = (
 				44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */,
+				3B938C8D2A93399700CBF734 /* UIImageView+Ext.swift */,
 				572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */,
 				572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */,
 				572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */,
@@ -1057,6 +1086,7 @@
 				3B6C31252A7E17DC008FADA1 /* UserInfoSelfViewModel.swift in Sources */,
 				570063932A67B23A0051F42A /* RuleListViewController.swift in Sources */,
 				3B6BA9982A7FEC7F00A11FE4 /* EmailCustomTextField.swift in Sources */,
+				3B938C8E2A93399700CBF734 /* UIImageView+Ext.swift in Sources */,
 				44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */,
 				570063AB2A724CB40051F42A /* UIViewController+Ext.swift in Sources */,
 				57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */,
@@ -1094,6 +1124,7 @@
 				57AF3D542A83B36B00C09715 /* DateTimeFormatter.swift in Sources */,
 				57AF3D5A2A86019600C09715 /* Headers.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
+				3BF2E7682A8B5BA200FD09F7 /* SearchingViewModel.swift in Sources */,
 				3B57FFCD2A7408AE007DB482 /* DimmedViewController.swift in Sources */,
 				3B181D1A2A56DCDF00B62DEB /* MeetingViewController.swift in Sources */,
 				3B6BA9822A7E6AB700A11FE4 /* ChooseUniversityViewModel.swift in Sources */,
@@ -1113,6 +1144,7 @@
 				3B6BA9802A7E68FA00A11FE4 /* SearchUniversityViewController.swift in Sources */,
 				3BD68EF72A779741003A57A7 /* SignIn.swift in Sources */,
 				572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */,
+				3B938C902A93847A00CBF734 /* MeetingManageUIButton.swift in Sources */,
 				3B6C312B2A7E2616008FADA1 /* EmailService.swift in Sources */,
 				3B0E2EBB2A81024700797782 /* MeetingViewModel.swift in Sources */,
 				3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */,
@@ -1141,6 +1173,7 @@
 				3B6BA97C2A7E5ACD00A11FE4 /* SelectedButton.swift in Sources */,
 				3B657DDA2A88FD0800148496 /* GroupJoinRequestModel.swift in Sources */,
 				3BD700CD2A796149005C7D7E /* UserInfoViewModel.swift in Sources */,
+				3BF2E7742A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift in Sources */,
 				570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */,
 				57DD3E6C2A810F60009F7139 /* Response.swift in Sources */,
 				3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */,
@@ -1181,10 +1214,12 @@
 				572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */,
 				57DD3E642A80C7C2009F7139 /* Domain.swift in Sources */,
 				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
+				3BF2E76D2A8B609100FD09F7 /* SearchingCollectionViewCellViewModel.swift in Sources */,
 				57DD3E6E2A825DDD009F7139 /* NotificationName.swift in Sources */,
 				570063E02A7CFD780051F42A /* ChatListTableViewCell.swift in Sources */,
 				3BD700D52A796403005C7D7E /* ChoiceInterestingLanguageViewModel.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,
+				3BF2E7702A8CB01300FD09F7 /* DetailMeetingJoinPopUpViewModel.swift in Sources */,
 				3BA9A8472A81F6C900349407 /* EnumService.swift in Sources */,
 				3B6287822A84D84600E00B09 /* SetDescriptViewModel.swift in Sources */,
 				57DD3E572A7E4C7E009F7139 /* OptionCollectionViewCell.swift in Sources */,
@@ -1192,6 +1227,7 @@
 				570063DD2A7CFB280051F42A /* ChatListViewController.swift in Sources */,
 				3B6BA99A2A7FF6E000A11FE4 /* CertificatedEmailViewModel.swift in Sources */,
 				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
+				3BF2E7722A8CB32300FD09F7 /* DetailMeetingJoinService.swift in Sources */,
 				3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */,
 				3BC7D3612A7D4D6300D92356 /* SetNicknameViewModel.swift in Sources */,
 				3B6287802A84C90100E00B09 /* SetInterestViewModel.swift in Sources */,

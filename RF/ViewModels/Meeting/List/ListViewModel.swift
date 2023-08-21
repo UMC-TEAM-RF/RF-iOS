@@ -14,10 +14,11 @@ final class ListViewModel {
     
     /// MARK: 모임 목록 Relay
     var meetingListRelay: BehaviorRelay<[Meeting]> = BehaviorRelay(value: [])
-    var userProfileListRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
     private let disposeBag = DisposeBag()
-    
+    private let service = MeetingService()
+    private var page = 0
+    private var size = 10
     
     // MARK: - Logic
     
@@ -34,17 +35,27 @@ final class ListViewModel {
     
     // MARK: - API Connect
     
-    /// test Data
-    func getData(){
-        var meetingList: [Meeting] = []
-        var profileList: [String] = []
+    /// MARK: get meeting list
+    ///  check: true: 처음 요청하는 것, false: 두번째 부터 요청
+    func getData(check: Bool){
+        var meetingList: [Meeting] = meetingListRelay.value
         
-        /*
-         
-         API Connect 
-         */
+        if check{
+            page = 0
+            meetingList = []
+        }
+        else{
+            page += 1
+        }
         
-        userProfileListRelay.accept(profileList)
+        service.getMyMeetingList(page: page, size: size)
+            .subscribe(onNext:{ list in
+                meetingList.append(contentsOf: list)
+            },onError: { error in
+                print("getData error! \(error)")
+            })
+            .disposed(by: disposeBag)
+        
         meetingListRelay.accept(meetingList)
     }
     

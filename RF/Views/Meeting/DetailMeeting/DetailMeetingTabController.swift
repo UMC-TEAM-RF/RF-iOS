@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Tabman
 import Pageboy
+import RxRelay
 import RxSwift
 
 
@@ -40,6 +41,7 @@ final class DetailMeetingTabController: TabmanViewController {
     }()
    
     private let disposeBag = DisposeBag()
+    var meetingIdRelay: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
     private var viewControllers: [UIViewController] = []
     
     override func viewDidLoad() {
@@ -61,6 +63,7 @@ final class DetailMeetingTabController: TabmanViewController {
         setRightBarButtons()
         
         let homeController = DetailMeetingHomeController()
+        homeController.meetingIdRelay.accept(meetingIdRelay.value)
         let chatController = DetailMeetingChatController()
         
         viewControllers.append(homeController)

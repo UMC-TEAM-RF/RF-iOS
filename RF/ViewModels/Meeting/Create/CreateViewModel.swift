@@ -22,7 +22,7 @@ final class CreateViewModel {
     
     /// 모임 배너 이미지
     /// value: 기본 이미지로 바꿔야함
-    var meetingImage: BehaviorRelay<UIImage> = BehaviorRelay<UIImage>(value: UIImage())
+    var meetingImage: BehaviorRelay<UIImage?> = BehaviorRelay<UIImage?>(value: nil)
     
     /// 모임 소개
     let meetingDescription = BehaviorRelay<String>(value: "")
@@ -49,21 +49,27 @@ final class CreateViewModel {
     /// 모든 조건들을 다 선택했는지 확인하는 함수
     func clickedNextButton() -> Observable<Void> {
 
-//        let model = Meeting(name: meetingName.value,
-//                            memberCount: meetingAllMember.value,
-//                            nativeCount: meetingKoreanMember.value,
-//                            interests: interestingRelay.value,
-//                            content: meetingDescription.value,
-//                            rules: rule.value,
-//                            preferAges: preferAge.value,
-//                            language: language.value,
-//                            location: place.value,
-//                            ownerId: 1)
+        let userId = UserDefaults.standard.string(forKey: "UserId") ?? ""
         
-        // Meeting Dummy Data
-        let model = Meeting(name: "이름", memberCount: 5, nativeCount: 3, interests: ["MUSIC", "SPORT"], content: "소개", rules: ["ATTENDANCE"], preferAges: "NONE", language: "CHINESE", location: "1층", ownerId: 1)
+        let data = EnumFile.enumfile.enumList.value
+        let lang = data.language?.filter{ $0.value == language.value }.first
+        let preferage = data.preferAges?.filter{ $0.value == preferAge.value }.first
         
-        let img = meetingImage.value
+        
+        let rules = rule.value.map{ rule in data.rule?.filter { $0.value == rule }.first?.key ?? ""}
+        
+        let model = Meeting(name: meetingName.value,
+                            memberCount: meetingAllMember.value,
+                            nativeCount: meetingKoreanMember.value,
+                            interests: interestingRelay.value,
+                            content: meetingDescription.value,
+                            rules: rules,
+                            preferAges: preferage?.key,
+                            language: lang?.key,
+                            location: place.value,
+                            ownerId: Int(userId) ?? 0)
+        
+        let img = (meetingImage.value ?? UIImage(named: "meeting_\(Int.random(in: 1...5))")) ?? UIImage()
 
         // service
         return service.createMeeting(meeting: model, image: img).asObservable()

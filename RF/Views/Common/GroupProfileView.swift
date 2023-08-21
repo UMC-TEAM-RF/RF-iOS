@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GroupProfileView: UIView {
+final class GroupProfileView: UIView {
     
     // 이미지 뷰 배열
     private var imageViews: [UIImageView] = []
@@ -39,8 +39,12 @@ class GroupProfileView: UIView {
         // 인원 수에 맞게 이미지 뷰 숨기기/보이기
         for (index, imageView) in imageViews.enumerated() {
             if index < profiles.count {
-                //imageView.image = profiles[index]
-                imageView.image = UIImage(named: "LogoImage")
+                if let url = URL(string: profiles[index]){
+                    imageView.load(url: url)
+                }
+                else{
+                    imageView.image = UIImage(named: "LogoImage")
+                }
                 imageView.isHidden = false
             } else {
                 imageView.isHidden = true

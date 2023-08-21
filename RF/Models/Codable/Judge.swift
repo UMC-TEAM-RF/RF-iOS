@@ -10,4 +10,5 @@ import Foundation
 struct Judge: Codable {
     let judge: Bool?
     let id: Int?
+    let partyJoinApplicationId: Int?
 }

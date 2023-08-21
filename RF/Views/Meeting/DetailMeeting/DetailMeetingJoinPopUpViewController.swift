@@ -9,6 +9,7 @@ import Foundation
 import SnapKit
 import RxSwift
 import UIKit
+import RxRelay
 
 final class DetailMeetingJoinPopUpViewController: DimmedViewController{
     
@@ -49,6 +50,9 @@ final class DetailMeetingJoinPopUpViewController: DimmedViewController{
     }()
     
     private let disposeBag = DisposeBag()
+    private let viewModel = DetailMeetingJoinPopUpViewModel()
+    var meetingIdRelay: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
+    var clicekdButtonSubject: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     
     // MARK: - init
     
@@ -103,9 +107,21 @@ final class DetailMeetingJoinPopUpViewController: DimmedViewController{
     
     /// MARK: 버튼 클릭 함수
     private func clickedBtns(){
+        viewModel.meetingIdRelay.accept(meetingIdRelay.value)
+        
         checkButton.rx.tap
             .bind { [weak self] in
-                self?.dismiss(animated: true)
+                
+                self?.viewModel.sendingJoin()
+                    .subscribe(
+                        onNext: { check in
+                            self?.dismiss(animated: true)
+                            self?.clicekdButtonSubject.onNext(true)
+                        },
+                        onError: { error in
+                            print("모임 가입 신청하기 오류!!!\n\(error)")
+                        })
+                    .disposed(by: self?.disposeBag ?? DisposeBag())
             }
             .disposed(by: disposeBag)
     }

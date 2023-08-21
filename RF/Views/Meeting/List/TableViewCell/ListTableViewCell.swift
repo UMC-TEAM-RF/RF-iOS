@@ -170,13 +170,15 @@ final class ListTableViewCell: UITableViewCell{
     ///   - meetingName: 모임 이름
     ///   - introduce: 모임 소개
     ///   - country: 도시 이름
-    func inputData(imageList: [String]?, meetingName: String?, introduce: String?, country: String?, like: Bool?){
+    func inputData(imageList: [User]?, meetingName: String?, introduce: String?, country: String?, like: Bool?){
         addSubviews()
         
         guard let imageList = imageList,
               let meetingName = meetingName,
               let introduce = introduce,
               let country = country else { return }
+        
+        viewModel.changeTypeUserToString(list: imageList)
         
         meetingTitleLabel.text = meetingName
         introduceLabel.text = introduce
@@ -185,7 +187,7 @@ final class ListTableViewCell: UITableViewCell{
         if let like = like {
             viewModel.checkLike.accept(like)
         }
-        profileUIView.updateProfileImages(with: imageList)
+        profileUIView.updateProfileImages(with: viewModel.userList.value)
         bind()
     }
     

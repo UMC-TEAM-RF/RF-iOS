@@ -47,5 +47,10 @@ final class InterestingTopicCollectionViewCell: UICollectionViewCell {
     func inputData(text: String){
         topicLabel.text = text
     }
+ 
+    /// 글자 색상 변경
+    func setColor(color: UIColor){
+        topicLabel.textColor = color
+    }
     
 }
