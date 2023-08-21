@@ -24,13 +24,13 @@ final class SetInterestViewModel {
         
         if selectedItems.contains(indexPath) {
             selectedItems.remove(indexPath)
-            checkSelectedAll.accept(false)
+            if selectedItems.count > 0 { checkSelectedAll.accept(true) }
+            else { checkSelectedAll.accept(false) }
             print("deselected interesting \(Interest.list[indexPath.item])")
         }
-        else if selectedItems.count < 3 {
+        else if selectedItems.count < 3  {
             selectedItems.insert(indexPath)
-            
-            if selectedItems.count == 3{ checkSelectedAll.accept(true) }
+            if selectedItems.count > 0 { checkSelectedAll.accept(true) }
             else { checkSelectedAll.accept(false) }
             print("selected interesting \(Interest.list[indexPath.item])")
         }

@@ -11,16 +11,18 @@ import Foundation
 struct SignIn: Codable{
     let accessToken: String?
     let refreshToken: String?
+    let user: User?
     
     enum CoingKeys: String, CodingKey{
         case accessToken
         case refreshToken
+        case user
     }
 }
 
 /// MARK: 로그인 할때 사용하는 Body parameters
 enum SignInBody{
-    case first, second
+    case first, second, deviceToken
     
     var body: String{
         switch self{
@@ -28,6 +30,8 @@ enum SignInBody{
             return "loginId"
         case .second:
             return "password"
+        case .deviceToken:
+            return "deviceToken"
         }
     }
 }

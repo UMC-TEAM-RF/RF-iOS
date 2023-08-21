@@ -39,7 +39,9 @@ class GroupProfileView: UIView {
         // 인원 수에 맞게 이미지 뷰 숨기기/보이기
         for (index, imageView) in imageViews.enumerated() {
             if index < profiles.count {
-                //imageView.image = profiles[index]
+                if let url = URL(string: profiles[index]){
+                    imageView.load(url: url)
+                }
                 imageView.image = UIImage(named: "LogoImage")
                 imageView.isHidden = false
             } else {

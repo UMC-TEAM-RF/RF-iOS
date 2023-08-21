@@ -35,9 +35,10 @@ final class SignInViewModel {
                                        pw: self?.passwordRelay.value ?? "",
                                        deviceToken: deviceToken ?? "")
                 .subscribe(onNext:{ data in
-                    if let accessToken = data.accessToken, let refreshToken = data.refreshToken{
+                    if let accessToken = data.accessToken, let refreshToken = data.refreshToken, let id = data.user?.userID{
                         UserDefaults.standard.set(accessToken, forKey: "AccessToken")
                         UserDefaults.standard.set(refreshToken, forKey: "RefreshToken")
+                        UserDefaults.standard.set(id, forKey: "UserId")
                         observer.onNext(true)
                     }
                 })

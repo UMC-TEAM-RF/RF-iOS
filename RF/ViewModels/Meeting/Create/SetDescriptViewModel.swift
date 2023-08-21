@@ -14,7 +14,7 @@ final class SetDescriptViewModel {
     private let minTextLength = 10
     
     /// 모임 배너 이미지
-    var meetingImage: BehaviorRelay<UIImage> = BehaviorRelay<UIImage>(value: UIImage())
+    var meetingImage: BehaviorRelay<UIImage?> = BehaviorRelay<UIImage?>(value: nil)
     
     /// 입력한 모임 설명
     let meetingDescription = BehaviorRelay<String>(value: "")

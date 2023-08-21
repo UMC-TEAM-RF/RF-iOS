@@ -88,7 +88,6 @@ final class MeetingViewController: UIViewController{
     private lazy var tipsLabelStackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
-        sv.spacing = 5
         sv.distribution = .fill
         sv.alignment = .fill
         return sv
