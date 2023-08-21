@@ -17,7 +17,9 @@ final class ListViewModel {
     var userProfileListRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
     private let disposeBag = DisposeBag()
-    
+    private let service = MeetingService()
+    private var page = 0
+    private var size = 10
     
     // MARK: - Logic
     
@@ -34,37 +36,27 @@ final class ListViewModel {
     
     // MARK: - API Connect
     
-    /// test Data
-    func getData(){
-        var meetingList: [Meeting] = []
-        var profileList: [String] = []
+    /// MARK: get meeting list
+    ///  check: true: 처음 요청하는 것, false: 두번째 부터 요청
+    func getData(check: Bool){
+        var meetingList: [Meeting] = meetingListRelay.value
+        if check{
+            page = 0
+            meetingList = []
+        }
+        else{
+            page += 1
+        }
+        
+        service.getMyMeetingList(page: page, size: size)
+            .subscribe(onNext:{ list in
+                meetingList.append(contentsOf: list)
+            },onError: { error in
+                print("getData error! \(error)")
+            })
+            .disposed(by: disposeBag)
         
         
-        
-        meetingList.append(Meeting(id: 1,
-                                   name: "짜장 미친자 모임",
-                                   memberCount: 5,
-                                   nativeCount: 2,
-                                   interests: [ "FOOD", "CAFE", "COUNTRY"],
-                                   content: "짜장 같이먹어요!",
-                                   rules: ["a","b","c"],
-                                   preferAges: "EARLY_TWENTIES",
-                                   language:  "KOREAN",
-                                   location: "인하대학교 후문",
-                                   ownerId: 1,
-                                   imageFilePath: "soccer",
-                                   users: []))
-        
-        profileList.append("soccer")
-        profileList.append("soccer")
-        profileList.append("soccer")
-        
-        /*
-         
-         API Connect 
-         */
-        
-        userProfileListRelay.accept(profileList)
         meetingListRelay.accept(meetingList)
     }
     

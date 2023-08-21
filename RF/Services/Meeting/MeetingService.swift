@@ -11,8 +11,35 @@ import RxSwift
 
 final class MeetingService {
     
+    /// 내가 속한 모임 리스트
+    func getMyMeetingList(page: Int, size: Int) -> Observable<[Meeting]> {
+        let url = "\(Domain.restApi)\(MeetingPath.getMeetingList)/{userId}/belong??page=\(page)&size=\(size)&sort=id,{desc|asc}"
+        
+        return Observable.create { observer in
+            AF.request(url,
+                       method: .get)
+            .validate(statusCode: 200..<201)
+            .responseDecodable(of: Response<MeetingList>.self) { response in
+                switch response.result {
+                case .success(let data):
+                    if let data = data.result?.content {
+                        print("getMeetingList\n\(data)")
+                        observer.onNext(data)
+                    }
+                case .failure(let error):
+                    observer.onError(error)
+                    print("getMeetingList error! \n\(error)")
+                }
+                
+            }
+            return Disposables.create()
+        }
+    }
+    
+    
+    /// 모든 모임 조회
     func getMeetingList(page: Int, size: Int) -> Observable<[Meeting]> {
-        let url = "\(Domain.restApi)\(MeetingPath.getMeetingList)/{userId}/search?page=\(page)&size=\(size)&sort={fieldName},{desc|asc}"
+        let url = "\(Domain.restApi)\(MeetingPath.getMeetingList)/{userId}/search?page=\(page)&size=\(size)&sort=id,{desc|asc}"
         
         return Observable.create { observer in
             AF.request(url,
