@@ -49,17 +49,17 @@ final class TabBarController: UITabBarController {
     }
     
     @objc func updateTabBarIcon() {
-//        if selectedIndex != 3, let items = tabBar.items, items.indices.contains(3) {
-//            items[3].image = UIImage(named: "newChat")
-//        }
+        if selectedIndex != 3, let items = tabBar.items, items.indices.contains(3) {
+            items[3].image = UIImage(named: "newChat")
+        }
     }
     
 }
 
 extension TabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-//        if let tabBarItems = tabBar.items, selectedIndex == 3 {
-//            tabBarItems[3].image = UIImage(named: "chat")
-//        }
+        if let tabBarItems = tabBar.items, selectedIndex == 3 {
+            tabBarItems[3].image = UIImage(named: "chat")
+        }
     }
 }
