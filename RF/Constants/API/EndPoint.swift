@@ -42,6 +42,7 @@ struct EmailPath {
 struct MeetingPath {
     static let createMeeting = "/party"
     static let meetingList = "/party/user/:userId/search"
+    static let myMeetingList = "/party/user/:userId/belong"
     static let requsetApply = "/party/join/apply"
 }
 
