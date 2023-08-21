@@ -20,40 +20,6 @@ class MyPageViewController: UIViewController {
     }()
     
     
-    
-    /// MARK: 모임 제목 라벨
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "마이페이지"
-        label.font = .boldSystemFont(ofSize: 30)
-        return label
-    }()
-    
-    /// MARK: 신고 버튼
-    private lazy var alertButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(systemName: "bell")?.resize(newWidth: 25), for: .normal)
-        return btn
-    }()
-    /// MARK: 설정 버튼
-    private lazy var etcButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(systemName: "gearshape")?.resize(newWidth: 25).rotate(degrees: 0), for: .normal)
-        return btn
-    }()
-    
-    
-    /// MARK: 신고 버튼, 설정 버튼 담는 StackView
-    private lazy var btnsStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [alertButton, etcButton])
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        stack.backgroundColor = .systemBackground
-        stack.spacing = 10
-        return stack
-    }()
-    
-    
     /// MARK: 프로필 이미지
     private lazy var profileImageView: UIImageView = {
         let view = UIImageView()
@@ -299,9 +265,6 @@ class MyPageViewController: UIViewController {
         
         clickedButtons()
         
-//        let settingButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(settingButtonTapped))
-//        let reportButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(reportButtonTapped))
-        
         let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingButtonTapped))
         let reportButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: #selector(settingButtonTapped))
         
@@ -323,9 +286,6 @@ class MyPageViewController: UIViewController {
         
         view.addSubview(containerView)
         
-        
-//        containerView.addSubview(titleLabel)
-//        containerView.addSubview(btnsStackView)
         containerView.addSubview(profileImageView)
         containerView.addSubview(profileLabel)
         containerView.addSubview(profileMoreButton)
@@ -365,21 +325,9 @@ class MyPageViewController: UIViewController {
     private func configureConstraints(){
         
         // 컨테이너 뷰
-        containerView.snp.makeConstraints { make in make.edges.equalTo(view.safeAreaLayoutGuide).inset(5)
+        containerView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide).inset(5)
         }
-        
-        
-    
-//        titleLabel.snp.makeConstraints { make in
-//            make.top.equalToSuperview().offset(20)
-//            make.leading.equalToSuperview().offset(20)
-//        }
-//
-//        btnsStackView.snp.makeConstraints { make in
-//            make.top.equalToSuperview().offset(20)
-//            make.bottom.equalTo(titleLabel.snp.bottom)
-//            make.trailing.equalToSuperview().offset(-20)
-//        }
         
         profileImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
@@ -574,18 +522,6 @@ extension MyPageViewController: FSCalendarDelegate, FSCalendarDataSource, FSCale
         
         print(viewModel.formattingDate(date: date))
     }
-    
-//    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
-//        guard let cell = calendar.dequeueReusableCell(withIdentifier: ScheduleFSCalendarCell.identifier, for: date, at: position) as? ScheduleFSCalendarCell else { return FSCalendarCell()}
-//
-//        viewModel.dateFiltering(date: date)
-//            .subscribe(onNext:{ list in
-//                cell.inputData(events: list)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        return cell
-//    }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         viewModel.getData()//ViewModel에서 데이터 얻는 함수
