@@ -139,7 +139,6 @@ final class SearchingViewController: UIViewController{
 extension SearchingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as? DetailedMeetingCollectionViewCell else { return UICollectionViewCell() }
-        //cell.inputTextData(meeting: viewModel.meetingList.value[indexPath.row])
         cell.meetingData = viewModel.meetingList.value[indexPath.row]
         cell.isUserInteractionEnabled = true
         return cell

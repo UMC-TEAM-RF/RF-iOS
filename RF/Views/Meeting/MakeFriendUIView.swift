@@ -68,14 +68,15 @@ final class MakeFriendUIView: UIView {
             make.leading.equalTo(titleLabel.snp.leading)
             make.top.equalTo(titleLabel.snp.bottom).offset(30)
             make.trailing.equalToSuperview().offset(-30)
-            make.height.equalTo(height/4)
+            make.height.equalTo(100)
         }
         
         createMeetingBtn.snp.makeConstraints { make in
             make.leading.equalTo(searchMeetingBtn.snp.leading)
             make.top.equalTo(searchMeetingBtn.snp.bottom).offset(20)
             make.trailing.equalToSuperview().offset(-30)
-            make.height.equalTo(height/4)
+            make.height.equalTo(100)
+            make.bottom.equalToSuperview().inset(30)
         }
     }
     
