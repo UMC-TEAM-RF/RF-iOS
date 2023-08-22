@@ -26,7 +26,7 @@ final class SignInViewController: UIViewController {
     // 부제목 레이블 (글로벌한 대학 생활을 위한 첫 단계)
     private lazy var subTitleLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 16)
+        view.font = UIFont(name: "Pretendard-Regular", size: 16)
         view.textColor = TextColor.first.color
         view.numberOfLines = 0
         view.text = "글로벌한 대학 생활을 위한 첫 단계"
