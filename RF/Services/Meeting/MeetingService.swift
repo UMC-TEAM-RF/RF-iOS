@@ -149,6 +149,34 @@ final class MeetingService {
             }
     }
     
+    /// 사용자 기반 추천 모임 리스트 불러오기
+    /// - Parameters:
+    ///   - filter: 개인 모임: "Personal" / 단체 모임: "Group"
+    ///   - completion: 추천 모임 리스트 반환
+    func requestRecommandPartyList(_ filter: String, completion: @escaping ([Meeting]?)->()) {
+        var url = "\(Domain.restApi)"
+        switch filter {
+        case "Personal":
+            url = "\(url)\(MeetingPath.recommendPersonalMeeting.replacingOccurrences(of: ":userId", with: "1"))"
+        case "Group":
+            url = "\(url)\(MeetingPath.recommendGroupMeeting.replacingOccurrences(of: ":userId", with: "1"))"
+        default:
+            return
+        }
+        let param: Parameters = ["page": 0, "size": 3]
+        
+        AF.request(url, method: .get, parameters: param)
+            .validate(statusCode: 200..<201)
+            .responseDecodable(of: Response<Page>.self) { response in
+                switch response.result {
+                case .success(let data):
+                    completion(data.result?.content)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
     /// JSON To String
     func convertMeetingToJSONString(meeting: Meeting) -> String? {
         let jsonEncoder = JSONEncoder()
