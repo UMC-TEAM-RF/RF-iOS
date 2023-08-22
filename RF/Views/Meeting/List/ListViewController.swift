@@ -145,4 +145,12 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let detailMeetingHomeController = DetailMeetingHomeController()
+        detailMeetingHomeController.meetingIdRelay.accept(viewModel.meetingListRelay.value[indexPath.row].id)
+        navigationItem.backButtonTitle = " "
+        navigationController?.pushViewController(detailMeetingHomeController, animated: true)
+    }
+    
 }

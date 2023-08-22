@@ -748,7 +748,7 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             cell.inputData(profileImg: memberList[indexPath.row].profileImageUrl ?? "",
                            name: memberList[indexPath.row].nickname ?? "",
                            nationality: memberList[indexPath.row].country ?? "")
-            cell.backgroundColor = BackgroundColor.white.color
+            cell.backgroundColor = .clear
             
             return cell
         }

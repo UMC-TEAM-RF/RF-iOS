@@ -38,7 +38,7 @@ final class SearchingViewController: UIViewController{
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.isUserInteractionEnabled = false
+//        cv.isUserInteractionEnabled = false
         return cv
     }()
     
@@ -58,11 +58,11 @@ final class SearchingViewController: UIViewController{
         bind()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        searchBtn.resignFirstResponder()
-    }
-    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        searchBtn.resignFirstResponder()
+//    }
+//
     /// MARK: 필터링 화면 이동
     private func moveFilteringScreen(){
         let filteringScreen = FilteringViewController()
@@ -147,6 +147,14 @@ final class SearchingViewController: UIViewController{
                 self?.viewModel.searchWord.accept(text)
             }
             .disposed(by: disposeBag)
+        
+        viewModel.check
+            .bind { check in
+                if check{
+                    self.meetingListCollectionView.reloadData()
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     
@@ -156,7 +164,7 @@ extension SearchingViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as? DetailedMeetingCollectionViewCell else { return UICollectionViewCell() }
         cell.meetingData = viewModel.meetingList.value[indexPath.row]
-        cell.isUserInteractionEnabled = true
+//        cell.isUserInteractionEnabled = true
         return cell
     }
     
