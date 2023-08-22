@@ -101,7 +101,7 @@ final class SignInViewController: UIViewController {
         button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
         button.backgroundColor = UIColor.init(hexCode: "#F5F5F5")
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 8
         return button
     }()
     
