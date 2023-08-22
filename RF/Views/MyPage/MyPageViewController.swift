@@ -14,6 +14,12 @@ import FSCalendar
 
 class MyPageViewController: UIViewController {
     
+    private lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        return view
+    }()
+    
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         return view
@@ -290,7 +296,8 @@ class MyPageViewController: UIViewController {
     /// MARK: Add UI
     private func addSubviews(){
         
-        view.addSubview(containerView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(containerView)
         
         containerView.addSubview(profileImageView)
         containerView.addSubview(profileLabel)
@@ -330,9 +337,14 @@ class MyPageViewController: UIViewController {
     
     private func configureConstraints(){
         
+        // 스크롤 뷰
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide).inset(5)
+        }
         // 컨테이너 뷰
         containerView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide).inset(5)
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView.frameLayoutGuide)
         }
         
         profileImageView.snp.makeConstraints { make in
@@ -427,7 +439,7 @@ class MyPageViewController: UIViewController {
             make.top.equalTo(calHeaderLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(10)
-//            make.height.equalTo(300)
+            make.height.equalTo(300)
         }
     }
     
