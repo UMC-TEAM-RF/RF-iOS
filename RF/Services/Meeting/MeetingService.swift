@@ -68,7 +68,7 @@ final class MeetingService {
     }
     
     /// 모임 생성
-    func createMeeting(meeting: Meeting, image: UIImage) -> Observable<Void> {
+    func createMeeting(meeting: Meeting, image: UIImage) -> Observable<Bool> {
         let url = "\(Domain.restApi)\(MeetingPath.createMeeting)"
         let headers: HTTPHeaders = ["Content-Type": "multipart/form-data"]
         
@@ -92,7 +92,7 @@ final class MeetingService {
                 switch response.result {
                 case .success(let data):
                     print(data)
-                    observer.onNext(())
+                    observer.onNext(data.isSuccess ?? false)
                 case .failure(let error):
                     print(error)
                 }
@@ -136,6 +136,34 @@ final class MeetingService {
         let path = MeetingPath.meetingList.replacingOccurrences(of: ":userId", with: "1")
         let url = "\(Domain.restApi)\(path)"
         let param: Parameters = ["page": page, "size": size]
+        
+        AF.request(url, method: .get, parameters: param)
+            .validate(statusCode: 200..<201)
+            .responseDecodable(of: Response<Page>.self) { response in
+                switch response.result {
+                case .success(let data):
+                    completion(data.result?.content)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    /// 사용자 기반 추천 모임 리스트 불러오기
+    /// - Parameters:
+    ///   - filter: 개인 모임: "Personal" / 단체 모임: "Group"
+    ///   - completion: 추천 모임 리스트 반환
+    func requestRecommandPartyList(_ filter: String, completion: @escaping ([Meeting]?)->()) {
+        var url = "\(Domain.restApi)"
+        switch filter {
+        case "Personal":
+            url = "\(url)\(MeetingPath.recommendPersonalMeeting.replacingOccurrences(of: ":userId", with: "1"))"
+        case "Group":
+            url = "\(url)\(MeetingPath.recommendGroupMeeting.replacingOccurrences(of: ":userId", with: "1"))"
+        default:
+            return
+        }
+        let param: Parameters = ["page": 0, "size": 3]
         
         AF.request(url, method: .get, parameters: param)
             .validate(statusCode: 200..<201)

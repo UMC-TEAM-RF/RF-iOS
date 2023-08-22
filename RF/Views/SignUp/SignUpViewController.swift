@@ -61,9 +61,9 @@ final class SignUpViewController: UIViewController {
         let button = UIButton()
         button.setTitle("중복확인", for: .normal)
         button.setTitleColor(TextColor.first.color, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 15)
+        button.titleLabel?.font = .systemFont(ofSize: 12)
         button.backgroundColor = ButtonColor.normal.color
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 4
         return button
     }()
     
@@ -303,15 +303,28 @@ final class SignUpViewController: UIViewController {
     
     /// MARK: viewModel binding 하는 함수
     private func bind(){
-        viewModel.confirmPasswordRelay
-            .bind(onNext: { [weak self] check in
-                if check { // true: 비밀번호 일치
-                    self?.nextButton.backgroundColor = UIColor.init(hexCode: "#006FF2")
-                    self?.nextButton.setTitleColor(.white, for: .normal)
-                }
-                else{ // false: 비밀번호가 일치하지 않는 경우 코드 작성
-                    self?.nextButton.setTitleColor(TextColor.first.color, for: .normal)
-                    self?.nextButton.backgroundColor = ButtonColor.normal.color
+//        viewModel.confirmPasswordRelay
+//            .bind(onNext: { [weak self] check in
+//                if check { // true: 비밀번호 일치
+//                    self?.nextButton.backgroundColor = ButtonColor.main.color
+//                    self?.nextButton.setTitleColor(.white, for: .normal)
+//                }else{ // false: 비밀번호가 일치하지 않는 경우 코드 작성
+//                    self?.nextButton.setTitleColor(TextColor.first.color, for: .normal)
+//                    self?.nextButton.backgroundColor = ButtonColor.normal.color
+//                }
+//
+//            })
+//            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(viewModel.confirmPasswordRelay, viewModel.overlapCheckRelay)
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else {return}
+                if $0 && $1 {
+                    nextButton.backgroundColor = ButtonColor.main.color
+                    nextButton.setTitleColor(.white, for: .normal)
+                }else{ // false: 비밀번호가 일치하지 않는 경우 코드 작성
+                    nextButton.setTitleColor(TextColor.first.color, for: .normal)
+                    nextButton.backgroundColor = ButtonColor.normal.color
                 }
             })
             .disposed(by: disposeBag)

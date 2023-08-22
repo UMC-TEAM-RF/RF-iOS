@@ -44,6 +44,8 @@ struct MeetingPath {
     static let meetingList = "/party/user/:userId/search"
     static let myMeetingList = "/party/user/:userId/belong"
     static let requsetApply = "/party/join/apply"
+    static let recommendPersonalMeeting = "/party/user/:userId/recommend/personalParty"
+    static let recommendGroupMeeting = "/party/user/:userId/recommend/groupParty"
 }
 
 /// Login EndPoint
