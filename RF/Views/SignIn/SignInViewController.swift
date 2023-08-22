@@ -381,7 +381,7 @@ final class SignInViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-//        isHidden()
+        isHidden()
     }
     
     /// MARK: 동영상 시연용 임시 함수
@@ -397,7 +397,7 @@ final class SignInViewController: UIViewController {
     private func clickedLoginButton(){
         guard let inputId = idTextField.text else { return }
         guard let inputPW = pwTextField.text else { return }
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+        
         viewModel.idRelay
             .accept(inputId)
         

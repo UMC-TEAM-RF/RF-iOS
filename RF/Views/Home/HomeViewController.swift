@@ -559,7 +559,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 4:
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCollectionViewCell.identifier, for: indexPath) as! PageCollectionViewCell
-            
+            cell.delegate = self
             cell.setTag(indexPath.item)
             if(indexPath.item == 0){ // 첫 번째 셀은 개인 모임
                 cell.setData(personalMeetings)
@@ -633,6 +633,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
-
-
-
+extension HomeViewController: SendDataDelegate {
+    func sendMeetingData(tag: Int, index: Int) {
+        let meetings = (tag == 0 ? self.personalMeetings : self.groupMeetings)
+        let meeting = meetings[index]
+        
+        let vc = DetailMeetingHomeController()
+        vc.meetingIdRelay.accept(meeting.id)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}

@@ -31,6 +31,8 @@ class PageCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "PageCollectionViewCell"
     
+    weak var delegate: SendDataDelegate?
+    
     private var meetingsData : [Meeting]?
     
     // MARK: - init()
@@ -114,5 +116,11 @@ extension PageCollectionViewCell: UICollectionViewDelegate, UICollectionViewData
         cell.meetingData = meetings[indexPath.item]
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+        delegate?.sendMeetingData?(tag: meetingCollectionView.tag, index: indexPath.row)
+    }
+    
 }
 

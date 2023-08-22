@@ -243,5 +243,4 @@ extension DetailedMeetingCollectionViewCell: UICollectionViewDelegate, UICollect
         return cell
     }
     
-    
 }

@@ -26,12 +26,13 @@ struct Message: Codable {
     var replyMessageId: Int?  // 답장할 메시지 ID
     var schedule: Schedule?
     var langCode: String? // 언어 타입
+    var partyName: String? // 그룹 이름
     
     var isNew: Bool = true  // 새 메시지 여부 (서버로부터 받을 때 기본 값으로 true 저장)
     
     
     enum CodingKeys: String, CodingKey {
-        case content, type, dateTime, schedule, langCode
+        case content, type, dateTime, schedule, langCode, partyName
         case sender = "speaker"
         case replyMessageId = "replyChatId"
         case id = "chatId"

@@ -20,4 +20,7 @@ import Foundation
     
     // PickerViewController -> SetDetailInfoViewController
     @objc optional func sendData(tag: Int, data: String)
+    
+    // PageCollectionViewCell -> HomeViewController
+    @objc optional func sendMeetingData(tag: Int, index: Int)
 }
