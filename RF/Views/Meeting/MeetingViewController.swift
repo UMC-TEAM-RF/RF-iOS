@@ -19,6 +19,7 @@ final class MeetingViewController: UIViewController{
         let label = UILabel()
         label.text = "모임"
         label.font = .boldSystemFont(ofSize: 30)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -34,6 +35,7 @@ final class MeetingViewController: UIViewController{
         let label = UILabel()
         label.text = "나의 모임 기록"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -41,7 +43,7 @@ final class MeetingViewController: UIViewController{
     private lazy var meetingScheduleUIButton: MeetingManageUIButton = {
         let btn = MeetingManageUIButton()
         btn.inputData(img: "calendar", title: "모임 일정 관리")
-        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
+        btn.backgroundColor = ButtonColor.normal.color
         btn.layer.cornerRadius = 10
         return btn
     }()
@@ -49,7 +51,7 @@ final class MeetingViewController: UIViewController{
     /// MARK:  모임 목록 관리
     private lazy var meetingListUIButton: MeetingManageUIButton = {
         let btn = MeetingManageUIButton()
-        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
+        btn.backgroundColor = ButtonColor.normal.color
         btn.inputData(img: "list", title: "모임 목록 관리")
         btn.layer.cornerRadius = 10
         return btn
@@ -58,7 +60,7 @@ final class MeetingViewController: UIViewController{
     // 꿀팁 배너
     private lazy var tipsView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = BackgroundColor.gray.color
         view.layer.cornerRadius = 10
         return view
     }()
@@ -75,6 +77,7 @@ final class MeetingViewController: UIViewController{
         sv.axis = .vertical
         sv.distribution = .fill
         sv.alignment = .fill
+        sv.backgroundColor = .clear
         return sv
     }()
     
@@ -82,6 +85,7 @@ final class MeetingViewController: UIViewController{
         let label = UILabel()
         label.text = "외국인 친구들과 편하게 얘기하고 싶어?"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -89,6 +93,7 @@ final class MeetingViewController: UIViewController{
         let label = UILabel()
         label.text = "꿀팁 얻으러 가기!"
         label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        label.textColor = TextColor.first.color
         return label
     }()
     
