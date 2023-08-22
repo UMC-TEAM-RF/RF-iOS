@@ -42,7 +42,7 @@ final class ScheduleViewController: UIViewController{
     /// MARK: Calendar Header View 달 표시 하는 버튼
     private lazy var headerButton: UIButton = {
         let btn = UIButton()
-        btn.setTitleColor(ButtonColor.normal.color, for: .normal)
+        btn.setTitleColor(TextColor.first.color, for: .normal)
         btn.setImage(UIImage(systemName: "chevron.down")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btn.semanticContentAttribute = .forceRightToLeft
         btn.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
