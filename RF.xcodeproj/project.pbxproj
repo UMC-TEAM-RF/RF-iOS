@@ -57,6 +57,8 @@
 		3B6C312D2A7E26E1008FADA1 /* Mail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C312C2A7E26E1008FADA1 /* Mail.swift */; };
 		3B6C312F2A7E36C4008FADA1 /* PersonalInterestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C312E2A7E36C4008FADA1 /* PersonalInterestsViewModel.swift */; };
 		3B6C31312A7E5224008FADA1 /* ChooseUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C31302A7E5224008FADA1 /* ChooseUniversityViewController.swift */; };
+		3B6E6F112A94C4970002C6F3 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E6F102A94C4970002C6F3 /* ReportViewController.swift */; };
+		3B6E6F142A94CC790002C6F3 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E6F132A94CC790002C6F3 /* ReportViewModel.swift */; };
 		3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */; };
 		3B8ACC462A925C1300AC082F /* TabBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8ACC452A925C1300AC082F /* TabBarCollectionViewCell.swift */; };
 		3B8ACC482A925C3B00AC082F /* PageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8ACC472A925C3B00AC082F /* PageCollectionViewCell.swift */; };
@@ -221,6 +223,8 @@
 		3B6C312C2A7E26E1008FADA1 /* Mail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mail.swift; sourceTree = "<group>"; };
 		3B6C312E2A7E36C4008FADA1 /* PersonalInterestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInterestsViewModel.swift; sourceTree = "<group>"; };
 		3B6C31302A7E5224008FADA1 /* ChooseUniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseUniversityViewController.swift; sourceTree = "<group>"; };
+		3B6E6F102A94C4970002C6F3 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		3B6E6F132A94CC790002C6F3 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestSmallCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8ACC452A925C1300AC082F /* TabBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8ACC472A925C3B00AC082F /* PageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -416,6 +420,7 @@
 				3B62877A2A84BF6500E00B09 /* Create */,
 				3B5402C12A6EA60F00D0AD21 /* List */,
 				3BB408AF2A6AC4BD00FBA617 /* Schedule */,
+				3B6E6F122A94CC6E0002C6F3 /* Report */,
 				3B15CD642A644FE40096871F /* Searching */,
 				3B0E2EBA2A81024700797782 /* MeetingViewModel.swift */,
 			);
@@ -528,6 +533,14 @@
 			path = CertificatedEmail;
 			sourceTree = "<group>";
 		};
+		3B6E6F122A94CC6E0002C6F3 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				3B6E6F132A94CC790002C6F3 /* ReportViewModel.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
 		3B8477312A6AB1D5007A6144 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				3BC35CE72A5C3CA000D73163 /* DetailMeetingHomeController.swift */,
+				3B6E6F102A94C4970002C6F3 /* ReportViewController.swift */,
 				3B59B2802A75635100027809 /* DetailMeetingJoinPopUpViewController.swift */,
 				3BC35CF42A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift */,
 				3BC35CEB2A5C563F00D73163 /* CollectionViewCell */,
@@ -1141,6 +1155,7 @@
 				3BD700C52A793565005C7D7E /* ChoiceBornCountryView.swift in Sources */,
 				3B6C312F2A7E36C4008FADA1 /* PersonalInterestsViewModel.swift in Sources */,
 				572DC2502A51C5F300C0D6E1 /* TabBarController.swift in Sources */,
+				3B6E6F112A94C4970002C6F3 /* ReportViewController.swift in Sources */,
 				57673ED42A5579E000A13D07 /* BannerCollectionViewCell.swift in Sources */,
 				3BC35CEF2A5C6C1B00D73163 /* UILabel+Ext.swift in Sources */,
 				572A9A322A5CB445004D2809 /* SetInterestViewController.swift in Sources */,
@@ -1194,6 +1209,7 @@
 				57DD3E702A838DFA009F7139 /* GroupProfileView.swift in Sources */,
 				572A9A352A5CC21C004D2809 /* SetDescriptViewController.swift in Sources */,
 				57AF3D582A85FE8800C09715 /* Papago.swift in Sources */,
+				3B6E6F142A94CC790002C6F3 /* ReportViewModel.swift in Sources */,
 				3B5402C32A6EA61700D0AD21 /* ListViewModel.swift in Sources */,
 				3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */,
 				5700639D2A6AC60C0051F42A /* NotiListTableViewCell.swift in Sources */,

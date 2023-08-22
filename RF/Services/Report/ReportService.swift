@@ -27,6 +27,7 @@ final class ReportService {
                     print("report success!\n\(data)")
                     observer.onNext(data.isSuccess ?? false)
                 case .failure(let error):
+                    observer.onError(error)
                     print("report error!\n\(error)")
                 }
             }

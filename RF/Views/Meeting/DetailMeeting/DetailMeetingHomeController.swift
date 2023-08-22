@@ -621,7 +621,9 @@ final class DetailMeetingHomeController: UIViewController {
                     print("owner: 수정하기 ")
                 }
                 else {
-                    print("not owner")
+                    let reportViewController = ReportViewController()
+                    reportViewController.meetingId.accept(viewModel.meetingInfo.value?.id ?? 0)
+                    present(reportViewController, animated: false)
                 }
             }
             .disposed(by: disposeBag)
