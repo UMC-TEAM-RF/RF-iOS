@@ -50,3 +50,8 @@ struct MeetingPath {
 struct LoginPath {
     static let login = "/user/login"
 }
+
+/// Report
+struct ReportPath {
+    static let reportParty = "/report/party"
+}
