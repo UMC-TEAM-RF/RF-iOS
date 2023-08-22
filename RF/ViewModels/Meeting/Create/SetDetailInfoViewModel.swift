@@ -12,7 +12,7 @@ import RxRelay
 final class SetDetailInfoViewModel {
     
     /// 모임 전체 멤버
-    var meetingAllMember: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    var meetingAllMember: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 2)
     
     /// 모임 한국인 멤버
     var meetingKoreanMember: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)

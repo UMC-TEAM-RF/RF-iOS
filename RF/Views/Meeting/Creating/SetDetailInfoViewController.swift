@@ -22,6 +22,16 @@ final class SetDetailInfoViewController: UIViewController {
         return pv
     }()
     
+    private lazy var scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        return sv
+    }()
+    
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     // 메인 라벨
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
@@ -249,43 +259,47 @@ final class SetDetailInfoViewController: UIViewController {
     private func addSubviews() {
         view.addSubview(progressBar)
         
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(containerView)
+        
         // 메인 라벨
-        view.addSubview(mainLabel)
+        containerView.addSubview(mainLabel)
         
         // 모임 인원 수 설정
-        view.addSubview(personnelStackView)
-        view.addSubview(personnelStepper)
+        containerView.addSubview(personnelStackView)
+        containerView.addSubview(personnelStepper)
         personnelStackView.addArrangedSubview(personnelTitleLabel)
         personnelStackView.addArrangedSubview(personnelSubLabel)
         
         // 한국인 인원 수 설정
-        view.addSubview(koreanStackView)
-        view.addSubview(koreanStepper)
+        containerView.addSubview(koreanStackView)
+        containerView.addSubview(koreanStepper)
         koreanStackView.addArrangedSubview(koreanTitleLabel)
         koreanStackView.addArrangedSubview(koreanSubLabel)
         
         // 첫 번째 경계선
-        view.addSubview(firstDivLine)
+        containerView.addSubview(firstDivLine)
         
         // 선호 연령대
-        view.addSubview(ageGroupLabel)
-        view.addSubview(ageGroupButton)
+        containerView.addSubview(ageGroupLabel)
+        containerView.addSubview(ageGroupButton)
         
         // 사용 언어
-        view.addSubview(languageLabel)
-        view.addSubview(languageButton)
+        containerView.addSubview(languageLabel)
+        containerView.addSubview(languageButton)
         
         // 활동 장소
-        view.addSubview(placeLabel)
-        view.addSubview(placeTextField)
+        containerView.addSubview(placeLabel)
+        containerView.addSubview(placeTextField)
         
         // 두 번째 경계선
-        view.addSubview(secondDivLine)
+        containerView.addSubview(secondDivLine)
         
         // 모임 규칙
-        view.addSubview(ruleButton)
-        view.addSubview(ruleCountLabel)
-        view.addSubview(ruleCollectionView)
+        containerView.addSubview(ruleButton)
+        containerView.addSubview(ruleCountLabel)
+        containerView.addSubview(ruleCollectionView)
         
         // 생성 버튼
         view.addSubview(createButton)
@@ -301,9 +315,20 @@ final class SetDetailInfoViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(25)
         }
         
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(progressBar.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        containerView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView.frameLayoutGuide)
+        }
+        
         // 메인 라벨
         mainLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(40)
+            //make.top.equalTo(progressBar.snp.bottom).offset(40)
+            make.top.equalToSuperview().inset(40)
             make.leading.equalToSuperview().inset(30)
         }
         
@@ -403,6 +428,7 @@ final class SetDetailInfoViewController: UIViewController {
             make.top.equalTo(ruleButton.snp.bottom).offset(23)
             make.horizontalEdges.equalToSuperview().inset(25)
             make.height.equalTo(35)
+            make.bottom.equalToSuperview().inset(80)
         }
         
         // 다음
