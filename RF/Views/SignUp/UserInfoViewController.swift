@@ -16,16 +16,16 @@ final class UserInfoViewController: UIViewController {
     private lazy var leftButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "기본 설정", style: .done, target: self, action: nil)
         btn.isEnabled = false
-        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
         return btn
     }()
     
     /// MARK:  기본정보
     private lazy var topLabel: UILabel = {
         let label = UILabel()
-        label.text = "알프님의\n기본 정보를 설정해주세요!"
+        label.text = ""
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         return label
     }()
     
@@ -35,6 +35,7 @@ final class UserInfoViewController: UIViewController {
         label.text = "출생 국가"
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 1
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -42,9 +43,9 @@ final class UserInfoViewController: UIViewController {
     private lazy var nationButton: UIButton = {
         let button = UIButton()
         button.setTitle("  " + "국가를 선택해주세요", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(TextColor.secondary.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
+        button.backgroundColor = BackgroundColor.white.color
         button.layer.cornerRadius = 5
         button.contentHorizontalAlignment = .left
         return button
@@ -56,6 +57,7 @@ final class UserInfoViewController: UIViewController {
         label.text = "관심 나라"
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 1
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -63,9 +65,9 @@ final class UserInfoViewController: UIViewController {
     private lazy var favNationButton: UIButton = {
         let button = UIButton()
         button.setTitle("  관심있는 나라를 선택해주세요", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(TextColor.secondary.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
+        button.backgroundColor =  BackgroundColor.white.color
         button.layer.cornerRadius = 5
         button.contentHorizontalAlignment = .left
         return button
@@ -77,6 +79,7 @@ final class UserInfoViewController: UIViewController {
         label.text = "관심 언어"
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 1
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -84,9 +87,9 @@ final class UserInfoViewController: UIViewController {
     private lazy var favLanguageButton: UIButton = {
         let button = UIButton()
         button.setTitle("  관심있는 언어를 선택해주세요", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(TextColor.secondary.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
+        button.backgroundColor =  BackgroundColor.white.color
         button.layer.cornerRadius = 5
         button.contentHorizontalAlignment = .left
         return button
@@ -96,9 +99,9 @@ final class UserInfoViewController: UIViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
+        button.setTitleColor(TextColor.first.color, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        button.backgroundColor =  BackgroundColor.white.color
         button.layer.cornerRadius = 5
         return button
     }()
@@ -112,7 +115,7 @@ final class UserInfoViewController: UIViewController {
         
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItem = leftButton
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = TextColor.first.color
         view.backgroundColor = .white
         
         addSubviews()
@@ -265,12 +268,12 @@ final class UserInfoViewController: UIViewController {
         viewModel.checkSelectedAll()
             .bind { [weak self] check in
                 if check{
-                    self?.nextButton.backgroundColor = .systemBlue
-                    self?.nextButton.setTitleColor(.white, for: .normal)
+                    self?.nextButton.backgroundColor = ButtonColor.main.color
+                    self?.nextButton.setTitleColor(ButtonColor.normal.color, for: .normal)
                 }
                 else{
-                    self?.nextButton.backgroundColor =  UIColor(hexCode: "#F5F5F5")
-                    self?.nextButton.setTitleColor(.black, for: .normal)
+                    self?.nextButton.backgroundColor = BackgroundColor.white.color
+                    self?.nextButton.setTitleColor(TextColor.first.color, for: .normal)
                 }
             }
             .disposed(by: disposeBag)

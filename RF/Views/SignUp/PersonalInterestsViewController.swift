@@ -19,7 +19,7 @@ final class PersonalInterestsViewController: UIViewController {
     private lazy var leftButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "관심사 설정", style: .done, target: self, action: nil)
         btn.isEnabled = false
-        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
         return btn
     }()
     
@@ -38,7 +38,7 @@ final class PersonalInterestsViewController: UIViewController {
         let pv = UIProgressView()
         pv.progressViewStyle = .bar
         pv.backgroundColor = UIColor(hexCode: "D1D1D1")
-        pv.progress = 0.8
+        pv.progress = 0.9
         return pv
     }()
     
@@ -46,8 +46,9 @@ final class PersonalInterestsViewController: UIViewController {
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.text = "관심사를 설정해 주세요!"
-        label.numberOfLines = 2
-        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.numberOfLines = 1
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -55,7 +56,8 @@ final class PersonalInterestsViewController: UIViewController {
     private lazy var interestLabel: UILabel = {
         let label = UILabel()
         label.text = "취미 & 관심사"
-        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -74,6 +76,7 @@ final class PersonalInterestsViewController: UIViewController {
         let label = UILabel()
         label.text = "라이프스타일"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -92,6 +95,7 @@ final class PersonalInterestsViewController: UIViewController {
         let label = UILabel()
         label.text = "MBTI"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -109,8 +113,8 @@ final class PersonalInterestsViewController: UIViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.backgroundColor = .systemGray6
-        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = BackgroundColor.white.color
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.layer.cornerRadius = 5
         return button
     }()
@@ -128,7 +132,7 @@ final class PersonalInterestsViewController: UIViewController {
         
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItem = leftButton
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = TextColor.first.color
         view.backgroundColor = .white
         
         addSubviews()
@@ -282,12 +286,12 @@ final class PersonalInterestsViewController: UIViewController {
         viewModel.checkSelectedForButtonColor()
             .subscribe(onNext:{ [weak self] check in
                 if check{
-                    self?.nextButton.setTitleColor(.white, for: .normal)
-                    self?.nextButton.backgroundColor = .systemBlue
+                    self?.nextButton.setTitleColor(BackgroundColor.white.color, for: .normal)
+                    self?.nextButton.backgroundColor = ButtonColor.main.color
                 }
                 else{
-                    self?.nextButton.setTitleColor(.black, for: .normal)
-                    self?.nextButton.backgroundColor = .systemGray6
+                    self?.nextButton.setTitleColor(TextColor.first.color, for: .normal)
+                    self?.nextButton.backgroundColor = BackgroundColor.white.color
                 }
             })
             .disposed(by: disposeBag)
@@ -302,10 +306,10 @@ final class PersonalInterestsViewController: UIViewController {
         for indexPath in lifeStyleCollectionView.indexPathsForVisibleItems {
             let cell = lifeStyleCollectionView.cellForItem(at: indexPath) as? lifestyleCollectionViewCell
             if item == indexPath {
-                cell?.setColor(textColor: .white, backgroundColor: .tintColor)
+                cell?.setColor(textColor: BackgroundColor.white.color, backgroundColor: ButtonColor.main.color)
             }
             else{
-                cell?.setColor(textColor: .black, backgroundColor: .systemGray6)
+                cell?.setColor(textColor: TextColor.secondary.color, backgroundColor: BackgroundColor.white.color)
             }
         }
     }
@@ -315,10 +319,10 @@ final class PersonalInterestsViewController: UIViewController {
         for indexPath in interestCollectionView.indexPathsForVisibleItems {
             let cell = interestCollectionView.cellForItem(at: indexPath) as? InterestSmallCollectionViewCell
             if items.contains(indexPath) {
-                cell?.setColor(textColor: .white, backgroundColor: .tintColor)
+                cell?.setColor(textColor: BackgroundColor.white.color, backgroundColor: ButtonColor.main.color)
             }
             else{
-                cell?.setColor(textColor: .label, backgroundColor: .systemGray6)
+                cell?.setColor(textColor: TextColor.secondary.color, backgroundColor: BackgroundColor.white.color)
             }
         }
     }
@@ -328,10 +332,10 @@ final class PersonalInterestsViewController: UIViewController {
         for indexPath in mbtiCollectionView.indexPathsForVisibleItems {
             let cell = mbtiCollectionView.cellForItem(at: indexPath) as? InterestSmallCollectionViewCell
             if item == indexPath {
-                cell?.setColor(textColor: .white, backgroundColor: .tintColor)
+                cell?.setColor(textColor: BackgroundColor.white.color, backgroundColor: ButtonColor.main.color)
             }
             else{
-                cell?.setColor(textColor: .black, backgroundColor: .systemGray6)
+                cell?.setColor(textColor: TextColor.secondary.color, backgroundColor: BackgroundColor.white.color)
             }
         }
     }
@@ -409,7 +413,11 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
                                                                         for: indexPath) as? InterestSmallCollectionViewCell else { return UICollectionViewCell() }
             
             cell.setTextLabel( interest?.value ?? "" )
-            cell.contentView.backgroundColor = .systemGray6
+            cell.contentView.backgroundColor = BackgroundColor.white.color
+            
+            
+            cell.setColor(textColor: TextColor.secondary.color, backgroundColor: BackgroundColor.white.color)
+            
             cell.setCornerRadius()
             return cell
             
@@ -420,7 +428,8 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
             
             cell.setImage( lifestyle?.key ?? "" )
             cell.setTextLabel( lifestyle?.value ?? "" )
-            cell.contentView.backgroundColor = .systemGray6
+            cell.contentView.backgroundColor = BackgroundColor.white.color
+            cell.setColor(textColor: TextColor.secondary.color, backgroundColor: BackgroundColor.white.color)
             cell.setCornerRadius()
             return cell
             
@@ -430,7 +439,8 @@ extension PersonalInterestsViewController: UICollectionViewDelegate, UICollectio
                                                                     for: indexPath) as? InterestSmallCollectionViewCell else { return UICollectionViewCell() }
             
             cell.setTextLabel( str )
-            cell.contentView.backgroundColor = .systemGray6
+            cell.contentView.backgroundColor = BackgroundColor.white.color
+            cell.setColor(textColor: TextColor.secondary.color, backgroundColor: BackgroundColor.white.color)
             cell.setCornerRadius()
             return cell
             

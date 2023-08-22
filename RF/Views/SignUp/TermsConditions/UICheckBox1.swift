@@ -61,8 +61,8 @@ final class UICheckBox1: UIButton {
             .withTintColor(TextColor.first.color)
         
         self.setTitle("  ", for: .normal)
-        self.setTitleColor(.lightGray, for: .normal)
-        self.setTitleColor(.black, for: .selected)
+        self.setTitleColor(TextColor.secondary.color, for: .normal)
+        self.setTitleColor(TextColor.first.color, for: .selected)
         self.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         
         self.setImage(offimage, for: .normal)

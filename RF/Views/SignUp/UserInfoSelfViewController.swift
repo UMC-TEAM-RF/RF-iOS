@@ -16,7 +16,7 @@ final class UserInfoSelfViewController: UIViewController {
     private lazy var leftButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "한 줄 소개", style: .done, target: self, action: nil)
         btn.isEnabled = false
-        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
         return btn
     }()
     
@@ -25,7 +25,7 @@ final class UserInfoSelfViewController: UIViewController {
         let pv = UIProgressView()
         pv.progressViewStyle = .bar
         pv.backgroundColor = UIColor(hexCode: "D1D1D1")
-        pv.progress = 0.5
+        pv.progress = 0.8
         return pv
     }()
     
@@ -33,7 +33,7 @@ final class UserInfoSelfViewController: UIViewController {
         let label = UILabel()
         label.text = "  " + "나를 나타낼 수 있는 대표적 키워드를 적어주세요."
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        label.textColor = UIColor(hexCode: "#3C3A3A")
+        label.textColor = TextColor.first.color
         label.numberOfLines = 1
         return label
     }()
@@ -54,7 +54,7 @@ final class UserInfoSelfViewController: UIViewController {
         field.placeholder = "   " + "한 줄 소개를 작성해주세요!"
         field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         field.backgroundColor = .clear
-        field.textColor = UIColor(hexCode: "#A0A0A0")
+        field.textColor = StrokeColor.sub.color
         field.addSubview(bottomLine)
         bottomLine.translatesAutoresizingMaskIntoConstraints = false
         configureConstraints(for: field, and: bottomLine)
@@ -73,8 +73,8 @@ final class UserInfoSelfViewController: UIViewController {
     private lazy var warningLabel: UILabel = {
         let label = UILabel()
         label.text = "이후에 변경할 수 없으니 신중히 결정해주세요!"
-        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        label.textColor = UIColor(hexCode: "#A0A0A0")
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = StrokeColor.sub.color
         label.numberOfLines = 1
         return label
     }()
@@ -82,9 +82,9 @@ final class UserInfoSelfViewController: UIViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.setTitleColor(UIColor(hexCode: "#3C3A3A") , for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
+        button.setTitleColor(TextColor.first.color , for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        button.backgroundColor =  BackgroundColor.white.color
         button.layer.cornerRadius = 5
         return button
     }()

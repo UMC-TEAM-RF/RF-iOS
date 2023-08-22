@@ -50,10 +50,12 @@ final class SignInViewController: UIViewController {
         view.placeholder = "아이디"
         view.delegate = self
         view.font = .systemFont(ofSize: 14)
-        view.textColor = TextColor.secondary.color
+        view.textColor = TextColor.first.color
         view.borderStyle = UITextField.BorderStyle.none
         view.keyboardType = UIKeyboardType.default
         view.returnKeyType = UIReturnKeyType.done
+        view.autocorrectionType = .no
+        view.autocapitalizationType = .none
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         return view
@@ -70,7 +72,8 @@ final class SignInViewController: UIViewController {
         view.placeholder = "비밀번호"
         view.delegate = self
         view.font = .systemFont(ofSize: 14)
-        view.setColor(TextColor.secondary.color)
+        view.setColor(TextColor.first.color)
+        view.setButtonColor(TextColor.secondary.color)
         view.borderStyle = UITextField.BorderStyle.none
         return view
     }()

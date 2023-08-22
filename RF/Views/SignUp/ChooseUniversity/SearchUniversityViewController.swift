@@ -15,8 +15,8 @@ final class SearchUniversityViewController: UIViewController{
     /// MARK: 제목
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = UserInfo.bornCountry
-        label.textColor = .black
+        label.text = UserInfo.college
+        label.textColor = TextColor.first.color
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
@@ -25,7 +25,7 @@ final class SearchUniversityViewController: UIViewController{
     private lazy var searchBar: UISearchBar = {
         let bar = UISearchBar()
         bar.backgroundColor = .clear
-        bar.placeholder = UserInfo.bornCountryPlaceHolder
+        bar.placeholder = UserInfo.collegePlaceHolder
         bar.searchBarStyle = .minimal
         bar.showsCancelButton = true
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = "취소 "

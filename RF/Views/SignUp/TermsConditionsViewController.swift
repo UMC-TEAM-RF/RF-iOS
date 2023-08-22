@@ -147,7 +147,7 @@ final class TermsConditionsViewController: UIViewController {
         button.setTitle("다음", for: .normal)
         buttonInactivate(button)
         button.layer.cornerRadius = 10
-        nextButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        button.backgroundColor = BackgroundColor.gray.color
         return button
     }()
     
@@ -161,8 +161,8 @@ final class TermsConditionsViewController: UIViewController {
         
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItem = leftButton
-        navigationController?.navigationBar.tintColor = .black
-        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.tintColor = TextColor.first.color
+        view.backgroundColor = .white
         
         addSubviews()
         configureConstraints()
@@ -319,7 +319,7 @@ final class TermsConditionsViewController: UIViewController {
     }
     
     private func phoneButtonActivate(){
-        nextButton.backgroundColor = UIColor.init(hexCode: "#006FF2")
+        nextButton.backgroundColor = ButtonColor.main.color
         nextButton.setTitleColor(.white, for: .normal)
     }
     

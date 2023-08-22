@@ -39,6 +39,7 @@ class PasswordTextField: UITextField {
         self.keyboardType = UIKeyboardType.alphabet
         self.returnKeyType = UIReturnKeyType.done
         self.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
+        self.autocorrectionType = .no
         
         if #available(iOS 12.0, *) {
             self.textContentType = .oneTimeCode
@@ -48,6 +49,8 @@ class PasswordTextField: UITextField {
     
     func setColor(_ color : UIColor) {
         self.textColor = color
+    }
+    func setButtonColor(_ color : UIColor) {
         self.button.imageView?.tintColor = color
     }
     

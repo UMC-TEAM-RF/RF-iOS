@@ -49,7 +49,10 @@ final class SignUpViewController: UIViewController {
         view.keyboardType = UIKeyboardType.emailAddress
         view.returnKeyType = UIReturnKeyType.done
         view.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
+        view.autocorrectionType = .no
+        view.autocapitalizationType = .none
         view.placeholder = " 아이디를 입력해주세요."
+        view.textColor = TextColor.first.color
         view.font = .systemFont(ofSize: 14, weight: .regular)
         return view
     }()
@@ -57,7 +60,7 @@ final class SignUpViewController: UIViewController {
     private lazy var idCheckButton: UIButton = {
         let button = UIButton()
         button.setTitle("중복확인", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15)
         button.backgroundColor = ButtonColor.normal.color
         button.layer.cornerRadius = 15
@@ -84,7 +87,8 @@ final class SignUpViewController: UIViewController {
         view.delegate = self
         view.borderStyle = UITextField.BorderStyle.none
         view.placeholder = " 비밀번호"
-        view.setColor(TextColor.secondary.color)
+        view.setColor(TextColor.first.color)
+        view.setButtonColor(TextColor.secondary.color)
         return view
     }()
     
@@ -109,7 +113,8 @@ final class SignUpViewController: UIViewController {
         view.delegate = self
         view.borderStyle = UITextField.BorderStyle.none
         view.placeholder = " 비밀번호"
-        view.setColor(TextColor.secondary.color)
+        view.setColor(TextColor.first.color)
+        view.setButtonColor(TextColor.secondary.color)
         return view
     }()
     
