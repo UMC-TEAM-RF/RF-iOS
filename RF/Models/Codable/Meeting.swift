@@ -28,6 +28,12 @@ struct Meeting: Codable {
     var ownerId: Int?   // 모임 장
     var imageFilePath: String?  // 이미지 주소
     var users: [User]?
+    
+    enum CodingKeys: String, CodingKey {
+        case users = "userProfiles"
+        case id, name, memberCount, nativeCount, interests, content, rules
+        case preferAges, isRecruiting, language, location, ownerId, imageFilePath
+    }
 }
 
 

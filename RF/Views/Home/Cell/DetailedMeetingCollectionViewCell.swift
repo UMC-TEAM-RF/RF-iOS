@@ -201,9 +201,9 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
     private func setData(_ data : Meeting?){
         
         guard let data = data else { return }
-        
-        backgroundImageView.image = UIImage(named: "meeting_\(Int.random(in: 1...5))")
-        
+        if let img = URL(string: data.imageFilePath ?? "") {
+            backgroundImageView.load(url: img)
+        }
         titleLabel.text = data.name
         descriptLabel.text = data.content
         personnelLabel.text = "모임인원: \(data.nativeCount ?? 0)/\(data.memberCount ?? 0)"

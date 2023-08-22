@@ -40,6 +40,7 @@ final class ListViewController: UIViewController{
         view.backgroundColor = .white
         addSubviews()
         getData()
+        bind()
     }
     
     // MARK: View will Appear
@@ -72,6 +73,17 @@ final class ListViewController: UIViewController{
     /// MARK: 모임 목록 리스트 가져오는 함수
     private func getData(){
         viewModel.getData(check: true)
+    }
+    
+    /// MARK:
+    private func bind(){
+        viewModel.check
+            .bind { check in
+                if check{
+                    self.listTableView.reloadData()
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
 }

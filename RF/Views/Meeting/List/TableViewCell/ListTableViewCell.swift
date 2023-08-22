@@ -112,6 +112,7 @@ final class ListTableViewCell: UITableViewCell{
         }
         
         stackView.snp.makeConstraints { make in
+            
             make.centerY.equalTo(profileUIView.snp.centerY)
             make.leading.equalTo(profileUIView.snp.trailing).offset(10)
         }
@@ -173,13 +174,11 @@ final class ListTableViewCell: UITableViewCell{
     func inputData(imageList: [User]?, meetingName: String?, introduce: String?, country: String?, like: Bool?){
         addSubviews()
         
-        guard let imageList = imageList,
-              let meetingName = meetingName,
+        guard let meetingName = meetingName,
               let introduce = introduce,
               let country = country else { return }
         
-        viewModel.changeTypeUserToString(list: imageList)
-        
+        viewModel.changeTypeUserToString(list: imageList ?? [])
         meetingTitleLabel.text = meetingName
         introduceLabel.text = introduce
         countryLabel.text = country

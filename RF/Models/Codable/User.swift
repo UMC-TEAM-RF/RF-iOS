@@ -26,7 +26,8 @@ struct User: Codable {
         case password, university, entrance, country
         case introduce, email, lifeStyle
         case interest = "interests"
-        case mbti, profileImageUrl, userId
+        case profileImageUrl = "imageFilePath"
+        case mbti, userId
     }
 }
 

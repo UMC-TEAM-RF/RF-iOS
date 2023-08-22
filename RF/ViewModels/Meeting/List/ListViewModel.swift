@@ -15,6 +15,8 @@ final class ListViewModel {
     /// MARK: 모임 목록 Relay
     var meetingListRelay: BehaviorRelay<[Meeting]> = BehaviorRelay(value: [])
     
+    var check: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     private let disposeBag = DisposeBag()
     private let service = MeetingService()
     private var page = 0
@@ -49,14 +51,16 @@ final class ListViewModel {
         }
         
         service.getMyMeetingList(page: page, size: size)
-            .subscribe(onNext:{ list in
+            .subscribe(onNext:{ [weak self] list in
                 meetingList.append(contentsOf: list)
+                self?.meetingListRelay.accept(meetingList)
+                self?.check.accept(true)
             },onError: { error in
                 print("getData error! \(error)")
             })
             .disposed(by: disposeBag)
         
-        meetingListRelay.accept(meetingList)
+        
     }
     
 }
