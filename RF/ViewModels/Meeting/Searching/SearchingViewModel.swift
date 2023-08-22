@@ -29,6 +29,8 @@ final class SearchingViewModel {
     /// searching meeting result List
     var meetingList: BehaviorRelay<[Meeting]> = BehaviorRelay(value: [])
     
+    var check: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     private let service = SearchService()
     private let disposeBag = DisposeBag()
     
@@ -81,6 +83,7 @@ final class SearchingViewModel {
         .subscribe(
             onNext:{ [weak self] list in
                 self?.meetingList.accept(list.content ?? [])
+                self?.check.accept(true)
             },onError: { error in
                 print("searchingService error!\n \(error)")
             })

@@ -55,7 +55,8 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell {
         
         profileImg.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            
+            make.width.equalTo(50)
+            make.height.equalTo(50)
         }
         
         nameLabel.snp.makeConstraints { make in
@@ -66,7 +67,7 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell {
         nationalityLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(5)
             make.leading.trailing.equalToSuperview()
-//            make.bottom.equalToSuperview().offset(-2)
+
         }
         
     }
@@ -75,7 +76,10 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell {
     func inputData(profileImg: String, name: String, nationality: String){
         addUI()
         
-        self.profileImg.image = UIImage(named: "LogoImage")?.resize(newWidth: 50, newHeight: 50)
+        if let url = URL(string: profileImg) {
+            self.profileImg.load(url: url)
+        }
+
         nameLabel.text = name
         nationalityLabel.text = nationality
     }
