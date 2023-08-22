@@ -139,6 +139,7 @@ extension RuleListViewController: UICollectionViewDelegate, UICollectionViewData
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
         let data = EnumFile.enumfile.enumList.value.rule
         cell.setupTagLabel(data?[indexPath.item].value ?? "")
+        cell.setCellBackgroundColor(ButtonColor.normal.color)
         
         if selectedRules.contains(data?[indexPath.item].value ?? "") {
             cell.isSelectedCell = true

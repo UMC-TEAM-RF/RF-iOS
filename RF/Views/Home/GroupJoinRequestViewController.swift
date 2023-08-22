@@ -18,7 +18,7 @@ final class GroupJoinRequestViewController: UIViewController {
     private lazy var leftButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: " ", style: .done, target: self, action: nil)
         btn.isEnabled = false
-        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
         return btn
     }()
     
@@ -26,6 +26,7 @@ final class GroupJoinRequestViewController: UIViewController {
     private lazy var noticeLabel: UILabel = {
         let label = UILabel()
         label.text = "24시간 이내에 수락 혹은 거절 버튼을 눌러주세요!"
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -50,8 +51,17 @@ final class GroupJoinRequestViewController: UIViewController {
         
         navigationController?.navigationBar.isHidden = false
         view.backgroundColor = .white
+        
+        tabBarController?.tabBar.isHidden = true
+        
         addSubviews()
         bind()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
     }
     
     

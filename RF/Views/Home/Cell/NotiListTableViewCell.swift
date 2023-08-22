@@ -20,7 +20,7 @@ class NotiListTableViewCell: UITableViewCell {
     private lazy var notiLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         label.numberOfLines = 2
         return label
     }()
@@ -28,7 +28,7 @@ class NotiListTableViewCell: UITableViewCell {
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         label.numberOfLines = 1
         label.textAlignment = .right
         return label

@@ -24,10 +24,11 @@ final class TabBarController: UITabBarController {
         delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTabBarIcon), name: NotificationName.updateTabBarIcon, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSelectedIndex), name: NotificationName.updateSelectedIndex, object: nil)
         
         let vc1 = UINavigationController(rootViewController: HomeViewController())
         let vc2 = UINavigationController(rootViewController: MeetingViewController())
-        let vc3 = UINavigationController(rootViewController: UIViewController())
+        //let vc3 = UINavigationController(rootViewController: UIViewController())
         let vc4 = UINavigationController(rootViewController: ChatListViewController())
         let vc5 = UINavigationController(rootViewController: MyPageViewController())
         
@@ -35,7 +36,7 @@ final class TabBarController: UITabBarController {
         
         vc1.tabBarItem = UITabBarItem(title: "홈", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"))
         vc2.tabBarItem = UITabBarItem(title: "모임", image: UIImage(named: "meeting"), selectedImage: UIImage(named: "meeting"))
-        vc3.tabBarItem = UITabBarItem(title: "커뮤니티", image: UIImage(named: "post"), selectedImage: UIImage(named: "post"))
+        //vc3.tabBarItem = UITabBarItem(title: "커뮤니티", image: UIImage(named: "post"), selectedImage: UIImage(named: "post"))
         vc4.tabBarItem = UITabBarItem(title: "채팅", image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat"))
         vc5.tabBarItem = UITabBarItem(title: "마이페이지", image: UIImage(systemName: "person.circle.fill"), selectedImage: UIImage(systemName: "person.circle.fill"))
         
@@ -45,13 +46,18 @@ final class TabBarController: UITabBarController {
         UITabBar.clearShadow()
         tabBar.layer.applyShadow(color: .gray, alpha: 0.3, x: 0, y: 0, blur: 12)
         
-        self.setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: false)
+        //self.setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: false)
+        self.setViewControllers([vc1, vc2, vc4, vc5], animated: false)
     }
     
     @objc func updateTabBarIcon() {
-//        if selectedIndex != 3, let items = tabBar.items, items.indices.contains(3) {
-//            items[3].image = UIImage(named: "newChat")
-//        }
+        if selectedIndex != 3, let items = tabBar.items, items.indices.contains(3) {
+            items[3].image = UIImage(named: "newChat")
+        }
+    }
+    
+    @objc func updateSelectedIndex() {
+        selectedIndex = 1
     }
     
 }
@@ -61,5 +67,10 @@ extension TabBarController: UITabBarControllerDelegate {
 //        if let tabBarItems = tabBar.items, selectedIndex == 3 {
 //            tabBarItems[3].image = UIImage(named: "chat")
 //        }
+        
+        // 커뮤니티 탭 있기 전까지 사용
+        if let tabBarItems = tabBar.items, selectedIndex == 2 {
+            tabBarItems[2].image = UIImage(named: "chat")
+        }
     }
 }

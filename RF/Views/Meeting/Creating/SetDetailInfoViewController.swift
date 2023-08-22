@@ -18,9 +18,18 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var progressBar: UIProgressView = {
         let pv = UIProgressView()
         pv.progressViewStyle = .bar
-        pv.backgroundColor = UIColor(hexCode: "D1D1D1")
         pv.progress = 1
         return pv
+    }()
+    
+    private lazy var scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        return sv
+    }()
+    
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        return view
     }()
     
     // 메인 라벨
@@ -28,6 +37,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "모임의 세부 정보를 입력해 주세요."
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -45,7 +55,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "모임 인원 수"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -53,13 +63,13 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "최대 6명까지 가능합니다."
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         return label
     }()
     
     private lazy var personnelStepper: PersonnelStepper = {
         let sp = PersonnelStepper()
-        sp.minimumCount = 0
+        sp.minimumCount = 2
         sp.maximumCount = 6
         sp.selectedMembercount
             .bind { [weak self] count in
@@ -83,7 +93,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "한국인 인원 수"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -91,7 +101,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "글로벌한 모임을 위해\n설정해 주세요."
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         label.numberOfLines = 2
         return label
     }()
@@ -111,7 +121,7 @@ final class SetDetailInfoViewController: UIViewController {
     // 첫 번째 경계선
     private lazy var firstDivLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = BackgroundColor.dark.color
         return view
     }()
     
@@ -120,7 +130,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "선호 연령대"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -138,7 +148,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "사용 언어"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -156,13 +166,13 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "활동 장소"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
     private lazy var placeTextField: UITextField = {
         let tf = UITextField()
-        tf.backgroundColor = .systemGray6
+        tf.backgroundColor = ButtonColor.normal.color
         tf.layer.cornerRadius = 5
         tf.placeholder = "장소를 입력해 주세요."
         tf.font = UIFont.systemFont(ofSize: 15, weight: .medium)
@@ -174,7 +184,7 @@ final class SetDetailInfoViewController: UIViewController {
     // 두 번째 경계선
     private lazy var secondDivLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = BackgroundColor.dark.color
         return view
     }()
     
@@ -182,9 +192,9 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var ruleButton: UIButton = {
         let button = UIButton()
         button.setTitle("모임의 규칙 ", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        button.tintColor = .lightGray
+        button.tintColor = TextColor.first.color
         button.semanticContentAttribute = .forceRightToLeft
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         return button
@@ -193,7 +203,7 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var ruleCountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         return label
     }()
     
@@ -232,7 +242,7 @@ final class SetDetailInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         
         updateTitleView(title: "모임 생성")
         setupCustomBackButton()
@@ -249,43 +259,47 @@ final class SetDetailInfoViewController: UIViewController {
     private func addSubviews() {
         view.addSubview(progressBar)
         
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(containerView)
+        
         // 메인 라벨
-        view.addSubview(mainLabel)
+        containerView.addSubview(mainLabel)
         
         // 모임 인원 수 설정
-        view.addSubview(personnelStackView)
-        view.addSubview(personnelStepper)
+        containerView.addSubview(personnelStackView)
+        containerView.addSubview(personnelStepper)
         personnelStackView.addArrangedSubview(personnelTitleLabel)
         personnelStackView.addArrangedSubview(personnelSubLabel)
         
         // 한국인 인원 수 설정
-        view.addSubview(koreanStackView)
-        view.addSubview(koreanStepper)
+        containerView.addSubview(koreanStackView)
+        containerView.addSubview(koreanStepper)
         koreanStackView.addArrangedSubview(koreanTitleLabel)
         koreanStackView.addArrangedSubview(koreanSubLabel)
         
         // 첫 번째 경계선
-        view.addSubview(firstDivLine)
+        containerView.addSubview(firstDivLine)
         
         // 선호 연령대
-        view.addSubview(ageGroupLabel)
-        view.addSubview(ageGroupButton)
+        containerView.addSubview(ageGroupLabel)
+        containerView.addSubview(ageGroupButton)
         
         // 사용 언어
-        view.addSubview(languageLabel)
-        view.addSubview(languageButton)
+        containerView.addSubview(languageLabel)
+        containerView.addSubview(languageButton)
         
         // 활동 장소
-        view.addSubview(placeLabel)
-        view.addSubview(placeTextField)
+        containerView.addSubview(placeLabel)
+        containerView.addSubview(placeTextField)
         
         // 두 번째 경계선
-        view.addSubview(secondDivLine)
+        containerView.addSubview(secondDivLine)
         
         // 모임 규칙
-        view.addSubview(ruleButton)
-        view.addSubview(ruleCountLabel)
-        view.addSubview(ruleCollectionView)
+        containerView.addSubview(ruleButton)
+        containerView.addSubview(ruleCountLabel)
+        containerView.addSubview(ruleCollectionView)
         
         // 생성 버튼
         view.addSubview(createButton)
@@ -301,9 +315,20 @@ final class SetDetailInfoViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(25)
         }
         
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(progressBar.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        containerView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView.frameLayoutGuide)
+        }
+        
         // 메인 라벨
         mainLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(40)
+            //make.top.equalTo(progressBar.snp.bottom).offset(40)
+            make.top.equalToSuperview().inset(40)
             make.leading.equalToSuperview().inset(30)
         }
         
@@ -403,6 +428,7 @@ final class SetDetailInfoViewController: UIViewController {
             make.top.equalTo(ruleButton.snp.bottom).offset(23)
             make.horizontalEdges.equalToSuperview().inset(25)
             make.height.equalTo(35)
+            make.bottom.equalToSuperview().inset(80)
         }
         
         // 다음
@@ -440,8 +466,8 @@ final class SetDetailInfoViewController: UIViewController {
         
         viewModel.checkAllDatas()
             .subscribe(onNext:{ [weak self] check in
-                self?.createButton.backgroundColor = check ? .tintColor : .systemGray6
-                self?.createButton.setTitleColor( check ? .white : .black, for: .normal)
+                self?.createButton.backgroundColor = check ? ButtonColor.main.color : ButtonColor.normal.color
+                self?.createButton.setTitleColor( check ? ButtonColor.normal.color : TextColor.first.color, for: .normal)
                 self?.createButton.isEnabled = check
             })
             .disposed(by: disposeBag)
@@ -495,7 +521,7 @@ extension SetDetailInfoViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
         cell.setupTagLabel(selectedRules[indexPath.item])
-        cell.setCellBackgroundColor(.systemGray6)
+        cell.setCellBackgroundColor(ButtonColor.normal.color)
         return cell
     }
     

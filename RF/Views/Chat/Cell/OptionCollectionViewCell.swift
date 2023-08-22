@@ -25,7 +25,7 @@ class OptionCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 14, weight: .medium)
         label.textAlignment = .center
         label.text = "사진"
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     

@@ -27,6 +27,7 @@ final class GroupJoinRequestTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "소속"
         label.font = .systemFont(ofSize: 14,weight: .semibold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -35,6 +36,7 @@ final class GroupJoinRequestTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "aa"
         label.font = .systemFont(ofSize: 14)
+        label.textColor = TextColor.first.color
         return label
     }()
 
@@ -44,6 +46,7 @@ final class GroupJoinRequestTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "국가"
         label.font = .systemFont(ofSize: 14,weight: .semibold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -52,6 +55,7 @@ final class GroupJoinRequestTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "aab"
         label.font = .systemFont(ofSize: 14)
+        label.textColor = TextColor.first.color
         return label
     }()
 
@@ -61,6 +65,7 @@ final class GroupJoinRequestTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "MBTI"
         label.font = .systemFont(ofSize: 14,weight: .semibold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -69,6 +74,7 @@ final class GroupJoinRequestTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "aadd"
         label.font = .systemFont(ofSize: 14)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -92,8 +98,9 @@ final class GroupJoinRequestTableViewCell: UITableViewCell {
     private lazy var rejectButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("거절", for: .normal)
-        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
-        btn.setTitleColor(.black, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        btn.backgroundColor = ButtonColor.normal.color
+        btn.setTitleColor(TextColor.first.color, for: .normal)
         btn.layer.cornerRadius = 10
         return btn
     }()
@@ -102,8 +109,9 @@ final class GroupJoinRequestTableViewCell: UITableViewCell {
     private lazy var acceptButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("수락", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.backgroundColor = .systemBlue
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        btn.setTitleColor(ButtonColor.normal.color, for: .normal)
+        btn.backgroundColor = ButtonColor.main.color
         btn.layer.cornerRadius = 10
         return btn
     }()

@@ -13,13 +13,13 @@ class KeyboardInputView: UIView {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 15
         flowLayout.minimumInteritemSpacing = 15
-        flowLayout.sectionInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        flowLayout.sectionInset = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         cv.delegate = self
         cv.dataSource = self
         cv.register(OptionCollectionViewCell.self, forCellWithReuseIdentifier: OptionCollectionViewCell.identifier)
-        cv.backgroundColor = .white
+        cv.backgroundColor = ButtonColor.normal.color
         return cv
     }()
 
@@ -48,7 +48,7 @@ class KeyboardInputView: UIView {
         optionCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
-            make.bottom.equalToSuperview().inset(30)
+            make.bottom.equalToSuperview()
         }
     }
 
@@ -68,16 +68,9 @@ extension KeyboardInputView: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (optionCollectionView.frame.width - (15 * 2) - (15 * 3)) / 4.0
-        let height = (optionCollectionView.frame.height - (15 * 2) - 15) / 2.0
+        let width = (optionCollectionView.frame.width - (30 * 2) - (15 * 3)) / 4.0
+        let height = (optionCollectionView.frame.height - (30 * 2) - 15) / 2.0
         return CGSize(width: width, height: height)
     }
 }
 
-enum ChatMenuOption: Int {
-    case album = 0
-    case camera
-    case schedule
-    case keyword
-    case subject
-}

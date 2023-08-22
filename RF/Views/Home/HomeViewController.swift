@@ -42,7 +42,7 @@ final class HomeViewController: UIViewController {
         let view = UIButton()
         view.setImage(UIImage(systemName: "bell")?.resize(newWidth: 25, newHeight: 25), for: .normal)
         view.contentMode = .scaleAspectFill
-        view.tintColor = .black
+        view.tintColor = TextColor.first.color
         return view
     }()
     
@@ -80,13 +80,14 @@ final class HomeViewController: UIViewController {
         let label = UILabel()
         label.text = "다양한 친구들과 대화를 나눠보세요!"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
     private lazy var moreMeetingButton: UIButton = {
         let button = UIButton()
         button.setTitle("더보기", for: .normal)
-        button.setTitleColor(.lightGray, for: .normal)
+        button.setTitleColor(TextColor.secondary.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         return button
     }()
@@ -117,12 +118,12 @@ final class HomeViewController: UIViewController {
 
     private let highlightBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = StrokeColor.main.color
         return view
     }()
     private let highlightView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = ButtonColor.main.color
         return view
     }()
     
@@ -130,7 +131,7 @@ final class HomeViewController: UIViewController {
     // MARK: 꿀팁 배너
     private lazy var tipsView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = ButtonColor.normal.color
         view.layer.cornerRadius = 10
         return view
     }()
@@ -155,6 +156,7 @@ final class HomeViewController: UIViewController {
         let label = UILabel()
         label.text = "외국인 친구들과 편하게 얘기하고 싶어?"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -162,6 +164,7 @@ final class HomeViewController: UIViewController {
         let label = UILabel()
         label.text = "꿀팁 얻으러 가기!"
         label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        label.textColor = TextColor.secondary.color
         return label
     }()
     
@@ -175,6 +178,7 @@ final class HomeViewController: UIViewController {
         let label = UILabel()
         label.text = "관심사 더보기"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -188,8 +192,8 @@ final class HomeViewController: UIViewController {
         cv.tag = 2
         cv.isScrollEnabled = false
         cv.layer.cornerRadius = 10
-        cv.backgroundColor = .lightGray
-        cv.layer.borderColor = UIColor.lightGray.cgColor
+        cv.backgroundColor = StrokeColor.main.color
+        cv.layer.borderColor = StrokeColor.main.color.cgColor
         cv.layer.borderWidth = 1
         return cv
     }()
@@ -230,6 +234,7 @@ final class HomeViewController: UIViewController {
                 self.pageCollectionView.reloadData()
             }
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -443,6 +448,12 @@ final class HomeViewController: UIViewController {
         navigationNotiButton.rx.tap
             .subscribe(onNext: {
                 self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        moreMeetingButton.rx.tap
+            .subscribe(onNext: {
+                NotificationCenter.default.post(name: NotificationName.updateSelectedIndex, object: nil)
             })
             .disposed(by: disposeBag)
     }

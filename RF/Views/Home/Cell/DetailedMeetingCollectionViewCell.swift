@@ -48,7 +48,7 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
         label.text = "디천: 디자인 천재들 모임"
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         label.numberOfLines = 1
-        label.textColor = .systemBackground
+        label.textColor = ButtonColor.normal.color
         return label
     }()
     
@@ -60,7 +60,7 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "디자인 배우면서 친목하실분~ 디자인 배우면서 친목하실분~ 디자인 배우면서 친목하실분~ 디자인 배우면서 친목하실분~"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .systemBackground
+        label.textColor = ButtonColor.normal.color
         label.numberOfLines = 2
         return label
     }()
@@ -73,7 +73,7 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "모집 인원 : 2/5"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .systemBackground
+        label.textColor = ButtonColor.normal.color
         label.textAlignment = .right
         label.numberOfLines = 1
         return label
@@ -111,8 +111,6 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
-        contentView.backgroundColor = .systemGray6
         contentView.layer.cornerRadius = 10
         //Corner radius 적용을 위한 코드
         contentView.clipsToBounds = true

@@ -18,18 +18,18 @@ class KeyboardInputBar: UIView {
     
     private lazy var divLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = BackgroundColor.dark.color
         return view
     }()
     
     private lazy var inputField: UITextView = {
         let tv = UITextView()
-        tv.textColor = .black
+        tv.textColor = TextColor.first.color
         tv.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         tv.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        tv.backgroundColor = .systemGray5
+        tv.backgroundColor = ButtonColor.normal.color
         tv.layer.borderWidth = 1
-        tv.layer.borderColor = UIColor.lightGray.cgColor
+        tv.layer.borderColor = TextColor.secondary.color.cgColor
         tv.layer.cornerRadius = 10
         tv.delegate = self
         return tv
@@ -38,21 +38,21 @@ class KeyboardInputBar: UIView {
     private lazy var plusButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .lightGray
+        button.tintColor = TextColor.secondary.color
         return button
     }()
     
     private lazy var translateButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "arrow.left.arrow.right"), for: .normal)
-        button.tintColor = .lightGray
+        button.tintColor = TextColor.secondary.color
         return button
     }()
     
     private lazy var sendButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "paperplane"), for: .normal)
-        button.tintColor = .lightGray
+        button.tintColor = TextColor.secondary.color
         button.backgroundColor = .white
         button.layer.cornerRadius = 15
         button.isEnabled = false
@@ -63,7 +63,7 @@ class KeyboardInputBar: UIView {
     
     var isTranslated: Bool = false {
         didSet {
-            self.translateButton.tintColor = isTranslated ? .tintColor : .lightGray
+            self.translateButton.tintColor = isTranslated ? ButtonColor.main.color : TextColor.secondary.color
             let image = isTranslated ? UIImage(systemName: "checkmark") : UIImage(systemName: "paperplane")
             self.sendButton.setImage(image, for: .normal)
         }
@@ -153,12 +153,12 @@ class KeyboardInputBar: UIView {
     private func isSendButtonActivate(_ bool: Bool) {
         if bool {
             sendButton.isEnabled = true
-            sendButton.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-            sendButton.tintColor = .white
+            sendButton.backgroundColor = ButtonColor.main.color
+            sendButton.tintColor = ButtonColor.normal.color
         } else {
             sendButton.isEnabled = false
             sendButton.backgroundColor = .white
-            sendButton.tintColor = .lightGray
+            sendButton.tintColor = TextColor.secondary.color
         }
     }
     
@@ -187,7 +187,7 @@ class KeyboardInputBar: UIView {
     
     // TextView.inputView를 키보드로 변경
     @objc func textViewTapped() {
-        inputField.tintColor = .tintColor
+        inputField.tintColor = ButtonColor.main.color
         inputField.inputView = nil
         inputField.reloadInputViews()
         inputField.becomeFirstResponder()
