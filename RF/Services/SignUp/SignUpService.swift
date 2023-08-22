@@ -64,20 +64,21 @@ final class SignUpService {
         
         let header: HTTPHeaders = ["Content-Type" : "application/json"]
         
-        let body: User = User(userID: SignUpDataViewModel.viewModel.idRelay.value,
+        let body: User = User(loginId: SignUpDataViewModel.viewModel.idRelay.value,
                               password: SignUpDataViewModel.viewModel.pwRelay.value,
                               university: SignUpDataViewModel.viewModel.universityRelay.value,
                               nickname: SignUpDataViewModel.viewModel.nickNameRelay.value,
                               email: SignUpDataViewModel.viewModel.emailRelay.value,
                               lifeStyle: SignUpDataViewModel.viewModel.lifeStyleRelay.value,
-                              entrance: SignUpDataViewModel.viewModel.yearRelay.value,
+                              entrance: Int(SignUpDataViewModel.viewModel.yearRelay.value)!,
                               country: SignUpDataViewModel.viewModel.bornCountry.value,
                               introduce: SignUpDataViewModel.viewModel.introduceSelfRelay.value,
                               interestLanguage: SignUpDataViewModel.viewModel.interestingLanguage.value.map({"\($0.key ?? "")"}),
                               interestCountry: SignUpDataViewModel.viewModel.interestingCountry.value.map({"\($0.key ?? "")"}),
                               interest: SignUpDataViewModel.viewModel.interestingRelay.value,
                               mbti: SignUpDataViewModel.viewModel.mbtiRelay.value,
-                              profileImageUrl: nil)
+                              profileImageUrl: nil,
+                              userId: nil)
         print(body)
         return Observable.create { observer in
             

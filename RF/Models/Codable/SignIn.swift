@@ -11,12 +11,12 @@ import Foundation
 struct SignIn: Codable{
     let accessToken: String?
     let refreshToken: String?
-    let user: User?
+    let userDemo: User?
     
     enum CoingKeys: String, CodingKey{
         case accessToken
         case refreshToken
-        case user
+        case userDemo
     }
 }
 

@@ -8,23 +8,25 @@
 import Foundation
 
 struct User: Codable {
-    let userID, password, university, nickname: String?
+    let loginId, password, university, nickname: String?
     let email, lifeStyle: String?
-    let entrance, country: String?
+    let entrance: Int?
+    let country: String?
     let introduce: String?
     let interestLanguage, interestCountry, interest: [String]?
     let mbti: String?
     let profileImageUrl: String?
+    let userId: Int?
     
     enum CodingKeys: String, CodingKey {
-        case userID = "loginId"
+        case loginId
         case nickname = "nickName"
         case interestLanguage = "interestingLanguages"
         case interestCountry = "interestCountries"
         case password, university, entrance, country
         case introduce, email, lifeStyle
         case interest = "interests"
-        case mbti, profileImageUrl
+        case mbti, profileImageUrl, userId
     }
 }
 
