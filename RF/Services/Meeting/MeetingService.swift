@@ -154,16 +154,17 @@ final class MeetingService {
     ///   - filter: 개인 모임: "Personal" / 단체 모임: "Group"
     ///   - completion: 추천 모임 리스트 반환
     func requestRecommandPartyList(_ filter: String, completion: @escaping ([Meeting]?)->()) {
+        let userId = UserDefaults.standard.string(forKey: "UserId") ?? ""
         var url = "\(Domain.restApi)"
         switch filter {
         case "Personal":
-            url = "\(url)\(MeetingPath.recommendPersonalMeeting.replacingOccurrences(of: ":userId", with: "1"))"
+            url = "\(url)\(MeetingPath.recommendPersonalMeeting.replacingOccurrences(of: ":userId", with: userId))"
         case "Group":
-            url = "\(url)\(MeetingPath.recommendGroupMeeting.replacingOccurrences(of: ":userId", with: "1"))"
+            url = "\(url)\(MeetingPath.recommendGroupMeeting.replacingOccurrences(of: ":userId", with: userId))"
         default:
             return
         }
-        let param: Parameters = ["page": 0, "size": 3]
+        let param: Parameters = ["page": 1, "size": 3]
         
         AF.request(url, method: .get, parameters: param)
             .validate(statusCode: 200..<201)

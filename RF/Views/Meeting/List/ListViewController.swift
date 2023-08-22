@@ -133,17 +133,17 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return viewModel.meetingListRelay.value.count }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let height = scrollView.frame.height // 스크롤뷰의 전체 높이
-        let contentSizeHeight = scrollView.contentSize.height // 전체 콘텐츠 영역의 높이
-        let offset = scrollView.contentOffset.y // 클릭 위치
-        let reachedBottom = (offset > contentSizeHeight - height) // (클릭 지점 + 스크롤뷰 높이 == 전체 컨텐츠 높이) -> Bool
-        
-        if reachedBottom { // 스크롤이 바닥에 닿았다면 서버에 추가 데이터 요청
-            viewModel.getData(check: false)
-            
-        }
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let height = scrollView.frame.height // 스크롤뷰의 전체 높이
+//        let contentSizeHeight = scrollView.contentSize.height // 전체 콘텐츠 영역의 높이
+//        let offset = scrollView.contentOffset.y // 클릭 위치
+//        let reachedBottom = (offset > contentSizeHeight - height) // (클릭 지점 + 스크롤뷰 높이 == 전체 컨텐츠 높이) -> Bool
+//
+//        if reachedBottom { // 스크롤이 바닥에 닿았다면 서버에 추가 데이터 요청
+//            viewModel.getData(check: false)
+//
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
