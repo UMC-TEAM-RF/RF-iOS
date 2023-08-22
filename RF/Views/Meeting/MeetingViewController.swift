@@ -22,20 +22,9 @@ final class MeetingViewController: UIViewController{
         return label
     }()
     
-    /// MARK: 모임 생성 버튼
-    private lazy var etcButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(systemName: "ellipsis")?.resize(newWidth: 25).rotate(degrees: 90), for: .normal)
-        btn.showsMenuAsPrimaryAction = true
-        return btn
-    }()
-    
-    
     /// MARK: 모임 찾기, 모임 생성하기 UIView
     private lazy var makeFriendView: MakeFriendUIView = {
         let view = MakeFriendUIView()
-        view.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0) /* #f9f9f9 */
-        view.layer.cornerRadius = 20
         return view
     }()
 
@@ -49,23 +38,19 @@ final class MeetingViewController: UIViewController{
     }()
     
     /// MARK:  모임 일정 관리
-    private lazy var meetingScheduleUIButton: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("모임 일정 관리", for: .normal)
+    private lazy var meetingScheduleUIButton: MeetingManageUIButton = {
+        let btn = MeetingManageUIButton()
+        btn.inputData(img: "calendar", title: "모임 일정 관리")
         btn.backgroundColor = UIColor(hexCode: "F5F5F5")
-        btn.titleLabel?.font = .systemFont(ofSize: 14)
-        btn.setTitleColor(.black, for: .normal)
         btn.layer.cornerRadius = 10
         return btn
     }()
     
     /// MARK:  모임 목록 관리
-    private lazy var meetingListUIButton: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("모임 목록 관리", for: .normal)
+    private lazy var meetingListUIButton: MeetingManageUIButton = {
+        let btn = MeetingManageUIButton()
         btn.backgroundColor = UIColor(hexCode: "F5F5F5")
-        btn.titleLabel?.font = .systemFont(ofSize: 14)
-        btn.setTitleColor(.black, for: .normal)
+        btn.inputData(img: "list", title: "모임 목록 관리")
         btn.layer.cornerRadius = 10
         return btn
     }()
@@ -88,7 +73,6 @@ final class MeetingViewController: UIViewController{
     private lazy var tipsLabelStackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
-        sv.spacing = 5
         sv.distribution = .fill
         sv.alignment = .fill
         return sv
@@ -133,7 +117,6 @@ final class MeetingViewController: UIViewController{
     /// MARK: add UI
     private func addSubviews(){
         view.addSubview(titleLabel)
-        view.addSubview(etcButton)
         view.addSubview(makeFriendView)
         view.addSubview(meetingLabel)
         view.addSubview(meetingScheduleUIButton)
@@ -158,21 +141,16 @@ final class MeetingViewController: UIViewController{
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
         }
         
-        etcButton.snp.makeConstraints { make in
-            make.centerY.equalTo(titleLabel.snp.centerY)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
-        }
-        
         makeFriendView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(25)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.equalTo(view.safeAreaLayoutGuide)
             make.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*2/5)
+            
         }
         
         
         meetingLabel.snp.makeConstraints { make in
-            make.top.equalTo(makeFriendView.snp.bottom).offset(30)
+            make.top.equalTo(makeFriendView.snp.bottom).offset(10)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
         }
         
@@ -180,20 +158,20 @@ final class MeetingViewController: UIViewController{
             make.top.equalTo(meetingLabel.snp.bottom).offset(20)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.trailing.equalTo(view.snp.centerX).offset(-10)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/10)
+            make.height.equalTo(80)
         }
         
         meetingListUIButton.snp.makeConstraints { make in
             make.top.equalTo(meetingLabel.snp.bottom).offset(20)
             make.leading.equalTo(view.snp.centerX).offset(10)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/10)
+            make.height.equalTo(80)
         }
         
         
         // 꿀팁
         tipsView.snp.makeConstraints { make in
-            make.top.equalTo(meetingListUIButton.snp.bottom).offset(40)
+            make.top.equalTo(meetingListUIButton.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(75)
         }
@@ -218,12 +196,6 @@ final class MeetingViewController: UIViewController{
     
     /// MARK: 모임 찾기, 모임 생성 아이콘 버튼 눌렀을 때
     private func clickedTopBtns(){
-        etcButton.rx.tap
-            .subscribe(onNext:{
-                print("clicked etcButton")
-            })
-            .disposed(by: disposeBag)
-        
         meetingScheduleUIButton.rx.tap
             .bind { [weak self] in
                 let scheduleViewController = ScheduleViewController()

@@ -54,6 +54,7 @@ final class EmailService {
             .responseDecodable(of: Response<Judge>.self) { response in
                 switch response.result{
                 case .success(let data):
+                    
                     observer.onNext(data.isSuccess ?? false)
                 case.failure(let error):
                     print("checkEmailCode error!\n \(error)")

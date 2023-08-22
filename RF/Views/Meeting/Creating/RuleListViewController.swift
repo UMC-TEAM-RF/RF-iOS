@@ -132,15 +132,15 @@ final class RuleListViewController: UIViewController {
 
 extension RuleListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Rule.list.count
+        return EnumFile.enumfile.enumList.value.rule?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
+        let data = EnumFile.enumfile.enumList.value.rule
+        cell.setupTagLabel(data?[indexPath.item].value ?? "")
         
-        cell.setupTagLabel(Rule.list[indexPath.item])
-        
-        if selectedRules.contains(Rule.list[indexPath.item]) {
+        if selectedRules.contains(data?[indexPath.item].value ?? "") {
             cell.isSelectedCell = true
             isSelectedRule[indexPath.item] = true
         }

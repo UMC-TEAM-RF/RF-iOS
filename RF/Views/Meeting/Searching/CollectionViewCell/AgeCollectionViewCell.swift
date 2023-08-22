@@ -48,4 +48,9 @@ final class AgeCollectionViewCell: UICollectionViewCell {
     func inputData(text: String){
         selectionLabel.text = text
     }
+    
+    /// 글자 색상 변경
+    func setColor(color: UIColor){
+        selectionLabel.textColor = color
+    }
 }

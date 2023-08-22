@@ -100,7 +100,11 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "DetailedMeetingCollectionViewCell"
     
-    var testTagList: [String] = []
+    var meetingData: Meeting? {
+        didSet {
+            setData(meetingData)
+        }
+    }
     
     // MARK: - init()
     
@@ -174,21 +178,20 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
      cell에 데이터를 입력하는 함수
      > 셀 초기화할 때 사용
      - Parameters:
-        - title: 모임 제목
-        - description: 모임 설명
-        - personnel : 인원수
-        - tag: 태그 목록
-        - imageName : 이미지 이름
+        - data
     */
-    func inputTextData(title: String, description: String, personnel: String, tag: [String], imageName: String){
-        backgroundImageView.image = UIImage(named: imageName)
+    private func setData(_ data : Meeting?){
         
-        titleLabel.text = title
-        descriptLabel.text = description
-        personnelLabel.text = personnel
-        testTagList = tag
+        guard let data = data else { return }
+        
+        backgroundImageView.image = UIImage(named: "meeting_\(Int.random(in: 1...5))")
+        
+        titleLabel.text = data.name
+        descriptLabel.text = data.content
+        personnelLabel.text = "모임인원: \(data.nativeCount ?? 0)/\(data.memberCount ?? 0)"
         tagCollectionView.reloadData()
     }
+    
 }
 
 // MARK: - Ext: DetailedMeetingCollectionViewCell
@@ -197,18 +200,28 @@ extension DetailedMeetingCollectionViewCell: UICollectionViewDelegate, UICollect
     
     //태그 셀 사이즈 설정(폰트 사이즈 14 기준)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: testTagList[indexPath.item].size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]).width + 30, height: tagCollectionView.frame.height)
+        guard let meeting = meetingData else { return CGSize() }
+        
+        let data = EnumFile.enumfile.enumList.value
+        let text = data.interest?.filter{ $0.key  == meeting.interests?[indexPath.item] }.first
+        let textSize = text?.value?.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
+        
+        return CGSize(width: (textSize?.width ?? CGFloat()) + 30, height: tagCollectionView.frame.height)
     }
     
     //태그 목록 개수 : 3
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return meetingData?.interests?.count ?? 0
     }
     
     //태그 셀 초기화
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as! TagCollectionViewCell
-        cell.setupTagLabel("#\(testTagList[indexPath.item])")
+        guard let meeting = meetingData else { return UICollectionViewCell() }
+        let data = EnumFile.enumfile.enumList.value
+        let text = data.interest?.filter{ $0.key  == meeting.interests?[indexPath.item] ?? "" }.first
+        
+        cell.setupTagLabel(text?.value ?? "")
         return cell
     }
     
