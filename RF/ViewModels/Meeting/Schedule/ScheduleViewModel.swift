@@ -37,19 +37,12 @@ final class ScheduleViewModel {
     func getData() {
         var list: [ScheduleEvent] = []
         
-        list.append(ScheduleEvent(date: "2023-07-09", description: "축구 경기",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-11", description: "스터디",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-01", description: "야구 경기",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-10", description: "마라탕 먹방",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-25", description: "마라탕 먹방",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-25", description: "마라탕 먹방",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-25", description: "마라탕 먹방",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-25", description: "마라탕 먹방",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-31", description: "집에 가기",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-31", description: "놀러 가기",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-31", description: "놀러 가기",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-31", description: "놀러 가기",color: "FE4700"))
-        list.append(ScheduleEvent(date: "2023-07-31", description: "놀러 가기",color: "FE4700"))
+        list.append(ScheduleEvent(date: "2023-08-23", description: "데모 데이",color: "00f44d"))
+        list.append(ScheduleEvent(date: "2023-08-24", description: "데모 데이",color: "00f44d"))
+        list.append(ScheduleEvent(date: "2023-08-15", description: "광복절",color: "FE4700"))
+        list.append(ScheduleEvent(date: "2023-08-11", description: "알프 모임",color: "00daf7"))
+        list.append(ScheduleEvent(date: "2023-07-25", description: "마라탕 먹방",color: "f1f900"))
+        list.append(ScheduleEvent(date: "2023-09-01", description: "개강 파티",color: "1dfc00"))
         
         self.eventList.accept(list)
     }

@@ -65,7 +65,7 @@ final class SearchingViewController: UIViewController{
         filteringScreen.interestingTopicRelay.accept(viewModel.interestingTopicRelay.value)
         filteringScreen.joinNumberRelay.accept(viewModel.joinNumberRelay.value)
         filteringScreen.joinStatusRelay.accept(viewModel.joinStatusRelay.value)
-        
+            
         filteringScreen.ageRelay
             .subscribe(onNext:{ [weak self] data in
 
