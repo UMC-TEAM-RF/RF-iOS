@@ -19,7 +19,7 @@ final class DetailMeetingHomeController: UIViewController {
     private lazy var leftButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "다국적 사람들과 소통해요!", style: .done, target: self, action: nil)
         btn.isEnabled = false
-        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20,weight: .bold)], for: .disabled)
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20,weight: .bold)], for: .disabled)
         return btn
     }()
     
@@ -27,7 +27,7 @@ final class DetailMeetingHomeController: UIViewController {
     private lazy var firstButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "exclamationmark.circle"), for: .normal)
-        btn.tintColor = .black
+        btn.tintColor = TextColor.first.color
         return btn
     }()
     
@@ -35,14 +35,14 @@ final class DetailMeetingHomeController: UIViewController {
     private lazy var secondButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-        btn.tintColor = .black
+        btn.tintColor = TextColor.first.color
         return btn
     }()
     
     /// MARK: Scrollview
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
-        scroll.backgroundColor = .systemBackground
+        scroll.backgroundColor = .white
         return scroll
     }()
     
@@ -56,7 +56,7 @@ final class DetailMeetingHomeController: UIViewController {
     /// MARK: 대표이미지
     private lazy var titleImg: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "soccer")?.resize(newWidth: 100)
+        img.image = nil
         img.layer.cornerRadius = 20
         img.clipsToBounds = true
         return img
@@ -92,6 +92,7 @@ final class DetailMeetingHomeController: UIViewController {
         let label = UILabel()
         label.text = "멤버 / 정원"
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -100,6 +101,7 @@ final class DetailMeetingHomeController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.text = "1"
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -115,6 +117,7 @@ final class DetailMeetingHomeController: UIViewController {
         let label = UILabel()
         label.text = "선호 연령대"
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -122,6 +125,7 @@ final class DetailMeetingHomeController: UIViewController {
     private lazy var ageContentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = TextColor.first.color
         label.text = "1"
         return label
     }()
@@ -137,6 +141,7 @@ final class DetailMeetingHomeController: UIViewController {
     private lazy var languageTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = TextColor.first.color
         label.text = "사용 언어"
         return label
     }()
@@ -145,6 +150,7 @@ final class DetailMeetingHomeController: UIViewController {
     private lazy var languageContentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = TextColor.first.color
         label.text = "1"
         return label
     }()
@@ -161,6 +167,7 @@ final class DetailMeetingHomeController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.text = "활동 장소"
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -169,6 +176,7 @@ final class DetailMeetingHomeController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.text = "1"
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -182,7 +190,7 @@ final class DetailMeetingHomeController: UIViewController {
     /// MARK: 멤버 정원, 선호 연령대, 사용 언어, 활동 장소 묶는 UIView
     private lazy var infomationUIView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hexCode: "F5F5F5")
+        view.backgroundColor = BackgroundColor.white.color
         view.layer.cornerRadius = 10
         return view
     }()
@@ -193,13 +201,14 @@ final class DetailMeetingHomeController: UIViewController {
         let label = UILabel()
         label.text = "📣 모임 소개"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
     /// MARK: 모임 설명 감싸고 있는 View
     private lazy var meetingIntroductionRoundUIView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hexCode: "F5F5F5")
+        view.backgroundColor = BackgroundColor.white.color
         view.layer.cornerRadius = 10
         
         return view
@@ -211,6 +220,7 @@ final class DetailMeetingHomeController: UIViewController {
         let font = UIFont.systemFont(ofSize: 14)
         label.font = font
         label.backgroundColor = .clear
+        label.textColor = TextColor.first.color
         label.numberOfLines = 50
         return label
     }()
@@ -220,6 +230,7 @@ final class DetailMeetingHomeController: UIViewController {
         let label = UILabel()
         label.text = "💬 다친의 규칙"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -239,6 +250,7 @@ final class DetailMeetingHomeController: UIViewController {
         let label = UILabel()
         label.text = "👥 가입 멤버"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -246,7 +258,7 @@ final class DetailMeetingHomeController: UIViewController {
     private lazy var joinMemberNumberLabel: UILabel = {
         let label = UILabel()
         label.text = "4/5"
-        label.textColor = .systemBlue
+        label.textColor = ButtonColor.main.color
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
@@ -277,9 +289,9 @@ final class DetailMeetingHomeController: UIViewController {
         let btn = UIButton()
         btn.setTitle("가입하기", for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        btn.backgroundColor = UIColor(hexCode: "F1F1F1")
+        btn.backgroundColor = ButtonColor.normal.color
         btn.titleLabel?.textAlignment = .center
-        btn.setTitleColor(.systemBlue, for: .normal)
+        btn.setTitleColor(ButtonColor.main.color, for: .normal)
         return btn
     }()
     
@@ -293,7 +305,7 @@ final class DetailMeetingHomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         
         addSubviews()
         clickedButtons()
@@ -661,16 +673,16 @@ final class DetailMeetingHomeController: UIViewController {
         
         if isRecruiting {
             isRecruitingButton.setTitle("모집 중", for: .normal)
-            isRecruitingButton.setTitleColor(.white, for: .normal)
-            isRecruitingButton.backgroundColor = .systemBlue
+            isRecruitingButton.setTitleColor(BackgroundColor.white.color, for: .normal)
+            isRecruitingButton.backgroundColor = ButtonColor.main.color
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
             let newSize = ((isRecruitingButton.titleLabel?.text ?? "") as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
             viewModel.recruitingConstraint.value?.update(offset: newSize.width+20)
         }
         else {
             isRecruitingButton.setTitle("모집 마감", for: .normal)
-            isRecruitingButton.setTitleColor(.white, for: .normal)
-            isRecruitingButton.backgroundColor = .systemBlue
+            isRecruitingButton.setTitleColor(BackgroundColor.white.color, for: .normal)
+            isRecruitingButton.backgroundColor = ButtonColor.main.color
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
             let newSize = ((isRecruitingButton.titleLabel?.text ?? "") as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
             viewModel.recruitingConstraint.value?.update(offset: newSize.width+20)
@@ -705,7 +717,7 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             let text = data.interest?.filter{ $0.key  == interestingList[indexPath.item] }.first
             
             cell.inputData(text: text?.value ?? "")
-            cell.backgroundColor = UIColor(hexCode: "006FF2")
+            cell.backgroundColor =  ButtonColor.main.color
             cell.layer.cornerRadius = 10
             return cell
         }
@@ -717,7 +729,7 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             let text = data.rule?.filter{ $0.key  == rules[indexPath.item] }.first
             
             cell.inputData(text: text?.value ?? "")
-            cell.backgroundColor = UIColor(hexCode: "f5f5f5")
+            cell.backgroundColor = BackgroundColor.white.color
             cell.layer.cornerRadius = 15
             
             return cell
@@ -728,7 +740,7 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             cell.inputData(profileImg: memberList[indexPath.row].profileImageUrl ?? "",
                            name: memberList[indexPath.row].nickname ?? "",
                            nationality: memberList[indexPath.row].country ?? "")
-            cell.backgroundColor = .systemBackground
+            cell.backgroundColor = BackgroundColor.white.color
             
             return cell
         }

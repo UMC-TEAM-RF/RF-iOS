@@ -44,7 +44,7 @@ final class CertificatedEmailViewModel {
     }
     
     /// 인증번호 인증하는 함수
-    func checkEmailCode() -> Observable<Void>{
+    func checkEmailCode() -> Observable<Bool>{
         let email = emailRelay.value
         let university = SignUpDataViewModel.viewModel.universityRelay.value
         let code = codeRelay.value
@@ -52,9 +52,11 @@ final class CertificatedEmailViewModel {
         return Observable.create { [weak self] observer in
             self?.service.checkEmailCode(email: email, university: university, code: code)
                 .subscribe(
-                    onNext: { _ in
-                        observer.onNext(())
-                        self?.clearAllSubject.accept(true)
+                    onNext: { [weak self] check in
+                        observer.onNext(check)
+                        if check{ 
+                            self?.clearAllSubject.accept(true)
+                        }
                     },onError: { error in
                         observer.onError(error)
                     })

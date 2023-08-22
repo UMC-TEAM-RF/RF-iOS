@@ -16,6 +16,7 @@ final class RuleCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
         label.textAlignment = .center
+        label.textColor = TextColor.first.color
         return label
     }()
     

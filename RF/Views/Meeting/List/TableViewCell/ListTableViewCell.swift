@@ -23,7 +23,7 @@ final class ListTableViewCell: UITableViewCell{
     /// MARK: 모임 이름
     private lazy var meetingTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexCode: "3C3A3A")
+        label.textColor = TextColor.first.color
         label.font = .systemFont(ofSize: 14, weight: .medium)
         return label
     }()
@@ -31,7 +31,7 @@ final class ListTableViewCell: UITableViewCell{
     /// MARK: 소속된 학교 이름
     private lazy var introduceLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexCode: "818181")
+        label.textColor = TextColor.first.color
         label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
     }()
@@ -46,7 +46,7 @@ final class ListTableViewCell: UITableViewCell{
     /// MARK: 소속된 국가 아이콘
     private lazy var countryLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexCode: "818181")
+        label.textColor = TextColor.first.color
         label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
     }()
@@ -54,7 +54,7 @@ final class ListTableViewCell: UITableViewCell{
     /// MARK: 대학이름과 국기 구별하는 View
     private lazy var separateView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hexCode: "818181")
+        view.backgroundColor = StrokeColor.sub.color
         return view
     }()
     

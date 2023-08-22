@@ -15,6 +15,7 @@ final class MakeFreindUIButton: UIButton {
     private lazy var buttonTitle: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
+        label.textColor = TextColor.first.color
         label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return label
     }()
@@ -26,6 +27,7 @@ final class MakeFreindUIButton: UIButton {
         sv.distribution = .fillEqually
         sv.alignment = .fill
         sv.spacing = 3
+        sv.backgroundColor = .clear
         return sv
     }()
     
@@ -33,7 +35,7 @@ final class MakeFreindUIButton: UIButton {
     private lazy var firstDescription: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13)
-//        label.adjustsFontSizeToFitWidth = true
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -41,7 +43,7 @@ final class MakeFreindUIButton: UIButton {
     private lazy var secondDescription: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13)
-//        label.adjustsFontSizeToFitWidth = true
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -69,8 +71,6 @@ final class MakeFreindUIButton: UIButton {
         descriptionStackView.addArrangedSubview(firstDescription)
         descriptionStackView.addArrangedSubview(secondDescription)
         
-//        addSubview(firstDescription)
-//        addSubview(secondDescription)
         addSubview(img)
         
         configureConstraints()
@@ -89,18 +89,6 @@ final class MakeFreindUIButton: UIButton {
             make.trailing.equalTo(img.snp.leading).offset(-20)
             make.top.equalTo(buttonTitle.snp.bottom).offset(10)
         }
-        
-//        firstDescription.snp.makeConstraints { make in
-//            make.top.equalTo(buttonTitle.snp.bottom).offset(10)
-//            make.leading.equalTo(buttonTitle.snp.leading)
-//            make.trailing.equalTo(img.snp.leading)
-//        }
-//
-//        secondDescription.snp.makeConstraints { make in
-//            make.top.equalTo(firstDescription.snp.bottom).offset(10)
-//            make.leading.equalTo(buttonTitle.snp.leading)
-//            make.trailing.equalTo(img.snp.leading)
-//        }
         
         img.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-20)

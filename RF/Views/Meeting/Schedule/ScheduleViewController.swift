@@ -42,24 +42,10 @@ final class ScheduleViewController: UIViewController{
     /// MARK: Calendar Header View 달 표시 하는 버튼
     private lazy var headerButton: UIButton = {
         let btn = UIButton()
-        btn.setTitleColor(.black, for: .normal)
+        btn.setTitleColor(TextColor.first.color, for: .normal)
         btn.setImage(UIImage(systemName: "chevron.down")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btn.semanticContentAttribute = .forceRightToLeft
         btn.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        return btn
-    }()
-    
-    /// MARK: 모임 검색 버튼
-    private lazy var searchButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(systemName: "magnifyingglass")?.resize(newWidth: 25), for: .normal)
-        return btn
-    }()
-    
-    /// MARK: 일정 생성 버튼
-    private lazy var createButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(systemName: "plus")?.resize(newWidth: 25), for: .normal)
         return btn
     }()
     
@@ -84,8 +70,6 @@ final class ScheduleViewController: UIViewController{
     /// MARK: Add UI
     private func addSubviews(){
         view.addSubview(calendarView)
-        view.addSubview(searchButton)
-        view.addSubview(createButton)
         view.addSubview(backButton)
         view.addSubview(headerButton)
         
@@ -115,32 +99,10 @@ final class ScheduleViewController: UIViewController{
             make.centerY.equalTo(calendarView.calendarHeaderView.snp.centerY)
             make.leading.equalTo(backButton.snp.trailing).offset(20)
         }
-        
-        searchButton.snp.makeConstraints { make in
-            make.centerY.equalTo(calendarView.calendarHeaderView.snp.centerY)
-            make.trailing.equalTo(createButton.snp.leading).offset(-20)
-        }
-        
-        createButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-20)
-            make.centerY.equalTo(calendarView.calendarHeaderView.snp.centerY)
-            
-        }
     }
     
     /// MARK: 버튼 클릭 시 실행
     private func clickedButtons(){
-        createButton.rx.tap
-            .bind {
-                print("clicked createButton")
-            }
-            .disposed(by: disposeBag)
-        
-        searchButton.rx.tap
-            .bind {
-                print("clicked searchButton")
-            }
-            .disposed(by: disposeBag)
         
         headerButton.rx.tap
             .bind {

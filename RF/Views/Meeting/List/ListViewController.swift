@@ -18,7 +18,8 @@ final class ListViewController: UIViewController{
     private lazy var leftButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "모임 목록", style: .done, target: self, action: nil)
         btn.isEnabled = false
-        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .disabled)
+        
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color], for: .disabled)
         return btn
     }()
     
@@ -47,7 +48,7 @@ final class ListViewController: UIViewController{
         navigationController?.navigationBar.isHidden = false
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItem = leftButton
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = TextColor.first.color
     }
     
     /// MARK: add UI

@@ -81,7 +81,7 @@ extension ScheduleFSCalendarCell: UITableViewDelegate, UITableViewDataSource{
             .bind { events in
                 if !events.isEmpty && indexPath.row < events.count{
                     cell.inputData(text: events[indexPath.row].description ?? "",
-                                   backgroundColor: .red)
+                                   backgroundColor: UIColor(hexCode: events[indexPath.row].color ?? "", alpha: 1))
                 }
                 else{
                     cell.inputData(text: "",

@@ -17,11 +17,11 @@ final class SearchingViewController: UIViewController{
     /// MARK: 필터링 버튼
     private lazy var filteringBtn: UIButton = {
         let btn = UIButton()
-        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
+        btn.backgroundColor = ButtonColor.normal.color
         btn.setTitle(MeetingFiltering.searching, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         btn.setImage(UIImage(systemName: "chevron.down")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        btn.setTitleColor(.black, for: .normal)
+        btn.setTitleColor(TextColor.first.color, for: .normal)
         btn.semanticContentAttribute = .forceRightToLeft
         return btn
     }()
@@ -48,7 +48,7 @@ final class SearchingViewController: UIViewController{
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = false
         
         moveFilteringScreen()
@@ -65,7 +65,7 @@ final class SearchingViewController: UIViewController{
         filteringScreen.interestingTopicRelay.accept(viewModel.interestingTopicRelay.value)
         filteringScreen.joinNumberRelay.accept(viewModel.joinNumberRelay.value)
         filteringScreen.joinStatusRelay.accept(viewModel.joinStatusRelay.value)
-        
+            
         filteringScreen.ageRelay
             .subscribe(onNext:{ [weak self] data in
 

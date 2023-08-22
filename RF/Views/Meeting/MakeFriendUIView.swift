@@ -17,13 +17,14 @@ final class MakeFriendUIView: UIView {
         let label = UILabel()
         label.text = "취향저격 모임 추천!"
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
     /// MARK: 모임 찾기 버튼
     private lazy var searchMeetingBtn: MakeFreindUIButton = {
         let btn = MakeFreindUIButton()
-        btn.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) /* #f5f5f5 */
+        btn.backgroundColor = ButtonColor.normal.color
         btn.layer.cornerRadius = 20
         return btn
     }()
@@ -31,7 +32,7 @@ final class MakeFriendUIView: UIView {
     /// MARK: 모임 생성하기 버튼
     private lazy var createMeetingBtn: MakeFreindUIButton = {
         let btn = MakeFreindUIButton()
-        btn.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) /* #f5f5f5 */
+        btn.backgroundColor = ButtonColor.normal.color
         btn.layer.cornerRadius = 20
         return btn
     }()

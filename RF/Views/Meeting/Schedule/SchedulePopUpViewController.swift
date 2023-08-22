@@ -16,7 +16,7 @@ final class SchedulePopUpViewController: DimmedViewController {
     /// MARK: Pop up 창 base view
     private lazy var baseView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = BackgroundColor.white.color
         view.layer.cornerRadius = 30
         return view
     }()
@@ -24,6 +24,7 @@ final class SchedulePopUpViewController: DimmedViewController {
     /// MARK: 모임 별명
     private lazy var meetingNickname: UILabel = {
         let label = UILabel()
+        label.textColor = TextColor.first.color
         label.font = .systemFont(ofSize: 12)
         return label
     }()
@@ -31,6 +32,7 @@ final class SchedulePopUpViewController: DimmedViewController {
     /// MARK: 모임 이름
     private lazy var meetingName: UILabel = {
         let label = UILabel()
+        label.textColor = TextColor.first.color
         label.font = .systemFont(ofSize: 15)
         return label
     }()
@@ -39,6 +41,7 @@ final class SchedulePopUpViewController: DimmedViewController {
     private lazy var dateTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
+        label.textColor = TextColor.first.color
         label.text = SchedulePopUp.date
         return label
     }()
@@ -46,6 +49,7 @@ final class SchedulePopUpViewController: DimmedViewController {
     /// MARK: 이벤트 날짜
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
+        label.textColor = TextColor.first.color
         label.font = .systemFont(ofSize: 12)
         return label
     }()
@@ -62,6 +66,7 @@ final class SchedulePopUpViewController: DimmedViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         label.text = SchedulePopUp.time
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -69,6 +74,7 @@ final class SchedulePopUpViewController: DimmedViewController {
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -85,6 +91,7 @@ final class SchedulePopUpViewController: DimmedViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         label.text = SchedulePopUp.place
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -92,6 +99,7 @@ final class SchedulePopUpViewController: DimmedViewController {
     private lazy var placeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -107,6 +115,7 @@ final class SchedulePopUpViewController: DimmedViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         label.text = SchedulePopUp.people
+        label.textColor = TextColor.first.color
         return label
     }()
 
@@ -114,6 +123,7 @@ final class SchedulePopUpViewController: DimmedViewController {
     private lazy var peopleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
+        label.textColor = TextColor.first.color
         return label
     }()
     

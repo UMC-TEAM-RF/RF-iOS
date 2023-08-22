@@ -14,7 +14,7 @@ final class ScheduleTableViewCell: UITableViewCell {
     /// MARK: 일정을 표시할 라벨
     private lazy var eventLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         return label
