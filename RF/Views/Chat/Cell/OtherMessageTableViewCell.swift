@@ -29,13 +29,13 @@ class OtherMessageTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "Unknown"
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
     private lazy var messageView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = ButtonColor.normal.color
         view.layer.cornerRadius = 10
         return view
     }()
@@ -43,7 +43,7 @@ class OtherMessageTableViewCell: UITableViewCell {
     private lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .white
+        label.textColor = TextColor.first.color
         label.numberOfLines = 0
         label.lineBreakMode = .byCharWrapping // 글자 단위로 줄바꿈
         label.isUserInteractionEnabled = true
@@ -55,14 +55,14 @@ class OtherMessageTableViewCell: UITableViewCell {
         button.setImage(UIImage(named: "translate4"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.isHidden = true
-        button.tintColor = .lightGray
+        button.tintColor = TextColor.secondary.color
         return button
     }()
     
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 11, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         label.numberOfLines = 1
         label.text = "오후 7:15"
         return label
@@ -144,16 +144,6 @@ class OtherMessageTableViewCell: UITableViewCell {
             make.width.lessThanOrEqualTo(contentView.snp.width).multipliedBy(0.55)
         }
         
-//        timeLabel.snp.makeConstraints { make in
-//            make.bottom.equalTo(messageView.snp.bottom)
-//            make.leading.equalTo(messageView.snp.trailing).offset(5)
-//        }
-//
-//        translateButton.snp.makeConstraints { make in
-//            make.leading.equalTo(timeLabel.snp.trailing).offset(5)
-//            make.bottom.equalTo(timeLabel.snp.bottom)
-//            make.size.equalTo(24)
-//        }
         translateButton.snp.makeConstraints { make in
             make.leading.equalTo(messageView.snp.trailing).offset(5)
             make.bottom.equalTo(messageView.snp.bottom)

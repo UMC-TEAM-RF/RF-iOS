@@ -13,7 +13,7 @@ class MyMessageTableViewCell: UITableViewCell {
     
     private lazy var messageView: UIView = {
         let view = UIView()
-        view.backgroundColor = .tintColor
+        view.backgroundColor = ButtonColor.main.color
         view.layer.cornerRadius = 10
         return view
     }()
@@ -21,7 +21,7 @@ class MyMessageTableViewCell: UITableViewCell {
     private lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .white
+        label.textColor = ButtonColor.normal.color
         label.numberOfLines = 0
         label.lineBreakMode = .byCharWrapping // 글자 단위로 줄바꿈
         return label
@@ -30,7 +30,7 @@ class MyMessageTableViewCell: UITableViewCell {
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 11, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         label.numberOfLines = 1
         label.text = "오후 7:15"
         return label

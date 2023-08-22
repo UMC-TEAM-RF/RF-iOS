@@ -29,7 +29,7 @@ class ChatListTableViewCell: UITableViewCell {
     // 채팅방 이름
     private lazy var chatTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hexCode: "3C3A3A")
+        label.textColor = TextColor.first.color
         label.font = .systemFont(ofSize: 16, weight: .semibold)
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -40,7 +40,7 @@ class ChatListTableViewCell: UITableViewCell {
     private lazy var contentLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         label.numberOfLines = 2
         
         // 공간이 부족할 시 크기 줄어듦
@@ -52,7 +52,7 @@ class ChatListTableViewCell: UITableViewCell {
     private lazy var personnelLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .semibold)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         label.setContentHuggingPriority(.defaultLow, for: .horizontal)
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return label
@@ -62,7 +62,7 @@ class ChatListTableViewCell: UITableViewCell {
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         label.text = "오후 4:04"
         label.textAlignment = .right
         return label
@@ -81,7 +81,7 @@ class ChatListTableViewCell: UITableViewCell {
     private lazy var newMessageCountLabel: UILabel = {
         let label = UILabel()
         label.text = "1"
-        label.textColor = .white
+        label.textColor = ButtonColor.normal.color
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.textAlignment = .center
         return label

@@ -24,7 +24,7 @@ class ChatRoomViewController: UIViewController {
         sv.spacing = 0
         sv.distribution = .fill
         sv.alignment = .fill
-        sv.backgroundColor = .white
+        sv.backgroundColor = ButtonColor.normal.color
         sv.isHidden = true
         return sv
     }()
@@ -32,9 +32,9 @@ class ChatRoomViewController: UIViewController {
     private lazy var sourceLanguageButton: UIButton = {
         let button = UIButton()
         button.setTitle("한국어 ", for: .normal)
-        button.setTitleColor(.lightGray, for: .normal)
+        button.setTitleColor(TextColor.secondary.color, for: .normal)
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        button.tintColor = .lightGray
+        button.tintColor = TextColor.secondary.color
         button.semanticContentAttribute = .forceRightToLeft
         return button
     }()
@@ -42,9 +42,9 @@ class ChatRoomViewController: UIViewController {
     private lazy var targetLanguageButton: UIButton = {
         let button = UIButton()
         button.setTitle("영어 ", for: .normal)
-        button.setTitleColor(.lightGray, for: .normal)
+        button.setTitleColor(TextColor.secondary.color, for: .normal)
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        button.tintColor = .lightGray
+        button.tintColor = TextColor.secondary.color
         button.semanticContentAttribute = .forceRightToLeft
         return button
     }()
@@ -52,7 +52,7 @@ class ChatRoomViewController: UIViewController {
     private lazy var swapLanguageButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "arrow.left.arrow.right"), for: .normal)
-        button.tintColor = .lightGray
+        button.tintColor = TextColor.secondary.color
         return button
     }()
     
