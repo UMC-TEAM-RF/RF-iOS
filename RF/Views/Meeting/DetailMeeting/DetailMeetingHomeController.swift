@@ -56,7 +56,7 @@ final class DetailMeetingHomeController: UIViewController {
     /// MARK: 대표이미지
     private lazy var titleImg: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "soccer")?.resize(newWidth: 100)
+        img.image = nil
         img.layer.cornerRadius = 20
         img.clipsToBounds = true
         return img
