@@ -25,7 +25,7 @@ final class CertificatedEmailViewModel {
     // MARK: - API Connect
     
     /// 이메일로 인증번호 전송하는 함수
-    func sendingEmail() -> Observable<Void>{
+    func sendingEmail() -> Observable<Response<Mail>>{
         let email = emailRelay.value
         let university = SignUpDataViewModel.viewModel.universityRelay.value
         
@@ -33,7 +33,7 @@ final class CertificatedEmailViewModel {
             self?.service.sendingEmail(email: email, university: university)
                 .subscribe(
                     onNext: { data in
-                        observer.onNext(())
+                        observer.onNext(data)
                     },onError: { error in
                         observer.onError(error)
                     })
