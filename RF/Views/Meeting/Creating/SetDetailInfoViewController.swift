@@ -496,7 +496,7 @@ extension SetDetailInfoViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
         cell.setupTagLabel(selectedRules[indexPath.item])
-        cell.setCellBackgroundColor(.systemGray6)
+        cell.setCellBackgroundColor(ButtonColor.normal.color)
         return cell
     }
     

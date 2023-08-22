@@ -28,7 +28,7 @@ class TagCollectionViewCell: UICollectionViewCell {
     var isSelectedCell: Bool = false {
         didSet {
             isSelectedCell ?
-            setColor(textColor: .white, backgroundColor: .tintColor) : setColor(textColor: .black, backgroundColor: .systemGray6)
+            setColor(textColor: ButtonColor.normal.color, backgroundColor: ButtonColor.main.color) : setColor(textColor: TextColor.first.color, backgroundColor: ButtonColor.normal.color)
         }
     }
     
