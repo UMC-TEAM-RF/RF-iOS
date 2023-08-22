@@ -27,6 +27,14 @@ final class UICheckBox1: UIButton {
     func setTitle(title : String) {
         self.setTitle("  " + title, for: .normal)
     }
+    func setImage(offimage : UIImage, onimage : UIImage) {
+        self.offimage = offimage
+        self.onimage = onimage
+    }
+    func setScale(offImageResize : CGFloat, onImageResize : CGFloat) {
+        self.offimage = offimage?.resize(newWidth: offImageResize)
+        self.onimage = onimage?.resize(newWidth: onImageResize)
+    }
     
     func setFont(size : CGFloat, weight : UIFont.Weight = .regular) {
         self.titleLabel?.font = UIFont.systemFont(ofSize: size, weight: weight)

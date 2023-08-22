@@ -239,6 +239,8 @@ final class CertificatedEmailViewController: UIViewController {
                 self?.viewModel.clearAllSubject
                     .bind(onNext: { check in
                         if check{
+                            guard let email = self?.emailTextField.text else { return }
+                            SignUpDataViewModel.viewModel.emailRelay.accept(email)
                             let setNicknameViewController = SetNicknameViewController()
                             self?.navigationItem.backButtonTitle = " "
                             self?.navigationController?.pushViewController(setNicknameViewController, animated: true)
