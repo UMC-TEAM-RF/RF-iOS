@@ -24,6 +24,7 @@ final class TabBarController: UITabBarController {
         delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTabBarIcon), name: NotificationName.updateTabBarIcon, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSelectedIndex), name: NotificationName.updateSelectedIndex, object: nil)
         
         let vc1 = UINavigationController(rootViewController: HomeViewController())
         let vc2 = UINavigationController(rootViewController: MeetingViewController())
@@ -53,6 +54,10 @@ final class TabBarController: UITabBarController {
         if selectedIndex != 3, let items = tabBar.items, items.indices.contains(3) {
             items[3].image = UIImage(named: "newChat")
         }
+    }
+    
+    @objc func updateSelectedIndex() {
+        selectedIndex = 1
     }
     
 }

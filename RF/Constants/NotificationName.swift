@@ -14,4 +14,5 @@ struct NotificationName {
     static let updateChatList = NSNotification.Name("UpdateChatList")  // 채팅 업데이트
     static let updateChatRoom = NSNotification.Name("UpdateChatRoom")
     static let updateTabBarIcon = NSNotification.Name("UpdateTabBarIcon")
+    static let updateSelectedIndex = NSNotification.Name("UpdateSelectedIndex")
 }

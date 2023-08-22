@@ -234,6 +234,7 @@ final class HomeViewController: UIViewController {
                 self.pageCollectionView.reloadData()
             }
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -447,6 +448,12 @@ final class HomeViewController: UIViewController {
         navigationNotiButton.rx.tap
             .subscribe(onNext: {
                 self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        moreMeetingButton.rx.tap
+            .subscribe(onNext: {
+                NotificationCenter.default.post(name: NotificationName.updateSelectedIndex, object: nil)
             })
             .disposed(by: disposeBag)
     }
