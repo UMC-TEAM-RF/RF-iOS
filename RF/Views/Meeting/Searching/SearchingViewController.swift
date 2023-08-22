@@ -58,11 +58,6 @@ final class SearchingViewController: UIViewController{
         bind()
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        searchBtn.resignFirstResponder()
-//    }
-//
     /// MARK: 필터링 화면 이동
     private func moveFilteringScreen(){
         let filteringScreen = FilteringViewController()
@@ -71,6 +66,7 @@ final class SearchingViewController: UIViewController{
         filteringScreen.interestingTopicRelay.accept(viewModel.interestingTopicRelay.value)
         filteringScreen.joinNumberRelay.accept(viewModel.joinNumberRelay.value)
         filteringScreen.joinStatusRelay.accept(viewModel.joinStatusRelay.value)
+        
             
         filteringScreen.ageRelay
             .subscribe(onNext:{ [weak self] data in
@@ -94,6 +90,12 @@ final class SearchingViewController: UIViewController{
         filteringScreen.joinStatusRelay
             .subscribe(onNext:{ [weak self] data in
                 self?.viewModel.joinStatusRelay.accept(data)
+            })
+            .disposed(by: disposeBag)
+        
+        filteringScreen.checkRelay
+            .subscribe(onNext:{ [weak self] check in
+                self?.viewModel.getData()
             })
             .disposed(by: disposeBag)
         
@@ -164,7 +166,7 @@ extension SearchingViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailedMeetingCollectionViewCell.identifier, for: indexPath) as? DetailedMeetingCollectionViewCell else { return UICollectionViewCell() }
         cell.meetingData = viewModel.meetingList.value[indexPath.row]
-//        cell.isUserInteractionEnabled = true
+
         return cell
     }
     
