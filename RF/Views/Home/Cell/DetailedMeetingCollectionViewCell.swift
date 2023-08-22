@@ -163,10 +163,8 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
             make.edges.equalToSuperview()
         }
         
-        
-        
         descriptLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(8)
+            make.bottom.equalToSuperview().inset(15)
             make.leading.trailing.equalToSuperview().inset(15)
         }
         
@@ -183,7 +181,6 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
             make.trailing.equalToSuperview().inset(10)
             make.centerY.equalTo(titleLabel.snp.centerY)
         }
-        
         
         tagCollectionView.snp.makeConstraints { make in
             make.bottom.equalTo(titleLabel.snp.top).offset(-8)
@@ -206,7 +203,7 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
         }
         titleLabel.text = data.name
         descriptLabel.text = data.content
-        personnelLabel.text = "모임인원: \(data.nativeCount ?? 0)/\(data.memberCount ?? 0)"
+        personnelLabel.text = "모임인원: \(data.currentMemberCount ?? 0)/\(data.memberCount ?? 0)"
         tagCollectionView.reloadData()
     }
     
