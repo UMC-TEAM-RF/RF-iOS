@@ -113,7 +113,7 @@ final class PersonalInterestsViewController: UIViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.backgroundColor = BackgroundColor.white.color
+        button.backgroundColor = ButtonColor.normal.color
         button.setTitleColor(TextColor.first.color, for: .normal)
         button.layer.cornerRadius = 5
         return button
@@ -291,7 +291,7 @@ final class PersonalInterestsViewController: UIViewController {
                 }
                 else{
                     self?.nextButton.setTitleColor(TextColor.first.color, for: .normal)
-                    self?.nextButton.backgroundColor = BackgroundColor.white.color
+                    self?.nextButton.backgroundColor = ButtonColor.normal.color
                 }
             })
             .disposed(by: disposeBag)

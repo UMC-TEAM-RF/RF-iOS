@@ -140,7 +140,7 @@ final class SignUpViewController: UIViewController {
         
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItem = leftButton
-        navigationController?.navigationBar.tintColor = BackgroundColor.dark.color
+        navigationController?.navigationBar.tintColor = TextColor.first.color
         view.backgroundColor = .white
         
         addSubViews()

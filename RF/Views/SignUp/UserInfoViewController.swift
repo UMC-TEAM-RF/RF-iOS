@@ -45,7 +45,7 @@ final class UserInfoViewController: UIViewController {
         button.setTitle("  " + "국가를 선택해주세요", for: .normal)
         button.setTitleColor(TextColor.secondary.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        button.backgroundColor = BackgroundColor.white.color
+        button.backgroundColor = ButtonColor.normal.color
         button.layer.cornerRadius = 5
         button.contentHorizontalAlignment = .left
         return button
@@ -272,7 +272,7 @@ final class UserInfoViewController: UIViewController {
                     self?.nextButton.setTitleColor(ButtonColor.normal.color, for: .normal)
                 }
                 else{
-                    self?.nextButton.backgroundColor = BackgroundColor.white.color
+                    self?.nextButton.backgroundColor = ButtonColor.normal.color
                     self?.nextButton.setTitleColor(TextColor.first.color, for: .normal)
                 }
             }

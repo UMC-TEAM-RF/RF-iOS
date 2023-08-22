@@ -325,7 +325,7 @@ final class TermsConditionsViewController: UIViewController {
     
     
     private func buttonInactivate(_ button : UIButton){
-        button.backgroundColor = BackgroundColor.white.color
+        button.backgroundColor = ButtonColor.normal.color
         button.setTitleColor(TextColor.secondary.color, for: .normal)
     }
     
