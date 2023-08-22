@@ -153,6 +153,8 @@
 		57AF3D582A85FE8800C09715 /* Papago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF3D572A85FE8800C09715 /* Papago.swift */; };
 		57AF3D5A2A86019600C09715 /* Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF3D592A86019600C09715 /* Headers.swift */; };
 		57AF3D5C2A94957300C09715 /* ChatMenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF3D5B2A94957300C09715 /* ChatMenuOption.swift */; };
+		57AF3D5F2A94C57800C09715 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF3D5E2A94C57800C09715 /* ReportService.swift */; };
+		57AF3D612A94C63100C09715 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF3D602A94C63100C09715 /* Report.swift */; };
 		57DD3E532A7E3033009F7139 /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */; };
 		57DD3E572A7E4C7E009F7139 /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */; };
 		57DD3E612A80BBD0009F7139 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E602A80BBD0009F7139 /* ChatService.swift */; };
@@ -318,6 +320,8 @@
 		57AF3D572A85FE8800C09715 /* Papago.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Papago.swift; sourceTree = "<group>"; };
 		57AF3D592A86019600C09715 /* Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Headers.swift; sourceTree = "<group>"; };
 		57AF3D5B2A94957300C09715 /* ChatMenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMenuOption.swift; sourceTree = "<group>"; };
+		57AF3D5E2A94C57800C09715 /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
+		57AF3D602A94C63100C09715 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
 		57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		57DD3E602A80BBD0009F7139 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
@@ -606,6 +610,7 @@
 			isa = PBXGroup;
 			children = (
 				3B0E2EB72A80FE8400797782 /* Meeting */,
+				57AF3D5D2A94C56300C09715 /* Report */,
 				3BC7D35B2A7D263100D92356 /* SignUp */,
 				3BD68EF92A77987B003A57A7 /* SignIn */,
 				57DD3E5F2A80BBC5009F7139 /* Chat */,
@@ -737,6 +742,7 @@
 				3BD68EF62A779741003A57A7 /* SignIn.swift */,
 				3B6C312C2A7E26E1008FADA1 /* Mail.swift */,
 				3B6C31282A7E2166008FADA1 /* User.swift */,
+				57AF3D602A94C63100C09715 /* Report.swift */,
 			);
 			path = Codable;
 			sourceTree = "<group>";
@@ -946,6 +952,14 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		57AF3D5D2A94C56300C09715 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				57AF3D5E2A94C57800C09715 /* ReportService.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
 		57DD3E5F2A80BBC5009F7139 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -1150,6 +1164,7 @@
 				57AF3D562A84DAE500C09715 /* ViewConstants.swift in Sources */,
 				3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */,
 				570063BF2A779D440051F42A /* MenuButtonDelegate.swift in Sources */,
+				57AF3D5F2A94C57800C09715 /* ReportService.swift in Sources */,
 				3B6C312D2A7E26E1008FADA1 /* Mail.swift in Sources */,
 				3BC7D35A2A7D244F00D92356 /* SignUpViewModel.swift in Sources */,
 				3BC35CF52A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
@@ -1204,6 +1219,7 @@
 				57DD3E532A7E3033009F7139 /* KeyboardInputView.swift in Sources */,
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
 				3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */,
+				57AF3D612A94C63100C09715 /* Report.swift in Sources */,
 				3BD700C22A793371005C7D7E /* ChooseUserTableViewCell.swift in Sources */,
 				3B0BA20A2A8DEEAA00F7E818 /* GradientView.swift in Sources */,
 				3B57FFD32A741972007DB482 /* SchedulePopUpViewModel.swift in Sources */,
