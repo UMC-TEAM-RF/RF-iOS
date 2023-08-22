@@ -442,7 +442,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
             // 메시지 전송 전 언어 코드 확인
             ChatService.shared.detectLanguage(text) { result in
                 // 언어 코드 확인 후 메시지 전송
-                ChatService.shared.send(message: Message(sender: Sender(userId: 1, userName: "JD", userImageUrl: "TEst"), type: MessageType.text, content: text, langCode: result, partyName: "as"), partyId: self.channel.id)
+                ChatService.shared.send(message: Message(sender: Sender(userId: 1, userName: "JD", userImageUrl: "TEst"), type: MessageType.text, content: text, langCode: result, partyName: "as", partyId: self.channel.id), partyId: self.channel.id)
             }
         }
         inputBarTopStackView.isHidden = true
