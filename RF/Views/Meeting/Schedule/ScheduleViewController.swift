@@ -69,7 +69,7 @@ final class ScheduleViewController: UIViewController{
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = BackgroundColor.white.color
+        view.backgroundColor = .white
         
         getData()
         addSubviews()

@@ -105,7 +105,7 @@ final class MeetingViewController: UIViewController{
     // MARK:  - init
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         
         addSubviews()
         clickedTopBtns()

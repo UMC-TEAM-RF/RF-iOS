@@ -48,7 +48,7 @@ final class SearchingViewController: UIViewController{
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = false
         
         moveFilteringScreen()

@@ -42,7 +42,7 @@ final class DetailMeetingHomeController: UIViewController {
     /// MARK: Scrollview
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
-        scroll.backgroundColor = BackgroundColor.white.color
+        scroll.backgroundColor = .white
         return scroll
     }()
     
@@ -305,7 +305,7 @@ final class DetailMeetingHomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = BackgroundColor.white.color
+        view.backgroundColor = .white
         
         addSubviews()
         clickedButtons()
@@ -717,7 +717,7 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             let text = data.interest?.filter{ $0.key  == interestingList[indexPath.item] }.first
             
             cell.inputData(text: text?.value ?? "")
-            cell.backgroundColor = ButtonColor.normal.color
+            cell.backgroundColor =  ButtonColor.main.color
             cell.layer.cornerRadius = 10
             return cell
         }

@@ -111,7 +111,7 @@ final class FilteringViewController: UIViewController{
         let btn = UIButton()
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         btn.setTitle(MeetingFiltering.done, for: .normal)
-        btn.setTitleColor(TextColor.first.color, for: .normal)
+        btn.setTitleColor(BackgroundColor.white.color, for: .normal)
         btn.backgroundColor = ButtonColor.main.color
         btn.layer.cornerRadius = 15
         return btn
@@ -135,7 +135,7 @@ final class FilteringViewController: UIViewController{
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = BackgroundColor.white.color
+        view.backgroundColor = .white
         addSubviews()
         clickedBtns()
         getDataFromViewModel()
@@ -303,7 +303,7 @@ final class FilteringViewController: UIViewController{
                 cell?.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell?.backgroundColor = BackgroundColor.white.color
+                cell?.backgroundColor = BackgroundColor.gray.color
                 cell?.setColor(color: TextColor.first.color)
             }
         }
@@ -319,7 +319,7 @@ final class FilteringViewController: UIViewController{
                 cell?.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell?.backgroundColor = BackgroundColor.white.color
+                cell?.backgroundColor = BackgroundColor.gray.color
                 cell?.setColor(color: TextColor.first.color)
             }
         }
@@ -334,7 +334,7 @@ final class FilteringViewController: UIViewController{
                 cell?.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell?.backgroundColor = BackgroundColor.white.color
+                cell?.backgroundColor = BackgroundColor.gray.color
                 cell?.setColor(color: TextColor.first.color)
             }
         }
@@ -349,7 +349,7 @@ final class FilteringViewController: UIViewController{
                 cell?.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell?.backgroundColor = BackgroundColor.white.color
+                cell?.backgroundColor = BackgroundColor.gray.color
                 cell?.setColor(color: TextColor.first.color)
             }
         }
@@ -367,7 +367,7 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
                 cell.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell.backgroundColor = BackgroundColor.white.color
+                cell.backgroundColor = BackgroundColor.gray.color
                 cell.setColor(color: TextColor.first.color)
             }
             
@@ -383,7 +383,7 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
                 cell.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell.backgroundColor = BackgroundColor.white.color
+                cell.backgroundColor = BackgroundColor.gray.color
                 cell.setColor(color: TextColor.first.color)
             }
             
@@ -399,7 +399,7 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
                 cell.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell.backgroundColor = BackgroundColor.white.color
+                cell.backgroundColor = BackgroundColor.gray.color
                 cell.setColor(color: TextColor.first.color)
             }
             
@@ -415,7 +415,7 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
                 cell.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell.backgroundColor = BackgroundColor.white.color
+                cell.backgroundColor = BackgroundColor.gray.color
                 cell.setColor(color: TextColor.first.color)
             }
             
