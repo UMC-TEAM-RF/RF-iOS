@@ -265,12 +265,17 @@ final class CertificatedEmailViewController: UIViewController {
     private func checkEmailCode(){
         viewModel.checkEmailCode()
             .subscribe(
-                onNext: { [weak self] in
-                    self?.nextButton.backgroundColor = .systemBlue
-                    self?.nextButton.setTitleColor(.white, for: .normal)
+                onNext: { [weak self] check in
+                    if check{
+                        self?.nextButton.backgroundColor = .systemBlue
+                        self?.nextButton.setTitleColor(.white, for: .normal)
+                    }
+                    else{
+                        self?.showErrorAlert(errorText: "인증 코드를 다시 입력해주세요")
+                    }
                 },
                 onError: { [weak self] error in
-                    self?.showErrorAlert(errorText: "인증 코드를 다시 입력해주세요")
+                    self?.showErrorAlert(errorText: "다시 요청해 주세요")
                 })
             .disposed(by: disposeBag)
     }
