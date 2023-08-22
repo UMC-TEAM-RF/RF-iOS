@@ -26,7 +26,7 @@ final class MeetingManageUIButton: UIButton {
         label.text = "모임 일정 관리"
         label.backgroundColor = .clear
         label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     

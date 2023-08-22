@@ -15,7 +15,7 @@ final class MeetingCreatePopUpViewController: DimmedViewController{
     /// MARK: 배경 뷰
     private lazy var baseUIView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = BackgroundColor.white.color
         view.layer.cornerRadius = 20
         return view
     }()
@@ -23,7 +23,7 @@ final class MeetingCreatePopUpViewController: DimmedViewController{
     /// MARK: 추가 정보 보이는 뷰
     private lazy var lineUIView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hexCode: "C2C2C3")
+        view.backgroundColor = StrokeColor.sub.color
         return view
     }()
 
@@ -41,7 +41,7 @@ final class MeetingCreatePopUpViewController: DimmedViewController{
     private lazy var checkButton: UIButton = {
         let btn = UIButton()
         btn.setTitle(MeetingCreatePopUp.check, for: .normal)
-        btn.setTitleColor(.systemBlue, for: .normal)
+        btn.setTitleColor(ButtonColor.main.color, for: .normal)
         btn.backgroundColor = .clear
         btn.titleLabel?.font = .systemFont(ofSize: 17)
         return btn

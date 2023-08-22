@@ -24,7 +24,7 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 10)
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -33,6 +33,7 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 10)
         label.textAlignment = .center
+        label.textColor = TextColor.first.color
         return label
     }()
     

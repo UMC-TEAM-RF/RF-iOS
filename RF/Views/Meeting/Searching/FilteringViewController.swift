@@ -21,6 +21,7 @@ final class FilteringViewController: UIViewController{
     private lazy var joinStatusTitleLabel: UILabel = {
         let label = UILabel()
         label.text = MeetingFiltering.joinStatus
+        label.textColor = TextColor.first.color
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         return label
     }()
@@ -39,6 +40,7 @@ final class FilteringViewController: UIViewController{
     private lazy var ageTitleLabel: UILabel = {
         let label = UILabel()
         label.text = MeetingFiltering.ageTitle
+        label.textColor = TextColor.first.color
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         return label
     }()
@@ -57,6 +59,7 @@ final class FilteringViewController: UIViewController{
     private lazy var joinNumberTitleLabel: UILabel = {
         let label = UILabel()
         label.text = MeetingFiltering.joinNumber
+        label.textColor = TextColor.first.color
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         return label
     }()
@@ -76,6 +79,7 @@ final class FilteringViewController: UIViewController{
     private lazy var interestingTopicTitleLabel: UILabel = {
         let label = UILabel()
         label.text = MeetingFiltering.interestingTitle
+        label.textColor = TextColor.first.color
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         return label
     }()
@@ -97,7 +101,7 @@ final class FilteringViewController: UIViewController{
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .light)
         btn.setImage(UIImage(systemName: "arrow.counterclockwise")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btn.setTitle(MeetingFiltering.filterClear, for: .normal)
-        btn.setTitleColor(.black, for: .normal)
+        btn.setTitleColor(TextColor.first.color, for: .normal)
         btn.backgroundColor = .clear
         return btn
     }()
@@ -107,8 +111,8 @@ final class FilteringViewController: UIViewController{
         let btn = UIButton()
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         btn.setTitle(MeetingFiltering.done, for: .normal)
-        btn.setTitleColor(.black, for: .normal)
-        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
+        btn.setTitleColor(TextColor.first.color, for: .normal)
+        btn.backgroundColor = ButtonColor.main.color
         btn.layer.cornerRadius = 15
         return btn
     }()
@@ -131,7 +135,7 @@ final class FilteringViewController: UIViewController{
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = BackgroundColor.white.color
         addSubviews()
         clickedBtns()
         getDataFromViewModel()
@@ -295,12 +299,12 @@ final class FilteringViewController: UIViewController{
         for indexPath in joinStatusCollectionView.indexPathsForVisibleItems {
             let cell = joinStatusCollectionView.cellForItem(at: indexPath) as? AgeCollectionViewCell
             if item == indexPath {
-                cell?.backgroundColor = UIColor.systemBlue
-                cell?.setColor(color: .white)
+                cell?.backgroundColor = ButtonColor.main.color
+                cell?.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell?.backgroundColor = UIColor(hexCode: "F5F5F5")
-                cell?.setColor(color: .black)
+                cell?.backgroundColor = BackgroundColor.white.color
+                cell?.setColor(color: TextColor.first.color)
             }
         }
     }
@@ -311,12 +315,12 @@ final class FilteringViewController: UIViewController{
         for indexPath in ageCollectionView.indexPathsForVisibleItems {
             let cell = ageCollectionView.cellForItem(at: indexPath) as? AgeCollectionViewCell
             if item == indexPath {
-                cell?.backgroundColor = UIColor.systemBlue
-                cell?.setColor(color: .white)
+                cell?.backgroundColor = ButtonColor.main.color
+                cell?.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell?.backgroundColor = UIColor(hexCode: "F5F5F5")
-                cell?.setColor(color: .black)
+                cell?.backgroundColor = BackgroundColor.white.color
+                cell?.setColor(color: TextColor.first.color)
             }
         }
     }
@@ -326,12 +330,12 @@ final class FilteringViewController: UIViewController{
         for indexPath in joinNumberCollectionView.indexPathsForVisibleItems {
             let cell = joinNumberCollectionView.cellForItem(at: indexPath) as? AgeCollectionViewCell
             if item == indexPath {
-                cell?.backgroundColor = UIColor.systemBlue
-                cell?.setColor(color: .white)
+                cell?.backgroundColor = ButtonColor.main.color
+                cell?.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell?.backgroundColor = UIColor(hexCode: "F5F5F5")
-                cell?.setColor(color: .black)
+                cell?.backgroundColor = BackgroundColor.white.color
+                cell?.setColor(color: TextColor.first.color)
             }
         }
     }
@@ -341,12 +345,12 @@ final class FilteringViewController: UIViewController{
         for indexPath in interestingTopicCollectionView.indexPathsForVisibleItems {
             let cell = interestingTopicCollectionView.cellForItem(at: indexPath) as? InterestingTopicCollectionViewCell
             if items.contains(indexPath) {
-                cell?.backgroundColor = UIColor.systemBlue
-                cell?.setColor(color: .white)
+                cell?.backgroundColor = ButtonColor.main.color
+                cell?.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell?.backgroundColor = UIColor(hexCode: "F5F5F5")
-                cell?.setColor(color: .black)
+                cell?.backgroundColor = BackgroundColor.white.color
+                cell?.setColor(color: TextColor.first.color)
             }
         }
     }
@@ -359,12 +363,12 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AgeCollectionViewCell.identifier, for: indexPath) as? AgeCollectionViewCell else {return UICollectionViewCell() }
             
             if viewModel.checkJoinStatusItem(at: indexPath){
-                cell.backgroundColor = .systemBlue
-                cell.setColor(color: .white)
+                cell.backgroundColor = ButtonColor.main.color
+                cell.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell.backgroundColor = UIColor(hexCode: "F5F5F5")
-                cell.setColor(color: .black)
+                cell.backgroundColor = BackgroundColor.white.color
+                cell.setColor(color: TextColor.first.color)
             }
             
             cell.layer.cornerRadius = 10
@@ -375,12 +379,12 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AgeCollectionViewCell.identifier, for: indexPath) as? AgeCollectionViewCell else {return UICollectionViewCell() }
             
             if viewModel.checkRemainAgeItem(at: indexPath){
-                cell.backgroundColor = .systemBlue
-                cell.setColor(color: .white)
+                cell.backgroundColor = ButtonColor.main.color
+                cell.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell.backgroundColor = UIColor(hexCode: "F5F5F5")
-                cell.setColor(color: .black)
+                cell.backgroundColor = BackgroundColor.white.color
+                cell.setColor(color: TextColor.first.color)
             }
             
             cell.layer.cornerRadius = 10
@@ -391,12 +395,12 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AgeCollectionViewCell.identifier, for: indexPath) as? AgeCollectionViewCell else {return UICollectionViewCell() }
             
             if viewModel.checkRemainjoinNumberItems(at: indexPath){
-                cell.backgroundColor = .systemBlue
-                cell.setColor(color: .white)
+                cell.backgroundColor = ButtonColor.main.color
+                cell.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell.backgroundColor = UIColor(hexCode: "F5F5F5")
-                cell.setColor(color: .black)
+                cell.backgroundColor = BackgroundColor.white.color
+                cell.setColor(color: TextColor.first.color)
             }
             
             cell.layer.cornerRadius = 10
@@ -407,16 +411,16 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestingTopicCollectionViewCell.identifier, for: indexPath) as? InterestingTopicCollectionViewCell else {return UICollectionViewCell() }
             
             if viewModel.checkRemainInterestingTopicItems(at: indexPath){
-                cell.backgroundColor = .systemBlue
-                cell.setColor(color: .white)
+                cell.backgroundColor = ButtonColor.main.color
+                cell.setColor(color: BackgroundColor.white.color)
             }
             else{
-                cell.backgroundColor = UIColor(hexCode: "F5F5F5")
-                cell.setColor(color: .black)
+                cell.backgroundColor = BackgroundColor.white.color
+                cell.setColor(color: TextColor.first.color)
             }
             
             cell.layer.cornerRadius = 10
-            cell.layer.borderColor = UIColor(hexCode: "DADADA").cgColor
+            cell.layer.borderColor = BackgroundColor.dark.color.cgColor
             
             cell.inputData(text: MeetingFiltering.interestingTopicList[indexPath.row])
             return cell

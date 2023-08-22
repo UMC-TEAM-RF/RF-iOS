@@ -35,7 +35,7 @@ final class DetailMeetingJoinPopUpViewController: DimmedViewController{
     /// MARK: 추가 정보 보이는 뷰
     private lazy var lineUIView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hexCode: "C2C2C3")
+        view.backgroundColor = BackgroundColor.gray.color
         return view
     }()
     
@@ -45,7 +45,7 @@ final class DetailMeetingJoinPopUpViewController: DimmedViewController{
         btn.setTitle(DetailMeetingJoinPopUp.check, for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 18)
         btn.layer.cornerRadius = 15
-        btn.setTitleColor(.systemBlue, for: .normal)
+        btn.setTitleColor(ButtonColor.main.color, for: .normal)
         return btn
     }()
     
