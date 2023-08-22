@@ -501,10 +501,12 @@ final class SetDetailInfoViewController: UIViewController {
         CreateViewModel.viewModel.rule.accept(viewModel.rule.value)
         
         CreateViewModel.viewModel.clickedNextButton()
-            .subscribe(onNext:{ [weak self] in
-                self?.tabBarController?.tabBar.isHidden = false
-                self?.navigationController?.popToRootViewController(animated: true)
-                self?.navigationController?.pushViewController(DetailMeetingHomeController( ), animated: true)
+            .subscribe(onNext:{ [weak self] check in
+                if check{
+                    self?.tabBarController?.tabBar.isHidden = false
+                    self?.navigationController?.popToRootViewController(animated: true)
+                    self?.navigationController?.pushViewController(DetailMeetingHomeController(), animated: true)
+                }
             })
             .disposed(by: disposeBag)
     }

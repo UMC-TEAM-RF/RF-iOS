@@ -47,7 +47,7 @@ final class CreateViewModel {
     
     
     /// 모든 조건들을 다 선택했는지 확인하는 함수
-    func clickedNextButton() -> Observable<Void> {
+    func clickedNextButton() -> Observable<Bool> {
 
         let userId = UserDefaults.standard.string(forKey: "UserId") ?? ""
         

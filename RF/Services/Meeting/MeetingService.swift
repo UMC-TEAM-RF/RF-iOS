@@ -68,7 +68,7 @@ final class MeetingService {
     }
     
     /// 모임 생성
-    func createMeeting(meeting: Meeting, image: UIImage) -> Observable<Void> {
+    func createMeeting(meeting: Meeting, image: UIImage) -> Observable<Bool> {
         let url = "\(Domain.restApi)\(MeetingPath.createMeeting)"
         let headers: HTTPHeaders = ["Content-Type": "multipart/form-data"]
         
@@ -92,7 +92,7 @@ final class MeetingService {
                 switch response.result {
                 case .success(let data):
                     print(data)
-                    observer.onNext(())
+                    observer.onNext(data.isSuccess ?? false)
                 case .failure(let error):
                     print(error)
                 }
