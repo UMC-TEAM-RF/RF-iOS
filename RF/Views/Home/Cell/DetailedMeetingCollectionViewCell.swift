@@ -220,7 +220,10 @@ extension DetailedMeetingCollectionViewCell: UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as! TagCollectionViewCell
         guard let meeting = meetingData else { return UICollectionViewCell() }
-        cell.setupTagLabel("\(meeting.interests?[indexPath.item] ?? "")")
+        let data = EnumFile.enumfile.enumList.value
+        let text = data.interest?.filter{ $0.key  == meeting.interests?[indexPath.item] ?? "" }.first
+        
+        cell.setupTagLabel(text?.value ?? "")
         return cell
     }
     

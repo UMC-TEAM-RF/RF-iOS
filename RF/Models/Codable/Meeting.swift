@@ -22,6 +22,7 @@ struct Meeting: Codable {
     var content: String?    // 소개글
     var rules: [String]?  // 규칙
     var preferAges: String? // 선호 연령대
+    var isRecruiting: Bool? // 모집중 확인
     var language: String?   // 사용 언어
     var location: String?   // 활동 장소
     var ownerId: Int?   // 모임 장

@@ -478,6 +478,7 @@ final class SetDetailInfoViewController: UIViewController {
             .subscribe(onNext:{ [weak self] in
                 self?.tabBarController?.tabBar.isHidden = false
                 self?.navigationController?.popToRootViewController(animated: true)
+                self?.navigationController?.pushViewController(DetailMeetingHomeController( ), animated: true)
             })
             .disposed(by: disposeBag)
     }

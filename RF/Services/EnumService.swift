@@ -20,6 +20,7 @@ final class EnumService {
                        method: .get)
             .validate(statusCode: 200..<201)
             .responseDecodable(of: Enums.self) { response in
+                print(response)
                 switch response.result{
                 case .success(let data):
                     observer.onNext(data)

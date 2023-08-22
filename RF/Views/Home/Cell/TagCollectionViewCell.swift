@@ -63,9 +63,7 @@ class TagCollectionViewCell: UICollectionViewCell {
     }
     
     func setupTagLabel(_ text: String) {
-        let data = EnumFile.enumfile.enumList.value
-        let text = data.interest?.filter{ $0.key  == text }.first
-        tagLabel.text = text?.value
+        tagLabel.text = text
     }
     
     func setCellBackgroundColor(_ color: UIColor) {

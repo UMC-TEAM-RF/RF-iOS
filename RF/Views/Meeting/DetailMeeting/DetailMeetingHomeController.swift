@@ -15,6 +15,30 @@ import RxRelay
 /// 모임 상세보기 '홈' 화면
 final class DetailMeetingHomeController: UIViewController {
     
+    /// MARK: 네비게이션 바 왼쪽 아이템
+    private lazy var leftButton: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "다국적 사람들과 소통해요!", style: .done, target: self, action: nil)
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20,weight: .bold)], for: .disabled)
+        return btn
+    }()
+    
+    /// MARK: 카톡, 메시지, 인스타그램 공유 버튼
+    private lazy var firstButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "exclamationmark.circle"), for: .normal)
+        btn.tintColor = .black
+        return btn
+    }()
+    
+    /// MARK: 카톡, 메시지, 인스타그램 공유 버튼
+    private lazy var secondButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        btn.tintColor = .black
+        return btn
+    }()
+    
     /// MARK: Scrollview
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
@@ -46,6 +70,13 @@ final class DetailMeetingHomeController: UIViewController {
         cv.backgroundColor = .clear
         cv.isScrollEnabled = false
         return cv
+    }()
+    
+    /// MARK: 모집중, 모집 마감 표시
+    private lazy var isRecruitingButton: UIButton = {
+        let btn = UIButton()
+        btn.layer.cornerRadius = 10
+        return btn
     }()
     
     /// MARK: 모임 이름
@@ -265,8 +296,8 @@ final class DetailMeetingHomeController: UIViewController {
         view.backgroundColor = .systemBackground
         
         addSubviews()
+        clickedButtons()
         getData()
-        clickedBtns()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -280,6 +311,10 @@ final class DetailMeetingHomeController: UIViewController {
     
     /// Add UI
     private func addSubviews(){
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = leftButton
+        navigationController?.navigationBar.tintColor = .black
+        
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -290,6 +325,7 @@ final class DetailMeetingHomeController: UIViewController {
         interestingCollectionView.delegate = self
         interestingCollectionView.register(InterestingCollectionViewCell.self, forCellWithReuseIdentifier: InterestingCollectionViewCell.identifier)
         
+        contentView.addSubview(isRecruitingButton)
         contentView.addSubview(titleLabel)
         
         memberUIView.addSubview(memberTitleLabel)
@@ -331,6 +367,7 @@ final class DetailMeetingHomeController: UIViewController {
         view.addSubview(likeBtn)
         view.addSubview(joinBtn)
         
+        setRightBarButtons()
         configureCollectionView()
     }
     
@@ -356,8 +393,15 @@ final class DetailMeetingHomeController: UIViewController {
         interestingCollectionView.snp.makeConstraints { make in
             make.top.equalTo(titleImg.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
+            make.trailing.equalTo(isRecruitingButton.snp.leading)
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/25)
+        }
+        
+        isRecruitingButton.snp.makeConstraints { make in
+            make.top.equalTo(interestingCollectionView.snp.top)
+            make.trailing.equalToSuperview().offset(-10)
+            make.bottom.equalTo(interestingCollectionView.snp.bottom)
+            viewModel.recruitingConstraint.accept(make.width.equalTo(1).constraint)
         }
 
         /// 모임 제목
@@ -507,29 +551,82 @@ final class DetailMeetingHomeController: UIViewController {
         
     }
     
-    /// MARK: 버튼 클릭 함수
-    private func clickedBtns(){
+    /// MARK: 네비게이션 바 오른쪽 버튼들
+    private func setRightBarButtons(){
+        let firstBarButton = UIBarButtonItem(customView: firstButton)
+        let secondBarButton = UIBarButtonItem(customView: secondButton)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0)
+        
+        firstButton.configuration = configuration
+        secondButton.configuration = configuration
+        
+        navigationItem.rightBarButtonItems = [secondBarButton, firstBarButton]
+    }
+    
+    /// MARK: 모임 주인이 아닌 사람 버튼 클릭 함수
+    private func clickedButtons(){
+        
         likeBtn.rx.tap
-            .subscribe(onNext:{
-                print("clicked like Button")
+            .subscribe(onNext:{ [weak self] in
+                guard let self = self else { return }
+                if viewModel.checkOwner.value {
+                    print("clicked owner like Button")
+                }
+                else {
+                    print("clicked like Button")
+                }
             })
             .disposed(by: disposeBag)
         
         joinBtn.rx.tap
             .subscribe(onNext:{ [weak self] in
-                print("clicked join Button")
-                let detailMeetingJoinPopUpViewController = DetailMeetingJoinPopUpViewController()
-                detailMeetingJoinPopUpViewController.meetingIdRelay.accept(self?.meetingIdRelay.value)
-                detailMeetingJoinPopUpViewController.clicekdButtonSubject
-                    .bind { [weak self] in
-                        if $0{
-                            self?.navigationController?.popToRootViewController(animated: true)
+                guard let self = self else { return }
+                if viewModel.checkOwner.value {
+                    print("clicked owner join Button")
+                }
+                else {
+                    print("clicked join Button")
+                    let detailMeetingJoinPopUpViewController = DetailMeetingJoinPopUpViewController()
+                    detailMeetingJoinPopUpViewController.meetingIdRelay.accept(self.meetingIdRelay.value)
+                    detailMeetingJoinPopUpViewController.clicekdButtonSubject
+                        .bind { [weak self] in
+                            if $0{
+                                self?.navigationController?.popToRootViewController(animated: true)
+                            }
                         }
-                    }
-                    .disposed(by: self?.disposeBag ?? DisposeBag())
-                self?.present(detailMeetingJoinPopUpViewController, animated: true)
+                        .disposed(by: disposeBag)
+                    present(detailMeetingJoinPopUpViewController, animated: true)
+                }
             })
             .disposed(by: disposeBag)
+        
+        firstButton.rx.tap
+            .bind { [weak self] in
+                guard let self = self else { return }
+                if viewModel.checkOwner.value {
+                    print("owner: 수정하기 ")
+                }
+                else {
+                    print("not owner")
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        secondButton.rx.tap
+            .bind { [weak self] in
+                guard let self = self else { return }
+                if viewModel.checkOwner.value {
+                    print("owner1: 수정하기 ")
+                }
+                else {
+                    print("not2 owner")
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        
     }
     
     /// MARK: 테스트용 더미 데이터
@@ -537,17 +634,61 @@ final class DetailMeetingHomeController: UIViewController {
         
         viewModel.getData(meetingIntroduction: meetingIntroduction, id: meetingIdRelay.value ?? 0)
         
-        
         viewModel.meetingInfo
             .subscribe(onNext: { [weak self] data in
-//                self?.titleImg.image = 이미지 넣기
-                self?.memberContentLabel.text = "\(data?.memberCount ?? 0)"
-                self?.ageContentLabel.text = data?.preferAges ?? ""
-                self?.languageContentLabel.text = data?.language ?? ""
-                self?.placeContentLabel.text = data?.location ?? ""
+                guard let self = self else { return }
+                if let url = URL(string: data?.imageFilePath ?? ""){
+                    titleImg.load(url: url)
+                }
+                memberContentLabel.text = "\(data?.memberCount ?? 0)"
+                ageContentLabel.text = data?.preferAges ?? ""
+                languageContentLabel.text = data?.language ?? ""
+                placeContentLabel.text = data?.location ?? ""
+                joinMemberNumberLabel.text = "\(String(describing: data?.users?.count ?? 0))/\(data?.memberCount ?? 0)"
+                isCheckRecruiting(isRecruiting: data?.isRecruiting ?? false)
+                interestingCollectionView.reloadData()
+                ruleCollectionView.reloadData()
+                joinMemberCollectionView.reloadData()
+                setLayoutAfterGetData(data: data)
             })
             .disposed(by: disposeBag)
         
+        
+    }
+    
+    /// MARK: 모집중인지 확인
+    private func isCheckRecruiting(isRecruiting: Bool){
+        
+        if isRecruiting {
+            isRecruitingButton.setTitle("모집 중", for: .normal)
+            isRecruitingButton.setTitleColor(.white, for: .normal)
+            isRecruitingButton.backgroundColor = .systemBlue
+            let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+            let newSize = ((isRecruitingButton.titleLabel?.text ?? "") as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
+            viewModel.recruitingConstraint.value?.update(offset: newSize.width+20)
+        }
+        else {
+            isRecruitingButton.setTitle("모집 마감", for: .normal)
+            isRecruitingButton.setTitleColor(.white, for: .normal)
+            isRecruitingButton.backgroundColor = .systemBlue
+            let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+            let newSize = ((isRecruitingButton.titleLabel?.text ?? "") as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
+            viewModel.recruitingConstraint.value?.update(offset: newSize.width+20)
+        }
+        
+    }
+    
+    /// MARK: API 통신후 변화해야하는 UI
+    private func setLayoutAfterGetData(data: Meeting?){
+        let userId = Int(UserDefaults.standard.string(forKey: "UserId") ?? "")
+        if (data?.ownerId ?? 0) == userId {
+            likeBtn.setTitle("마감하기", for: .normal)
+            joinBtn.setTitle("???", for: .normal)
+            firstButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+            viewModel.checkOwner.accept(true)
+        }else{
+            viewModel.checkOwner.accept(false)
+        }
         
     }
     
@@ -560,7 +701,10 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestingCollectionViewCell.identifier, for: indexPath) as? InterestingCollectionViewCell else {return UICollectionViewCell() }
             guard let interestingList = viewModel.meetingInfo.value?.interests else { return UICollectionViewCell() }
             
-            cell.inputData(text: interestingList[indexPath.row])
+            let data = EnumFile.enumfile.enumList.value
+            let text = data.interest?.filter{ $0.key  == interestingList[indexPath.item] }.first
+            
+            cell.inputData(text: text?.value ?? "")
             cell.backgroundColor = UIColor(hexCode: "006FF2")
             cell.layer.cornerRadius = 10
             return cell
@@ -569,7 +713,10 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RuleCollectionViewCell.identifier, for: indexPath) as? RuleCollectionViewCell else {return UICollectionViewCell() }
             guard let rules = viewModel.meetingInfo.value?.rules else { return UICollectionViewCell() }
             
-            cell.inputData(text: rules[indexPath.row])
+            let data = EnumFile.enumfile.enumList.value
+            let text = data.rule?.filter{ $0.key  == rules[indexPath.item] }.first
+            
+            cell.inputData(text: text?.value ?? "")
             cell.backgroundColor = UIColor(hexCode: "f5f5f5")
             cell.layer.cornerRadius = 15
             
@@ -595,18 +742,25 @@ extension DetailMeetingHomeController: UICollectionViewDelegate, UICollectionVie
             guard let interestingList = viewModel.meetingInfo.value?.interests else { return CGSize()}
             
             let interesting = interestingList[indexPath.row]
+            
+            let data = EnumFile.enumfile.enumList.value
+            let text = data.interest?.filter{ $0.key  == interesting }.first
+            
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
-            let newSize = (interesting as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
+            let newSize = ((text?.value ?? "") as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
             
             return CGSize(width: newSize.width + 10, height: collectionView.bounds.height)
         }
         else if collectionView == ruleCollectionView{
             guard let rule = viewModel.meetingInfo.value?.rules?[indexPath.row] else { return CGSize() }
             
+            let data = EnumFile.enumfile.enumList.value
+            let text = data.rule?.filter{ $0.key  == rule }.first
+            
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
-            let newSize = (rule as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
+            let newSize = ((text?.value ?? "") as NSString).size(withAttributes: attributes as [NSAttributedString.Key: Any])
 
-            return CGSize(width: newSize.width, height: 35)
+            return CGSize(width: newSize.width + 20, height: 35)
         }
         else if collectionView == joinMemberCollectionView{
             return CGSize(width: collectionView.bounds.width/6, height: collectionView.bounds.height)

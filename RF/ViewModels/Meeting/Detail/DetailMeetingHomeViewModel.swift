@@ -17,8 +17,13 @@ final class DetailMeetingHomeViewModel {
     /// 모임 소개 Constraint
     var meetingIntroductionUIViewConstraint: BehaviorRelay<Constraint?> = BehaviorRelay<Constraint?>(value: nil)
     
+    /// 모집 중 Constraint
+    var recruitingConstraint: BehaviorRelay<Constraint?> = BehaviorRelay<Constraint?>(value: nil)
+    
     /// 모임 정보
     var meetingInfo: BehaviorRelay<Meeting?> = BehaviorRelay(value: nil)
+    
+    var checkOwner: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     
     /// 모임 소개글 길이에 따라 높이 길이 계산
     func resizeMeetingIntroductionHeight(meetingIntroduction: UILabel, longText: String){
