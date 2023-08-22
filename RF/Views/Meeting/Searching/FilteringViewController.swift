@@ -421,8 +421,8 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
             
             cell.layer.cornerRadius = 10
             cell.layer.borderColor = BackgroundColor.dark.color.cgColor
-            
-            cell.inputData(text: MeetingFiltering.interestingTopicList[indexPath.row])
+            cell.inputData(text: EnumFile.enumfile.enumList.value.interest?[indexPath.row].value ?? "")
+//            cell.inputData(text: MeetingFiltering.interestingTopicList[indexPath.row])
             return cell
         }
         
@@ -440,7 +440,8 @@ extension FilteringViewController: UICollectionViewDelegate, UICollectionViewDat
             return MeetingFiltering.joinNumberList.count
         }
         else if collectionView == interestingTopicCollectionView{
-            return MeetingFiltering.interestingTopicList.count
+            return EnumFile.enumfile.enumList.value.interest?.count ?? 0
+//            return MeetingFiltering.interestingTopicList.count
         }
         return 0
     }

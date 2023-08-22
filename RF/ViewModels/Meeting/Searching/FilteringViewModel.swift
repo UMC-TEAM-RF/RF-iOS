@@ -31,11 +31,9 @@ final class FilteringViewModel {
         
         if selectedItems.contains(indexPath) {
             selectedItems.remove(indexPath)
-            print("deselected interesting \(MeetingFiltering.interestingTopicList[indexPath.row])")
         }
         else if selectedItems.count < MeetingFiltering.maxSelectionCount {
             selectedItems.insert(indexPath)
-            print("selected interesting \(MeetingFiltering.interestingTopicList[indexPath.row])")
         }
         else {
             return
