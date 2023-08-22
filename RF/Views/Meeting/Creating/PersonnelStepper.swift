@@ -20,7 +20,7 @@ class PersonnelStepper: UIControl {
         sv.spacing = 0.5
         sv.distribution = .fillEqually
         sv.alignment = .fill
-        sv.backgroundColor = .systemGray4
+        sv.backgroundColor = StrokeColor.main.color
         sv.layer.cornerRadius = 10
         sv.clipsToBounds = true
         return sv
@@ -31,8 +31,8 @@ class PersonnelStepper: UIControl {
         button.setTitle("-", for: .normal)
         button.tag = -1
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .systemGray6
+        button.setTitleColor(TextColor.first.color, for: .normal)
+        button.backgroundColor = ButtonColor.normal.color
         return button
     }()
     
@@ -41,8 +41,8 @@ class PersonnelStepper: UIControl {
         button.setTitle("+", for: .normal)
         button.tag = -1
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .systemGray6
+        button.setTitleColor(TextColor.first.color, for: .normal)
+        button.backgroundColor = ButtonColor.normal.color
         return button
     }()
     
@@ -50,9 +50,9 @@ class PersonnelStepper: UIControl {
         let label = UILabel()
         label.text = "0"
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         label.textAlignment = .center
-        label.backgroundColor = .systemGray6
+        label.backgroundColor = ButtonColor.normal.color
         return label
     }()
     

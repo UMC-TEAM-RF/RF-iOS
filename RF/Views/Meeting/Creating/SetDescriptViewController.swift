@@ -19,7 +19,7 @@ final class SetDescriptViewController: UIViewController {
     private lazy var progressBar: UIProgressView = {
         let pv = UIProgressView()
         pv.progressViewStyle = .bar
-        pv.backgroundColor = UIColor(hexCode: "D1D1D1")
+        pv.backgroundColor = ButtonColor.main.color
         pv.progress = 0.75
         return pv
     }()
@@ -29,12 +29,13 @@ final class SetDescriptViewController: UIViewController {
         let label = UILabel()
         label.text = "배너를 설정해 주세요."
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
     private lazy var bannerBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = ButtonColor.normal.color
         view.layer.cornerRadius = 10
         return view
     }()
@@ -50,7 +51,7 @@ final class SetDescriptViewController: UIViewController {
     private lazy var cameraImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(systemName: "camera.fill")
-        iv.tintColor = .gray
+        iv.tintColor = TextColor.secondary.color
         iv.contentMode = .scaleAspectFit
         iv.backgroundColor = .clear
         return iv
@@ -61,13 +62,14 @@ final class SetDescriptViewController: UIViewController {
         let label = UILabel()
         label.text = "모임을 간단하게 소개해 주세요."
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
     private lazy var descriptTextView: UITextView = {
         let tv = UITextView()
         tv.textContainerInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-        tv.backgroundColor = .systemGray6
+        tv.backgroundColor = ButtonColor.normal.color
         tv.text = textViewPlaceholder
         tv.textColor = .lightGray
         tv.font = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -81,8 +83,8 @@ final class SetDescriptViewController: UIViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.backgroundColor = .systemGray6
-        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = ButtonColor.normal.color
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.layer.cornerRadius = 5
         return button
     }()
@@ -98,7 +100,7 @@ final class SetDescriptViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         
         updateTitleView(title: "모임 생성")
         setupCustomBackButton()
@@ -205,8 +207,8 @@ final class SetDescriptViewController: UIViewController {
         
         viewModel.isValid()
             .subscribe(onNext: { [weak self] isValid in
-                self?.nextButton.backgroundColor = isValid ? .tintColor : .systemGray6
-                self?.nextButton.setTitleColor(isValid ? .white : .black, for: .normal)
+                self?.nextButton.backgroundColor = isValid ? ButtonColor.main.color : ButtonColor.normal.color
+                self?.nextButton.setTitleColor(isValid ? ButtonColor.normal.color : TextColor.first.color, for: .normal)
                 self?.nextButton.isEnabled = isValid
             })
             .disposed(by: disposeBag)
@@ -233,7 +235,7 @@ extension SetDescriptViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == textViewPlaceholder {
             textView.text = nil
-            textView.textColor = .black
+            textView.textColor = TextColor.first.color
         }
         viewModel.meetingDescriptionColor.accept("black")
     }
@@ -241,7 +243,7 @@ extension SetDescriptViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = textViewPlaceholder
-            textView.textColor = .lightGray
+            textView.textColor = TextColor.secondary.color
         }
         
     }

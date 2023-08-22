@@ -18,7 +18,7 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var progressBar: UIProgressView = {
         let pv = UIProgressView()
         pv.progressViewStyle = .bar
-        pv.backgroundColor = UIColor(hexCode: "D1D1D1")
+        pv.backgroundColor = ButtonColor.main.color
         pv.progress = 1
         return pv
     }()
@@ -28,6 +28,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "모임의 세부 정보를 입력해 주세요."
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -45,7 +46,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "모임 인원 수"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -53,13 +54,13 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "최대 6명까지 가능합니다."
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         return label
     }()
     
     private lazy var personnelStepper: PersonnelStepper = {
         let sp = PersonnelStepper()
-        sp.minimumCount = 0
+        sp.minimumCount = 2
         sp.maximumCount = 6
         sp.selectedMembercount
             .bind { [weak self] count in
@@ -83,7 +84,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "한국인 인원 수"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -91,7 +92,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "글로벌한 모임을 위해\n설정해 주세요."
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         label.numberOfLines = 2
         return label
     }()
@@ -111,7 +112,7 @@ final class SetDetailInfoViewController: UIViewController {
     // 첫 번째 경계선
     private lazy var firstDivLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = BackgroundColor.dark.color
         return view
     }()
     
@@ -120,7 +121,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "선호 연령대"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -138,7 +139,7 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "사용 언어"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -156,13 +157,13 @@ final class SetDetailInfoViewController: UIViewController {
         let label = UILabel()
         label.text = "활동 장소"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         return label
     }()
     
     private lazy var placeTextField: UITextField = {
         let tf = UITextField()
-        tf.backgroundColor = .systemGray6
+        tf.backgroundColor = ButtonColor.normal.color
         tf.layer.cornerRadius = 5
         tf.placeholder = "장소를 입력해 주세요."
         tf.font = UIFont.systemFont(ofSize: 15, weight: .medium)
@@ -174,7 +175,7 @@ final class SetDetailInfoViewController: UIViewController {
     // 두 번째 경계선
     private lazy var secondDivLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = BackgroundColor.dark.color
         return view
     }()
     
@@ -182,9 +183,9 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var ruleButton: UIButton = {
         let button = UIButton()
         button.setTitle("모임의 규칙 ", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        button.tintColor = .lightGray
+        button.tintColor = TextColor.first.color
         button.semanticContentAttribute = .forceRightToLeft
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         return button
@@ -193,7 +194,7 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var ruleCountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         return label
     }()
     
@@ -232,7 +233,7 @@ final class SetDetailInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         
         updateTitleView(title: "모임 생성")
         setupCustomBackButton()
@@ -440,8 +441,8 @@ final class SetDetailInfoViewController: UIViewController {
         
         viewModel.checkAllDatas()
             .subscribe(onNext:{ [weak self] check in
-                self?.createButton.backgroundColor = check ? .tintColor : .systemGray6
-                self?.createButton.setTitleColor( check ? .white : .black, for: .normal)
+                self?.createButton.backgroundColor = check ? ButtonColor.main.color : ButtonColor.normal.color
+                self?.createButton.setTitleColor( check ? ButtonColor.normal.color : TextColor.first.color, for: .normal)
                 self?.createButton.isEnabled = check
             })
             .disposed(by: disposeBag)

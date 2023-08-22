@@ -14,14 +14,14 @@ class MenuButton: UIView {
         iv.image = UIImage(systemName: "chevron.down")
         iv.contentMode = .scaleAspectFit
         iv.backgroundColor = .clear
-        iv.tintColor = .black
+        iv.tintColor = TextColor.first.color
         return iv
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = .black
+        label.textColor = TextColor.first.color
         label.textAlignment = .center
         label.isUserInteractionEnabled = false
         return label
@@ -38,7 +38,7 @@ class MenuButton: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .systemGray6
+        backgroundColor = ButtonColor.normal.color
         
         self.isUserInteractionEnabled = true
         
