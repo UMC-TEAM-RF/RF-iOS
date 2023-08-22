@@ -206,7 +206,9 @@ final class HomeViewController: UIViewController {
     
     private var currentPageIndex = 0
     
-    private var meetingsData : [Meeting] = []
+    private var personalMeetings : [Meeting] = []
+    private var groupMeetings: [Meeting] = []
+    private var completedRequest = 0
     
     // MARK: - viewDidLoad()
     
@@ -226,12 +228,32 @@ final class HomeViewController: UIViewController {
         setAutomaticPaging()
         
         let service = MeetingService()
-        service.requestMeetingList(userId: 1) { meetings in
-            dump(meetings)
-            self.meetingsData = meetings!
+        service.requestRecommandPartyList("Personal") { meetings in
             
-            DispatchQueue.main.async {
-                self.pageCollectionView.reloadData()
+            dump(meetings)
+            self.personalMeetings = meetings!
+            
+            if(self.completedRequest == 1){
+                self.completedRequest = 0
+                DispatchQueue.main.async {
+                    self.pageCollectionView.reloadData()
+                }
+            }else{
+                self.completedRequest = 1
+            }
+        }
+        service.requestRecommandPartyList("Group") { meetings in
+            
+            dump(meetings)
+            self.groupMeetings = meetings!
+            
+            if(self.completedRequest == 1){
+                self.completedRequest = 0
+                DispatchQueue.main.async {
+                    self.pageCollectionView.reloadData()
+                }
+            }else{
+                self.completedRequest = 1
             }
         }
         
@@ -271,7 +293,6 @@ final class HomeViewController: UIViewController {
         meetingListView.addSubview(pageCollectionView)
         meetingListView.addSubview(highlightBackView)
         meetingListView.addSubview(highlightView)
-//        meetingListView.addSubview(meetingCollectionView)
         
         // 꿀팁
         tipsView.addSubview(tipsImage)
@@ -540,7 +561,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCollectionViewCell.identifier, for: indexPath) as! PageCollectionViewCell
             
             cell.setTag(indexPath.item)
-            cell.setData(meetingsData)
+            if(indexPath.item == 0){ // 첫 번째 셀은 개인 모임
+                cell.setData(personalMeetings)
+            }else if(indexPath.item == 1){// 두 번째 셀은 단체 모임
+                cell.setData(groupMeetings)
+            }
             
             
             return cell
