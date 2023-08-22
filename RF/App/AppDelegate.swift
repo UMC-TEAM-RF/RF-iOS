@@ -108,7 +108,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             }
             
             // 탭의 인덱스를 선택
-            tabBarController.selectedIndex = 3
+            tabBarController.selectedIndex = 2 // 커뮤니티 탭 생기기 전까지 2, 생긴 후 : 3
             
             if let navController = tabBarController.selectedViewController as? UINavigationController {
                 // 기존 뷰 컨트롤러를 모두 제거하고 ChatListVC로 이동합니다.

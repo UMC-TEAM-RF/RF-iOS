@@ -48,7 +48,6 @@ class PersonnelStepper: UIControl {
     
     private lazy var countLabel: UILabel = {
         let label = UILabel()
-        label.text = "0"
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         label.textColor = TextColor.first.color
         label.textAlignment = .center
@@ -58,10 +57,17 @@ class PersonnelStepper: UIControl {
     
     // MARK: - Property
     
-    private var currentValue = 0
+    private var currentValue: Int = 0
     
-    var minimumCount: Int = 0
+    var minimumCount: Int = 0 {
+        didSet {
+            currentValue = minimumCount
+            countLabel.text = "\(currentValue)"
+        }
+    }
     var maximumCount: Int = 5
+    
+    
     
     var value: Int {
         get {
