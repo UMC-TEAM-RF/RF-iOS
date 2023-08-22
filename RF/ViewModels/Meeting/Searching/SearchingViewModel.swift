@@ -24,7 +24,7 @@ final class SearchingViewModel {
     var joinNumberRelay = BehaviorRelay<IndexPath>(value: IndexPath())
     
     ///  검색 단어
-    var searchWord: BehaviorRelay<String> = BehaviorRelay(value: "")
+    var searchWord: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     
     /// searching meeting result List
     var meetingList: BehaviorRelay<[Meeting]> = BehaviorRelay(value: [])

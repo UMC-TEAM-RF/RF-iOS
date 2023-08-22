@@ -15,12 +15,12 @@ final class SearchService {
     func searchingService(name: String?, isRecruiting: Bool?, age: String?, num: Int?, interests: String?) -> Observable<MeetingList>{
         let userId = UserDefaults.standard.string(forKey: "UserId") ?? ""
         
-        var url = "\(Domain.restApi)\(SearchPath.search)?userId=\(userId)"  // 테스트용
-        
-//        var url = "\(Domain.restApi)\(SearchPath.search)?userId=\(userId)"
-        if let name = name {
-            let encoded = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            url.append("&name=\(encoded)")
+        var url = "\(Domain.restApi)\(SearchPath.search)?userId=\(userId)"
+        if let name = name  {
+            if name != ""{
+                let encoded = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                url.append("&name=\(encoded)")
+            }
         }
         
         if let isRecruiting = isRecruiting {
