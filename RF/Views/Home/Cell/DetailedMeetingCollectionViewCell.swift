@@ -22,7 +22,6 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
      */
     private lazy var backgroundImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "soccer")
         view.contentMode = .scaleToFill
         return view
     }()

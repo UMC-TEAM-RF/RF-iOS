@@ -107,8 +107,7 @@ final class ListTableViewCell: UITableViewCell{
             make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(10)
             make.bottom.equalToSuperview().offset(-10)
-            make.width.equalToSuperview().dividedBy(5)
-            make.centerY.equalToSuperview()
+            make.width.equalTo(profileUIView.snp.height)
         }
         
         stackView.snp.makeConstraints { make in

@@ -29,7 +29,9 @@ final class GroupProfileView: UIView {
             let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFit
             imageView.clipsToBounds = true
-            imageView.layer.cornerRadius = 5 // 원하는 코너 반경 설정
+            imageView.layer.cornerRadius = 10 // 원하는 코너 반경 설정
+            imageView.layer.borderColor = UIColor.white.cgColor
+            imageView.layer.borderWidth = 3
             imageViews.append(imageView)
             addSubview(imageView)
         }
