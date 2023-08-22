@@ -18,7 +18,6 @@ final class SetDetailInfoViewController: UIViewController {
     private lazy var progressBar: UIProgressView = {
         let pv = UIProgressView()
         pv.progressViewStyle = .bar
-        pv.backgroundColor = ButtonColor.main.color
         pv.progress = 1
         return pv
     }()

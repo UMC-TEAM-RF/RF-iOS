@@ -18,7 +18,7 @@ final class SetMeetingNameViewController: UIViewController {
     private lazy var progressBar: UIProgressView = {
         let pv = UIProgressView()
         pv.progressViewStyle = .bar
-        pv.backgroundColor = ButtonColor.main.color
+        pv.backgroundColor = BackgroundColor.dark.color
         pv.progress = 0.25
         return pv
     }()
