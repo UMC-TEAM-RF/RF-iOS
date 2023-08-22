@@ -18,7 +18,7 @@ final class SetInterestViewController: UIViewController {
     private lazy var progressBar: UIProgressView = {
         let pv = UIProgressView()
         pv.progressViewStyle = .bar
-        pv.backgroundColor = UIColor(hexCode: "D1D1D1")
+        pv.backgroundColor = ButtonColor.main.color
         pv.progress = 0.5
         return pv
     }()
@@ -28,6 +28,7 @@ final class SetInterestViewController: UIViewController {
         let label = UILabel()
         label.text = "대표 관심사를 설정해 주세요."
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -36,7 +37,7 @@ final class SetInterestViewController: UIViewController {
         let label = UILabel()
         label.text = "(최대 3개 설정 가능)"
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = TextColor.secondary.color
         return label
     }()
     
@@ -54,8 +55,8 @@ final class SetInterestViewController: UIViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.backgroundColor = .systemGray6
-        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = ButtonColor.normal.color
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.layer.cornerRadius = 5
         button.isEnabled = false
         return button
@@ -72,7 +73,7 @@ final class SetInterestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         
         updateTitleView(title: "모임 생성")
         setupCustomBackButton()
@@ -166,13 +167,13 @@ final class SetInterestViewController: UIViewController {
         viewModel.checkSelectedAll
             .bind { [weak self] check in
                 if check{
-                    self?.nextButton.backgroundColor = .tintColor
-                    self?.nextButton.setTitleColor(.white, for: .normal)
+                    self?.nextButton.backgroundColor = ButtonColor.main.color
+                    self?.nextButton.setTitleColor(ButtonColor.normal.color, for: .normal)
                     self?.nextButton.isEnabled = true
                 }
                 else{
-                    self?.nextButton.backgroundColor = .systemGray6
-                    self?.nextButton.setTitleColor(.black, for: .normal)
+                    self?.nextButton.backgroundColor = ButtonColor.normal.color
+                    self?.nextButton.setTitleColor(TextColor.first.color, for: .normal)
                     self?.nextButton.isEnabled = false
                 }
             }
@@ -184,10 +185,10 @@ final class SetInterestViewController: UIViewController {
         for indexPath in interestCollectionView.indexPathsForVisibleItems {
             guard let cell = interestCollectionView.cellForItem(at: indexPath) as? InterestCollectionViewCell else { return }
             if items.contains(indexPath) {
-                cell.setColor(textColor: .white, backgroundColor: .systemBlue)
+                cell.setColor(textColor: ButtonColor.normal.color, backgroundColor: ButtonColor.main.color)
             }
             else{
-                cell.setColor(textColor: .label, backgroundColor: .systemGray6)
+                cell.setColor(textColor: TextColor.first.color, backgroundColor: ButtonColor.normal.color)
             }
         }
     }
@@ -209,7 +210,7 @@ extension SetInterestViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestCollectionViewCell.identifier, for: indexPath) as! InterestCollectionViewCell
         
         cell.setTextLabel(EnumFile.enumfile.enumList.value.interest?[indexPath.item].value ?? "")
-        cell.setColor(textColor: .black, backgroundColor: .systemGray6)
+        cell.setColor(textColor: TextColor.first.color, backgroundColor: ButtonColor.normal.color)
         cell.contentView.layer.cornerRadius = 8
         return cell
     }
