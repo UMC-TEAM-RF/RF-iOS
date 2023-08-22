@@ -27,6 +27,14 @@ final class UICheckBox1: UIButton {
     func setTitle(title : String) {
         self.setTitle("  " + title, for: .normal)
     }
+    func setImage(offimage : UIImage, onimage : UIImage) {
+        self.offimage = offimage
+        self.onimage = onimage
+    }
+    func setScale(offImageResize : CGFloat, onImageResize : CGFloat) {
+        self.offimage = offimage?.resize(newWidth: offImageResize)
+        self.onimage = onimage?.resize(newWidth: onImageResize)
+    }
     
     func setFont(size : CGFloat, weight : UIFont.Weight = .regular) {
         self.titleLabel?.font = UIFont.systemFont(ofSize: size, weight: weight)
@@ -37,7 +45,7 @@ final class UICheckBox1: UIButton {
     }
     
     func setWeight(weight : UIFont.Weight) {
-        self.titleLabel?.font = UIFont.systemFont(ofSize: self.titleLabel?.font.pointSize ?? 15, weight: weight)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: self.titleLabel?.font.pointSize ?? 14, weight: weight)
     }
     
     func setSelectedColor(color : UIColor) {
@@ -55,15 +63,15 @@ final class UICheckBox1: UIButton {
     private func setup() {
         self.offimage = UIImage(systemName: "checkmark")?
             .resize(newWidth: 12, newHeight: 12)
-            .withTintColor(.lightGray)
+            .withTintColor(TextColor.secondary.color)
         self.onimage = UIImage(systemName: "checkmark")?
             .resize(newWidth: 12, newHeight: 12)
-            .withTintColor(.black)
+            .withTintColor(TextColor.first.color)
         
         self.setTitle("  ", for: .normal)
-        self.setTitleColor(.lightGray, for: .normal)
-        self.setTitleColor(.black, for: .selected)
-        self.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        self.setTitleColor(TextColor.secondary.color, for: .normal)
+        self.setTitleColor(TextColor.first.color, for: .selected)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         
         self.setImage(offimage, for: .normal)
         self.setImage(onimage, for: .selected)

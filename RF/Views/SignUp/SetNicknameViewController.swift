@@ -17,7 +17,7 @@ final class SetNicknameViewController: UIViewController {
     private lazy var leftButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "닉네임 설정", style: .done, target: self, action: nil)
         btn.isEnabled = false
-        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
         return btn
     }()
     
@@ -26,22 +26,23 @@ final class SetNicknameViewController: UIViewController {
         let pv = UIProgressView()
         pv.progressViewStyle = .bar
         pv.backgroundColor = UIColor(hexCode: "D1D1D1")
-        pv.progress = 0.5
+        pv.progress = 0.6
         return pv
     }()
     
     private lazy var topLabel: UILabel = {
         let label = UILabel()
-        label.text = "알프님의\n기본 정보를 설정해주세요!"
+        label.text = ""
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         return label
     }()
 
     private lazy var nicknameLabel: UILabel = {
         let label = UILabel()
         label.text = "닉네임"
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textColor = TextColor.first.color
         label.numberOfLines = 1
         return label
     }()
@@ -50,8 +51,8 @@ final class SetNicknameViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setTitle("중복확인", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        button.setTitleColor(TextColor.secondary.color, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         button.titleLabel?.numberOfLines = 1
         return button
     }()
@@ -60,9 +61,9 @@ final class SetNicknameViewController: UIViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
+        button.backgroundColor =  BackgroundColor.white.color
         button.layer.cornerRadius = 5
         return button
     }()
@@ -72,8 +73,8 @@ final class SetNicknameViewController: UIViewController {
         field.borderStyle = .roundedRect
         field.borderStyle = .none
         field.placeholder = "   닉네임을 입력해주세요"
-        field.backgroundColor = UIColor(hexCode: "#F5F5F5")
-        field.textColor = UIColor(hexCode: "#818181")
+        field.backgroundColor = BackgroundColor.white.color
+        field.textColor = StrokeColor.sub.color
         field.layer.cornerRadius = 5
         field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return field
@@ -81,11 +82,11 @@ final class SetNicknameViewController: UIViewController {
     
     private lazy var warningLbel: UILabel = {
         let label = UILabel()
-        label.text = "이후 변경할 수 없으니 정확히 선택해 주세요"
-        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        label.text = "이후에 변경할 수 없으니 신중히 결정해주세요!"
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textAlignment = .center
         label.numberOfLines = 1
-        label.textColor = .gray
+        label.textColor = TextColor.secondary.color
         return label
     }()
     
@@ -97,8 +98,8 @@ final class SetNicknameViewController: UIViewController {
 
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItem = leftButton
-        navigationController?.navigationBar.tintColor = .black
-        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.tintColor = TextColor.first.color
+        view.backgroundColor = .white
         
         addSubviews()
         addTargets()

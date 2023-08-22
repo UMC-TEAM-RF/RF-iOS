@@ -22,6 +22,9 @@ final class SignUpDataViewModel {
     /// 입력한 비밀번호 저장하는 Relay
     var pwRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
     
+    /// 입력한 이메일 저장하는 Relay
+    var emailRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
+    
     /// 선택한 학번
     var yearRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
     

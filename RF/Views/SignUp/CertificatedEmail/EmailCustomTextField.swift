@@ -34,6 +34,12 @@ final class EmailCustomTextField: UITextField {
     private func addSubViews() {
         addSubview(underLineView)
         
+        self.borderStyle = UITextField.BorderStyle.none
+        self.keyboardType = UIKeyboardType.default
+        self.returnKeyType = UIReturnKeyType.done
+        self.autocorrectionType = .no
+        self.autocapitalizationType = .none
+        
         configureConstraints()
     }
     

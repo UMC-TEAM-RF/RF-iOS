@@ -48,7 +48,7 @@ final class PersonalInterestsViewModel{
             selectedItems.remove(indexPath)
             print("deselected interesting \(Interest.list[indexPath.item])")
         }
-        else if selectedItems.count < 3 {
+        else if selectedItems.count < 3 || selectedItems.count > 0{
             selectedItems.insert(indexPath)
             print("selected interesting \(Interest.list[indexPath.item])")
         }
@@ -77,7 +77,7 @@ final class PersonalInterestsViewModel{
     func checkSelected() -> Observable<Bool>{
         let mbti = mbtiRelay.value != IndexPath() ? true : false
         let style = lifeStyleRelay.value != IndexPath() ? true : false
-        let interesting = interestingRelay.value.count == 3 ? true : false
+        let interesting = interestingRelay.value.count > 0 ? true : false
         
         return Observable.create { observer in
             
@@ -97,7 +97,7 @@ final class PersonalInterestsViewModel{
     func checkSelectedForButtonColor() -> Observable<Bool>{
         let mbti = mbtiRelay.map { $0 != IndexPath() ? true: false }
         let style = lifeStyleRelay.map { $0 != IndexPath() ? true: false }
-        let interesting = interestingRelay.map { $0.count == 3 ? true : false }
+        let interesting = interestingRelay.map { $0.count > 0 ? true : false }
         
         return Observable.create { [weak self] observer in
             Observable.combineLatest(mbti,

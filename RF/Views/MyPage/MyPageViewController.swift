@@ -38,7 +38,8 @@ class MyPageViewController: UIViewController {
     private lazy var profileLabel: UILabel = {
         let label = UILabel()
         label.text = "KPOP 매니아 | 소융대 🇰🇷"
-        label.font = .systemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -46,6 +47,7 @@ class MyPageViewController: UIViewController {
     private lazy var profileMoreButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "chevron.down")?.resize(newWidth: 14), for: .normal)
+        btn.tintColor = TextColor.first.color
         return btn
     }()
     
@@ -54,6 +56,7 @@ class MyPageViewController: UIViewController {
         let label = UILabel()
         label.text = "행복한 하루를 보내고 싶어요! (한 줄 소개)"
         label.font = .systemFont(ofSize: 12)
+        label.textColor = TextColor.secondary.color
         return label
     }()
     
@@ -61,10 +64,10 @@ class MyPageViewController: UIViewController {
     private lazy var introduceChangeButton: UIButton = {
         let btn = UIButton()
         btn.layer.borderWidth = 0.5
-        btn.layer.borderColor = UIColor.black.cgColor
+        btn.layer.borderColor = TextColor.secondary.color.cgColor
         btn.titleLabel?.text = "수정"
         btn.setTitle("수정", for: .normal)
-        btn.setTitleColor(.black, for: .normal)
+        btn.setTitleColor(TextColor.secondary.color, for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 8)
         return btn
     }()
@@ -76,6 +79,7 @@ class MyPageViewController: UIViewController {
         let label = UILabel()
         label.text = "알프 온도"
         label.font = .systemFont(ofSize: 14)
+        label.textColor = TextColor.first.color
         return label
     }()
     /// MARK: 알프 온도 아이콘
@@ -88,7 +92,8 @@ class MyPageViewController: UIViewController {
     private lazy var temperMessageLabel: UILabel = {
         let label = UILabel()
         label.text = temperMessage
-        label.font = .systemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = TextColor.first.color
         return label
     }()
     /// MARK: 알프 온도 Message
@@ -96,6 +101,7 @@ class MyPageViewController: UIViewController {
         let label = UILabel()
         label.text = "\(temper)도"
         label.font = .systemFont(ofSize: 14)
+        label.textColor = TextColor.first.color
         return label
     }()
     /// MARK: 알프 온도 프로그레스 바
@@ -153,15 +159,15 @@ class MyPageViewController: UIViewController {
     private lazy var tipBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = BackgroundColor.white.color
         return view
     }()
     /// MARK: tipView Title
     private lazy var tipTitleLabel: UILabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 14)
-        view.textColor = .black
         view.text = "2023.06"
+        view.textColor = TextColor.first.color
         
         return view
     }()
@@ -169,14 +175,14 @@ class MyPageViewController: UIViewController {
     private lazy var tipDateChangeButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "chevron.right")?.resize(newWidth: 10), for: .normal)
-        btn.imageView?.tintColor = .systemBlue
+        btn.tintColor = TextColor.secondary.color
         return btn
     }()
     /// MARK: tipView Text
     private lazy var tipTextLabel: UILabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 14)
-        view.textColor = .black
+        view.textColor = TextColor.first.color
         view.numberOfLines = 2
         view.text = meetingTipMessage
         
@@ -202,7 +208,7 @@ class MyPageViewController: UIViewController {
         cal.scrollEnabled = true
         cal.scrollDirection = .horizontal
         
-        cal.appearance.weekdayTextColor = .systemGray4
+        cal.appearance.weekdayTextColor = TextColor.secondary.color
         cal.appearance.weekdayFont = .systemFont(ofSize: 14, weight: .bold)
         /// 제목 부분
         cal.appearance.headerMinimumDissolvedAlpha = 0.0   /// 0으로 설정 시 옆 부분 날짜 안보임
@@ -221,8 +227,8 @@ class MyPageViewController: UIViewController {
     /// MARK: calendar Header Label
     private lazy var calHeaderLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 20, weight: .bold)
-        view.textColor = .black
+        view.font = .systemFont(ofSize: 17, weight: .bold)
+        view.textColor = TextColor.first.color
         view.text = "August 2023"
 
         return view
@@ -440,6 +446,12 @@ class MyPageViewController: UIViewController {
                 self.scrollCurrentPage(isPrev: true)
             }
             .disposed(by: disposeBag)
+        
+        changeMonthButton.rx.tap
+            .bind {
+                self.scrollCurrentPage(isPrev: false)
+            }
+            .disposed(by: disposeBag)
     }
     
     private var currentPage: Date?
@@ -510,7 +522,7 @@ extension MyPageViewController: FSCalendarDelegate, FSCalendarDataSource, FSCale
         let dateDay = Calendar.current.dateComponents([.day], from: date)
         let todayDay = Calendar.current.dateComponents([.day], from: today)
         if dateMonth == todayMonth && dateDay == todayDay{
-            return .red
+            return .purple
         }else{
             return .none
         }

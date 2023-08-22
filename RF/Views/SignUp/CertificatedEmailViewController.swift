@@ -15,9 +15,9 @@ final class CertificatedEmailViewController: UIViewController {
     
     /// MARK: 네비게이션 바 왼쪽 아이템
     private lazy var leftButton: UIBarButtonItem = {
-        let btn = UIBarButtonItem(title: "회원 가입", style: .done, target: self, action: nil)
+        let btn = UIBarButtonItem(title: "학교 이메일로 인증하기", style: .done, target: self, action: nil)
         btn.isEnabled = false
-        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
         return btn
     }()
     
@@ -33,15 +33,16 @@ final class CertificatedEmailViewController: UIViewController {
     /// MARK: '이메일을 입력해주세요' 제목
     private lazy var inputEmailLabel: UILabel = {
         let label = UILabel()
-        label.text = "이메일을 입력해주세요."
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.text = "이메일을 입력해주세요"
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
     /// MARK: 이메일 입력하는 textField
     private lazy var emailTextField: EmailCustomTextField = {
         let field = EmailCustomTextField()
-        field.backgroundColor = .white
+        field.backgroundColor = .clear
         field.placeholder = "이메일을 입력해주세요"
         return field
     }()
@@ -50,9 +51,9 @@ final class CertificatedEmailViewController: UIViewController {
     private lazy var certificatedEmailButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("인증하기", for: .normal)
-        btn.backgroundColor = UIColor(hexCode: "F5F5F5",alpha: 1)
-        btn.titleLabel?.font = .systemFont(ofSize: 15)
-        btn.setTitleColor(.gray, for: .normal)
+        btn.backgroundColor = ButtonColor.normal.color
+        btn.titleLabel?.font = .systemFont(ofSize: 12)
+        btn.setTitleColor(TextColor.secondary.color, for: .normal)
         btn.layer.cornerRadius = 5
         return btn
     }()
@@ -60,15 +61,16 @@ final class CertificatedEmailViewController: UIViewController {
     /// MARK: '전송된 코드를 입력해주세요' 제목
     private lazy var inputCodeLabel: UILabel = {
         let label = UILabel()
-        label.text = "전송된 코드를 입력해주세요."
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.text = "전송된 코드를 입력해주세요"
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
     /// MARK: 인증 코드 입력하는 textField
     private lazy var codeTextField: EmailCustomTextField = {
         let field = EmailCustomTextField()
-        field.backgroundColor = .white
+        field.backgroundColor = .clear
         field.placeholder = "코드를 입력해주세요"
         field.tag = 98
         return field
@@ -78,9 +80,9 @@ final class CertificatedEmailViewController: UIViewController {
     private lazy var certificatedCodeButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("인증하기", for: .normal)
-        btn.backgroundColor = UIColor(hexCode: "F5F5F5",alpha: 1)
-        btn.titleLabel?.font = .systemFont(ofSize: 15)
-        btn.setTitleColor(.gray, for: .normal)
+        btn.backgroundColor = ButtonColor.normal.color
+        btn.titleLabel?.font = .systemFont(ofSize: 12)
+        btn.setTitleColor(TextColor.secondary.color, for: .normal)
         btn.layer.cornerRadius = 5
         return btn
     }()
@@ -89,10 +91,10 @@ final class CertificatedEmailViewController: UIViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        button.backgroundColor =  UIColor(hexCode: "#F5F5F5")
-        button.layer.cornerRadius = 5
+        button.backgroundColor =  ButtonColor.normal.color
+        button.layer.cornerRadius = 10
         return button
     }()
     
@@ -106,7 +108,7 @@ final class CertificatedEmailViewController: UIViewController {
         
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItem = leftButton
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = TextColor.first.color
         view.backgroundColor = .white
         
         addSubViews()
@@ -237,6 +239,8 @@ final class CertificatedEmailViewController: UIViewController {
                 self?.viewModel.clearAllSubject
                     .bind(onNext: { check in
                         if check{
+                            guard let email = self?.emailTextField.text else { return }
+                            SignUpDataViewModel.viewModel.emailRelay.accept(email)
                             let setNicknameViewController = SetNicknameViewController()
                             self?.navigationItem.backButtonTitle = " "
                             self?.navigationController?.pushViewController(setNicknameViewController, animated: true)

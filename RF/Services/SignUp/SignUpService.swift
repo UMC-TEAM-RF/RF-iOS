@@ -62,10 +62,14 @@ final class SignUpService {
         let url = "\(Domain.restApi)\(SignUpPath.addUser)"
         let interestLanguage = SignUpDataViewModel.viewModel.interestingLanguage.value.map({"\($0.key ?? "")"})
         
+        let header: HTTPHeaders = ["Content-Type" : "application/json"]
+        
         let body: User = User(userID: SignUpDataViewModel.viewModel.idRelay.value,
                               password: SignUpDataViewModel.viewModel.pwRelay.value,
                               university: SignUpDataViewModel.viewModel.universityRelay.value,
                               nickname: SignUpDataViewModel.viewModel.nickNameRelay.value,
+                              email: SignUpDataViewModel.viewModel.emailRelay.value,
+                              lifeStyle: SignUpDataViewModel.viewModel.lifeStyleRelay.value,
                               entrance: SignUpDataViewModel.viewModel.yearRelay.value,
                               country: SignUpDataViewModel.viewModel.bornCountry.value,
                               introduce: SignUpDataViewModel.viewModel.introduceSelfRelay.value,
@@ -80,7 +84,8 @@ final class SignUpService {
             AF.request(url,
                        method: .post,
                        parameters: body,
-                       encoder: JSONParameterEncoder.default)
+                       encoder: JSONParameterEncoder.default,
+                       headers: header)
             .validate(statusCode: 200..<201)
             .responseDecodable(of: Response<Judge>.self) { response in
                 print("addUserInfo response\n\(response)")

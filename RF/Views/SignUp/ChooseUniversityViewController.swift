@@ -18,7 +18,7 @@ final class ChooseUniversityViewController: UIViewController {
     private lazy var leftButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "학교 선택", style: .done, target: self, action: nil)
         btn.isEnabled = false
-        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .disabled)
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
         return btn
     }()
     
@@ -36,7 +36,8 @@ final class ChooseUniversityViewController: UIViewController {
     private lazy var yearLabel: UILabel = {
         let label = UILabel()
         label.text = "입학년도"
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -52,7 +53,8 @@ final class ChooseUniversityViewController: UIViewController {
     private lazy var universityLabel: UILabel = {
         let label = UILabel()
         label.text = "학교"
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -68,10 +70,10 @@ final class ChooseUniversityViewController: UIViewController {
     private lazy var nextButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("다음", for: .normal)
-        btn.backgroundColor = UIColor(hexCode: "F5F5F5")
-        btn.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
-        btn.setTitleColor(.black, for: .normal)
-        btn.layer.cornerRadius = 20
+        btn.backgroundColor = ButtonColor.normal.color
+        btn.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        btn.setTitleColor(TextColor.first.color, for: .normal)
+        btn.layer.cornerRadius = 10
         return btn
     }()
     
@@ -85,7 +87,7 @@ final class ChooseUniversityViewController: UIViewController {
         
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItem = leftButton
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = TextColor.first.color
         view.backgroundColor = .white
         
         addSubviews()
@@ -142,7 +144,7 @@ final class ChooseUniversityViewController: UIViewController {
             make.top.equalTo(universityButton.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/20)
+            make.height.equalTo(47)
         }
     }
     
@@ -151,12 +153,13 @@ final class ChooseUniversityViewController: UIViewController {
         viewModel.observeSelectedForChangeColor()
             .bind { [weak self] check in
                 if check{
-                    self?.nextButton.backgroundColor = .systemBlue
+                    self?.nextButton.backgroundColor =
+                    ButtonColor.main.color
                     self?.nextButton.setTitleColor(.white, for: .normal)
                 }
                 else{
-                    self?.nextButton.backgroundColor = UIColor(hexCode: "F5F5F5")
-                    self?.nextButton.setTitleColor(.black, for: .normal)
+                    self?.nextButton.backgroundColor = ButtonColor.normal.color
+                    self?.nextButton.setTitleColor(TextColor.first.color, for: .normal)
                 }
             }
             .disposed(by: disposeBag)

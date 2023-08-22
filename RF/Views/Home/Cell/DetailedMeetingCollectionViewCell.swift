@@ -79,6 +79,20 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    
+    private lazy var likeButton: UICheckBox1 = {
+        let button = UICheckBox1()
+        
+        button.setImage(offimage: UIImage(systemName: "heart")!, onimage: UIImage(systemName: "heart.fill")!)
+        button.setScale(offImageResize: 24, onImageResize: 24)
+        button.setNormalColor(color: BackgroundColor.white.color)
+        button.setSelectedColor(color: .red)
+        button.setEventFunction(function: {
+            print(self.likeButton.isSelected)
+        })
+        return button
+    }()
+    
     /**
      Tag를 보여주는 CollectionView
      > TagCollectionViewCell을 셀으로 잡고 있다.
@@ -133,6 +147,7 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptLabel)
         contentView.addSubview(personnelLabel)
+        contentView.addSubview(likeButton)
         contentView.addSubview(tagCollectionView)
     }
     
@@ -161,9 +176,12 @@ class DetailedMeetingCollectionViewCell: UICollectionViewCell {
         }
         
         personnelLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(15)
+            make.trailing.equalTo(likeButton.snp.leading).offset(-15)
             make.centerY.equalTo(titleLabel.snp.centerY)
-            make.width.equalTo(100)
+        }
+        likeButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(10)
+            make.centerY.equalTo(titleLabel.snp.centerY)
         }
         
         
