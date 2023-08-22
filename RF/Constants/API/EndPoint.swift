@@ -57,3 +57,8 @@ struct LoginPath {
 struct ReportPath {
     static let reportParty = "/report/party"
 }
+
+/// Searching
+struct SearchPath {
+    static let search = "/party/search"
+}

@@ -23,70 +23,68 @@ final class SearchingViewModel {
     /// 모집 인원
     var joinNumberRelay = BehaviorRelay<IndexPath>(value: IndexPath())
     
+    ///  검색 단어
+    var searchWord: BehaviorRelay<String> = BehaviorRelay(value: "")
+    
     /// searching meeting result List
     var meetingList: BehaviorRelay<[Meeting]> = BehaviorRelay(value: [])
     
+    private let service = SearchService()
+    private let disposeBag = DisposeBag()
     
     // MARK: - API Connect
     
-    /// MARK:
+    /// MARK: 검색 결과 가져옴
     func getData(){
-        var list: [Meeting] = []
+        var isRecruiting: Bool?
+        if joinStatusRelay.value != IndexPath() {
+            switch joinStatusRelay.value.row {
+            case 0:
+                isRecruiting = true
+            case 1:
+                isRecruiting = false
+            default:
+                print("none")
+            }
+        }
         
-        list.append(Meeting(id: 1,
-                            name: "짜장 미친자 모임",
-                            memberCount: 5,
-                            nativeCount: 2,
-                            interests: [ "FOOD", "CAFE", "COUNTRY"],
-                            content: "짜장 같이먹어요!",
-                            rules: ["a","b","c"],
-                            preferAges: "EARLY_TWENTIES",
-                            language:  "KOREAN",
-                            location: "인하대학교 후문",
-                            ownerId: 1,
-                            imageFilePath: "soccer",
-                            users: []))
-        list.append(Meeting(id: 1,
-                            name: "짜장 미친자 모임",
-                            memberCount: 5,
-                            nativeCount: 2,
-                            interests: [ "FOOD", "CAFE", "COUNTRY"],
-                            content: "짜장 같이먹어요!",
-                            rules: ["a","b","c"],
-                            preferAges: "EARLY_TWENTIES",
-                            language:  "KOREAN",
-                            location: "인하대학교 후문",
-                            ownerId: 1,
-                            imageFilePath: "soccer",
-                            users: []))
-        list.append(Meeting(id: 1,
-                            name: "짜장 미친자 모임",
-                            memberCount: 5,
-                            nativeCount: 2,
-                            interests: [ "FOOD", "CAFE", "COUNTRY"],
-                            content: "짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!짜장 같이먹어요!",
-                            rules: ["a","b","c"],
-                            preferAges: "EARLY_TWENTIES",
-                            language:  "KOREAN",
-                            location: "인하대학교 후문",
-                            ownerId: 1,
-                            imageFilePath: "soccer",
-                            users: []))
-        list.append(Meeting(id: 1,
-                            name: "짜장 미친자 모임",
-                            memberCount: 5,
-                            nativeCount: 2,
-                            interests: [ "FOOD", "CAFE", "COUNTRY"],
-                            content: "짜장 같이먹어요!",
-                            rules: ["a","b","c"],
-                            preferAges: "EARLY_TWENTIES",
-                            language:  "KOREAN",
-                            location: "인하대학교 후문",
-                            ownerId: 1,
-                            imageFilePath: "soccer",
-                            users: []))
+        let enumFile = EnumFile.enumfile.enumList.value
+        var age: String?
+        if ageRelay.value != IndexPath() {
+            age = enumFile.preferAges?[ageRelay.value.row].key
+        }
         
-        meetingList.accept(list)
+        var num: Int?
+        if joinNumberRelay.value != IndexPath() {
+            num = joinNumberRelay.value.row
+        }
+        
+        var interests: String?
+        var interestsList: [String] = []
+        
+        if !interestingTopicRelay.value.isEmpty{
+            
+            interestingTopicRelay.value.forEach { index in
+                interestsList.append(enumFile.interest?[index.row].key ?? "")
+            }
+            interests = interestsList.joined(separator: ",")
+        }
+        
+        
+        
+        
+        service.searchingService(name: searchWord.value,
+                                 isRecruiting: isRecruiting,
+                                 age: age,
+                                 num: num,
+                                 interests: interests)
+        .subscribe(
+            onNext:{ [weak self] list in
+                self?.meetingList.accept(list.content ?? [])
+            },onError: { error in
+                print("searchingService error!\n \(error)")
+            })
+        .disposed(by: disposeBag)
     }
     
 }

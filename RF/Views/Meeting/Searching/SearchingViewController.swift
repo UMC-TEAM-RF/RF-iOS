@@ -38,12 +38,13 @@ final class SearchingViewController: UIViewController{
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.isUserInteractionEnabled = true
+        cv.isUserInteractionEnabled = false
         return cv
     }()
     
     private let disposeBag = DisposeBag()
     private let viewModel = SearchingViewModel()
+
     
     // MARK: View Did Load
     override func viewDidLoad() {
@@ -54,7 +55,12 @@ final class SearchingViewController: UIViewController{
         moveFilteringScreen()
         addSubviews()
         clickedBtns()
-        viewModel.getData()
+        bind()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        searchBtn.resignFirstResponder()
     }
     
     /// MARK: 필터링 화면 이동
@@ -133,6 +139,16 @@ final class SearchingViewController: UIViewController{
     }
     
     
+    /// MARK:
+    private func bind(){
+        searchBtn.rx.text
+            .bind { [weak self] text in
+                guard let text = text else { return }
+                self?.viewModel.searchWord.accept(text)
+            }
+            .disposed(by: disposeBag)
+    }
+    
     
 }
 
@@ -163,5 +179,9 @@ extension SearchingViewController: UICollectionViewDelegate, UICollectionViewDat
 }
 
 extension SearchingViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.getData()
+        searchBar.resignFirstResponder()
+    }
     
 }
