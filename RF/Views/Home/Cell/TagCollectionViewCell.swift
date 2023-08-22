@@ -17,6 +17,7 @@ class TagCollectionViewCell: UICollectionViewCell {
         //label.text = "#미대"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textAlignment = .center
+        label.textColor = TextColor.first.color
         return label
     }()
     
@@ -36,7 +37,7 @@ class TagCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.backgroundColor = .systemGray5
+        contentView.backgroundColor = UIColor(white: 1, alpha: 0.75)
         contentView.layer.cornerRadius = contentView.frame.height / 2
         
         addSubviews()

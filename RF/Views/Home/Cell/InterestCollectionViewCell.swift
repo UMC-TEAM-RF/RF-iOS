@@ -15,6 +15,7 @@ class InterestCollectionViewCell: UICollectionViewCell {
     private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.textColor = TextColor.first.color
         return label
     }()
     
