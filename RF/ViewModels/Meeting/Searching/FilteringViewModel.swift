@@ -105,47 +105,27 @@ final class FilteringViewModel {
     func checkRemainInterestingTopicItems(at indexPath: IndexPath) -> Bool {
         let selectedItems = interestingTopicRelay.value
         
-        if selectedItems.contains(indexPath) {
-            return true
-        }
-        else{
-            return false
-        }
+        return selectedItems.contains(indexPath) ? true : false
     }
     
     /// 선택한 나이 포함되어 있는지 확인
     func checkRemainAgeItem(at indexPath: IndexPath) -> Bool {
         let selectedItems = ageRelay.value
         
-        if selectedItems.contains(indexPath) {
-            return true
-        }
-        else{
-            return false
-        }
+        return selectedItems == indexPath ? true : false
     }
     
     /// 선택한 모집 인원 포함되어 있는지 확인
     func checkRemainjoinNumberItems(at indexPath: IndexPath) -> Bool {
         let selectedItems = joinNumberRelay.value
         
-        if selectedItems.contains(indexPath) {
-            return true
-        }
-        else{
-            return false
-        }
+        return selectedItems == indexPath ? true : false
     }
     
     /// 선택한 모집 상태 포함되어 있는지 확인
     func checkJoinStatusItem(at indexPath: IndexPath) -> Bool {
         let selectedItems = joinStatusRelay.value
         
-        if selectedItems.contains(indexPath) {
-            return true
-        }
-        else{
-            return false
-        }
+        return selectedItems == indexPath ? true : false
     }
 }

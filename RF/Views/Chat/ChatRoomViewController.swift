@@ -83,8 +83,6 @@ class ChatRoomViewController: UIViewController {
     
     private var tapGesture = UITapGestureRecognizer()
     
-    var editMenuInteraction: UIEditMenuInteraction?
-    
     private var isKeyboardShow: Bool = false
     
     private var keyboardRect: CGRect = CGRect()
@@ -107,9 +105,6 @@ class ChatRoomViewController: UIViewController {
         configureConstraints()
         addTargets()
         configureTableView()
-        
-        editMenuInteraction = UIEditMenuInteraction(delegate: self)
-        messagesTableView.addInteraction(editMenuInteraction!)
         
         DispatchQueue.main.async {
             self.messagesTableView.scrollToRow(at: IndexPath(row: self.row ?? 0, section: 0), at: .bottom, animated: false)
@@ -418,30 +413,6 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - Ext: UIEditMenuInteractionDelegate
-
-extension ChatRoomViewController: UIEditMenuInteractionDelegate {
-    func editMenuInteraction(_ interaction: UIEditMenuInteraction,
-                             menuFor configuration: UIEditMenuConfiguration,
-                             suggestedActions: [UIMenuElement]) -> UIMenu? {
-        
-        let customMenu = UIMenu(title: "", options: .displayInline, children: [
-            UIAction(title: "번역") { _ in
-                print("번역")
-            },
-            UIAction(title: "답장") { _ in
-                print("답장")
-            },
-            UIAction(title: "찜하기") { _ in
-                print("찜하기")
-            },
-            UIAction(title: "신고") { _ in
-                print("신고")
-            }
-        ])
-        return UIMenu(children: customMenu.children) // For Custom Menu Only
-    }
-}
 
 // MARK: - Ext: KeyboardInputBarDelegate
 
@@ -494,8 +465,6 @@ extension ChatRoomViewController: MessageTableViewCellDelegate {
     func longPressedMessageView(_ gesture: UILongPressGestureRecognizer) {
         let location = gesture.location(in: messagesTableView)
         
-        let conf = UIEditMenuConfiguration(identifier: "", sourcePoint: location)
-        editMenuInteraction?.presentEditMenu(with: conf)
     }
     
     // 메시지 번역 버튼 클릭
