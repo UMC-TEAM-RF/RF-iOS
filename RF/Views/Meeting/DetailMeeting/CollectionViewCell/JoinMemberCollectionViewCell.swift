@@ -16,6 +16,7 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell {
         let img = UIImageView()
         img.layer.cornerRadius = 20
         img.clipsToBounds = true
+        img.contentMode = .scaleAspectFit
         return img
     }()
     
@@ -53,23 +54,23 @@ final class JoinMemberCollectionViewCell: UICollectionViewCell {
         addSubview(nameLabel)
         addSubview(nationalityLabel)
         
-        profileImg.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.width.equalTo(50)
-            make.height.equalTo(50)
+        nationalityLabel.snp.makeConstraints { make in
+            make.horizontalEdges.bottom.equalToSuperview()
+            make.height.equalTo(15)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(profileImg.snp.bottom).offset(5)
-            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(nationalityLabel.snp.top).offset(-2)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(15)
         }
         
-        nationalityLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(5)
-            make.leading.trailing.equalToSuperview()
-
+        profileImg.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalTo(nameLabel.snp.top).offset(-2)
+            make.width.equalTo(profileImg.snp.height)
+            make.centerX.equalToSuperview()
         }
-        
     }
     
     /// inputData
