@@ -74,7 +74,7 @@ final class SetNicknameViewController: UIViewController {
         field.borderStyle = .none
         field.placeholder = "   닉네임을 입력해주세요"
         field.backgroundColor = BackgroundColor.white.color
-        field.textColor = StrokeColor.sub.color
+        field.textColor = TextColor.first.color
         field.layer.cornerRadius = 5
         field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return field

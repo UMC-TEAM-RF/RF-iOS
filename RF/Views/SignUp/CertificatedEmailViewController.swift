@@ -42,6 +42,7 @@ final class CertificatedEmailViewController: UIViewController {
     /// MARK: 이메일 입력하는 textField
     private lazy var emailTextField: EmailCustomTextField = {
         let field = EmailCustomTextField()
+        field.clearsOnBeginEditing = true
         field.backgroundColor = .clear
         field.placeholder = "이메일을 입력해주세요"
         return field
@@ -112,6 +113,8 @@ final class CertificatedEmailViewController: UIViewController {
         view.backgroundColor = .white
         
         addSubViews()
+        configureConstraints()
+        addTargets()
         bind()
     }
     
@@ -128,8 +131,6 @@ final class CertificatedEmailViewController: UIViewController {
         view.addSubview(emailTextField)
         view.addSubview(certificatedEmailButton)
         view.addSubview(nextButton)
-        
-        configureConstraints()
     }
     
     /// MARK: Setting AutoLayout
@@ -203,12 +204,23 @@ final class CertificatedEmailViewController: UIViewController {
     // MARK: - Functions
     
     /// binding ViewModel
-    private func bind(){
+    private func addTargets(){
         
         codeTextField.rx.text
             .bind { [weak self] text in
                 if let text = text{
                     self?.viewModel.codeRelay.accept(text)
+                    
+                    
+                    if text != "" {
+                        self?.certificatedCodeButton.backgroundColor = ButtonColor.main.color
+                        self?.certificatedCodeButton.setTitleColor(.white, for: .normal)
+                    }else{
+                        self?.certificatedCodeButton.backgroundColor = ButtonColor.normal.color
+                        self?.certificatedCodeButton.setTitleColor(TextColor.secondary.color, for: .normal)
+                    }
+                    
+                    
                 }
             }
             .disposed(by: disposeBag)
@@ -217,6 +229,19 @@ final class CertificatedEmailViewController: UIViewController {
             .bind { [weak self] text in
                 if let text = text{
                     self?.viewModel.emailRelay.accept(text)
+                    
+                    
+                    if text != "" {
+                        self?.certificatedEmailButton.backgroundColor = ButtonColor.main.color
+                        self?.certificatedEmailButton.setTitleColor(.white, for: .normal)
+                    }else{
+                        self?.certificatedEmailButton.backgroundColor = ButtonColor.normal.color
+                        self?.certificatedEmailButton.setTitleColor(TextColor.secondary.color, for: .normal)
+                        
+                        self?.viewModel.clearAllSubject.accept(false)
+                    }
+                    
+                    
                 }
             }
             .disposed(by: disposeBag)
@@ -249,15 +274,24 @@ final class CertificatedEmailViewController: UIViewController {
                     .disposed(by: self?.disposeBag ?? DisposeBag())
             }
             .disposed(by: disposeBag)
-      
+    }
+        
+    /// MARK: viewModel binding 하는 함수
+    private func bind(){
+        
+        
     }
     
     /// MARK: 이메일로 인증번호 전송
     private func sendingEmail(){
         viewModel.sendingEmail()
             .subscribe(
-                onNext: { [weak self] in
-                    self?.addCodeView()
+                onNext: { [weak self] data in
+                    if data.isSuccess! {
+                        self?.addCodeView()
+                    }else{
+                        self?.showErrorAlert(errorText: data.message!)
+                    }
                 },
                 onError: { [weak self] error in
                     self?.showErrorAlert(errorText: "다시 인증해주세요")

@@ -84,7 +84,7 @@ final class ChoiceBornCountryView: UIViewController{
     /// MARK: Set AutoLayout
     private func configureConstraints() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
             make.centerX.equalToSuperview()
         }
         

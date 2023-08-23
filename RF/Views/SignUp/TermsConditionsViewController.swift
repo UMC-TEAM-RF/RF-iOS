@@ -269,7 +269,7 @@ final class TermsConditionsViewController: UIViewController {
         nextButton.snp.makeConstraints { make in
             make.top.equalTo(ageLabelBackgroundView.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().inset(20)
             make.height.equalTo(47)
         }
         
