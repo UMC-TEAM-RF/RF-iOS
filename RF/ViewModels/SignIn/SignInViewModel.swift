@@ -39,6 +39,16 @@ final class SignInViewModel {
                         UserDefaults.standard.set(accessToken, forKey: "AccessToken")
                         UserDefaults.standard.set(refreshToken, forKey: "RefreshToken")
                         UserDefaults.standard.set(id, forKey: "UserId")
+                        
+                        
+                        //로그인 데이터를 mypage에 뿌려주기 위해서 임시로 짠 코드
+                        SignUpDataViewModel.viewModel.idRelay.accept(data.userDemo?.loginId ?? "")
+                        SignUpDataViewModel.viewModel.emailRelay.accept( data.userDemo?.email ?? "")
+                        SignUpDataViewModel.viewModel.introduceSelfRelay.accept(data.userDemo?.introduce ?? "")
+                        SignUpDataViewModel.viewModel.nickNameRelay.accept(data.userDemo?.nickname ?? "")
+                        SignUpDataViewModel.viewModel.universityRelay.accept(data.userDemo?.university ?? "")
+                        
+                        
                         observer.onNext(true)
                     }
                 })
