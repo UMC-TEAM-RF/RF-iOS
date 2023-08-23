@@ -23,6 +23,7 @@ final class EnumFile {
         service.getEnumList()
             .subscribe(
                 onNext: { [weak self] data in
+                    print(data)
                     self?.enumList.accept(data)
                 },onError: { error in
                     print("EnumFile getEnumList error!")

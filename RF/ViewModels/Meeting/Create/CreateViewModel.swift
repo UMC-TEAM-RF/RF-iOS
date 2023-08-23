@@ -58,6 +58,7 @@ final class CreateViewModel {
         
         
         let rules = rule.value.map{ rule in data.rule?.filter { $0.value == rule }.first?.key ?? ""}
+        print(rules)
         
         let model = Meeting(name: meetingName.value,
                             memberCount: meetingAllMember.value,
