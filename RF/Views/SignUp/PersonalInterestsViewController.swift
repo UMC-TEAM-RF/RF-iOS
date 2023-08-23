@@ -197,7 +197,8 @@ final class PersonalInterestsViewController: UIViewController {
         interestCollectionView.snp.makeConstraints { make in
             make.top.equalTo(interestLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*0.4)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.width*3/4)//가로세로 비율 4:3
+//            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*0.4)
         }
         
         // 라이프스타일 라벨 & 컬렉션뷰
@@ -219,7 +220,8 @@ final class PersonalInterestsViewController: UIViewController {
         mbtiCollectionView.snp.makeConstraints { make in
             make.top.equalTo(mbtiLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*0.4)
+            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.width*3/4)//가로세로 비율 4:3
+//            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height*0.4)
         }
         
         // 다음
