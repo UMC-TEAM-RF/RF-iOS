@@ -92,6 +92,7 @@ final class MeetingService {
                 switch response.result {
                 case .success(let data):
                     print(data)
+                    CreateViewModel.viewModel.id.accept(data.result?.id ?? 0)
                     observer.onNext(data.isSuccess ?? false)
                 case .failure(let error):
                     print(error)
@@ -104,7 +105,7 @@ final class MeetingService {
     /// 모임 정보 API
     func requestMeetingInfo(id: Int) -> Observable<Meeting> {
         let url = "\(Domain.restApi)\(MeetingPath.createMeeting)/\(id)"
-        
+        print(url)
         return Observable.create { observer in
             AF.request(url, method: .get)
                 .validate(statusCode: 200..<201)

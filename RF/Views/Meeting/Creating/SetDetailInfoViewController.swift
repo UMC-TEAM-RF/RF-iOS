@@ -505,7 +505,9 @@ final class SetDetailInfoViewController: UIViewController {
                 if check{
                     self?.tabBarController?.tabBar.isHidden = false
                     self?.navigationController?.popToRootViewController(animated: true)
-                    self?.navigationController?.pushViewController(DetailMeetingHomeController(), animated: true)
+                    let detailMeetingHomeController = DetailMeetingHomeController()
+                    detailMeetingHomeController.meetingIdRelay.accept(CreateViewModel.viewModel.id.value)
+                    self?.navigationController?.pushViewController(detailMeetingHomeController, animated: true)
                 }
             })
             .disposed(by: disposeBag)
