@@ -641,6 +641,7 @@ extension HomeViewController: SendDataDelegate {
         
         let vc = DetailMeetingHomeController()
         vc.meetingIdRelay.accept(meeting.id)
+        navigationItem.backButtonTitle = " "
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

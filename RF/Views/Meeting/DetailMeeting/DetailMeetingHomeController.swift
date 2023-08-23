@@ -434,7 +434,7 @@ final class DetailMeetingHomeController: UIViewController {
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(25)
             make.trailing.equalToSuperview().offset(-25)
-            make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.height/7)
+            make.height.equalTo(130)
         }
         
         // MARK: 멤버 정원 UI
