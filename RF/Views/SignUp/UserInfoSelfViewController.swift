@@ -54,7 +54,7 @@ final class UserInfoSelfViewController: UIViewController {
         field.placeholder = "   " + "한 줄 소개를 작성해주세요!"
         field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         field.backgroundColor = .clear
-        field.textColor = StrokeColor.sub.color
+        field.textColor = TextColor.first.color
         field.addSubview(bottomLine)
         bottomLine.translatesAutoresizingMaskIntoConstraints = false
         configureConstraints(for: field, and: bottomLine)
@@ -143,7 +143,7 @@ final class UserInfoSelfViewController: UIViewController {
         // 이후에 변경할 수 없으니 신중히 결정해주세요!
         warningLabel.snp.makeConstraints { make in
             make.bottom.equalTo(nextButton.snp.top).offset(-20)
-            make.leading.trailing.equalToSuperview().inset(70)
+            make.centerX.equalToSuperview()
         }
     
         //다음
@@ -166,6 +166,18 @@ final class UserInfoSelfViewController: UIViewController {
             .bind { [weak self] introduce in
                 if let introduce = introduce{
                     self?.viewModel.introduceSelfRelay.accept(introduce)
+                    
+                    
+                    
+                    if introduce != "" {
+                        self?.nextButton.backgroundColor = ButtonColor.main.color
+                        self?.nextButton.setTitleColor(.white, for: .normal)
+                    }else{
+                        self?.nextButton.backgroundColor = ButtonColor.normal.color
+                        self?.nextButton.setTitleColor(TextColor.secondary.color, for: .normal)
+                    }
+                    
+                    
                 }
             }
             .disposed(by: disposeBag)
