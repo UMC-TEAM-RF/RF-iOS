@@ -80,7 +80,7 @@ final class HomeViewController: UIViewController {
         let label = UILabel()
         label.text = "다양한 친구들과 대화를 나눠보세요!"
         //label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.font = UIFont(name: "Pretendard-Bold", size: 18)
+        label.font = UIFont(name: Font.bold, size: 18)
         label.textColor = TextColor.first.color
         return label
     }()

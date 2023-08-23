@@ -116,7 +116,7 @@
 		570063992A6AB8520051F42A /* NotiMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063982A6AB8520051F42A /* NotiMessageViewController.swift */; };
 		5700639D2A6AC60C0051F42A /* NotiListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700639C2A6AC60C0051F42A /* NotiListTableViewCell.swift */; };
 		570063AB2A724CB40051F42A /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063AA2A724CB40051F42A /* UIViewController+Ext.swift */; };
-		570063AD2A7258530051F42A /* DesignColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063AC2A7258530051F42A /* DesignColor.swift */; };
+		570063AD2A7258530051F42A /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063AC2A7258530051F42A /* DesignConstants.swift */; };
 		570063BB2A7630E60051F42A /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063BA2A7630E60051F42A /* MenuButton.swift */; };
 		570063BD2A7797B50051F42A /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063BC2A7797B50051F42A /* PickerViewController.swift */; };
 		570063BF2A779D440051F42A /* MenuButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063BE2A779D440051F42A /* MenuButtonDelegate.swift */; };
@@ -293,7 +293,7 @@
 		570063982A6AB8520051F42A /* NotiMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiMessageViewController.swift; sourceTree = "<group>"; };
 		5700639C2A6AC60C0051F42A /* NotiListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListTableViewCell.swift; sourceTree = "<group>"; };
 		570063AA2A724CB40051F42A /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
-		570063AC2A7258530051F42A /* DesignColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignColor.swift; sourceTree = "<group>"; };
+		570063AC2A7258530051F42A /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
 		570063BA2A7630E60051F42A /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		570063BC2A7797B50051F42A /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		570063BE2A779D440051F42A /* MenuButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonDelegate.swift; sourceTree = "<group>"; };
@@ -987,7 +987,7 @@
 			children = (
 				57DD3E622A80C7B4009F7139 /* API */,
 				3B4CAC972A7A4F3B00896DEB /* HomeMeetingDummy.swift */,
-				570063AC2A7258530051F42A /* DesignColor.swift */,
+				570063AC2A7258530051F42A /* DesignConstants.swift */,
 				57DD3E6D2A825DDD009F7139 /* NotificationName.swift */,
 				57AF3D532A83B36B00C09715 /* DateTimeFormatter.swift */,
 				57AF3D552A84DAE500C09715 /* ViewConstants.swift */,
@@ -1288,7 +1288,7 @@
 				57DD3E682A8106E7009F7139 /* Message.swift in Sources */,
 				3B595EF22A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift in Sources */,
 				570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */,
-				570063AD2A7258530051F42A /* DesignColor.swift in Sources */,
+				570063AD2A7258530051F42A /* DesignConstants.swift in Sources */,
 				570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */,
 				3B8ACC482A925C3B00AC082F /* PageCollectionViewCell.swift in Sources */,
 				3B15CD612A64437D0096871F /* InterestingTopicCollectionViewCell.swift in Sources */,
