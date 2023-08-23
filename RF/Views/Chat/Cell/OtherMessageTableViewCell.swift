@@ -18,7 +18,7 @@ class OtherMessageTableViewCell: UITableViewCell {
     
     private lazy var avatarView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "LogoImage")
+        //iv.image = UIImage(named: "LogoImage")
         iv.contentMode = .scaleAspectFit
         iv.layer.cornerRadius = contentView.frame.width * 0.1 / 2.0
         iv.clipsToBounds = true
@@ -168,7 +168,7 @@ class OtherMessageTableViewCell: UITableViewCell {
         messageLabel.text = message.content
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
         displayNameLabel.text = message.sender?.userName
-        //avatarView.image = message.sender?.speakerImageUrl
+        avatarView.load(url: URL(string: "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg")!)
         
         if message.langCode != "ko" { translateButton.isHidden = false }
     }

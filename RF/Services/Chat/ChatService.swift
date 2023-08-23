@@ -146,7 +146,7 @@ extension ChatService: StompClientLibDelegate {
         // DB에서 내가 가입한 모임 리스트를 가져와서 각각 구독
         
         subscribe(1)
-        subscribe(2)
+        //subscribe(2)
     }
     
     func stompClientDidDisconnect(client: StompClientLib!) {
@@ -191,41 +191,19 @@ class SingletonChannel {
     private init() {}
     
     var list: [Channel] = [
-        Channel(id: 1, name: "1번 모임", messages: [
-            Message(sender: Sender(userId: 1, userName: "JD"), content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
-            Message(sender: Sender(userId: 1, userName: "JD"), content: "t has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout", langCode: "en"),
-            Message(sender: Sender(userId: 3, userName: "제이디"), content: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "Contrary to popular belief, Lorem Ipsum is not simply random text.", langCode: "en"),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.", langCode: "en"),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "FC BARCELONA EL CLASICO FRENKIE DE JONG PEDRI GAVI SPAIN LA LIGA", dateTime: "2023-08-07 21:41:44.889734"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", dateTime: "2023-08-07 21:41:44.889734"),
-            Message(sender: Sender(userId: 3, userName: "제이디"), content: "테스트", dateTime: "2023-08-07 21:41:44.889734"),
-            Message(sender: Sender(userId: 3, userName: "제이디"), content: "테스트", dateTime: "2023-08-07 21:41:44.889734"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트", dateTime: "2023-08-07 21:41:44.889734"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트", dateTime: "2023-08-07 21:41:44.889734"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트", dateTime: "2023-08-07 21:41:44.889734"),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "It", dateTime: "2023-08-07 21:41:44.889734", langCode: "en")
-        ], userProfileImages: ["a", "a", "a", "a"]),
-        Channel(id: 2, name: "2번 모임", messages: [
-            Message(content: "TESTTESTTESTTESTESTTEST", dateTime: "21:09"),
-            Message(sender: Sender(userId: 1, userName: "JD"), content: "Lorem Ipsum has  type and scrambled it to make a type specimen book."),
-            Message(sender: Sender(userId: 1, userName: "JD"), content: "t has survived not only five centurid."),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "It is a long established  its layout"),
-            Message(sender: Sender(userId: 3, userName: "제이디"), content: "Neque it..."),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "Contrary to popular belief, Lorem Ipsum is not simply random text."),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "There are many varvable."),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "The standard chunk of Lorem Ipsum ubelow for those interested."),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "FC BARCELONA EL CLASIE DE JONG PEDRI GAVI SPAIN LA LIGA"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
-            Message(sender: Sender(userId: 3, userName: "제이디"), content: "테스트"),
-            Message(sender: Sender(userId: 3, userName: "제이디"), content: "Lorem"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "테스트"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "dummy"),
-            Message(sender: Sender(userId: 4, userName: "만자"), content: "printing"),
-            Message(sender: Sender(userId: 2, userName: "망고"), content: "It is a longooking at its layout", dateTime: "2023-08-07 21:41:44.889734")
-        ], userProfileImages: ["a", "a", "a"])
+        Channel(id: 1, name: "집좋아모임", messages: [
+            Message(sender: Sender(userId: 1, userName: "제이디"), content: "Hello!", dateTime: "2023-08-23 13:41:44.889734", langCode: "en", isNew: false),
+            Message(sender: Sender(userId: 1, userName: "제이디"), content: "Let's be friends~~", dateTime: "2023-08-23 13:41:53.889734", langCode: "en", isNew: false),
+            Message(sender: Sender(userId: 2, userName: "HJ"), content: "반가워요!!", dateTime: "2023-08-23 13:43:13.889734", isNew: false),
+            Message(sender: Sender(userId: 2, userName: "HJ"), content: "Nice to meet you!!", dateTime: "2023-08-23 13:44:44.889734", isNew: false),
+            Message(sender: Sender(userId: 1, userName: "제이디"), content: "It's an honor to meet you like this!", dateTime: "2023-08-23 13:47:44.889734", langCode: "en", isNew: false),
+            Message(sender: Sender(userId: 2, userName: "HJ"), content: "yeah, me too!!", dateTime: "2023-08-23 13:54:44.889734", isNew: false),
+            Message(sender: Sender(userId: 3, userName: "노리"), content: "こんにちは! よろしくお願いします！！", dateTime: "2023-08-23 13:58:44.889734", langCode: "ja", isNew: true)
+        ], userProfileImages: ["https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg", "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg",
+                               "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg"]),
+//        Channel(id: 2, name: "2번 모임", messages: [
+//
+//        ], userProfileImages: ["a", "a", "a"])
     ]
     
     /// 채널 리스트에서 특정 채널의 index 위치 가져오기

@@ -250,7 +250,7 @@ class ChatRoomViewController: UIViewController {
     
     private func isSenderSelf(_ sender: Sender?) -> Bool {
         guard let sender else { return false }
-        return sender.userId == 1
+        return sender.userId == 2
     }
     
     // MARK: - @objc func
@@ -445,14 +445,14 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
                 ChatService.shared.send(
                     message: Message(
                         sender: Sender(
-                            userId: 1,
-                            userName: "JD",
-                            userImageUrl: "TEst"
+                            userId: 2,
+                            userName: "HJ",
+                            userImageUrl: "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg"
                         ),
                         type: MessageType.text,
                         content: text,
                         langCode: result,
-                        partyName: "as",
+                        partyName: "",
                         partyId: self.channel.id),
                     partyId: self.channel.id
                 )
