@@ -277,10 +277,34 @@ class MyPageViewController: UIViewController {
         
         clickedButtons()
         
+        //addBarButton
         let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingButtonTapped))
         let reportButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: #selector(settingButtonTapped))
         
         navigationItem.rightBarButtonItems = [settingButton, reportButton]
+        
+        
+        
+        
+        introduceLabel.text = SignUpDataViewModel.viewModel.introduceSelfRelay.value
+        profileLabel.text = "\(SignUpDataViewModel.viewModel.nickNameRelay.value) | 소융대 🇰🇷"
+        
+//        let service = MeetingService()
+//        service.requestRecommandPartyList("Personal") { meetings in
+//
+//            dump(meetings)
+//            self.personalMeetings = meetings!
+//
+//            if(self.completedRequest == 1){
+//                self.completedRequest = 0
+//                DispatchQueue.main.async {
+//                    self.pageCollectionView.reloadData()
+//                }
+//            }else{
+//                self.completedRequest = 1
+//            }
+//        }
+        
     }
     
     // MARK: View Will Appear

@@ -13,7 +13,7 @@ import RxSwift
 final class EmailService {
     
     /// 이메일로 인증번호 전송하는 함수
-    func sendingEmail(email: String, university: String) -> Observable<Mail>{
+    func sendingEmail(email: String, university: String) -> Observable<Response<Mail>>{
         let url = "\(Domain.restApi)\(EmailPath.sendMail)"
         let body = Mail(mail: email, university: university, code: nil)
         print(body)
@@ -27,7 +27,7 @@ final class EmailService {
                 print(response)
                 switch response.result{
                 case .success(let data):
-                    if let data = data.result{
+                    if let _ = data.isSuccess{
                         observer.onNext(data)
                     }
                 case.failure(let error):
