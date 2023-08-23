@@ -51,8 +51,11 @@ final class TabBarController: UITabBarController {
     }
     
     @objc func updateTabBarIcon() {
-        if selectedIndex != 3, let items = tabBar.items, items.indices.contains(3) {
-            items[3].image = UIImage(named: "newChat")
+//        if selectedIndex != 3, let items = tabBar.items, items.indices.contains(3) {
+//            items[3].image = UIImage(named: "newChat")
+//        }
+        if selectedIndex != 2, let items = tabBar.items, items.indices.contains(2) {
+            items[2].image = UIImage(named: "newChat")
         }
     }
     

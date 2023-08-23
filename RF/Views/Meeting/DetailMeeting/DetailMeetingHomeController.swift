@@ -666,6 +666,7 @@ final class DetailMeetingHomeController: UIViewController {
                 placeContentLabel.text = data?.location ?? ""
                 joinMemberNumberLabel.text = "\(String(describing: data?.users?.count ?? 0))/\(data?.memberCount ?? 0)"
                 isCheckRecruiting(isRecruiting: data?.isRecruiting ?? false)
+                titleLabel.text = data?.name ?? ""
                 interestingCollectionView.reloadData()
                 ruleCollectionView.reloadData()
                 joinMemberCollectionView.reloadData()

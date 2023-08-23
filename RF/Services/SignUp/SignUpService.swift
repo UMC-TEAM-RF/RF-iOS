@@ -37,7 +37,8 @@ final class SignUpService {
     
     /// 닉네임 중복 확인하는 함수
     func checkOverlapNickName(name: String) -> Observable<Bool> {
-        let url = "\(Domain.restApi)\(SignUpPath.checkOverlapNickName)/\(name)"
+        let encoded = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = "\(Domain.restApi)\(SignUpPath.checkOverlapNickName)/\(encoded)"
         
         return Observable.create { observer in
             AF.request(url,

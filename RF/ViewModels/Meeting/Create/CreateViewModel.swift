@@ -45,6 +45,7 @@ final class CreateViewModel {
     /// 규칙
     var rule: BehaviorRelay<[String]> = BehaviorRelay<[String]>(value: [])
     
+    var id: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     
     /// 모든 조건들을 다 선택했는지 확인하는 함수
     func clickedNextButton() -> Observable<Bool> {
