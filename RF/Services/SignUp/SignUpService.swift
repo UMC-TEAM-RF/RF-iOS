@@ -25,7 +25,7 @@ final class SignUpService {
                 switch response.result{
                 case .success(let data):
                     print("checkOverlapId success \(data)")
-                    observer.onNext(data.isSuccess ?? false)
+                    observer.onNext(data.isSuccess ?? false && data.result?.judge ?? false)
                 case .failure(let error):
                     print("checkOverlapId error!\n\(error)")
                 }

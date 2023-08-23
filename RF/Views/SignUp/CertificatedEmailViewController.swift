@@ -231,12 +231,14 @@ final class CertificatedEmailViewController: UIViewController {
                     self?.viewModel.emailRelay.accept(text)
                     
                     
-                    if text != "" { // true: 비밀번호 일치
+                    if text != "" {
                         self?.certificatedEmailButton.backgroundColor = ButtonColor.main.color
                         self?.certificatedEmailButton.setTitleColor(.white, for: .normal)
-                    }else{ // false: 비밀번호가 일치하지 않는 경우 코드 작성
+                    }else{
                         self?.certificatedEmailButton.backgroundColor = ButtonColor.normal.color
                         self?.certificatedEmailButton.setTitleColor(TextColor.secondary.color, for: .normal)
+                        
+                        self?.viewModel.clearAllSubject.accept(false)
                     }
                     
                     
