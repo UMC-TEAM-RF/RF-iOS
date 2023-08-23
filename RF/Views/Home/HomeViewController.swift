@@ -269,12 +269,12 @@ final class HomeViewController: UIViewController {
     // MARK: - addSubviews()
     
     private func addSubviews() {
+        view.addSubview(navigationContainerView)
         view.addSubview(scrollView)
         
         scrollView.addSubview(containerView)
         
         // 컨테이너 뷰
-        containerView.addSubview(navigationContainerView)
         containerView.addSubview(bannerCollectionView)
         containerView.addSubview(bannerPageControl)
         containerView.addSubview(meetingListView)
@@ -309,19 +309,11 @@ final class HomeViewController: UIViewController {
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
-        scrollView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        containerView.snp.makeConstraints { make in
-            make.edges.equalTo(scrollView.contentLayoutGuide)
-            make.width.equalTo(scrollView.frameLayoutGuide)
-        }
         
         // 네비게이션 바
         navigationContainerView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            //make.width.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview()
             make.height.equalTo(60)
         }
         
@@ -338,9 +330,20 @@ final class HomeViewController: UIViewController {
             make.width.equalTo(navigationNotiButton.snp.height).multipliedBy(1)
         }
         
+        // 스크롤 뷰
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(navigationContainerView.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        containerView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView.frameLayoutGuide)
+        }
+        
         // 배너
         bannerCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(navigationContainerView.snp.bottom)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             //make.width.equalToSuperview()
             make.height.equalTo(bannerCollectionView.snp.width).multipliedBy(0.9/1.6)
@@ -350,9 +353,6 @@ final class HomeViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.bottom.equalTo(bannerCollectionView.snp.bottom).offset(-10)
         }
-        
-        
-        
         
         // 모임
         meetingListView.snp.makeConstraints { make in
