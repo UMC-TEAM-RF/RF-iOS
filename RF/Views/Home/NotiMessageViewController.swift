@@ -24,11 +24,6 @@ class NotiMessageViewController: UIViewController {
     
     // MARK: - Property
     
-    let dummy: [String] = [
-        "kimhim 님이 '마라탕 맛집 탐방'에 참여하기를 원해요!",
-        "ljdongz 님이 '디천: 디자인 천재들 모임'에 참여하기를 원해요!",
-    ]
-    
     // MARK: - viewDidLoad()
     
     override func viewDidLoad() {
@@ -73,24 +68,24 @@ class NotiMessageViewController: UIViewController {
 
 extension NotiMessageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummy.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NotiListTableViewCell.identifier, for: indexPath) as? NotiListTableViewCell else { return UITableViewCell() }
         
-        cell.notiLabelText = dummy[indexPath.row]
-        cell.timeLabelText = "23시간"
+        cell.notiLabelText = "알프에 오신 걸 환영합니다! 프로필 이미지를 변경해 보는 것은 어떨까요?"
+        cell.timeLabelText = nil
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let notiAcceptRejectViewController = GroupJoinRequestViewController()
-        notiAcceptRejectViewController.titleRelay.accept(dummy[indexPath.row])  // 알림에 대한 모임 이름 넣으면 됨
-        navigationItem.backButtonTitle = " "
-        navigationController?.pushViewController(notiAcceptRejectViewController, animated: true)
+//        let notiAcceptRejectViewController = GroupJoinRequestViewController()
+//        notiAcceptRejectViewController.titleRelay.accept(dummy[indexPath.row])  // 알림에 대한 모임 이름 넣으면 됨
+//        navigationItem.backButtonTitle = " "
+//        navigationController?.pushViewController(notiAcceptRejectViewController, animated: true)
         
     }
 }
