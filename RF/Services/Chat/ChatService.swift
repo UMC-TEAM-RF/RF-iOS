@@ -194,10 +194,10 @@ class SingletonChannel {
         Channel(id: 1, name: "집좋아모임", messages: [
             Message(sender: Sender(userId: 1, userName: "제이디"), content: "Hello!", dateTime: "2023-08-23 13:41:44.889734", langCode: "en", isNew: false),
             Message(sender: Sender(userId: 1, userName: "제이디"), content: "Let's be friends~~", dateTime: "2023-08-23 13:41:53.889734", langCode: "en", isNew: false),
-            Message(sender: Sender(userId: 2, userName: "HJ"), content: "반가워요!!", dateTime: "2023-08-23 13:43:13.889734", isNew: false),
-            Message(sender: Sender(userId: 2, userName: "HJ"), content: "Nice to meet you!!", dateTime: "2023-08-23 13:44:44.889734", isNew: false),
+            Message(sender: Sender(userId: 2, userName: "HJ"), content: "반가워요!!", dateTime: "2023-08-23 13:43:13.889734", langCode: "ko", isNew: false),
+            Message(sender: Sender(userId: 2, userName: "HJ"), content: "Nice to meet you!!", dateTime: "2023-08-23 13:44:44.889734", langCode: "ko", isNew: false),
             Message(sender: Sender(userId: 1, userName: "제이디"), content: "It's an honor to meet you like this!", dateTime: "2023-08-23 13:47:44.889734", langCode: "en", isNew: false),
-            Message(sender: Sender(userId: 2, userName: "HJ"), content: "yeah, me too!!", dateTime: "2023-08-23 13:54:44.889734", isNew: false),
+            Message(sender: Sender(userId: 2, userName: "HJ"), content: "yeah, me too!!", dateTime: "2023-08-23 13:54:44.889734", langCode: "ko", isNew: false),
             Message(sender: Sender(userId: 3, userName: "노리"), content: "こんにちは! よろしくお願いします！！", dateTime: "2023-08-23 13:58:44.889734", langCode: "ja", isNew: true)
         ], userProfileImages: ["https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg", "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg",
                                "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg"]),
