@@ -228,7 +228,7 @@ final class PersonalInterestsViewController: UIViewController {
         nextButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(30)
             make.top.equalTo(mbtiCollectionView.snp.bottom).offset(30)
-            make.bottom.equalToSuperview() // 이것이 중요함
+            make.bottom.equalToSuperview().inset(20) // 이것이 중요함
             make.height.equalTo(50)
         }
     }
