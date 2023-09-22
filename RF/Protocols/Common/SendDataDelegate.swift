@@ -23,4 +23,7 @@ import Foundation
     
     // PageCollectionViewCell -> HomeViewController
     @objc optional func sendMeetingData(tag: Int, index: Int)
+    
+    ///
+    @objc optional func sendTagData(tag: Int)
 }

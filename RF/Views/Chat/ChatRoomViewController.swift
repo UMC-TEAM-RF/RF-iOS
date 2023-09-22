@@ -7,8 +7,9 @@
 
 import UIKit
 import SnapKit
+import PhotosUI
 
-class ChatRoomViewController: UIViewController {
+final class ChatRoomViewController: UIViewController {
     
     // 메시지 입력 창
     private lazy var keyboardInputBar: KeyboardInputBar = {
@@ -364,6 +365,27 @@ class ChatRoomViewController: UIViewController {
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true, completion: nil)
     }
+    
+    /// 사진 앱에서 사진 선택
+    private func selectedPhoto() {
+        if #available(iOS 14, *){
+            var configuration = PHPickerConfiguration()
+            configuration.selectionLimit = 2
+            configuration.filter = .any(of: [.images])
+            
+            let picker = PHPickerViewController(configuration: configuration)
+            picker.delegate = self
+            let nvPicker = UINavigationController(rootViewController: picker)
+            nvPicker.modalPresentationStyle = .fullScreen
+            present(nvPicker,animated: false)
+        }
+        else {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = .photoLibrary
+            present(imagePickerController, animated: true, completion: nil)
+        }
+    }
 }
 
 // MARK: - Ext: TableView
@@ -420,6 +442,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
     
     func didTapPlus() {
         let keyboardInputView = KeyboardInputView(frame: keyboardRect)
+        keyboardInputView.delegate = self
         keyboardInputBar.keyboardInputView = keyboardInputView
     }
     
@@ -505,5 +528,50 @@ extension ChatRoomViewController: SendDataDelegate {
         let button = tag == 0 ? sourceLanguageButton : targetLanguageButton
         button.setTitle("\(data) ", for: .normal)
     }
+    
+    func sendTagData(tag: Int) {
+        switch tag {
+        case 0: // 사진 선택
+            print("photo")
+            selectedPhoto()
+        case 1: // 카메라
+            print("camera")
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = .camera
+            present(imagePickerController, animated: true, completion: nil)
+        case 2: // 일정
+            print("calendar")
+        default:
+            print("잘못 접근")
+        }
+    }
 }
 
+extension ChatRoomViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+}
+
+
+extension ChatRoomViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        let itemProvider = results.first?.itemProvider
+        
+        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                if let image = image as? UIImage {
+                    DispatchQueue.main.async { ///이미지 어떻게 처리할 것인지
+                        print("done")
+                        self?.dismiss(animated: true)
+                    }
+                }
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("cancel")
+        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
+    }
+}
