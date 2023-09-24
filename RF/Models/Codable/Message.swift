@@ -28,6 +28,7 @@ struct Message: Codable {
     var langCode: String? // 언어 타입
     var partyName: String? // 그룹 이름
     var partyId: Int?
+    var victim: Sender?
     
     var isNew: Bool = true  // 새 메시지 여부 (서버로부터 받을 때 기본 값으로 true 저장)
     
@@ -58,4 +59,8 @@ struct MessageType {
     static let text = "TEXT"
     static let image = "IMAGE"
     static let schedule = "SCHEDULE"
+    static let reply = "REPLY"
+    static let invite = "INVITE"
+    static let leave = "LEAVE"
+    static let kickOut = "KICT_OUT"
 }

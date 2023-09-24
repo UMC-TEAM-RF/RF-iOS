@@ -130,6 +130,7 @@
 		570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E32A7D10150051F42A /* KeyboardInputBar.swift */; };
 		570063E62A7D13320051F42A /* MyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E52A7D13320051F42A /* MyMessageTableViewCell.swift */; };
 		570063E82A7D13480051F42A /* OtherMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E72A7D13480051F42A /* OtherMessageTableViewCell.swift */; };
+		572221BD2AC0A6BA00CB9E36 /* ChannelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221BC2AC0A6BA00CB9E36 /* ChannelRepository.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -138,7 +139,6 @@
 		572A9A322A5CB445004D2809 /* SetInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A312A5CB445004D2809 /* SetInterestViewController.swift */; };
 		572A9A352A5CC21C004D2809 /* SetDescriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A342A5CC21C004D2809 /* SetDescriptViewController.swift */; };
 		572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A362A5CE7D4004D2809 /* SetDetailInfoViewController.swift */; };
-		572A9A3A2A5E80D1004D2809 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A392A5E80D1004D2809 /* Member.swift */; };
 		572DC22F2A51BF2400C0D6E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC22E2A51BF2400C0D6E1 /* AppDelegate.swift */; };
 		572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2302A51BF2400C0D6E1 /* SceneDelegate.swift */; };
 		572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC2322A51BF2400C0D6E1 /* SignInViewController.swift */; };
@@ -307,6 +307,7 @@
 		570063E32A7D10150051F42A /* KeyboardInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputBar.swift; sourceTree = "<group>"; };
 		570063E52A7D13320051F42A /* MyMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageTableViewCell.swift; sourceTree = "<group>"; };
 		570063E72A7D13480051F42A /* OtherMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMessageTableViewCell.swift; sourceTree = "<group>"; };
+		572221BC2AC0A6BA00CB9E36 /* ChannelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRepository.swift; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -315,7 +316,6 @@
 		572A9A312A5CB445004D2809 /* SetInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInterestViewController.swift; sourceTree = "<group>"; };
 		572A9A342A5CC21C004D2809 /* SetDescriptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDescriptViewController.swift; sourceTree = "<group>"; };
 		572A9A362A5CE7D4004D2809 /* SetDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailInfoViewController.swift; sourceTree = "<group>"; };
-		572A9A392A5E80D1004D2809 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		572DC22B2A51BF2400C0D6E1 /* RF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		572DC22E2A51BF2400C0D6E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		572DC2302A51BF2400C0D6E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -813,6 +813,21 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		572221BA2AC0A24000CB9E36 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		572221BB2AC0A66100CB9E36 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				572221BC2AC0A6BA00CB9E36 /* ChannelRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		572A9A272A5C0989004D2809 /* Creating */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,10 +858,10 @@
 		572A9A382A5E80B0004D2809 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				572221BA2AC0A24000CB9E36 /* Realm */,
 				570063D22A7A55A20051F42A /* Codable */,
 				3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */,
 				3B657DD92A88FD0800148496 /* GroupJoinRequestModel.swift */,
-				572A9A392A5E80D1004D2809 /* Member.swift */,
 				3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */,
 			);
 			path = Models;
@@ -881,6 +896,7 @@
 				572DC2422A51C23C00C0D6E1 /* Views */,
 				3B15CD622A644FB90096871F /* ViewModels */,
 				3BD68EF82A779870003A57A7 /* Services */,
+				572221BB2AC0A66100CB9E36 /* Repository */,
 				57AF3D622A95271B00C09715 /* Resources */,
 				572DC2372A51BF2500C0D6E1 /* Assets.xcassets */,
 				572DC2392A51BF2500C0D6E1 /* LaunchScreen.storyboard */,
@@ -1207,6 +1223,7 @@
 				44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */,
 				3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */,
 				570063E62A7D13320051F42A /* MyMessageTableViewCell.swift in Sources */,
+				572221BD2AC0A6BA00CB9E36 /* ChannelRepository.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
 				57AF3D542A83B36B00C09715 /* DateTimeFormatter.swift in Sources */,
 				57AF3D5A2A86019600C09715 /* Headers.swift in Sources */,
@@ -1223,7 +1240,6 @@
 				3BC35CEF2A5C6C1B00D73163 /* UILabel+Ext.swift in Sources */,
 				572A9A322A5CB445004D2809 /* SetInterestViewController.swift in Sources */,
 				570063602A63D5120051F42A /* PersonnelStepper.swift in Sources */,
-				572A9A3A2A5E80D1004D2809 /* Member.swift in Sources */,
 				57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */,
 				3B62877C2A84BF7200E00B09 /* CreateViewModel.swift in Sources */,
 				570063D42A7A57110051F42A /* Meeting.swift in Sources */,
