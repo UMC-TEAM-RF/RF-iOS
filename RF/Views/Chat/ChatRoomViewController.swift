@@ -389,6 +389,14 @@ final class ChatRoomViewController: UIViewController {
             present(imagePickerController, animated: true, completion: nil)
         }
     }
+    
+    /// MARK: 카메라로 사진 찍기
+    private func takePhoto(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .camera
+        present(imagePickerController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Ext: TableView
@@ -535,14 +543,9 @@ extension ChatRoomViewController: SendDataDelegate {
     func sendTagData(tag: Int) {
         switch tag {
         case 0: // 사진 선택
-            print("photo")
             selectedPhoto()
         case 1: // 카메라
-            print("camera")
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.delegate = self
-            imagePickerController.sourceType = .camera
-            present(imagePickerController, animated: true, completion: nil)
+            takePhoto()
         case 2: // 일정
             print("calendar")
         default:
@@ -552,7 +555,13 @@ extension ChatRoomViewController: SendDataDelegate {
 }
 
 extension ChatRoomViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            selectedPhotoImages.removeAll()
+            selectedPhotoImages.append(image)
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 
