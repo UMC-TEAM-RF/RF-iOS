@@ -88,6 +88,9 @@ final class ChatRoomViewController: UIViewController {
     
     private var keyboardRect: CGRect = CGRect()
     
+    /// 선택한 이미지들
+    private var selectedPhotoImages: [UIImage] = []
+    
     var channel: Channel!
     var row: Int?
     
@@ -370,7 +373,7 @@ final class ChatRoomViewController: UIViewController {
     private func selectedPhoto() {
         if #available(iOS 14, *){
             var configuration = PHPickerConfiguration()
-            configuration.selectionLimit = 2
+            configuration.selectionLimit = 10
             configuration.filter = .any(of: [.images])
             
             let picker = PHPickerViewController(configuration: configuration)
@@ -554,24 +557,25 @@ extension ChatRoomViewController: UIImagePickerControllerDelegate, UINavigationC
 
 
 extension ChatRoomViewController: PHPickerViewControllerDelegate {
+    
+    /// 사진을 선택완료 했을 때 실행
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        let itemProvider = results.first?.itemProvider
+        selectedPhotoImages.removeAll()
+        dismiss(animated: true)
         
-        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                if let image = image as? UIImage {
-                    DispatchQueue.main.async { ///이미지 어떻게 처리할 것인지
-                        print("done")
-                        self?.dismiss(animated: true)
-                    }
+        results.forEach { result in
+            let itemProvider = result.itemProvider
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
+                    self?.selectedPhotoImages.append(image as? UIImage ?? UIImage())
                 }
             }
         }
     }
     
+    /// 취소버튼 누른 경우
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("cancel")
-        dismiss(animated: true)
-        navigationController?.popViewController(animated: true)
+        picker.dismiss(animated: true, completion: nil)
     }
+    
 }
