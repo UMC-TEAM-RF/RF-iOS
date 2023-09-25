@@ -73,56 +73,103 @@ final class SearchIDViewController: UIViewController {
         checkNumField.textColor = TextColor.first.color
         return checkNumField
     }()
-    
-    private lazy var nextBtn: UIButton = {
-        let nextBtn = UIButton()
-        return nextBtn
+
+    @objc private lazy var nextButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("다음", for: .normal)
+        button.setTitleColor(TextColor.first.color, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        button.backgroundColor =  BackgroundColor.white.color
+        button.layer.cornerRadius = 5
+        return nextButton
     }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItem = leftButton
         navigationController?.navigationBar.tintColor = TextColor.first.color
         view.backgroundColor = .white
         
+        //searchIDresult UI로 화면 전환
+        nextButton.addTarget(self, action: #selector(getter: nextButton), for: .touchUpInside)
+        //
+        
         addSubviews()
     }
     
+    ////나예은_searchIDresult UI로 화면 전환
+    @objc func findIdButtonTapped() {
+           let searchIDVC = SearchIDResultViewController()
+           navigationController?.pushViewController(searchIDVC, animated: true)
+       }
+    //
     
     private func addSubviews() {
-        view.addSubview(nameField)
-        view.addSubview(nameLabel)
+        view.addSubview(nameField)//
+        view.addSubview(nameLabel)//
         view.addSubview(mailField)
         view.addSubview(mailLabel)
         view.addSubview(checknumLabel)
         view.addSubview(checkNumField)
         view.addSubview(checkBtn)
-        view.addSubview(nextBtn)
-       
-       // configureConstraints()
+        view.addSubview(nextButton)
+        
+         configureConstraints()
     }
-    /*
+    
     private func configureConstraints() {
         
+        //이름
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(leftButton.snp.bottom).offset(30)
-            
+            make.centerX.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(130)
+            make.bottom.equalTo(nameField.snp.top).offset(-4)
         }
         
-        //닉네임
-        nicknameLabel.snp.makeConstraints { make in
-            make.top.equalTo(topLabel.snp.bottom).offset(25)
-            make.trailing.equalToSuperview().inset(295)
-            make.leading.equalToSuperview().inset(20)
+        //이름을 입력해주세요
+        nameField.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(4)
+            make.leading.trailing.equalToSuperview().inset(19)
         }
-       
-*/
+        
+        //이메일
+        mailLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameField.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(19)
+        }
+        
+        //이메일을 입력해주세요
+        mailField.snp.makeConstraints { make in
+            make.top.equalTo(mailLabel.snp.bottom).offset(4)
+            make.leading.trailing.equalToSuperview().inset(19)
+        }
+        
+        //인증번호
+        checknumLabel.snp.makeConstraints { make in
+            make.top.equalTo(mailField.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(19)
+        }
+        
+        //인증번호를 입력해주세요
+        checkNumField.snp.makeConstraints { make in
+            make.top.equalTo(checknumLabel.snp.bottom).offset(4)
+            make.leading.trailing.equalToSuperview().inset(19)
+        }
+        
+        //다음
+        nextButton.snp.makeConstraints { make in
+            make.leading.right.equalToSuperview().inset(30)
+            make.bottom.equalToSuperview().inset(50)
+            make.height.equalTo(48)
+        }
+        
     }
-
     
-   
-
-
+    
+    
+    
+    
+}

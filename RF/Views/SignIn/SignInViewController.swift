@@ -12,7 +12,10 @@ import RxSwift
 
 /// 로그인 화면
 final class SignInViewController: UIViewController {
-    
+
+       
+
+        
     // MARK: - UI Property
     
     // 로고 이미지
@@ -206,6 +209,10 @@ final class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //나예은_searchID UI로 화면 전환
+        findIdButton.addTarget(self, action: #selector(findIdButtonTapped), for: .touchUpInside)
+        //
+        
         view.backgroundColor = .white
         
         addSubViews()
@@ -214,6 +221,13 @@ final class SignInViewController: UIViewController {
         
         
     }
+    
+    ////나예은_searchID UI로 화면 전환
+    @objc func findIdButtonTapped() {
+           let searchIDVC = SearchIDViewController()
+           navigationController?.pushViewController(searchIDVC, animated: true)
+       }
+    //
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
