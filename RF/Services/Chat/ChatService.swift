@@ -48,7 +48,6 @@ class ChatService {
             print("Codable To Object is Error")
             return
         }
-        
         socketClient.sendJSONForDict(dict: object, toDestination: "\(destination)/\(partyId)")
     }
     
@@ -172,6 +171,8 @@ extension ChatService: StompClientLibDelegate {
             print("Decode Error")
             return
         }
+        
+        print(data)
         
         let destination = destination.components(separatedBy: "/").last!
         let index = SingletonChannel.shared.list.firstIndex { String($0.id) == destination }

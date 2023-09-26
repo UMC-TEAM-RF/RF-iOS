@@ -131,6 +131,13 @@
 		570063E62A7D13320051F42A /* MyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E52A7D13320051F42A /* MyMessageTableViewCell.swift */; };
 		570063E82A7D13480051F42A /* OtherMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E72A7D13480051F42A /* OtherMessageTableViewCell.swift */; };
 		572221BD2AC0A6BA00CB9E36 /* ChannelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221BC2AC0A6BA00CB9E36 /* ChannelRepository.swift */; };
+		572221CB2AC2CB8B00CB9E36 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221CA2AC2CB8B00CB9E36 /* Sender.swift */; };
+		572221CD2AC2CB9B00CB9E36 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221CC2AC2CB9B00CB9E36 /* Schedule.swift */; };
+		572221CF2AC2CBF400CB9E36 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221CE2AC2CBF400CB9E36 /* Channel.swift */; };
+		572221D12AC2CC4300CB9E36 /* RealmChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221D02AC2CC4300CB9E36 /* RealmChannel.swift */; };
+		572221D32AC2CC6C00CB9E36 /* RealmMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221D22AC2CC6C00CB9E36 /* RealmMessage.swift */; };
+		572221D52AC2CC7C00CB9E36 /* RealmSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221D42AC2CC7C00CB9E36 /* RealmSender.swift */; };
+		572221D72AC2CC9100CB9E36 /* RealmSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221D62AC2CC9100CB9E36 /* RealmSchedule.swift */; };
 		572A9A222A5AADBD004D2809 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */; };
 		572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */; };
 		572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */; };
@@ -308,6 +315,13 @@
 		570063E52A7D13320051F42A /* MyMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageTableViewCell.swift; sourceTree = "<group>"; };
 		570063E72A7D13480051F42A /* OtherMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMessageTableViewCell.swift; sourceTree = "<group>"; };
 		572221BC2AC0A6BA00CB9E36 /* ChannelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRepository.swift; sourceTree = "<group>"; };
+		572221CA2AC2CB8B00CB9E36 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		572221CC2AC2CB9B00CB9E36 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		572221CE2AC2CBF400CB9E36 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		572221D02AC2CC4300CB9E36 /* RealmChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmChannel.swift; sourceTree = "<group>"; };
+		572221D22AC2CC6C00CB9E36 /* RealmMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMessage.swift; sourceTree = "<group>"; };
+		572221D42AC2CC7C00CB9E36 /* RealmSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSender.swift; sourceTree = "<group>"; };
+		572221D62AC2CC9100CB9E36 /* RealmSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSchedule.swift; sourceTree = "<group>"; };
 		572A9A212A5AADBD004D2809 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		572A9A232A5AAE24004D2809 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		572A9A252A5AAE3A004D2809 /* UITabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Ext.swift"; sourceTree = "<group>"; };
@@ -776,12 +790,12 @@
 		570063D22A7A55A20051F42A /* Codable */ = {
 			isa = PBXGroup;
 			children = (
+				572221C92AC2CB6700CB9E36 /* Chat */,
 				57DD3E6B2A810F60009F7139 /* Response.swift */,
 				3BF2E7652A8B50CC00FD09F7 /* Judge.swift */,
 				57AF3D572A85FE8800C09715 /* Papago.swift */,
 				570063D32A7A57110051F42A /* Meeting.swift */,
 				3B69EE3F2A81F522002DB6DF /* Enums.swift */,
-				57DD3E672A8106E7009F7139 /* Message.swift */,
 				3BD68EF62A779741003A57A7 /* SignIn.swift */,
 				3B6C312C2A7E26E1008FADA1 /* Mail.swift */,
 				3B6C31282A7E2166008FADA1 /* User.swift */,
@@ -816,6 +830,10 @@
 		572221BA2AC0A24000CB9E36 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				572221D02AC2CC4300CB9E36 /* RealmChannel.swift */,
+				572221D22AC2CC6C00CB9E36 /* RealmMessage.swift */,
+				572221D42AC2CC7C00CB9E36 /* RealmSender.swift */,
+				572221D62AC2CC9100CB9E36 /* RealmSchedule.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -826,6 +844,16 @@
 				572221BC2AC0A6BA00CB9E36 /* ChannelRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		572221C92AC2CB6700CB9E36 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				57DD3E672A8106E7009F7139 /* Message.swift */,
+				572221CA2AC2CB8B00CB9E36 /* Sender.swift */,
+				572221CC2AC2CB9B00CB9E36 /* Schedule.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		572A9A272A5C0989004D2809 /* Creating */ = {
@@ -860,6 +888,7 @@
 			children = (
 				572221BA2AC0A24000CB9E36 /* Realm */,
 				570063D22A7A55A20051F42A /* Codable */,
+				572221CE2AC2CBF400CB9E36 /* Channel.swift */,
 				3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */,
 				3B657DD92A88FD0800148496 /* GroupJoinRequestModel.swift */,
 				3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */,
@@ -1215,6 +1244,7 @@
 				570063BB2A7630E60051F42A /* MenuButton.swift in Sources */,
 				570063992A6AB8520051F42A /* NotiMessageViewController.swift in Sources */,
 				3B6287842A84EC5100E00B09 /* SetDetailInfoViewModel.swift in Sources */,
+				572221D12AC2CC4300CB9E36 /* RealmChannel.swift in Sources */,
 				3BC35CED2A5C565800D73163 /* InterestingCollectionViewCell.swift in Sources */,
 				3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */,
 				3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */,
@@ -1228,6 +1258,7 @@
 				57AF3D542A83B36B00C09715 /* DateTimeFormatter.swift in Sources */,
 				57AF3D5A2A86019600C09715 /* Headers.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
+				572221CF2AC2CBF400CB9E36 /* Channel.swift in Sources */,
 				3BF2E7682A8B5BA200FD09F7 /* SearchingViewModel.swift in Sources */,
 				3B57FFCD2A7408AE007DB482 /* DimmedViewController.swift in Sources */,
 				3B181D1A2A56DCDF00B62DEB /* MeetingViewController.swift in Sources */,
@@ -1243,6 +1274,7 @@
 				57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */,
 				3B62877C2A84BF7200E00B09 /* CreateViewModel.swift in Sources */,
 				570063D42A7A57110051F42A /* Meeting.swift in Sources */,
+				572221D72AC2CC9100CB9E36 /* RealmSchedule.swift in Sources */,
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,
 				3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */,
 				3B6BA9802A7E68FA00A11FE4 /* SearchUniversityViewController.swift in Sources */,
@@ -1257,6 +1289,7 @@
 				3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */,
 				57DD3E612A80BBD0009F7139 /* ChatService.swift in Sources */,
 				57AF3D562A84DAE500C09715 /* ViewConstants.swift in Sources */,
+				572221D32AC2CC6C00CB9E36 /* RealmMessage.swift in Sources */,
 				3B181D1E2A56E99300B62DEB /* MakeFriendUIView.swift in Sources */,
 				570063BF2A779D440051F42A /* MenuButtonDelegate.swift in Sources */,
 				57AF3D5F2A94C57800C09715 /* ReportService.swift in Sources */,
@@ -1265,6 +1298,7 @@
 				3BC35CF52A5DAE0C00D73163 /* CollectionViewLeftAlignFlowLayout.swift in Sources */,
 				3BC35CF12A5C6CBD00D73163 /* RuleCollectionViewCell.swift in Sources */,
 				3BD68EF52A7795D5003A57A7 /* SignInViewModel.swift in Sources */,
+				572221CB2AC2CB8B00CB9E36 /* Sender.swift in Sources */,
 				3B181D202A56EADB00B62DEB /* MakeFreindUIButton.swift in Sources */,
 				5700636B2A643CDA0051F42A /* DropDownTableViewCell.swift in Sources */,
 				3B62877E2A84C0D500E00B09 /* SetMeetingNameViewModel.swift in Sources */,
@@ -1303,6 +1337,7 @@
 				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
 				57DD3E682A8106E7009F7139 /* Message.swift in Sources */,
 				3B595EF22A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift in Sources */,
+				572221CD2AC2CB9B00CB9E36 /* Schedule.swift in Sources */,
 				570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */,
 				570063AD2A7258530051F42A /* DesignConstants.swift in Sources */,
 				570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */,
@@ -1335,6 +1370,7 @@
 				570063DD2A7CFB280051F42A /* ChatListViewController.swift in Sources */,
 				3B6BA99A2A7FF6E000A11FE4 /* CertificatedEmailViewModel.swift in Sources */,
 				3BB408AC2A6AAC8800FBA617 /* ScheduleFSCalendarCell.swift in Sources */,
+				572221D52AC2CC7C00CB9E36 /* RealmSender.swift in Sources */,
 				3BF2E7722A8CB32300FD09F7 /* DetailMeetingJoinService.swift in Sources */,
 				3B57FFCF2A7408D4007DB482 /* SchedulePopUpViewController.swift in Sources */,
 				3BC7D3612A7D4D6300D92356 /* SetNicknameViewModel.swift in Sources */,
