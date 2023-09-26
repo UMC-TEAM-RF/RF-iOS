@@ -106,6 +106,7 @@
 		3BF2E7722A8CB32300FD09F7 /* DetailMeetingJoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E7712A8CB32300FD09F7 /* DetailMeetingJoinService.swift */; };
 		3BF2E7742A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E7732A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift */; };
 		440B53C62AC1725300D6607F /* SearchIDResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440B53C52AC1725300D6607F /* SearchIDResultViewController.swift */; };
+		440B53C82AC29E2700D6607F /* SearchPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440B53C72AC29E2700D6607F /* SearchPWViewController.swift */; };
 		443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */; };
 		44BBA9B12AB8B4B200EC43BB /* SearchIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BBA9B02AB8B4B200EC43BB /* SearchIDViewController.swift */; };
 		44CC47732A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC47722A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift */; };
@@ -284,6 +285,7 @@
 		3BF2E7712A8CB32300FD09F7 /* DetailMeetingJoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingJoinService.swift; sourceTree = "<group>"; };
 		3BF2E7732A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingHomeViewModel.swift; sourceTree = "<group>"; };
 		440B53C52AC1725300D6607F /* SearchIDResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIDResultViewController.swift; sourceTree = "<group>"; };
+		440B53C72AC29E2700D6607F /* SearchPWViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPWViewController.swift; sourceTree = "<group>"; };
 		443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSelfViewController.swift; sourceTree = "<group>"; };
 		44BBA9B02AB8B4B200EC43BB /* SearchIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIDViewController.swift; sourceTree = "<group>"; };
 		44CC47712A8DE8270025EAEC /* RF.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = RF.entitlements; sourceTree = "<group>"; };
@@ -957,6 +959,7 @@
 				3B935D552A56D4AA00FECE3A /* UICheckBox.swift */,
 				44BBA9B02AB8B4B200EC43BB /* SearchIDViewController.swift */,
 				440B53C52AC1725300D6607F /* SearchIDResultViewController.swift */,
+				440B53C72AC29E2700D6607F /* SearchPWViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -1285,6 +1288,7 @@
 				3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */,
 				5700639D2A6AC60C0051F42A /* NotiListTableViewCell.swift in Sources */,
 				572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */,
+				440B53C82AC29E2700D6607F /* SearchPWViewController.swift in Sources */,
 				3BF2E7662A8B50CC00FD09F7 /* Judge.swift in Sources */,
 				3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */,
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
