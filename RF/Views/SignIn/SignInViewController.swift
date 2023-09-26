@@ -12,10 +12,10 @@ import RxSwift
 
 /// 로그인 화면
 final class SignInViewController: UIViewController {
-
-       
-
-        
+    
+    
+    
+    
     // MARK: - UI Property
     
     // 로고 이미지
@@ -171,36 +171,6 @@ final class SignInViewController: UIViewController {
         return box
     }()
     
-    // MARK: 개발 과정에 필요한 점프 툴
-    private lazy var bottomStackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [homeButton, onboardingButton, interestsButton])
-        sv.axis = .horizontal
-        sv.alignment = .fill
-        sv.distribution = .fillEqually
-        return sv
-    }()
-    
-    private lazy var homeButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Home", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        return button
-    }()
-    
-    private lazy var onboardingButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Onboarding", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        return button
-    }()
-    
-    private lazy var interestsButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Interests", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        return button
-    }()
-    
     private let disposeBag = DisposeBag()
     private let viewModel = SignInViewModel()
     
@@ -209,25 +179,12 @@ final class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //나예은_searchID UI로 화면 전환
-        findIdButton.addTarget(self, action: #selector(findIdButtonTapped), for: .touchUpInside)
-        //
-        
         view.backgroundColor = .white
         
         addSubViews()
         configureConstraints()
         addTargets()
-        
-        
     }
-    
-    ////나예은_searchID UI로 화면 전환
-    @objc func findIdButtonTapped() {
-           let searchIDVC = SearchIDViewController()
-           navigationController?.pushViewController(searchIDVC, animated: true)
-       }
-    //
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -254,9 +211,6 @@ final class SignInViewController: UIViewController {
         view.addSubview(korLangButton)
         view.addSubview(thirdDivLine)
         view.addSubview(engLangButton)
-        
-        
-        view.addSubview(bottomStackView)
     }
     
     private func configureConstraints() {
@@ -355,11 +309,6 @@ final class SignInViewController: UIViewController {
             make.leading.equalTo(thirdDivLine.snp.trailing).offset(16)
             make.height.equalTo(15)
         }
-        
-        bottomStackView.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
-            make.centerX.equalToSuperview()
-        }
     }
     
     private func addTargets() {
@@ -369,43 +318,21 @@ final class SignInViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        onboardingButton.rx.tap
-            .subscribe(onNext: {
-                self.navigationController?.pushViewController(SetNicknameViewController(), animated: true)
-            })
-            .disposed(by: disposeBag)
-        
-        homeButton.rx.tap
-            .subscribe(onNext: {
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
-            })
-            .disposed(by: disposeBag)
-        
         signUpButton.rx.tap
             .subscribe(onNext: { [weak self] in
-            let signUpViewController = SignUpViewController()
+                let signUpViewController = SignUpViewController()
                 self?.navigationItem.backButtonTitle = " "
                 self?.navigationController?.pushViewController(signUpViewController, animated: true)
             })
             .disposed(by: disposeBag)
         
-        interestsButton.rx.tap
-            .subscribe(onNext: {
-                self.navigationController?.pushViewController(PersonalInterestsViewController(), animated: true)
+        findIdButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let searchIDVC = SearchIDViewController()
+                self?.navigationController?.pushViewController(searchIDVC, animated: true)
             })
             .disposed(by: disposeBag)
-        
-        isHidden()
     }
-    
-    /// MARK: 동영상 시연용 임시 함수
-    private func isHidden(){
-        homeButton.isHidden = true
-        onboardingButton.isHidden = true
-        interestsButton.isHidden = true
-    }
-
-
     
     /// MARK: 로그인 버튼 눌렀을 때 실행
     private func clickedLoginButton(){

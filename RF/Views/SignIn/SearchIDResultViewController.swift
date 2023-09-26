@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 
 final class SearchIDResultViewController: UIViewController {
+    
+    // MARK: - UI Property
 
     private lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "아이디 찾기", style: .done, target: self, action: nil)
@@ -18,11 +20,7 @@ final class SearchIDResultViewController: UIViewController {
         return button
     }()
     
-    //~님의 아이디는
-    var nickName: String = ""
-    lazy var message: String = {
-        return "\(nickName) 님의 아이디는"
-    }()
+    
     private lazy var IDlabel: UILabel = {
         let label = UILabel()
         label.text = message
@@ -32,11 +30,7 @@ final class SearchIDResultViewController: UIViewController {
         return label
     }()
     
-    //진짜 아이디
-    var SearchID: String = ""
-    lazy var reultmessage: String = {
-        return "\(SearchID)"
-    }()
+    
     private lazy var SearchIDlabel: UILabel = {
         let SearchIDlabel = UILabel()
         SearchIDlabel.text = reultmessage
@@ -67,6 +61,20 @@ final class SearchIDResultViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Property
+    
+    //~님의 아이디는
+    var nickName: String = ""
+    lazy var message: String = {
+        return "\(nickName) 님의 아이디는"
+    }()
+    
+    //진짜 아이디
+    var SearchID: String = ""
+    lazy var reultmessage: String = {
+        return "\(SearchID)"
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,12 +86,6 @@ final class SearchIDResultViewController: UIViewController {
         
         addSubviews()
         configureConstraints()
-    }
-    
-    //~님의 아이디는 에서 아이디 문구 합쳐놓은 것
-    func setNickName(_ newNickName: String) {
-        nickName = newNickName
-        IDlabel.text = "\(nickName) 님의 아이디는"
     }
     
     
@@ -123,6 +125,12 @@ final class SearchIDResultViewController: UIViewController {
             make.width.equalTo(100)
             make.height.equalTo(40)
         }
+    }
+    
+    //~님의 아이디는 에서 아이디 문구 합쳐놓은 것
+    func setNickName(_ newNickName: String) {
+        nickName = newNickName
+        IDlabel.text = "\(nickName) 님의 아이디는"
     }
 }
 

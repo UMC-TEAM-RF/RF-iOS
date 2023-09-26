@@ -73,15 +73,15 @@ final class SearchIDViewController: UIViewController {
         checkNumField.textColor = TextColor.first.color
         return checkNumField
     }()
-
-    @objc private lazy var nextButton: UIButton = {
+    
+    private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
         button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.backgroundColor =  BackgroundColor.white.color
         button.layer.cornerRadius = 5
-        return nextButton
+        return button
     }()
     
     
@@ -92,20 +92,10 @@ final class SearchIDViewController: UIViewController {
         navigationItem.leftBarButtonItem = leftButton
         navigationController?.navigationBar.tintColor = TextColor.first.color
         view.backgroundColor = .white
-        
-        //searchIDresult UI로 화면 전환
-        nextButton.addTarget(self, action: #selector(getter: nextButton), for: .touchUpInside)
-        //
-        
+                
         addSubviews()
+        addTargets()
     }
-    
-    ////나예은_searchIDresult UI로 화면 전환
-    @objc func findIdButtonTapped() {
-           let searchIDVC = SearchIDResultViewController()
-           navigationController?.pushViewController(searchIDVC, animated: true)
-       }
-    //
     
     private func addSubviews() {
         view.addSubview(nameField)//
@@ -117,7 +107,7 @@ final class SearchIDViewController: UIViewController {
         view.addSubview(checkBtn)
         view.addSubview(nextButton)
         
-         configureConstraints()
+        configureConstraints()
     }
     
     private func configureConstraints() {
@@ -168,8 +158,15 @@ final class SearchIDViewController: UIViewController {
         
     }
     
+    private func addTargets() {
+        //searchIDresult UI로 화면 전환
+        nextButton.addTarget(self, action: #selector(findIdButtonTapped), for: .touchUpInside)
+    }
     
+    // MARK: - @objc func
     
-    
-    
+    @objc func findIdButtonTapped() {
+        let searchIDVC = SearchIDResultViewController()
+        navigationController?.pushViewController(searchIDVC, animated: true)
+    }
 }
