@@ -12,7 +12,8 @@ import SnapKit
 final class SearchIDResultViewController: UIViewController {
     
     // MARK: - UI Property
-
+    
+    /// MARK: 네비게이션 바 왼쪽 아이템
     private lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "아이디 찾기", style: .done, target: self, action: nil)
         button.isEnabled = false
@@ -20,24 +21,23 @@ final class SearchIDResultViewController: UIViewController {
         return button
     }()
     
-    
     private lazy var IDlabel: UILabel = {
         let label = UILabel()
         label.text = message
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        label.textColor = TextColor.first.color
+        label.textColor = TextColor.secondary.color
         label.numberOfLines = 1
         return label
     }()
     
     
     private lazy var SearchIDlabel: UILabel = {
-        let SearchIDlabel = UILabel()
-        SearchIDlabel.text = reultmessage
-        SearchIDlabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        SearchIDlabel.textColor = TextColor.first.color
-        SearchIDlabel.numberOfLines = 1
-        return SearchIDlabel
+        let label = UILabel()
+        label.text = reultmessage
+        label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        label.textColor = TextColor.first.color
+        label.numberOfLines = 1
+        return label
     }()
     
     //입니다
@@ -45,18 +45,17 @@ final class SearchIDResultViewController: UIViewController {
         let label = UILabel()
         label.text = "입니다."
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        label.textColor = TextColor.first.color
+        label.textColor = TextColor.secondary.color
         label.numberOfLines = 1
         return label
     }()
     
-    //확인버튼
     private lazy var checkButton: UIButton = {
         let button = UIButton()
         button.setTitle("확인", for: .normal)
         button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        button.backgroundColor = BackgroundColor.white.color
+        button.backgroundColor =  BackgroundColor.white.color
         button.layer.cornerRadius = 5
         return button
     }()
@@ -86,6 +85,9 @@ final class SearchIDResultViewController: UIViewController {
         
         addSubviews()
         configureConstraints()
+        
+        setNickName("알프 19")
+        setSearchID("qkrgpwls1")
     }
     
     
@@ -101,29 +103,28 @@ final class SearchIDResultViewController: UIViewController {
         //~님의 아이디는
         IDlabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(130)
-            make.leading.trailing.equalToSuperview().inset(45)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
+            make.leading.equalToSuperview().inset(45)
         }
 
         //진짜 아이디
         SearchIDlabel.snp.makeConstraints { make in
             make.top.equalTo(IDlabel.snp.bottom).offset(12)
-            make.trailing.equalToSuperview().inset(45)
+            make.leading.equalToSuperview().inset(45)
         }
         
         
         //~입니다
         stringlabel.snp.makeConstraints { make in
-            make.top.equalTo(IDlabel.snp.bottom).offset(12)
-            make.leading.equalTo(SearchIDlabel.snp.leading).offset(0)
+            make.top.equalTo(IDlabel.snp.bottom).offset(18)
+            make.leading.equalTo(SearchIDlabel.snp.trailing).offset(5)
         }
         
-        //확인버튼
+        //다음
         checkButton.snp.makeConstraints { make in
-            make.top.equalTo(IDlabel.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(100)
-            make.height.equalTo(40)
+            make.leading.right.equalToSuperview().inset(30)
+            make.bottom.equalToSuperview().inset(50)
+            make.height.equalTo(48)
         }
     }
     
@@ -132,5 +133,11 @@ final class SearchIDResultViewController: UIViewController {
         nickName = newNickName
         IDlabel.text = "\(nickName) 님의 아이디는"
     }
+    
+    func setSearchID(_ newSearchID: String) {
+            SearchID = newSearchID
+            SearchIDlabel.text = "\(SearchID)"
+        }
 }
+
 
