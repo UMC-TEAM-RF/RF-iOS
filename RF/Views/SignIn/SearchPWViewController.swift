@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class SearchPWViewController: UIViewController {
+final class SearchIDViewController: UIViewController {
     
     private lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "비밀번호 찾기", style: .done, target: self, action: nil)
@@ -76,7 +76,7 @@ final class SearchPWViewController: UIViewController {
 
     @objc private lazy var nextButton: UIButton = {
         let button = UIButton()
-        button.setTitle("다음", for: .normal)
+        button.setTitle("확인", for: .normal)
         button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.backgroundColor =  BackgroundColor.white.color
