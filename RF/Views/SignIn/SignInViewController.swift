@@ -228,6 +228,7 @@ final class SignInViewController: UIViewController {
     
     ////나예은_searchID UI로 화면 전환
     @objc func findIdButtonTapped() {
+        print("아이디 찾기 버튼이 눌렸습니다.")
            let searchIDVC = SearchIDViewController()
            navigationController?.pushViewController(searchIDVC, animated: true)
        }
@@ -235,6 +236,7 @@ final class SignInViewController: UIViewController {
     
     ////나예은_searchPW UI로 화면 전환
     @objc func resetPasswordButtonTapped() {
+        print("비밀번호 찾기 버튼이 눌렸습니다.")
            let searchPWVC = SearchPWViewController()
            navigationController?.pushViewController(searchPWVC, animated: true)
        }

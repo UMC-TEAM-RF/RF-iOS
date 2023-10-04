@@ -74,14 +74,14 @@ final class SearchPWViewController: UIViewController {
         return checkNumField
     }()
 
-    @objc private lazy var nextButton: UIButton = {
+    private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("확인", for: .normal)
         button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.backgroundColor =  BackgroundColor.white.color
         button.layer.cornerRadius = 5
-        return nextButton
+        return button
     }()
     
     override func viewDidLoad() {
@@ -93,7 +93,7 @@ final class SearchPWViewController: UIViewController {
         view.backgroundColor = .white
         
         //searchIDresult UI로 화면 전환
-        nextButton.addTarget(self, action: #selector(getter: nextButton), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(resetPasswordButton), for: .touchUpInside)
         //
         
         addSubviews()
