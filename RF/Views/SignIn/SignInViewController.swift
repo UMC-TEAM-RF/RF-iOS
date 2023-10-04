@@ -213,6 +213,10 @@ final class SignInViewController: UIViewController {
         findIdButton.addTarget(self, action: #selector(findIdButtonTapped), for: .touchUpInside)
         //
         
+        //나예은_searchPW UI로 화면 전환
+        resetPasswordButton.addTarget(self, action: #selector(resetPasswordButtonTapped), for: .touchUpInside)
+        //
+        
         view.backgroundColor = .white
         
         addSubViews()
@@ -225,6 +229,13 @@ final class SignInViewController: UIViewController {
     ////나예은_searchID UI로 화면 전환
     @objc func findIdButtonTapped() {
            let searchIDVC = SearchIDViewController()
+           navigationController?.pushViewController(searchIDVC, animated: true)
+       }
+    //
+    
+    ////나예은_searchPW UI로 화면 전환
+    @objc func resetPasswordButtonTapped() {
+           let searchIDVC = SearchPWViewController()
            navigationController?.pushViewController(searchIDVC, animated: true)
        }
     //

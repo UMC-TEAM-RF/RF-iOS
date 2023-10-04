@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class SearchIDViewController: UIViewController {
+final class SearchPWViewController: UIViewController {
     
     private lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "비밀번호 찾기", style: .done, target: self, action: nil)
@@ -73,17 +73,16 @@ final class SearchIDViewController: UIViewController {
         checkNumField.textColor = TextColor.first.color
         return checkNumField
     }()
-
+    
     @objc private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("확인", for: .normal)
         button.setTitleColor(TextColor.first.color, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        //button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.backgroundColor =  BackgroundColor.white.color
         button.layer.cornerRadius = 5
         return nextButton
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,9 +99,9 @@ final class SearchIDViewController: UIViewController {
         addSubviews()
     }
     
-    ////나예은_searchIDresult UI로 화면 전환
-    @objc func findIdButtonTapped() {
-           let searchIDVC = SearchIDResultViewController()
+    ////나예은_searchPWresult UI로 화면 전환
+    @objc func resetPasswordButton() {
+           let searchIDVC = SearchPWResultViewController()
            navigationController?.pushViewController(searchIDVC, animated: true)
        }
     //

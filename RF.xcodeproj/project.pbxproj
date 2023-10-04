@@ -107,6 +107,7 @@
 		3BF2E7742A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E7732A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift */; };
 		440B53C62AC1725300D6607F /* SearchIDResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440B53C52AC1725300D6607F /* SearchIDResultViewController.swift */; };
 		440B53C82AC29E2700D6607F /* SearchPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440B53C72AC29E2700D6607F /* SearchPWViewController.swift */; };
+		440B53CA2AC9421600D6607F /* SearchPWResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440B53C92AC9421600D6607F /* SearchPWResultViewController.swift */; };
 		443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */; };
 		44BBA9B12AB8B4B200EC43BB /* SearchIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BBA9B02AB8B4B200EC43BB /* SearchIDViewController.swift */; };
 		44CC47732A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC47722A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift */; };
@@ -286,6 +287,7 @@
 		3BF2E7732A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingHomeViewModel.swift; sourceTree = "<group>"; };
 		440B53C52AC1725300D6607F /* SearchIDResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIDResultViewController.swift; sourceTree = "<group>"; };
 		440B53C72AC29E2700D6607F /* SearchPWViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPWViewController.swift; sourceTree = "<group>"; };
+		440B53C92AC9421600D6607F /* SearchPWResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPWResultViewController.swift; sourceTree = "<group>"; };
 		443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSelfViewController.swift; sourceTree = "<group>"; };
 		44BBA9B02AB8B4B200EC43BB /* SearchIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIDViewController.swift; sourceTree = "<group>"; };
 		44CC47712A8DE8270025EAEC /* RF.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = RF.entitlements; sourceTree = "<group>"; };
@@ -960,6 +962,7 @@
 				44BBA9B02AB8B4B200EC43BB /* SearchIDViewController.swift */,
 				440B53C52AC1725300D6607F /* SearchIDResultViewController.swift */,
 				440B53C72AC29E2700D6607F /* SearchPWViewController.swift */,
+				440B53C92AC9421600D6607F /* SearchPWResultViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -1211,6 +1214,7 @@
 				3BC35CED2A5C565800D73163 /* InterestingCollectionViewCell.swift in Sources */,
 				3B935D562A56D4AA00FECE3A /* UICheckBox.swift in Sources */,
 				3BB408A92A6AA68A00FBA617 /* ScheduleTableViewCell.swift in Sources */,
+				440B53CA2AC9421600D6607F /* SearchPWResultViewController.swift in Sources */,
 				3BA9FB8D2A7D307F0039B138 /* lifestyleCollectionViewCell.swift in Sources */,
 				57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */,
 				44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */,
