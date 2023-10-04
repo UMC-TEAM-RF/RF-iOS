@@ -44,7 +44,6 @@ final class SearchPWResultViewController: UIViewController {
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
         button.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         
-        // Set the right view for the password field
         PWField.rightView = button
         PWField.rightViewMode = .always
         

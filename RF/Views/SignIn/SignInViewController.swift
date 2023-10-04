@@ -235,8 +235,8 @@ final class SignInViewController: UIViewController {
     
     ////나예은_searchPW UI로 화면 전환
     @objc func resetPasswordButtonTapped() {
-           let searchIDVC = SearchPWViewController()
-           navigationController?.pushViewController(searchIDVC, animated: true)
+           let searchPWVC = SearchPWViewController()
+           navigationController?.pushViewController(searchPWVC, animated: true)
        }
     //
     

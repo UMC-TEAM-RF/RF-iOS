@@ -73,12 +73,12 @@ final class SearchPWViewController: UIViewController {
         checkNumField.textColor = TextColor.first.color
         return checkNumField
     }()
-    
+
     @objc private lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("확인", for: .normal)
         button.setTitleColor(TextColor.first.color, for: .normal)
-        //button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.backgroundColor =  BackgroundColor.white.color
         button.layer.cornerRadius = 5
         return nextButton
@@ -101,8 +101,8 @@ final class SearchPWViewController: UIViewController {
     
     ////나예은_searchPWresult UI로 화면 전환
     @objc func resetPasswordButton() {
-           let searchIDVC = SearchPWResultViewController()
-           navigationController?.pushViewController(searchIDVC, animated: true)
+           let searchPWResultVC = SearchPWResultViewController()
+           navigationController?.pushViewController(searchPWResultVC, animated: true)
        }
     //
     
