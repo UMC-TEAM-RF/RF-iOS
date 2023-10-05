@@ -8,6 +8,14 @@
 import Foundation
 import RealmSwift
 
-class RealmChannel {
+class RealmChannel: Object {
+    @Persisted(primaryKey: true) var id: Int
+    @Persisted var name: String
+    @Persisted var messages = List<RealmMessage>()
     
+    convenience init(id: Int, name: String) {
+        self.init()
+        self.id = id
+        self.name = name
+    }
 }

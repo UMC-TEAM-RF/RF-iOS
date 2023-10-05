@@ -169,19 +169,19 @@ class ChatListTableViewCell: UITableViewCell {
         
     }
     
-    func updateChannelView(_ channel: Channel) {
-        chatTitleLabel.text = channel.name
-        personnelLabel.text = "\(channel.userProfileImages.count)"
-        profileView.updateProfileImages(with: channel.userProfileImages)
-        contentLabel.text = channel.messages.last?.content
-        timeLabel.text =  DateTimeFormatter.shared.convertStringToDateTime(channel.messages.last?.dateTime, isCompareCurrentTime: true)
-        
-        let newMessageCount = countNewMessages(from: channel.messages)
-        
-        let bool = newMessageCount == 0 ? true : false
-        newMessageCountLabel.text = "\(newMessageCount)"
-        newMessageCountView.isHidden = bool
-    }
+//    func updateChannelView(_ channel: Channel) {
+//        chatTitleLabel.text = channel.name
+//        personnelLabel.text = "\(channel.userProfileImages.count)"
+//        profileView.updateProfileImages(with: channel.userProfileImages)
+//        contentLabel.text = channel.messages.last?.content
+//        timeLabel.text =  DateTimeFormatter.shared.convertStringToDateTime(channel.messages.last?.dateTime, isCompareCurrentTime: true)
+//        
+//        let newMessageCount = countNewMessages(from: channel.messages)
+//        
+//        let bool = newMessageCount == 0 ? true : false
+//        newMessageCountLabel.text = "\(newMessageCount)"
+//        newMessageCountView.isHidden = bool
+//    }
     
     func countNewMessages(from messages: [Message]) -> Int {
         var count = 0

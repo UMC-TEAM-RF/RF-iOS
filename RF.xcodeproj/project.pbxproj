@@ -927,7 +927,6 @@
 				3BD68EF82A779870003A57A7 /* Services */,
 				572221BB2AC0A66100CB9E36 /* Repository */,
 				57AF3D622A95271B00C09715 /* Resources */,
-				572DC2372A51BF2500C0D6E1 /* Assets.xcassets */,
 				572DC2392A51BF2500C0D6E1 /* LaunchScreen.storyboard */,
 				572DC23C2A51BF2500C0D6E1 /* Info.plist */,
 				3B0B35282A7A5A31003B2D8C /* SecretKey.plist */,
@@ -1053,6 +1052,7 @@
 			isa = PBXGroup;
 			children = (
 				57AF3D632A95273400C09715 /* Font */,
+				572DC2372A51BF2500C0D6E1 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

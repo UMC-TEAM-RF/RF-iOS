@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Channel {
-    var id: Int   // 모임 ID
-    var name: String   // 모임 이름
-    var messages: [Message] = []
-    var userProfileImages: [String]
-    //var users: [User]
-}
+//struct Channel {
+//    var id: Int   // 모임 ID
+//    var name: String   // 모임 이름
+//    var messages: [Message] = []
+//    var userProfileImages: [String]
+//    //var users: [User]
+//}

@@ -175,9 +175,9 @@ extension ChatService: StompClientLibDelegate {
         print(data)
         
         let destination = destination.components(separatedBy: "/").last!
-        let index = SingletonChannel.shared.list.firstIndex { String($0.id) == destination }
-        
-        SingletonChannel.shared.list[index ?? 0].messages.append(data)  // 수신된 메시지 추가
+//        let index = SingletonChannel.shared.list.firstIndex { String($0.id) == destination }
+//        
+//        SingletonChannel.shared.list[index ?? 0].messages.append(data)  // 수신된 메시지 추가
         
         NotificationCenter.default.post(name: NotificationName.updateChatList, object: self)
         NotificationCenter.default.post(name: NotificationName.updateChatRoom, object: self)
@@ -187,81 +187,81 @@ extension ChatService: StompClientLibDelegate {
 
 
 // MARK: - Singleton Channel Model
-class SingletonChannel {
-    static let shared: SingletonChannel = SingletonChannel()
-    private init() {}
-    
-    var list: [Channel] = [
-        Channel(id: 1, name: "집좋아모임", messages: [
-            Message(sender: Sender(userId: 1, userName: "제이디"), content: "Hello!", dateTime: "2023-08-23 13:41:44.889734", langCode: "en", isNew: false),
-            Message(sender: Sender(userId: 1, userName: "제이디"), content: "Let's be friends~~", dateTime: "2023-08-23 13:41:53.889734", langCode: "en", isNew: false),
-            Message(sender: Sender(userId: 2, userName: "HJ"), content: "반가워요!!", dateTime: "2023-08-23 13:43:13.889734", langCode: "ko", isNew: false),
-            Message(sender: Sender(userId: 2, userName: "HJ"), content: "Nice to meet you!!", dateTime: "2023-08-23 13:44:44.889734", langCode: "ko", isNew: false),
-            Message(sender: Sender(userId: 1, userName: "제이디"), content: "It's an honor to meet you like this!", dateTime: "2023-08-23 13:47:44.889734", langCode: "en", isNew: false),
-            Message(sender: Sender(userId: 2, userName: "HJ"), content: "yeah, me too!!", dateTime: "2023-08-23 13:54:44.889734", langCode: "ko", isNew: false),
-            Message(sender: Sender(userId: 3, userName: "노리"), content: "こんにちは! よろしくお願いします！！", dateTime: "2023-08-23 13:58:44.889734", langCode: "ja", isNew: true)
-        ], userProfileImages: ["https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg", "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg",
-                               "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg"]),
-//        Channel(id: 2, name: "2번 모임", messages: [
-//
-//        ], userProfileImages: ["a", "a", "a"])
-    ]
-    
-    /// 채널 리스트에서 특정 채널의 index 위치 가져오기
-    /// - Parameter channelId: Channel ID
-    /// - Returns: Index(Int)
-    func getChannelIndex(_ channelId: Int) -> Int? {
-        let index = list.firstIndex { $0.id == channelId }
-        return index
-    }
-    
-    /// 특정 채널의 메시지 리스트 가져오기
-    /// - Parameter id: Channel ID
-    /// - Returns: Messages
-    func getChannelMessages(_ id: Int) -> [Message] {
-        let index = list.firstIndex { $0.id == id }
-        guard let index else { return [] }
-        return list[index].messages
-    }
-    
-    /// 특정 채널에 메시지 추가
-    /// - Parameters:
-    ///   - channelId: Channel ID
-    ///   - message: Message
-    func appendMessage(channelId: Int, message: Message) {
-        let index = list.firstIndex { $0.id == channelId }
-        guard let index else { return }
-        list[index].messages.append(message)
-    }
-    
-    func sortByLatest() {
-        list.sort { $0.messages.last?.dateTime ?? "" > $1.messages.last?.dateTime ?? "" }
-    }
-    
-    /// 메시지를 모두 읽음 여부로 설정 후 가장 첫 새로운 메시지의 Index를 반환
-    /// - Parameter channelId: Channel ID
-    /// - Returns: Index
-    func readNewMessage(_ channelId: Int) -> Int {
-        guard let index = getChannelIndex(channelId) else { return 0 }
-        var messages = getChannelMessages(channelId)
-        
-        // 메시지 비어있으면 index = 0
-        if messages.isEmpty { return 0 }
-        
-        var firstNewMessageIndex = messages.count
-        
-        // 가장 마지막 메시지가 새로운 메시지가 아닐 경우 마지막 index 리턴
-        if messages.last?.isNew == false { return firstNewMessageIndex - 1}
-        
-        for i in stride(from: messages.count - 1, through: 0, by: -1) {
-            if messages[i].isNew == false {
-                break
-            }
-            messages[i].isNew = false
-            firstNewMessageIndex -= 1
-        }
-        
-        list[index].messages = messages
-        return firstNewMessageIndex
-    }
-}
+//class SingletonChannel {
+//    static let shared: SingletonChannel = SingletonChannel()
+//    private init() {}
+//    
+//    var list: [Channel] = [
+//        Channel(id: 1, name: "집좋아모임", messages: [
+//            Message(sender: Sender(userId: 1, userName: "제이디"), content: "Hello!", dateTime: "2023-08-23 13:41:44.889734", langCode: "en", isNew: false),
+//            Message(sender: Sender(userId: 1, userName: "제이디"), content: "Let's be friends~~", dateTime: "2023-08-23 13:41:53.889734", langCode: "en", isNew: false),
+//            Message(sender: Sender(userId: 2, userName: "HJ"), content: "반가워요!!", dateTime: "2023-08-23 13:43:13.889734", langCode: "ko", isNew: false),
+//            Message(sender: Sender(userId: 2, userName: "HJ"), content: "Nice to meet you!!", dateTime: "2023-08-23 13:44:44.889734", langCode: "ko", isNew: false),
+//            Message(sender: Sender(userId: 1, userName: "제이디"), content: "It's an honor to meet you like this!", dateTime: "2023-08-23 13:47:44.889734", langCode: "en", isNew: false),
+//            Message(sender: Sender(userId: 2, userName: "HJ"), content: "yeah, me too!!", dateTime: "2023-08-23 13:54:44.889734", langCode: "ko", isNew: false),
+//            Message(sender: Sender(userId: 3, userName: "노리"), content: "こんにちは! よろしくお願いします！！", dateTime: "2023-08-23 13:58:44.889734", langCode: "ja", isNew: true)
+//        ], userProfileImages: ["https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg", "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg",
+//                               "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg"]),
+////        Channel(id: 2, name: "2번 모임", messages: [
+////
+////        ], userProfileImages: ["a", "a", "a"])
+//    ]
+//    
+//    /// 채널 리스트에서 특정 채널의 index 위치 가져오기
+//    /// - Parameter channelId: Channel ID
+//    /// - Returns: Index(Int)
+//    func getChannelIndex(_ channelId: Int) -> Int? {
+//        let index = list.firstIndex { $0.id == channelId }
+//        return index
+//    }
+//    
+//    /// 특정 채널의 메시지 리스트 가져오기
+//    /// - Parameter id: Channel ID
+//    /// - Returns: Messages
+//    func getChannelMessages(_ id: Int) -> [Message] {
+//        let index = list.firstIndex { $0.id == id }
+//        guard let index else { return [] }
+//        return list[index].messages
+//    }
+//    
+//    /// 특정 채널에 메시지 추가
+//    /// - Parameters:
+//    ///   - channelId: Channel ID
+//    ///   - message: Message
+//    func appendMessage(channelId: Int, message: Message) {
+//        let index = list.firstIndex { $0.id == channelId }
+//        guard let index else { return }
+//        list[index].messages.append(message)
+//    }
+//    
+//    func sortByLatest() {
+//        list.sort { $0.messages.last?.dateTime ?? "" > $1.messages.last?.dateTime ?? "" }
+//    }
+//    
+//    /// 메시지를 모두 읽음 여부로 설정 후 가장 첫 새로운 메시지의 Index를 반환
+//    /// - Parameter channelId: Channel ID
+//    /// - Returns: Index
+//    func readNewMessage(_ channelId: Int) -> Int {
+//        guard let index = getChannelIndex(channelId) else { return 0 }
+//        var messages = getChannelMessages(channelId)
+//        
+//        // 메시지 비어있으면 index = 0
+//        if messages.isEmpty { return 0 }
+//        
+//        var firstNewMessageIndex = messages.count
+//        
+//        // 가장 마지막 메시지가 새로운 메시지가 아닐 경우 마지막 index 리턴
+//        if messages.last?.isNew == false { return firstNewMessageIndex - 1}
+//        
+//        for i in stride(from: messages.count - 1, through: 0, by: -1) {
+//            if messages[i].isNew == false {
+//                break
+//            }
+//            messages[i].isNew = false
+//            firstNewMessageIndex -= 1
+//        }
+//        
+//        list[index].messages = messages
+//        return firstNewMessageIndex
+//    }
+//}

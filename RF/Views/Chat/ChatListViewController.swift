@@ -76,7 +76,7 @@ class ChatListViewController: UIViewController {
     }
     
     private func updateChannelList() {
-        SingletonChannel.shared.sortByLatest()
+        //SingletonChannel.shared.sortByLatest()
         self.chatListTableView.reloadData()
     }
     
@@ -95,13 +95,14 @@ class ChatListViewController: UIViewController {
 
 extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SingletonChannel.shared.list.count
+//        return SingletonChannel.shared.list.count
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.identifier, for: indexPath) as? ChatListTableViewCell else { return UITableViewCell() }
-        let channel = SingletonChannel.shared.list[indexPath.row]
-        cell.updateChannelView(channel)
+//        let channel = SingletonChannel.shared.list[indexPath.row]
+//        cell.updateChannelView(channel)
         return cell
     }
     
@@ -112,12 +113,12 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChatRoomViewController()
         
-        let channel = SingletonChannel.shared.list[indexPath.row]
-        
-        let index = SingletonChannel.shared.readNewMessage(channel.id)
-        
-        vc.channel = channel
-        vc.row = index
+//        let channel = SingletonChannel.shared.list[indexPath.row]
+//        
+//        let index = SingletonChannel.shared.readNewMessage(channel.id)
+//        
+//        vc.channel = channel
+//        vc.row = index
         
         tableView.reloadData()
         

@@ -87,7 +87,7 @@ class ChatRoomViewController: UIViewController {
     
     private var keyboardRect: CGRect = CGRect()
     
-    var channel: Channel!
+    //var channel: Channel!
     var row: Int?
     
     
@@ -99,7 +99,7 @@ class ChatRoomViewController: UIViewController {
         view.backgroundColor = .white
         
         setupCustomBackButton()
-        updateTitleView(title: channel.name)
+        //updateTitleView(title: channel.name)
         
         addSubviews()
         configureConstraints()
@@ -219,16 +219,17 @@ class ChatRoomViewController: UIViewController {
     }
     
     private func scrollToBottom() {
-        if channel.messages.isEmpty { return }
-        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
+//        if channel.messages.isEmpty { return }
+//        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
     }
     
     /// 한 사람이 연속해서 메시지를 보내는지 체크
     /// - Parameter indexPath: indexPath
     /// - Returns: true: 연속, false: 비연속
     private func isSenderConsecutiveMessages(row: Int) -> Bool {
-        if row != 0 && (channel.messages[row - 1].sender?.userId == channel.messages[row].sender?.userId) { return true }
-        else { return false }
+//        if row != 0 && (channel.messages[row - 1].sender?.userId == channel.messages[row].sender?.userId) { return true }
+//        else { return false }
+        return false
     }
     
     private func isLastIndexPathVisible() -> Bool {
@@ -322,19 +323,18 @@ class ChatRoomViewController: UIViewController {
         
         // reload 하기 전 내가 현재 마지막 셀에 위치해 있는지 확인
         
-        //if isLastIndexPathVisible() || isSenderSelf(<#T##sender: CustomMessageSender?##CustomMessageSender?#>)
-        if isLastIndexPathVisible() {
-            let _ = SingletonChannel.shared.readNewMessage(channel.id)
-            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
-            messagesTableView.reloadData()
-            scrollToBottom()
-        } else {
-            let _ = SingletonChannel.shared.readNewMessage(channel.id)
-            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
-            messagesTableView.reloadData()
-            scrollToBottom()  // 테스트
-            print("메시지 업데이트")
-        }
+//        if isLastIndexPathVisible() {
+//            let _ = SingletonChannel.shared.readNewMessage(channel.id)
+//            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
+//            messagesTableView.reloadData()
+//            scrollToBottom()
+//        } else {
+//            let _ = SingletonChannel.shared.readNewMessage(channel.id)
+//            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
+//            messagesTableView.reloadData()
+//            scrollToBottom()  // 테스트
+//            print("메시지 업데이트")
+//        }
     }
     
     @objc func handleTap() {
@@ -370,27 +370,29 @@ class ChatRoomViewController: UIViewController {
 
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return channel.messages.count
+//        return channel.messages.count
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let message = channel.messages[indexPath.row]
-        
-        if isSenderSelf(message.sender) {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
-            
-            cell.updateChatView(message)
-            return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
-            cell.updateChatView(message)
-            cell.delegate = self
-            
-            if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
-            else { cell.isContinuous = false }
-            
-            return cell
-        }
+//        let message = channel.messages[indexPath.row]
+//        
+//        if isSenderSelf(message.sender) {
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
+//            
+//            cell.updateChatView(message)
+//            return cell
+//        } else {
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
+//            cell.updateChatView(message)
+//            cell.delegate = self
+//            
+//            if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
+//            else { cell.isContinuous = false }
+//            
+//            return cell
+//        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -453,8 +455,8 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
                         content: text,
                         langCode: result,
                         partyName: "",
-                        partyId: self.channel.id),
-                    partyId: self.channel.id
+                        partyId: 1),
+                    partyId: 1
                 )
             }
         }
@@ -482,17 +484,17 @@ extension ChatRoomViewController: MessageTableViewCellDelegate {
     
     // 메시지 번역 버튼 클릭
     func convertMessage(_ indexPath: IndexPath) {
-        guard let code = channel.messages[indexPath.row].langCode else { return }
-
-        if !Language.listWithCode.keys.contains(code) { return }
-
-        ChatService.shared.translateMessage(source: code, target: "ko", text: channel.messages[indexPath.row].content!) { str in
-            self.channel.messages[indexPath.row].content = str
-
-            DispatchQueue.main.async {
-                self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
-            }
-        }
+//        guard let code = channel.messages[indexPath.row].langCode else { return }
+//
+//        if !Language.listWithCode.keys.contains(code) { return }
+//
+//        ChatService.shared.translateMessage(source: code, target: "ko", text: channel.messages[indexPath.row].content!) { str in
+//            self.channel.messages[indexPath.row].content = str
+//
+//            DispatchQueue.main.async {
+//                self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
+//            }
+//        }
     }
 }
 

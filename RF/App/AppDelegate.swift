@@ -100,34 +100,34 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // 특정 화면으로 이동하도록 설정
     func navigateToSpecificScreen(_ userInfo: [AnyHashable: Any]) {
         // 푸시 알림에 포함된 채팅방 정보를 가져옵니다.
-        if let chatRoomId = userInfo["chatRoomId"] as? String {
-            // AppDelegate가 UITabBarController를 참조할 수 있도록 합니다.
-            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }),
-                  let tabBarController = window.rootViewController as? TabBarController else {
-                return
-            }
-            
-            // 탭의 인덱스를 선택
-            tabBarController.selectedIndex = 2 // 커뮤니티 탭 생기기 전까지 2, 생긴 후 : 3
-            
-            if let navController = tabBarController.selectedViewController as? UINavigationController {
-                // 기존 뷰 컨트롤러를 모두 제거하고 ChatListVC로 이동합니다.
-                navController.popToRootViewController(animated: false)
-                
-                // 새 채팅방 화면 인스턴스를 만듭니다.
-                let chatRoomVC = ChatRoomViewController()
-                
-                let index = SingletonChannel.shared.readNewMessage(1)
-                
-                // 채팅방 화면에 chatRoomId 값을 전달합니다 (이름은 적절하게 변경할 수 있습니다).
-                chatRoomVC.channel = SingletonChannel.shared.list[0]
-                chatRoomVC.row = index
-                
-                
-                // 채팅방으로 이동하는 로직 작성
-                navController.pushViewController(chatRoomVC, animated: true)
-            }
-        }
+//        if let chatRoomId = userInfo["chatRoomId"] as? String {
+//            // AppDelegate가 UITabBarController를 참조할 수 있도록 합니다.
+//            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }),
+//                  let tabBarController = window.rootViewController as? TabBarController else {
+//                return
+//            }
+//            
+//            // 탭의 인덱스를 선택
+//            tabBarController.selectedIndex = 2 // 커뮤니티 탭 생기기 전까지 2, 생긴 후 : 3
+//            
+//            if let navController = tabBarController.selectedViewController as? UINavigationController {
+//                // 기존 뷰 컨트롤러를 모두 제거하고 ChatListVC로 이동합니다.
+//                navController.popToRootViewController(animated: false)
+//                
+//                // 새 채팅방 화면 인스턴스를 만듭니다.
+//                let chatRoomVC = ChatRoomViewController()
+//                
+//                let index = SingletonChannel.shared.readNewMessage(1)
+//                
+//                // 채팅방 화면에 chatRoomId 값을 전달합니다 (이름은 적절하게 변경할 수 있습니다).
+//                chatRoomVC.channel = SingletonChannel.shared.list[0]
+//                chatRoomVC.row = index
+//                
+//                
+//                // 채팅방으로 이동하는 로직 작성
+//                navController.pushViewController(chatRoomVC, animated: true)
+//            }
+//        }
     }
     
 }
