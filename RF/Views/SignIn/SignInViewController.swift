@@ -363,7 +363,10 @@ final class SignInViewController: UIViewController {
         
         homeButton.rx.tap
             .subscribe(onNext: {
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+                self.idTextField.text = "HJ39"
+                self.pwTextField.text = "1234"
+                self.clickedLoginButton()
+//                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
             })
             .disposed(by: disposeBag)
         
@@ -381,7 +384,7 @@ final class SignInViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        isHidden()
+//        isHidden()
     }
     
     /// MARK: 동영상 시연용 임시 함수
