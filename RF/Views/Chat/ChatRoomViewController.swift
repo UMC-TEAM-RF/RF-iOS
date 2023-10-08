@@ -397,6 +397,12 @@ final class ChatRoomViewController: UIViewController {
         imagePickerController.sourceType = .camera
         present(imagePickerController, animated: true, completion: nil)
     }
+    
+    /// MARK: 일정 생성
+    private func createCalendar(){
+        let createCalendarViewController = CreateCalendarViewController()
+        navigationController?.pushViewController(createCalendarViewController, animated: true)
+    }
 }
 
 // MARK: - Ext: TableView
@@ -547,7 +553,7 @@ extension ChatRoomViewController: SendDataDelegate {
         case 1: // 카메라
             takePhoto()
         case 2: // 일정
-            print("calendar")
+            createCalendar()
         default:
             print("잘못 접근")
         }
@@ -567,6 +573,25 @@ extension ChatRoomViewController: UIImagePickerControllerDelegate, UINavigationC
 
 extension ChatRoomViewController: PHPickerViewControllerDelegate {
     
+    func getArrayOfBytesFromImage(imageData: Data) -> [NSNumber] {
+        // the number of elements:
+        let count = imageData.count
+
+        // create array of appropriate length:
+        var bytes = [UInt8](repeating: 0, count: count)
+
+        // copy bytes into array
+        imageData.copyBytes(to: &bytes, count: count)
+
+        var byteArray: [NSNumber] = []
+        
+        for i in 0..<count {
+            byteArray.append(NSNumber(value: bytes[i]))
+        }
+
+        return byteArray
+    }
+    
     /// 사진을 선택완료 했을 때 실행
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         selectedPhotoImages.removeAll()
@@ -576,6 +601,12 @@ extension ChatRoomViewController: PHPickerViewControllerDelegate {
             let itemProvider = result.itemProvider
             if itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
+                    if let image = image as? UIImage {
+                        
+                        print(self?.getArrayOfBytesFromImage(imageData: image.pngData() ?? Data()))
+                        print("\n")
+                        print(image.pngData())
+                    }
                     self?.selectedPhotoImages.append(image as? UIImage ?? UIImage())
                 }
             }
