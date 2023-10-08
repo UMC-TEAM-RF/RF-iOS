@@ -12,3 +12,9 @@ struct Sender: Codable {
     var userName: String?
     var userImageUrl: String?
 }
+
+extension Sender {
+    func toRealmObject() -> RealmSender {
+        return RealmSender(id: self.userId!, name: self.userName!, imgeUrl: self.userImageUrl!)
+    }
+}

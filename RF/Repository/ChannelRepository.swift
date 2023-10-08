@@ -10,7 +10,22 @@ import RealmSwift
 
 class ChannelRepository {
     static let shared = ChannelRepository()
-    private init() {}
+    let realm: Realm = try! Realm()
     
-    let realm = try! Realm()
+    private init() {
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+    }
+    
+    /// 새로운 채팅방 채널을 Realm에 추가
+    /// - Parameters:
+    ///   - id: 모임 ID
+    ///   - name: 모임 이름
+    func createNewChannel(id: Int, name: String) {
+        let channel = RealmChannel(id: id, name: name)
+        try! realm.write({
+            realm.add(channel)
+        })
+    }
+    
+    
 }

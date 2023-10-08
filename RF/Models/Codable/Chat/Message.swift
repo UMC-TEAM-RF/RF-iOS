@@ -7,12 +7,10 @@
 
 import Foundation
 
-// MARK: - 실제 서버와 주고받을 데이터 타입으로 정의
-
 struct Message: Codable {
     var id: Int?  // 메시지 ID
     var sender: Sender?  // 보내는 사람
-    var type: String?  // 메시지 타입 (TEXT, IMAGE, SCHEDULE)
+    var type: String?  // 메시지 타입 (TEXT, IMAGE, SCHEDULE, ...)
     var content: String?  // 내용
     var dateTime: String?  // 보낸 시각
     var replyMessageId: Int?  // 답장할 메시지 ID
@@ -32,6 +30,7 @@ struct Message: Codable {
     }
 }
 
+// ChatMessageType 정의
 struct MessageType {
     static let text = "TEXT"
     static let image = "IMAGE"
@@ -41,3 +40,24 @@ struct MessageType {
     static let leave = "LEAVE"
     static let kickOut = "KICT_OUT"
 }
+
+extension Message {
+    func toRealmObject() -> RealmMessage {
+        let realmSender = sender?.toRealmObject()
+        let realmVictim = victim?.toRealmObject()
+        let realmSchedule = schedule?.toRealmObject()
+        
+        return RealmMessage(
+            id: self.id!,
+            speaker: realmSender,
+            type: self.type!,
+            dateTime: self.dateTime!,
+            content: self.content,
+            replyMessageId: self.replyMessageId,
+            schedule: realmSchedule,
+            langCode: self.langCode,
+            victim: realmVictim
+        )
+    }
+}
+

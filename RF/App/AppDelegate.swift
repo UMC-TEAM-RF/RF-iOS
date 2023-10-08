@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        print(#function)
         
         ChatService.shared.connect()
         
@@ -67,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func getNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
-            print("Notification settings: \(settings)")
+            //print("Notification settings: \(settings)")
             
             // 사용자가 알림 권한을 부여했는지 확인
             guard settings.authorizationStatus == .authorized else { return }

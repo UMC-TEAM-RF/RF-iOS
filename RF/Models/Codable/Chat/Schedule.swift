@@ -15,3 +15,15 @@ struct Schedule: Codable {
     var participantCount: Int?
     var alert: Int?  // 몇 시간 전에 알림 올건지
 }
+
+extension Schedule {
+    func toRealmObject() -> RealmSchedule {
+        return RealmSchedule(
+            id: self.scheduleId!,
+            name: self.scheduleName!,
+            dateTime: self.dateTime!,
+            location: self.location!,
+            participantCount: self.participantCount!
+        )
+    }
+}
