@@ -20,15 +20,16 @@ class RealmMessage: Object {
     @Persisted var victim: RealmSender?
     @Persisted var isNew: Bool = true
     
-    convenience init(id: Int,
-                     speaker: RealmSender? = nil,
-                     type: String,
-                     dateTime: String,
-                     content: String? = nil,
-                     replyMessageId: Int? = nil,
-                     schedule: RealmSchedule? = nil,
-                     langCode: String? = nil,
-                     victim: RealmSender? = nil
+    convenience init(
+        id: Int,
+        speaker: RealmSender? = nil,
+        type: String,
+        dateTime: String,
+        content: String? = nil,
+        replyMessageId: Int? = nil,
+        schedule: RealmSchedule? = nil,
+        langCode: String? = nil,
+        victim: RealmSender? = nil
     ) {
         self.init()
         self.id = id
