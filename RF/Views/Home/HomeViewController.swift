@@ -229,7 +229,6 @@ final class HomeViewController: UIViewController {
         setAutomaticPaging()
         
         requestMeetingList()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -461,7 +460,8 @@ final class HomeViewController: UIViewController {
     
     /// 모임 리스트 불러오기(추천)
     private func requestMeetingList() {
-        MeetingService.shared.requestRecommandPartyList("Personal") { meetings in
+        let service = MeetingService()
+        service.requestRecommandPartyList("Personal") { meetings in
             self.personalMeetings = meetings!
             
             if(self.completedRequest == 1){
@@ -473,7 +473,7 @@ final class HomeViewController: UIViewController {
                 self.completedRequest = 1
             }
         }
-        MeetingService.shared.requestRecommandPartyList("Group") { meetings in
+        service.requestRecommandPartyList("Group") { meetings in
             self.groupMeetings = meetings!
             
             if(self.completedRequest == 1){

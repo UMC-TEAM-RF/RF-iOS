@@ -32,7 +32,7 @@ class ChatService {
     /// 채팅방 구독
     /// - Parameter partyId: 내가 가입한 모임 ID
     func subscribe(_ partyId: Int) {
-        print(#function)
+        print(#function, partyId)
         let destination = SocketPath.subscribe
         socketClient.subscribe(destination: "\(destination)/\(partyId)")
     }
@@ -40,8 +40,6 @@ class ChatService {
     /// 입력한 메시지 전달
     /// - Parameter message: 메시지
     func send(message: Message, partyId: Int) {
-        print(#function)
-        
         let destination = SocketPath.send
         
         guard let object = codableToObject(from: message) else {
@@ -138,14 +136,20 @@ class ChatService {
             return nil
         }
     }
+    
+    func subscribeChannel() {
+        let channelIds = ChatRepository.shared.getChannelIds()
+        channelIds.forEach({
+            ChatService.shared.subscribe($0)
+        })
+    }
 }
 
 extension ChatService: StompClientLibDelegate {
     func stompClientDidConnect(client: StompClientLib!) {
         // DB에서 내가 가입한 모임 리스트를 가져와서 각각 구독
         
-        subscribe(1)
-        //subscribe(2)
+        subscribeChannel()
     }
     
     func stompClientDidDisconnect(client: StompClientLib!) {

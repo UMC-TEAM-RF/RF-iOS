@@ -8,8 +8,8 @@
 import Foundation
 import RealmSwift
 
-class ChannelRepository {
-    static let shared = ChannelRepository()
+class ChatRepository {
+    static let shared = ChatRepository()
     let realm: Realm = try! Realm()
     
     private init() {

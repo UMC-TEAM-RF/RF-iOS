@@ -130,7 +130,7 @@
 		570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E32A7D10150051F42A /* KeyboardInputBar.swift */; };
 		570063E62A7D13320051F42A /* MyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E52A7D13320051F42A /* MyMessageTableViewCell.swift */; };
 		570063E82A7D13480051F42A /* OtherMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570063E72A7D13480051F42A /* OtherMessageTableViewCell.swift */; };
-		572221BD2AC0A6BA00CB9E36 /* ChannelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221BC2AC0A6BA00CB9E36 /* ChannelRepository.swift */; };
+		572221BD2AC0A6BA00CB9E36 /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221BC2AC0A6BA00CB9E36 /* ChatRepository.swift */; };
 		572221CB2AC2CB8B00CB9E36 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221CA2AC2CB8B00CB9E36 /* Sender.swift */; };
 		572221CD2AC2CB9B00CB9E36 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221CC2AC2CB9B00CB9E36 /* Schedule.swift */; };
 		572221CF2AC2CBF400CB9E36 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221CE2AC2CBF400CB9E36 /* Channel.swift */; };
@@ -314,7 +314,7 @@
 		570063E32A7D10150051F42A /* KeyboardInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputBar.swift; sourceTree = "<group>"; };
 		570063E52A7D13320051F42A /* MyMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageTableViewCell.swift; sourceTree = "<group>"; };
 		570063E72A7D13480051F42A /* OtherMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMessageTableViewCell.swift; sourceTree = "<group>"; };
-		572221BC2AC0A6BA00CB9E36 /* ChannelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRepository.swift; sourceTree = "<group>"; };
+		572221BC2AC0A6BA00CB9E36 /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
 		572221CA2AC2CB8B00CB9E36 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		572221CC2AC2CB9B00CB9E36 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		572221CE2AC2CBF400CB9E36 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
@@ -841,7 +841,7 @@
 		572221BB2AC0A66100CB9E36 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				572221BC2AC0A6BA00CB9E36 /* ChannelRepository.swift */,
+				572221BC2AC0A6BA00CB9E36 /* ChatRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1253,7 +1253,7 @@
 				44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */,
 				3BB408B32A6ACD0A00FBA617 /* ScheduleFSCalendarCellViewModel.swift in Sources */,
 				570063E62A7D13320051F42A /* MyMessageTableViewCell.swift in Sources */,
-				572221BD2AC0A6BA00CB9E36 /* ChannelRepository.swift in Sources */,
+				572221BD2AC0A6BA00CB9E36 /* ChatRepository.swift in Sources */,
 				572DC2532A51C64400C0D6E1 /* HomeViewController.swift in Sources */,
 				57AF3D542A83B36B00C09715 /* DateTimeFormatter.swift in Sources */,
 				57AF3D5A2A86019600C09715 /* Headers.swift in Sources */,
