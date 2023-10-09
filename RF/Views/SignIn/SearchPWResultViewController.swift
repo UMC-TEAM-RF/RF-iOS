@@ -11,11 +11,12 @@ import SnapKit
 
 final class SearchPWResultViewController: UIViewController, UITextFieldDelegate {
     
+    /// MARK: 네비게이션 바 왼쪽 아이템
     private lazy var leftButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "비밀번호 찾기", style: .done, target: self, action: nil)
-        button.isEnabled = false
-        button.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
-        return button
+        let btn = UIBarButtonItem(title: "비밀번호 찾기", style: .done, target: self, action: nil)
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
+        return btn
     }()
     
     private lazy var PWLabel: UILabel = {
@@ -96,36 +97,40 @@ final class SearchPWResultViewController: UIViewController, UITextFieldDelegate 
     
     private func configureConstraints() {
         
-        // 비밀번호 설정
         PWLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(130)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
+            make.leading.trailing.equalToSuperview().inset(29)
         }
         
-        // 비밀번호를 새로 변경해주세요
         pwTextField.snp.makeConstraints { make in
             make.top.equalTo(PWLabel.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview().inset(19)
+            make.height.equalTo(52)
         }
         
-        // 비밀번호 확인
+        //이메일
         PWCheckLabel.snp.makeConstraints { make in
-            make.top.equalTo(pwTextField.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(19)
+            make.top.equalTo(pwTextField.snp.bottom).offset(28)
+            make.leading.trailing.equalToSuperview().inset(29)
         }
         
-        // 새로운 비밀번호를 다시 입력해주세요
+        //인증받기 버튼
         pwTextCheckField.snp.makeConstraints { make in
-            make.top.equalTo(PWCheckLabel.snp.bottom).offset(4)
-            make.leading.trailing.equalToSuperview().inset(19)
+            make.top.equalTo(PWCheckLabel.snp.bottom).offset(56)
+            make.trailing.equalToSuperview().inset(29)
+            make.width.equalTo(56)
+            make.height.equalTo(32)
         }
         
-        // 확인
+        
+        //다음
         nextButton.snp.makeConstraints { make in
             make.leading.right.equalToSuperview().inset(30)
             make.bottom.equalToSuperview().inset(50)
             make.height.equalTo(48)
         }
+        
     }
 }
 
