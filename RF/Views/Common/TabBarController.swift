@@ -14,8 +14,6 @@ final class TabBarController: UITabBarController {
         
         configureTabBar()
         ChatService.shared.connect()
-        
-        
     }
     
     deinit {
@@ -23,8 +21,6 @@ final class TabBarController: UITabBarController {
     }
     
     private func configureTabBar() {
-        
-        delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTabBarIcon), name: NotificationName.updateTabBarIcon, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateSelectedIndex), name: NotificationName.updateSelectedIndex, object: nil)
@@ -50,22 +46,19 @@ final class TabBarController: UITabBarController {
         self.setViewControllers([vc1, vc2, vc3, vc4], animated: false)
     }
     
-    @objc func updateTabBarIcon() {
-        if selectedIndex != 2, let items = tabBar.items, items.indices.contains(2) {
-            items[2].image = UIImage(named: "newChat")
+    private func updateChatBadgeValue() {
+        let count = ChatRepository.shared.getNewMessageCount()
+        if selectedIndex != 2, count > 0 {
+            tabBar.items![2].badgeValue = "\(count)"
         }
+    }
+    
+    @objc func updateTabBarIcon() {
+        updateChatBadgeValue()
     }
     
     @objc func updateSelectedIndex() {
         selectedIndex = 1
     }
     
-}
-
-extension TabBarController: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if let tabBarItems = tabBar.items, selectedIndex == 2 {
-            tabBarItems[2].image = UIImage(named: "chat")
-        }
-    }
 }
