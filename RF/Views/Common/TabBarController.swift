@@ -13,6 +13,7 @@ final class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         configureTabBar()
+        updateChatBadgeValue()
         ChatService.shared.connect()
     }
     

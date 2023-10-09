@@ -7,6 +7,7 @@
 
 import UIKit
 import UserNotifications
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 앱이 시작될 때마다 푸시 알림 등록을 시도
         registerForPushNotifications()
+        
+        configureSchemaVersion()
         
         return true
     }
@@ -74,6 +77,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIApplication.shared.registerForRemoteNotifications()
             }
         }
+    }
+    
+    private func configureSchemaVersion() {
+        let config = Realm.Configuration(schemaVersion: 2)
+        Realm.Configuration.defaultConfiguration = config
+        let _ = try! Realm()
     }
     
 }

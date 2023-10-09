@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class ChatListViewController: UIViewController {
     
@@ -24,6 +25,8 @@ class ChatListViewController: UIViewController {
     // MARK: - Property
     private var isUpdateChannel: Bool = false
     private var isLocatedCurrentView: Bool = false
+    
+    private var channels: Results<RealmChannel>!
     
     // MARK: - viewDidLoad()
 
@@ -48,7 +51,7 @@ class ChatListViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
         isLocatedCurrentView = true
         
-        if isUpdateChannel {
+        if isUpdateChannel { // 채팅방 업데이트 된 상태인 경우
             updateChannelList()
             isUpdateChannel = false
         }
@@ -75,6 +78,11 @@ class ChatListViewController: UIViewController {
         }
     }
     
+    private func getChannelList() {
+        channels = ChatRepository.shared.getAllChannel()
+        chatListTableView.reloadData()
+    }
+    
     private func updateChannelList() {
         //SingletonChannel.shared.sortByLatest()
         self.chatListTableView.reloadData()
@@ -82,10 +90,13 @@ class ChatListViewController: UIViewController {
     
     // MARK: - @objc func
     
+    // NotificationCenter에 등록된 함수
     @objc func updateChat() {
-        if isLocatedCurrentView {
+        if isLocatedCurrentView { // 현재 뷰에 위치할 경우
+            // 즉시 채팅방 리스트 업데이트
             updateChannelList()
-        } else {
+        } else { // 다른 뷰에 위치해 있는 경우
+            // 업데이트 상태 저장 후 뷰 나타날 시 업데이트
             isUpdateChannel = true
         }
     }

@@ -10,9 +10,10 @@ import RealmSwift
 
 class ChatRepository {
     static let shared = ChatRepository()
-    let realm: Realm = try! Realm()
+    let realm: Realm
     
     private init() {
+        realm = try! Realm()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
