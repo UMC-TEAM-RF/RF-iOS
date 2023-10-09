@@ -228,35 +228,7 @@ final class HomeViewController: UIViewController {
         bind()
         setAutomaticPaging()
         
-        let service = MeetingService()
-        service.requestRecommandPartyList("Personal") { meetings in
-            
-            dump(meetings)
-            self.personalMeetings = meetings!
-            
-            if(self.completedRequest == 1){
-                self.completedRequest = 0
-                DispatchQueue.main.async {
-                    self.pageCollectionView.reloadData()
-                }
-            }else{
-                self.completedRequest = 1
-            }
-        }
-        service.requestRecommandPartyList("Group") { meetings in
-            
-            dump(meetings)
-            self.groupMeetings = meetings!
-            
-            if(self.completedRequest == 1){
-                self.completedRequest = 0
-                DispatchQueue.main.async {
-                    self.pageCollectionView.reloadData()
-                }
-            }else{
-                self.completedRequest = 1
-            }
-        }
+        requestMeetingList()
         
     }
     
@@ -485,6 +457,34 @@ final class HomeViewController: UIViewController {
     // 상단 배너 자동 스크롤
     private func setAutomaticPaging() {
         Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
+    }
+    
+    /// 모임 리스트 불러오기(추천)
+    private func requestMeetingList() {
+        MeetingService.shared.requestRecommandPartyList("Personal") { meetings in
+            self.personalMeetings = meetings!
+            
+            if(self.completedRequest == 1){
+                self.completedRequest = 0
+                DispatchQueue.main.async {
+                    self.pageCollectionView.reloadData()
+                }
+            }else{
+                self.completedRequest = 1
+            }
+        }
+        MeetingService.shared.requestRecommandPartyList("Group") { meetings in
+            self.groupMeetings = meetings!
+            
+            if(self.completedRequest == 1){
+                self.completedRequest = 0
+                DispatchQueue.main.async {
+                    self.pageCollectionView.reloadData()
+                }
+            }else{
+                self.completedRequest = 1
+            }
+        }
     }
     
     // MARK: - @objc func

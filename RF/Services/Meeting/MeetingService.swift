@@ -11,6 +11,9 @@ import RxSwift
 
 final class MeetingService {
     
+    static let shared = MeetingService()
+    private init() {}
+    
     /// 내가 속한 모임 리스트
     func getMyMeetingList(page: Int, size: Int) -> Observable<[Meeting]> {
         let userId = UserDefaults.standard.string(forKey: "UserId") ?? ""
