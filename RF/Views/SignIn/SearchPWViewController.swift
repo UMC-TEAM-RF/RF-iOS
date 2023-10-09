@@ -146,8 +146,6 @@ final class SearchPWViewController: UIViewController {
         //
         
         
-        //clickedButtons()
-        
     }
     
     ////나예은_searchPWresult UI로 화면 전환

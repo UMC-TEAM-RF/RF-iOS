@@ -19,45 +19,60 @@ final class SearchPWResultViewController: UIViewController, UITextFieldDelegate 
         return btn
     }()
     
+    private lazy var PWLabelBottomLine: UIView = createBottomLine()
+    private lazy var PWCheckBottomLine: UIView = createBottomLine()
+  
+    private func createBottomLine() -> UIView {
+        let lineView = UIView()
+        lineView.backgroundColor = .gray
+        return lineView
+    }
+    
     private lazy var PWLabel: UILabel = {
-        let nameLabel = UILabel()
-        nameLabel.text = "비밀번호 설정"
-        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        nameLabel.textColor = TextColor.first.color
-        nameLabel.numberOfLines = 1
-        return nameLabel
+        let Label = UILabel()
+        Label.text = "비밀번호 설정"
+        Label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        Label.textColor = TextColor.first.color
+        Label.numberOfLines = 1
+        return Label
     }()
     
     
     private lazy var pwTextField: PasswordTextField = {
-        var view = PasswordTextField()
-        view.placeholder = "비밀번호를 새로 변경해 주세요"
-        view.delegate = self
-        view.font = .systemFont(ofSize: 14)
-        view.setColor(TextColor.first.color)
-        view.setButtonColor(TextColor.secondary.color)
-        view.borderStyle = UITextField.BorderStyle.none
-        return view
+        var field = PasswordTextField()
+        field.placeholder = "  비밀번호를 새로 변경해 주세요"
+        field.delegate = self
+        field.font = .systemFont(ofSize: 14)
+        field.setColor(TextColor.first.color)
+        field.setButtonColor(TextColor.secondary.color)
+        field.borderStyle = UITextField.BorderStyle.none
+        field.addSubview(PWLabelBottomLine)
+        PWLabelBottomLine.translatesAutoresizingMaskIntoConstraints = false
+        configureConstraints(for: field, and: PWLabelBottomLine)
+        return field
     }()
     
     private lazy var PWCheckLabel: UILabel = {
-        let mailLabel = UILabel()
-        mailLabel.text = "비밀번호 확인"
-        mailLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        mailLabel.textColor = TextColor.first.color
-        mailLabel.numberOfLines = 1
-        return mailLabel
+        let Label = UILabel()
+        Label.text = "비밀번호 확인인"
+        Label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        Label.textColor = TextColor.first.color
+        Label.numberOfLines = 1
+        return Label
     }()
     
     private lazy var pwTextCheckField: PasswordTextField = {
-        var view = PasswordTextField()
-        view.placeholder = "새로운 비밀번호를 다시 입력해주세요."
-        view.delegate = self
-        view.font = .systemFont(ofSize: 14)
-        view.setColor(TextColor.first.color)
-        view.setButtonColor(TextColor.secondary.color)
-        view.borderStyle = UITextField.BorderStyle.none
-        return view
+        var field = PasswordTextField()
+        field.placeholder = ". 새로운 비밀번호를 다시 입력해주세요."
+        field.delegate = self
+        field.font = .systemFont(ofSize: 14)
+        field.setColor(TextColor.first.color)
+        field.setButtonColor(TextColor.secondary.color)
+        field.borderStyle = UITextField.BorderStyle.none
+        field.addSubview(PWCheckBottomLine)
+        PWCheckBottomLine.translatesAutoresizingMaskIntoConstraints = false
+        configureConstraints(for: field, and: PWCheckBottomLine)
+        return field
     }()
 
     @objc private lazy var nextButton: UIButton = {
@@ -70,6 +85,13 @@ final class SearchPWResultViewController: UIViewController, UITextFieldDelegate 
         return button
     }()
     
+    // bottomLine의 제약 조건을 설정하는 헬퍼 함수
+    private func configureConstraints(for textField: UITextField, and bottomLine: UIView) {
+        bottomLine.leadingAnchor.constraint(equalTo: textField.leadingAnchor).isActive = true
+        bottomLine.trailingAnchor.constraint(equalTo: textField.trailingAnchor).isActive = true
+        bottomLine.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
+        bottomLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,34 +119,35 @@ final class SearchPWResultViewController: UIViewController, UITextFieldDelegate 
     
     private func configureConstraints() {
         
+        //비밀번호 설정
         PWLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             make.leading.trailing.equalToSuperview().inset(29)
         }
         
+        //비밀번호를 새로 변경해주세요
         pwTextField.snp.makeConstraints { make in
             make.top.equalTo(PWLabel.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview().inset(19)
             make.height.equalTo(52)
         }
         
-        //이메일
+        //비밀번호 확인인
         PWCheckLabel.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(28)
             make.leading.trailing.equalToSuperview().inset(29)
         }
         
-        //인증받기 버튼
+        //새로운 비밀번호를 다시 입력해주세요
         pwTextCheckField.snp.makeConstraints { make in
-            make.top.equalTo(PWCheckLabel.snp.bottom).offset(56)
-            make.trailing.equalToSuperview().inset(29)
-            make.width.equalTo(56)
-            make.height.equalTo(32)
+            make.top.equalTo(PWCheckLabel.snp.bottom).offset(4)
+            make.leading.trailing.equalToSuperview().inset(19)
+            make.height.equalTo(52)
         }
         
         
-        //다음
+        //확인
         nextButton.snp.makeConstraints { make in
             make.leading.right.equalToSuperview().inset(30)
             make.bottom.equalToSuperview().inset(50)
