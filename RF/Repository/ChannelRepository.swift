@@ -36,7 +36,6 @@ class ChannelRepository {
         return channels.map({ $0.id })
     }
     
-    // MARK: - 각 채널 별 읽지 않은 메시지 개수 분리 필요
     /// 읽지 않은 메시지 개수 가져오기
     /// - Returns: 읽지 않은 메시지 개수
     func getNewMessageCount() -> Int {
@@ -66,6 +65,7 @@ class ChannelRepository {
         })
     }
     
+    // MARK: - 페이지네이션을 사용해서 최근 메시지 내역들만 가저오기 (수정 필요)
     /// 특정 채널의 모든 메시지 가져오기
     /// - Parameter id: 채팅방(모임) 채널 ID
     /// - Returns: [메시지]
@@ -74,6 +74,20 @@ class ChannelRepository {
         
         return Array(channel.messages)
     }
+    
+    // MARK: - <<<Test 필요>>>
+    /// 페이지네이션을 이용하여 최근 메시지 가져오기
+    /// - Parameters:
+    ///   - id: 채팅방(모임) 채널 ID
+    ///   - page: 페이지
+    /// - Returns: [메시지]
+//    func getChannelMessagesByPage(id: Int, page: Int) -> [RealmMessage] {
+//        guard let channel = realm.object(ofType: RealmChannel.self, forPrimaryKey: id) else { return [] }
+//        let messageCount = channel.messages.count
+//        let startIndex = messageCount - (30 * page - 1) > 0 ? messageCount - (30 * page - 1) : 0
+//        let messages = Array(channel.messages[startIndex..<messageCount])
+//        return messages
+//    }
     
     // 기존 채팅방 삭제 (채팅방 삭제 전 채팅방과 연결된 realmObject 같이 삭제)
     /// 특정 채팅방 채널 삭제
@@ -109,7 +123,10 @@ class ChannelRepository {
         })
     }
     
-    
-    // MARK: - 채팅방 목록 화면에 가져올 데이터 함수 정의 필요
-    // 모든 채널 정보 가져오기 (채널 정보 + 마지막 메시지 + 각 채널 별 읽지 않은 메시지 개수)
+    /// 모든 채팅방 리스트 가져오기
+    /// - Returns: [채팅 채널]
+    func getAllChannel() -> Results<RealmChannel> {
+        let channels = realm.objects(RealmChannel.self)
+        return channels
+    }
 }
