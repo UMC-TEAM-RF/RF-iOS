@@ -39,6 +39,7 @@ class ChatListViewController: UIViewController {
         
         addSubviews()
         configureConstraints()
+        getChannelList()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateChat), name: NotificationName.updateChatList, object: nil)
     }
@@ -52,7 +53,7 @@ class ChatListViewController: UIViewController {
         isLocatedCurrentView = true
         
         if isUpdateChannel { // 채팅방 업데이트 된 상태인 경우
-            updateChannelList()
+            getChannelList()
             isUpdateChannel = false
         }
     }
@@ -83,18 +84,13 @@ class ChatListViewController: UIViewController {
         chatListTableView.reloadData()
     }
     
-    private func updateChannelList() {
-        //SingletonChannel.shared.sortByLatest()
-        self.chatListTableView.reloadData()
-    }
-    
     // MARK: - @objc func
     
     // NotificationCenter에 등록된 함수
     @objc func updateChat() {
         if isLocatedCurrentView { // 현재 뷰에 위치할 경우
             // 즉시 채팅방 리스트 업데이트
-            updateChannelList()
+            getChannelList()
         } else { // 다른 뷰에 위치해 있는 경우
             // 업데이트 상태 저장 후 뷰 나타날 시 업데이트
             isUpdateChannel = true
@@ -106,14 +102,13 @@ class ChatListViewController: UIViewController {
 
 extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return SingletonChannel.shared.list.count
-        return 0
+        return channels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.identifier, for: indexPath) as? ChatListTableViewCell else { return UITableViewCell() }
-//        let channel = SingletonChannel.shared.list[indexPath.row]
-//        cell.updateChannelView(channel)
+        
+        cell.updateChannelView(channels[indexPath.row])
         return cell
     }
     
@@ -124,14 +119,10 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChatRoomViewController()
         
-//        let channel = SingletonChannel.shared.list[indexPath.row]
-//        
-//        let index = SingletonChannel.shared.readNewMessage(channel.id)
-//        
-//        vc.channel = channel
-//        vc.row = index
+        vc.channel = channels[indexPath.row]
+        vc.row = ChatRepository.shared.readNewMessages(channels[indexPath.row].id)
         
-        tableView.reloadData()
+        // 메시지 읽음 처리 후 테이블 뷰 리로드 필요
         
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)

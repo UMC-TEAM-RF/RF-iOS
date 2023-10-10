@@ -87,7 +87,7 @@ class ChatRoomViewController: UIViewController {
     
     private var keyboardRect: CGRect = CGRect()
     
-    //var channel: Channel!
+    var channel: RealmChannel!
     var row: Int?
     
     
@@ -99,16 +99,16 @@ class ChatRoomViewController: UIViewController {
         view.backgroundColor = .white
         
         setupCustomBackButton()
-        //updateTitleView(title: channel.name)
+        updateTitleView(title: channel.name)
         
         addSubviews()
         configureConstraints()
         addTargets()
         configureTableView()
         
-        DispatchQueue.main.async {
-            self.messagesTableView.scrollToRow(at: IndexPath(row: self.row ?? 0, section: 0), at: .bottom, animated: false)
-        }
+//        DispatchQueue.main.async {
+//            self.messagesTableView.scrollToRow(at: IndexPath(row: self.row ?? 0, section: 0), at: .bottom, animated: false)
+//        }
     }
     
     // MARK: - viewWillAppear()

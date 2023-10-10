@@ -37,7 +37,7 @@ class ChatRepository {
         return channels.map({ $0.id })
     }
     
-    /// 읽지 않은 메시지 개수 가져오기
+    /// 읽지 않은 모든 메시지 개수 가져오기
     /// - Returns: 읽지 않은 메시지 개수
     func getNewMessageCount() -> Int {
         let messages = realm.objects(RealmMessage.self)
@@ -46,27 +46,15 @@ class ChatRepository {
         return count
     }
     
-    /// 특정 채팅방 채널 새 메시지 읽음 처리
+    /// 특정 채널의 읽지 않은 메시지 개수 가져오기
     /// - Parameter id: 채팅방(모임) 채널 ID
-    func readNewMessages(id: Int) {
-        // 채팅방 채널 가져오기
-        guard let channel = realm.object(ofType: RealmChannel.self, forPrimaryKey: id) else {
-            print("Do not find RealmChannel Object")
-            return
-        }
-        
-        // 읽지 않은 메시지 리스트 가져오기
-        let messages = channel.messages.filter({ $0.isNew == true })
-        
-        messages.forEach({ message in
-            // 메시지 읽음 처리
-            try! realm.write({
-                message.isNew = false
-            })
-        })
+    /// - Returns: 읽지 않은 메시지 개수
+    func getNewMessageCount(_ id: Int) -> Int {
+        guard let channel = realm.object(ofType: RealmChannel.self, forPrimaryKey: id) else { return 0 }
+        let count = channel.messages.filter({ $0.isNew == true }).count
+        return count
     }
     
-    // MARK: - 페이지네이션을 사용해서 최근 메시지 내역들만 가저오기 (수정 필요)
     /// 특정 채널의 모든 메시지 가져오기
     /// - Parameter id: 채팅방(모임) 채널 ID
     /// - Returns: [메시지]
@@ -128,6 +116,32 @@ class ChatRepository {
     /// - Returns: [채팅 채널]
     func getAllChannel() -> Results<RealmChannel> {
         let channels = realm.objects(RealmChannel.self)
-        return channels
+        let sortedChannels = channels.sorted(by: \.lastMessageDateTime, ascending: false)
+        return sortedChannels
+    }
+    
+    /// 특정 채널의 읽지 않은 메시지 모두 읽음 처리
+    /// - Parameter channelId: 채널 ID
+    /// - Returns: 가장 첫 번째의 읽지 않은 메시지 인덱스 위치
+    func readNewMessages(_ channelId: Int) -> Int? {
+        guard let channel = realm.object(ofType: RealmChannel.self, forPrimaryKey: channelId) else { return nil }
+        
+        // 마지막 메시지가 읽음 처리 된 경우 마지막 메시지 인덱스 반환
+        if channel.messages.last?.isNew == false { return channel.messages.count - 1}
+        
+        // 첫 읽지 않은 메시지의 인덱스 위치
+        let index = channel.messages.firstIndex { $0.isNew == true }
+        
+        // 읽지 않은 메시지 리스트 가져오기
+        let messages = channel.messages.filter({ $0.isNew == true })
+        
+        messages.forEach({ message in
+            // 메시지 읽음 처리
+            try! realm.write({
+                message.isNew = false
+            })
+        })
+        
+        return index
     }
 }

@@ -133,7 +133,6 @@
 		572221BD2AC0A6BA00CB9E36 /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221BC2AC0A6BA00CB9E36 /* ChatRepository.swift */; };
 		572221CB2AC2CB8B00CB9E36 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221CA2AC2CB8B00CB9E36 /* Sender.swift */; };
 		572221CD2AC2CB9B00CB9E36 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221CC2AC2CB9B00CB9E36 /* Schedule.swift */; };
-		572221CF2AC2CBF400CB9E36 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221CE2AC2CBF400CB9E36 /* Channel.swift */; };
 		572221D12AC2CC4300CB9E36 /* RealmChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221D02AC2CC4300CB9E36 /* RealmChannel.swift */; };
 		572221D32AC2CC6C00CB9E36 /* RealmMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221D22AC2CC6C00CB9E36 /* RealmMessage.swift */; };
 		572221D52AC2CC7C00CB9E36 /* RealmSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572221D42AC2CC7C00CB9E36 /* RealmSender.swift */; };
@@ -317,7 +316,6 @@
 		572221BC2AC0A6BA00CB9E36 /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
 		572221CA2AC2CB8B00CB9E36 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		572221CC2AC2CB9B00CB9E36 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		572221CE2AC2CBF400CB9E36 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		572221D02AC2CC4300CB9E36 /* RealmChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmChannel.swift; sourceTree = "<group>"; };
 		572221D22AC2CC6C00CB9E36 /* RealmMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMessage.swift; sourceTree = "<group>"; };
 		572221D42AC2CC7C00CB9E36 /* RealmSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSender.swift; sourceTree = "<group>"; };
@@ -888,7 +886,6 @@
 			children = (
 				572221BA2AC0A24000CB9E36 /* Realm */,
 				570063D22A7A55A20051F42A /* Codable */,
-				572221CE2AC2CBF400CB9E36 /* Channel.swift */,
 				3BB408AD2A6ABCF600FBA617 /* ScheduleEvent.swift */,
 				3B657DD92A88FD0800148496 /* GroupJoinRequestModel.swift */,
 				3B57FFD42A741F61007DB482 /* ScheduleEventPopUp.swift */,
@@ -1258,7 +1255,6 @@
 				57AF3D542A83B36B00C09715 /* DateTimeFormatter.swift in Sources */,
 				57AF3D5A2A86019600C09715 /* Headers.swift in Sources */,
 				572DC2332A51BF2400C0D6E1 /* SignInViewController.swift in Sources */,
-				572221CF2AC2CBF400CB9E36 /* Channel.swift in Sources */,
 				3BF2E7682A8B5BA200FD09F7 /* SearchingViewModel.swift in Sources */,
 				3B57FFCD2A7408AE007DB482 /* DimmedViewController.swift in Sources */,
 				3B181D1A2A56DCDF00B62DEB /* MeetingViewController.swift in Sources */,
