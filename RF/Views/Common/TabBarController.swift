@@ -9,10 +9,13 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
+    private let viewModel = ScheduleViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTabBar()
+        getData()
     }
     
     deinit {
@@ -38,7 +41,12 @@ final class TabBarController: UITabBarController {
         vc2.tabBarItem = UITabBarItem(title: "모임", image: UIImage(named: "meeting"), selectedImage: UIImage(named: "meeting"))
         //vc3.tabBarItem = UITabBarItem(title: "커뮤니티", image: UIImage(named: "post"), selectedImage: UIImage(named: "post"))
         vc4.tabBarItem = UITabBarItem(title: "채팅", image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat"))
-        vc5.tabBarItem = UITabBarItem(title: "마이페이지", image: UIImage(systemName: "person.circle.fill"), selectedImage: UIImage(systemName: "person.circle.fill"))
+        //프로필 이미지 없는 경우 다음 코드 사용
+//        vc5.tabBarItem = UITabBarItem(title: "마이페이지", image: UIImage(systemName: "person.circle.fill"), selectedImage: UIImage(systemName: "person.circle.fill"))
+        
+        vc5.tabBarItem = UITabBarItem(title: "마이페이지", image: UIImage(named: "LogoImage"), selectedImage: UIImage(named: "LogoImage"))
+        //viewmodel과 연결할 때 이 주석안의 코드 사용 예정
+//        vc5.tabBarItem = UITabBarItem(title: "마이페이지", image: SignUpDataViewModel.viewModel.introduceSelfRelay.value, selectedImage: SignUpDataViewModel.viewModel.introduceSelfRelay.value)
         
         self.tabBar.tintColor = .systemBlue
         self.tabBar.backgroundColor = .white
@@ -61,6 +69,12 @@ final class TabBarController: UITabBarController {
     
     @objc func updateSelectedIndex() {
         selectedIndex = 1
+    }
+    
+    
+    /// MARK: ViewModel에서 데이터 얻는 함수
+    private func getData(){
+        viewModel.getData()
     }
     
 }

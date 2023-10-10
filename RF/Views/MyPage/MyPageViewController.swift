@@ -115,12 +115,17 @@ class MyPageViewController: UIViewController {
         return pv
     }()
     
+    private lazy var firstDivLine: UIView = {
+        let box = UIView()
+        box.backgroundColor = UIColor.init(hexCode: "#DFDFDF")
+        return box
+    }()
     
     
     
     private let menuCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = 5
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.tag = 0
@@ -130,8 +135,51 @@ class MyPageViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var secondDivLine: UIView = {
+        let box = UIView()
+        box.backgroundColor = UIColor.init(hexCode: "#DFDFDF")
+        return box
+    }()
     
+    private lazy var bottomButtonsTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "문의 및 공지"
+        label.font = .systemFont(ofSize: 14)
+        label.textColor = TextColor.first.color
+        return label
+    }()
     
+    private lazy var customerCenterButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("고객 센터", for: .normal)
+        button.setTitleColor(.label, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        return button
+    }()
+    
+    private lazy var announcementButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("공지사항", for: .normal)
+        button.setTitleColor(.label, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        return button
+    }()
+    
+    private lazy var withdrawButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("회원 탈퇴", for: .normal)
+        button.setTitleColor(.label, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        return button
+    }()
+    
+    private lazy var aboutButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("현재 버전 12.7.1", for: .normal)
+        button.setTitleColor(.label, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        return button
+    }()
     
     
     private var scoreMessageList = ["심성이 따뜻하네요","활동적이고 따뜻함이 느껴져요", "뜨거운 열정과 심성을 가진 알프레드님🔥","모두가 인정한 열정맨! 플러스 친절함까지?"]
@@ -191,6 +239,7 @@ class MyPageViewController: UIViewController {
         addSubviews()
         configureConstraints()
         configureCollectionView()
+        bind()
         
         //addBarButton
         let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingButtonTapped))
@@ -246,8 +295,17 @@ class MyPageViewController: UIViewController {
         containerView.addSubview(scoreNumberLabel)
         containerView.addSubview(scoreProgressBar)
         
+        containerView.addSubview(firstDivLine)
+        
         
         containerView.addSubview(menuCollectionView)
+        
+        containerView.addSubview(secondDivLine)
+        containerView.addSubview(bottomButtonsTitleLabel)
+        containerView.addSubview(customerCenterButton)
+        containerView.addSubview(announcementButton)
+        containerView.addSubview(withdrawButton)
+        containerView.addSubview(aboutButton)
         
     }
     
@@ -310,12 +368,55 @@ class MyPageViewController: UIViewController {
             make.height.equalTo(6)
         }
         
+        firstDivLine.snp.makeConstraints { make in
+            make.top.equalTo(scoreProgressBar.snp.bottom).offset(10)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(1)
+        }
         
         menuCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(scoreProgressBar.snp.bottom).offset(15)
-            make.leading.trailing.bottom.equalToSuperview().inset(20)
-            make.height.equalTo(320)
+            make.top.equalTo(firstDivLine.snp.bottom).offset(15)
+            make.horizontalEdges.equalToSuperview().inset(20)
+            make.height.equalTo(400)
         }
+        
+        
+        secondDivLine.snp.makeConstraints { make in
+            make.top.equalTo(menuCollectionView.snp.bottom).offset(20)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        
+        bottomButtonsTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(secondDivLine.snp.bottom).offset(20)
+            make.leading.equalToSuperview().inset(20)
+        }
+        
+        customerCenterButton.snp.makeConstraints { make in
+            make.top.equalTo(bottomButtonsTitleLabel.snp.bottom).offset(10)
+            make.leading.equalToSuperview().inset(30)
+        }
+        
+        announcementButton.snp.makeConstraints { make in
+            make.top.equalTo(bottomButtonsTitleLabel.snp.bottom).offset(10)
+            make.leading.equalTo(containerView.snp.centerX).offset(20)
+        }
+        
+        withdrawButton.snp.makeConstraints { make in
+            make.top.equalTo(customerCenterButton.snp.bottom).offset(20)
+            make.leading.equalToSuperview().inset(30)
+            make.bottom.equalToSuperview().inset(20)
+        }
+        
+        aboutButton.snp.makeConstraints { make in
+            make.top.equalTo(customerCenterButton.snp.bottom).offset(20)
+            make.leading.equalTo(containerView.snp.centerX).offset(20)
+        }
+        
+        
+        
+        
+        
         
     }
     
@@ -331,12 +432,55 @@ class MyPageViewController: UIViewController {
         viewModel.getData()
     }
     
+    private func bind() {
+        customerCenterButton.rx.tap
+            .subscribe(onNext: {
+                self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        announcementButton.rx.tap
+            .subscribe(onNext: {
+                self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        withdrawButton.rx.tap
+            .subscribe(onNext: {
+                self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+    
+        aboutButton.rx.tap
+            .subscribe(onNext: {
+                
+            })
+            .disposed(by: disposeBag)
+        
+    }
+    
     @objc func settingButtonTapped() {
         self.navigationController?.pushViewController(ProfileSettingViewController(), animated: true)
     }
     
     @objc func reportButtonTapped() {
         
+    }
+    private func menuCollectionViewClicked(at: Int){
+        
+        switch at {
+        case 0:
+            return
+        case 1:
+            return
+        case 2:
+            self.navigationController?.pushViewController(MyPageMeetingDateViewController(), animated: true)
+            return
+        case 3:
+            return
+        default:
+            return
+        }
     }
     
 }
@@ -348,7 +492,7 @@ extension MyPageViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     //Size for one cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: collectionView.frame.width, height: (collectionView.frame.height - 10) / 4)
+            return CGSize(width: collectionView.frame.width, height: (collectionView.frame.height) / 4 - 10)
         
     }
     
@@ -377,7 +521,8 @@ extension MyPageViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard let cell = collectionView.cellForItem(at: indexPath) as? menuCollectionViewCell else { return }
         
         //Some code
-//        
+        self.menuCollectionViewClicked(at: indexPath.item)
+//
 //        
 //        contentView.addSubview(titleLabel)
 //        contentView.addSubview(descriptLabel)

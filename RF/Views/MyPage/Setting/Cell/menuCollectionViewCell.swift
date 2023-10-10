@@ -28,7 +28,8 @@ class menuCollectionViewCell: UICollectionViewCell {
     
     private lazy var rightButton: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(systemName: "chevron.right")?.resize(newWidth: 20), for: .normal)
+        btn.setImage(UIImage(systemName: "chevron.right")?.resize(newWidth: 10), for: .normal)
+        btn.tintColor = TextColor.secondary.color
         return btn
     }()
     
@@ -50,6 +51,8 @@ class menuCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        contentView.layer.borderWidth = 0.5
+        contentView.layer.borderColor = TextColor.secondary.color.cgColor
         contentView.layer.cornerRadius = 10
         //Corner radius 적용을 위한 코드
         contentView.clipsToBounds = true

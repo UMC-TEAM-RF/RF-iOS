@@ -69,6 +69,8 @@
 		3B938C8E2A93399700CBF734 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B938C8D2A93399700CBF734 /* UIImageView+Ext.swift */; };
 		3B938C902A93847A00CBF734 /* MeetingManageUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B938C8F2A93847A00CBF734 /* MeetingManageUIButton.swift */; };
 		3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */; };
+		3B9BCEE92AD0F5BC008F2AFE /* MyPageMeetingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BCEE82AD0F5BC008F2AFE /* MyPageMeetingDateViewController.swift */; };
+		3B9BCEEB2AD10071008F2AFE /* menuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BCEEA2AD10071008F2AFE /* menuCollectionViewCell.swift */; };
 		3BA9A8472A81F6C900349407 /* EnumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9A8462A81F6C900349407 /* EnumService.swift */; };
 		3BA9FB8D2A7D307F0039B138 /* lifestyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */; };
 		3BB408A42A6AA5A900FBA617 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */; };
@@ -245,6 +247,8 @@
 		3B938C8D2A93399700CBF734 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		3B938C8F2A93847A00CBF734 /* MeetingManageUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingManageUIButton.swift; sourceTree = "<group>"; };
 		3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		3B9BCEE82AD0F5BC008F2AFE /* MyPageMeetingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMeetingDateViewController.swift; sourceTree = "<group>"; };
+		3B9BCEEA2AD10071008F2AFE /* menuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BA9A8462A81F6C900349407 /* EnumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumService.swift; sourceTree = "<group>"; };
 		3BA9FB8C2A7D307F0039B138 /* lifestyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lifestyleCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BB408A32A6AA5A900FBA617 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -585,6 +589,7 @@
 			children = (
 				570063CB2A792C530051F42A /* Setting */,
 				3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */,
+				3B9BCEE82AD0F5BC008F2AFE /* MyPageMeetingDateViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -720,6 +725,7 @@
 			isa = PBXGroup;
 			children = (
 				44CC47722A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift */,
+				3B9BCEEA2AD10071008F2AFE /* menuCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1076,7 +1082,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					572DC22A2A51BF2400C0D6E1 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -1189,7 +1195,6 @@
 				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
 				3B267B8F2A861E3200F3949A /* GroupJoinRequestViewController.swift in Sources */,
 				3B69EE402A81F522002DB6DF /* Enums.swift in Sources */,
-				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
 				3BD700CF2A7962F0005C7D7E /* ChoiceInterestingCountryView.swift in Sources */,
 				572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */,
@@ -1236,6 +1241,7 @@
 				3B938C902A93847A00CBF734 /* MeetingManageUIButton.swift in Sources */,
 				57AF3D5C2A94957300C09715 /* ChatMenuOption.swift in Sources */,
 				3B6C312B2A7E2616008FADA1 /* EmailService.swift in Sources */,
+				3B9BCEE92AD0F5BC008F2AFE /* MyPageMeetingDateViewController.swift in Sources */,
 				3B0E2EBB2A81024700797782 /* MeetingViewModel.swift in Sources */,
 				3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */,
 				3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */,
@@ -1286,6 +1292,7 @@
 				3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */,
 				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
 				57DD3E682A8106E7009F7139 /* Message.swift in Sources */,
+				3B9BCEEB2AD10071008F2AFE /* menuCollectionViewCell.swift in Sources */,
 				3B595EF22A84CDB0008BD715 /* DetailedMeetingCollectionViewCell.swift in Sources */,
 				570063E42A7D10150051F42A /* KeyboardInputBar.swift in Sources */,
 				570063AD2A7258530051F42A /* DesignConstants.swift in Sources */,
@@ -1381,6 +1388,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1441,6 +1449,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1468,7 +1477,7 @@
 				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5DFZR8RCQR;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
