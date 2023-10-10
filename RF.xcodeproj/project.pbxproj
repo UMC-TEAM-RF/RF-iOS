@@ -173,6 +173,7 @@
 		57AF3D732A95279300C09715 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57AF3D6A2A95279300C09715 /* Pretendard-Thin.otf */; };
 		57AF3D742A95279300C09715 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57AF3D6B2A95279300C09715 /* Pretendard-ExtraBold.otf */; };
 		57AF3D752A95279300C09715 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57AF3D6C2A95279300C09715 /* Pretendard-Medium.otf */; };
+		57BB1B412AD5799B00516897 /* PapagoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BB1B402AD5799B00516897 /* PapagoService.swift */; };
 		57DD3E532A7E3033009F7139 /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */; };
 		57DD3E572A7E4C7E009F7139 /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */; };
 		57DD3E612A80BBD0009F7139 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E602A80BBD0009F7139 /* ChatService.swift */; };
@@ -358,6 +359,7 @@
 		57AF3D6A2A95279300C09715 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
 		57AF3D6B2A95279300C09715 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
 		57AF3D6C2A95279300C09715 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		57BB1B402AD5799B00516897 /* PapagoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoService.swift; sourceTree = "<group>"; };
 		57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
 		57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		57DD3E602A80BBD0009F7139 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
@@ -1074,6 +1076,7 @@
 			isa = PBXGroup;
 			children = (
 				57DD3E602A80BBD0009F7139 /* ChatService.swift */,
+				57BB1B402AD5799B00516897 /* PapagoService.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1274,6 +1277,7 @@
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,
 				3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */,
 				3B6BA9802A7E68FA00A11FE4 /* SearchUniversityViewController.swift in Sources */,
+				57BB1B412AD5799B00516897 /* PapagoService.swift in Sources */,
 				3BD68EF72A779741003A57A7 /* SignIn.swift in Sources */,
 				3B6E6F172A94D29D0002C6F3 /* SearchService.swift in Sources */,
 				572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */,

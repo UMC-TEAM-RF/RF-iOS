@@ -436,13 +436,13 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
             guard let source = Language.getLanguageCode(sourceLanguage!) else { return }
             guard let target = Language.getLanguageCode(targetLanguage!) else { return }
             
-            ChatService.shared.translateMessage(source: source, target: target, text: text) { result in
+            PapagoService.shared.translateMessage(source: source, target: target, text: text) { result in
                 // 2. keyboardInputBar.inputField.text = "번역된 텍스트"
                 self.keyboardInputBar.inputFieldText = result
             }
         } else { // 메시지 전송 버튼 클릭인 경우
             // 메시지 전송 전 언어 코드 확인
-            ChatService.shared.detectLanguage(text) { result in
+            PapagoService.shared.detectLanguage(text) { result in
                 // 언어 코드 확인 후 메시지 전송
                 ChatService.shared.send(
                     message: Message(
