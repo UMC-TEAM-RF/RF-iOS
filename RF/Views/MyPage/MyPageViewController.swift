@@ -234,6 +234,7 @@ class MyPageViewController: UIViewController {
         
         
         updateTitleView(title: "마이페이지")
+        setupCustomBackButton()
         
         getData()
         addSubviews()
@@ -446,13 +447,26 @@ class MyPageViewController: UIViewController {
         
         announcementButton.rx.tap
             .subscribe(onNext: {
-//                self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
+                self.navigationController?.pushViewController(MyPageAnnouncementViewController(), animated: true)
             })
             .disposed(by: disposeBag)
         
         withdrawButton.rx.tap
             .subscribe(onNext: {
-                self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
+                
+                let alertController = UIAlertController(title: "주의", message: "회원 탈퇴 시, 사용자의 채팅 내역, 크루 내역 등 모든 정보는 사라집니다. 탈퇴 후 다시 가입을 원할 시에는 3일이 지나야 합니다. 그래도 회원 탈퇴를 진행하시겠습니까?", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "확인", style: .destructive) { _ in
+                    self.withdraw()
+                }
+                let no = UIAlertAction(title: "취소", style: .cancel) { _ in
+                }
+                
+                alertController.addAction(ok)
+                alertController.addAction(no)
+                
+                self.present(alertController, animated: true)
+                
+//                self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
             })
             .disposed(by: disposeBag)
     
@@ -462,6 +476,17 @@ class MyPageViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+    }
+    private func withdraw(){
+        
+        let alertController = UIAlertController(title: "확인", message: "회원 탈퇴 되었습니다.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인", style: .default) { _ in
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(SignInViewController())
+        }
+        
+        alertController.addAction(ok)
+        
+        self.present(alertController, animated: true)
     }
     
     @objc func settingButtonTapped() {
@@ -478,11 +503,13 @@ class MyPageViewController: UIViewController {
         case 0:
             return
         case 1:
+            self.navigationController?.pushViewController(MyPageMeetingManagingViewController(), animated: true)
             return
         case 2:
             self.navigationController?.pushViewController(MyPageMeetingDateViewController(), animated: true)
             return
         case 3:
+            self.navigationController?.pushViewController(MyPageBlockUserListViewController(), animated: true)
             return
         default:
             return
@@ -514,11 +541,6 @@ extension MyPageViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.varTitleLabel = menuList[indexPath.item]
         cell.varDescriptLabel = menuDescription[indexPath.item]
         
-        
-//            contentView.addSubview(titleLabel)
-//            contentView.addSubview(descriptLabel)
-//            contentView.addSubview(rightButton)
-        
         return cell
     }
     
@@ -528,11 +550,6 @@ extension MyPageViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         //Some code
         self.menuCollectionViewClicked(at: indexPath.item)
-//
-//        
-//        contentView.addSubview(titleLabel)
-//        contentView.addSubview(descriptLabel)
-//        contentView.addSubview(rightButton)
     }
     
 }
