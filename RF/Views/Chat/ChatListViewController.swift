@@ -119,10 +119,13 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChatRoomViewController()
         
-        vc.channel = channels[indexPath.row]
+        let channel = channels[indexPath.row]
+        
+        vc.channel = channel
         vc.row = ChatRepository.shared.readNewMessages(channels[indexPath.row].id)
         
-        // 메시지 읽음 처리 후 테이블 뷰 리로드 필요
+        // Noti 알림 전송 (TabBar badge, ChatList update)
+        NotificationCenter.default.post(name: NotificationName.updateChatList, object: nil)
         
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)

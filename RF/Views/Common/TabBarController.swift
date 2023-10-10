@@ -22,8 +22,7 @@ final class TabBarController: UITabBarController {
     }
     
     private func configureTabBar() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTabBarIcon), name: NotificationName.updateTabBarIcon, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateChat), name: NotificationName.updateChatList, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateSelectedIndex), name: NotificationName.updateSelectedIndex, object: nil)
         
         let vc1 = UINavigationController(rootViewController: HomeViewController())
@@ -49,12 +48,13 @@ final class TabBarController: UITabBarController {
     
     private func updateChatBadgeValue() {
         let count = ChatRepository.shared.getNewMessageCount()
-        if selectedIndex != 2, count > 0 {
-            tabBar.items![2].badgeValue = "\(count)"
-        }
+        let value = count > 0 ? "\(count)" : nil
+
+        tabBar.items![2].badgeValue = value
     }
     
-    @objc func updateTabBarIcon() {
+    @objc func updateChat() {
+        print(#function)
         updateChatBadgeValue()
     }
     

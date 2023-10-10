@@ -175,12 +175,12 @@ class ChatListTableViewCell: UITableViewCell {
         chatTitleLabel.text = channel.name
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(channel.messages.last?.dateTime, isCompareCurrentTime: true)
         
-        if channel.messages.isEmpty {
+        let newMessageCount = ChatRepository.shared.getNewMessageCount(channel.id)
+        if newMessageCount == 0 {
             newMessageCountView.isHidden = true
             return
         }
         
-        let newMessageCount = ChatRepository.shared.getNewMessageCount(channel.id)
         newMessageCountLabel.text = "\(newMessageCount)"
         newMessageCountView.isHidden = false
         
