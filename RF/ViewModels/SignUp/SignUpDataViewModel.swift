@@ -55,6 +55,9 @@ final class SignUpDataViewModel {
     /// MBTI
     var mbtiRelay: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
     
+    /// profileImageURL
+    var profileImageUrlRelay: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
+    
     
     // MARK: - API Connect
     

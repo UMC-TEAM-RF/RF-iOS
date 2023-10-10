@@ -250,8 +250,6 @@ class MyPageViewController: UIViewController {
         
         
         
-        introduceLabel.text = SignUpDataViewModel.viewModel.introduceSelfRelay.value
-        profileLabel.text = "\(SignUpDataViewModel.viewModel.nickNameRelay.value) | 소융대 🇰🇷"
         
 //        let service = MeetingService()
 //        service.requestRecommandPartyList("Personal") { meetings in
@@ -430,18 +428,25 @@ class MyPageViewController: UIViewController {
     /// MARK: ViewModel에서 데이터 얻는 함수
     private func getData(){
         viewModel.getData()
+        
+        if let img = URL(string: SignUpDataViewModel.viewModel.profileImageUrlRelay.value) {
+            profileImageView.load(url: img)
+            profileImageView.updateConstraints()
+        }
+        introduceLabel.text = SignUpDataViewModel.viewModel.introduceSelfRelay.value
+        profileLabel.text = "\(SignUpDataViewModel.viewModel.nickNameRelay.value) | 소융대 🇰🇷"
     }
     
     private func bind() {
         customerCenterButton.rx.tap
             .subscribe(onNext: {
-                self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
+                self.navigationController?.pushViewController(MyPageCustomerCenterViewController(), animated: true)
             })
             .disposed(by: disposeBag)
         
         announcementButton.rx.tap
             .subscribe(onNext: {
-                self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
+//                self.navigationController?.pushViewController(NotiMessageViewController(), animated: true)
             })
             .disposed(by: disposeBag)
         
@@ -466,6 +471,7 @@ class MyPageViewController: UIViewController {
     @objc func reportButtonTapped() {
         
     }
+    
     private func menuCollectionViewClicked(at: Int){
         
         switch at {
@@ -518,7 +524,7 @@ extension MyPageViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     //code when the cell is clicked
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? menuCollectionViewCell else { return }
+        guard let _ = collectionView.cellForItem(at: indexPath) as? menuCollectionViewCell else { return }
         
         //Some code
         self.menuCollectionViewClicked(at: indexPath.item)

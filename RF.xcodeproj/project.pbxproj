@@ -100,6 +100,9 @@
 		3BD700D32A7963DD005C7D7E /* ChoiceInterestingLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD700D22A7963DD005C7D7E /* ChoiceInterestingLanguageView.swift */; };
 		3BD700D52A796403005C7D7E /* ChoiceInterestingLanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD700D42A796403005C7D7E /* ChoiceInterestingLanguageViewModel.swift */; };
 		3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */; };
+		3BEEA26E2AD54FC900F6D5B7 /* MyPageCustomerCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEA26D2AD54FC900F6D5B7 /* MyPageCustomerCenterViewController.swift */; };
+		3BEEA2702AD558EF00F6D5B7 /* MyPageReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEA26F2AD558EF00F6D5B7 /* MyPageReportViewController.swift */; };
+		3BEEA2722AD578F200F6D5B7 /* MyPageReportApplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEA2712AD578F200F6D5B7 /* MyPageReportApplyViewController.swift */; };
 		3BEEE7D12A7658C0007092DF /* MeetingCreatePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */; };
 		3BF2E7662A8B50CC00FD09F7 /* Judge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E7652A8B50CC00FD09F7 /* Judge.swift */; };
 		3BF2E7682A8B5BA200FD09F7 /* SearchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E7672A8B5BA200FD09F7 /* SearchingViewModel.swift */; };
@@ -278,6 +281,9 @@
 		3BD700D22A7963DD005C7D7E /* ChoiceInterestingLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceInterestingLanguageView.swift; sourceTree = "<group>"; };
 		3BD700D42A796403005C7D7E /* ChoiceInterestingLanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceInterestingLanguageViewModel.swift; sourceTree = "<group>"; };
 		3BDB84C02A6AAC7400CE8045 /* PersonalInterestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInterestsViewController.swift; sourceTree = "<group>"; };
+		3BEEA26D2AD54FC900F6D5B7 /* MyPageCustomerCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCustomerCenterViewController.swift; sourceTree = "<group>"; };
+		3BEEA26F2AD558EF00F6D5B7 /* MyPageReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReportViewController.swift; sourceTree = "<group>"; };
+		3BEEA2712AD578F200F6D5B7 /* MyPageReportApplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReportApplyViewController.swift; sourceTree = "<group>"; };
 		3BEEE7D02A7658C0007092DF /* MeetingCreatePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCreatePopUpViewController.swift; sourceTree = "<group>"; };
 		3BF2E7652A8B50CC00FD09F7 /* Judge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Judge.swift; sourceTree = "<group>"; };
 		3BF2E7672A8B5BA200FD09F7 /* SearchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewModel.swift; sourceTree = "<group>"; };
@@ -590,6 +596,9 @@
 				570063CB2A792C530051F42A /* Setting */,
 				3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */,
 				3B9BCEE82AD0F5BC008F2AFE /* MyPageMeetingDateViewController.swift */,
+				3BEEA26D2AD54FC900F6D5B7 /* MyPageCustomerCenterViewController.swift */,
+				3BEEA26F2AD558EF00F6D5B7 /* MyPageReportViewController.swift */,
+				3BEEA2712AD578F200F6D5B7 /* MyPageReportApplyViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1180,6 +1189,7 @@
 				3B6C31252A7E17DC008FADA1 /* UserInfoSelfViewModel.swift in Sources */,
 				570063932A67B23A0051F42A /* RuleListViewController.swift in Sources */,
 				3B6BA9982A7FEC7F00A11FE4 /* EmailCustomTextField.swift in Sources */,
+				3BEEA2722AD578F200F6D5B7 /* MyPageReportApplyViewController.swift in Sources */,
 				3B938C8E2A93399700CBF734 /* UIImageView+Ext.swift in Sources */,
 				44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */,
 				570063AB2A724CB40051F42A /* UIViewController+Ext.swift in Sources */,
@@ -1232,6 +1242,7 @@
 				57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */,
 				3B62877C2A84BF7200E00B09 /* CreateViewModel.swift in Sources */,
 				570063D42A7A57110051F42A /* Meeting.swift in Sources */,
+				3BEEA26E2AD54FC900F6D5B7 /* MyPageCustomerCenterViewController.swift in Sources */,
 				3BC35CF32A5D7E2500D73163 /* JoinMemberCollectionViewCell.swift in Sources */,
 				3BB408AE2A6ABCF600FBA617 /* ScheduleEvent.swift in Sources */,
 				3B6BA9802A7E68FA00A11FE4 /* SearchUniversityViewController.swift in Sources */,
@@ -1283,6 +1294,7 @@
 				3B5402C32A6EA61700D0AD21 /* ListViewModel.swift in Sources */,
 				3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */,
 				5700639D2A6AC60C0051F42A /* NotiListTableViewCell.swift in Sources */,
+				3BEEA2702AD558EF00F6D5B7 /* MyPageReportViewController.swift in Sources */,
 				572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */,
 				3BF2E7662A8B50CC00FD09F7 /* Judge.swift in Sources */,
 				3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */,
