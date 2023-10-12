@@ -24,7 +24,6 @@
 		3B267B8F2A861E3200F3949A /* GroupJoinRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B267B8E2A861E3200F3949A /* GroupJoinRequestViewController.swift */; };
 		3B267B922A86281100F3949A /* GroupJoinRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B267B912A86281100F3949A /* GroupJoinRequestViewModel.swift */; };
 		3B267B942A862AB100F3949A /* GroupJoinRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B267B932A862AB100F3949A /* GroupJoinRequestTableViewCell.swift */; };
-		3B4CAC982A7A4F3B00896DEB /* HomeMeetingDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CAC972A7A4F3B00896DEB /* HomeMeetingDummy.swift */; };
 		3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */; };
 		3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */; };
 		3B5402C32A6EA61700D0AD21 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */; };
@@ -207,7 +206,6 @@
 		3B267B8E2A861E3200F3949A /* GroupJoinRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupJoinRequestViewController.swift; sourceTree = "<group>"; };
 		3B267B912A86281100F3949A /* GroupJoinRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupJoinRequestViewModel.swift; sourceTree = "<group>"; };
 		3B267B932A862AB100F3949A /* GroupJoinRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupJoinRequestTableViewCell.swift; sourceTree = "<group>"; };
-		3B4CAC972A7A4F3B00896DEB /* HomeMeetingDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMeetingDummy.swift; sourceTree = "<group>"; };
 		3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
@@ -1029,7 +1027,6 @@
 			isa = PBXGroup;
 			children = (
 				57DD3E622A80C7B4009F7139 /* API */,
-				3B4CAC972A7A4F3B00896DEB /* HomeMeetingDummy.swift */,
 				570063AC2A7258530051F42A /* DesignConstants.swift */,
 				57DD3E6D2A825DDD009F7139 /* NotificationName.swift */,
 				57AF3D532A83B36B00C09715 /* DateTimeFormatter.swift */,
@@ -1346,7 +1343,6 @@
 				3BD700C82A79364B005C7D7E /* ChoiceCountryViewModel.swift in Sources */,
 				572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */,
 				3B6BA9852A7E6AE100A11FE4 /* SearchUniversityViewModel.swift in Sources */,
-				3B4CAC982A7A4F3B00896DEB /* HomeMeetingDummy.swift in Sources */,
 				57DD3E532A7E3033009F7139 /* KeyboardInputView.swift in Sources */,
 				3B935D542A56D45C00FECE3A /* PasswordTextField.swift in Sources */,
 				3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */,

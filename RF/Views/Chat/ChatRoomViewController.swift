@@ -249,9 +249,10 @@ class ChatRoomViewController: UIViewController {
         return visibleIndexPaths.contains(lastIndexPath)
     }
     
-    private func isSenderSelf(_ sender: Sender?) -> Bool {
+    // MARK: - [수정 필요] 로그인 한 유저 ID 가져오기
+    private func isSenderSelf(_ sender: RealmSender?) -> Bool {
         guard let sender else { return false }
-        return sender.userId == 2
+        return sender.id == 2
     }
     
     // MARK: - @objc func
@@ -370,28 +371,29 @@ class ChatRoomViewController: UIViewController {
 
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return channel.messages.count
-        return 0
+        return channel.messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let message = channel.messages[indexPath.row]
-//        
-//        if isSenderSelf(message.sender) {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
-//            
-//            cell.updateChatView(message)
-//            return cell
-//        } else {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
-//            cell.updateChatView(message)
-//            cell.delegate = self
-//            
-//            if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
-//            else { cell.isContinuous = false }
-//            
-//            return cell
-//        }
+        let message = channel.messages[indexPath.row]
+        
+        if isSenderSelf(message.speaker) {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
+            
+            cell.updateChatView(message)
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
+            
+            // MARK: - [수정 필요] userProfileUrl 적용
+            cell.updateChatView(message)
+            cell.delegate = self
+            
+            if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
+            else { cell.isContinuous = false }
+            
+            return cell
+        }
         return UITableViewCell()
     }
     

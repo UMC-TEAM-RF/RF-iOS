@@ -175,16 +175,17 @@ class ChatListTableViewCell: UITableViewCell {
         chatTitleLabel.text = channel.name
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(channel.messages.last?.dateTime, isCompareCurrentTime: true)
         
+        // 읽지 않은 메시지 수 가져오기
         let newMessageCount = ChatRepository.shared.getNewMessageCount(channel.id)
         if newMessageCount == 0 {
             newMessageCountView.isHidden = true
-            return
+        }
+        else {
+            newMessageCountLabel.text = "\(newMessageCount)"
+            newMessageCountView.isHidden = false
         }
         
-        newMessageCountLabel.text = "\(newMessageCount)"
-        newMessageCountView.isHidden = false
-        
-        let lastMessage = channel.messages.last!
+        guard let lastMessage = channel.messages.last else { return }
         
         switch lastMessage.type {
         case MessageType.text: contentLabel.text = lastMessage.content
