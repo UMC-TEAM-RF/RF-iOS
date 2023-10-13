@@ -126,6 +126,9 @@ class ChatRepository {
     func readNewMessages(_ channelId: Int) -> Int? {
         guard let channel = realm.object(ofType: RealmChannel.self, forPrimaryKey: channelId) else { return nil }
         
+        // 메시지가 존재하지 않을 때
+        if channel.messages.isEmpty { return nil }
+        
         // 마지막 메시지가 읽음 처리 된 경우 마지막 메시지 인덱스 반환
         if channel.messages.last?.isNew == false { return channel.messages.count - 1}
         

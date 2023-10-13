@@ -58,6 +58,10 @@ class ChatRoomViewController: UIViewController {
     
     private lazy var messagesTableView: UITableView = {
         let tv = UITableView()
+        tv.delegate = self
+        tv.dataSource = self
+        tv.register(MyMessageTableViewCell.self, forCellReuseIdentifier: MyMessageTableViewCell.identifier)
+        tv.register(OtherMessageTableViewCell.self, forCellReuseIdentifier: OtherMessageTableViewCell.identifier)
         tv.separatorStyle = .none
         return tv
     }()
@@ -104,11 +108,14 @@ class ChatRoomViewController: UIViewController {
         addSubviews()
         configureConstraints()
         addTargets()
-        configureTableView()
         
-//        DispatchQueue.main.async {
-//            self.messagesTableView.scrollToRow(at: IndexPath(row: self.row ?? 0, section: 0), at: .bottom, animated: false)
-//        }
+        DispatchQueue.main.async {
+            self.messagesTableView.scrollToRow(at: IndexPath(row: self.row ?? 0, section: 0), at: .bottom, animated: false)
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - viewWillAppear()
@@ -208,16 +215,6 @@ class ChatRoomViewController: UIViewController {
         targetLanguageButton.addTarget(self, action: #selector(targetLanguageButtonTapped), for: .touchUpInside)
     }
     
-    // MARK: - configureTableView()
-    
-    private func configureTableView() {
-        messagesTableView.dataSource = self
-        messagesTableView.delegate = self
-        
-        messagesTableView.register(MyMessageTableViewCell.self, forCellReuseIdentifier: MyMessageTableViewCell.identifier)
-        messagesTableView.register(OtherMessageTableViewCell.self, forCellReuseIdentifier: OtherMessageTableViewCell.identifier)
-    }
-    
     private func scrollToBottom() {
 //        if channel.messages.isEmpty { return }
 //        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
@@ -227,9 +224,11 @@ class ChatRoomViewController: UIViewController {
     /// - Parameter indexPath: indexPath
     /// - Returns: true: 연속, false: 비연속
     private func isSenderConsecutiveMessages(row: Int) -> Bool {
-//        if row != 0 && (channel.messages[row - 1].sender?.userId == channel.messages[row].sender?.userId) { return true }
-//        else { return false }
-        return false
+        if row <= 0 { return false }
+        let currentId = channel.messages[row].speaker?.id
+        let beforeId = channel.messages[row - 1].speaker?.id
+        
+        return currentId == beforeId ? true : false
     }
     
     private func isLastIndexPathVisible() -> Bool {
@@ -324,16 +323,15 @@ class ChatRoomViewController: UIViewController {
         
         // reload 하기 전 내가 현재 마지막 셀에 위치해 있는지 확인
         
-//        if isLastIndexPathVisible() {
-//            let _ = SingletonChannel.shared.readNewMessage(channel.id)
+//        if isLastIndexPathVisible() { // 마지막 메시지에 위치해 있으면 자동 스크롤
+//            self.row = ChatRepository.shared.readNewMessages(self.channel.id)
 //            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
 //            messagesTableView.reloadData()
 //            scrollToBottom()
-//        } else {
-//            let _ = SingletonChannel.shared.readNewMessage(channel.id)
+//        } else { // 스크롤 위치 고정
+//            self.row = ChatRepository.shared.readNewMessages(self.channel.id)
 //            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
 //            messagesTableView.reloadData()
-//            scrollToBottom()  // 테스트
 //            print("메시지 업데이트")
 //        }
     }
@@ -394,7 +392,6 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
         }
-        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -423,13 +420,12 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
 extension ChatRoomViewController: KeyboardInputBarDelegate {
     
     func didTapPlus() {
+        
         let keyboardInputView = KeyboardInputView(frame: keyboardRect)
         keyboardInputBar.keyboardInputView = keyboardInputView
     }
     
     func didTapSend(_ text: String, isTranslated: Bool) {
-        print(#function)
-        
         if isTranslated { // 번역 버튼 클릭인 경우
             // 1. 번역
             let sourceLanguage = sourceLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
@@ -486,17 +482,21 @@ extension ChatRoomViewController: MessageTableViewCellDelegate {
     
     // 메시지 번역 버튼 클릭
     func convertMessage(_ indexPath: IndexPath) {
-//        guard let code = channel.messages[indexPath.row].langCode else { return }
-//
-//        if !Language.listWithCode.keys.contains(code) { return }
-//
-//        ChatService.shared.translateMessage(source: code, target: "ko", text: channel.messages[indexPath.row].content!) { str in
-//            self.channel.messages[indexPath.row].content = str
-//
-//            DispatchQueue.main.async {
-//                self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
-//            }
-//        }
+        guard let code = channel.messages[indexPath.row].langCode else { return }
+
+        if !Language.listWithCode.keys.contains(code) { return }
+
+        let text = channel.messages[indexPath.row].content!
+        
+        // MARK: - [수정 필요] 로그인 유저의 언어 코드에 맞춤 필요
+        PapagoService.shared.translateMessage(source: code, target: "ko", text: text) { str in
+            // MARK: - [수정 필요] 번역 후 텍스트 메시지 변환
+            //self.channel.messages[indexPath.row].content = str
+            print(str)
+            DispatchQueue.main.async {
+                self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
+            }
+        }
     }
 }
 
