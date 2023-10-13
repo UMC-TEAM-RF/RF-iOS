@@ -406,7 +406,9 @@ final class ChatRoomViewController: UIViewController {
     
     /// MARK: 주제를 보여줌
     private func showTopics(){
-        
+        let chattingTopicViewController = ChattingTopicViewController()
+        chattingTopicViewController.sheetPresentationController?.detents = [.medium()]
+        present(chattingTopicViewController, animated: true)
     }
 }
 
