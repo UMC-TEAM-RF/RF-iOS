@@ -880,7 +880,7 @@
 		F80CCCEBF9794DC3E8B4EEB8FAAA2D0B /* ObjectSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECA16FB31897E2C56D7892C4805BCCF /* ObjectSchema.swift */; };
 		F816E8668B61262B5A2B847887710543 /* PageboyViewController+RelativeCurrentPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD494600AEF765B81660B8FC0375807 /* PageboyViewController+RelativeCurrentPosition.swift */; };
 		F8601172B18112EBF893B9A6645516B0 /* RLMQueryUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7BD33FBB9122E41C6ABBBB9992EBCCAB /* RLMQueryUtil.mm */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"10.42.3\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC"; }; };
-		F8FDE8D1B9DC98D38B3C762AC5A8F0B8 /* Mantis-MantisResources in Resources */ = {isa = PBXBuildFile; fileRef = E50395ED50F3D5D97E3957A2ED43921F /* Mantis-MantisResources */; };
+		F8FDE8D1B9DC98D38B3C762AC5A8F0B8 /* MantisResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E50395ED50F3D5D97E3957A2ED43921F /* MantisResources.bundle */; };
 		F94371C9169BE3AE599827232C38D2B0 /* RLMEmbeddedObject.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 280EEE4C1E708750839C15623E067FB0 /* RLMEmbeddedObject.h */; };
 		F953AA9104BFE0C2DAD639EA60104A75 /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F2BCFAA17DB2DF94FAFA0F8BD6D85 /* ConstraintView+Extensions.swift */; };
 		F9821B669566BA01F845426DC6834E76 /* Observable+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFB686B12991FB0882FD97E1C8777A3 /* Observable+Bind.swift */; };
@@ -1968,7 +1968,7 @@
 		E3B3DBBFE06706FE0CA59B7B354D6244 /* Event.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Event.swift; path = RxSwift/Event.swift; sourceTree = "<group>"; };
 		E44E5972255FCE1582AAA89A1DB7A928 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		E4E58B427BB76FD3C3C5301E53C32081 /* List.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = List.swift; path = RealmSwift/List.swift; sourceTree = "<group>"; };
-		E50395ED50F3D5D97E3957A2ED43921F /* Mantis-MantisResources */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Mantis-MantisResources"; path = MantisResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		E50395ED50F3D5D97E3957A2ED43921F /* MantisResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MantisResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		E503B2CC88F5E5D6F517F72C947C05E1 /* URLSessionConfiguration+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLSessionConfiguration+Alamofire.swift"; path = "Source/URLSessionConfiguration+Alamofire.swift"; sourceTree = "<group>"; };
 		E55CB71AC0DBE64F184B2EFC28795D9A /* RLMProperty_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMProperty_Private.h; path = include/RLMProperty_Private.h; sourceTree = "<group>"; };
 		E56D2974A8EFE0D411B75ADFAB27AEAA /* RLMMongoCollection.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = RLMMongoCollection.mm; path = Realm/RLMMongoCollection.mm; sourceTree = "<group>"; };
@@ -2437,7 +2437,7 @@
 				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */,
 				95209B8BB966524BC76543F99C75F5FE /* FSCalendar */,
 				316D22F8B19400DBC5073973480D1521 /* Mantis */,
-				E50395ED50F3D5D97E3957A2ED43921F /* Mantis-MantisResources */,
+				E50395ED50F3D5D97E3957A2ED43921F /* MantisResources.bundle */,
 				23D5CD291D18F2187712FE6F84B6F1C6 /* Pageboy */,
 				47882824C1887DAD42D6DD3F4C8E50FD /* Pods_RF.framework */,
 				921BE4A82C4A7A5C72A0C6F8B8FEF200 /* Realm.framework */,
@@ -3748,7 +3748,7 @@
 			);
 			name = "Mantis-MantisResources";
 			productName = MantisResources;
-			productReference = E50395ED50F3D5D97E3957A2ED43921F /* Mantis-MantisResources */;
+			productReference = E50395ED50F3D5D97E3957A2ED43921F /* MantisResources.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		3EF26018CD886BA3143044A409D6D0B9 /* Tabman */ = {
@@ -3983,7 +3983,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8FDE8D1B9DC98D38B3C762AC5A8F0B8 /* Mantis-MantisResources in Resources */,
+				F8FDE8D1B9DC98D38B3C762AC5A8F0B8 /* MantisResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5195,9 +5195,11 @@
 			baseConfigurationReference = 8327FA0D61A25A41E1CBDB6C9E92F4E2 /* Mantis.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Mantis";
+				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				IBSC_MODULE = Mantis;
 				INFOPLIST_FILE = "Target Support Files/Mantis/ResourceBundle-MantisResources-Mantis-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.echo.framework.Mantis;
 				PRODUCT_NAME = MantisResources;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -6149,9 +6151,11 @@
 			baseConfigurationReference = 83F7E42C6D30BC4303E7CAF8E9A7CA27 /* Mantis.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Mantis";
+				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				IBSC_MODULE = Mantis;
 				INFOPLIST_FILE = "Target Support Files/Mantis/ResourceBundle-MantisResources-Mantis-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.echo.framework.Mantis;
 				PRODUCT_NAME = MantisResources;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

@@ -7,8 +7,9 @@
 
 import UIKit
 import SnapKit
+import PhotosUI
 
-class ChatRoomViewController: UIViewController {
+final class ChatRoomViewController: UIViewController {
     
     // 메시지 입력 창
     private lazy var keyboardInputBar: KeyboardInputBar = {
@@ -86,6 +87,9 @@ class ChatRoomViewController: UIViewController {
     private var isKeyboardShow: Bool = false
     
     private var keyboardRect: CGRect = CGRect()
+    
+    /// 선택한 이미지들
+    private var selectedPhotoImages: [UIImage] = []
     
     var channel: Channel!
     var row: Int?
@@ -364,6 +368,41 @@ class ChatRoomViewController: UIViewController {
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true, completion: nil)
     }
+    
+    /// 사진 앱에서 사진 선택
+    private func selectedPhoto() {
+        if #available(iOS 14, *){
+            var configuration = PHPickerConfiguration()
+            configuration.selectionLimit = 10
+            configuration.filter = .any(of: [.images])
+            
+            let picker = PHPickerViewController(configuration: configuration)
+            picker.delegate = self
+            let nvPicker = UINavigationController(rootViewController: picker)
+            nvPicker.modalPresentationStyle = .fullScreen
+            present(nvPicker,animated: false)
+        }
+        else {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = .photoLibrary
+            present(imagePickerController, animated: true, completion: nil)
+        }
+    }
+    
+    /// MARK: 카메라로 사진 찍기
+    private func takePhoto(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .camera
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    /// MARK: 일정 생성
+    private func createCalendar(){
+        let createCalendarViewController = CreateCalendarViewController()
+        navigationController?.pushViewController(createCalendarViewController, animated: true)
+    }
 }
 
 // MARK: - Ext: TableView
@@ -420,6 +459,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
     
     func didTapPlus() {
         let keyboardInputView = KeyboardInputView(frame: keyboardRect)
+        keyboardInputView.delegate = self
         keyboardInputBar.keyboardInputView = keyboardInputView
     }
     
@@ -505,5 +545,77 @@ extension ChatRoomViewController: SendDataDelegate {
         let button = tag == 0 ? sourceLanguageButton : targetLanguageButton
         button.setTitle("\(data) ", for: .normal)
     }
+    
+    func sendTagData(tag: Int) {
+        switch tag {
+        case 0: // 사진 선택
+            selectedPhoto()
+        case 1: // 카메라
+            takePhoto()
+        case 2: // 일정
+            createCalendar()
+        default:
+            print("잘못 접근")
+        }
+    }
 }
 
+extension ChatRoomViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            selectedPhotoImages.removeAll()
+            selectedPhotoImages.append(image)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+
+extension ChatRoomViewController: PHPickerViewControllerDelegate {
+    
+    func getArrayOfBytesFromImage(imageData: Data) -> [NSNumber] {
+        // the number of elements:
+        let count = imageData.count
+
+        // create array of appropriate length:
+        var bytes = [UInt8](repeating: 0, count: count)
+
+        // copy bytes into array
+        imageData.copyBytes(to: &bytes, count: count)
+
+        var byteArray: [NSNumber] = []
+        
+        for i in 0..<count {
+            byteArray.append(NSNumber(value: bytes[i]))
+        }
+
+        return byteArray
+    }
+    
+    /// 사진을 선택완료 했을 때 실행
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        selectedPhotoImages.removeAll()
+        dismiss(animated: true)
+        
+        results.forEach { result in
+            let itemProvider = result.itemProvider
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
+                    if let image = image as? UIImage {
+                        
+                        print(self?.getArrayOfBytesFromImage(imageData: image.pngData() ?? Data()))
+                        print("\n")
+                        print(image.pngData())
+                    }
+                    self?.selectedPhotoImages.append(image as? UIImage ?? UIImage())
+                }
+            }
+        }
+    }
+    
+    /// 취소버튼 누른 경우
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+}
