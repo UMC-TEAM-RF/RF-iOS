@@ -164,13 +164,15 @@ class OtherMessageTableViewCell: UITableViewCell {
         translateButton.addTarget(self, action: #selector(translateButtonTapped), for: .touchUpInside)
     }
     
-    func updateChatView(_ message: RealmMessage) {
-        messageLabel.text = message.content
+    func updateChatView(message: RealmMessage, userLangCode: String) {
+        if message.isTranslated { messageLabel.text = message.translatedContent }
+        else { messageLabel.text = message.content }
+        
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
         displayNameLabel.text = message.speaker?.name
         avatarView.load(url: URL(string: "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg")!)
         
-        if message.langCode != "ko" { translateButton.isHidden = false }
+        if message.langCode != userLangCode { translateButton.isHidden = false }
     }
     
     @objc func longPressed(_ gesture: UILongPressGestureRecognizer) {

@@ -92,6 +92,7 @@ final class ChatRoomViewController: UIViewController {
     
     private var keyboardRect: CGRect = CGRect()
     
+    private var loginUser = UserRepository.shared.getUser()
     
     var channel: RealmChannel!
     
@@ -99,6 +100,12 @@ final class ChatRoomViewController: UIViewController {
     private var selectedPhotoImages: [UIImage] = []
     var row: Int?
     
+    
+    // MARK: - deinit
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     // MARK: - viewDidLoad()
     
@@ -113,14 +120,11 @@ final class ChatRoomViewController: UIViewController {
         addSubviews()
         configureConstraints()
         addTargets()
+        configureNotificationCenter()
         
         DispatchQueue.main.async {
             self.messagesTableView.scrollToRow(at: IndexPath(row: self.row ?? 0, section: 0), at: .bottom, animated: false)
         }
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - viewWillAppear()
@@ -129,22 +133,6 @@ final class ChatRoomViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NotificationName.keyboardWillShow , object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NotificationName.keyboardWillHide, object: nil)
-        
-        // 새로운 메시지가 왔을 때 알림
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateChat), name: NotificationName.updateChatRoom, object: nil)
-    }
-    
-    // MARK: - viewWillDisappear()
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillHide, object: nil)
-        
-        NotificationCenter.default.removeObserver(self, name: NotificationName.updateChatRoom, object: nil)
     }
     
     // MARK: - addSubviews()
@@ -220,6 +208,14 @@ final class ChatRoomViewController: UIViewController {
         targetLanguageButton.addTarget(self, action: #selector(targetLanguageButtonTapped), for: .touchUpInside)
     }
     
+    private func configureNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NotificationName.keyboardWillShow , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NotificationName.keyboardWillHide, object: nil)
+        
+        // 새로운 메시지가 왔을 때 알림
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateChat), name: NotificationName.updateChatRoom, object: nil)
+    }
+    
     private func scrollToBottom() {
         //        if channel.messages.isEmpty { return }
         //        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
@@ -255,8 +251,8 @@ final class ChatRoomViewController: UIViewController {
     
     private func isSenderSelf(_ sender: RealmSender?) -> Bool {
         guard let sender else { return false }
-        let loginUser = UserRepository.shared.readUser()
-        return sender.id == loginUser.id
+        
+        return sender.id == self.loginUser.id
     }
     
     // MARK: - @objc func
@@ -323,23 +319,20 @@ final class ChatRoomViewController: UIViewController {
         }
     }
     
-    // MARK: - [수정 필요]
+    // MARK: - [추가 고민 필요]
     @objc func updateChat() {
         // 채팅 메시지 업데이트 시 화면 업데이트
+        self.row = ChatRepository.shared.readNewMessages(self.channel.id)
+        channel = ChatRepository.shared.getChannel(self.channel.id)
         
         // reload 하기 전 내가 현재 마지막 셀에 위치해 있는지 확인
+        let isVisible = isLastIndexPathVisible()
         
-        //        if isLastIndexPathVisible() { // 마지막 메시지에 위치해 있으면 자동 스크롤
-        //            self.row = ChatRepository.shared.readNewMessages(self.channel.id)
-        //            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
-        //            messagesTableView.reloadData()
-        //            scrollToBottom()
-        //        } else { // 스크롤 위치 고정
-        //            self.row = ChatRepository.shared.readNewMessages(self.channel.id)
-        //            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
-        //            messagesTableView.reloadData()
-        //            print("메시지 업데이트")
-        //        }
+        messagesTableView.reloadData()
+        
+        if isVisible { // 마지막 메시지에 위치해 있으면 자동 스크롤
+            scrollToBottom()
+        }
     }
     
     @objc func handleTap() {
@@ -424,8 +417,8 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
             
-            // MARK: - [수정 필요] userProfileUrl 적용
-            cell.updateChatView(message)
+            // MARK: - [수정 필요] userProfileUrl 및 userLangCode 적용
+            cell.updateChatView(message: message, userLangCode: "ko")
             cell.delegate = self
             
             if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
@@ -501,14 +494,12 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         // 메시지 전송 전 언어 코드 확인
         PapagoService.shared.detectLanguage(text) { result in
             // 언어 코드 확인 후 메시지 전송
-            let user = UserRepository.shared.readUser()
-            
             ChatService.shared.send(
                 message: Message(
                     sender: Sender(
-                        userId: user.id,
-                        userName: user.nickname,
-                        userImageUrl: user.profileImageUrl
+                        userId: self.loginUser.id,
+                        userName: self.loginUser.nickname,
+                        userImageUrl: self.loginUser.profileImageUrl
                     ),
                     type: MessageType.text,
                     content: text,
@@ -531,21 +522,27 @@ extension ChatRoomViewController: MessageTableViewCellDelegate {
     }
     
     // 메시지 번역 버튼 클릭
+    // 번역 안된 경우, 번역된 메시지를 보여주는 상태, 번역되기 전 메시지를 보여주는 상태
     func convertMessage(_ indexPath: IndexPath) {
-        guard let code = channel.messages[indexPath.row].langCode else { return }
+        let message = channel.messages[indexPath.row]
         
-        if !Language.listWithCode.keys.contains(code) { return }
-        
-        let text = channel.messages[indexPath.row].content!
-        
-        // MARK: - [수정 필요] 로그인 유저의 언어 코드에 맞춤 필요
-        PapagoService.shared.translateMessage(source: code, target: "ko", text: text) { str in
-            // MARK: - [수정 필요] 번역 후 텍스트 메시지 변환
-            //self.channel.messages[indexPath.row].content = str
-            print(str)
-            DispatchQueue.main.async {
-                self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
+        if message.translatedContent == nil { // 번역을 한번도 하지 않은 상태
+            if !Language.listWithCode.keys.contains(message.langCode!) { return }
+            
+            let text = channel.messages[indexPath.row].content!
+            
+            // MARK: - [수정 필요] 로그인 유저의 언어 코드에 맞춤 필요
+            PapagoService.shared.translateMessage(source: message.langCode!, target: "ko", text: text) { str in
+                
+                ChatRepository.shared.addTranslatedContent(message: message, content: str)
+                
+                DispatchQueue.main.async {
+                    self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
+                }
             }
+        } else {
+            ChatRepository.shared.toggleIsTranslated(message: message)
+            self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
         }
     }
 }

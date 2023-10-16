@@ -20,6 +20,7 @@ class RealmMessage: Object {
     @Persisted var langCode: String?
     @Persisted var victim: RealmSender?
     @Persisted var isNew: Bool = true
+    @Persisted var isTranslated: Bool = false
     
     convenience init(
         id: Int,

@@ -25,7 +25,7 @@ class UserRepository {
         })
     }
     
-    func readUser() -> RealmUser {
+    func getUser() -> RealmUser {
         let realmUser = realm.objects(RealmUser.self).first!
         return realmUser
     }

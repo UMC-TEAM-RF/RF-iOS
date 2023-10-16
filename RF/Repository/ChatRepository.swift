@@ -70,13 +70,13 @@ class ChatRepository {
     ///   - id: 채팅방(모임) 채널 ID
     ///   - page: 페이지
     /// - Returns: [메시지]
-//    func getChannelMessagesByPage(id: Int, page: Int) -> [RealmMessage] {
-//        guard let channel = realm.object(ofType: RealmChannel.self, forPrimaryKey: id) else { return [] }
-//        let messageCount = channel.messages.count
-//        let startIndex = messageCount - (30 * page - 1) > 0 ? messageCount - (30 * page - 1) : 0
-//        let messages = Array(channel.messages[startIndex..<messageCount])
-//        return messages
-//    }
+    //    func getChannelMessagesByPage(id: Int, page: Int) -> [RealmMessage] {
+    //        guard let channel = realm.object(ofType: RealmChannel.self, forPrimaryKey: id) else { return [] }
+    //        let messageCount = channel.messages.count
+    //        let startIndex = messageCount - (30 * page - 1) > 0 ? messageCount - (30 * page - 1) : 0
+    //        let messages = Array(channel.messages[startIndex..<messageCount])
+    //        return messages
+    //    }
     
     // 기존 채팅방 삭제 (채팅방 삭제 전 채팅방과 연결된 realmObject 같이 삭제)
     /// 특정 채팅방 채널 삭제
@@ -105,7 +105,7 @@ class ChatRepository {
     func apppendNewMessage(id: Int, message: Message) {
         let message = message.toRealmObject()
         let channel = realm.object(ofType: RealmChannel.self, forPrimaryKey: id) // 채팅방 채널 가져오기
-
+        
         // 채널에 메시지 추가
         try! realm.write({
             channel?.messages.append(message)
@@ -146,5 +146,30 @@ class ChatRepository {
         })
         
         return index
+    }
+    
+    /// 번역된 텍스트를 DB에 저장
+    /// - Parameters:
+    ///   - messageId: 메시지 ID
+    ///   - content: 번역된 텍스트
+    func addTranslatedContent(message: RealmMessage, content: String) {
+        try! realm.write({
+            message.translatedContent = content
+            message.isTranslated = true
+        })
+    }
+    
+    /// 특정 채널을 가져옴 (채팅방에서 채팅 메시지 업데이트할 때 사용됨)
+    /// - Parameter id: 채널 ID
+    /// - Returns: 채널 데이터
+    func getChannel(_ id: Int) -> RealmChannel? {
+        let channel = realm.object(ofType: RealmChannel.self, forPrimaryKey: id)
+        return channel
+    }
+    
+    func toggleIsTranslated(message: RealmMessage) {
+        try! realm.write({
+            message.isTranslated.toggle()
+        })
     }
 }

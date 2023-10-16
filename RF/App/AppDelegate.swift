@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 앱이 시작될 때마다 푸시 알림 등록을 시도
         registerForPushNotifications()
         
-        configureSchemaVersion(3)
+        configureSchemaVersion(4)
         
         return true
     }
