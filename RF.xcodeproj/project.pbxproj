@@ -12,6 +12,7 @@
 		3B0E2EB92A80FE9200797782 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E2EB82A80FE9200797782 /* MeetingService.swift */; };
 		3B0E2EBB2A81024700797782 /* MeetingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E2EBA2A81024700797782 /* MeetingViewModel.swift */; };
 		3B0F1EE42A7C0317009F3F2B /* UICheckBox1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */; };
+		3B10366A2AD2DC3800CB5AB6 /* CreateCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1036692AD2DC3800CB5AB6 /* CreateCalendarViewController.swift */; };
 		3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD572A63E9590096871F /* SearchingViewController.swift */; };
 		3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD592A63ECB80096871F /* FilteringViewController.swift */; };
 		3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */; };
@@ -196,6 +197,7 @@
 		3B0E2EB82A80FE9200797782 /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		3B0E2EBA2A81024700797782 /* MeetingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewModel.swift; sourceTree = "<group>"; };
 		3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox1.swift; sourceTree = "<group>"; };
+		3B1036692AD2DC3800CB5AB6 /* CreateCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCalendarViewController.swift; sourceTree = "<group>"; };
 		3B15CD572A63E9590096871F /* SearchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewController.swift; sourceTree = "<group>"; };
 		3B15CD592A63ECB80096871F /* FilteringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringViewController.swift; sourceTree = "<group>"; };
 		3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -812,6 +814,7 @@
 				570063DE2A7CFD670051F42A /* Cell */,
 				570063DC2A7CFB280051F42A /* ChatListViewController.swift */,
 				570063E12A7D0FDA0051F42A /* ChatRoomViewController.swift */,
+				3B1036692AD2DC3800CB5AB6 /* CreateCalendarViewController.swift */,
 				570063E32A7D10150051F42A /* KeyboardInputBar.swift */,
 				57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */,
 			);
@@ -1240,6 +1243,7 @@
 				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
 				3BD700CF2A7962F0005C7D7E /* ChoiceInterestingCountryView.swift in Sources */,
+				3B10366A2AD2DC3800CB5AB6 /* CreateCalendarViewController.swift in Sources */,
 				572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */,
 				572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */,
 				3BC7D35D2A7D263C00D92356 /* SignUpService.swift in Sources */,
@@ -1524,7 +1528,7 @@
 				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5DFZR8RCQR;
+				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
@@ -1538,7 +1542,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1558,7 +1562,7 @@
 				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5DFZR8RCQR;
+				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진에 접근을 허용하시겠습니까?";
@@ -1572,7 +1576,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.umc.4th.RF1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
