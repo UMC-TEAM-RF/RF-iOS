@@ -14,6 +14,7 @@ class RealmMessage: Object {
     @Persisted var type: String
     @Persisted var dateTime: String
     @Persisted var content: String?
+    @Persisted var translatedContent: String?
     @Persisted var replyMessageId: Int?
     @Persisted var schedule: RealmSchedule?
     @Persisted var langCode: String?

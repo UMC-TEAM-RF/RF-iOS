@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 앱이 시작될 때마다 푸시 알림 등록을 시도
         registerForPushNotifications()
         
-        configureSchemaVersion()
+        configureSchemaVersion(3)
         
         return true
     }
@@ -79,8 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    private func configureSchemaVersion() {
-        let config = Realm.Configuration(schemaVersion: 2)
+    private func configureSchemaVersion(_ ver: UInt64) {
+        let config = Realm.Configuration(schemaVersion: ver)
         Realm.Configuration.defaultConfiguration = config
         let _ = try! Realm()
     }
