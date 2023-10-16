@@ -126,8 +126,6 @@ extension ChatService: StompClientLibDelegate {
             return
         }
         
-        print(data)
-        
         let destination = destination.components(separatedBy: "/").last!
 //        let index = SingletonChannel.shared.list.firstIndex { String($0.id) == destination }
 //        

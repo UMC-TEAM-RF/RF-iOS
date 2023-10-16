@@ -25,6 +25,11 @@ class UserRepository {
         })
     }
     
+    func readUser() -> RealmUser {
+        let realmUser = realm.objects(RealmUser.self).first!
+        return realmUser
+    }
+    
     /// 로그인 유저 정보 삭제
     func deleteUser() {
         let user = realm.objects(RealmUser.self)

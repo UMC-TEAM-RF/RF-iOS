@@ -92,9 +92,9 @@ final class ChatRoomViewController: UIViewController {
     
     private var keyboardRect: CGRect = CGRect()
     
-
+    
     var channel: RealmChannel!
-
+    
     /// 선택한 이미지들
     private var selectedPhotoImages: [UIImage] = []
     var row: Int?
@@ -221,8 +221,8 @@ final class ChatRoomViewController: UIViewController {
     }
     
     private func scrollToBottom() {
-//        if channel.messages.isEmpty { return }
-//        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
+        //        if channel.messages.isEmpty { return }
+        //        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
     }
     
     /// 한 사람이 연속해서 메시지를 보내는지 체크
@@ -253,10 +253,10 @@ final class ChatRoomViewController: UIViewController {
         return visibleIndexPaths.contains(lastIndexPath)
     }
     
-    // MARK: - [수정 필요] 로그인 한 유저 ID 가져오기
     private func isSenderSelf(_ sender: RealmSender?) -> Bool {
         guard let sender else { return false }
-        return sender.id == 2
+        let loginUser = UserRepository.shared.readUser()
+        return sender.id == loginUser.id
     }
     
     // MARK: - @objc func
@@ -329,17 +329,17 @@ final class ChatRoomViewController: UIViewController {
         
         // reload 하기 전 내가 현재 마지막 셀에 위치해 있는지 확인
         
-//        if isLastIndexPathVisible() { // 마지막 메시지에 위치해 있으면 자동 스크롤
-//            self.row = ChatRepository.shared.readNewMessages(self.channel.id)
-//            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
-//            messagesTableView.reloadData()
-//            scrollToBottom()
-//        } else { // 스크롤 위치 고정
-//            self.row = ChatRepository.shared.readNewMessages(self.channel.id)
-//            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
-//            messagesTableView.reloadData()
-//            print("메시지 업데이트")
-//        }
+        //        if isLastIndexPathVisible() { // 마지막 메시지에 위치해 있으면 자동 스크롤
+        //            self.row = ChatRepository.shared.readNewMessages(self.channel.id)
+        //            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
+        //            messagesTableView.reloadData()
+        //            scrollToBottom()
+        //        } else { // 스크롤 위치 고정
+        //            self.row = ChatRepository.shared.readNewMessages(self.channel.id)
+        //            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
+        //            messagesTableView.reloadData()
+        //            print("메시지 업데이트")
+        //        }
     }
     
     @objc func handleTap() {
@@ -468,39 +468,9 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
     }
     
     func didTapSend(_ text: String, isTranslated: Bool) {
-        if isTranslated { // 번역 버튼 클릭인 경우
-            // 1. 번역
-            let sourceLanguage = sourceLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
-            let targetLanguage = targetLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
-            
-            guard let source = Language.getLanguageCode(sourceLanguage!) else { return }
-            guard let target = Language.getLanguageCode(targetLanguage!) else { return }
-            
-            PapagoService.shared.translateMessage(source: source, target: target, text: text) { result in
-                // 2. keyboardInputBar.inputField.text = "번역된 텍스트"
-                self.keyboardInputBar.inputFieldText = result
-            }
-        } else { // 메시지 전송 버튼 클릭인 경우
-            // 메시지 전송 전 언어 코드 확인
-            PapagoService.shared.detectLanguage(text) { result in
-                // 언어 코드 확인 후 메시지 전송
-                // MARK: - [수정 필요] 로그인 유저 정보로 수정
-                ChatService.shared.send(
-                    message: Message(
-                        sender: Sender(
-                            userId: 2,
-                            userName: "HJ",
-                            userImageUrl: "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg"
-                        ),
-                        type: MessageType.text,
-                        content: text,
-                        langCode: result,
-                        partyName: "",
-                        partyId: self.channel.id),
-                    partyId: self.channel.id
-                )
-            }
-        }
+        if isTranslated { translateMessage(text) } // 번역 버튼 클릭인 경우
+        else { sendMessage(text) } // 메시지 전송 버튼 클릭인 경우
+        
         inputBarTopStackView.isHidden = true
     }
     
@@ -511,6 +481,43 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         }
         
         inputBarTopStackView.isHidden = !isTranslated
+    }
+    
+    private func translateMessage(_ text: String) {
+        // 1. 번역
+        let sourceLanguage = sourceLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
+        let targetLanguage = targetLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
+        
+        guard let source = Language.getLanguageCode(sourceLanguage!) else { return }
+        guard let target = Language.getLanguageCode(targetLanguage!) else { return }
+        
+        PapagoService.shared.translateMessage(source: source, target: target, text: text) { result in
+            // 2. keyboardInputBar.inputField.text = "번역된 텍스트"
+            self.keyboardInputBar.inputFieldText = result
+        }
+    }
+    
+    private func sendMessage(_ text: String) {
+        // 메시지 전송 전 언어 코드 확인
+        PapagoService.shared.detectLanguage(text) { result in
+            // 언어 코드 확인 후 메시지 전송
+            let user = UserRepository.shared.readUser()
+            
+            ChatService.shared.send(
+                message: Message(
+                    sender: Sender(
+                        userId: user.id,
+                        userName: user.nickname,
+                        userImageUrl: user.profileImageUrl
+                    ),
+                    type: MessageType.text,
+                    content: text,
+                    langCode: result,
+                    partyName: "",
+                    partyId: self.channel.id),
+                partyId: self.channel.id
+            )
+        }
     }
 }
 
@@ -526,9 +533,9 @@ extension ChatRoomViewController: MessageTableViewCellDelegate {
     // 메시지 번역 버튼 클릭
     func convertMessage(_ indexPath: IndexPath) {
         guard let code = channel.messages[indexPath.row].langCode else { return }
-
+        
         if !Language.listWithCode.keys.contains(code) { return }
-
+        
         let text = channel.messages[indexPath.row].content!
         
         // MARK: - [수정 필요] 로그인 유저의 언어 코드에 맞춤 필요
@@ -583,19 +590,19 @@ extension ChatRoomViewController: PHPickerViewControllerDelegate {
     func getArrayOfBytesFromImage(imageData: Data) -> [NSNumber] {
         // the number of elements:
         let count = imageData.count
-
+        
         // create array of appropriate length:
         var bytes = [UInt8](repeating: 0, count: count)
-
+        
         // copy bytes into array
         imageData.copyBytes(to: &bytes, count: count)
-
+        
         var byteArray: [NSNumber] = []
         
         for i in 0..<count {
             byteArray.append(NSNumber(value: bytes[i]))
         }
-
+        
         return byteArray
     }
     
