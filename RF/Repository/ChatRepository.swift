@@ -10,7 +10,7 @@ import RealmSwift
 
 class ChatRepository {
     static let shared = ChatRepository()
-    let realm: Realm
+    private let realm: Realm
     
     private init() {
         realm = try! Realm()

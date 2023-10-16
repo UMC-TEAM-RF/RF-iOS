@@ -173,6 +173,8 @@
 		57AF3D742A95279300C09715 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57AF3D6B2A95279300C09715 /* Pretendard-ExtraBold.otf */; };
 		57AF3D752A95279300C09715 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57AF3D6C2A95279300C09715 /* Pretendard-Medium.otf */; };
 		57BB1B412AD5799B00516897 /* PapagoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BB1B402AD5799B00516897 /* PapagoService.swift */; };
+		57BB1B7B2ADD3DD800516897 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BB1B7A2ADD3DD800516897 /* UserRepository.swift */; };
+		57BB1B7D2ADD3E5300516897 /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BB1B7C2ADD3E5300516897 /* RealmUser.swift */; };
 		57DD3E532A7E3033009F7139 /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */; };
 		57DD3E572A7E4C7E009F7139 /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */; };
 		57DD3E612A80BBD0009F7139 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD3E602A80BBD0009F7139 /* ChatService.swift */; };
@@ -358,6 +360,8 @@
 		57AF3D6B2A95279300C09715 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
 		57AF3D6C2A95279300C09715 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		57BB1B402AD5799B00516897 /* PapagoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoService.swift; sourceTree = "<group>"; };
+		57BB1B7A2ADD3DD800516897 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		57BB1B7C2ADD3E5300516897 /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
 		57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
 		57DD3E562A7E4C7E009F7139 /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		57DD3E602A80BBD0009F7139 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
@@ -832,6 +836,7 @@
 				572221D22AC2CC6C00CB9E36 /* RealmMessage.swift */,
 				572221D42AC2CC7C00CB9E36 /* RealmSender.swift */,
 				572221D62AC2CC9100CB9E36 /* RealmSchedule.swift */,
+				57BB1B7C2ADD3E5300516897 /* RealmUser.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -840,6 +845,7 @@
 			isa = PBXGroup;
 			children = (
 				572221BC2AC0A6BA00CB9E36 /* ChatRepository.swift */,
+				57BB1B7A2ADD3DD800516897 /* UserRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1238,6 +1244,7 @@
 				572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */,
 				3BC7D35D2A7D263C00D92356 /* SignUpService.swift in Sources */,
 				3B6C31292A7E2166008FADA1 /* User.swift in Sources */,
+				57BB1B7D2ADD3E5300516897 /* RealmUser.swift in Sources */,
 				570063BB2A7630E60051F42A /* MenuButton.swift in Sources */,
 				570063992A6AB8520051F42A /* NotiMessageViewController.swift in Sources */,
 				3B6287842A84EC5100E00B09 /* SetDetailInfoViewModel.swift in Sources */,
@@ -1355,6 +1362,7 @@
 				3B15CD662A644FF90096871F /* FilteringViewModel.swift in Sources */,
 				3BF2E76D2A8B609100FD09F7 /* SearchingCollectionViewCellViewModel.swift in Sources */,
 				57DD3E6E2A825DDD009F7139 /* NotificationName.swift in Sources */,
+				57BB1B7B2ADD3DD800516897 /* UserRepository.swift in Sources */,
 				570063E02A7CFD780051F42A /* ChatListTableViewCell.swift in Sources */,
 				3BD700D52A796403005C7D7E /* ChoiceInterestingLanguageViewModel.swift in Sources */,
 				572A9A292A5C09EA004D2809 /* SetMeetingNameViewController.swift in Sources */,

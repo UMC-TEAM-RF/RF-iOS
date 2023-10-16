@@ -318,6 +318,7 @@ class ChatRoomViewController: UIViewController {
         }
     }
     
+    // MARK: - [수정 필요]
     @objc func updateChat() {
         // 채팅 메시지 업데이트 시 화면 업데이트
         
@@ -442,6 +443,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
             // 메시지 전송 전 언어 코드 확인
             PapagoService.shared.detectLanguage(text) { result in
                 // 언어 코드 확인 후 메시지 전송
+                // MARK: - [수정 필요] 로그인 유저 정보로 수정
                 ChatService.shared.send(
                     message: Message(
                         sender: Sender(
@@ -453,8 +455,8 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
                         content: text,
                         langCode: result,
                         partyName: "",
-                        partyId: 1),
-                    partyId: 1
+                        partyId: self.channel.id),
+                    partyId: self.channel.id
                 )
             }
         }
