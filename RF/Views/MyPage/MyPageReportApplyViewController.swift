@@ -52,9 +52,6 @@ class MyPageReportApplyViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        updateTitleView(title: "자주 묻는 질문")
-        setupCustomBackButton()
-        
         addSubviews()
         configureConstraints()
         configureTextView()

@@ -49,6 +49,7 @@ class MyPageMeetingManagingViewController: UIViewController {
         view.backgroundColor = .white
         
         updateTitleView(title: "크루 관리")
+        setupCustomBackButton()
         
         addSubviews()
         configureConstraints()

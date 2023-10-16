@@ -501,6 +501,7 @@ class MyPageViewController: UIViewController {
         
         switch at {
         case 0:
+            self.navigationController?.pushViewController(MyPageEditingProfileViewController(), animated: true)
             return
         case 1:
             self.navigationController?.pushViewController(MyPageMeetingManagingViewController(), animated: true)

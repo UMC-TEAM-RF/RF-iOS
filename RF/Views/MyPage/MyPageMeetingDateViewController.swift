@@ -97,6 +97,7 @@ class MyPageMeetingDateViewController: UIViewController {
         
         
         updateTitleView(title: "일정 관리")
+        setupCustomBackButton()
         
         getData()
         addSubviews()

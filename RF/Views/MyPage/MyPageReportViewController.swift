@@ -18,6 +18,10 @@ class MyPageReportViewController: TabmanViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        updateTitleView(title: "알프 신고")
+        setupCustomBackButton()
 
         viewControllers.append(MyPageReportApplyViewController())
         viewControllers.append(MyPageReportSecondTabViewController())

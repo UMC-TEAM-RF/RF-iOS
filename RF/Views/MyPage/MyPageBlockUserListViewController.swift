@@ -32,6 +32,7 @@ class MyPageBlockUserListViewController: UIViewController {
         view.backgroundColor = .white
         
         updateTitleView(title: "차단 관리")
+        setupCustomBackButton()
         
         addSubviews()
         configureConstraints()

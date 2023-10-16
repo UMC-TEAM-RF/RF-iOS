@@ -16,7 +16,7 @@ class MyPageCustomerCenterViewController: UIViewController {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(ProfileSettingTableViewCell.self, forCellReuseIdentifier: ProfileSettingTableViewCell.identifier)
+        tableView.register(settingTableViewCell.self, forCellReuseIdentifier: settingTableViewCell.identifier)
         tableView.separatorStyle = .singleLine
         tableView.separatorInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         tableView.rowHeight = 60
@@ -80,16 +80,16 @@ extension MyPageCustomerCenterViewController: UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingTableViewCell.identifier, for: indexPath) as? ProfileSettingTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: settingTableViewCell.identifier, for: indexPath) as? settingTableViewCell else { return UITableViewCell() }
 
-        cell.menuLabelText = menuList[indexPath.row]
+        cell.updateTitle(menuList[indexPath.row]) 
 
         return cell
     }
     
     //code when the cell is clicked
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let _ = tableView.dequeueReusableCell(withIdentifier: ProfileSettingTableViewCell.identifier, for: indexPath) as? ProfileSettingTableViewCell else { return }
+        guard let _ = tableView.dequeueReusableCell(withIdentifier: settingTableViewCell.identifier, for: indexPath) as? settingTableViewCell else { return }
         
         //Some code
         self.menuTableViewClicked(at: indexPath.item)

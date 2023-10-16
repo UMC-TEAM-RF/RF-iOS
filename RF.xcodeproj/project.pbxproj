@@ -60,6 +60,10 @@
 		3B6E6F112A94C4970002C6F3 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E6F102A94C4970002C6F3 /* ReportViewController.swift */; };
 		3B6E6F142A94CC790002C6F3 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E6F132A94CC790002C6F3 /* ReportViewModel.swift */; };
 		3B6E6F172A94D29D0002C6F3 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E6F162A94D29D0002C6F3 /* SearchService.swift */; };
+		3B7B1A422ADD16BA0095BF85 /* MyPageEditingProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B1A412ADD16BA0095BF85 /* MyPageEditingProfileViewController.swift */; };
+		3B7B1A442ADD29AF0095BF85 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B1A432ADD29AF0095BF85 /* LanguageTableViewCell.swift */; };
+		3B7B1A462ADD52F00095BF85 /* ProfileSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B1A452ADD52F00095BF85 /* ProfileSettingTableViewCell.swift */; };
+		3B7B1A482ADD5B570095BF85 /* settingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B1A472ADD5B570095BF85 /* settingTableViewCell.swift */; };
 		3B8477352A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */; };
 		3B8ACC462A925C1300AC082F /* TabBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8ACC452A925C1300AC082F /* TabBarCollectionViewCell.swift */; };
 		3B8ACC482A925C3B00AC082F /* PageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8ACC472A925C3B00AC082F /* PageCollectionViewCell.swift */; };
@@ -115,7 +119,6 @@
 		3BF2E7722A8CB32300FD09F7 /* DetailMeetingJoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E7712A8CB32300FD09F7 /* DetailMeetingJoinService.swift */; };
 		3BF2E7742A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2E7732A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift */; };
 		443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */; };
-		44CC47732A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC47722A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift */; };
 		44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */; };
 		44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F82A162A5C05A7006B17F8 /* UserInfoViewController.swift */; };
 		570063602A63D5120051F42A /* PersonnelStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700635F2A63D5120051F42A /* PersonnelStepper.swift */; };
@@ -245,6 +248,10 @@
 		3B6E6F102A94C4970002C6F3 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		3B6E6F132A94CC790002C6F3 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		3B6E6F162A94D29D0002C6F3 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		3B7B1A412ADD16BA0095BF85 /* MyPageEditingProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEditingProfileViewController.swift; sourceTree = "<group>"; };
+		3B7B1A432ADD29AF0095BF85 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
+		3B7B1A452ADD52F00095BF85 /* ProfileSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingTableViewCell.swift; sourceTree = "<group>"; };
+		3B7B1A472ADD5B570095BF85 /* settingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingTableViewCell.swift; sourceTree = "<group>"; };
 		3B8477342A6ACDBF007A6144 /* InterestSmallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestSmallCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8ACC452A925C1300AC082F /* TabBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B8ACC472A925C3B00AC082F /* PageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -301,7 +308,6 @@
 		3BF2E7732A8CB93B00FD09F7 /* DetailMeetingHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMeetingHomeViewModel.swift; sourceTree = "<group>"; };
 		443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSelfViewController.swift; sourceTree = "<group>"; };
 		44CC47712A8DE8270025EAEC /* RF.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = RF.entitlements; sourceTree = "<group>"; };
-		44CC47722A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingTableViewCell.swift; sourceTree = "<group>"; };
 		44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		44F82A162A5C05A7006B17F8 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		5700635F2A63D5120051F42A /* PersonnelStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonnelStepper.swift; sourceTree = "<group>"; };
@@ -601,6 +607,7 @@
 		3B9BA8EF2A724C8F0043DDE6 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				44CC47742A8DEA1F0025EAEC /* Cell */,
 				570063CB2A792C530051F42A /* Setting */,
 				3B9BA8F02A724CB30043DDE6 /* MyPageViewController.swift */,
 				3B9BCEE82AD0F5BC008F2AFE /* MyPageMeetingDateViewController.swift */,
@@ -610,6 +617,7 @@
 				3BEEA2732AD57AA900F6D5B7 /* MyPageAnnouncementViewController.swift */,
 				3BEEA2752AD5803300F6D5B7 /* MyPageMeetingManagingViewController.swift */,
 				3BEEA2772AD58EF700F6D5B7 /* MyPageBlockUserListViewController.swift */,
+				3B7B1A412ADD16BA0095BF85 /* MyPageEditingProfileViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -744,9 +752,11 @@
 		44CC47742A8DEA1F0025EAEC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				44CC47722A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift */,
 				3B9BCEEA2AD10071008F2AFE /* menuCollectionViewCell.swift */,
 				3BEEA2792AD58F5B00F6D5B7 /* MyPageBlockUserListViewCell.swift */,
+				3B7B1A432ADD29AF0095BF85 /* LanguageTableViewCell.swift */,
+				3B7B1A452ADD52F00095BF85 /* ProfileSettingTableViewCell.swift */,
+				3B7B1A472ADD5B570095BF85 /* settingTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -794,7 +804,6 @@
 		570063CB2A792C530051F42A /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				44CC47742A8DEA1F0025EAEC /* Cell */,
 				570063C92A792BB80051F42A /* ProfileSettingViewController.swift */,
 			);
 			path = Setting;
@@ -1215,6 +1224,7 @@
 				3BDB84C12A6AAC7400CE8045 /* PersonalInterestsViewController.swift in Sources */,
 				3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */,
 				443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */,
+				3B7B1A462ADD52F00095BF85 /* ProfileSettingTableViewCell.swift in Sources */,
 				3B267B8F2A861E3200F3949A /* GroupJoinRequestViewController.swift in Sources */,
 				3B69EE402A81F522002DB6DF /* Enums.swift in Sources */,
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
@@ -1224,6 +1234,7 @@
 				3BC7D35D2A7D263C00D92356 /* SignUpService.swift in Sources */,
 				3B6C31292A7E2166008FADA1 /* User.swift in Sources */,
 				570063BB2A7630E60051F42A /* MenuButton.swift in Sources */,
+				3B7B1A482ADD5B570095BF85 /* settingTableViewCell.swift in Sources */,
 				570063992A6AB8520051F42A /* NotiMessageViewController.swift in Sources */,
 				3B6287842A84EC5100E00B09 /* SetDetailInfoViewModel.swift in Sources */,
 				3BC35CED2A5C565800D73163 /* InterestingCollectionViewCell.swift in Sources */,
@@ -1266,6 +1277,7 @@
 				3B6C312B2A7E2616008FADA1 /* EmailService.swift in Sources */,
 				3B9BCEE92AD0F5BC008F2AFE /* MyPageMeetingDateViewController.swift in Sources */,
 				3B0E2EBB2A81024700797782 /* MeetingViewModel.swift in Sources */,
+				3B7B1A442ADD29AF0095BF85 /* LanguageTableViewCell.swift in Sources */,
 				3B57FFD52A741F61007DB482 /* ScheduleEventPopUp.swift in Sources */,
 				3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */,
 				57DD3E612A80BBD0009F7139 /* ChatService.swift in Sources */,
@@ -1298,6 +1310,7 @@
 				3BEEA27A2AD58F5B00F6D5B7 /* MyPageBlockUserListViewCell.swift in Sources */,
 				570063CA2A792BB80051F42A /* ProfileSettingViewController.swift in Sources */,
 				57DD3E6C2A810F60009F7139 /* Response.swift in Sources */,
+				3B7B1A422ADD16BA0095BF85 /* MyPageEditingProfileViewController.swift in Sources */,
 				3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */,
 				3B2670E62A5ECCF600EA4F45 /* TermsConditionsViewController.swift in Sources */,
 				57DD3E662A80C7C9009F7139 /* EndPoint.swift in Sources */,
@@ -1315,7 +1328,6 @@
 				3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */,
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
-				44CC47732A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift in Sources */,
 				3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */,
 				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
 				57DD3E682A8106E7009F7139 /* Message.swift in Sources */,
