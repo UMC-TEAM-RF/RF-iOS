@@ -460,6 +460,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         keyboardInputBar.keyboardInputView = keyboardInputView
     }
     
+    // MARK: - Message Type에 따른 조건 처리 필요
     func didTapSend(_ text: String, isTranslated: Bool) {
         if isTranslated { translateMessage(text) } // 번역 버튼 클릭인 경우
         else { sendMessage(text) } // 메시지 전송 버튼 클릭인 경우
