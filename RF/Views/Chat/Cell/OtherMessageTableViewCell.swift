@@ -176,7 +176,8 @@ class OtherMessageTableViewCell: UITableViewCell {
         displayNameLabel.text = message.speaker?.name
         avatarView.load(url: URL(string: "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg")!)
         
-        if message.langCode != userLangCode { translateButton.isHidden = false }
+        if let langCode = message.langCode, langCode != userLangCode { translateButton.isHidden = false }
+        else { translateButton.isHidden = true }
     }
     
     @objc func longPressed(_ gesture: UILongPressGestureRecognizer) {
