@@ -539,12 +539,12 @@
 			path = Create;
 			sourceTree = "<group>";
 		};
-		3B657DD62A88FBE700148496 /* Notifictaion */ = {
+		3B657DD62A88FBE700148496 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
 				3B657DD72A88FC0700148496 /* GroupJoinRequestDelegate.swift */,
 			);
-			path = Notifictaion;
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		3B6BA97A2A7E5ABB00A11FE4 /* ChooseUniversity */ = {
@@ -1008,7 +1008,7 @@
 		575032912A596DB30060D629 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				3B657DD62A88FBE700148496 /* Notifictaion */,
+				3B657DD62A88FBE700148496 /* Notification */,
 				570063C42A77A0E20051F42A /* Common */,
 				5700636C2A6509F90051F42A /* Creating */,
 			);

@@ -121,15 +121,14 @@ extension ChatService: StompClientLibDelegate {
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
         print(#function)
         
-        guard let data = decodeFromAnyObject(jsonBody, to: Message.self) else {
+        guard let message = decodeFromAnyObject(jsonBody, to: Message.self) else {
             print("Decode Error")
             return
         }
         
         let destination = destination.components(separatedBy: "/").last!
-//        let index = SingletonChannel.shared.list.firstIndex { String($0.id) == destination }
-//        
-//        SingletonChannel.shared.list[index ?? 0].messages.append(data)  // 수신된 메시지 추가
+        
+        ChatRepository.shared.apppendNewMessage(id: Int(destination) ?? 0, message: message)
         
         NotificationCenter.default.post(name: NotificationName.updateChatList, object: self)
         NotificationCenter.default.post(name: NotificationName.updateChatRoom, object: self)

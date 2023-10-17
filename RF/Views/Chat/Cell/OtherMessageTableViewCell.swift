@@ -50,10 +50,19 @@ class OtherMessageTableViewCell: UITableViewCell {
         return label
     }()
     
+    private lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .horizontal
+        view.distribution = .fill
+        view.alignment = .bottom
+        view.spacing = 0
+        return view
+    }()
+    
     private lazy var translateButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "translate4"), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
+        button.imageView?.contentMode = .scaleToFill
         button.isHidden = true
         button.tintColor = TextColor.secondary.color
         return button
@@ -64,7 +73,6 @@ class OtherMessageTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 11, weight: .medium)
         label.textColor = TextColor.secondary.color
         label.numberOfLines = 1
-        label.text = "오후 7:15"
         return label
     }()
     
@@ -80,7 +88,6 @@ class OtherMessageTableViewCell: UITableViewCell {
             }
         }
     }
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -105,14 +112,14 @@ class OtherMessageTableViewCell: UITableViewCell {
     private func addSubviews() {
         
         contentView.addSubview(messageView)
-        contentView.addSubview(timeLabel)
+        messageView.addSubview(messageLabel)
         
         contentView.addSubview(avatarView)
         contentView.addSubview(displayNameLabel)
         
-        contentView.addSubview(translateButton)
-        
-        messageView.addSubview(messageLabel)
+        contentView.addSubview(stackView)
+        stackView.addArrangedSubview(translateButton)
+        stackView.addArrangedSubview(timeLabel)
     }
     
     // MARK: - configureConstraints()
@@ -144,17 +151,14 @@ class OtherMessageTableViewCell: UITableViewCell {
             make.width.lessThanOrEqualTo(contentView.snp.width).multipliedBy(0.55)
         }
         
-        translateButton.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.leading.equalTo(messageView.snp.trailing).offset(5)
             make.bottom.equalTo(messageView.snp.bottom)
-            make.size.equalTo(24)
         }
         
-        timeLabel.snp.makeConstraints { make in
-            make.leading.equalTo(translateButton.snp.trailing).offset(5)
-            make.bottom.equalTo(translateButton.snp.bottom)
+        translateButton.snp.makeConstraints { make in
+            make.size.equalTo(30)
         }
-        
     }
     
     private func addTargets() {

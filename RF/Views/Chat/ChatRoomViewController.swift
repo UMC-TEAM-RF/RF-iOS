@@ -581,6 +581,7 @@ extension ChatRoomViewController: UIImagePickerControllerDelegate, UINavigationC
     }
 }
 
+// MARK: - Ext: PHPickerViewControllerDelegate
 
 extension ChatRoomViewController: PHPickerViewControllerDelegate {
     
