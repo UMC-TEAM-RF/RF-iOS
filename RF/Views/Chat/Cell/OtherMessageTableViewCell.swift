@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol MessageTableViewCellDelegate: AnyObject {
-    func longPressedMessageView(_ gesture: UILongPressGestureRecognizer)
-    func convertMessage(_ indexPath: IndexPath)
-}
-
 class OtherMessageTableViewCell: UITableViewCell {
 
     static let identifier = "OtherMessageTableViewCell"
@@ -35,19 +30,7 @@ class OtherMessageTableViewCell: UITableViewCell {
     
     private lazy var messageView: UIView = {
         let view = UIView()
-        view.backgroundColor = ButtonColor.normal.color
-        view.layer.cornerRadius = 10
         return view
-    }()
-    
-    private lazy var messageLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = TextColor.first.color
-        label.numberOfLines = 0
-        label.lineBreakMode = .byCharWrapping // 글자 단위로 줄바꿈
-        label.isUserInteractionEnabled = true
-        return label
     }()
     
     private lazy var stackView: UIStackView = {
@@ -76,8 +59,19 @@ class OtherMessageTableViewCell: UITableViewCell {
         return label
     }()
     
-    weak var delegate: MessageTableViewCellDelegate?
+    private lazy var textMessageView: TextMessageView = {
+        let view = TextMessageView()
+        return view
+    }()
     
+    // MARK: - [수정 필요할 듯]
+    weak var delegate: MessageTableViewCellDelegate? {
+        didSet {
+            textMessageView.delegate = self.delegate
+        }
+    }
+    
+    // MARK: - [수정 필요] 함수로 분리하기
     var isContinuous: Bool = false {
         didSet {
             self.avatarView.isHidden = isContinuous
@@ -110,16 +104,15 @@ class OtherMessageTableViewCell: UITableViewCell {
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        
-        contentView.addSubview(messageView)
-        messageView.addSubview(messageLabel)
-        
         contentView.addSubview(avatarView)
         contentView.addSubview(displayNameLabel)
+        contentView.addSubview(messageView)
+        messageView.addSubview(textMessageView)
         
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(translateButton)
         stackView.addArrangedSubview(timeLabel)
+        
     }
     
     // MARK: - configureConstraints()
@@ -140,17 +133,15 @@ class OtherMessageTableViewCell: UITableViewCell {
         
         messageView.snp.makeConstraints { make in
             make.top.equalTo(displayNameLabel.snp.bottom).offset(2)
-            make.bottom.equalToSuperview().inset(3)
             make.leading.equalTo(avatarView.snp.trailing).offset(5)
-            
-        }
-        
-        messageLabel.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(8)
-            make.horizontalEdges.equalToSuperview().inset(10)
             make.width.lessThanOrEqualTo(contentView.snp.width).multipliedBy(0.55)
+            make.bottom.equalToSuperview().inset(3)
         }
-        
+    
+        textMessageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
         stackView.snp.makeConstraints { make in
             make.leading.equalTo(messageView.snp.trailing).offset(5)
             make.bottom.equalTo(messageView.snp.bottom)
@@ -168,9 +159,11 @@ class OtherMessageTableViewCell: UITableViewCell {
         translateButton.addTarget(self, action: #selector(translateButtonTapped), for: .touchUpInside)
     }
     
-    func updateChatView(message: RealmMessage, userLangCode: String) {
-        if message.isTranslated { messageLabel.text = message.translatedContent }
-        else { messageLabel.text = message.content }
+    func updateChatView(message: RealmMessage, userLangCode: String, indexPath: IndexPath) {
+        // TextMessageView 업데이트
+        textMessageView.updateMessageLabel(message)
+        
+        // MARK: - [수정 필요] ImageMessageView, ScheduleMessageView 업데이트 필요
         
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
         displayNameLabel.text = message.speaker?.name
@@ -178,6 +171,7 @@ class OtherMessageTableViewCell: UITableViewCell {
         
         if let langCode = message.langCode, langCode != userLangCode { translateButton.isHidden = false }
         else { translateButton.isHidden = true }
+        
     }
     
     @objc func longPressed(_ gesture: UILongPressGestureRecognizer) {

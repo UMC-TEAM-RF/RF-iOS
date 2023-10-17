@@ -418,7 +418,7 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
             
             // MARK: - [수정 필요] userProfileUrl 및 userLangCode 적용
-            cell.updateChatView(message: message, userLangCode: "ko")
+            cell.updateChatView(message: message, userLangCode: "ko", indexPath: indexPath)
             cell.delegate = self
             
             if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
