@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class OtherMessageTableViewCell: UITableViewCell {
 
@@ -13,7 +14,6 @@ class OtherMessageTableViewCell: UITableViewCell {
     
     private lazy var avatarView: UIImageView = {
         let iv = UIImageView()
-        //iv.image = UIImage(named: "LogoImage")
         iv.contentMode = .scaleAspectFit
         iv.layer.cornerRadius = contentView.frame.width * 0.1 / 2.0
         iv.clipsToBounds = true
@@ -27,14 +27,23 @@ class OtherMessageTableViewCell: UITableViewCell {
         label.textColor = TextColor.first.color
         return label
     }()
-    
-    private lazy var messageView: UIView = {
-        let view = UIView()
+        
+    private lazy var contentStackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 0
+        view.distribution = .fill
+        view.alignment = .leading
         return view
     }()
     
     private lazy var textMessageView: TextMessageView = {
         let view = TextMessageView()
+        return view
+    }()
+    
+    private lazy var imageMessageView: ImageMessageView = {
+        let view = ImageMessageView()
         return view
     }()
     
@@ -68,18 +77,7 @@ class OtherMessageTableViewCell: UITableViewCell {
     weak var delegate: MessageTableViewCellDelegate? {
         didSet {
             textMessageView.delegate = self.delegate
-        }
-    }
-    
-    // MARK: - [수정 필요] 함수로 분리하기
-    var isContinuous: Bool = false {
-        didSet {
-            self.avatarView.isHidden = isContinuous
-            
-            let height = isContinuous ? 0 : displayNameLabel.intrinsicContentSize.height
-            displayNameLabel.snp.updateConstraints { make in
-                make.height.equalTo(height)
-            }
+            imageMessageView.delegate = self.delegate
         }
     }
     
@@ -106,8 +104,10 @@ class OtherMessageTableViewCell: UITableViewCell {
     private func addSubviews() {
         contentView.addSubview(avatarView)
         contentView.addSubview(displayNameLabel)
-        contentView.addSubview(messageView)
-        messageView.addSubview(textMessageView)
+        
+        contentView.addSubview(contentStackView)
+        contentStackView.addArrangedSubview(textMessageView)
+        contentStackView.addArrangedSubview(imageMessageView)
         
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(translateButton)
@@ -131,20 +131,16 @@ class OtherMessageTableViewCell: UITableViewCell {
             make.height.equalTo(displayNameLabel.intrinsicContentSize.height)
         }
         
-        messageView.snp.makeConstraints { make in
+        contentStackView.snp.makeConstraints { make in
             make.top.equalTo(displayNameLabel.snp.bottom).offset(2)
             make.leading.equalTo(avatarView.snp.trailing).offset(5)
-            make.width.lessThanOrEqualTo(contentView.snp.width).multipliedBy(0.55)
+            make.width.lessThanOrEqualTo(contentView.snp.width).multipliedBy(0.6)
             make.bottom.equalToSuperview().inset(3)
         }
-    
-        textMessageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-
+        
         stackView.snp.makeConstraints { make in
-            make.leading.equalTo(messageView.snp.trailing).offset(5)
-            make.bottom.equalTo(messageView.snp.bottom)
+            make.leading.equalTo(contentStackView.snp.trailing).offset(5)
+            make.bottom.equalTo(contentStackView.snp.bottom)
         }
         
         translateButton.snp.makeConstraints { make in
@@ -157,9 +153,7 @@ class OtherMessageTableViewCell: UITableViewCell {
     }
     
     func updateChatView(message: RealmMessage, userLangCode: String, isContinuous: Bool) {
-        // MARK: - [수정 필요] ImageMessageView, ScheduleMessageView 업데이트 필요
-        // TextMessageView 업데이트
-        textMessageView.updateMessageLabel(message)
+        configureMessageView(message)
         
         // 아바타 사진, 이름 설정
         updateAvatar(message: message, isContinuous: isContinuous)
@@ -171,7 +165,7 @@ class OtherMessageTableViewCell: UITableViewCell {
         else { translateButton.isHidden = true }
     }
     
-    func updateAvatar(message: RealmMessage, isContinuous: Bool) {
+    private func updateAvatar(message: RealmMessage, isContinuous: Bool) {
         displayNameLabel.text = message.speaker?.name
         
         if isContinuous {
@@ -186,6 +180,21 @@ class OtherMessageTableViewCell: UITableViewCell {
             displayNameLabel.snp.updateConstraints { make in
                 make.height.equalTo(displayNameLabel.intrinsicContentSize.height)
             }
+        }
+    }
+    
+    private func configureMessageView(_ message: RealmMessage) {
+        switch message.type {
+        case MessageType.text:
+            textMessageView.isHidden = false
+            imageMessageView.isHidden = true
+            textMessageView.updateMessageLabel(message)
+        case MessageType.image:
+            textMessageView.isHidden = true
+            imageMessageView.isHidden = false
+            imageMessageView.updateMessageImage(message)
+        default:
+            return
         }
     }
     
