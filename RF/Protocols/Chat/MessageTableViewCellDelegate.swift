@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol MessageTableViewCellDelegate: AnyObject {
-    func longPressedMessageView(_ gesture: UILongPressGestureRecognizer)
+@objc protocol MessageTableViewCellDelegate: AnyObject {
+    @objc optional func longPressedMessageView(_ gesture: UILongPressGestureRecognizer)
     func convertMessage(_ indexPath: IndexPath)
 }

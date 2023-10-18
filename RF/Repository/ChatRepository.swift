@@ -109,6 +109,7 @@ class ChatRepository {
         // 채널에 메시지 추가
         try! realm.write({
             channel?.messages.append(message)
+            channel?.lastMessageDateTime = message.dateTime
         })
     }
     

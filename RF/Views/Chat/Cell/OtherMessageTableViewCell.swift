@@ -33,6 +33,11 @@ class OtherMessageTableViewCell: UITableViewCell {
         return view
     }()
     
+    private lazy var textMessageView: TextMessageView = {
+        let view = TextMessageView()
+        return view
+    }()
+    
     private lazy var stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
@@ -57,11 +62,6 @@ class OtherMessageTableViewCell: UITableViewCell {
         label.textColor = TextColor.secondary.color
         label.numberOfLines = 1
         return label
-    }()
-    
-    private lazy var textMessageView: TextMessageView = {
-        let view = TextMessageView()
-        return view
     }()
     
     // MARK: - [수정 필요할 듯]
@@ -153,33 +153,40 @@ class OtherMessageTableViewCell: UITableViewCell {
     }
     
     private func addTargets() {
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
-        messageView.addGestureRecognizer(longPress)
-        
         translateButton.addTarget(self, action: #selector(translateButtonTapped), for: .touchUpInside)
     }
     
-    func updateChatView(message: RealmMessage, userLangCode: String, indexPath: IndexPath) {
+    func updateChatView(message: RealmMessage, userLangCode: String, isContinuous: Bool) {
+        // MARK: - [수정 필요] ImageMessageView, ScheduleMessageView 업데이트 필요
         // TextMessageView 업데이트
         textMessageView.updateMessageLabel(message)
         
-        // MARK: - [수정 필요] ImageMessageView, ScheduleMessageView 업데이트 필요
+        // 아바타 사진, 이름 설정
+        updateAvatar(message: message, isContinuous: isContinuous)
         
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
-        displayNameLabel.text = message.speaker?.name
-        avatarView.load(url: URL(string: "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg")!)
         
+        // 번역 버튼 보임 여부 설정
         if let langCode = message.langCode, langCode != userLangCode { translateButton.isHidden = false }
         else { translateButton.isHidden = true }
-        
     }
     
-    @objc func longPressed(_ gesture: UILongPressGestureRecognizer) {
-        if gesture.state == .began {
-            print("Long")
-            delegate?.longPressedMessageView(gesture)
-        }
+    func updateAvatar(message: RealmMessage, isContinuous: Bool) {
+        displayNameLabel.text = message.speaker?.name
         
+        if isContinuous {
+            avatarView.isHidden = true
+            avatarView.image = nil
+            displayNameLabel.snp.updateConstraints { make in
+                make.height.equalTo(0)
+            }
+        } else {
+            avatarView.isHidden = false
+            avatarView.load(url: URL(string: message.speaker?.imgeUrl ?? "")!)
+            displayNameLabel.snp.updateConstraints { make in
+                make.height.equalTo(displayNameLabel.intrinsicContentSize.height)
+            }
+        }
     }
     
     @objc func translateButtonTapped() {

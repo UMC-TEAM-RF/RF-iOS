@@ -80,7 +80,7 @@ class TextMessageView: UIView {
     @objc func longPressed(_ gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began {
             print("Long")
-            delegate?.longPressedMessageView(gesture)
+            delegate?.longPressedMessageView?(gesture)
         }
         
     }
