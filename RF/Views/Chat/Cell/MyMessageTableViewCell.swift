@@ -11,20 +11,26 @@ class MyMessageTableViewCell: UITableViewCell {
     
     static let identifier = "MyMessageTableViewCell"
     
-    private lazy var messageView: UIView = {
-        let view = UIView()
-        view.backgroundColor = ButtonColor.main.color
-        view.layer.cornerRadius = 10
+    private lazy var contentStackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 0
+        view.distribution = .fill
+        view.alignment = .leading
         return view
     }()
     
-    private lazy var messageLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = ButtonColor.normal.color
-        label.numberOfLines = 0
-        label.lineBreakMode = .byCharWrapping // 글자 단위로 줄바꿈
-        return label
+    private lazy var textMessageView: TextMessageView = {
+        let view = TextMessageView()
+        view.backgroundColor = ButtonColor.main.color
+        view.layer.cornerRadius = 10
+        view.labelColor = ButtonColor.normal.color
+        return view
+    }()
+    
+    private lazy var imageMessageView: ImageMessageView = {
+        let view = ImageMessageView()
+        return view
     }()
     
     private lazy var timeLabel: UILabel = {
@@ -32,7 +38,6 @@ class MyMessageTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 11, weight: .medium)
         label.textColor = TextColor.secondary.color
         label.numberOfLines = 1
-        label.text = "오후 7:15"
         return label
     }()
     
@@ -53,38 +58,50 @@ class MyMessageTableViewCell: UITableViewCell {
     
     private func addSubviews() {
         
-        contentView.addSubview(messageView)
-        contentView.addSubview(timeLabel)
+        contentView.addSubview(contentStackView)
+        contentStackView.addArrangedSubview(textMessageView)
+        contentStackView.addArrangedSubview(imageMessageView)
         
-        messageView.addSubview(messageLabel)
+        contentView.addSubview(timeLabel)
     }
     
     // MARK: - configureConstraints()
     
     private func configureConstraints() {
         
-        messageView.snp.makeConstraints { make in
+        contentStackView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(3)
             make.trailing.equalToSuperview().inset(8)
-            
-        }
-        
-        messageLabel.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(8)
-            make.horizontalEdges.equalToSuperview().inset(10)
             make.width.lessThanOrEqualTo(contentView.snp.width).multipliedBy(0.65)
         }
         
         timeLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(messageView.snp.bottom)
-            make.trailing.equalTo(messageView.snp.leading).offset(-3)
+            make.bottom.equalTo(contentStackView.snp.bottom)
+            make.trailing.equalTo(contentStackView.snp.leading).offset(-3)
         }
         
     }
     
     func updateChatView(_ message: RealmMessage) {
-        messageLabel.text = message.content
+        
+        configureMessageView(message)
+        
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
+    }
+    
+    private func configureMessageView(_ message: RealmMessage) {
+        switch message.type {
+        case MessageType.text:
+            textMessageView.isHidden = false
+            imageMessageView.isHidden = true
+            textMessageView.updateMessageLabel(message)
+        case MessageType.image:
+            textMessageView.isHidden = true
+            imageMessageView.isHidden = false
+            imageMessageView.updateMessageImage(message)
+        default:
+            return
+        }
     }
 }
 

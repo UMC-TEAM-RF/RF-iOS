@@ -156,6 +156,7 @@
 		575EC8592ADEA54300AEC266 /* TextMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575EC8582ADEA54300AEC266 /* TextMessageView.swift */; };
 		575EC8662ADED26700AEC266 /* MessageTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575EC8652ADED26700AEC266 /* MessageTableViewCellDelegate.swift */; };
 		575EC8692ADFC7F000AEC266 /* ImageMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575EC8682ADFC7F000AEC266 /* ImageMessageView.swift */; };
+		575EC86B2AE1248500AEC266 /* ScheduleMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575EC86A2AE1248500AEC266 /* ScheduleMessageView.swift */; };
 		57673ED42A5579E000A13D07 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */; };
 		57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */; };
 		57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EE12A58314100A13D07 /* MeetingCollectionViewCell.swift */; };
@@ -347,6 +348,7 @@
 		575EC8582ADEA54300AEC266 /* TextMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageView.swift; sourceTree = "<group>"; };
 		575EC8652ADED26700AEC266 /* MessageTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		575EC8682ADFC7F000AEC266 /* ImageMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageView.swift; sourceTree = "<group>"; };
+		575EC86A2AE1248500AEC266 /* ScheduleMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMessageView.swift; sourceTree = "<group>"; };
 		57673ED32A5579E000A13D07 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EE12A58314100A13D07 /* MeetingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -825,6 +827,7 @@
 				57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */,
 				575EC8582ADEA54300AEC266 /* TextMessageView.swift */,
 				575EC8682ADFC7F000AEC266 /* ImageMessageView.swift */,
+				575EC86A2AE1248500AEC266 /* ScheduleMessageView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1369,6 +1372,7 @@
 				570063C82A77B2B50051F42A /* SendDataDelegate.swift in Sources */,
 				3B8ACC482A925C3B00AC082F /* PageCollectionViewCell.swift in Sources */,
 				3B15CD612A64437D0096871F /* InterestingTopicCollectionViewCell.swift in Sources */,
+				575EC86B2AE1248500AEC266 /* ScheduleMessageView.swift in Sources */,
 				3BD700C82A79364B005C7D7E /* ChoiceCountryViewModel.swift in Sources */,
 				572A9A372A5CE7D4004D2809 /* SetDetailInfoViewController.swift in Sources */,
 				3B6BA9852A7E6AE100A11FE4 /* SearchUniversityViewModel.swift in Sources */,

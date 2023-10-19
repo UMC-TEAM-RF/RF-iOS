@@ -12,15 +12,12 @@ class TextMessageView: UIView {
     
     private lazy var messageView: UIView = {
         let view = UIView()
-        view.backgroundColor = ButtonColor.normal.color
-        view.layer.cornerRadius = 10
         return view
     }()
     
     private lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = TextColor.first.color
         label.numberOfLines = 0
         label.lineBreakMode = .byCharWrapping // 글자 단위로 줄바꿈
         label.isUserInteractionEnabled = true
@@ -30,6 +27,12 @@ class TextMessageView: UIView {
     weak var delegate: MessageTableViewCellDelegate?
     
     var indexPath: IndexPath?
+    
+    var labelColor: UIColor = .label {
+        didSet {
+            self.messageLabel.textColor = self.labelColor
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

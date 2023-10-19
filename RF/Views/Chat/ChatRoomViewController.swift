@@ -503,7 +503,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
                     type: MessageType.text,
                     content: text,
                     langCode: result,
-                    partyName: "",
+                    partyName: self.channel.name,
                     partyId: self.channel.id),
                 partyId: self.channel.id
             )

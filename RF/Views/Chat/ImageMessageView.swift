@@ -12,7 +12,6 @@ class ImageMessageView: UIView {
 
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
-        view.image = .init(resource: .soccer)
         view.contentMode = .scaleAspectFit
         view.layer.cornerRadius = 10
         view.clipsToBounds = true

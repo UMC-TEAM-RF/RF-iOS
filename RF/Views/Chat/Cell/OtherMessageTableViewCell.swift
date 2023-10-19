@@ -39,6 +39,9 @@ class OtherMessageTableViewCell: UITableViewCell {
     
     private lazy var textMessageView: TextMessageView = {
         let view = TextMessageView()
+        view.backgroundColor = ButtonColor.normal.color
+        view.layer.cornerRadius = 10
+        view.labelColor = TextColor.first.color
         return view
     }()
     
