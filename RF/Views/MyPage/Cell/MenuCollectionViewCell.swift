@@ -7,7 +7,7 @@
 
 import UIKit
 
-class menuCollectionViewCell: UICollectionViewCell {
+class MenuCollectionViewCell: UICollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()

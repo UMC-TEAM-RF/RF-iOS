@@ -27,11 +27,6 @@ class LanguageTableViewCell: UITableViewCell {
         
         addSubviews()
         configureConstraints()
-        
-        
-//        let view = UIView()
-//        view.backgroundColor = StrokeColor.sub.color
-//        self.selectedBackgroundView = view
     }
     
     required init?(coder: NSCoder) {

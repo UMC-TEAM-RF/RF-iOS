@@ -22,13 +22,16 @@ class MyPageEditingProfileViewController: UIViewController {
         tv.backgroundColor = .white
         return tv
     }()
+    
     var sectionHeader = ["관심 나라", "관심 언어", ""]
+    var settingTitle = ["관심사", "라이프 스타일", "MBTI"]
+    
+    
+    // MARK: - Dummy Data
     
     var interestedNationList = ["필리핀", "중국"]
     var interestedLanguageList = ["필리핀어", "중국어"]
     
-    
-    var settingTitle = ["관심사", "라이프 스타일", "MBTI"]
     
     var interestData = ["SPORT", "SPORT_GAME"]
     var lifeStyleData = ["MORNING_HUMAN"]
@@ -54,7 +57,6 @@ class MyPageEditingProfileViewController: UIViewController {
         configureConstraints()
         
         updateUser()
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateChat), name: NotificationName.updateChatList, object: nil)
     }
     
     // MARK: - viewWillAppear()
@@ -192,31 +194,4 @@ extension MyPageEditingProfileViewController: UITableViewDataSource, UITableView
             return 0
         }
     }
-    
-    
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        // 오른쪽에 만들기
-//
-//        let alert = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-//            print("알림 여부 클릭")
-//            success(true)
-//        }
-//        alert.backgroundColor = .lightGray
-//        alert.image = UIImage(systemName: "bell.fill")
-//
-//        let exit = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-//            print("나가기 클릭")
-//            success(true)
-//        }
-//        exit.backgroundColor = .systemRed
-//        exit.image = UIImage(systemName: "rectangle.portrait.and.arrow.right")
-//
-//        //actions배열 인덱스 0이 오른쪽에 붙어서 나옴
-//        let configure = UISwipeActionsConfiguration(actions: [exit, alert])
-//        configure.performsFirstActionWithFullSwipe = false
-//
-//        return configure
-//    }
-    
-    
 }

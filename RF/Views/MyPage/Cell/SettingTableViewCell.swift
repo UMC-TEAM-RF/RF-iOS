@@ -8,7 +8,7 @@
 import UIKit
 
 
-class settingTableViewCell: UITableViewCell {
+class SettingTableViewCell: UITableViewCell {
     
     // MARK: - UI Property
     
@@ -35,11 +35,6 @@ class settingTableViewCell: UITableViewCell {
         
         addSubviews()
         configureConstraints()
-        
-        
-//        let view = UIView()
-//        view.backgroundColor = StrokeColor.sub.color
-//        self.selectedBackgroundView = view
     }
     
     required init?(coder: NSCoder) {

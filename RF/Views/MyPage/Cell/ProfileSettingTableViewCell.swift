@@ -67,12 +67,7 @@ class ProfileSettingTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubviews()
-        configureConstraints()
-        
-        
-//        let view = UIView()
-//        view.backgroundColor = StrokeColor.sub.color
-//        self.selectedBackgroundView = view
+        configureConstraints() 
     }
     
     required init?(coder: NSCoder) {

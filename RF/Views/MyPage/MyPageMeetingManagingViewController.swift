@@ -105,12 +105,12 @@ class MyPageMeetingManagingViewController: UIViewController {
     /**
      어느 탭의 셀인지 저장하는 함수. 탭이 2개 있으므로 셀도 2개, 그리고 meetingCollectionView도 2개이기 때문에 각 meetingCollectionView이 어느 탭에 소속되어 있는지를 알기 위해 tag를 설정하는 함수이다.
      > 셀 초기화할 때 사용
-         
-         //다음과 같이 셀 초기화할때 사용한다.
-         cell.setTag(indexPath.item)
+     
+     //다음과 같이 셀 초기화할때 사용한다.
+     cell.setTag(indexPath.item)
      - Parameters:
-        - tagNumber : 어느 탭에 소속되었는지 알 수 있는 변수 (indexPath.item)
-    */
+     - tagNumber : 어느 탭에 소속되었는지 알 수 있는 변수 (indexPath.item)
+     */
     func setTag(_ tagNumber : Int) {
         self.meetingCollectionView.tag = tagNumber
     }

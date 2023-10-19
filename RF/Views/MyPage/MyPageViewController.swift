@@ -424,7 +424,7 @@ class MyPageViewController: UIViewController {
         menuCollectionView.delegate = self
         menuCollectionView.dataSource = self
         
-        menuCollectionView.register(menuCollectionViewCell.self, forCellWithReuseIdentifier: menuCollectionViewCell.identifier)
+        menuCollectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: MenuCollectionViewCell.identifier)
     }
     /// MARK: ViewModel에서 데이터 얻는 함수
     private func getData(){
@@ -537,7 +537,7 @@ extension MyPageViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     //initial setting of the cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuCollectionViewCell.identifier, for: indexPath) as! menuCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as! MenuCollectionViewCell
         
         cell.varTitleLabel = menuList[indexPath.item]
         cell.varDescriptLabel = menuDescription[indexPath.item]
@@ -547,7 +547,7 @@ extension MyPageViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     //code when the cell is clicked
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let _ = collectionView.cellForItem(at: indexPath) as? menuCollectionViewCell else { return }
+        guard let _ = collectionView.cellForItem(at: indexPath) as? MenuCollectionViewCell else { return }
         
         //Some code
         self.menuCollectionViewClicked(at: indexPath.item)

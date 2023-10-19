@@ -25,10 +25,6 @@ class MyPageMeetingDateViewController: UIViewController {
         return view
     }()
     
-    /// MARK: Custom 캘린더 헤더뷰
-    private lazy var calenderDaysHeaderView: CalenderDaysHeaderView = {
-        return CalenderDaysHeaderView()
-    }()
     
     /// MARK: 달력 View
     private lazy var calendarView: FSCalendar = {
@@ -88,6 +84,12 @@ class MyPageMeetingDateViewController: UIViewController {
     
     private let viewModel = ScheduleViewModel()
     private let disposeBag = DisposeBag()
+    
+    
+    private var currentPage: Date?
+    private lazy var today: Date = {
+        return Date()
+    }()
     
     
     // MARK: View Did Load
@@ -217,10 +219,6 @@ class MyPageMeetingDateViewController: UIViewController {
         viewModel.getData()
     }
     
-    private var currentPage: Date?
-    private lazy var today: Date = {
-        return Date()
-    }()
         
     
     /// MARK: FSCalendar Header 년월 표시를 위한 Formatter, June 2023 형식
@@ -296,87 +294,3 @@ extension MyPageMeetingDateViewController: FSCalendarDelegate, FSCalendarDataSou
 }
 
 
-
-
-class CalenderDaysHeaderView: UIView {
-    
-    private var labelsText : [String] = ["일","월","화","수","목","금","토"]
-    
-    private lazy var Labels: [UILabel] = {
-        let labels = [UILabel(),UILabel(),UILabel(),UILabel(),UILabel(),UILabel(),UILabel()]
-        for i in 0...6 {
-            labels[i].text = labelsText[i]
-            labels[i].font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        }
-        return labels
-    }()
-    
-    private lazy var btnsStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: Labels)
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        stack.backgroundColor = .systemBackground
-        return stack
-    }()
-    
-    
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    private func setup() {
-        
-        self.addSubview(btnsStackView)
-        btnsStackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-}
-
-class CustomCalenderHeaderView: UIView {
-    
-    
-    private lazy var Label: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        return label
-    }()
-    
-    private lazy var btnsStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [Label])
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        stack.backgroundColor = .systemBackground
-        return stack
-    }()
-    
-    
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    private func setup() {
-        
-        self.addSubview(btnsStackView)
-        btnsStackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-}

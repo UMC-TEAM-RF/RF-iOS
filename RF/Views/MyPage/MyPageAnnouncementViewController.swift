@@ -16,7 +16,7 @@ class MyPageAnnouncementViewController: UIViewController {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(settingTableViewCell.self, forCellReuseIdentifier: settingTableViewCell.identifier)
+        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
         tableView.separatorStyle = .singleLine
         tableView.separatorInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         tableView.rowHeight = 60
@@ -59,16 +59,14 @@ class MyPageAnnouncementViewController: UIViewController {
         switch at {
         case 0:
             self.navigationController?.pushViewController(UIViewController(), animated: true)
-            return
         case 1:
             self.navigationController?.pushViewController(UIViewController(), animated: true)
-            return
         case 2:
             self.navigationController?.pushViewController(UIViewController(), animated: true)
-            return
         default:
-            return
+            break
         }
+        return
     }
 
 }
@@ -80,7 +78,7 @@ extension MyPageAnnouncementViewController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: settingTableViewCell.identifier, for: indexPath) as? settingTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as? SettingTableViewCell else { return UITableViewCell() }
         
         cell.updateTitle(menuList[indexPath.row])
 
@@ -89,7 +87,7 @@ extension MyPageAnnouncementViewController: UITableViewDelegate, UITableViewData
     
     //code when the cell is clicked
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let _ = tableView.dequeueReusableCell(withIdentifier: settingTableViewCell.identifier, for: indexPath) as? settingTableViewCell else { return }
+        guard let _ = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as? SettingTableViewCell else { return }
         
         //Some code
         self.menuTableViewClicked(at: indexPath.item)

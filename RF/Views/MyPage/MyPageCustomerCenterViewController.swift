@@ -16,7 +16,7 @@ class MyPageCustomerCenterViewController: UIViewController {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(settingTableViewCell.self, forCellReuseIdentifier: settingTableViewCell.identifier)
+        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
         tableView.separatorStyle = .singleLine
         tableView.separatorInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         tableView.rowHeight = 60
@@ -80,7 +80,7 @@ extension MyPageCustomerCenterViewController: UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: settingTableViewCell.identifier, for: indexPath) as? settingTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as? SettingTableViewCell else { return UITableViewCell() }
 
         cell.updateTitle(menuList[indexPath.row]) 
 
@@ -89,15 +89,10 @@ extension MyPageCustomerCenterViewController: UITableViewDelegate, UITableViewDa
     
     //code when the cell is clicked
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let _ = tableView.dequeueReusableCell(withIdentifier: settingTableViewCell.identifier, for: indexPath) as? settingTableViewCell else { return }
+        guard let _ = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as? SettingTableViewCell else { return }
         
         //Some code
         self.menuTableViewClicked(at: indexPath.item)
-//
-//
-//        contentView.addSubview(titleLabel)
-//        contentView.addSubview(descriptLabel)
-//        contentView.addSubview(rightButton)
     }
 }
 
@@ -111,23 +106,6 @@ class MyPageFAQViewController: UIViewController {
         
         updateTitleView(title: "자주 묻는 질문")
         setupCustomBackButton()
-        
-        addSubviews()
-        configureConstraints()
-    }
-    
-    /// MARK: - addsubviews()
-    private func addSubviews() {
-//        view.addSubview(menuTableView)
-    }
-
-    /// MARK: - configureConstraints()
-    private func configureConstraints() {
-//        menuTableView.snp.makeConstraints { make in
-//            make.top.equalTo(view.safeAreaLayoutGuide)
-//            make.horizontalEdges.equalToSuperview()
-//            make.bottom.equalTo(view.safeAreaLayoutGuide)
-//        }
     }
 }
 
@@ -142,22 +120,5 @@ class MyPageEmailRequestViewController: UIViewController {
         
         updateTitleView(title: "이메일 문의")
         setupCustomBackButton()
-        
-        addSubviews()
-        configureConstraints()
-    }
-    
-    /// MARK: - addsubviews()
-    private func addSubviews() {
-//        view.addSubview(menuTableView)
-    }
-
-    /// MARK: - configureConstraints()
-    private func configureConstraints() {
-//        menuTableView.snp.makeConstraints { make in
-//            make.top.equalTo(view.safeAreaLayoutGuide)
-//            make.horizontalEdges.equalToSuperview()
-//            make.bottom.equalTo(view.safeAreaLayoutGuide)
-//        }
     }
 }

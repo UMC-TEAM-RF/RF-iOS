@@ -22,7 +22,13 @@ class MyPageReportViewController: TabmanViewController {
         
         updateTitleView(title: "알프 신고")
         setupCustomBackButton()
+        
+        TabmanConfiguration()
 
+    }
+    
+    func TabmanConfiguration(){
+        
         viewControllers.append(MyPageReportApplyViewController())
         viewControllers.append(MyPageReportSecondTabViewController())
         
@@ -38,6 +44,7 @@ class MyPageReportViewController: TabmanViewController {
     }
 
 }
+
 extension MyPageReportViewController: PageboyViewControllerDataSource, TMBarDataSource {
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
         let item = TMBarItem(title: "")
