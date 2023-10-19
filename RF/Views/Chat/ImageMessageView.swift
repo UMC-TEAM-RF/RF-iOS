@@ -55,18 +55,11 @@ class ImageMessageView: UIView {
     }
     
     func updateMessageImage(_ message: RealmMessage) {
-
-//        imageView.load(url: URL(string: message.content!)!) {
-//            if let image = self.imageView.image {
-//                let ratio = image.size.height / image.size.width
-//                
-//                self.imageView.snp.remakeConstraints { make in
-//                    make.edges.equalToSuperview()
-//                    make.height.equalTo(self.imageView.snp.width).multipliedBy(ratio)
-//                }
-//            }
-//        }
-        imageView.image = .init(resource: .soccer)
+        if let data = message.imageData {
+            imageView.image = UIImage(data: data)
+        } else {
+            imageView.image = UIImage(resource: .MORNING_HUMAN)
+        }
     }
     
 }

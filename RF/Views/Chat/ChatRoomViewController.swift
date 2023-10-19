@@ -217,8 +217,8 @@ final class ChatRoomViewController: UIViewController {
     }
     
     private func scrollToBottom() {
-        //        if channel.messages.isEmpty { return }
-        //        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
+        if channel.messages.isEmpty { return }
+        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
     }
     
     /// 한 사람이 연속해서 메시지를 보내는지 체크
