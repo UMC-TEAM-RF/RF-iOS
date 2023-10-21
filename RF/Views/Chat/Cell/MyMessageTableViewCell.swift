@@ -33,6 +33,11 @@ class MyMessageTableViewCell: UITableViewCell {
         return view
     }()
     
+    private lazy var scheduleMessageView: ScheduleMessageView = {
+        let view = ScheduleMessageView()
+        return view
+    }()
+    
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 11, weight: .medium)
@@ -94,11 +99,18 @@ class MyMessageTableViewCell: UITableViewCell {
         case MessageType.text:
             textMessageView.isHidden = false
             imageMessageView.isHidden = true
+            scheduleMessageView.isHidden = true
             textMessageView.updateMessageLabel(message)
         case MessageType.image:
             textMessageView.isHidden = true
             imageMessageView.isHidden = false
+            scheduleMessageView.isHidden = true
             imageMessageView.updateMessageImage(message)
+        case MessageType.schedule:
+            textMessageView.isHidden = true
+            imageMessageView.isHidden = true
+            scheduleMessageView.isHidden = false
+            scheduleMessageView.updateMessageSchedule(message)
         default:
             return
         }
