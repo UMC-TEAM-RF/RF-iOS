@@ -50,6 +50,11 @@ class OtherMessageTableViewCell: UITableViewCell {
         return view
     }()
     
+    private lazy var scheduleMessageView: ScheduleMessageView = {
+        let view = ScheduleMessageView()
+        return view
+    }()
+    
     private lazy var stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
@@ -111,6 +116,7 @@ class OtherMessageTableViewCell: UITableViewCell {
         contentView.addSubview(contentStackView)
         contentStackView.addArrangedSubview(textMessageView)
         contentStackView.addArrangedSubview(imageMessageView)
+        contentStackView.addArrangedSubview(scheduleMessageView)
         
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(translateButton)
@@ -191,11 +197,18 @@ class OtherMessageTableViewCell: UITableViewCell {
         case MessageType.text:
             textMessageView.isHidden = false
             imageMessageView.isHidden = true
+            scheduleMessageView.isHidden = true
             textMessageView.updateMessageLabel(message)
         case MessageType.image:
             textMessageView.isHidden = true
             imageMessageView.isHidden = false
+            scheduleMessageView.isHidden = true
             imageMessageView.updateMessageImage(message)
+        case MessageType.schedule:
+            textMessageView.isHidden = true
+            imageMessageView.isHidden = true
+            scheduleMessageView.isHidden = false
+            scheduleMessageView.updateMessageSchedule(message)
         default:
             return
         }
