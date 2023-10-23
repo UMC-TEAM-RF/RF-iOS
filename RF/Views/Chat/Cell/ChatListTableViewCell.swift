@@ -80,7 +80,6 @@ class ChatListTableViewCell: UITableViewCell {
     
     private lazy var newMessageCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "1"
         label.textColor = ButtonColor.normal.color
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.textAlignment = .center
@@ -169,27 +168,31 @@ class ChatListTableViewCell: UITableViewCell {
         
     }
     
-    func updateChannelView(_ channel: Channel) {
+    func updateChannelView(_ channel: RealmChannel) {
+        // 인원 수, 프로필 이미지 설정 필요
+//        personnelLabel.text = "\(channel.userProfileImages.count)"
+//        profileView.updateProfileImages(with: channel.userProfileImages)
         chatTitleLabel.text = channel.name
-        personnelLabel.text = "\(channel.userProfileImages.count)"
-        profileView.updateProfileImages(with: channel.userProfileImages)
-        contentLabel.text = channel.messages.last?.content
-        timeLabel.text =  DateTimeFormatter.shared.convertStringToDateTime(channel.messages.last?.dateTime, isCompareCurrentTime: true)
+        timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(channel.messages.last?.dateTime, isCompareCurrentTime: true)
         
-        let newMessageCount = countNewMessages(from: channel.messages)
-        
-        let bool = newMessageCount == 0 ? true : false
-        newMessageCountLabel.text = "\(newMessageCount)"
-        newMessageCountView.isHidden = bool
-    }
-    
-    func countNewMessages(from messages: [Message]) -> Int {
-        var count = 0
-        for message in messages.reversed() {
-            if !message.isNew { break }
-            count += 1
+        // 읽지 않은 메시지 수 가져오기
+        let newMessageCount = ChatRepository.shared.getNewMessageCount(channel.id)
+        if newMessageCount == 0 {
+            newMessageCountView.isHidden = true
         }
-        return count
+        else {
+            newMessageCountLabel.text = "\(newMessageCount)"
+            newMessageCountView.isHidden = false
+        }
+        
+        guard let lastMessage = channel.messages.last else { return }
+        
+        switch lastMessage.type {
+        case MessageType.text: contentLabel.text = lastMessage.content
+        case MessageType.image: contentLabel.text = "사진을 보냈습니다."
+        case MessageType.schedule: contentLabel.text = "일정을 보냈습니다."
+        default: contentLabel.text = ""
+        }
     }
 }
 

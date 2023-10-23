@@ -234,7 +234,6 @@ extension DetailedMeetingCollectionViewCell: UICollectionViewDelegate, UICollect
         guard let meeting = meetingData else { return UICollectionViewCell() }
         let data = EnumFile.enumfile.enumList.value
         let text = data.interest?.filter{ $0.key  == meeting.interests?[indexPath.item] ?? "" }.first
-        print("text \(text)")
         cell.setupTagLabel(text?.value ?? "")
         return cell
     }

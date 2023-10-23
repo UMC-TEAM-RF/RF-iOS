@@ -95,7 +95,7 @@ class MyPageEditingProfileViewController: UIViewController {
     }
     
     private func updateUserList() {
-        SingletonChannel.shared.sortByLatest()
+        //SingletonChannel.shared.sortByLatest()
         self.userListTableView.reloadData()
     }
     

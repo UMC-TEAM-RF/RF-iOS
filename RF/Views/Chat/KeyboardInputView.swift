@@ -7,7 +7,7 @@
 
 import UIKit
 
-class KeyboardInputView: UIView {
+final class KeyboardInputView: UIView {
     
     private lazy var optionCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -22,7 +22,9 @@ class KeyboardInputView: UIView {
         cv.backgroundColor = ButtonColor.normal.color
         return cv
     }()
-
+    
+    var delegate: SendDataDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -54,11 +56,12 @@ class KeyboardInputView: UIView {
 
 }
 
+
 // MARK: - Ext: CollectionView
 
 extension KeyboardInputView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -71,6 +74,19 @@ extension KeyboardInputView: UICollectionViewDelegate, UICollectionViewDataSourc
         let width = (optionCollectionView.frame.width - (30 * 2) - (15 * 3)) / 4.0
         let height = (optionCollectionView.frame.height - (30 * 2) - 15) / 2.0
         return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.item {
+        case 0:
+            delegate?.sendTagData?(tag: 0)
+        case 1:
+            delegate?.sendTagData?(tag: 1)
+        case 2:
+            delegate?.sendTagData?(tag: 2)
+        default:
+            print("index out of range")
+        }
     }
 }
 
