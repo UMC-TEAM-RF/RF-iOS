@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class ChatListViewController: UIViewController {
     
@@ -25,6 +26,8 @@ class ChatListViewController: UIViewController {
     private var isUpdateChannel: Bool = false
     private var isLocatedCurrentView: Bool = false
     
+    private var channels: Results<RealmChannel>!
+    
     // MARK: - viewDidLoad()
 
     override func viewDidLoad() {
@@ -36,6 +39,7 @@ class ChatListViewController: UIViewController {
         
         addSubviews()
         configureConstraints()
+        getChannelList()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateChat), name: NotificationName.updateChatList, object: nil)
     }
@@ -48,8 +52,8 @@ class ChatListViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
         isLocatedCurrentView = true
         
-        if isUpdateChannel {
-            updateChannelList()
+        if isUpdateChannel { // 채팅방 업데이트 된 상태인 경우
+            getChannelList()
             isUpdateChannel = false
         }
     }
@@ -75,17 +79,20 @@ class ChatListViewController: UIViewController {
         }
     }
     
-    private func updateChannelList() {
-        SingletonChannel.shared.sortByLatest()
-        self.chatListTableView.reloadData()
+    private func getChannelList() {
+        channels = ChatRepository.shared.getAllChannel()
+        chatListTableView.reloadData()
     }
     
     // MARK: - @objc func
     
+    // NotificationCenter에 등록된 함수
     @objc func updateChat() {
-        if isLocatedCurrentView {
-            updateChannelList()
-        } else {
+        if isLocatedCurrentView { // 현재 뷰에 위치할 경우
+            // 즉시 채팅방 리스트 업데이트
+            getChannelList()
+        } else { // 다른 뷰에 위치해 있는 경우
+            // 업데이트 상태 저장 후 뷰 나타날 시 업데이트
             isUpdateChannel = true
         }
     }
@@ -95,13 +102,13 @@ class ChatListViewController: UIViewController {
 
 extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SingletonChannel.shared.list.count
+        return channels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.identifier, for: indexPath) as? ChatListTableViewCell else { return UITableViewCell() }
-        let channel = SingletonChannel.shared.list[indexPath.row]
-        cell.updateChannelView(channel)
+        
+        cell.updateChannelView(channels[indexPath.row])
         return cell
     }
     
@@ -112,14 +119,13 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChatRoomViewController()
         
-        let channel = SingletonChannel.shared.list[indexPath.row]
-        
-        let index = SingletonChannel.shared.readNewMessage(channel.id)
+        let channel = channels[indexPath.row]
         
         vc.channel = channel
-        vc.row = index
+        vc.row = ChatRepository.shared.readNewMessages(channels[indexPath.row].id)
         
-        tableView.reloadData()
+        // Noti 알림 전송 (TabBar badge, ChatList update)
+        NotificationCenter.default.post(name: NotificationName.updateChatList, object: nil)
         
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)

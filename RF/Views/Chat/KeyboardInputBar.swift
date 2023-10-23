@@ -166,6 +166,7 @@ class KeyboardInputBar: UIView {
     // (KeyboardInputBar View에서 변경할 수 있도록 수정하기 => Delegate 사용 X)
     @objc func plusButtonTapped() {
         inputField.tintColor = .clear
+        inputField.becomeFirstResponder()
         delegate?.didTapPlus()
     }
     
