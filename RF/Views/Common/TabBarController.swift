@@ -9,9 +9,12 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
+    private let viewModel = ScheduleViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getData()
         configureTabBar()
         updateChatBadgeValue()
         ChatService.shared.connect()
@@ -36,6 +39,22 @@ final class TabBarController: UITabBarController {
         vc2.tabBarItem = UITabBarItem(title: "모임", image: UIImage(named: "meeting"), selectedImage: UIImage(named: "meeting"))
         vc3.tabBarItem = UITabBarItem(title: "채팅", image: UIImage(named: "chat"), selectedImage: UIImage(named: "chat"))
         vc4.tabBarItem = UITabBarItem(title: "마이페이지", image: UIImage(systemName: "person.circle.fill"), selectedImage: UIImage(systemName: "person.circle.fill"))
+
+        
+        
+//          마이페이지 프로필 화면으로 설정하는 코드 - 미완성
+//        do {
+//            if let imgURL = URL(string: SignUpDataViewModel.viewModel.profileImageUrlRelay.value) {
+//                let img = UIImage(data: try Data(contentsOf: imgURL) )
+//                vc5.tabBarItem = UITabBarItem(title: "마이페이지", image: img, selectedImage: img)
+//            }
+//        }
+//        catch (let error){
+//            print(error)
+//            print("We will use default image file for profileImage")
+//            vc5.tabBarItem = UITabBarItem(title: "마이페이지", image: UIImage(systemName: "person.circle.fill"), selectedImage: UIImage(systemName: "person.circle.fill"))
+//        }
+        
         
         self.tabBar.tintColor = .systemBlue
         self.tabBar.backgroundColor = .white
@@ -60,6 +79,12 @@ final class TabBarController: UITabBarController {
     
     @objc func updateSelectedIndex() {
         selectedIndex = 1
+    }
+    
+    
+    /// MARK: ViewModel에서 데이터 얻는 함수
+    private func getData(){
+        viewModel.getData()
     }
     
 }
