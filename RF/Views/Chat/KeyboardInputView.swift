@@ -61,7 +61,7 @@ final class KeyboardInputView: UIView {
 
 extension KeyboardInputView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -78,12 +78,14 @@ extension KeyboardInputView: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
-        case 0:
-            delegate?.sendTagData?(tag: 0)
-        case 1:
-            delegate?.sendTagData?(tag: 1)
-        case 2:
-            delegate?.sendTagData?(tag: 2)
+        case ChatMenuOption.album.rawValue:
+            delegate?.sendTagData?(tag: ChatMenuOption.album.rawValue)
+        case ChatMenuOption.camera.rawValue:
+            delegate?.sendTagData?(tag: ChatMenuOption.camera.rawValue)
+        case ChatMenuOption.schedule.rawValue:
+            delegate?.sendTagData?(tag: ChatMenuOption.schedule.rawValue)
+        case ChatMenuOption.topic.rawValue:
+            delegate?.sendTagData?(tag: ChatMenuOption.topic.rawValue)
         default:
             print("index out of range")
         }
