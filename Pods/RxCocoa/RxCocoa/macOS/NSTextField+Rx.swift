@@ -20,26 +20,26 @@ open class RxTextFieldDelegateProxy
     , NSTextFieldDelegate {
 
     /// Typed parent object.
-    public weak private(set) var textField: NSTextField?
+    public weak private(set) var textView: NSTextField?
 
     /// Initializes `RxTextFieldDelegateProxy`
     ///
     /// - parameter textField: Parent object for delegate proxy.
-    init(textField: NSTextField) {
-        self.textField = textField
-        super.init(parentObject: textField, delegateProxy: RxTextFieldDelegateProxy.self)
+    init(textView: NSTextField) {
+        self.textView = textView
+        super.init(parentObject: textView, delegateProxy: RxTextFieldDelegateProxy.self)
     }
 
     public static func registerKnownImplementations() {
-        self.register { RxTextFieldDelegateProxy(textField: $0) }
+        self.register { RxTextFieldDelegateProxy(textView: $0) }
     }
 
     fileprivate let textSubject = PublishSubject<String?>()
 
     // MARK: Delegate methods
     open func controlTextDidChange(_ notification: Notification) {
-        let textField: NSTextField = castOrFatalError(notification.object)
-        let nextValue = textField.stringValue
+        let textView: NSTextField = castOrFatalError(notification.object)
+        let nextValue = textView.stringValue
         self.textSubject.on(.next(nextValue))
         _forwardToDelegate?.controlTextDidChange?(notification)
     }
@@ -71,8 +71,8 @@ extension Reactive where Base: NSTextField {
     public var text: ControlProperty<String?> {
         let delegate = RxTextFieldDelegateProxy.proxy(for: self.base)
         
-        let source = Observable.deferred { [weak textField = self.base] in
-            delegate.textSubject.startWith(textField?.stringValue)
+        let source = Observable.deferred { [weak textView = self.base] in
+            delegate.textSubject.startWith(textView?.stringValue)
         }.take(until: self.deallocated)
 
         let observer = Binder(self.base) { (control, value: String?) in
