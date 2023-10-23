@@ -77,6 +77,8 @@ class OptionCollectionViewCell: UICollectionViewCell {
             configureUIView(image: UIImage(named: "camera"), title: "카메라", color: .green)
         case .schedule:
             configureUIView(image: UIImage(named: "schedule"), title: "일정", color: .cyan)
+        case .topic:
+            configureUIView(image: UIImage(named: "subject"), title: "주제", color: .cyan)
         }
     }
     

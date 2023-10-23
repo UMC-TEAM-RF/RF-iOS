@@ -397,6 +397,13 @@ final class ChatRoomViewController: UIViewController {
         let createCalendarViewController = CreateCalendarViewController()
         navigationController?.pushViewController(createCalendarViewController, animated: true)
     }
+    
+    /// MARK: 주제를 보여줌
+    private func showTopics(){
+        let chattingTopicViewController = ChattingTopicViewController()
+        chattingTopicViewController.sheetPresentationController?.detents = [.medium()]
+        present(chattingTopicViewController, animated: true)
+    }
 }
 
 // MARK: - Ext: TableView
@@ -560,12 +567,14 @@ extension ChatRoomViewController: SendDataDelegate {
     
     func sendTagData(tag: Int) {
         switch tag {
-        case 0: // 사진 선택
+        case ChatMenuOption.album.rawValue: // 사진 선택
             selectedPhoto()
-        case 1: // 카메라
+        case ChatMenuOption.camera.rawValue: // 카메라
             takePhoto()
-        case 2: // 일정
+        case ChatMenuOption.schedule.rawValue: // 일정
             createCalendar()
+        case ChatMenuOption.topic.rawValue:
+            showTopics()
         default:
             print("잘못 접근")
         }
