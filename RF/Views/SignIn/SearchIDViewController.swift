@@ -18,16 +18,8 @@ final class SearchIDViewController: UIViewController {
         btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
         return btn
     }()
-    
-    private lazy var nameBottomLine: UIView = createBottomLine()
-    private lazy var mailBottomLine: UIView = createBottomLine()
-    private lazy var checkNumBottomLine: UIView = createBottomLine()
 
-    private func createBottomLine() -> UIView {
-        let lineView = UIView()
-        lineView.backgroundColor = .gray
-        return lineView
-    }
+    private lazy var checkNumBottomLine: UIView = createBottomLine()
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
@@ -48,9 +40,6 @@ final class SearchIDViewController: UIViewController {
         field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         field.backgroundColor = .clear
         field.textColor = TextColor.first.color
-        field.addSubview(nameBottomLine)
-        nameBottomLine.translatesAutoresizingMaskIntoConstraints = false
-        configureConstraints(for: field, and: nameBottomLine)
         return field
     }()
     
@@ -72,11 +61,10 @@ final class SearchIDViewController: UIViewController {
         field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         field.backgroundColor = .clear
         field.textColor = TextColor.first.color
-        field.addSubview(mailBottomLine)
-        mailBottomLine.translatesAutoresizingMaskIntoConstraints = false
-        configureConstraints(for: field, and: mailBottomLine)
         return field
     }()
+    
+    private lazy var mailBottomLine: UIView = createBottomLine()
     
     private lazy var nameCheckButton: UIButton = {
         let button = UIButton()
@@ -107,11 +95,10 @@ final class SearchIDViewController: UIViewController {
         field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         field.backgroundColor = .clear
         field.textColor = TextColor.first.color
-        field.addSubview(checkNumBottomLine)
-        checkNumBottomLine.translatesAutoresizingMaskIntoConstraints = false
-        configureConstraints(for: field, and: checkNumBottomLine)
         return field
     }()
+    
+    private lazy var nameBottomLine: UIView = createBottomLine()
     
     private lazy var nextButton: UIButton = {
         let button = UIButton()
@@ -123,14 +110,6 @@ final class SearchIDViewController: UIViewController {
         return button
     }()
     
-    // bottomLine의 제약 조건을 설정하는 헬퍼 함수
-    private func configureConstraints(for textField: UITextField, and bottomLine: UIView) {
-        bottomLine.leadingAnchor.constraint(equalTo: textField.leadingAnchor).isActive = true
-        bottomLine.trailingAnchor.constraint(equalTo: textField.trailingAnchor).isActive = true
-        bottomLine.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
-        bottomLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -141,18 +120,24 @@ final class SearchIDViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
         addSubviews()
         addTargets()
-        findIdButtonTapped()
-        //clickedButtons()
         
     }
     
     private func addSubviews() {
-        view.addSubview(nameField)//
-        view.addSubview(nameLabel)//
+        view.addSubview(nameField)
+        view.addSubview(nameLabel)
+        view.addSubview(nameBottomLine)
+        
+        
         view.addSubview(mailField)
         view.addSubview(mailLabel)
+        view.addSubview(mailBottomLine)
+        
+        
         view.addSubview(checkNumLabel)
         view.addSubview(checkNumField)
+        view.addSubview(checkNumBottomLine)
+        
         view.addSubview(nameCheckButton)
         view.addSubview(nextButton)
         
@@ -173,6 +158,12 @@ final class SearchIDViewController: UIViewController {
             make.top.equalTo(nameLabel.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview().inset(19)
             make.height.equalTo(52)
+        }
+        
+        nameBottomLine.snp.makeConstraints { make in
+            make.top.equalTo(nameField.snp.bottom)
+            make.horizontalEdges.equalTo(nameField.snp.horizontalEdges)
+            make.height.equalTo(1)
         }
         
         //이메일
@@ -196,6 +187,12 @@ final class SearchIDViewController: UIViewController {
             make.height.equalTo(48)
         }
         
+        mailBottomLine.snp.makeConstraints { make in
+            make.top.equalTo(mailField.snp.bottom)
+            make.horizontalEdges.equalTo(mailField.snp.horizontalEdges)
+            make.height.equalTo(1)
+        }
+        
         //인증번호
         checkNumLabel.snp.makeConstraints { make in
             make.top.equalTo(mailField.snp.bottom).offset(28)
@@ -210,6 +207,12 @@ final class SearchIDViewController: UIViewController {
             make.height.equalTo(48)
         }
         
+        checkNumBottomLine.snp.makeConstraints { make in
+            make.top.equalTo(checkNumField.snp.bottom)
+            make.horizontalEdges.equalTo(checkNumField.snp.horizontalEdges)
+            make.height.equalTo(1)
+        }
+        
         //다음
         nextButton.snp.makeConstraints { make in
             make.leading.right.equalToSuperview().inset(30)
@@ -222,6 +225,12 @@ final class SearchIDViewController: UIViewController {
     private func addTargets() {
         //searchIDresult UI로 화면 전환
         nextButton.addTarget(self, action: #selector(findIdButtonTapped), for: .touchUpInside)
+    }
+    
+    private func createBottomLine() -> UIView {
+        let lineView = UIView()
+        lineView.backgroundColor = .gray
+        return lineView
     }
     
     // MARK: - @objc func

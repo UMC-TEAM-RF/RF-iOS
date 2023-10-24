@@ -21,7 +21,7 @@ final class SearchIDResultViewController: UIViewController {
         return button
     }()
     
-    private lazy var IDlabel: UILabel = {
+    private lazy var idLabel: UILabel = {
         let label = UILabel()
         label.text = message
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -31,9 +31,9 @@ final class SearchIDResultViewController: UIViewController {
     }()
     
     
-    private lazy var SearchIDlabel: UILabel = {
+    private lazy var searchIdLabel: UILabel = {
         let label = UILabel()
-        label.text = reultmessage
+        label.text = reultMessage
         label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         label.textColor = TextColor.first.color
         label.numberOfLines = 1
@@ -41,7 +41,7 @@ final class SearchIDResultViewController: UIViewController {
     }()
     
     //입니다
-    private lazy var stringlabel: UILabel = {
+    private lazy var stringLabel: UILabel = {
         let label = UILabel()
         label.text = "입니다."
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -69,15 +69,15 @@ final class SearchIDResultViewController: UIViewController {
     }()
     
     //진짜 아이디
-    var SearchID: String = ""
-    lazy var reultmessage: String = {
-        return "\(SearchID)"
+    var searchIdValue: String = ""
+    lazy var reultMessage: String = {
+        return "\(searchIdValue)"
     }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItem = leftButton
         navigationController?.navigationBar.tintColor = TextColor.first.color
@@ -92,32 +92,32 @@ final class SearchIDResultViewController: UIViewController {
     
     
     private func addSubviews() {
-        view.addSubview(IDlabel)
-        view.addSubview(stringlabel)
-        view.addSubview(SearchIDlabel)
+        view.addSubview(idLabel)
+        view.addSubview(stringLabel)
+        view.addSubview(searchIdLabel)
         view.addSubview(checkButton)
     }
     
     private func configureConstraints() {
         
         //~님의 아이디는
-        IDlabel.snp.makeConstraints { make in
+        idLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             make.leading.equalToSuperview().inset(45)
         }
-
+        
         //진짜 아이디
-        SearchIDlabel.snp.makeConstraints { make in
-            make.top.equalTo(IDlabel.snp.bottom).offset(12)
+        searchIdLabel.snp.makeConstraints { make in
+            make.top.equalTo(idLabel.snp.bottom).offset(12)
             make.leading.equalToSuperview().inset(45)
         }
         
         
         //~입니다
-        stringlabel.snp.makeConstraints { make in
-            make.top.equalTo(IDlabel.snp.bottom).offset(18)
-            make.leading.equalTo(SearchIDlabel.snp.trailing).offset(5)
+        stringLabel.snp.makeConstraints { make in
+            make.top.equalTo(idLabel.snp.bottom).offset(18)
+            make.leading.equalTo(searchIdLabel.snp.trailing).offset(5)
         }
         
         //다음
@@ -131,13 +131,13 @@ final class SearchIDResultViewController: UIViewController {
     //~님의 아이디는 에서 아이디 문구 합쳐놓은 것
     func setNickName(_ newNickName: String) {
         nickName = newNickName
-        IDlabel.text = "\(nickName) 님의 아이디는"
+        idLabel.text = "\(nickName) 님의 아이디는"
     }
     
     func setSearchID(_ newSearchID: String) {
-            SearchID = newSearchID
-            SearchIDlabel.text = "\(SearchID)"
-        }
+        searchIdValue = newSearchID
+        searchIdLabel.text = "\(searchIdValue)"
+    }
 }
 
 
