@@ -330,6 +330,12 @@ final class SignInViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        resetPasswordButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let vc = SearchPWViewController()
+                self?.navigationController?.pushViewController(vc, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     /// MARK: 로그인 버튼 눌렀을 때 실행
