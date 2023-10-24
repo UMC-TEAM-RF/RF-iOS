@@ -19,19 +19,9 @@ final class SearchPWViewController: UIViewController {
         return btn
     }()
     
-    private lazy var nameBottomLine: UIView = createBottomLine()
-    private lazy var mailBottomLine: UIView = createBottomLine()
-    private lazy var checkNumBottomLine: UIView = createBottomLine()
-    
-    private func createBottomLine() -> UIView {
-        let lineView = UIView()
-        lineView.backgroundColor = .gray
-        return lineView
-    }
-    
-    private lazy var nameLabel: UILabel = {
+    private lazy var idLabel: UILabel = {
         let label = UILabel()
-        label.text = "이름"
+        label.text = "아이디"
         label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         label.textColor = TextColor.first.color
         label.numberOfLines = 1
@@ -39,20 +29,19 @@ final class SearchPWViewController: UIViewController {
         return label
     }()
     
-    private lazy var nameField: UITextField = {
+    private lazy var idTextField: UITextField = {
         let field = UITextField()
         field.borderStyle = .roundedRect
         field.borderStyle = .none
         field.layer.cornerRadius = 5
-        field.placeholder = "  " + "이름을 입력해주세요."
+        field.placeholder = "  " + "아이디를 입력해주세요."
         field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         field.backgroundColor = .clear
         field.textColor = TextColor.first.color
-        field.addSubview(nameBottomLine)
-        nameBottomLine.translatesAutoresizingMaskIntoConstraints = false
-        configureConstraints(for: field, and: nameBottomLine)
         return field
     }()
+    
+    private lazy var idBottomLine: UIView = createBottomLine()
     
     private lazy var mailLabel: UILabel = {
         let label = UILabel()
@@ -72,13 +61,12 @@ final class SearchPWViewController: UIViewController {
         field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         field.backgroundColor = .clear
         field.textColor = TextColor.first.color
-        field.addSubview(mailBottomLine)
-        mailBottomLine.translatesAutoresizingMaskIntoConstraints = false
-        configureConstraints(for: field, and: mailBottomLine)
         return field
     }()
     
-    private lazy var nameCheckButton: UIButton = {
+    private lazy var mailBottomLine: UIView = createBottomLine()
+    
+    private lazy var emailCheckButton: UIButton = {
         let button = UIButton()
         button.setTitle("인증받기", for: .normal)
         button.setTitleColor(TextColor.secondary.color, for: .normal)
@@ -107,11 +95,10 @@ final class SearchPWViewController: UIViewController {
         field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         field.backgroundColor = .clear
         field.textColor = TextColor.first.color
-        field.addSubview(checkNumBottomLine)
-        checkNumBottomLine.translatesAutoresizingMaskIntoConstraints = false
-        configureConstraints(for: field, and: checkNumBottomLine)
         return field
     }()
+    
+    private lazy var checkNumBottomLine: UIView = createBottomLine()
     
     private lazy var nextButton: UIButton = {
         let button = UIButton()
@@ -123,14 +110,6 @@ final class SearchPWViewController: UIViewController {
         return button
     }()
     
-    // bottomLine의 제약 조건을 설정하는 헬퍼 함수
-    private func configureConstraints(for textField: UITextField, and bottomLine: UIView) {
-        bottomLine.leadingAnchor.constraint(equalTo: textField.leadingAnchor).isActive = true
-        bottomLine.trailingAnchor.constraint(equalTo: textField.trailingAnchor).isActive = true
-        bottomLine.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
-        bottomLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -140,29 +119,26 @@ final class SearchPWViewController: UIViewController {
         view.backgroundColor = .white
         navigationController?.navigationBar.tintColor = .black
         addSubviews()
-        
-        //searchIDresult UI로 화면 전환
-        nextButton.addTarget(self, action: #selector(resetPasswordButton), for: .touchUpInside)
-        //
-        
+        addTargets()
         
     }
-    
-    ////나예은_searchPWresult UI로 화면 전환
-    @objc func resetPasswordButton() {
-        let searchPWResultVC = SearchPWResultViewController()
-        navigationController?.pushViewController(searchPWResultVC, animated: true)
-    }
-    //
     
     private func addSubviews() {
-        view.addSubview(nameField)//
-        view.addSubview(nameLabel)//
+        view.addSubview(idTextField)
+        view.addSubview(idLabel)
+        view.addSubview(idBottomLine)
+        
+        
         view.addSubview(mailField)
         view.addSubview(mailLabel)
+        view.addSubview(mailBottomLine)
+        
+        
         view.addSubview(checkNumLabel)
         view.addSubview(checkNumField)
-        view.addSubview(nameCheckButton)
+        view.addSubview(checkNumBottomLine)
+        
+        view.addSubview(emailCheckButton)
         view.addSubview(nextButton)
         
         configureConstraints()
@@ -170,29 +146,33 @@ final class SearchPWViewController: UIViewController {
     
     private func configureConstraints() {
         
-        //이름
-        nameLabel.snp.makeConstraints { make in
+        idLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             make.leading.trailing.equalToSuperview().inset(29)
         }
         
-        //이름을 입력해주세요
-        nameField.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(4)
+        idTextField.snp.makeConstraints { make in
+            make.top.equalTo(idLabel.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview().inset(19)
             make.height.equalTo(52)
         }
         
+        idBottomLine.snp.makeConstraints { make in
+            make.top.equalTo(idTextField.snp.bottom)
+            make.horizontalEdges.equalTo(idTextField.snp.horizontalEdges)
+            make.height.equalTo(1)
+        }
+        
         //이메일
         mailLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameField.snp.bottom).offset(28)
+            make.top.equalTo(idTextField.snp.bottom).offset(28)
             make.leading.trailing.equalToSuperview().inset(29)
         }
         
         //인증받기 버튼
-        nameCheckButton.snp.makeConstraints { make in
-            make.top.equalTo(nameField.snp.bottom).offset(56)
+        emailCheckButton.snp.makeConstraints { make in
+            make.top.equalTo(idTextField.snp.bottom).offset(56)
             make.trailing.equalToSuperview().inset(29)
             make.width.equalTo(56)
             make.height.equalTo(32)
@@ -203,6 +183,12 @@ final class SearchPWViewController: UIViewController {
             make.top.equalTo(mailLabel.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview().inset(19)
             make.height.equalTo(48)
+        }
+        
+        mailBottomLine.snp.makeConstraints { make in
+            make.top.equalTo(mailField.snp.bottom)
+            make.horizontalEdges.equalTo(mailField.snp.horizontalEdges)
+            make.height.equalTo(1)
         }
         
         //인증번호
@@ -219,6 +205,12 @@ final class SearchPWViewController: UIViewController {
             make.height.equalTo(48)
         }
         
+        checkNumBottomLine.snp.makeConstraints { make in
+            make.top.equalTo(checkNumField.snp.bottom)
+            make.horizontalEdges.equalTo(checkNumField.snp.horizontalEdges)
+            make.height.equalTo(1)
+        }
+        
         //다음
         nextButton.snp.makeConstraints { make in
             make.leading.right.equalToSuperview().inset(30)
@@ -226,6 +218,23 @@ final class SearchPWViewController: UIViewController {
             make.height.equalTo(48)
         }
         
+    }
+    
+    private func addTargets() {
+        nextButton.addTarget(self, action: #selector(findPwButtonTapped), for: .touchUpInside)
+    }
+    
+    private func createBottomLine() -> UIView {
+        let lineView = UIView()
+        lineView.backgroundColor = .gray
+        return lineView
+    }
+    
+    // MARK: - @objc func
+    
+    @objc func findPwButtonTapped() {
+        let vc = SearchPWResultViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
