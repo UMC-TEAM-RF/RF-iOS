@@ -7,8 +7,9 @@
 
 import UIKit
 import SnapKit
+import PhotosUI
 
-class ChatRoomViewController: UIViewController {
+final class ChatRoomViewController: UIViewController {
     
     // 메시지 입력 창
     private lazy var keyboardInputBar: KeyboardInputBar = {
@@ -58,6 +59,10 @@ class ChatRoomViewController: UIViewController {
     
     private lazy var messagesTableView: UITableView = {
         let tv = UITableView()
+        tv.delegate = self
+        tv.dataSource = self
+        tv.register(MyMessageTableViewCell.self, forCellReuseIdentifier: MyMessageTableViewCell.identifier)
+        tv.register(OtherMessageTableViewCell.self, forCellReuseIdentifier: OtherMessageTableViewCell.identifier)
         tv.separatorStyle = .none
         return tv
     }()
@@ -87,9 +92,20 @@ class ChatRoomViewController: UIViewController {
     
     private var keyboardRect: CGRect = CGRect()
     
-    var channel: Channel!
+    private var loginUser = UserRepository.shared.getUser()
+    
+    var channel: RealmChannel!
+    
+    /// 선택한 이미지들
+    private var selectedPhotoImages: [UIImage] = []
     var row: Int?
     
+    
+    // MARK: - deinit
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     // MARK: - viewDidLoad()
     
@@ -104,7 +120,7 @@ class ChatRoomViewController: UIViewController {
         addSubviews()
         configureConstraints()
         addTargets()
-        configureTableView()
+        configureNotificationCenter()
         
         DispatchQueue.main.async {
             self.messagesTableView.scrollToRow(at: IndexPath(row: self.row ?? 0, section: 0), at: .bottom, animated: false)
@@ -117,22 +133,6 @@ class ChatRoomViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NotificationName.keyboardWillShow , object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NotificationName.keyboardWillHide, object: nil)
-        
-        // 새로운 메시지가 왔을 때 알림
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateChat), name: NotificationName.updateChatRoom, object: nil)
-    }
-    
-    // MARK: - viewWillDisappear()
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NotificationName.keyboardWillHide, object: nil)
-        
-        NotificationCenter.default.removeObserver(self, name: NotificationName.updateChatRoom, object: nil)
     }
     
     // MARK: - addSubviews()
@@ -208,27 +208,28 @@ class ChatRoomViewController: UIViewController {
         targetLanguageButton.addTarget(self, action: #selector(targetLanguageButtonTapped), for: .touchUpInside)
     }
     
-    // MARK: - configureTableView()
-    
-    private func configureTableView() {
-        messagesTableView.dataSource = self
-        messagesTableView.delegate = self
+    private func configureNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NotificationName.keyboardWillShow , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NotificationName.keyboardWillHide, object: nil)
         
-        messagesTableView.register(MyMessageTableViewCell.self, forCellReuseIdentifier: MyMessageTableViewCell.identifier)
-        messagesTableView.register(OtherMessageTableViewCell.self, forCellReuseIdentifier: OtherMessageTableViewCell.identifier)
+        // 새로운 메시지가 왔을 때 알림
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateChat), name: NotificationName.updateChatRoom, object: nil)
     }
     
     private func scrollToBottom() {
-        if channel.messages.isEmpty { return }
-        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
+        //        if channel.messages.isEmpty { return }
+        //        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
     }
     
     /// 한 사람이 연속해서 메시지를 보내는지 체크
     /// - Parameter indexPath: indexPath
     /// - Returns: true: 연속, false: 비연속
     private func isSenderConsecutiveMessages(row: Int) -> Bool {
-        if row != 0 && (channel.messages[row - 1].sender?.userId == channel.messages[row].sender?.userId) { return true }
-        else { return false }
+        if row <= 0 { return false }
+        let currentId = channel.messages[row].speaker?.id
+        let beforeId = channel.messages[row - 1].speaker?.id
+        
+        return currentId == beforeId ? true : false
     }
     
     private func isLastIndexPathVisible() -> Bool {
@@ -248,9 +249,10 @@ class ChatRoomViewController: UIViewController {
         return visibleIndexPaths.contains(lastIndexPath)
     }
     
-    private func isSenderSelf(_ sender: Sender?) -> Bool {
+    private func isSenderSelf(_ sender: RealmSender?) -> Bool {
         guard let sender else { return false }
-        return sender.userId == 2
+        
+        return sender.id == self.loginUser.id
     }
     
     // MARK: - @objc func
@@ -317,23 +319,19 @@ class ChatRoomViewController: UIViewController {
         }
     }
     
+    // MARK: - [추가 고민 필요]
     @objc func updateChat() {
         // 채팅 메시지 업데이트 시 화면 업데이트
+        self.row = ChatRepository.shared.readNewMessages(self.channel.id)
+        channel = ChatRepository.shared.getChannel(self.channel.id)
         
         // reload 하기 전 내가 현재 마지막 셀에 위치해 있는지 확인
+        let isVisible = isLastIndexPathVisible()
         
-        //if isLastIndexPathVisible() || isSenderSelf(<#T##sender: CustomMessageSender?##CustomMessageSender?#>)
-        if isLastIndexPathVisible() {
-            let _ = SingletonChannel.shared.readNewMessage(channel.id)
-            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
-            messagesTableView.reloadData()
+        messagesTableView.reloadData()
+        
+        if isVisible { // 마지막 메시지에 위치해 있으면 자동 스크롤
             scrollToBottom()
-        } else {
-            let _ = SingletonChannel.shared.readNewMessage(channel.id)
-            channel.messages = SingletonChannel.shared.getChannelMessages(channel.id)
-            messagesTableView.reloadData()
-            scrollToBottom()  // 테스트
-            print("메시지 업데이트")
         }
     }
     
@@ -364,6 +362,48 @@ class ChatRoomViewController: UIViewController {
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true, completion: nil)
     }
+    
+    /// 사진 앱에서 사진 선택
+    private func selectedPhoto() {
+        if #available(iOS 14, *){
+            var configuration = PHPickerConfiguration()
+            configuration.selectionLimit = 10
+            configuration.filter = .any(of: [.images])
+            
+            let picker = PHPickerViewController(configuration: configuration)
+            picker.delegate = self
+            let nvPicker = UINavigationController(rootViewController: picker)
+            nvPicker.modalPresentationStyle = .fullScreen
+            present(nvPicker,animated: false)
+        }
+        else {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = .photoLibrary
+            present(imagePickerController, animated: true, completion: nil)
+        }
+    }
+    
+    /// MARK: 카메라로 사진 찍기
+    private func takePhoto(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .camera
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    /// MARK: 일정 생성
+    private func createCalendar(){
+        let createCalendarViewController = CreateCalendarViewController()
+        navigationController?.pushViewController(createCalendarViewController, animated: true)
+    }
+    
+    /// MARK: 주제를 보여줌
+    private func showTopics(){
+        let chattingTopicViewController = ChattingTopicViewController()
+        chattingTopicViewController.sheetPresentationController?.detents = [.medium()]
+        present(chattingTopicViewController, animated: true)
+    }
 }
 
 // MARK: - Ext: TableView
@@ -376,14 +416,16 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = channel.messages[indexPath.row]
         
-        if isSenderSelf(message.sender) {
+        if isSenderSelf(message.speaker) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMessageTableViewCell.identifier, for: indexPath) as? MyMessageTableViewCell else { return UITableViewCell() }
             
             cell.updateChatView(message)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
-            cell.updateChatView(message)
+            
+            // MARK: - [수정 필요] userProfileUrl 및 userLangCode 적용
+            cell.updateChatView(message: message, userLangCode: "ko")
             cell.delegate = self
             
             if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
@@ -419,45 +461,17 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
 extension ChatRoomViewController: KeyboardInputBarDelegate {
     
     func didTapPlus() {
+        
         let keyboardInputView = KeyboardInputView(frame: keyboardRect)
+        keyboardInputView.delegate = self
         keyboardInputBar.keyboardInputView = keyboardInputView
     }
     
+    // MARK: - Message Type에 따른 조건 처리 필요
     func didTapSend(_ text: String, isTranslated: Bool) {
-        print(#function)
+        if isTranslated { translateMessage(text) } // 번역 버튼 클릭인 경우
+        else { sendMessage(text) } // 메시지 전송 버튼 클릭인 경우
         
-        if isTranslated { // 번역 버튼 클릭인 경우
-            // 1. 번역
-            let sourceLanguage = sourceLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
-            let targetLanguage = targetLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
-            
-            guard let source = Language.getLanguageCode(sourceLanguage!) else { return }
-            guard let target = Language.getLanguageCode(targetLanguage!) else { return }
-            
-            ChatService.shared.translateMessage(source: source, target: target, text: text) { result in
-                // 2. keyboardInputBar.inputField.text = "번역된 텍스트"
-                self.keyboardInputBar.inputFieldText = result
-            }
-        } else { // 메시지 전송 버튼 클릭인 경우
-            // 메시지 전송 전 언어 코드 확인
-            ChatService.shared.detectLanguage(text) { result in
-                // 언어 코드 확인 후 메시지 전송
-                ChatService.shared.send(
-                    message: Message(
-                        sender: Sender(
-                            userId: 2,
-                            userName: "HJ",
-                            userImageUrl: "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg"
-                        ),
-                        type: MessageType.text,
-                        content: text,
-                        langCode: result,
-                        partyName: "",
-                        partyId: self.channel.id),
-                    partyId: self.channel.id
-                )
-            }
-        }
         inputBarTopStackView.isHidden = true
     }
     
@@ -468,6 +482,41 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
         }
         
         inputBarTopStackView.isHidden = !isTranslated
+    }
+    
+    private func translateMessage(_ text: String) {
+        // 1. 번역
+        let sourceLanguage = sourceLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
+        let targetLanguage = targetLanguageButton.currentTitle?.trimmingCharacters(in: .whitespaces)
+        
+        guard let source = Language.getLanguageCode(sourceLanguage!) else { return }
+        guard let target = Language.getLanguageCode(targetLanguage!) else { return }
+        
+        PapagoService.shared.translateMessage(source: source, target: target, text: text) { result in
+            // 2. keyboardInputBar.inputField.text = "번역된 텍스트"
+            self.keyboardInputBar.inputFieldText = result
+        }
+    }
+    
+    private func sendMessage(_ text: String) {
+        // 메시지 전송 전 언어 코드 확인
+        PapagoService.shared.detectLanguage(text) { result in
+            // 언어 코드 확인 후 메시지 전송
+            ChatService.shared.send(
+                message: Message(
+                    sender: Sender(
+                        userId: self.loginUser.id,
+                        userName: self.loginUser.nickname,
+                        userImageUrl: self.loginUser.profileImageUrl
+                    ),
+                    type: MessageType.text,
+                    content: text,
+                    langCode: result,
+                    partyName: "",
+                    partyId: self.channel.id),
+                partyId: self.channel.id
+            )
+        }
     }
 }
 
@@ -481,17 +530,27 @@ extension ChatRoomViewController: MessageTableViewCellDelegate {
     }
     
     // 메시지 번역 버튼 클릭
+    // 번역 안된 경우, 번역된 메시지를 보여주는 상태, 번역되기 전 메시지를 보여주는 상태
     func convertMessage(_ indexPath: IndexPath) {
-        guard let code = channel.messages[indexPath.row].langCode else { return }
-
-        if !Language.listWithCode.keys.contains(code) { return }
-
-        ChatService.shared.translateMessage(source: code, target: "ko", text: channel.messages[indexPath.row].content!) { str in
-            self.channel.messages[indexPath.row].content = str
-
-            DispatchQueue.main.async {
-                self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
+        let message = channel.messages[indexPath.row]
+        
+        if message.translatedContent == nil { // 번역을 한번도 하지 않은 상태
+            if !Language.listWithCode.keys.contains(message.langCode!) { return }
+            
+            let text = channel.messages[indexPath.row].content!
+            
+            // MARK: - [수정 필요] 로그인 유저의 언어 코드에 맞춤 필요
+            PapagoService.shared.translateMessage(source: message.langCode!, target: "ko", text: text) { str in
+                
+                ChatRepository.shared.addTranslatedContent(message: message, content: str)
+                
+                DispatchQueue.main.async {
+                    self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
+                }
             }
+        } else {
+            ChatRepository.shared.toggleIsTranslated(message: message)
+            self.messagesTableView.reloadRows(at: [indexPath], with: .fade)
         }
     }
 }
@@ -505,5 +564,80 @@ extension ChatRoomViewController: SendDataDelegate {
         let button = tag == 0 ? sourceLanguageButton : targetLanguageButton
         button.setTitle("\(data) ", for: .normal)
     }
+    
+    func sendTagData(tag: Int) {
+        switch tag {
+        case ChatMenuOption.album.rawValue: // 사진 선택
+            selectedPhoto()
+        case ChatMenuOption.camera.rawValue: // 카메라
+            takePhoto()
+        case ChatMenuOption.schedule.rawValue: // 일정
+            createCalendar()
+        case ChatMenuOption.topic.rawValue:
+            showTopics()
+        default:
+            print("잘못 접근")
+        }
+    }
 }
 
+extension ChatRoomViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            selectedPhotoImages.removeAll()
+            selectedPhotoImages.append(image)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Ext: PHPickerViewControllerDelegate
+
+extension ChatRoomViewController: PHPickerViewControllerDelegate {
+    
+    func getArrayOfBytesFromImage(imageData: Data) -> [NSNumber] {
+        // the number of elements:
+        let count = imageData.count
+        
+        // create array of appropriate length:
+        var bytes = [UInt8](repeating: 0, count: count)
+        
+        // copy bytes into array
+        imageData.copyBytes(to: &bytes, count: count)
+        
+        var byteArray: [NSNumber] = []
+        
+        for i in 0..<count {
+            byteArray.append(NSNumber(value: bytes[i]))
+        }
+        
+        return byteArray
+    }
+    
+    /// 사진을 선택완료 했을 때 실행
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        selectedPhotoImages.removeAll()
+        dismiss(animated: true)
+        
+        results.forEach { result in
+            let itemProvider = result.itemProvider
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
+                    if let image = image as? UIImage {
+                        
+                        print(self?.getArrayOfBytesFromImage(imageData: image.pngData() ?? Data()))
+                        print("\n")
+                        print(image.pngData())
+                    }
+                    self?.selectedPhotoImages.append(image as? UIImage ?? UIImage())
+                }
+            }
+        }
+    }
+    
+    /// 취소버튼 누른 경우
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+}

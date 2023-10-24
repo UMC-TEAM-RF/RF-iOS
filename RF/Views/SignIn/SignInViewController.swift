@@ -13,9 +13,6 @@ import RxSwift
 /// 로그인 화면
 final class SignInViewController: UIViewController {
     
-    
-    
-    
     // MARK: - UI Property
     
     // 로고 이미지
@@ -332,6 +329,7 @@ final class SignInViewController: UIViewController {
                 self?.navigationController?.pushViewController(searchIDVC, animated: true)
             })
             .disposed(by: disposeBag)
+
     }
     
     /// MARK: 로그인 버튼 눌렀을 때 실행
@@ -350,6 +348,8 @@ final class SignInViewController: UIViewController {
                 if check{
                     // 로그인 성공 후 넘어가는 코드 작성
                     print("success login")
+                    
+                    // 내가 가입한 모임 ID들을 서버로부터 가져오고 realm에 저장 필요
                     (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
                 }
             }

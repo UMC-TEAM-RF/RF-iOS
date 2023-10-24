@@ -3,6 +3,11 @@ PODS:
   - FSCalendar (2.8.4)
   - Mantis (2.14.1)
   - Pageboy (4.0.2)
+  - Realm (10.42.3):
+    - Realm/Headers (= 10.42.3)
+  - Realm/Headers (10.42.3)
+  - RealmSwift (10.42.3):
+    - Realm (= 10.42.3)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -20,6 +25,7 @@ DEPENDENCIES:
   - Alamofire
   - FSCalendar
   - Mantis (~> 2.14.1)
+  - RealmSwift (~> 10)
   - RxCocoa (= 6.5.0)
   - RxSwift (= 6.5.0)
   - SnapKit (~> 5.6.0)
@@ -32,6 +38,8 @@ SPEC REPOS:
     - FSCalendar
     - Mantis
     - Pageboy
+    - Realm
+    - RealmSwift
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -45,6 +53,8 @@ SPEC CHECKSUMS:
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   Mantis: b91a7fb2b16c180c77a76bc83bb126abba105cd5
   Pageboy: 34ff11e8d1041b81769d5bcde9b19a0cb7218bd9
+  Realm: ac7fa0100533e1c91511b19a58e837f9cfd80bb7
+  RealmSwift: a06d4e3c623a5f236bd9fe214f0bfdfee20312c2
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
@@ -53,6 +63,6 @@ SPEC CHECKSUMS:
   StompClientLib: ac40390e9660c574675f1c933bec81c8e2811a4f
   Tabman: 6326ec3a792da1c2a6e79c7eddb56af7b591c9d6
 
-PODFILE CHECKSUM: 136749c222c3bf35ece4d45579e74b9bb560a985
+PODFILE CHECKSUM: e27bb9717d5383d4ec0a5c011fed7838c37a5c8f
 
 COCOAPODS: 1.11.3

@@ -22,7 +22,6 @@ final class SignInService {
             SignInBody.deviceToken.body: deviceToken
         ]
         
-        print(body)
         return Observable.create { observer in
             AF.request(url,
                        method: .post,
@@ -33,7 +32,6 @@ final class SignInService {
                 switch response.result{
                 case .success (let data):
                     if let data = data.result {
-                        print("loginService success! \n\(data)")
                         observer.onNext(data)
                     }
                 case .failure (let error):

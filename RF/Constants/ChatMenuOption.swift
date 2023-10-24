@@ -11,6 +11,5 @@ enum ChatMenuOption: Int {
     case album = 0
     case camera
     case schedule
-    case keyword
-    case subject
+    case topic
 }
