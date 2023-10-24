@@ -82,7 +82,7 @@ class MyMessageTableViewCell: UITableViewCell {
         
     }
     
-    func updateChatView(_ message: Message) {
+    func updateChatView(_ message: RealmMessage) {
         messageLabel.text = message.content
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
     }

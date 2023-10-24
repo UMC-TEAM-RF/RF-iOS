@@ -20,15 +20,15 @@ extension Reactive where Base: UITextField {
     /// Reactive wrapper for `text` property.
     public var value: ControlProperty<String?> {
         return base.rx.controlPropertyWithDefaultEvents(
-            getter: { textField in
-                textField.text
+            getter: { textView in
+                textView.text
             },
-            setter: { textField, value in
+            setter: { textView, value in
                 // This check is important because setting text value always clears control state
                 // including marked text selection which is important for proper input
                 // when IME input method is used.
-                if textField.text != value {
-                    textField.text = value
+                if textView.text != value {
+                    textView.text = value
                 }
             }
         )
@@ -37,15 +37,15 @@ extension Reactive where Base: UITextField {
     /// Bindable sink for `attributedText` property.
     public var attributedText: ControlProperty<NSAttributedString?> {
         return base.rx.controlPropertyWithDefaultEvents(
-            getter: { textField in
-                textField.attributedText
+            getter: { textView in
+                textView.attributedText
             },
-            setter: { textField, value in
+            setter: { textView, value in
                 // This check is important because setting text value always clears control state
                 // including marked text selection which is important for proper input
                 // when IME input method is used.
-                if textField.attributedText != value {
-                    textField.attributedText = value
+                if textView.attributedText != value {
+                    textView.attributedText = value
                 }
             }
         )

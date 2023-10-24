@@ -17,7 +17,7 @@ class ProfileSettingViewController: UIViewController {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(ProfileSettingTableViewCell.self, forCellReuseIdentifier: ProfileSettingTableViewCell.identifier)
+        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
         tableView.separatorStyle = .singleLine
         tableView.separatorInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         tableView.rowHeight = 60
@@ -59,9 +59,9 @@ extension ProfileSettingViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingTableViewCell.identifier, for: indexPath) as? ProfileSettingTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as? SettingTableViewCell else { return UITableViewCell() }
 
-        cell.menuLabelText = menuList[indexPath.row]
+        cell.updateTitle(menuList[indexPath.row])
 
         return cell
     }

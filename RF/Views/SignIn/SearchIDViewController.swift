@@ -11,79 +11,104 @@ import SnapKit
 
 final class SearchIDViewController: UIViewController {
     
+    /// MARK: 네비게이션 바 왼쪽 아이템
     private lazy var leftButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "아이디 찾기", style: .done, target: self, action: nil)
-        button.isEnabled = false
-        button.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
-        return button
+        let btn = UIBarButtonItem(title: "아이디 찾기", style: .done, target: self, action: nil)
+        btn.isEnabled = false
+        btn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: TextColor.first.color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)], for: .disabled)
+        return btn
     }()
     
     private lazy var nameLabel: UILabel = {
-        let nameLabel = UILabel()
-        nameLabel.text = "이름"
-        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        nameLabel.textColor = TextColor.first.color
-        nameLabel.numberOfLines = 1
-        return nameLabel
+        let label = UILabel()
+        label.text = "이름"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        label.textColor = TextColor.first.color
+        label.numberOfLines = 1
+        label.textAlignment = .left
+        return label
     }()
     
     private lazy var nameField: UITextField = {
-        let nameField = UITextField()
-        nameField.text = "이름을 입력해주세요."
-        nameField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        nameField.textColor = TextColor.first.color
-        return nameField
+        let field = UITextField()
+        field.borderStyle = .roundedRect
+        field.borderStyle = .none
+        field.layer.cornerRadius = 5
+        field.placeholder = "  " + "이름을 입력해주세요."
+        field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        field.backgroundColor = .clear
+        field.textColor = TextColor.first.color
+        return field
     }()
     
+    private lazy var nameBottomLine: UIView = createBottomLine()
+    
     private lazy var mailLabel: UILabel = {
-        let mailLabel = UILabel()
-        mailLabel.text = "이메일"
-        mailLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        mailLabel.textColor = TextColor.first.color
-        mailLabel.numberOfLines = 1
-        return mailLabel
+        let label = UILabel()
+        label.text = "이메일"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        label.textColor = TextColor.first.color
+        label.numberOfLines = 1
+        return label
     }()
     
     private lazy var mailField: UITextField = {
-        let mailField = UITextField()
-        mailField.text = "이메일을 입력해주세요."
-        mailField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        mailField.textColor = TextColor.first.color
-        return mailField
+        let field = UITextField()
+        field.borderStyle = .roundedRect
+        field.borderStyle = .none
+        field.layer.cornerRadius = 5
+        field.placeholder = "  " + "이메일을 입력해주세요."
+        field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        field.backgroundColor = .clear
+        field.textColor = TextColor.first.color
+        return field
     }()
     
-    private lazy var checkBtn: UIButton = {
-        let checkBtn = UIButton()
-        return checkBtn
+    private lazy var mailBottomLine: UIView = createBottomLine()
+    
+    private lazy var mailCheckButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("인증받기", for: .normal)
+        button.setTitleColor(TextColor.secondary.color, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        button.titleLabel?.numberOfLines = 1
+        button.backgroundColor =  BackgroundColor.white.color
+        button.layer.cornerRadius = 5
+        return button
     }()
     
-    private lazy var checknumLabel: UILabel = {
-        let checknum = UILabel()
-        checknum.text = "인증번호"
-        checknum.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        checknum.textColor = TextColor.first.color
-        checknum.numberOfLines = 1
-        return checknum
+    private lazy var checkNumLabel: UILabel = {
+        let label = UILabel()
+        label.text = "인증번호"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        label.textColor = TextColor.first.color
+        label.numberOfLines = 1
+        return label
     }()
     
     private lazy var checkNumField: UITextField = {
-        let checkNumField = UITextField()
-        checkNumField.text = "인증 번호를 입력해주세요."
-        checkNumField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        checkNumField.textColor = TextColor.first.color
-        return checkNumField
+        let field = UITextField()
+        field.borderStyle = .roundedRect
+        field.borderStyle = .none
+        field.layer.cornerRadius = 5
+        field.placeholder = "  " + "인증번호를 입력해주세요."
+        field.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        field.backgroundColor = .clear
+        field.textColor = TextColor.first.color
+        return field
     }()
-
+    
+    private lazy var checkNumBottomLine: UIView = createBottomLine()
+    
     private lazy var nextButton: UIButton = {
         let button = UIButton()
-        button.setTitle("다음", for: .normal)
+        button.setTitle("확인", for: .normal)
         button.setTitleColor(TextColor.first.color, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.backgroundColor =  BackgroundColor.white.color
         button.layer.cornerRadius = 5
         return button
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,32 +117,31 @@ final class SearchIDViewController: UIViewController {
         navigationItem.leftBarButtonItem = leftButton
         navigationController?.navigationBar.tintColor = TextColor.first.color
         view.backgroundColor = .white
-        
-        //searchIDresult UI로 화면 전환
-        nextButton.addTarget(self, action: #selector(findIdButtonTapped), for: .touchUpInside)
-        //
-        
+        navigationController?.navigationBar.tintColor = .black
+
         addSubviews()
+        addTargets()
     }
     
-    ////나예은_searchIDresult UI로 화면 전환
-    @objc func findIdButtonTapped() {
-           let searchIDVC = SearchIDResultViewController()
-           navigationController?.pushViewController(searchIDVC, animated: true)
-       }
-    //
-    
     private func addSubviews() {
-        view.addSubview(nameField)//
-        view.addSubview(nameLabel)//
+        view.addSubview(nameField)
+        view.addSubview(nameLabel)
+        view.addSubview(nameBottomLine)
+        
+        
         view.addSubview(mailField)
         view.addSubview(mailLabel)
-        view.addSubview(checknumLabel)
+        view.addSubview(mailBottomLine)
+        
+        
+        view.addSubview(checkNumLabel)
         view.addSubview(checkNumField)
-        view.addSubview(checkBtn)
+        view.addSubview(checkNumBottomLine)
+        
+        view.addSubview(mailCheckButton)
         view.addSubview(nextButton)
         
-         configureConstraints()
+        configureConstraints()
     }
     
     private func configureConstraints() {
@@ -125,38 +149,68 @@ final class SearchIDViewController: UIViewController {
         //이름
         nameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(130)
-            make.bottom.equalTo(nameField.snp.top).offset(-4)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
+            make.leading.trailing.equalToSuperview().inset(29)
         }
         
         //이름을 입력해주세요
         nameField.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview().inset(19)
+            make.height.equalTo(52)
+        }
+        
+        nameBottomLine.snp.makeConstraints { make in
+            make.top.equalTo(nameField.snp.bottom)
+            make.horizontalEdges.equalTo(nameField.snp.horizontalEdges)
+            make.height.equalTo(1)
         }
         
         //이메일
         mailLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameField.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(19)
+            make.top.equalTo(nameField.snp.bottom).offset(28)
+            make.leading.trailing.equalToSuperview().inset(29)
+        }
+        
+        //인증받기 버튼
+        mailCheckButton.snp.makeConstraints { make in
+            make.top.equalTo(nameField.snp.bottom).offset(56)
+            make.trailing.equalToSuperview().inset(29)
+            make.width.equalTo(56)
+            make.height.equalTo(32)
         }
         
         //이메일을 입력해주세요
         mailField.snp.makeConstraints { make in
             make.top.equalTo(mailLabel.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview().inset(19)
+            make.height.equalTo(48)
+        }
+        
+        mailBottomLine.snp.makeConstraints { make in
+            make.top.equalTo(mailField.snp.bottom)
+            make.horizontalEdges.equalTo(mailField.snp.horizontalEdges)
+            make.height.equalTo(1)
         }
         
         //인증번호
-        checknumLabel.snp.makeConstraints { make in
-            make.top.equalTo(mailField.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(19)
+        checkNumLabel.snp.makeConstraints { make in
+            make.top.equalTo(mailField.snp.bottom).offset(28)
+            make.leading.trailing.equalToSuperview().inset(29)
         }
+        
         
         //인증번호를 입력해주세요
         checkNumField.snp.makeConstraints { make in
-            make.top.equalTo(checknumLabel.snp.bottom).offset(4)
+            make.top.equalTo(checkNumLabel.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview().inset(19)
+            make.height.equalTo(48)
+        }
+        
+        checkNumBottomLine.snp.makeConstraints { make in
+            make.top.equalTo(checkNumField.snp.bottom)
+            make.horizontalEdges.equalTo(checkNumField.snp.horizontalEdges)
+            make.height.equalTo(1)
         }
         
         //다음
@@ -168,8 +222,22 @@ final class SearchIDViewController: UIViewController {
         
     }
     
+    private func addTargets() {
+        //searchIDresult UI로 화면 전환
+        nextButton.addTarget(self, action: #selector(findIdButtonTapped), for: .touchUpInside)
+    }
     
+    private func createBottomLine() -> UIView {
+        let lineView = UIView()
+        lineView.backgroundColor = .gray
+        return lineView
+    }
     
+    // MARK: - @objc func
     
-    
+    @objc func findIdButtonTapped() {
+        let searchIDVC = SearchIDResultViewController()
+        navigationController?.pushViewController(searchIDVC, animated: true)
+    }
 }
+

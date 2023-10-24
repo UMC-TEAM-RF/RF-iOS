@@ -47,6 +47,7 @@ final class SignInViewModel {
                         SignUpDataViewModel.viewModel.introduceSelfRelay.accept(data.userDemo?.introduce ?? "")
                         SignUpDataViewModel.viewModel.nickNameRelay.accept(data.userDemo?.nickname ?? "")
                         SignUpDataViewModel.viewModel.universityRelay.accept(data.userDemo?.university ?? "")
+                        SignUpDataViewModel.viewModel.profileImageUrlRelay.accept(data.userDemo?.profileImageUrl ?? "")
                         
                         
                         observer.onNext(true)
