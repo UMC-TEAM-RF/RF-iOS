@@ -62,3 +62,8 @@ struct ReportPath {
 struct SearchPath {
     static let search = "/party/search"
 }
+
+/// Schedule
+struct SchedulePath {
+    static let myList = "/schedule/user/:userId"
+}

@@ -216,7 +216,8 @@ class MyPageMeetingDateViewController: UIViewController {
     
     /// MARK: ViewModel에서 데이터 얻는 함수
     private func getData(){
-        viewModel.getData()
+        let date = viewModel.formattingDate_HeaderView(date: calendarView.currentPage)
+        viewModel.getData(year: String(date.split(separator: "-")[0]), month: String(date.split(separator: "-")[1]))
     }
     
         
@@ -285,7 +286,8 @@ extension MyPageMeetingDateViewController: FSCalendarDelegate, FSCalendarDataSou
     }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        viewModel.getData()//ViewModel에서 데이터 얻는 함수
+        let date = viewModel.formattingDate_HeaderView(date: calendarView.currentPage)
+        viewModel.getData(year: String(date.split(separator: "-")[0]), month: String(date.split(separator: "-")[1]))
         
         //CustomHeader의 날짜 label을 바꾸는 과정
         self.calHeaderLabel.text = self.dateFormatter.string(from: calendar.currentPage)

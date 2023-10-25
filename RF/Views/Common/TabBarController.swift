@@ -84,7 +84,7 @@ final class TabBarController: UITabBarController {
     
     /// MARK: ViewModel에서 데이터 얻는 함수
     private func getData(){
-        viewModel.getData()
+//        viewModel.getData()
     }
     
 }

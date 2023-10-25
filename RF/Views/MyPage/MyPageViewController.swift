@@ -428,7 +428,7 @@ class MyPageViewController: UIViewController {
     }
     /// MARK: ViewModel에서 데이터 얻는 함수
     private func getData(){
-        viewModel.getData()
+//        viewModel.getData()
         
         if let img = URL(string: SignUpDataViewModel.viewModel.profileImageUrlRelay.value) {
             profileImageView.load(url: img)

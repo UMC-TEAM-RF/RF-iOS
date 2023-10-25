@@ -119,7 +119,9 @@ final class ScheduleViewController: UIViewController{
     
     /// MARK: ViewModel에서 데이터 얻는 함수
     private func getData(){
-        viewModel.getData()
+        let date = viewModel.formattingDate_HeaderView(date: calendarView.currentPage)
+        print(date)
+        viewModel.getData(year: String(date.split(separator: "-")[0]), month: String(date.split(separator: "-")[1]))
     }
 
 
@@ -145,8 +147,6 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         guard let cell = calendar.cell(for: date, at: monthPosition) else { return }
         cell.titleLabel.textColor = .black
         
-        print(viewModel.formattingDate(date: date).split(separator: " ").first)
-        
         let schedulePopUpViewController = SchedulePopUpViewController()
         schedulePopUpViewController.selectedDate.onNext(String(describing: viewModel.formattingDate(date: date).split(separator: " ").first))
         present(schedulePopUpViewController,animated: true)
@@ -155,6 +155,7 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         guard let cell = calendar.dequeueReusableCell(withIdentifier: ScheduleFSCalendarCell.identifier, for: date, at: position) as? ScheduleFSCalendarCell else { return FSCalendarCell()}
         
+        cell.backgroundColor = .clear
         headerButton.setTitle("\(viewModel.formattingDate_HeaderView(date: calendarView.currentPage)) ", for: .normal)
         
         viewModel.dateFiltering(date: date)
@@ -168,7 +169,10 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        viewModel.getData()
+        let date = viewModel.formattingDate_HeaderView(date: calendarView.currentPage)
+        print(date)
+        viewModel.getData(year: String(date.split(separator: "-")[0]), month: String(date.split(separator: "-")[1]))
+        calendar.reloadData()
     }
 
 }

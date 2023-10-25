@@ -54,7 +54,7 @@ final class ScheduleFSCalendarCell: FSCalendarCell {
     }
 
     /// MARK: 일정을 넣는 함수
-    func inputData(events: [ScheduleEvent]?){
+    func inputData(events: [ScheduleList]?){
         viewModel.isTableView
             .observe(on: MainScheduler.asyncInstance)
             .bind { [weak self] check in
@@ -78,18 +78,19 @@ extension ScheduleFSCalendarCell: UITableViewDelegate, UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ScheduleTableViewCell.identifier, for: indexPath) as? ScheduleTableViewCell else { return UITableViewCell() }
         
         viewModel.specificEventList
-            .bind { events in
+            .bind(onNext: { events in
                 if !events.isEmpty && indexPath.row < events.count{
-                    cell.inputData(text: events[indexPath.row].description ?? "",
-                                   backgroundColor: UIColor(hexCode: events[indexPath.row].color ?? "", alpha: 1))
+                    cell.inputData(text: events[indexPath.row].scheduleName ?? "",
+                                   backgroundColor: UIColor(hexCode: "000000", alpha: 1))
                 }
                 else{
                     cell.inputData(text: "",
                                    backgroundColor: .clear)
                 }
                 cell.selectionStyle = .none
-            }
+            })
             .disposed(by: disposeBag)
+       
         return cell
     }
     

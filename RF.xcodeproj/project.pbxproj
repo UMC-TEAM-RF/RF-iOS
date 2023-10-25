@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B03E1EF2AE8FDA1006CC482 /* ScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B03E1EE2AE8FDA1006CC482 /* ScheduleService.swift */; };
+		3B03E1F12AE8FDD7006CC482 /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B03E1F02AE8FDD7006CC482 /* ScheduleList.swift */; };
 		3B0B35292A7A5A31003B2D8C /* SecretKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B0B35282A7A5A31003B2D8C /* SecretKey.plist */; };
 		3B0BA20A2A8DEEAA00F7E818 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BA2092A8DEEAA00F7E818 /* GradientView.swift */; };
 		3B0E2EB92A80FE9200797782 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E2EB82A80FE9200797782 /* MeetingService.swift */; };
@@ -126,7 +128,6 @@
 		440B53CA2AC9421600D6607F /* SearchPWResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440B53C92AC9421600D6607F /* SearchPWResultViewController.swift */; };
 		443044BD2A67B434008A4087 /* UserInfoSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443044BC2A67B434008A4087 /* UserInfoSelfViewController.swift */; };
 		44BBA9B12AB8B4B200EC43BB /* SearchIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BBA9B02AB8B4B200EC43BB /* SearchIDViewController.swift */; };
-		44CC47732A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC47722A8DE9A70025EAEC /* ProfileSettingTableViewCell.swift */; };
 		44F82A112A56D5D4006B17F8 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F82A102A56D5D4006B17F8 /* UIColor+Ext.swift */; };
 		44F82A172A5C05A7006B17F8 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F82A162A5C05A7006B17F8 /* UserInfoViewController.swift */; };
 		570063602A63D5120051F42A /* PersonnelStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700635F2A63D5120051F42A /* PersonnelStepper.swift */; };
@@ -212,6 +213,8 @@
 		1993FCFD8483C342C337F096 /* Pods_RF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2505DAF5F18952160CB2275D /* Pods-RF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RF.debug.xcconfig"; path = "Target Support Files/Pods-RF/Pods-RF.debug.xcconfig"; sourceTree = "<group>"; };
 		2B0C13344295BF3D18F7D032 /* Pods-RF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RF.release.xcconfig"; path = "Target Support Files/Pods-RF/Pods-RF.release.xcconfig"; sourceTree = "<group>"; };
+		3B03E1EE2AE8FDA1006CC482 /* ScheduleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleService.swift; sourceTree = "<group>"; };
+		3B03E1F02AE8FDD7006CC482 /* ScheduleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleList.swift; sourceTree = "<group>"; };
 		3B0B35282A7A5A31003B2D8C /* SecretKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SecretKey.plist; sourceTree = "<group>"; };
 		3B0BA2092A8DEEAA00F7E818 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		3B0E2EB82A80FE9200797782 /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
@@ -443,9 +446,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		3B03E1ED2AE8FD97006CC482 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				3B03E1EE2AE8FDA1006CC482 /* ScheduleService.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
 		3B0E2EB72A80FE8400797782 /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
+				3B03E1ED2AE8FD97006CC482 /* Schedule */,
 				3B6E6F152A94D2930002C6F3 /* Search */,
 				3B0E2EB82A80FE9200797782 /* MeetingService.swift */,
 				3BF2E7712A8CB32300FD09F7 /* DetailMeetingJoinService.swift */,
@@ -849,6 +861,7 @@
 				57DD3E6B2A810F60009F7139 /* Response.swift */,
 				3BF2E7652A8B50CC00FD09F7 /* Judge.swift */,
 				57AF3D572A85FE8800C09715 /* Papago.swift */,
+				3B03E1F02AE8FDD7006CC482 /* ScheduleList.swift */,
 				570063D32A7A57110051F42A /* Meeting.swift */,
 				3B69EE3F2A81F522002DB6DF /* Enums.swift */,
 				3BD68EF62A779741003A57A7 /* SignIn.swift */,
@@ -1281,6 +1294,7 @@
 			files = (
 				570063E82A7D13480051F42A /* OtherMessageTableViewCell.swift in Sources */,
 				3B6C31252A7E17DC008FADA1 /* UserInfoSelfViewModel.swift in Sources */,
+				3B03E1F12AE8FDD7006CC482 /* ScheduleList.swift in Sources */,
 				570063932A67B23A0051F42A /* RuleListViewController.swift in Sources */,
 				3B6BA9982A7FEC7F00A11FE4 /* EmailCustomTextField.swift in Sources */,
 				3BEEA2722AD578F200F6D5B7 /* MyPageReportApplyViewController.swift in Sources */,
@@ -1339,7 +1353,6 @@
 				3BC35CEF2A5C6C1B00D73163 /* UILabel+Ext.swift in Sources */,
 				572A9A322A5CB445004D2809 /* SetInterestViewController.swift in Sources */,
 				570063602A63D5120051F42A /* PersonnelStepper.swift in Sources */,
-				572A9A3A2A5E80D1004D2809 /* Member.swift in Sources */,
 				440B53C62AC1725300D6607F /* SearchIDResultViewController.swift in Sources */,
 				57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */,
 				3B62877C2A84BF7200E00B09 /* CreateViewModel.swift in Sources */,
@@ -1352,6 +1365,7 @@
 				57BB1B412AD5799B00516897 /* PapagoService.swift in Sources */,
 				3BD68EF72A779741003A57A7 /* SignIn.swift in Sources */,
 				3B6E6F172A94D29D0002C6F3 /* SearchService.swift in Sources */,
+				3B03E1EF2AE8FDA1006CC482 /* ScheduleService.swift in Sources */,
 				572DC2562A51C9BD00C0D6E1 /* SetNicknameViewController.swift in Sources */,
 				3B938C902A93847A00CBF734 /* MeetingManageUIButton.swift in Sources */,
 				57AF3D5C2A94957300C09715 /* ChatMenuOption.swift in Sources */,
@@ -1607,7 +1621,6 @@
 				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;
