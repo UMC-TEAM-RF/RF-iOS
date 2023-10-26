@@ -16,7 +16,7 @@ class MyMessageTableViewCell: UITableViewCell {
         view.axis = .vertical
         view.spacing = 0
         view.distribution = .fill
-        view.alignment = .leading
+        view.alignment = .trailing
         return view
     }()
     
@@ -79,6 +79,14 @@ class MyMessageTableViewCell: UITableViewCell {
             make.verticalEdges.equalToSuperview().inset(3)
             make.trailing.equalToSuperview().inset(8)
             make.width.lessThanOrEqualTo(contentView.snp.width).multipliedBy(0.65)
+        }
+        
+        imageMessageView.snp.makeConstraints { make in
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.65)
+        }
+        
+        scheduleMessageView.snp.makeConstraints { make in
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.5)
         }
         
         timeLabel.snp.makeConstraints { make in

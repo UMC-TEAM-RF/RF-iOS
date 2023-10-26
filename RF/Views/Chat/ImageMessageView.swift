@@ -59,6 +59,14 @@ class ImageMessageView: UIView {
         } else {
             imageView.image = UIImage(resource: .MORNING_HUMAN)
         }
+        
+        guard let image = imageView.image else { return }
+        let ratio = image.size.height / image.size.width
+        
+        self.imageView.snp.remakeConstraints { make in
+            make.edges.equalToSuperview()
+            make.height.equalTo(self.snp.width).multipliedBy(ratio)
+        }
     }
     
 }

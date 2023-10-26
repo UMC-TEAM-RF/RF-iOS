@@ -147,6 +147,14 @@ class OtherMessageTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().inset(3)
         }
         
+        imageMessageView.snp.makeConstraints { make in
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.6)
+        }
+        
+        scheduleMessageView.snp.makeConstraints { make in
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.5)
+        }
+        
         stackView.snp.makeConstraints { make in
             make.leading.equalTo(contentStackView.snp.trailing).offset(5)
             make.bottom.equalTo(contentStackView.snp.bottom)

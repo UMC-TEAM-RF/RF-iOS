@@ -64,6 +64,7 @@ final class ChatRoomViewController: UIViewController {
         tv.register(MyMessageTableViewCell.self, forCellReuseIdentifier: MyMessageTableViewCell.identifier)
         tv.register(OtherMessageTableViewCell.self, forCellReuseIdentifier: OtherMessageTableViewCell.identifier)
         tv.separatorStyle = .none
+        tv.estimatedRowHeight = 100
         return tv
     }()
     
@@ -98,7 +99,16 @@ final class ChatRoomViewController: UIViewController {
     
     /// 선택한 이미지들
     private var selectedPhotoImages: [UIImage] = []
-    var row: Int?
+    
+    var row: Int? {
+        didSet {
+            guard let row = row else { return }
+            
+            DispatchQueue.main.async {
+                self.messagesTableView.scrollToRow(at: IndexPath(row: row, section: 0), at: .bottom, animated: false)
+            }
+        }
+    }
     
     
     // MARK: - deinit
@@ -121,10 +131,6 @@ final class ChatRoomViewController: UIViewController {
         configureConstraints()
         addTargets()
         configureNotificationCenter()
-        
-        DispatchQueue.main.async {
-            self.messagesTableView.scrollToRow(at: IndexPath(row: self.row ?? 0, section: 0), at: .bottom, animated: false)
-        }
     }
     
     // MARK: - viewWillAppear()

@@ -30,6 +30,7 @@ class ScheduleMessageView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
+        view.text = "titleLabel"
         view.font = .systemFont(ofSize: 20, weight: .semibold)
         view.textColor = .black
         view.numberOfLines = 0
@@ -45,7 +46,7 @@ class ScheduleMessageView: UIView {
     private lazy var dateStackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
-        view.distribution = .fillEqually
+        view.distribution = .fill
         view.alignment = .fill
         view.spacing = 5
         return view
@@ -61,6 +62,7 @@ class ScheduleMessageView: UIView {
     
     private lazy var dateValueLabel: UILabel = {
         let view = UILabel()
+        view.text = "상세 일정"
         view.font = .systemFont(ofSize: 14, weight: .regular)
         view.textColor = .gray
         return view
@@ -69,7 +71,7 @@ class ScheduleMessageView: UIView {
     private lazy var placeStackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
-        view.distribution = .fillEqually
+        view.distribution = .fill
         view.alignment = .fill
         view.spacing = 5
         return view
@@ -85,8 +87,10 @@ class ScheduleMessageView: UIView {
     
     private lazy var placeValueLabel: UILabel = {
         let view = UILabel()
+        view.text = "세부 장소"
         view.font = .systemFont(ofSize: 14, weight: .regular)
         view.textColor = .gray
+        view.numberOfLines = 1
         return view
     }()
     
@@ -133,6 +137,26 @@ class ScheduleMessageView: UIView {
         
         vStack.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(15)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.height.equalTo(titleLabel.intrinsicContentSize.height)
+        }
+        
+        dateLabel.snp.makeConstraints { make in
+            make.height.equalTo(dateLabel.intrinsicContentSize.height)
+        }
+        
+        dateValueLabel.snp.makeConstraints { make in
+            make.height.equalTo(dateValueLabel.intrinsicContentSize.height)
+        }
+        
+        placeLabel.snp.makeConstraints { make in
+            make.height.equalTo(placeLabel.intrinsicContentSize.height)
+        }
+        
+        placeValueLabel.snp.makeConstraints { make in
+            make.height.equalTo(placeValueLabel.intrinsicContentSize.height)
         }
         
         divLine.snp.makeConstraints { make in
