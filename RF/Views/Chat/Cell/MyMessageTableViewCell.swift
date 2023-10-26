@@ -66,6 +66,7 @@ class MyMessageTableViewCell: UITableViewCell {
         contentView.addSubview(contentStackView)
         contentStackView.addArrangedSubview(textMessageView)
         contentStackView.addArrangedSubview(imageMessageView)
+        contentStackView.addArrangedSubview(scheduleMessageView)
         
         contentView.addSubview(timeLabel)
     }

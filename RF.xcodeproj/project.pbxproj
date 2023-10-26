@@ -12,7 +12,7 @@
 		3B0E2EB92A80FE9200797782 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E2EB82A80FE9200797782 /* MeetingService.swift */; };
 		3B0E2EBB2A81024700797782 /* MeetingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E2EBA2A81024700797782 /* MeetingViewModel.swift */; };
 		3B0F1EE42A7C0317009F3F2B /* UICheckBox1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */; };
-		3B10366A2AD2DC3800CB5AB6 /* CreateCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1036692AD2DC3800CB5AB6 /* CreateCalendarViewController.swift */; };
+		3B10366A2AD2DC3800CB5AB6 /* CreateScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1036692AD2DC3800CB5AB6 /* CreateScheduleViewController.swift */; };
 		3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD572A63E9590096871F /* SearchingViewController.swift */; };
 		3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD592A63ECB80096871F /* FilteringViewController.swift */; };
 		3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */; };
@@ -176,6 +176,7 @@
 		57673EDE2A56EBE100A13D07 /* InterestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */; };
 		57673EE22A58314100A13D07 /* MeetingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EE12A58314100A13D07 /* MeetingCollectionViewCell.swift */; };
 		57673EE42A58360B00A13D07 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */; };
+		579EE2342AE8E13900DA393B /* ChatOptionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579EE2332AE8E13900DA393B /* ChatOptionViewDelegate.swift */; };
 		57AF3D542A83B36B00C09715 /* DateTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF3D532A83B36B00C09715 /* DateTimeFormatter.swift */; };
 		57AF3D562A84DAE500C09715 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF3D552A84DAE500C09715 /* ViewConstants.swift */; };
 		57AF3D582A85FE8800C09715 /* Papago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF3D572A85FE8800C09715 /* Papago.swift */; };
@@ -216,7 +217,7 @@
 		3B0E2EB82A80FE9200797782 /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		3B0E2EBA2A81024700797782 /* MeetingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewModel.swift; sourceTree = "<group>"; };
 		3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox1.swift; sourceTree = "<group>"; };
-		3B1036692AD2DC3800CB5AB6 /* CreateCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCalendarViewController.swift; sourceTree = "<group>"; };
+		3B1036692AD2DC3800CB5AB6 /* CreateScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateScheduleViewController.swift; sourceTree = "<group>"; };
 		3B15CD572A63E9590096871F /* SearchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewController.swift; sourceTree = "<group>"; };
 		3B15CD592A63ECB80096871F /* FilteringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringViewController.swift; sourceTree = "<group>"; };
 		3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -383,6 +384,7 @@
 		57673EDD2A56EBE100A13D07 /* InterestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EE12A58314100A13D07 /* MeetingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCollectionViewCell.swift; sourceTree = "<group>"; };
 		57673EE32A58360B00A13D07 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		579EE2332AE8E13900DA393B /* ChatOptionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatOptionViewDelegate.swift; sourceTree = "<group>"; };
 		57AF3D532A83B36B00C09715 /* DateTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeFormatter.swift; sourceTree = "<group>"; };
 		57AF3D552A84DAE500C09715 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		57AF3D572A85FE8800C09715 /* Papago.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Papago.swift; sourceTree = "<group>"; };
@@ -866,7 +868,7 @@
 				570063E12A7D0FDA0051F42A /* ChatRoomViewController.swift */,
 				3B6CF3902AD966E100325D05 /* ChattingTopicViewController.swift */,
 				3B6CF3942AD970F900325D05 /* ChattingTopicDetailViewController.swift */,
-				3B1036692AD2DC3800CB5AB6 /* CreateCalendarViewController.swift */,
+				3B1036692AD2DC3800CB5AB6 /* CreateScheduleViewController.swift */,
 				570063E32A7D10150051F42A /* KeyboardInputBar.swift */,
 				57DD3E522A7E3033009F7139 /* KeyboardInputView.swift */,
 				575EC8582ADEA54300AEC266 /* TextMessageView.swift */,
@@ -1076,6 +1078,7 @@
 			isa = PBXGroup;
 			children = (
 				575EC8652ADED26700AEC266 /* MessageTableViewCellDelegate.swift */,
+				579EE2332AE8E13900DA393B /* ChatOptionViewDelegate.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1308,8 +1311,9 @@
 				3B267B8F2A861E3200F3949A /* GroupJoinRequestViewController.swift in Sources */,
 				3B69EE402A81F522002DB6DF /* Enums.swift in Sources */,
 				3BC35CE82A5C3CA000D73163 /* DetailMeetingHomeController.swift in Sources */,
+				579EE2342AE8E13900DA393B /* ChatOptionViewDelegate.swift in Sources */,
 				3BD700CF2A7962F0005C7D7E /* ChoiceInterestingCountryView.swift in Sources */,
-				3B10366A2AD2DC3800CB5AB6 /* CreateCalendarViewController.swift in Sources */,
+				3B10366A2AD2DC3800CB5AB6 /* CreateScheduleViewController.swift in Sources */,
 				572A9A302A5C267D004D2809 /* UITextField+Ext.swift in Sources */,
 				572A9A262A5AAE3A004D2809 /* UITabBar+Ext.swift in Sources */,
 				3BC7D35D2A7D263C00D92356 /* SignUpService.swift in Sources */,
@@ -1613,7 +1617,6 @@
 				CODE_SIGN_ENTITLEMENTS = RF/RF.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RF/Info.plist;

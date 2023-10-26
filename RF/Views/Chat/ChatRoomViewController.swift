@@ -394,8 +394,9 @@ final class ChatRoomViewController: UIViewController {
     
     /// MARK: 일정 생성
     private func createCalendar(){
-        let createCalendarViewController = CreateCalendarViewController()
-        navigationController?.pushViewController(createCalendarViewController, animated: true)
+        let createCalendarViewController = CreateScheduleViewController()
+        createCalendarViewController.delegate = self
+        present(createCalendarViewController, animated: true)
     }
     
     /// MARK: 주제를 보여줌
@@ -638,4 +639,28 @@ extension ChatRoomViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true, completion: nil)
     }
     
+}
+
+
+// MARK: - Ext: ChatOptionViewDelegate
+extension ChatRoomViewController: ChatOptionViewDelegate {
+    func createSchedule(title: String, date: String, time: String, place: String) {
+        view.endEditing(true)
+        
+        let dateTime = "\(date) \(time)"
+        let schedule = Schedule(scheduleName: title, dateTime: dateTime, location: place)
+        let message = Message(
+            sender: Sender(
+                userId: loginUser.id,
+                userName: loginUser.nickname,
+                userImageUrl: loginUser.profileImageUrl
+            ),
+            type: MessageType.schedule,
+            schedule: schedule,
+            partyName: channel.name,
+            partyId: channel.id
+        )
+        
+        ChatService.shared.send(message: message, partyId: channel.id)
+    }
 }
