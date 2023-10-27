@@ -82,7 +82,7 @@ class MyMessageTableViewCell: UITableViewCell {
         }
         
         imageMessageView.snp.makeConstraints { make in
-            make.width.equalTo(contentView.snp.width).multipliedBy(0.65)
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.6)
         }
         
         scheduleMessageView.snp.makeConstraints { make in
