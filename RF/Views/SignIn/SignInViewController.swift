@@ -181,8 +181,6 @@ final class SignInViewController: UIViewController {
         addSubViews()
         configureConstraints()
         addTargets()
-        
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -319,15 +317,26 @@ final class SignInViewController: UIViewController {
         
         signUpButton.rx.tap
             .subscribe(onNext: { [weak self] in
-            let signUpViewController = SignUpViewController()
+                let signUpViewController = SignUpViewController()
                 self?.navigationItem.backButtonTitle = " "
                 self?.navigationController?.pushViewController(signUpViewController, animated: true)
             })
             .disposed(by: disposeBag)
+        
+        findIdButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let searchIDVC = SearchIDViewController()
+                self?.navigationController?.pushViewController(searchIDVC, animated: true)
+            })
+            .disposed(by: disposeBag)
 
+        resetPasswordButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let vc = SearchPWViewController()
+                self?.navigationController?.pushViewController(vc, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
-
-
     
     /// MARK: 로그인 버튼 눌렀을 때 실행
     private func clickedLoginButton(){

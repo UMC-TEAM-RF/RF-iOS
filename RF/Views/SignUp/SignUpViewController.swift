@@ -133,7 +133,6 @@ final class SignUpViewController: UIViewController {
         return button
     }()
     
-    // MARK: - view did load
     
     override func viewDidLoad() {
         super.viewDidLoad()

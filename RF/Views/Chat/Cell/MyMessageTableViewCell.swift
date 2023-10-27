@@ -104,25 +104,27 @@ class MyMessageTableViewCell: UITableViewCell {
     }
     
     private func configureMessageView(_ message: RealmMessage) {
+        resetMessageViewHidden()
+        
         switch message.type {
         case MessageType.text:
             textMessageView.isHidden = false
-            imageMessageView.isHidden = true
-            scheduleMessageView.isHidden = true
             textMessageView.updateMessageLabel(message)
         case MessageType.image:
-            textMessageView.isHidden = true
             imageMessageView.isHidden = false
-            scheduleMessageView.isHidden = true
             imageMessageView.updateMessageImage(message)
         case MessageType.schedule:
-            textMessageView.isHidden = true
-            imageMessageView.isHidden = true
             scheduleMessageView.isHidden = false
             scheduleMessageView.updateMessageSchedule(message)
         default:
             return
         }
+    }
+    
+    private func resetMessageViewHidden() {
+        textMessageView.isHidden = true
+        imageMessageView.isHidden = true
+        scheduleMessageView.isHidden = true
     }
 }
 
