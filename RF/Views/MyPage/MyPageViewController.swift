@@ -181,7 +181,6 @@ class MyPageViewController: UIViewController {
         return button
     }()
     
-    
     private var scoreMessageList = ["심성이 따뜻하네요","활동적이고 따뜻함이 느껴져요", "뜨거운 열정과 심성을 가진 알프레드님🔥","모두가 인정한 열정맨! 플러스 친절함까지?"]
     private var score = 37.2
     private let maxScore = 100.0
@@ -204,21 +203,6 @@ class MyPageViewController: UIViewController {
                 
         }
     }
-//    
-//    private var meetingTipMessageList = ["이번 달의 모임 횟수는 미미하네요! 모임을 즐겨 보세요!", "모임을 즐겨하시네요! 알프를 통해 더 많이 활용해보세요 :-)", "모임 매니아시군요! 진정한 인싸는 바로 OO님!"]
-//    private let meetingperMonth = 3
-//    private var meetingTipMessage : String {
-//        get{
-//            if(meetingperMonth >= 0 && meetingperMonth < 5){
-//                return meetingTipMessageList[0]
-//            }else if(meetingperMonth >= 5 && meetingperMonth < 10){
-//                return meetingTipMessageList[1]
-//            }else{
-//                return meetingTipMessageList[2]
-//            }
-//                
-//        }
-//    }
     
     let menuList: [String] = ["프로필 관리", "크루 관리", "일정 관리", "친구 관리"]
     let menuDescription: [String] = ["내 프로필을 확인하고 수정할 수 있어요!", "내가 개설한 크루의 목록과 크루 멤버들을 관리해요!", "나의 모임 일정을 한 눈에 확인하러 가요!", "차단한 친구를 관리해요!"]
@@ -510,7 +494,9 @@ class MyPageViewController: UIViewController {
             self.navigationController?.pushViewController(MyPageMeetingDateViewController(), animated: true)
             return
         case 3:
-            self.navigationController?.pushViewController(MyPageBlockUserListViewController(), animated: true)
+//            self.navigationController?.pushViewController(MyPageBlockUserListViewController(), animated: true)
+            
+            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
             return
         default:
             return

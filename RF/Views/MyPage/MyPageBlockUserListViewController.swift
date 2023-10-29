@@ -44,7 +44,6 @@ class MyPageBlockUserListViewController: UIViewController {
         configureConstraints()
         
         updateUser()
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateChat), name: NotificationName.updateChatList, object: nil)
     }
     
     // MARK: - viewWillAppear()
@@ -114,5 +113,4 @@ extension MyPageBlockUserListViewController: UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    
 }
