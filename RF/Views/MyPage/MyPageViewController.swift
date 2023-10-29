@@ -494,9 +494,7 @@ class MyPageViewController: UIViewController {
             self.navigationController?.pushViewController(MyPageMeetingDateViewController(), animated: true)
             return
         case 3:
-//            self.navigationController?.pushViewController(MyPageBlockUserListViewController(), animated: true)
-            
-            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+            self.navigationController?.pushViewController(MyPageBlockUserListViewController(), animated: true)
             return
         default:
             return
