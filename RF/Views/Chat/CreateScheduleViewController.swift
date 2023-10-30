@@ -12,7 +12,7 @@ import RxCocoa
 import SnapKit
 
 /// 일정 생성
-final class CreateCalendarViewController: UIViewController {
+final class CreateScheduleViewController: UIViewController {
     
     /// MARK: 일정 제목
     private lazy var calendarTitleLabel: UILabel = {
@@ -141,6 +141,8 @@ final class CreateCalendarViewController: UIViewController {
     /// 제목
     private var titleRelay: BehaviorRelay<String> = BehaviorRelay(value: "")
     
+    weak var delegate: ChatOptionViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -191,49 +193,51 @@ final class CreateCalendarViewController: UIViewController {
         calendarTextField.rx.text
             .orEmpty
             .bind { [weak self] text in
-                guard let self = self else {return}
-                timeRelay.accept(text)
+                guard let self = self else { return }
+                titleRelay.accept(text)
             }
             .disposed(by: disposeBag)
         
         locationTextField.rx.text
             .orEmpty
             .bind { [weak self] text in
-                guard let self = self else {return}
+                guard let self = self else { return }
                 locationRelay.accept(text)
             }
             .disposed(by: disposeBag)
         
         startPicker.rx.date
             .bind { [weak self] date in
-                guard let self = self else {return}
-                dateRelay.accept(changeDateToString(dateFormat: "yyyy/MM/dd",date: date))
+                guard let self = self else { return }
+                let dateString = DateTimeFormatter.shared.convertToTime(date, expression: DateExpression.year.rawValue)
+                dateRelay.accept(dateString)
             }
             .disposed(by: disposeBag)
         
         timePicker.rx.date
             .bind { [weak self] time in
-                guard let self = self else {return}
-                timeRelay.accept(changeDateToString(dateFormat: "hh:mm:ss",date: time))
+                guard let self = self else { return }
+                let timeString = DateTimeFormatter.shared.convertToTime(time, expression: DateExpression.time.rawValue)
+                timeRelay.accept(timeString)
             }
             .disposed(by: disposeBag)
         
         doneButton.rx.tap
             .bind { [weak self] _ in
-                guard let self = self else {return}
+                guard let self = self else { return }
+                
                 //완료 버튼
+                dismiss(animated: true) {
+                    self.delegate?.createSchedule?(
+                        title: self.titleRelay.value,
+                        date: self.dateRelay.value,
+                        time: self.timeRelay.value,
+                        place: self.locationRelay.value
+                    )
+                }
             }
             .disposed(by: disposeBag)
         
-    }
-    
-    /// MARK: DatePicker String타입으로 변환
-    private func changeDateToString(dateFormat: String, date: Date) -> String {
-        let formatter: DateFormatter = DateFormatter()
-        formatter.dateFormat = dateFormat
-        let date: Date = date
-        let dateToString: String = formatter.string(from: date)
-        return dateToString
     }
     
 }

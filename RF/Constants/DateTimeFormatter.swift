@@ -8,8 +8,11 @@
 import Foundation
 
 enum DateExpression: String {
+    /// "HH:mm"
     case time = "HH:mm"
+    /// "MM월 dd일"
     case day = "MM월 dd일"
+    /// "yyyy. MM. dd."
     case year = "yyyy. MM. dd."
 }
 
@@ -52,7 +55,11 @@ class DateTimeFormatter {
     private func compareToTodayDate(_ target: Date) -> DateExpression {
         let calendar = Calendar.current
         let today = Date()
+        
+        // day가 같음 == 시,분,초가 다름
         if calendar.isDate(target, equalTo: today, toGranularity: .day) { return .time }
+        
+        // year이 같음 == 월 또는 일이 다름
         if calendar.isDate(target, equalTo: today, toGranularity: .year) { return .day }
         return .year
     }
@@ -60,7 +67,7 @@ class DateTimeFormatter {
     /// Date 객체를 표현 하고 싶은 문자열로 변환
     /// - Parameters:
     ///   - date: 문자열로 변환할 Date 객체
-    ///   - expression: Date 표현 방식 (시간, 월/일, 년/월/일 중 하나)
+    ///   - expression: Date 표현 방식 (DateExpression)
     /// - Returns: 날짜, 시간 문자열
     func convertToTime(_ date: Date, expression: String) -> String {
         let formatter = DateFormatter()

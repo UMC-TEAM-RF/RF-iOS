@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 앱이 시작될 때마다 푸시 알림 등록을 시도
         registerForPushNotifications()
         
+        // Realm Schema Version 설정
         configureSchemaVersion(5)
         
         return true

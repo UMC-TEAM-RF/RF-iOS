@@ -12,8 +12,8 @@ struct Schedule: Codable {
     var scheduleName: String?
     var dateTime: String?
     var location: String?
-    var participantCount: Int?
-    var alert: Int?  // 몇 시간 전에 알림 올건지
+    var participantCount: Int? = 0
+    var alert: Int? = 0 // 몇 시간 전에 알림 올건지
 }
 
 extension Schedule {
