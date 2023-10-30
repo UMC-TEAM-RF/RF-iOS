@@ -106,9 +106,13 @@ class ChatRepository {
         let message = message.toRealmObject()
         let channel = realm.object(ofType: RealmChannel.self, forPrimaryKey: id) // 채팅방 채널 가져오기
         
+        // 메시지 타입을 확인하여 message에 데이터 추가 여부 결정
+        checkMessageType(message: message)
+        
         // 채널에 메시지 추가
         try! realm.write({
             channel?.messages.append(message)
+            channel?.lastMessageDateTime = message.dateTime
         })
     }
     
@@ -167,9 +171,35 @@ class ChatRepository {
         return channel
     }
     
+    /// 번역 상태 toggle 구현
+    /// - Parameter message: 메시지
     func toggleIsTranslated(message: RealmMessage) {
         try! realm.write({
             message.isTranslated.toggle()
         })
+    }
+    
+    /// 메시지 타입 확인 후 데이터 추가 여부 결정
+    /// - Parameter message: 메시지
+    private func checkMessageType(message: RealmMessage) {
+        if message.type != MessageType.image { return }
+        
+        // URL 이미지를 Data로 변환 후 message에 저장
+        loadImage(message: message) { data in
+            try! self.realm.write({
+                message.imageData = data
+                NotificationCenter.default.post(name: NotificationName.updateChatRoom, object: self)
+            })
+        }
+    }
+    
+    private func loadImage(message: RealmMessage, completion: @escaping (Data)->()) {
+        let url = URL(string: message.content ?? "")
+        DispatchQueue.global().async {
+            let data = try! Data(contentsOf: url!)
+            DispatchQueue.main.async {
+                completion(data)
+            }
+        }
     }
 }

@@ -64,6 +64,7 @@ final class ChatRoomViewController: UIViewController {
         tv.register(MyMessageTableViewCell.self, forCellReuseIdentifier: MyMessageTableViewCell.identifier)
         tv.register(OtherMessageTableViewCell.self, forCellReuseIdentifier: OtherMessageTableViewCell.identifier)
         tv.separatorStyle = .none
+        tv.estimatedRowHeight = 100
         return tv
     }()
     
@@ -98,7 +99,16 @@ final class ChatRoomViewController: UIViewController {
     
     /// 선택한 이미지들
     private var selectedPhotoImages: [UIImage] = []
-    var row: Int?
+    
+    var row: Int? {
+        didSet {
+            guard let row = row else { return }
+            
+            DispatchQueue.main.async {
+                self.messagesTableView.scrollToRow(at: IndexPath(row: row, section: 0), at: .bottom, animated: false)
+            }
+        }
+    }
     
     
     // MARK: - deinit
@@ -121,10 +131,6 @@ final class ChatRoomViewController: UIViewController {
         configureConstraints()
         addTargets()
         configureNotificationCenter()
-        
-        DispatchQueue.main.async {
-            self.messagesTableView.scrollToRow(at: IndexPath(row: self.row ?? 0, section: 0), at: .bottom, animated: false)
-        }
     }
     
     // MARK: - viewWillAppear()
@@ -217,8 +223,8 @@ final class ChatRoomViewController: UIViewController {
     }
     
     private func scrollToBottom() {
-        //        if channel.messages.isEmpty { return }
-        //        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
+        if channel.messages.isEmpty { return }
+        messagesTableView.scrollToRow(at: IndexPath(row: channel.messages.count - 1, section: 0), at: .bottom, animated: false)
     }
     
     /// 한 사람이 연속해서 메시지를 보내는지 체크
@@ -394,8 +400,9 @@ final class ChatRoomViewController: UIViewController {
     
     /// MARK: 일정 생성
     private func createCalendar(){
-        let createCalendarViewController = CreateCalendarViewController()
-        navigationController?.pushViewController(createCalendarViewController, animated: true)
+        let createCalendarViewController = CreateScheduleViewController()
+        createCalendarViewController.delegate = self
+        present(createCalendarViewController, animated: true)
     }
     
     /// MARK: 주제를 보여줌
@@ -423,13 +430,11 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OtherMessageTableViewCell.identifier, for: indexPath) as? OtherMessageTableViewCell else { return UITableViewCell() }
-            
+    
+            let isContinuous = isSenderConsecutiveMessages(row: indexPath.row)
             // MARK: - [수정 필요] userProfileUrl 및 userLangCode 적용
-            cell.updateChatView(message: message, userLangCode: "ko")
+            cell.updateChatView(message: message, userLangCode: "ko", isContinuous: isContinuous)
             cell.delegate = self
-            
-            if isSenderConsecutiveMessages(row: indexPath.row) { cell.isContinuous = true }
-            else { cell.isContinuous = false }
             
             return cell
         }
@@ -512,7 +517,7 @@ extension ChatRoomViewController: KeyboardInputBarDelegate {
                     type: MessageType.text,
                     content: text,
                     langCode: result,
-                    partyName: "",
+                    partyName: self.channel.name,
                     partyId: self.channel.id),
                 partyId: self.channel.id
             )
@@ -595,25 +600,6 @@ extension ChatRoomViewController: UIImagePickerControllerDelegate, UINavigationC
 
 extension ChatRoomViewController: PHPickerViewControllerDelegate {
     
-    func getArrayOfBytesFromImage(imageData: Data) -> [NSNumber] {
-        // the number of elements:
-        let count = imageData.count
-        
-        // create array of appropriate length:
-        var bytes = [UInt8](repeating: 0, count: count)
-        
-        // copy bytes into array
-        imageData.copyBytes(to: &bytes, count: count)
-        
-        var byteArray: [NSNumber] = []
-        
-        for i in 0..<count {
-            byteArray.append(NSNumber(value: bytes[i]))
-        }
-        
-        return byteArray
-    }
-    
     /// 사진을 선택완료 했을 때 실행
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         selectedPhotoImages.removeAll()
@@ -623,13 +609,8 @@ extension ChatRoomViewController: PHPickerViewControllerDelegate {
             let itemProvider = result.itemProvider
             if itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
-                    if let image = image as? UIImage {
-                        
-                        print(self?.getArrayOfBytesFromImage(imageData: image.pngData() ?? Data()))
-                        print("\n")
-                        print(image.pngData())
-                    }
-                    self?.selectedPhotoImages.append(image as? UIImage ?? UIImage())
+                    guard let image = image as? UIImage else { return }
+                    self?.selectedPhotoImages.append(image)
                 }
             }
         }
@@ -640,4 +621,28 @@ extension ChatRoomViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true, completion: nil)
     }
     
+}
+
+
+// MARK: - Ext: ChatOptionViewDelegate
+extension ChatRoomViewController: ChatOptionViewDelegate {
+    func createSchedule(title: String, date: String, time: String, place: String) {
+        view.endEditing(true)
+        
+        let dateTime = "\(date) \(time)"
+        let schedule = Schedule(scheduleName: title, dateTime: dateTime, location: place)
+        let message = Message(
+            sender: Sender(
+                userId: loginUser.id,
+                userName: loginUser.nickname,
+                userImageUrl: loginUser.profileImageUrl
+            ),
+            type: MessageType.schedule,
+            schedule: schedule,
+            partyName: channel.name,
+            partyId: channel.id
+        )
+        
+        ChatService.shared.send(message: message, partyId: channel.id)
+    }
 }

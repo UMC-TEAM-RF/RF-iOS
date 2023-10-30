@@ -6,11 +6,7 @@
 //
 
 import UIKit
-
-protocol MessageTableViewCellDelegate: AnyObject {
-    func longPressedMessageView(_ gesture: UILongPressGestureRecognizer)
-    func convertMessage(_ indexPath: IndexPath)
-}
+import SnapKit
 
 class OtherMessageTableViewCell: UITableViewCell {
 
@@ -18,7 +14,6 @@ class OtherMessageTableViewCell: UITableViewCell {
     
     private lazy var avatarView: UIImageView = {
         let iv = UIImageView()
-        //iv.image = UIImage(named: "LogoImage")
         iv.contentMode = .scaleAspectFit
         iv.layer.cornerRadius = contentView.frame.width * 0.1 / 2.0
         iv.clipsToBounds = true
@@ -32,22 +27,32 @@ class OtherMessageTableViewCell: UITableViewCell {
         label.textColor = TextColor.first.color
         return label
     }()
-    
-    private lazy var messageView: UIView = {
-        let view = UIView()
-        view.backgroundColor = ButtonColor.normal.color
-        view.layer.cornerRadius = 10
+        
+    private lazy var contentStackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 0
+        view.distribution = .fill
+        view.alignment = .leading
         return view
     }()
     
-    private lazy var messageLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = TextColor.first.color
-        label.numberOfLines = 0
-        label.lineBreakMode = .byCharWrapping // 글자 단위로 줄바꿈
-        label.isUserInteractionEnabled = true
-        return label
+    private lazy var textMessageView: TextMessageView = {
+        let view = TextMessageView()
+        view.backgroundColor = ButtonColor.normal.color
+        view.layer.cornerRadius = 10
+        view.labelColor = TextColor.first.color
+        return view
+    }()
+    
+    private lazy var imageMessageView: ImageMessageView = {
+        let view = ImageMessageView()
+        return view
+    }()
+    
+    private lazy var scheduleMessageView: ScheduleMessageView = {
+        let view = ScheduleMessageView()
+        return view
     }()
     
     private lazy var stackView: UIStackView = {
@@ -76,16 +81,11 @@ class OtherMessageTableViewCell: UITableViewCell {
         return label
     }()
     
-    weak var delegate: MessageTableViewCellDelegate?
-    
-    var isContinuous: Bool = false {
+    // MARK: - [수정 필요할 듯]
+    weak var delegate: MessageTableViewCellDelegate? {
         didSet {
-            self.avatarView.isHidden = isContinuous
-            
-            let height = isContinuous ? 0 : displayNameLabel.intrinsicContentSize.height
-            displayNameLabel.snp.updateConstraints { make in
-                make.height.equalTo(height)
-            }
+            textMessageView.delegate = self.delegate
+            imageMessageView.delegate = self.delegate
         }
     }
     
@@ -110,16 +110,18 @@ class OtherMessageTableViewCell: UITableViewCell {
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        
-        contentView.addSubview(messageView)
-        messageView.addSubview(messageLabel)
-        
         contentView.addSubview(avatarView)
         contentView.addSubview(displayNameLabel)
+        
+        contentView.addSubview(contentStackView)
+        contentStackView.addArrangedSubview(textMessageView)
+        contentStackView.addArrangedSubview(imageMessageView)
+        contentStackView.addArrangedSubview(scheduleMessageView)
         
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(translateButton)
         stackView.addArrangedSubview(timeLabel)
+        
     }
     
     // MARK: - configureConstraints()
@@ -138,22 +140,24 @@ class OtherMessageTableViewCell: UITableViewCell {
             make.height.equalTo(displayNameLabel.intrinsicContentSize.height)
         }
         
-        messageView.snp.makeConstraints { make in
+        contentStackView.snp.makeConstraints { make in
             make.top.equalTo(displayNameLabel.snp.bottom).offset(2)
-            make.bottom.equalToSuperview().inset(3)
             make.leading.equalTo(avatarView.snp.trailing).offset(5)
-            
+            make.width.lessThanOrEqualTo(contentView.snp.width).multipliedBy(0.6)
+            make.bottom.equalToSuperview().inset(3)
         }
         
-        messageLabel.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(8)
-            make.horizontalEdges.equalToSuperview().inset(10)
-            make.width.lessThanOrEqualTo(contentView.snp.width).multipliedBy(0.55)
+        imageMessageView.snp.makeConstraints { make in
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.6)
+        }
+        
+        scheduleMessageView.snp.makeConstraints { make in
+            make.width.equalTo(contentView.snp.width).multipliedBy(0.5)
         }
         
         stackView.snp.makeConstraints { make in
-            make.leading.equalTo(messageView.snp.trailing).offset(5)
-            make.bottom.equalTo(messageView.snp.bottom)
+            make.leading.equalTo(contentStackView.snp.trailing).offset(5)
+            make.bottom.equalTo(contentStackView.snp.bottom)
         }
         
         translateButton.snp.makeConstraints { make in
@@ -162,30 +166,62 @@ class OtherMessageTableViewCell: UITableViewCell {
     }
     
     private func addTargets() {
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
-        messageView.addGestureRecognizer(longPress)
-        
         translateButton.addTarget(self, action: #selector(translateButtonTapped), for: .touchUpInside)
     }
     
-    func updateChatView(message: RealmMessage, userLangCode: String) {
-        if message.isTranslated { messageLabel.text = message.translatedContent }
-        else { messageLabel.text = message.content }
+    func updateChatView(message: RealmMessage, userLangCode: String, isContinuous: Bool) {
+        configureMessageView(message)
+        
+        // 아바타 사진, 이름 설정
+        updateAvatar(message: message, isContinuous: isContinuous)
         
         timeLabel.text = DateTimeFormatter.shared.convertStringToDateTime(message.dateTime, isCompareCurrentTime: false)
-        displayNameLabel.text = message.speaker?.name
-        avatarView.load(url: URL(string: "https://rf-aws-bucket.s3.ap-northeast-2.amazonaws.com/userDefault/defaultImage.jpg")!)
         
+        // 번역 버튼 보임 여부 설정
         if let langCode = message.langCode, langCode != userLangCode { translateButton.isHidden = false }
         else { translateButton.isHidden = true }
     }
     
-    @objc func longPressed(_ gesture: UILongPressGestureRecognizer) {
-        if gesture.state == .began {
-            print("Long")
-            delegate?.longPressedMessageView(gesture)
-        }
+    private func updateAvatar(message: RealmMessage, isContinuous: Bool) {
+        displayNameLabel.text = message.speaker?.name
         
+        if isContinuous {
+            avatarView.isHidden = true
+            avatarView.image = nil
+            displayNameLabel.snp.updateConstraints { make in
+                make.height.equalTo(0)
+            }
+        } else {
+            avatarView.isHidden = false
+            avatarView.load(url: URL(string: message.speaker?.imgeUrl ?? "")!)
+            displayNameLabel.snp.updateConstraints { make in
+                make.height.equalTo(displayNameLabel.intrinsicContentSize.height)
+            }
+        }
+    }
+    
+    private func configureMessageView(_ message: RealmMessage) {
+        resetMessageViewHidden()
+        
+        switch message.type {
+        case MessageType.text:
+            textMessageView.isHidden = false
+            textMessageView.updateMessageLabel(message)
+        case MessageType.image:
+            imageMessageView.isHidden = false
+            imageMessageView.updateMessageImage(message)
+        case MessageType.schedule:
+            scheduleMessageView.isHidden = false
+            scheduleMessageView.updateMessageSchedule(message)
+        default:
+            return
+        }
+    }
+    
+    private func resetMessageViewHidden() {
+        textMessageView.isHidden = true
+        imageMessageView.isHidden = true
+        scheduleMessageView.isHidden = true
     }
     
     @objc func translateButtonTapped() {

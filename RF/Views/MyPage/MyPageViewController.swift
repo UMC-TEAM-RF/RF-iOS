@@ -323,7 +323,7 @@ class MyPageViewController: UIViewController {
             make.top.equalTo(profileLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
             
-            make.width.equalTo(introduceLabel.intrinsicContentSize.width + 10)
+            //make.width.equalTo(introduceLabel.intrinsicContentSize.width + 10)
             make.height.equalTo(introduceLabel.intrinsicContentSize.height + 10)
 
         }
