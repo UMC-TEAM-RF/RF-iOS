@@ -134,6 +134,7 @@ class ProfileViewController: UIViewController {
     
     private lazy var goodImageView: UIView = {
         let view = UIView()
+        view.tag = 0
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.cornerRadius = 10
@@ -142,6 +143,7 @@ class ProfileViewController: UIViewController {
     
     private lazy var goodImage: UIImageView = {
         let view = UIImageView()
+        view.tag = 0
         view.image = UIImage(resource: .good)
         view.contentMode = .scaleAspectFit
         view.tintColor = .lightGray
@@ -150,6 +152,7 @@ class ProfileViewController: UIViewController {
     
     private lazy var badImageView: UIView = {
         let view = UIView()
+        view.tag = 1
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.cornerRadius = 10
@@ -158,6 +161,7 @@ class ProfileViewController: UIViewController {
     
     private lazy var badImage: UIImageView = {
         let view = UIImageView()
+        view.tag = 1
         view.image = UIImage(resource: .bad)
         view.contentMode = .scaleAspectFit
         view.tintColor = .lightGray
@@ -204,11 +208,9 @@ class ProfileViewController: UIViewController {
         
         setupCustomBackButton()
         
-        getData()
         addSubviews()
         configureConstraints()
-        bind()
-        
+        addTargets()
     }
     
     // MARK: View Will Appear
@@ -324,37 +326,22 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    /// MARK: ViewModel에서 데이터 얻는 함수
-    private func getData() {
-        viewModel.getData()
-        
-        if let img = URL(string: viewModel.userRelay.value[0].profileImageUrl ?? "") {
-            profileImageView.load(url: img)
+    private func addTargets() {
+        goodImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(estimateButtonTapped(_:))))
+        badImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(estimateButtonTapped(_:))))
+    }
+    
+    @objc func estimateButtonTapped(_ sender: UITapGestureRecognizer) {
+        if let view = sender.view {
+            switch view.tag {
+            case 0:
+                print("0")
+            case 1:
+                print("1")
+            default:
+                return
+            }
         }
-        introduceLabel.text = viewModel.userRelay.value[0].introduce
-        profileLabel.text = "\(viewModel.userRelay.value[0].nickname ?? "") | 소융대 🇰🇷"
+        
     }
-    
-    /// MARK: binding ViewModel
-    private func bind(){
-//        viewModel.goodBadRelay
-//            .bind { [weak self] items in
-//                self?.updateGoodBadItem(items)
-//            }
-//            .disposed(by: disposeBag)
-//        
-//        viewModel.checkSelectedForButtonColor()
-//            .subscribe(onNext:{ [weak self] check in
-//                if check{
-//                    self?.nextButton.setTitleColor(BackgroundColor.white.color, for: .normal)
-//                    self?.nextButton.backgroundColor = ButtonColor.main.color
-//                }
-//                else{
-//                    self?.nextButton.setTitleColor(TextColor.first.color, for: .normal)
-//                    self?.nextButton.backgroundColor = ButtonColor.normal.color
-//                }
-//            })
-//            .disposed(by: disposeBag)
-    }
-    
 }
