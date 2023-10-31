@@ -12,9 +12,8 @@
 		3B0E2EB92A80FE9200797782 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E2EB82A80FE9200797782 /* MeetingService.swift */; };
 		3B0E2EBB2A81024700797782 /* MeetingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E2EBA2A81024700797782 /* MeetingViewModel.swift */; };
 		3B0F1EE42A7C0317009F3F2B /* UICheckBox1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */; };
-		3B10366A2AD2DC3800CB5AB6 /* CreateCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1036692AD2DC3800CB5AB6 /* CreateCalendarViewController.swift */; };
-		3B1217EA2AEEAC6300FD15E5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1217E92AEEAC6300FD15E5 /* ProfileViewModel.swift */; };
 		3B10366A2AD2DC3800CB5AB6 /* CreateScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1036692AD2DC3800CB5AB6 /* CreateScheduleViewController.swift */; };
+		3B1217EA2AEEAC6300FD15E5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1217E92AEEAC6300FD15E5 /* ProfileViewModel.swift */; };
 		3B15CD582A63E9590096871F /* SearchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD572A63E9590096871F /* SearchingViewController.swift */; };
 		3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD592A63ECB80096871F /* FilteringViewController.swift */; };
 		3B15CD5D2A6439EA0096871F /* AgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */; };
@@ -224,9 +223,8 @@
 		3B0E2EB82A80FE9200797782 /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		3B0E2EBA2A81024700797782 /* MeetingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewModel.swift; sourceTree = "<group>"; };
 		3B0F1EE32A7C0317009F3F2B /* UICheckBox1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICheckBox1.swift; sourceTree = "<group>"; };
-		3B1036692AD2DC3800CB5AB6 /* CreateCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCalendarViewController.swift; sourceTree = "<group>"; };
-		3B1217E92AEEAC6300FD15E5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3B1036692AD2DC3800CB5AB6 /* CreateScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateScheduleViewController.swift; sourceTree = "<group>"; };
+		3B1217E92AEEAC6300FD15E5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3B15CD572A63E9590096871F /* SearchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingViewController.swift; sourceTree = "<group>"; };
 		3B15CD592A63ECB80096871F /* FilteringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringViewController.swift; sourceTree = "<group>"; };
 		3B15CD5C2A6439EA0096871F /* AgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeCollectionViewCell.swift; sourceTree = "<group>"; };
