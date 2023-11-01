@@ -34,7 +34,7 @@ final class HomeViewController: UIViewController {
     private lazy var navigationLogo: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "rf_logo")
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
@@ -57,15 +57,6 @@ final class HomeViewController: UIViewController {
         cv.isPagingEnabled = true
         return cv
     }()
-    
-    private lazy var bannerPageControl: UIPageControl = {
-        let pc = UIPageControl()
-        pc.numberOfPages = 3
-        pc.currentPage = 0
-        pc.backgroundStyle = .minimal
-        return pc
-    }()
-    
     
     // MARK: 모임
     
@@ -247,7 +238,6 @@ final class HomeViewController: UIViewController {
         
         // 컨테이너 뷰
         containerView.addSubview(bannerCollectionView)
-        containerView.addSubview(bannerPageControl)
         containerView.addSubview(meetingListView)
         containerView.addSubview(tipsView)
         containerView.addSubview(interestView)
@@ -292,6 +282,7 @@ final class HomeViewController: UIViewController {
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(20)
             make.top.bottom.equalToSuperview().inset(12)
+            make.width.equalTo(navigationLogo.snp.height)
         }
         
         navigationNotiButton.snp.makeConstraints { make in
@@ -318,11 +309,6 @@ final class HomeViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             //make.width.equalToSuperview()
             make.height.equalTo(bannerCollectionView.snp.width).multipliedBy(0.9/1.6)
-        }
-        
-        bannerPageControl.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(bannerCollectionView.snp.bottom).offset(-10)
         }
         
         // 모임
@@ -493,7 +479,6 @@ final class HomeViewController: UIViewController {
         currentPageIndex += 1
         
         if currentPageIndex == 3 { currentPageIndex = 0 }
-        bannerPageControl.currentPage = currentPageIndex
         
         bannerCollectionView.scrollToItem(at: IndexPath(item: currentPageIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
@@ -545,7 +530,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         switch collectionView.tag {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCollectionViewCell.identifier, for: indexPath) as! BannerCollectionViewCell
-            cell.setBannerImage(UIImage(named: "banner"))
+            cell.setBannerImage(UIImage(named: "banner\(indexPath.item)"))
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestCollectionViewCell.identifier, for: indexPath) as! InterestCollectionViewCell
