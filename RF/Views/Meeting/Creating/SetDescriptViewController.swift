@@ -27,7 +27,7 @@ final class SetDescriptViewController: UIViewController {
     // 배너 라벨
     private lazy var bannerLabel: UILabel = {
         let label = UILabel()
-        label.text = "배너를 설정해 주세요."
+        label.text = "배너를 설정해 주세요. (선택)"
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         label.textColor = TextColor.first.color
         return label
