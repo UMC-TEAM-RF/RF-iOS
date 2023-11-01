@@ -26,12 +26,13 @@ final class HomeViewController: UIViewController {
     }()
     
     // MARK: 네비게이션 바
-    private lazy var navigationContainerView: UIView = {
+    
+    private lazy var navigationLogo: UIView = {
         let view = UIView()
         return view
     }()
     
-    private lazy var navigationLogo: UIImageView = {
+    private lazy var navigationLogoImage: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "rf_logo")
         view.contentMode = .scaleAspectFit
@@ -41,7 +42,15 @@ final class HomeViewController: UIViewController {
     private lazy var navigationNotiButton: UIButton = {
         let view = UIButton()
         view.setImage(UIImage(systemName: "bell")?.resize(newWidth: 25, newHeight: 25), for: .normal)
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFit
+        view.tintColor = TextColor.first.color
+        return view
+    }()
+    
+    private lazy var navigationNotiButton2: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage(systemName: "bell")?.resize(newWidth: 25, newHeight: 25), for: .normal)
+        view.contentMode = .scaleAspectFit
         view.tintColor = TextColor.first.color
         return view
     }()
@@ -64,8 +73,6 @@ final class HomeViewController: UIViewController {
         let view = UIView()
         return view
     }()
-    
-    
     
     private lazy var meetingListLabel: UILabel = {
         let label = UILabel()
@@ -189,8 +196,6 @@ final class HomeViewController: UIViewController {
         cv.layer.borderWidth = 1
         return cv
     }()
-    
-    
 
     // MARK: - Property
     
@@ -209,8 +214,8 @@ final class HomeViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         
-        navigationController?.navigationBar.isHidden = true
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationLogo)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navigationNotiButton)
         
         addSubviews()
         configureConstraints()
@@ -222,16 +227,12 @@ final class HomeViewController: UIViewController {
         requestMeetingList()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.isHidden = true
-    }
-    
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        view.addSubview(navigationContainerView)
+
+        navigationLogo.addSubview(navigationLogoImage)
+        
         view.addSubview(scrollView)
         
         scrollView.addSubview(containerView)
@@ -241,12 +242,6 @@ final class HomeViewController: UIViewController {
         containerView.addSubview(meetingListView)
         containerView.addSubview(tipsView)
         containerView.addSubview(interestView)
-        
-        
-        // 네비게이션 바
-        navigationContainerView.addSubview(navigationLogo)
-        navigationContainerView.addSubview(navigationNotiButton)
-        
         
         // 모임
         meetingListView.addSubview(meetingListLabel)
@@ -272,29 +267,14 @@ final class HomeViewController: UIViewController {
     private func configureConstraints() {
         
         // 네비게이션 바
-        navigationContainerView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(60)
-        }
-        
-        navigationLogo.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(20)
-            make.top.bottom.equalToSuperview().inset(12)
+        navigationLogoImage.snp.makeConstraints { make in
+            make.verticalEdges.leading.equalToSuperview()
             make.width.equalTo(navigationLogo.snp.height)
-        }
-        
-        navigationNotiButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(20)
-            make.top.bottom.equalToSuperview().inset(15)
-            make.width.equalTo(navigationNotiButton.snp.height).multipliedBy(1)
         }
         
         // 스크롤 뷰
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(navigationContainerView.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
@@ -307,7 +287,6 @@ final class HomeViewController: UIViewController {
         bannerCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            //make.width.equalToSuperview()
             make.height.equalTo(bannerCollectionView.snp.width).multipliedBy(0.9/1.6)
         }
         

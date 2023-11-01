@@ -18,12 +18,10 @@ class MyPageViewController: UIViewController {
         return view
     }()
     
-    
     private lazy var containerView: UIView = {
         let view = UIView()
         return view
     }()
-    
     
     /// MARK: 프로필 이미지
     private lazy var profileImageView: UIImageView = {
@@ -35,7 +33,6 @@ class MyPageViewController: UIViewController {
         view.layer.cornerRadius = view.bounds.width / 2
         return view
     }()
-    
     
     /// MARK: 프로파일 수정 버튼
     private lazy var profileEditButton: UIButton = {
@@ -216,42 +213,13 @@ class MyPageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        
         updateTitleView(title: "마이페이지")
-        setupCustomBackButton()
         
         getData()
         addSubviews()
         configureConstraints()
         configureCollectionView()
         bind()
-        
-        //addBarButton
-        let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingButtonTapped))
-        let reportButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: #selector(settingButtonTapped))
-        
-        navigationItem.rightBarButtonItems = [settingButton, reportButton]
-        
-        
-        
-        
-        
-//        let service = MeetingService()
-//        service.requestRecommandPartyList("Personal") { meetings in
-//
-//            dump(meetings)
-//            self.personalMeetings = meetings!
-//
-//            if(self.completedRequest == 1){
-//                self.completedRequest = 0
-//                DispatchQueue.main.async {
-//                    self.pageCollectionView.reloadData()
-//                }
-//            }else{
-//                self.completedRequest = 1
-//            }
-//        }
-        
     }
     
     // MARK: View Will Appear
@@ -322,8 +290,6 @@ class MyPageViewController: UIViewController {
         introduceLabel.snp.makeConstraints { make in
             make.top.equalTo(profileLabel.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
-            
-            //make.width.equalTo(introduceLabel.intrinsicContentSize.width + 10)
             make.height.equalTo(introduceLabel.intrinsicContentSize.height + 10)
 
         }
@@ -396,11 +362,6 @@ class MyPageViewController: UIViewController {
             make.leading.equalTo(containerView.snp.centerX).offset(20)
         }
         
-        
-        
-        
-        
-        
     }
     
     private func configureCollectionView() {
@@ -410,6 +371,7 @@ class MyPageViewController: UIViewController {
         
         menuCollectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: MenuCollectionViewCell.identifier)
     }
+    
     /// MARK: ViewModel에서 데이터 얻는 함수
     private func getData(){
         viewModel.getData()
@@ -423,6 +385,7 @@ class MyPageViewController: UIViewController {
     }
     
     private func bind() {
+        
         customerCenterButton.rx.tap
             .subscribe(onNext: {
                 self.navigationController?.pushViewController(MyPageCustomerCenterViewController(), animated: true)
