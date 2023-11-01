@@ -83,17 +83,6 @@ final class SignInViewController: UIViewController {
         return view
     }()
     
-    // 로그인 상태 유지하기 체크박스
-    private lazy var autoLoginCheckBox: UICheckBox = {
-        let button = UICheckBox()
-        button.setTitle("  " + "로그인 상태 유지하기", for: .normal)
-        button.setTitleColor(TextColor.first.color, for: .normal)
-        button.setTitleColor(TextColor.first.color, for: .selected)
-        button.setColor(UIColor.init(hexCode: "#555555"))
-        button.titleLabel?.font = .systemFont(ofSize: 14)
-        return button
-    }()
-    
     // 로그인 버튼
     private lazy var loginButton: UIButton = {
         let button = UIButton()
@@ -132,23 +121,23 @@ final class SignInViewController: UIViewController {
         return button
     }()
     
-    //한국어설정
-    private lazy var korLangButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("KOR", for: .normal)
-        button.setTitleColor(TextColor.first.color, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12)
-        return button
-    }()
-    
-    //영어설정
-    private lazy var engLangButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("ENG", for: .normal)
-        button.setTitleColor(TextColor.first.color, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12)
-        return button
-    }()
+//    //한국어설정
+//    private lazy var korLangButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("KOR", for: .normal)
+//        button.setTitleColor(TextColor.first.color, for: .normal)
+//        button.titleLabel?.font = .systemFont(ofSize: 12)
+//        return button
+//    }()
+//    
+//    //영어설정
+//    private lazy var engLangButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("ENG", for: .normal)
+//        button.setTitleColor(TextColor.first.color, for: .normal)
+//        button.titleLabel?.font = .systemFont(ofSize: 12)
+//        return button
+//    }()
     
     private lazy var firstDivLine: UIView = {
         let box = UIView()
@@ -162,11 +151,11 @@ final class SignInViewController: UIViewController {
         return box
     }()
     
-    private lazy var thirdDivLine: UIView = {
-        let box = UIView()
-        box.backgroundColor = UIColor.init(hexCode: "#DFDFDF")
-        return box
-    }()
+//    private lazy var thirdDivLine: UIView = {
+//        let box = UIView()
+//        box.backgroundColor = UIColor.init(hexCode: "#DFDFDF")
+//        return box
+//    }()
     
     private let disposeBag = DisposeBag()
     private let viewModel = SignInViewModel()
@@ -195,8 +184,6 @@ final class SignInViewController: UIViewController {
         view.addSubview(pwTextField)
         view.addSubview(pwUnderLineView)
         
-        
-        view.addSubview(autoLoginCheckBox)
         view.addSubview(loginButton)
         
         view.addSubview(findIdButton)
@@ -205,9 +192,9 @@ final class SignInViewController: UIViewController {
         view.addSubview(secondDivLine)
         view.addSubview(signUpButton)
         
-        view.addSubview(korLangButton)
-        view.addSubview(thirdDivLine)
-        view.addSubview(engLangButton)
+//        view.addSubview(korLangButton)
+//        view.addSubview(thirdDivLine)
+//        view.addSubview(engLangButton)
     }
     
     private func configureConstraints() {
@@ -246,13 +233,8 @@ final class SignInViewController: UIViewController {
             make.height.equalTo(1)
         }
         
-        autoLoginCheckBox.snp.makeConstraints { make in
-            make.top.equalTo(pwTextField.snp.bottom).offset(16)
-            make.leading.equalTo(pwTextField.snp.leading)
-        }
-        
         loginButton.snp.makeConstraints { make in
-            make.top.equalTo(autoLoginCheckBox.snp.bottom).offset(32)
+            make.top.equalTo(pwUnderLineView.snp.bottom).offset(30)
             make.centerX.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(50)
             make.height.equalTo(47)
@@ -290,22 +272,22 @@ final class SignInViewController: UIViewController {
             make.height.equalTo(15)
         }
         
-        korLangButton.snp.makeConstraints { make in
-            make.top.equalTo(resetPasswordButton.snp.bottom).offset(32)
-            make.trailing.equalTo(thirdDivLine.snp.leading).offset(-16)
-            make.height.equalTo(15)
-        }
-        thirdDivLine.snp.makeConstraints { make in
-            make.top.equalTo(resetPasswordButton.snp.bottom).offset(32)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(15)
-            make.width.equalTo(1)
-        }
-        engLangButton.snp.makeConstraints { make in
-            make.top.equalTo(resetPasswordButton.snp.bottom).offset(32)
-            make.leading.equalTo(thirdDivLine.snp.trailing).offset(16)
-            make.height.equalTo(15)
-        }
+//        korLangButton.snp.makeConstraints { make in
+//            make.top.equalTo(resetPasswordButton.snp.bottom).offset(32)
+//            make.trailing.equalTo(thirdDivLine.snp.leading).offset(-16)
+//            make.height.equalTo(15)
+//        }
+//        thirdDivLine.snp.makeConstraints { make in
+//            make.top.equalTo(resetPasswordButton.snp.bottom).offset(32)
+//            make.centerX.equalToSuperview()
+//            make.height.equalTo(15)
+//            make.width.equalTo(1)
+//        }
+//        engLangButton.snp.makeConstraints { make in
+//            make.top.equalTo(resetPasswordButton.snp.bottom).offset(32)
+//            make.leading.equalTo(thirdDivLine.snp.trailing).offset(16)
+//            make.height.equalTo(15)
+//        }
     }
     
     private func addTargets() {
