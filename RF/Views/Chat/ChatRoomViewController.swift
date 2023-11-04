@@ -534,6 +534,11 @@ extension ChatRoomViewController: MessageTableViewCellDelegate {
         
     }
     
+    func didTapAvatarView(_ userId: Int) {
+        let vc = ProfileViewController()
+        self.present(vc, animated: true)
+    }
+    
     // 메시지 번역 버튼 클릭
     // 번역 안된 경우, 번역된 메시지를 보여주는 상태, 번역되기 전 메시지를 보여주는 상태
     func convertMessage(_ indexPath: IndexPath) {

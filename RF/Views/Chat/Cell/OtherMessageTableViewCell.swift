@@ -17,6 +17,7 @@ class OtherMessageTableViewCell: UITableViewCell {
         iv.contentMode = .scaleAspectFit
         iv.layer.cornerRadius = contentView.frame.width * 0.1 / 2.0
         iv.clipsToBounds = true
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     
@@ -88,6 +89,8 @@ class OtherMessageTableViewCell: UITableViewCell {
             imageMessageView.delegate = self.delegate
         }
     }
+    
+    private var userId: Int?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -167,9 +170,11 @@ class OtherMessageTableViewCell: UITableViewCell {
     
     private func addTargets() {
         translateButton.addTarget(self, action: #selector(translateButtonTapped), for: .touchUpInside)
+        avatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avatarViewDidTapped)))
     }
     
     func updateChatView(message: RealmMessage, userLangCode: String, isContinuous: Bool) {
+        self.userId = message.speaker?.id
         configureMessageView(message)
         
         // 아바타 사진, 이름 설정
@@ -227,6 +232,11 @@ class OtherMessageTableViewCell: UITableViewCell {
     @objc func translateButtonTapped() {
         guard let indexPath = (superview as? UITableView)?.indexPath(for: self) else { return }
         delegate?.convertMessage(indexPath)
+    }
+    
+    @objc func avatarViewDidTapped() {
+        guard let id = self.userId else { return }
+        delegate?.didTapAvatarView(id)
     }
 
 }
