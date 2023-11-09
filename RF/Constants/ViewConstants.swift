@@ -161,6 +161,8 @@ struct Interest {
     ]
 }
 
+// MARK: - Topic
+
 struct Topic {
     static let titleList: [String] = ["음악", "스포츠", "국가", "음식", "공부"]
     
@@ -216,4 +218,15 @@ struct Topic {
                                   "우리 학교에서 가장 마음에 드는 장소는 어디인가요?",
                                   "우리 학교 축제 즐긴 적 있나요? 어땠나요?",
                                   "최근 관심있는 분야가 무엇인가요?"]
+}
+
+
+// MARK: - MyPageMenu
+
+struct MyPageMenu {
+    static let list: [[String]] = [
+        ["프로필 관리", "내 프로필을 확인하고 수정할 수 있어요!"],
+        ["차단 관리", "차단한 친구를 관리해요!"],
+        ["고객 센터", "공지사항, FAQ, 이용 가이드 등을 확인할 수 있어요!"]
+    ]
 }

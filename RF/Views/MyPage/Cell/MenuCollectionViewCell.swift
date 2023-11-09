@@ -11,7 +11,6 @@ class MenuCollectionViewCell: UICollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "제목"
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         label.numberOfLines = 1
         return label
@@ -19,10 +18,9 @@ class MenuCollectionViewCell: UICollectionViewCell {
     
     private lazy var descriptLabel: UILabel = {
         let label = UILabel()
-        label.text = "상세설명"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = TextColor.secondary.color
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         return label
     }()
     
@@ -32,17 +30,6 @@ class MenuCollectionViewCell: UICollectionViewCell {
         btn.tintColor = TextColor.secondary.color
         return btn
     }()
-    
-    var varTitleLabel: String? {
-        didSet {
-            self.titleLabel.text = varTitleLabel
-        }
-    }
-    var varDescriptLabel: String? {
-        didSet {
-            self.descriptLabel.text = varDescriptLabel
-        }
-    }
     
     static let identifier = "menuCollectionViewCell"
     
@@ -82,14 +69,21 @@ class MenuCollectionViewCell: UICollectionViewCell {
         }
         
         rightButton.snp.makeConstraints { make in
-            make.bottom.trailing.equalToSuperview().inset(15)
+            make.centerY.equalTo(titleLabel.snp.centerY)
+            make.trailing.equalToSuperview().inset(15)
         }
         
         descriptLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(15)
             make.top.equalTo(titleLabel.snp.bottom).offset(15)
             make.trailing.equalTo(rightButton.snp.leading).offset(-15)
+            make.bottom.equalToSuperview().inset(15)
         }
         
+    }
+    
+    func updateLabel(_ text: [String]) {
+        self.titleLabel.text = text[0]
+        self.descriptLabel.text = text[1]
     }
 }
