@@ -230,3 +230,9 @@ struct MyPageMenu {
         ["고객 센터", "공지사항, FAQ, 이용 가이드 등을 확인할 수 있어요!"]
     ]
 }
+
+// MARK: - CustomerCenterMenu
+
+struct CustomerCenterMenu {
+    static let list: [String] = ["공지사항", "FAQ", "이메일 문의", "알프 신고하기", "알프 신고 대상 제한 안내"]
+}

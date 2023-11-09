@@ -361,16 +361,10 @@ class MyPageViewController: UIViewController {
         case 1:
             self.navigationController?.pushViewController(MyPageBlockUserListViewController(), animated: true)
         case 2:
-            self.navigationController?.pushViewController(MyPageCustomerCenterViewController(), animated: true)
+            self.navigationController?.pushViewController(CustomerCenterViewController(), animated: true)
         default:
             return
         }
-    }
-    
-    // MARK: - @objc
-    
-    @objc func settingButtonTapped() {
-        self.navigationController?.pushViewController(ProfileSettingViewController(), animated: true)
     }
 }
 

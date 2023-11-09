@@ -8,7 +8,7 @@
 import UIKit
 
 
-class SettingTableViewCell: UITableViewCell {
+class CustomerCenterTableViewCell: UITableViewCell {
     
     // MARK: - UI Property
     
@@ -58,12 +58,12 @@ class SettingTableViewCell: UITableViewCell {
     private func configureConstraints() {
         label.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(10)
+            make.leading.equalToSuperview().inset(20)
             make.trailing.equalTo(editButton.snp.leading).offset(20)
         }
         editButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(20)
         }
     }
     
