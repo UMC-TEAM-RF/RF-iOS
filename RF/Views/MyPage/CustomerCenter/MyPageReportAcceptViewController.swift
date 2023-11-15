@@ -11,8 +11,7 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
-// MARK: - MyPageReportApplyController
-class MyPageReportApplyViewController: UIViewController {
+class MyPageReportAcceptViewController: UIViewController {
     
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
@@ -117,7 +116,7 @@ class MyPageReportApplyViewController: UIViewController {
 }
 
 // MARK: extension - UITextViewDelegate
-extension MyPageReportApplyViewController : UITextViewDelegate {
+extension MyPageReportAcceptViewController : UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView){
         textFieldDidChange(textView)
     }

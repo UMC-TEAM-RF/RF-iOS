@@ -26,22 +26,31 @@ final class HomeViewController: UIViewController {
     }()
     
     // MARK: 네비게이션 바
-    private lazy var navigationContainerView: UIView = {
+    
+    private lazy var navigationLogo: UIView = {
         let view = UIView()
         return view
     }()
     
-    private lazy var navigationLogo: UIImageView = {
+    private lazy var navigationLogoImage: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "rf_logo")
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
     private lazy var navigationNotiButton: UIButton = {
         let view = UIButton()
         view.setImage(UIImage(systemName: "bell")?.resize(newWidth: 25, newHeight: 25), for: .normal)
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFit
+        view.tintColor = TextColor.first.color
+        return view
+    }()
+    
+    private lazy var navigationNotiButton2: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage(systemName: "bell")?.resize(newWidth: 25, newHeight: 25), for: .normal)
+        view.contentMode = .scaleAspectFit
         view.tintColor = TextColor.first.color
         return view
     }()
@@ -58,23 +67,12 @@ final class HomeViewController: UIViewController {
         return cv
     }()
     
-    private lazy var bannerPageControl: UIPageControl = {
-        let pc = UIPageControl()
-        pc.numberOfPages = 3
-        pc.currentPage = 0
-        pc.backgroundStyle = .minimal
-        return pc
-    }()
-    
-    
     // MARK: 모임
     
     private lazy var meetingListView: UIView = {
         let view = UIView()
         return view
     }()
-    
-    
     
     private lazy var meetingListLabel: UILabel = {
         let label = UILabel()
@@ -198,8 +196,6 @@ final class HomeViewController: UIViewController {
         cv.layer.borderWidth = 1
         return cv
     }()
-    
-    
 
     // MARK: - Property
     
@@ -218,8 +214,8 @@ final class HomeViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         
-        navigationController?.navigationBar.isHidden = true
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationLogo)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navigationNotiButton)
         
         addSubviews()
         configureConstraints()
@@ -231,32 +227,21 @@ final class HomeViewController: UIViewController {
         requestMeetingList()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.isHidden = true
-    }
-    
     // MARK: - addSubviews()
     
     private func addSubviews() {
-        view.addSubview(navigationContainerView)
+
+        navigationLogo.addSubview(navigationLogoImage)
+        
         view.addSubview(scrollView)
         
         scrollView.addSubview(containerView)
         
         // 컨테이너 뷰
         containerView.addSubview(bannerCollectionView)
-        containerView.addSubview(bannerPageControl)
         containerView.addSubview(meetingListView)
         containerView.addSubview(tipsView)
         containerView.addSubview(interestView)
-        
-        
-        // 네비게이션 바
-        navigationContainerView.addSubview(navigationLogo)
-        navigationContainerView.addSubview(navigationNotiButton)
-        
         
         // 모임
         meetingListView.addSubview(meetingListLabel)
@@ -282,28 +267,14 @@ final class HomeViewController: UIViewController {
     private func configureConstraints() {
         
         // 네비게이션 바
-        navigationContainerView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(60)
-        }
-        
-        navigationLogo.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(20)
-            make.top.bottom.equalToSuperview().inset(12)
-        }
-        
-        navigationNotiButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(20)
-            make.top.bottom.equalToSuperview().inset(15)
-            make.width.equalTo(navigationNotiButton.snp.height).multipliedBy(1)
+        navigationLogoImage.snp.makeConstraints { make in
+            make.verticalEdges.leading.equalToSuperview()
+            make.width.equalTo(navigationLogo.snp.height)
         }
         
         // 스크롤 뷰
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(navigationContainerView.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
@@ -316,13 +287,7 @@ final class HomeViewController: UIViewController {
         bannerCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            //make.width.equalToSuperview()
             make.height.equalTo(bannerCollectionView.snp.width).multipliedBy(0.9/1.6)
-        }
-        
-        bannerPageControl.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(bannerCollectionView.snp.bottom).offset(-10)
         }
         
         // 모임
@@ -493,7 +458,6 @@ final class HomeViewController: UIViewController {
         currentPageIndex += 1
         
         if currentPageIndex == 3 { currentPageIndex = 0 }
-        bannerPageControl.currentPage = currentPageIndex
         
         bannerCollectionView.scrollToItem(at: IndexPath(item: currentPageIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
@@ -545,7 +509,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         switch collectionView.tag {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCollectionViewCell.identifier, for: indexPath) as! BannerCollectionViewCell
-            cell.setBannerImage(UIImage(named: "banner"))
+            cell.setBannerImage(UIImage(named: "banner\(indexPath.item)"))
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InterestCollectionViewCell.identifier, for: indexPath) as! InterestCollectionViewCell

@@ -29,8 +29,8 @@ class MyPageReportViewController: TabmanViewController {
     
     func TabmanConfiguration(){
         
-        viewControllers.append(MyPageReportApplyViewController())
-        viewControllers.append(MyPageReportSecondTabViewController())
+        viewControllers.append(MyPageReportAcceptViewController())
+        viewControllers.append(MyPageReportDetailsViewController())
         
         self.dataSource = self
 
@@ -65,31 +65,5 @@ extension MyPageReportViewController: PageboyViewControllerDataSource, TMBarData
 
     func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
         return nil
-    }
-}
-
-
-
-
-// MARK: - MyPageReportSecondTabViewController
-class MyPageReportSecondTabViewController: UIViewController {
-    
-    private lazy var mainLabel: UILabel = {
-        let label = UILabel()
-        label.text = "추후 구현 예정"
-        label.font = .systemFont(ofSize: 14)
-        label.textColor = TextColor.first.color
-        return label
-    }()
-    
-    // MARK: - viewDidLoad()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        view.addSubview(mainLabel)
-        mainLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalTo(view.safeAreaLayoutGuide)
-        }
     }
 }

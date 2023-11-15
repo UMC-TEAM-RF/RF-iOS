@@ -11,4 +11,5 @@ import UIKit
 @objc protocol MessageTableViewCellDelegate: AnyObject {
     @objc optional func longPressedMessageView(_ gesture: UILongPressGestureRecognizer)
     func convertMessage(_ indexPath: IndexPath)
+    func didTapAvatarView(_ userId: Int)
 }
