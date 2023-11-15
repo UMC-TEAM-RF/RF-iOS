@@ -23,19 +23,19 @@ final class EnumFile {
         service.getEnumList()
             .subscribe(
                 onNext: { [weak self] data in
+                    print(data)
                     self?.enumList.accept(data)
                 },onError: { error in
                     print("EnumFile getEnumList error!")
                 })
             .disposed(by: disposeBag)
-        
     }
     
 }
 
 struct Enums: Codable {
     var country, interest, language, lifeStyle: [KVO]?
-    var mbti, preferAges, rule, university: [KVO]?
+    var mbti, preferAges, rule, university, major: [KVO]?
 
     enum CodingKeys: String, CodingKey {
         case country = "Country"
@@ -46,6 +46,7 @@ struct Enums: Codable {
         case preferAges = "PreferAges"
         case rule = "Rule"
         case university = "University"
+        case major = "Major"
     }
 }
 

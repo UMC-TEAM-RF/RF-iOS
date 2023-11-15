@@ -17,6 +17,7 @@ struct User: Codable {
     let mbti: String?
     let profileImageUrl: String?
     let userId: Int?
+    let major: String?
     
     enum CodingKeys: String, CodingKey {
         case loginId
@@ -28,6 +29,7 @@ struct User: Codable {
         case interest = "interests"
         case profileImageUrl = "imageFilePath"
         case mbti, userId
+        case major
     }
 }
 

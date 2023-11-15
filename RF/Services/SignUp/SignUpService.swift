@@ -79,7 +79,8 @@ final class SignUpService {
                               interest: SignUpDataViewModel.viewModel.interestingRelay.value,
                               mbti: SignUpDataViewModel.viewModel.mbtiRelay.value,
                               profileImageUrl: nil,
-                              userId: nil)
+                              userId: nil,
+                              major: SignUpDataViewModel.viewModel.major.value)
         print(body)
         return Observable.create { observer in
             

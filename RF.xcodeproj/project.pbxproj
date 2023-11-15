@@ -27,6 +27,8 @@
 		3B267B8F2A861E3200F3949A /* GroupJoinRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B267B8E2A861E3200F3949A /* GroupJoinRequestViewController.swift */; };
 		3B267B922A86281100F3949A /* GroupJoinRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B267B912A86281100F3949A /* GroupJoinRequestViewModel.swift */; };
 		3B267B942A862AB100F3949A /* GroupJoinRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B267B932A862AB100F3949A /* GroupJoinRequestTableViewCell.swift */; };
+		3B3698862B0457EE00BEB126 /* ChoiceMajorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3698852B0457EE00BEB126 /* ChoiceMajorView.swift */; };
+		3B3698882B048DB000BEB126 /* ChoiceMajorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3698872B048DB000BEB126 /* ChoiceMajorViewModel.swift */; };
 		3B5402BD2A6E76C100D0AD21 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */; };
 		3B5402C02A6E7E0900D0AD21 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */; };
 		3B5402C32A6EA61700D0AD21 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */; };
@@ -233,6 +235,8 @@
 		3B267B8E2A861E3200F3949A /* GroupJoinRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupJoinRequestViewController.swift; sourceTree = "<group>"; };
 		3B267B912A86281100F3949A /* GroupJoinRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupJoinRequestViewModel.swift; sourceTree = "<group>"; };
 		3B267B932A862AB100F3949A /* GroupJoinRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupJoinRequestTableViewCell.swift; sourceTree = "<group>"; };
+		3B3698852B0457EE00BEB126 /* ChoiceMajorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceMajorView.swift; sourceTree = "<group>"; };
+		3B3698872B048DB000BEB126 /* ChoiceMajorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceMajorViewModel.swift; sourceTree = "<group>"; };
 		3B5402BC2A6E76C100D0AD21 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3B5402BF2A6E7E0900D0AD21 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		3B5402C22A6EA61700D0AD21 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
@@ -754,6 +758,7 @@
 				3BD700C42A793565005C7D7E /* ChoiceBornCountryView.swift */,
 				3BD700CE2A7962F0005C7D7E /* ChoiceInterestingCountryView.swift */,
 				3BD700D22A7963DD005C7D7E /* ChoiceInterestingLanguageView.swift */,
+				3B3698852B0457EE00BEB126 /* ChoiceMajorView.swift */,
 			);
 			path = ChooseUserInfo;
 			sourceTree = "<group>";
@@ -779,6 +784,7 @@
 			isa = PBXGroup;
 			children = (
 				3BD700C72A79364B005C7D7E /* ChoiceCountryViewModel.swift */,
+				3B3698872B048DB000BEB126 /* ChoiceMajorViewModel.swift */,
 				3BD700D02A796312005C7D7E /* ChoiceInterestingCountryViewModel.swift */,
 				3BD700D42A796403005C7D7E /* ChoiceInterestingLanguageViewModel.swift */,
 			);
@@ -1421,12 +1427,14 @@
 				3B15CD5A2A63ECB80096871F /* FilteringViewController.swift in Sources */,
 				5700639D2A6AC60C0051F42A /* NotiListTableViewCell.swift in Sources */,
 				3BEEA2702AD558EF00F6D5B7 /* MyPageReportViewController.swift in Sources */,
+				3B3698882B048DB000BEB126 /* ChoiceMajorViewModel.swift in Sources */,
 				572A9A242A5AAE24004D2809 /* CALayer+Ext.swift in Sources */,
 				440B53C82AC29E2700D6607F /* SearchPWViewController.swift in Sources */,
 				3BF2E7662A8B50CC00FD09F7 /* Judge.swift in Sources */,
 				3B5402C72A6EA99E00D0AD21 /* ListCellViewModel.swift in Sources */,
 				3B935D582A56F00200FECE3A /* SignUpViewController.swift in Sources */,
 				572DC2312A51BF2400C0D6E1 /* SceneDelegate.swift in Sources */,
+				3B3698862B0457EE00BEB126 /* ChoiceMajorView.swift in Sources */,
 				3B9BA8F12A724CB30043DDE6 /* MyPageViewController.swift in Sources */,
 				3BD68EFB2A779885003A57A7 /* SignInService.swift in Sources */,
 				57DD3E682A8106E7009F7139 /* Message.swift in Sources */,

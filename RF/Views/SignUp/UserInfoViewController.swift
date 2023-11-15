@@ -95,6 +95,28 @@ final class UserInfoViewController: UIViewController {
         return button
     }()
     
+    /// MARK: 소속 학과 제목
+    private lazy var majorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "소속 학과"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.numberOfLines = 1
+        label.textColor = TextColor.first.color
+        return label
+    }()
+    
+    /// MARK: 소속 학과 선택하는 버튼
+    private lazy var majorButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("  소속된 단과대를 선택해주세요", for: .normal)
+        button.setTitleColor(TextColor.secondary.color, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        button.backgroundColor =  BackgroundColor.white.color
+        button.layer.cornerRadius = 5
+        button.contentHorizontalAlignment = .left
+        return button
+    }()
+    
     /// MARK: Next Button
     private lazy var nextButton: UIButton = {
         let button = UIButton()
@@ -133,6 +155,8 @@ final class UserInfoViewController: UIViewController {
         view.addSubview(nationButton)
         view.addSubview(favNationButton)
         view.addSubview(favLanguageButton)
+        view.addSubview(majorLabel)
+        view.addSubview(majorButton)
         
         configureConstraints()
     }
@@ -182,6 +206,20 @@ final class UserInfoViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(47)
         }
+        
+        // 소속 학과
+        majorLabel.snp.makeConstraints { make in
+            make.top.equalTo(favLanguageButton.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        // 소속 학과 설정 메뉴 버튼
+        majorButton.snp.makeConstraints { make in
+            make.top.equalTo(majorLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(47)
+        }
+        
         
         //다음
         nextButton.snp.makeConstraints { make in
@@ -238,6 +276,22 @@ final class UserInfoViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        majorButton.rx.tap
+            .bind { [weak self] in
+                guard let self = self else {return}
+                let choiceMajorView = ChoiceMajorView()
+                choiceMajorView.modalPresentationStyle = .formSheet
+                choiceMajorView.selctedMajor
+                    .bind { [weak self] major in
+                        guard let self = self else {return}
+                        viewModel.major.accept(major.key ?? "")
+                        majorButton.setTitle("  \(major.value ?? "")", for: .normal)
+                    }
+                    .disposed(by: disposeBag)
+                present(choiceMajorView, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         nextButton.rx.tap
             .bind { [weak self] in
                 self?.selectedAll()
@@ -258,6 +312,7 @@ final class UserInfoViewController: UIViewController {
                     SignUpDataViewModel.viewModel.bornCountry.accept(self?.viewModel.bornCountry.value ?? "")
                     SignUpDataViewModel.viewModel.interestingCountry.accept(self?.viewModel.interestingCountry.value ?? [])
                     SignUpDataViewModel.viewModel.interestingLanguage.accept(self?.viewModel.interestingLanguage.value ?? [])
+                    SignUpDataViewModel.viewModel.major.accept(self?.viewModel.major.value ?? "")
                 }
             })
             .disposed(by: disposeBag)

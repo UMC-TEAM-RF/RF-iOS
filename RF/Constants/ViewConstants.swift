@@ -128,6 +128,8 @@ struct UserInfo {
     static let bornCountryPlaceHolder = "출생 국가를 선택해주세요"
     static let college = "대학교 선택"
     static let collegePlaceHolder = "대학교를 선택해주세요"
+    static let major = "전공 선택"
+    static let majorPlaceHolder = "전공을 선택해주세요"
 }
 
 // MARK: - DetailMeetingJoinPopUp

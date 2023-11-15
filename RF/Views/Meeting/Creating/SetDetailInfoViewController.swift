@@ -161,25 +161,25 @@ final class SetDetailInfoViewController: UIViewController {
         return button
     }()
     
-    // 활동 장소
-    private lazy var placeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "활동 장소"
-        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = TextColor.first.color
-        return label
-    }()
-    
-    private lazy var placeTextField: UITextField = {
-        let tf = UITextField()
-        tf.backgroundColor = ButtonColor.normal.color
-        tf.layer.cornerRadius = 5
-        tf.placeholder = "장소를 입력해 주세요."
-        tf.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        tf.textAlignment = .right
-        tf.addHorizontalPadding(10)
-        return tf
-    }()
+//    // 활동 장소
+//    private lazy var placeLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "활동 장소"
+//        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+//        label.textColor = TextColor.first.color
+//        return label
+//    }()
+//    
+//    private lazy var placeTextField: UITextField = {
+//        let tf = UITextField()
+//        tf.backgroundColor = ButtonColor.normal.color
+//        tf.layer.cornerRadius = 5
+//        tf.placeholder = "장소를 입력해 주세요."
+//        tf.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+//        tf.textAlignment = .right
+//        tf.addHorizontalPadding(10)
+//        return tf
+//    }()
     
     // 두 번째 경계선
     private lazy var secondDivLine: UIView = {
@@ -289,9 +289,9 @@ final class SetDetailInfoViewController: UIViewController {
         containerView.addSubview(languageLabel)
         containerView.addSubview(languageButton)
         
-        // 활동 장소
-        containerView.addSubview(placeLabel)
-        containerView.addSubview(placeTextField)
+//        // 활동 장소
+//        containerView.addSubview(placeLabel)
+//        containerView.addSubview(placeTextField)
         
         // 두 번째 경계선
         containerView.addSubview(secondDivLine)
@@ -392,23 +392,23 @@ final class SetDetailInfoViewController: UIViewController {
             make.width.equalTo(130)
         }
         
-        // 활동 장소
-        placeLabel.snp.makeConstraints { make in
-            make.top.equalTo(languageLabel.snp.bottom).offset(30)
-            make.height.equalTo(30)
-            make.leading.equalToSuperview().inset(30)
-        }
-        
-        placeTextField.snp.makeConstraints { make in
-            make.centerY.equalTo(placeLabel)
-            make.trailing.equalToSuperview().inset(30)
-            make.width.equalTo(200)
-            make.height.equalTo(placeLabel.snp.height).multipliedBy(1.2)
-        }
+//        // 활동 장소
+//        placeLabel.snp.makeConstraints { make in
+//            make.top.equalTo(languageLabel.snp.bottom).offset(30)
+//            make.height.equalTo(30)
+//            make.leading.equalToSuperview().inset(30)
+//        }
+//        
+//        placeTextField.snp.makeConstraints { make in
+//            make.centerY.equalTo(placeLabel)
+//            make.trailing.equalToSuperview().inset(30)
+//            make.width.equalTo(200)
+//            make.height.equalTo(placeLabel.snp.height).multipliedBy(1.2)
+//        }
         
         // 두 번째 경계선
         secondDivLine.snp.makeConstraints { make in
-            make.top.equalTo(placeLabel.snp.bottom).offset(30)
+            make.top.equalTo(languageLabel.snp.bottom).offset(30)
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(1)
         }
@@ -456,13 +456,13 @@ final class SetDetailInfoViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        placeTextField.rx.text
-            .bind { [weak self] text in
-                if let text = text{
-                    self?.viewModel.place.accept(text)
-                }
-            }
-            .disposed(by: disposeBag)
+//        placeTextField.rx.text
+//            .bind { [weak self] text in
+//                if let text = text{
+//                    self?.viewModel.place.accept(text)
+//                }
+//            }
+//            .disposed(by: disposeBag)
         
         viewModel.checkAllDatas()
             .subscribe(onNext:{ [weak self] check in
